@@ -10,8 +10,8 @@ search_omit: true
 
   <li>
     <article>
+      {{ post.tags }}
       <a href="{{ site.url }}{{ post.url }}">
-        {{ post.tags }}
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
           <time datetime="{{ post.date | date_to_xmlschema }}">
