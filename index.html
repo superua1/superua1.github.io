@@ -11,7 +11,7 @@ search_omit: true
     <article>
       
       <a href="{{ site.url }}{{ post.url }}">
-        {{ post.tags }} 
+        {% for post in site.categories.articles %}
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
           <time datetime="{{ post.date | date_to_xmlschema }}">
