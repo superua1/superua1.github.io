@@ -14,7 +14,9 @@ search_omit: true
           <strong class="d-inline-block mb-2 text-primary">{{ post.date | date: "%B %d, %Y" }}</strong>
           <h3 class="mb-0">{{ post.title }}</h3>
           <div class="mb-1 text-muted">Konu Etiketleri</div>
-          <p class="card-text mb-auto text-b">{{ post.tags }}</p>
+          <ul class="entry-tags">
+          {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
+        </ul>
           <a href="{{ site.url }}{{ post.url }}" class=" stretched-link"></a>
 			
         </div>
