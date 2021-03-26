@@ -9,9 +9,8 @@ search_omit: true
 
   <li>
     <article>
-      {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
       <a href="{{ site.url }}{{ post.url }}">
-        {% for post in site.categories.articles %}
+        {{ post.tags }}
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
           <time datetime="{{ post.date | date_to_xmlschema }}">
