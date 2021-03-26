@@ -12,9 +12,7 @@ search_omit: true
     <article>
      
       <a href="{{ site.url }}{{ post.url }}">
-        <ul class="entry-tags">
-          {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
-        </ul>
+        {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
           <time datetime="{{ post.date | date_to_xmlschema }}">
