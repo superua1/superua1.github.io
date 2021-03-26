@@ -19,7 +19,9 @@ search_omit: true
         <span class="excerpt">
         {{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}
       </a>
-       {{ post.tags }}
+       <ul class="entry-tags">
+          {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
+        </ul>
     </article>
   </li>
 {% endfor %}
