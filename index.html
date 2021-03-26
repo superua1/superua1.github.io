@@ -7,6 +7,45 @@ search_omit: true
 
 <ul class="post-list">
 {% for post in site.posts limit:10 %}
-  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}</a></article></li>
+  <li>
+    <article>
+      <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">1.Doküman</strong>
+          <h3 class="mb-0">Girizgah: Linux Nedir</h3>
+          <div class="mb-1 text-muted">Konu Etiketleri</div>
+          <p class="card-text mb-auto text-b">Linux , çekirdek , linus torvalds , gnu , gpl , unix, dağıtım, açık kaynak..</p>
+          <a href="./docs/temel_linux/1.html" class=" stretched-link"></a>
+			
+        </div>
+        
+      </div>
+    </div>
+		<div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">2.Doküman</strong>
+          <h3 class="mb-0">Çalışma Ortamı</h3>
+          <div class="mb-1 text-muted">Konu Etiketleri</div>
+          <p class="card-text mb-auto">usb persistence , live usb , kurulum metodları , sanal linux , vps..</p>
+          <a href="./docs/temel_linux/2.html" class=" stretched-link"></a>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+      <a href="{{ site.url }}{{ post.url }}">
+        {{ post.title }} 
+        <span class="entry-date">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} 
+        <span class="excerpt">
+        {{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}
+      </a>
+    </article>
+  </li>
 {% endfor %}
 </ul>
