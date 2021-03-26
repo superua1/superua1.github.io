@@ -9,10 +9,11 @@ search_omit: true
 {% for post in site.posts limit:10 %}
 
   <li>
+    {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
     <article>
      
       <a href="{{ site.url }}{{ post.url }}">
-        {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
+       
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
           <time datetime="{{ post.date | date_to_xmlschema }}">
