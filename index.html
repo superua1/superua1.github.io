@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Index 1
+title: Index 2
 excerpt: "A simple and clean responsive Jekyll theme for words and photos."
 search_omit: true
 ---
@@ -10,7 +10,7 @@ search_omit: true
 
   <li>
     <article>
-      {{ post.tags }}
+     
       <a href="{{ site.url }}{{ post.url }}">
         <h1>{{ post.title }}</h1> 
         <span class="entry-date">
@@ -19,6 +19,7 @@ search_omit: true
         <span class="excerpt">
         {{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}
       </a>
+       {{ post.tags }}
     </article>
   </li>
 {% endfor %}
