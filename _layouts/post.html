@@ -5,7 +5,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 {% include head.html %}
-<link rel="stylesheet" href="https://linux-dersleri.github.io//css/bootstrap.min.css">  
 </head>
 
 <body id="post">
@@ -28,7 +27,7 @@
       </header>
       <footer class="entry-meta">
         
-        <span class="author vcard">By <a href="{{ site.url }}/author/#{{ author.name }}">{{ author.name }}<span class="fn">{{ author.name }}</span></a></span>
+        <span class="author vcard">By <a href="{{ site.url }}/author/#{{ author.name }}"><span class="fn">{{ author.name }}</span></a></span>
         <span class="entry-date date published"><time datetime="{{ page.date | date_to_xmlschema }}"><i class="fa fa-calendar-o"></i> {{ page.date | date: "%B %d, %Y" }}</time></span>
         {% if page.modified %}<span class="entry-date date modified"><time datetime="{{ page.modified }}"><i class="fa fa-pencil"></i> {{ page.modified | date: "%B %d, %Y" }}</time></span>{% endif %}
         {% if site.owner.disqus-shortname and page.comments or site.comments %}<span class="entry-comments"><i class="fa fa-comment-o"></i> <a href="#disqus_thread">Comment</a></span>{% endif %}
