@@ -5,6 +5,7 @@ locale: en_US
 description: A simple and clean responsive Jekyll theme for words and photos.
 logo: site-logo.png
 url: https://superua1.github.io
+skin: /assets/css/dark.scss
 
 # Jekyll configuration
 
