@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: İki Nokta Üst Üste Komutu <code>:</code>
 excerpt: "Bash yerleşik komutlarından olan iki nokta üst üste komutundan bahsediyor olacağız."
 modified: 2016-06-01T14:17:25-04:00
