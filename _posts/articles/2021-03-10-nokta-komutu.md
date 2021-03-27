@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: İki Nokta Üst Üste Komutu <code>:</code>
 excerpt: "Bash yerleşik komutlarından olan iki nokta üst üste komutundan bahsediyor olacağız."
 modified: 2016-06-01T14:17:25-04:00
@@ -13,7 +13,7 @@ comments: true
 share: true
 ---
 
-# : (iki nokta üst üste) Komutu
+# <code>:</code> (iki nokta üst üste) Komutu
 
 İki nokta üst üste işareti, özel karakterler sınıfında yer alan ve özetle "**hiç bir şey yapma**" anlamına gelen yapıdır. Genel kullanım amacına bakıldığında tıpkı `true` komutu gibi "**doğru**" değeri döndürmek amacıyla kullanıldığını görebiliriz. Test etmek için yalnızca iki nokta üst üste karakterini komut satırımıza girelim ve hemen ardından çıkış değerini kontrol etmek için `echo $?` komutunu kullanalım. Ve benzerliği görmek adına `true` komutunu girip bu komutun da çıkış değerini görelim.
 
