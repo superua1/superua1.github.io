@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Linux Kısayolları &#8211; Linux Eğitimi</title>
+<meta name="description" content="Bash kısayollarıyla, kabuğu nasıl daha verimli kullanabileceğimizi ele alıyoruz.">
+<meta name="keywords" content="bash, history, kısayollar, alias, unalias">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/linux-k%C4%B1sayollar%C4%B1/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">5. Ders: Linux Kısayolları</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#bash" class="btn btn-outline-primary btn-sm" title="Pages tagged bash">bash</a> <a href="http://localhost:4000/etiketler.html#history" class="btn btn-outline-primary btn-sm" title="Pages tagged history">history</a> <a href="http://localhost:4000/etiketler.html#kısayollar" class="btn btn-outline-primary btn-sm" title="Pages tagged kısayollar">kısayollar</a> <a href="http://localhost:4000/etiketler.html#alias" class="btn btn-outline-primary btn-sm" title="Pages tagged alias">alias</a> <a href="http://localhost:4000/etiketler.html#unalias" class="btn btn-outline-primary btn-sm" title="Pages tagged unalias">unalias</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/kisayolcover.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+25 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <p>Bu bölümde, sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bazı kısayollardan bahsedeceğiz. Kısayolları şimdi öğrenmemizin sebebi, ileride sistemi yönetirken bize hız katıp işimizi kolaylaştıracak olmaları. Hem şimdi öğrenirsek eğitim boyunca sürekli pratik yapma imkanı bulmuş olacağız. Daha önce de sıklıkla tekrar ettiğim gibi amacımız bilgi ezberlemek değil, öğrendiğimiz bilgileri uygulayarak yetkinlik haline getirmek. Yani buradaki tüm kısayolları tek seferde ezberlemek gibi bir gayretiniz olmasın. Zaten hepsini bilmek veya her zaman kullanmak zorunda falan da değilsiniz. Zamanla sık ihtiyaç duyduğunuz kısayolları kendi kendinize öğrenmiş olacaksınız. Çünkü onlara ihtiyaç duyuyor olacaksınız.</p>
+
+<p>Kısayollar genellikle pek önemsenmese de alıştıktan sonra verimliliğinizi arttıracağı için tıpkı eğitimin geri kalanındaki bölümler gibi bu bölüme de azami özeni göstermenizi rica ediyorum.</p>
+
+<p>Sistemimizi komut satırı üzerinden yönetirken terminal araçlarının ve kabukların sahip olduğu kısayolları kullanabiliyoruz. Ayrıca bunlar dışında eğer grafiksel arayüzü kullanıyorsak elbette grafiksel arayüze ait çeşitli kısayollara da sahip oluyoruz. Ancak ben komut satırı kullanımına odaklanmak istediğim için grafiksel arayüzdeki kısayolların üzerinde durmak istemiyorum. Çünkü kullandığınız dağıtıma ve grafiksel arayüz ortamına göre kullanılan kısayollar değişiklik gösteriyor. Örneğin pek çok dağıtımda <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>t</kbd> tuşlaması yeni bir konsol yani terminal penceresinin açılmasını sağlıyor. Fakat sizin kullandığınız dağıtımda bu kısayol tanımlı olmayabilir. Grafiksel arayüz ile sisteminizi yönetirken hangi tür kısayollara sahip olduğunuzu ve gerektiğinde kendiniz için özel kısayolları nasıl tanımlayabileceğinizi kullanmakta olduğunuz sistemin ayarlarını kurcalayarak kolayca keşfedebilirsiniz. Biz yalnızca bash üzerindeki kısayolları ele alıyor olacağız.</p>
+
+<h1 id="bash-kabuk-kısayolları">Bash Kabuk Kısayolları</h1>
+
+<p>Söz konusu bash kabuğu üzerindeki kısayollar olduğunda, dört tür kısayoldan bahsedebiliriz:</p>
+
+<ul>
+  <li>İmleç Kısayolları</li>
+  <li>Düzenleme Kısayolları</li>
+  <li>Geçmiş Kısayolları</li>
+  <li>İşlem Kısayolları</li>
+</ul>
+
+<p>Bash kabuğundaki tüm kısayollar esasen metin bazlı düzenleme için yani aslında kabuğa komut girerken bizim işimizi kolaylaştırmak için var. Metin düzenleme haricinde örneğin girilen bir komut neticesinde gerçekleştirilen işin geri alınması mümkün değil. Örneğin bir klasörü kalıcı olarak sildiğinizde bunu geri alacak bir kısayol tuşu bulunmuyor. Buradaki kısayollar bizim kolayca komut yazabilmemiz için var. Zaten kısayollardan haberdar oldukça bu durumu çok daha net bir biçimde kendiniz de göreceksiniz. Şimdi sırasıyla bu kısayolları tanıyalım.</p>
+
+<h1 id="i̇mleç-kısayolları">İmleç Kısayolları</h1>
+
+<p>İmleç kısayollarından bahsetmeden önce imlecin kabaca bir tanımını yapacak olursak: komut girerken genellikle yanıp sönerek bizi bekleyen bu işarete imleç diyoruz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/1.png" alt="1.png" class="responsive img-zoomable responsive img-zoomable" /></p>
+
+<p>İmlecin temel işlevi satırda nerede bulunduğumuzu göstermek. Bu sayede komut girerken satırın hangi noktasında kaldığımızı takip edip imlecin bunduğu konumdan komutlarımızı girmeye devam edebiliyoruz. İmleç neredeyse, bizim girdiğimiz yeni komutlar da imleçten sonra konsola aktarılıyor. Dolayısıyla özellikle uzun olan komutları kullanırken, imleci kısayollar ile esnek şekilde hızlıca hareket ettirebilmek gerçekten bize çok hız kazandırıyor. Normalde sizlerin de bildiği gibi sol sağ yön tuşları ile tüm karakterler arasında tek tek geçiş yapabiliyoruz fakat bu komutun da uzunluğuna bağlı olarak epey vakit alabiliyor. Örneğin “bu uzun uzun yazılmış bir deneme komutudur” ifadesini yazıp satırın başından sonuna ve sonundan başına sağ sol yön tuşları ile geçiş yapmayı deneyebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/2.gif" alt="2.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın tek tek geçiş yapıldığı için satırın başı ile sonu arasında geçiş yapmak biraz vakit alıyor. İşte tam da bu noktada bizim dertlerimize derman olabilecek imleç kısayollarından faydalanabiliriz aslında. Hadi gelin buradaki uzun komut örneğimiz üzerinden imleç kısayollarını uygulamalı şekilde test edelim.</p>
+
+<h2 id="satır-başı-ve-sonu">Satır Başı ve Sonu</h2>
+
+<p><kbd>Ctrl</kbd> + <kbd>a</kbd></p>
+
+<p>Bu kısayolu satırın herhangi bir noktasındayken <strong>satırın en başına atlamak</strong> için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/3.gif" alt="3.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Ctrl</kbd> + <kbd>e</kbd></p>
+
+<p>Bu kısayolu herhangi bir noktasındayken <strong>satırın en sonuna atlamak</strong> için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/4.gif" alt="4.gif" class="responsive img-zoomable" /></p>
+
+<p>Bu kısayolu satırın sonu olduğu için “<strong>e</strong>nd” yani “son” ifadesinin kısalmasından gelen “<strong>e</strong>” karakteri aracılığıyla kolayca hatırlayabilirsiniz.  Neticede <kbd>Ctrl</kbd> + <kbd>a</kbd> ve <kbd>Ctrl</kbd> + <kbd>e</kbd> kısayollarıyla satır başı ile sonu arasında hızlıca geçişler yapabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/5.gif" alt="5.gif" class="responsive img-zoomable" /></p>
+
+<h2 id="karakterler-arası-geçiş">Karakterler Arası Geçiş</h2>
+
+<p>Satır başı ile sonu arasında geçiş yapmak dışında, tek tek karakter üzerinde de ileri geri şekilde hareket edebilirsiniz. Normalde standart şekilde klavyemizdeki sağ sol yön tuşlarını kullanarak tek tek karakterler arasında geçiş yapabiliyoruz. Ancak yön tuşları özellikler 10 parmak klavye kullanımında parmaklarımıza uzak kaldığı için bu işlem için de özel kısayollar bulunuyor.</p>
+
+<p>Bir karakter ileri gitmek için <kbd>Ctrl</kbd> +<kbd>f</kbd></p>
+
+<p>Bir karakter geri gitmek için de <kbd>Ctrl</kbd> + <kbd>b</kbd></p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/6.gif" alt="6.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Ctrl</kbd> +<kbd>f</kbd>  kısayolundaki <kbd>f</kbd> tuşlaması “<strong>f</strong>orward” yani “ileri” kelimesinin kısaltmasından geliyorken, geri gitmemizi sağlayan <kbd>b</kbd> tuşlaması da “<strong>b</strong>ackward” yani “geriye” ifadesinin kısaltmasını temsil ediyor. Zaten kısayolları da bu şekilde çok daha kolay aklınızda tutabilirsiniz.</p>
+
+<p>Muhtemelen alıştığınız için sağ sol yön tuşlarını kullanmak daha kolay gibi geliyor ancak bu gerçekte böyle değil. Eğer biraz pratik yaparsanız 10 parmak klavye düzeninde elinizi kaydırmadan kolayca karakterler arasında geçiş yapabildiğiniz kendiniz de göreceksiniz. Zaten bu kısayolların kullanım amacı da tam olarak bu.</p>
+
+<h2 id="kelimeler-arası-geçiş">Kelimeler Arası Geçiş</h2>
+
+<p><kbd>Alt</kbd> + <kbd>f</kbd>
+Bir kelime ileri atlamak için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/7.gif" alt="7.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Alt</kbd> + <kbd>b</kbd></p>
+
+<p>Bir kelime geri atlamak için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/8.gif" alt="8.gif" class="responsive img-zoomable" /></p>
+
+<p>Kelimler arasında atlamak için <kbd>Alt</kbd> tuşuna bastıktan sonra İngilizce “<strong>f</strong>orward” yani “ileri” ifadesini temsilen <kbd>f</kbd> tuşuna bastığımızda bir kelime ileri, “<strong>b</strong>ackward” yani “geriye” ifadesine temsilen de <kbd>b</kbd> tuşuna bastığımızda ise bir kelime geriye atlarız.</p>
+
+<p>Yani özetle dikkat ettiyseniz kelimeler arasında gezmek için <kbd>Alt</kbd> kısayolunu kullanırken, karakter arasında gezmek için de <kbd>Ctrl</kbd> tuşlamasını kullanıyoruz. Bunun dışında ileri ve geri hareket için kullandığımız ikincil kısayol tuşu aynı zaten.</p>
+
+<p>İmlecimizi kontrol etmeyle ilgili bence temelde bilinmesi gereken kısayollar bu kadar.</p>
+
+<h1 id="düzenleme-kısayolları">Düzenleme Kısayolları</h1>
+
+<p>Yazdığımız ifadeleri düzenlemek için kullanabildiğimiz çeşitli kısayollar mevcut.</p>
+
+<h2 id="kelimeleri-düzenleme">Kelimeleri Düzenleme</h2>
+
+<p><kbd>Alt</kbd> + <kbd>Backspace</kbd></p>
+
+<p>İmleçten önceki kelimeleri silmek için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/9.gif" alt="9.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Alt</kbd> + <kbd>d</kbd></p>
+
+<p>İmleçten sonraki kelimeleri silmek için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/10.gif" alt="10.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Ctrl</kbd> + <kbd>_</kbd></p>
+
+<p>Silinen karakter veya kelime öbeklerini geri getirmek için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/11.gif" alt="11.gif" class="responsive img-zoomable" /></p>
+
+<p>Neticede gördüğünüz gibi bu kısayol sayesinde sonda başa doğru yazıp sildiklerime dönebiliyorum. Eğer bir önceki yazdığınız ve sildiğini ifadelere dönmek isterseniz bu kısayol epey işlevsel olabiliyor.</p>
+
+<p><kbd>Alt</kbd> + <kbd>t</kbd></p>
+
+<p>Kelimelerin yerini değiştirmek için kullanabilirsiniz</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/12.gif" alt="12.gif" class="responsive img-zoomable" /></p>
+
+<h2 id="kes-yapıştır">Kes Yapıştır</h2>
+
+<p>Kes: <kbd>Ctrl</kbd> + <kbd>w</kbd></p>
+
+<p>Yapıştır: <kbd>Ctrl</kbd> + <kbd>y</kbd></p>
+
+<p>İmleçten önceki kelimeleri kesip yapıştırmak için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/13.gif" alt="13.gif" class="responsive img-zoomable" /></p>
+
+<p><kbd>Ctrl</kbd> + <kbd>u</kbd></p>
+
+<p>İmlecin gerisinde kalan tüm satırı kesmek için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/14.gif" alt="14.gif" class="responsive img-zoomable" /></p>
+
+<p>Kes-yapıştır kısayolları özellikle tty gibi yalnızca komut satırı arayüzde çalışırken işlerimizi inanılmaz kolaylaştırıyor. Neticede salt komut satırı arayüzünde mouse kullanarak kopyalayıp ya da kesip yapıştırabileceğimiz bir arayüze sahip olmuyoruz.</p>
+
+<p><kbd>Ctrl</kbd> + <kbd>l</kbd></p>
+
+<p>Komut satırını temizlemek için kullanabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/15.gif" alt="15.gif" class="responsive img-zoomable" /></p>
+
+<p>Neticede gördüğünüz gibi bash kabuğu kendi içerisinde bizim işimizi kolaylaştıracak pek çok temel kısayola sahip. Aslında bash kabuğunun sahip olduğu tüm kısayollar bahsettiklerimden ibaret değil fakat diğerleri sık kullanılmadıkları için tek tek hepsini ele almak istemedim. Bence sık ihtiyaç duyacaklarımızı bilmemiz yeterli. Yine de elbette eğer merak ediyorsanız kısa bir internet araştırması ile bash kabuğunun tüm kısayollarını öğrenebilirsiniz. Kısayolları incelediğinizde zaten hepsinin sık kullanılmayacağı konusunda bana da hak vereceğinizi düşünüyorum.</p>
+
+<p>Biraz pratik yaptıktan sonra benim bahsettiğim temel kısayolların özellikle on parmak klavye kullanımında bu kısayolların size ne kadar kolaylık sağladığını bizzat kendiniz deneyimleyeceksiniz. Zaten pek çok klavye kısayolunda da olduğu gibi kabuk kısayollarının temel amacı size klavye kullanımında kolaylıklar sağlamak. Eğer kısayolların çok da gerekli olmadığı veya hatırlanması zor olduğu konusunda ön yargılarınız varsa lütfen sadece biraz pratik yaparak ön yargılarınızdan kurtulun.</p>
+
+<h2 id="otomatik-tamamlama">Otomatik Tamamlama</h2>
+
+<p>Bash kabuğunda etkileşimli kabuk kullanımını kolaylaştırmak için “otomatik tamamlama” özelliği bulunuyor. Bu özellik sayesinde komutların ve dosya klasör isimlerinin <kbd>tab</kbd> tuşuna basıldığında otomatik olarak kabuk tarafından tamamlanması mümkün oluyor.</p>
+
+<p>Örneğin <code class="language-plaintext highlighter-rouge">pwd</code> komutunu yazarken yalnızca <strong>pw</strong> yazıp iki kez <kbd>tab</kbd> tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/16.gif" alt="16.gif" class="responsive img-zoomable" /></p>
+
+<p>Eğer konsola girdiğim ifade başka hiç bir komutla eşleşmiyorsa otomatik olarak komutun geri kalanı kabuk tarafından tamamlanır. Örneğin benim sistemimde “<strong>ec</strong>” ile başlayan başka bir komut veya dosya ismi olmadığı için sadece <strong>ec</strong> şeklinde yazıp <kbd>tab</kbd> tuşuna bastığımda otomatik olarak <code class="language-plaintext highlighter-rouge">echo</code> komutuna tamamlanıyor.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/17.gif" alt="17.gif" class="responsive img-zoomable" /></p>
+
+<p>Biliyorum <code class="language-plaintext highlighter-rouge">echo</code> komutu için bu özellik pek etkileyici gelmemiş olabilir ancak uzun veya yazması zahmetli komutları kullanırken <kbd>tab</kbd> otomatik tamamlama kısayolu inanılmaz kolaylık sağlıyor. Ayrıca kullanabileceğiniz mevcut komut seçeneklerini de listelediği için komutları hatırlamada oldukça işlevsel bir kısayol. Üstelik bu otomatik tamamlama, yalnızca komut isimleri için de geçerli değil. Kabuğun tamamlayabileceği tüm verileri <kbd>tab</kbd> ile otomatik tamamlatabiliyoruz. Örneğin ben bir dosyayı okumak için <code class="language-plaintext highlighter-rouge">cat</code> komutunu kullandığımda dosyanın adını hatırlamıyorsam, mevcut konumda kullanabileceğim dosyası listelemek için iki kez <kbd>tab</kbd> tuşuna basmam yeterli. Ayrıca dosya isminin birazını girip tekrar <kbd>tab</kbd> tuşuna bastığımda dosya ismi de otomatik olarak tamamlanacaktır.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/18.gif" alt="18.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın bu şekilde uzun uzun dosya veya klasör isimlerini de yazmaya gerek kalmadan kullanabileceğimiz seçenekler hakkında sürekli bilgi de edinerek etkili şekilde komut girebiliyoruz. Özetle <kbd>tab</kbd> tuşu kabuğun tamamlayabileceği her türlü veriye kolayca tek bir tuş ile ulaşabilmemizi sağlıyor.</p>
+
+<h1 id="geçmiş-kısayolları">Geçmiş Kısayolları</h1>
+
+<p>Kabuğa girdiğimiz komutlar daha sonra tekrar kullanılabilmesi veya denetlenebilmesi için geçmiş listesine kaydediliyor. Bu liste sayesinde geçmişte girdiğimiz komutları sırasıyla görüp gerektiğine bu komutları tekrar geçmiş listesinden çağırıp kullanabileceğimiz çeşitli kısayollar var. Ancak bu kısayollardan bahsetmeden önce burada bahsi geçen “geçmiş” kavramını ve geçmiş listesini iyi biçimde anlamamız gerekir. Bu sebeple öncelikle geçmiş yani <strong>history</strong> kavramından bahsedelim.</p>
+
+<h2 id="komut-geçmişini-listelemek--history">Komut Geçmişini Listelemek | History</h2>
+
+<p>Kabuğa girmiş olduğumuz komutlar daha sonra tekrar ulaşabilmemiz için “history” yani “geçmiş” adı altında liste şeklinde depolanıyor.  <code class="language-plaintext highlighter-rouge">history</code> komutu da bizlere geçmiş listesini görüntüleyip düzenleyebilme olanağı tanıyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">history
+  </span>995  <span class="nb">rmdir</span> <span class="nt">-vp</span> x/
+ ..
+ 1985  <span class="nb">sudo </span>nano /etc/bash.bashrc
+ 1986  <span class="nb">source</span> /etc/bash.bashrc
+ 1987  <span class="nb">echo</span> <span class="nv">$PATH</span>
+ 1988  <span class="nb">cat</span> <span class="o">&gt;</span> test.sh
+ 1989  <span class="nb">chmod</span> +x test.sh
+ 1990  <span class="nb">mv </span>test.sh ~/Desktop/yeni-klasor/
+ 1991  test.sh
+ 1992  <span class="nb">mv</span> ~/Desktop/yeni-klasor/ ~/Desktop/yeni-dizin
+ 1993  test.sh
+ 1994  <span class="nb">history</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın geçmişte girmiş olduğum komutlar sıra numaralarıyla birlikte konsola bastırıldı. Bu liste biz bu komutları tekrar kullanmak istediğimizde kolayca ulaşabilmemiz için tutuluyor.</p>
+
+<p>Eğer listenin tamamını değil de sondan belirli bir satırını görmek istersek <code class="language-plaintext highlighter-rouge">history</code> komutundan sonra sondan kaç satır görmek istediğimizi beliretebiliriz. Örneğin en son girilmiş olan 5 komutu görmek için <code class="language-plaintext highlighter-rouge">history 5</code> komutunu girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">history </span>5                                                    
+ 1991  test.sh
+ 1992  <span class="nb">mv</span> ~/Desktop/yeni-klasor/ ~/Desktop/yeni-dizin
+ 1993  test.sh
+ 1994  <span class="nb">history
+ </span>1995  <span class="nb">history </span>5
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın yalnızca en son girilen 5 komut karşımıza getirildi. Geçmiş listesi kullanıcılara özel olarak tutuluyor. Yani benim burada aldığım çıktılar taylan kullanıcısının girmiş olduğu komutların listesi.</p>
+
+<p>Geçmiş listesi her bir kullanıcının kendi ev dizininde <strong><em>.bash_history</em></strong> isimli dosyada tutuluyor. Ben kendi kullanıcım olarak taylan kullanıcının dosyasına bakmak için <code class="language-plaintext highlighter-rouge">cat /home/taylan/.bash_histroy</code> komutunu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cat</span> /home/taylan/.bash_history
+<span class="nb">rmdir</span> <span class="nt">-vp</span> x/
+...
+<span class="nb">sudo </span>nano /etc/bash.bashrc
+<span class="nb">source</span> /etc/bash.bashrc
+<span class="nb">echo</span> <span class="nv">$PATH</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> test.sh
+<span class="nb">chmod</span> +x test.sh
+<span class="nb">mv </span>test.sh ~/Desktop/yeni-klasor/
+test.sh
+<span class="nb">mv</span> ~/Desktop/yeni-klasor/ ~/Desktop/yeni-dizin
+test.sh
+<span class="nb">history</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Ben çıktı uzun olduğu için yine kısaltarak verdim ancak gördüğünüz gibi geçmişte girdiğim tüm komutların bu dosyada tutulduğunu bizzat teyit etmiş olduk. Şimdi geçmişteki bu komutları nasıl tekrar kolayca çağırıp kullanabileceğimizden bahsederek devam edebiliriz.</p>
+
+<h2 id="geçmişteki-komutları-çağırmak">Geçmişteki Komutları Çağırmak</h2>
+
+<p>Geçmişte girmiş olduğumuz komutlara ulaşmanın en kolay yöntemi de klavyemizdeki yukarı aşağı yön tuşlarını kullanmak. Denemek için sırasıyla <code class="language-plaintext highlighter-rouge">echo ilk</code>, <code class="language-plaintext highlighter-rouge">echo orta</code> ve <code class="language-plaintext highlighter-rouge">echo son</code> şeklinde komutlarımızı girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">echo </span>ilk
+ilk
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">echo </span>orta
+orta
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">echo </span>son
+son
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Şimdi geçmişteki kısayolları çağırmak için yukarı aşağı yön tuşlarını kullanmayı deneyebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/19.gif" alt="19.gif" class="responsive img-zoomable" /></p>
+
+<p>Gördüğünüz gibi en son girmiş olduğumuz komutları geri getirmek için yukarı aşağı yön tuşları oldukça işlevsel. Fakat biz en son girdiğimiz komut yerine çok daha önce girmiş olduğumuz komutları da çağırmak isteyebiliriz. Liste uzun olacağı için yön tuşları ile gezinip doğru komutu bulmak hiç de kolay olmayacak. Bunun yerine doğrudan kullanmak istediğimiz komutu, geçmiş listesindeki sıra numarasını ünlem işaretinden sonra yani <code class="language-plaintext highlighter-rouge">!SIRA-NO</code> şeklinde girip çağırabiliriz.</p>
+
+<p>Öncelikle geçmiş listesine tekrar bakmak için <code class="language-plaintext highlighter-rouge">history</code> komutu ile listeyi tekrar bastıralım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">history
+  </span>995  <span class="nb">rmdir</span> <span class="nt">-vp</span> x/
+ ..
+ 1985  <span class="nb">sudo </span>nano /etc/bash.bashrc
+ 1986  <span class="nb">source</span> /etc/bash.bashrc
+ 1987  <span class="nb">echo</span> <span class="nv">$PATH</span>
+ 1988  <span class="nb">cat</span> <span class="o">&gt;</span> test.sh
+ 1989  <span class="nb">chmod</span> +x test.sh
+ 1990  <span class="nb">mv </span>test.sh ~/Desktop/yeni-klasor/
+ 1991  test.sh
+ 1992  <span class="nb">mv</span> ~/Desktop/yeni-klasor/ ~/Desktop/yeni-dizin
+ 1993  test.sh
+ 1994  <span class="nb">history</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Ben örnek olması için <strong>1987</strong> sıra numarasında yer alan “<code class="language-plaintext highlighter-rouge">echo $PATH</code>” komutunu geçmişten çağırmak üzere <code class="language-plaintext highlighter-rouge">!1987</code> şeklinde komutumu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="o">!</span>1987
+<span class="nb">echo</span> <span class="nv">$PATH</span>
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/taylan/Desktop/yeni-dizin
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın ilk olarak çağırılan komut komut burada belirtildi ve çalıştırıldı. Bu sayede tam olarak sıra numarası belirterek geçmişteki komutu kolayca çağırıp tekrar kullanabildik.</p>
+
+<p>Sıra numarası dışında dilersek en son girmiş olduğumuz komutu tekrar çalıştırmak için iki kez ünlem işaretini de kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"bu bir deneme komutudur"</span>                               
+bu bir deneme komutudur
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="o">!!</span>                                                           
+<span class="nb">echo</span> <span class="s2">"bu bir deneme komutudur"</span>
+bu bir deneme komutudur
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın iki kez kullandığım ünlem işareti en son komutu tekrar çağırıp çalıştırdı. Bu da oldukça kullanışlı bir kısayol. Ayrıca bu kısayollar dışında eğer geçmiş listesinde araştırma yapıp, aradığınız komutlar ile eşleşenleri geçmişten getirmek isterseniz <kbd>Ctrl</kbd> + <kbd>r</kbd> kısayolunu uygulayıp, geçmiş listesinde aradığınız komutun bir kısmını yazabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/20.png" alt="20.png" class="responsive img-zoomable responsive img-zoomable" /></p>
+
+<p>Buraya gireceğimiz ifadeler küçük büyük harf duyarlılığı dahilinde geçmişte girdiğimiz komutlar içinden araştırılma yapılmasını sağlayacak. Örneğin ben <code class="language-plaintext highlighter-rouge">echo</code> komutunu araştırmak için “<strong>ec</strong>” şeklinde yazıyorum ve en son girmiş olduğu “<strong>ec</strong>” ile başlayan komut bulunduğu için <kbd>enter</kbd> ile komutu çalıştırıyorum.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/21.gif" alt="21.gif" class="responsive img-zoomable" /></p>
+
+<p>Eğer ilk eşleşen komut aradığımız komut değilse, aradığımız komuta dair daha fazla karakter girerek spesifik olarak ilgili komutu hedefleyebilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/22.gif" alt="22.gif" class="responsive img-zoomable" /></p>
+
+<aside class="mavi"><strong>Not:</strong> Girilen kelimeye göre sunulan komut önerisinin daha hedef odaklı olduğunu belirmek için çıktıları renklendirdim.</aside>
+
+<p>Biz şimdiye kadar bulduğumuz komutu doğrudan çalıştırmak için <kbd>enter</kbd> ile komutu onayladık. Eğer bulduğunuz komutu doğrudan çalıştırmak yerine düzenlemek isterseniz enter tuşu yerine sağ veya sol yön tuşları ile komutu düzenlemeye geçebilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/23.gif" alt="23.gif" class="responsive img-zoomable" /></p>
+
+<p>Eğer geçmiş listesinde arama işlemini iptal etmek isterseniz <kbd>Ctrl</kbd> + <kbd>g</kbd> kısayolu ile ya da <kbd>Ctrl</kbd> + <kbd>c</kbd> kısayolu ile arama fonksiyonunun kapatılmasını sağlayabilirsiniz. Ayrıca bunlar yerine <code class="language-plaintext highlighter-rouge">esc</code> tuşuna bastığınızda da arama kısayolu kapanacaktır zaten.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/24.gif" alt="24.gif" class="responsive img-zoomable" /></p>
+
+<p>Komut geçmişleri ile ilgili temelde bilmemiz gerekenler bunlar. Esasen geçmiş komutların kullanımı ile ilgili daha pek çok farklı kısayol ve konfigürasyon imkanına daha sahibiz ancak bunlar temel seviye için önemli olmayan detaylar. Burada bahsettiklerimizi kullanarak her türlü işinizi kısa yoldan çözümleyebilirsiniz. Biz şimdi bir diğer önemli konu olan “alias” ile devam edelim.</p>
+
+<h1 id="alias">Alias</h1>
+
+<p>Alias, Türkçe olarak “takma isim” anlamına geliyor. Bizler <code class="language-plaintext highlighter-rouge">alias</code> komutunu kullanarak kabuk üzerinde geçerli olacak takma isimler tanımlayabiliyoruz. Özellikle uzun ve sık kullanılan komutları tek bir kısa takma isimle tanımlayıp, bu takma isim üzerinden kolayca kullanabilmek gerçekten işlerimizi oldukça kolaylaştırabiliyor. Hemen uygulamalı şekilde kullanımını görelim.</p>
+
+<h2 id="takma-i̇sim-tanımlamak">Takma İsim Tanımlamak</h2>
+
+<p>Yeni bir takma isim tanımlamak için <code class="language-plaintext highlighter-rouge">alias</code> komutunun ardından tanımlayacağımız takma ismi yazıp eşittir işaretinin karşısına bu takma isimle ilişkili olacak komutumuzu tırnak içinde yazıyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">bas</span><span class="o">=</span><span class="s2">"echo bunu epey uzun bir komut olarak varsayın"</span>
+</code></pre></div></div>
+
+<p>Konsola <code class="language-plaintext highlighter-rouge">bas</code> yazdığımda buradaki <code class="language-plaintext highlighter-rouge">echo</code> komutu çalışıp konsola çıktıyı bastıracak.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">alias </span><span class="nv">bas</span><span class="o">=</span><span class="s2">"echo bunu epey uzun bir komut olarak varsayın"</span>    
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>bas                                                          
+bunu epey uzun bir komut olarak varsayın
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>bas                                                          
+bunu epey uzun bir komut olarak varsayın
+</code></pre></div></div>
+
+<p>Bakın ben <code class="language-plaintext highlighter-rouge">bas</code> yazdıkça aynı komut çalışıyor. Görebildiğiniz gibi takma isim sayesinde uzun bir komutu kısacık bir takma isimle kolayca bastırabiliyorum. Biz henüz komutlardan bahsetmediğimiz için örnek olarak <code class="language-plaintext highlighter-rouge">echo</code> komutunu kullandım ancak takma isimler, kabuğa girebildiğimiz tüm komutlar için kullanılabiliyor. Bu şekilde sık kullandığınız komutlara takma isimler üzerinden kolayca ulaşabilirsiniz.</p>
+
+<p>Takma isim kullanırken, tıpkı değişkenlerde olduğu gibi takma isimlerin de kabuğa özel olarak tanımlandıklarına unutmayın. Yani benim bu konsol üzerinden tanımladığım takma isime başka bir konsol üzerinden ulaşmam mümkün değil. Test etmek için yeni bir konsol açalım. Ve bu konsola <code class="language-plaintext highlighter-rouge">bas</code> yazıp takma ismi kontrol edelim.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/25.png" alt="25.png" class="responsive img-zoomable responsive img-zoomable" /></p>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">bas</code> komutu bulunmadı şeklinde bir hata aldık. Çünkü takma isimler de tıpkı değişkenlerde olduğu gibi yalnızca tanımlandıkları kabuklarda geçerli. Örneğin kendi kullanıcı hesabımdaki tüm etkileşimli kabuklarda bu takma isim geçerli olsun istersem, kendi ev dizinimdeki <strong><em>.bashrc</em></strong> dosyasına bu takma ismi eklemem gerekiyor. Benzer şekilde tüm kullanıcılarda geçerli olması için de <strong><em>/etc/bash.bashrc</em></strong> ya da <strong><em>/etc/.bashrc</em></strong> dosyalarından hangisi mevcutsa ona ekleyip, tanımladığım takma isimin tüm kullanıcılara tarafından ortak şekilde kullanılabilmesini sağlayabilirim. Zaten bu konfigürasyon dosyalarından ve etkilerinden daha önce bahsettik. Tek yapmanız gereken ihtiyacınıza uygun olan dosyaya bu takma ismi tanımlayıp dosyayı kaydetmektir.</p>
+
+<p>Ben örnek olarak kendi hesabımdaki tüm etkileşimli kabuklarda bu takma adı kullanabilmek için ev dizinimdeki <strong><em>.bashrc</em></strong> dosyasına takma isimi ekleyeceğim. Aşağıdaki gif resim üzerinden tüm işlemi takip edebilirsiniz. Zaten daha önce değişkenlerden bahsederken benzer adımları izlediğimiz için tekrar tüm adımları açıklamamıza gerek yok.</p>
+
+<p><img src="http://localhost:4000/egitim/kısayol/26.gif" alt="26.gif" class="responsive img-zoomable" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano ~/.bashrc
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">bas</span><span class="o">=</span><span class="s2">"ben bir takma isimim"</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<p>Bu şekilde kendi hesabımdaki tüm kabuklarda geçerli olacak “bas” isimli bir değişken tanımlamış oldum.</p>
+
+<h2 id="takma-i̇simleri-listelemek">Takma İsimleri Listelemek</h2>
+
+<p>Eğer mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek <code class="language-plaintext highlighter-rouge">alias</code> komutunu kullanmamız yeterli.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">alias
+alias </span><span class="nv">bas</span><span class="o">=</span><span class="s1">'echo ben bir takma isimim'</span>
+<span class="nb">alias </span><span class="nv">diff</span><span class="o">=</span><span class="s1">'diff --color=auto'</span>
+<span class="nb">alias </span><span class="nv">egrep</span><span class="o">=</span><span class="s1">'egrep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">fgrep</span><span class="o">=</span><span class="s1">'fgrep --color=auto'</span>
+<span class="nb">alias grep</span><span class="o">=</span><span class="s1">'grep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">ip</span><span class="o">=</span><span class="s1">'ip --color=auto'</span>
+<span class="nb">alias </span><span class="nv">l</span><span class="o">=</span><span class="s1">'ls -CF'</span>
+<span class="nb">alias </span><span class="nv">la</span><span class="o">=</span><span class="s1">'ls -A'</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -l'</span>
+<span class="nb">alias ls</span><span class="o">=</span><span class="s1">'ls --color=auto'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın mevcut kabukta kullanılabilir olan takma isimler listelendi. Burada listelenmiş olan takma isimler sizlerin kullanmakta olduğu dağıtıma göre farklılık gösterebilir hatta belki varsayılan olarak hiç bir takma isim tanımlanmamış da olabilir. Ancak bu hiç önemli değil. Zira istediğiniz takma isimi kendiniz de nasıl tanımlayabileceğinizi zaten biliyorsunuz.</p>
+
+<p>Ayrıca yeni takma isim tanımlamak yerine dilersek mevcut takma isimleri geçersiz kılma olanağımız da var aslında.</p>
+
+<h2 id="takma-i̇simleri-kaldırmak">Takma İsimleri Kaldırmak</h2>
+
+<p>Mevcut kabuktan bir takma isimi kaldırmak isterseniz <code class="language-plaintext highlighter-rouge">unalias</code> komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli. Örneğin ben tanımladığım <code class="language-plaintext highlighter-rouge">bas</code> takma isminin artık bu kabukta geçerli olmasını istemediğim için <code class="language-plaintext highlighter-rouge">unalias bas</code> şeklinde komutumu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">alias
+alias </span><span class="nv">bas</span><span class="o">=</span><span class="s1">'echo ben bir takma isimim'</span>
+<span class="nb">alias </span><span class="nv">diff</span><span class="o">=</span><span class="s1">'diff --color=auto'</span>
+<span class="nb">alias </span><span class="nv">egrep</span><span class="o">=</span><span class="s1">'egrep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">fgrep</span><span class="o">=</span><span class="s1">'fgrep --color=auto'</span>
+<span class="nb">alias grep</span><span class="o">=</span><span class="s1">'grep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">ip</span><span class="o">=</span><span class="s1">'ip --color=auto'</span>
+<span class="nb">alias </span><span class="nv">l</span><span class="o">=</span><span class="s1">'ls -CF'</span>
+<span class="nb">alias </span><span class="nv">la</span><span class="o">=</span><span class="s1">'ls -A'</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -l'</span>
+<span class="nb">alias ls</span><span class="o">=</span><span class="s1">'ls --color=auto'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">unalias </span>bas
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">alias
+alias </span><span class="nv">diff</span><span class="o">=</span><span class="s1">'diff --color=auto'</span>
+<span class="nb">alias </span><span class="nv">egrep</span><span class="o">=</span><span class="s1">'egrep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">fgrep</span><span class="o">=</span><span class="s1">'fgrep --color=auto'</span>
+<span class="nb">alias grep</span><span class="o">=</span><span class="s1">'grep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">ip</span><span class="o">=</span><span class="s1">'ip --color=auto'</span>
+<span class="nb">alias </span><span class="nv">l</span><span class="o">=</span><span class="s1">'ls -CF'</span>
+<span class="nb">alias </span><span class="nv">la</span><span class="o">=</span><span class="s1">'ls -A'</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -l'</span>
+<span class="nb">alias ls</span><span class="o">=</span><span class="s1">'ls --color=auto'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>bas                                                                       
+Command <span class="s1">'bas'</span> not found
+</code></pre></div></div>
+
+<p>Burada dikkat etmeniz gereken detay bizim bu işlemi yalnızca geçerli kabuk üzerinde gerçekleştirmiş olduğumuz. Başka bir konsol açarsam, takma isim orada geçerli olmaya devam edecek çünkü <code class="language-plaintext highlighter-rouge">unalias</code> komutu yalnızca mevcut kabuktaki takma ismi kaldırdı. Eğer kendi hesabımdaki tüm kabuklarda bu takma isimin kaldırılmasını istersem ~/.bashrc dosyasında tanımladığım takma ismi silebilir veya hemen onun ardından <code class="language-plaintext highlighter-rouge">unalias</code> komutu ile ilgili takma isimi geçersiz kılabilirim.</p>
+
+<p>Ben anlatım sırasında takma ismi yalnızca mevcut kullanıcı hesabında geçerli olacak şekilde tanımladım ancak siz tüm kullanıcıları etkileyecek şekilde de tanımlayabilirsiniz. Örneğin tüm kullanıcılar için takma isim tanımlamak istiyorsanız bunu <strong><em>/etc/bashrc</em></strong> ya da <strong><em>/etc/bash.bashrc</em></strong> dosyasına ekleyebilirsiniz.</p>
+
+<p>Başka bir senaryoda eğer tüm kullanıcılar için geçerli olacak bir takma isim tanımlayıp yalnızca tek bir kullanıcıyı bu takma isimlerden hariç tutmak istersek, <strong><em>/etc/bashrc</em></strong> ya da <strong><em>/etc/bash.bashrc</em></strong> dosyasına ilgili takma ismi tanımlayıp. yalnızca hariç tutmak istediğimiz kullanıcının ev dizinindeki <strong><em>.bashrc</em></strong> dosyasının içinde <code class="language-plaintext highlighter-rouge">unalias</code> komutu ile ilgili takma isimin o kullanıcı için geçersiz olmasını sağlayabiliriz. Bu sayede yalnızca o kullanıcının etkileşimli kabuklarında bu takma isim geçersiz olacaktır.</p>
+
+<p>Zaten konfigürasyon dosyalarının hangisinin hangi amaçla kullanıldığını bildiğiniz için ihtiyaçlarına özgü çözümleri kendiniz de kolayca bulabilirsiniz.</p>
+
+<p>En nihayetinde kabuk üzerinde komut girerken işlerimizi kolaylaştıracak pek çok kısayoldan ve yapıdan bahsettik. Eğer anlatımları uygulamalı olarak takip ettiyseniz zaten sizler de bizzat öğrendiğimiz bilgilerin ne kadar faydalı olabileceğini deneyimlemişsinizdir. Size önerim bu kısayolların kullanımına alışmak için bol bol pratik yapmanız. Belirli bir süre sonra zaten alışacağınız için eğitim boyunca gerektiğinde bu kısayolları kullanarak tekrar da edebilirsiniz.</p>
+
+<aside class="mavi"><strong>Not:</strong> Anlatımın başında “<strong>işlem kısayolları</strong>” olduğundan da bahsettik fakat bu bölümde “işlem kısayollarını” ele almadık çünkü henüz <strong>işlem(process)</strong> kavramından bahsetmedik. İleride işlem yönetimi bölümüne geldiğimizde bu kısayollardan bahsediyor olacağız. Bu sayede işlem kısayolları bizim için çok daha anlamlı olacak.</aside>
+
+<hr />
+
+<h1 id="özet--kısayol-tablosu">Özet | Kısayol Tablosu</h1>
+
+<p>Şimdiye kadar bahsetmiş olduğumuz tüm kısayolları aşağıdaki tabloda görebilirsiniz.</p>
+
+<table class="table table-dark table-striped">
+   <thead>
+    <tr>
+      <th>Kısayol</th>
+      <th>Açıklaması</th>
+      <th>Kısayol Resmi</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr><td colspan="3"><p><strong>İmleç Kısayolları</strong></p> </td> </tr>
+    <tr>
+      <td><kbd>Ctrl</kbd> + <kbd>a</kbd></td>
+      <td>Satırın en başına atlar.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/3.gif" alt="3.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>e</kbd></td>
+      <td>Satırın en sonuna atlar.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/4.gif" alt="4.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>f</kbd></td>
+      <td>Bir karakter ileri-geri gider.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/6.gif" alt="6.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Alt</kbd> + <kbd>f</kbd></td>
+      <td>Bir kelime ileri gider.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/7.gif" alt="7.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Alt</kbd> + <kbd>b</kbd></td>
+      <td>Bir kelime geri gider.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/8.gif" alt="8.gif" class="responsive" /></td>
+    </tr>
+	<tr><td colspan="3"><p><strong>Düzenleme Kısayolları</strong></p> </td> </tr>
+    <tr>
+      <td><kbd>Alt</kbd> + <kbd>Backspace</kbd></td>
+      <td>İmleçten önceki kelimeleri siler.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/9.gif" alt="9.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Alt</kbd> + <kbd>d</kbd></td>
+      <td>İmleçten sonraki kelimeleri siler.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/10.gif" alt="10.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>_</kbd></td>
+      <td>Silinen karakter veya kelime öbeklerini geri getirir.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/11.gif" alt="11.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Alt</kbd> + <kbd>t</kbd></td>
+      <td>Kelimelerin yerini değiştirir.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/12.gif" alt="12.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>w</kbd></td>
+      <td>İmleçten önceki kelimeyi keser.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/13.gif" alt="13.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>y</kbd></td>
+      <td>Kesilmiş verileri yapıştırır.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/13.gif" alt="13.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>u</kbd></td>
+      <td>İmleçten önceki tüm satırı keser.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/14.gif" alt="14.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>l</kbd></td>
+      <td>Komut satırını temizler.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/15.gif" alt="15.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Tab</kbd></td>
+      <td>Otomatik tamamlama yapar.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/16.gif" alt="16.gif" class="responsive" /></td>
+    </tr>
+	<tr><td colspan="3"><p><strong>Geçmiş Kısayolları</strong></p> </td> </tr>
+    <tr>
+      <td><kbd>↑</kbd> - <kbd>↓</kbd></td>
+      <td>Sondan başa doğru geçmiş komutları çağırır.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/19.gif" alt="19.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><code>!!</code></td>
+      <td>En son girilen komutu çağırır.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/gecmis-1.gif" alt="gecmis.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><code>!SIRA-NO</code></td>
+      <td>Sıran numarası eşleşen komutu geçmişten çağırır.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/gecmis-2.gif" alt="gecmis-2.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>r</kbd></td>
+      <td>Geçmiş listesinde arama yapar.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/21.gif" alt="21.gif" class="responsive" /></td>
+    </tr>
+    <tr>
+      
+      <td><kbd>Ctrl</kbd> + <kbd>g</kbd></td>
+      <td>Geçmiş listesini aramasını sonlandırır.</td>
+      <td><img src="http://localhost:4000/egitim/kısayol/24.gif" alt="24.gif" class="responsive" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div align="right" class="col-10">
+              <div class="mb-1 text-muted"><strong>Önceki</strong></div>
+              <p class="card-text">Kabuk Nasıl Çalışır ?</p>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/kabuk-nasil-calisir/" title="Kabuk Nasıl Çalışır ?" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Yardım Almak</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/yard%C4%B1m-alma-komutlar%C4%B1/" title="Yardım Almak" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#bash-kabuk-kısayolları">Bash Kabuk Kısayolları</a></li>
+<li class="toc-entry <hh1"><a href="#i̇mleç-kısayolları">İmleç Kısayolları</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#satır-başı-ve-sonu">Satır Başı ve Sonu</a></li>
+<li class="toc-entry <hh2"><a href="#karakterler-arası-geçiş">Karakterler Arası Geçiş</a></li>
+<li class="toc-entry <hh2"><a href="#kelimeler-arası-geçiş">Kelimeler Arası Geçiş</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#düzenleme-kısayolları">Düzenleme Kısayolları</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#kelimeleri-düzenleme">Kelimeleri Düzenleme</a></li>
+<li class="toc-entry <hh2"><a href="#kes-yapıştır">Kes Yapıştır</a></li>
+<li class="toc-entry <hh2"><a href="#otomatik-tamamlama">Otomatik Tamamlama</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#geçmiş-kısayolları">Geçmiş Kısayolları</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#komut-geçmişini-listelemek--history">Komut Geçmişini Listelemek | History</a></li>
+<li class="toc-entry <hh2"><a href="#geçmişteki-komutları-çağırmak">Geçmişteki Komutları Çağırmak</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#alias">Alias</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#takma-i̇sim-tanımlamak">Takma İsim Tanımlamak</a></li>
+<li class="toc-entry <hh2"><a href="#takma-i̇simleri-listelemek">Takma İsimleri Listelemek</a></li>
+<li class="toc-entry <hh2"><a href="#takma-i̇simleri-kaldırmak">Takma İsimleri Kaldırmak</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#özet--kısayol-tablosu">Özet | Kısayol Tablosu</a></li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Linux Kısayolları\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/linux-k%C4%B1sayollar%C4%B1/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/linux-k%C4%B1sayollar%C4%B1/&title=Linux Kısayolları&summary=\"Linux Kısayolları\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>

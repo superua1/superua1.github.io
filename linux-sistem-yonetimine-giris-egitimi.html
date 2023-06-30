@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Temel Linux Eğitimi &#8211; Linux Eğitimi</title>
+<meta name="description" content="Temel Linux Eğitimi Sıralı Müfredatı">
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/linux-sistem-yonetimine-giris-egitimi.html">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+      
+<div class="container"> 
+<p></p>
+<div class="row">
+   
+   <div class="col-sm-9 ">
+  
+<h1>Sistem Yönetimine Giriş Eğitimi</h1>
+<p> Linux sistem yönetimi alanında giriş seviyesi eğitim almak ve RHCE RHCSA LPIC ve Linux+ gibi sertifikasyon sınavlarına hazırlık için yardımcı kaynak arıyorsanız bu eğitim setine gözatabilirsiniz.</p>
+
+ </div>
+  <div class="col-sm-3 ">
+
+       <img class="card-img " src="http://localhost:4000/sistem-yonetim.png" alt="Card image" />
+
+    </div>
+ 
+	 </div>
+
+<div class="card text-center">
+  <div class="card-header">
+    Tam Paket
+  </div>
+  <div class="card-body">
+    <div class="card-group">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">Video Eğitim</h5>
+      <p class="card-text">Alıştırmalar ve testler bulunan ömür boyu erişebileceğiniz video eğitim.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">45 Saat Video Eğitim</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">Canlı Dersler</h5>
+      <p class="card-text">Çevrimiçi 10 kişik gruplar halinde ele aldığımız çevrimiçi dersler.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">48 Saatlık Canlı Anlatım</small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">Diyagram ve Dokümanlar</h5>
+      <p class="card-text">Anlatımları destekleyen 35 diyagram ve çeşitli dokümanlar.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">35 + Diyagram ve Doküman</small>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="card-footer text-muted">
+    4999 TL
+  </div>
+</div>
+
+<h2 id="canlı-eğitim">Canlı Eğitim</h2>
+<h4 id="eğitim-süresi">Eğitim Süresi</h4>
+<p>Haftada 3 gün(Pazartesi-Çarşamba-Cuma) 19:00-23:00 saatleri arasında toplam 12 ders olacak şekilde 1 aylık bir eğitim gerçekleştiriyoruz. Eğitim takivimine buradan ulaşabilirsiniz.</p>
+<h4 id="eğitim-türü">Eğitim Türü</h4>
+<p>Eğitim online ortamda canlı anlatım şeklinde verilmektedir. Ayrıca ömür boyu erişebileceğiniz video eğitim ve dokümanlara da sahip olacaksınız.</p>
+
+<hr />
+
+<h2 id="video-eğitim">Video Eğitim</h2>
+<h4 id="eğitim-süresi-1">Eğitim Süresi</h4>
+<p>Ömür boyu erişebileceğiniz, 45 saatlik video anlatım.</p>
+<h4 id="eğitim-i̇çeriği">Eğitim İçeriği</h4>
+<p>Video anlatımların yanı sıra ele alınan konuları pekiştirmek için alıştırmalar ve testler mevcuttur. Kurs müfredatının detaylarını görmek için aşağıdaki kutucuğu genişletebilirsiniz.</p>
+
+<h3 id="video-eğitim-hazırlanacak30-40-saat">Video Eğitim Hazırlanacak(30-40 Saat)</h3>
+
+<p>Video eğitim canlı derse katılanlara ek olarak sunulacak ömür boyu kullanım imkanı tanıyan öğrenme modeli. Ayrıca bu eğitimde alıştırmalar ve pratik testleri de sunulacak. Bu sayede kaçırılan veya unutulup tam olarak anlaşılmamış olan derslerin telafisi olabilecektir.</p>
+
+<h3 id="kitap-desteği1200-1500-sayfa">Kitap Desteği(1200-1500 Sayfa)</h3>
+
+<p>Yazılan kitabın hediye edilmesi veya önerilmesiyle eğitimi destekleyen yazılı kaynağa sahip olacaklar.</p>
+
+<h3 id="diyagramlar35-50-diyagram">Diyagramlar(35-50 Diyagram)</h3>
+
+<p><a href="https://excalidraw.com/">https://excalidraw.com/</a> sitesi üzerinden oluşturulacak olan özet diyagramlar ile hem öğrenim desteklenecek hem de sosyal medyada paylaşılarak mevcut ücretli eğitim daha fazla insana ulaşacak. Örneğin “<a href="https://jvns.ca/networking-zine.pdf">https://jvns.ca/networking-zine.pdf</a>” adresteki gibi diyagramlar sunulabilir.</p>
+
+<h3 id="canlı-dersler10-gün-35-saat">Canlı Dersler(10 gün 35 saat)</h3>
+
+<p>Ve tabii ki canlı dersler ile yaklaşık 10 kişilik gruplara bir aylığına eğitim verilecek.</p>
+
+<h2>Eğitim Müfredatı</h2>
+
+<ul>
+  <li><strong>Girizgah</strong>
+    <ul>
+      <li>Önsöz</li>
+      <li>Bu eğitim kimler için ?</li>
+      <li>Neden Linux Sistem Yönetimini Öğrenmeliyiz ?</li>
+    </ul>
+  </li>
+  <li><strong>Linux Nedir</strong>
+    <ul>
+      <li>UNIX</li>
+      <li>Linus Torvalds</li>
+      <li>Açık Kaynak ve Özgür Yazılım</li>
+      <li>GPL</li>
+      <li>GNU</li>
+      <li>Dağıtım(Distro) Nedir ve Hangisini Seçmeliyiz ?</li>
+      <li>Dağıtımlar ve Sürümler Arası Farklılıklar Hakkında</li>
+    </ul>
+  </li>
+  <li><strong>Sistem Mimarisine Giriş</strong>
+    <ul>
+      <li>İşleyişe Genel Bakış
+        <ul>
+          <li>İşletim Sistemi</li>
+          <li>Kullanıcı Alanı(User Space)
+            <ul>
+              <li>Grafiksel Kullanıcı Arayüzü</li>
+              <li>Komut Satırı Arayüzü
+                <ul>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Konsol</td>
+                          <td>Terminal</td>
+                          <td>Komut Satırı</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  <li>Kabuk</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Çekirdek</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Kabuk Nasıl Çalışır?</strong>
+    <ul>
+      <li>PATH Yolu
+        <ul>
+          <li>PATH Yoluna Dosya Ekleme</li>
+          <li>PATH Üzerine Yeni Dizin Eklemek
+            <ul>
+              <li>Değişkenler</li>
+              <li>Kabuk Başlatma Dosyaları</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Kısayollar</strong>
+    <ul>
+      <li>Konsol - Terminal Kısayolları</li>
+      <li>Sistem Kısayolları</li>
+      <li>Bash Kabuk Kısayolları
+        <ul>
+          <li>İmleç Kısayolları</li>
+          <li>Düzenleme Kısayolları</li>
+          <li>İşlem Kısayolları</li>
+          <li>Geçmiş Kısayolları</li>
+          <li>Otomatik Tamamlama Hakkında</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Yardım Alma Komutları</strong>
+    <ul>
+      <li><strong>Yardım Almak</strong>
+        <ul>
+          <li>help Komutu</li>
+          <li>man(Manuel Sayfası) Komutu</li>
+          <li>whatis Komutu</li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Manuel Sayfalarında Araştırma</td>
+                  <td>man -k</td>
+                  <td>apropos</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>info Komutu</li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Dokümantasyonlar</td>
+                  <td>/usr/share/doc Hakkında</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Dizinlerde Gezinti</strong>
+    <ul>
+      <li>Dizinler Hakkında</li>
+      <li>pwd Komutu</li>
+      <li>cd Komutu</li>
+      <li>ls Komutu</li>
+      <li>Dizin Oluşturma ve Silme
+        <ul>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Dizin Oluşturma</td>
+                  <td>mkdir Komutu</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Dizin Silme</td>
+                  <td>rmdir Komutu</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>**Karakter Genişletmeleri</td>
+          <td>Joker Karakterler**</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Kabuk Üzerinde Genişletme</li>
+      <li>Bash Kabuğu Dahilindeki Genişletme Türleri</li>
+      <li>Süslü(Kıvırcık) Parantez Genişletmesi</li>
+      <li>Tilde Genişletmesi</li>
+      <li>Parametre Genişletmeleri</li>
+      <li>Komut İkamesi</li>
+      <li>Aritmetik Genişletme</li>
+      <li>İşlem İkamesi(Eğer sistem tarafından destekleniyorsa.)</li>
+      <li>Kelime Ayırma-Bölümleme</li>
+      <li>Dosya Adı Genişletmesi</li>
+      <li>Düzenli İfadeler Ve Karakter Sınıfları</li>
+      <li>Joker Karakterler(wildcards)</li>
+    </ul>
+  </li>
+  <li><strong>Dosya Yönetimi</strong>
+    <ul>
+      <li>Her şey bir dosya mıdır ?</li>
+      <li>Yönlendirmeler
+        <ul>
+          <li>Çıktıların Yönlendirilmesi</li>
+          <li>Hatasız Çıktıların Yönlendirilmesi</li>
+          <li>Hatalı Çıktıların Yönlendirilmesi</li>
+          <li>Hatalı ve Hatasız Çıktıların Birlikte Yönlendirilmesi</li>
+          <li>Yazma Korumalı Dosyalara Yönlendirme İşlemi</li>
+          <li>Veri Giriş Yönlendirmesi
+            <ul>
+              <li>Dosyaların Veri Girişi İçin Kullanılması</li>
+              <li>Satırların Veri Girişi İçin Kullanılması</li>
+              <li>Tek Bir Satırın Veri Girişi İçin Kullanılması</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>cat Komutu</li>
+      <li>tac Komutu</li>
+      <li>rev Komutu</li>
+      <li>echo Komutu</li>
+      <li>sort Komutu</li>
+      <li>paste Komutu</li>
+      <li>diff Komutu</li>
+      <li>cmp Komutu</li>
+      <li>cut Komutu</li>
+      <li>fmt Komutu</li>
+      <li>wc Komutu</li>
+      <li>uniq Komutu</li>
+      <li>pipe Hakkında
+        <ul>
+          <li>İsimsiz-Sıradan Pipe(Unnamed-Ordinary)</li>
+          <li>Pipe Kullanım Amacı ve Pipeline Kavramı</li>
+        </ul>
+      </li>
+      <li>tee Komutu</li>
+      <li>xargs Komutu</li>
+      <li>tr Komutu</li>
+      <li>find Komutu</li>
+      <li>fd Komutu</li>
+      <li>locate Komutu</li>
+      <li>grep</li>
+      <li>sed Komutu</li>
+      <li>awk Komutu</li>
+      <li>Konsol Üzerinde Okunaklı Çıktılar Elde Etmek
+        <ul>
+          <li>more Komutu</li>
+          <li>less Komutu</li>
+          <li>nl Komutu</li>
+          <li>od Komutu</li>
+          <li>split Komutu</li>
+          <li>head Komutu</li>
+          <li>tail Komutu</li>
+        </ul>
+      </li>
+      <li>Dosya Kopyalama - Taşıma - Silme İşlemleri
+        <ul>
+          <li>cp Komutu</li>
+          <li>mv Komutu</li>
+          <li>rm Komutu</li>
+          <li>shred Komutu</li>
+        </ul>
+      </li>
+      <li>Editör Kullanımı
+        <ul>
+          <li>nano</li>
+          <li>vim</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Arşivleme ve Sıkıştırma</strong>
+    <ul>
+      <li>Arşivleme
+        <ul>
+          <li>tar</li>
+        </ul>
+      </li>
+      <li>Sıkıştırma
+        <ul>
+          <li>gzip</li>
+          <li>bzip2</li>
+          <li>zcat</li>
+          <li>zgrep</li>
+          <li>bzcat</li>
+          <li>bzgrep</li>
+          <li>zip</li>
+          <li>unzip</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>**Linux Dosya Sistemi Hiyerarşisi</td>
+          <td>Filesystem Hierarchy Standard**</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Nedir bu hiyerarşi ve neden gerekli?</li>
+      <li>Dizinlerin İşevleri
+        <ul>
+          <li>/bin</li>
+          <li>/boot</li>
+          <li>/dev</li>
+          <li>/etc</li>
+          <li>/home</li>
+          <li>/initrd</li>
+          <li>/lib</li>
+          <li>/lib64 /lib32</li>
+          <li>/lost+found</li>
+          <li>/media</li>
+          <li>/mnt</li>
+          <li>/opt</li>
+          <li>/proc</li>
+          <li>/root</li>
+          <li>/run</li>
+          <li>/sbin</li>
+          <li>/usr</li>
+          <li>/var</li>
+          <li>/tmp</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Kullanıcı ve Grup Yönetimi</strong>
+    <ul>
+      <li>Kullanıcı Türleri</li>
+      <li>Kullanıcı Hesabı Oluşturmak
+        <ul>
+          <li>adduser</li>
+          <li>useradd</li>
+          <li>/etc/passwd</li>
+          <li>/etc/shadow</li>
+        </ul>
+      </li>
+      <li>Hesapları Düzenlemek
+        <ul>
+          <li>usermod</li>
+        </ul>
+      </li>
+      <li>Kullanıcı Hesaplarını Silmek
+        <ul>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>userdel</td>
+                  <td>deluser</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+      <li>Kullanıcı ve Grup Kavramları Üzerine</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Yetkileri Anlamak</td>
+              <td>Erişim Yetkileri</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>Yetkilerin Değişimi(chmod)</li>
+        </ul>
+      </li>
+      <li>Grup Yönetimi
+        <ul>
+          <li>Neden gruplara ihtiyacımız var ?</li>
+          <li>Grup Oluşturmak</li>
+          <li>Grubu Düzenlemek</li>
+          <li>Grubu Silmek</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>sudo</td>
+              <td>wheels grubu ve sudoers</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>bitler hakkında
+        <ul>
+          <li>SUID ve SGID Bit’ler</li>
+          <li>Sticky Bit Kavramı</li>
+        </ul>
+      </li>
+      <li>PAM (Pluggable Authentication Modules)</li>
+      <li>umask</li>
+      <li>chroot</li>
+    </ul>
+  </li>
+  <li><strong>Bilgi Alma Komutları</strong>
+    <ul>
+      <li>uname</li>
+      <li>hostname</li>
+      <li>lsb_release</li>
+      <li>whoami</li>
+      <li>uptime</li>
+      <li>cal</li>
+      <li>date</li>
+      <li>which</li>
+      <li>whereis</li>
+      <li>dmidecode</li>
+      <li>free</li>
+      <li>modinfo</li>
+      <li>stat</li>
+      <li>vmstat</li>
+      <li>history</li>
+    </ul>
+  </li>
+  <li><strong>Temel Ağ Yönetimi</strong>
+    <ul>
+      <li>/etc/hostname</li>
+      <li>/etc/hosts</li>
+      <li>/etc/resolv.conf</li>
+      <li>/etc/nsswitch.conf</li>
+      <li>ifconfig</li>
+      <li>ifup</li>
+      <li>ifdown</li>
+      <li>ip</li>
+      <li>route</li>
+      <li>arp</li>
+      <li>iw</li>
+      <li>iwconfig</li>
+      <li>iwlist</li>
+      <li>ping</li>
+      <li>SSH Kullanımı</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Ağ Üzerinden Dosya Kopyalama</td>
+              <td>scp</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Dosyaları ve Dizinleri Senkronize Etme</td>
+              <td>rsync</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Dosya İndirmek</td>
+              <td>wget</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Disk Yönetimi</strong>
+    <ul>
+      <li>Girizgah</li>
+      <li>Disk Bölümleri ve Bölümlendirme Tablosu
+        <ul>
+          <li>MBR</li>
+          <li>GPT</li>
+        </ul>
+      </li>
+      <li>Bios ve UEFI
+        <ul>
+          <li>Bios</li>
+          <li>UEFI</li>
+        </ul>
+      </li>
+      <li>Dosya Sistemi Nedir ?
+        <ul>
+          <li>ext</li>
+          <li>journaling</li>
+          <li>xfs</li>
+          <li>brtfs</li>
+          <li>ntfs</li>
+        </ul>
+      </li>
+      <li>Pratikler için hazırlık aşaması</li>
+      <li>Diskleri Bölümlemek</li>
+      <li>Disklerin Bağlanması
+        <ul>
+          <li>Dosya Sistemini Kalıcı Olarak Bağlamak</li>
+          <li>Bağlı Diski Sistemden Çıkarmak</li>
+        </ul>
+      </li>
+      <li>Diskin Yedeğini Almak</li>
+      <li>Dosya sistemini Bozmak ve Onarmak</li>
+      <li>Dosya Sistemini Şifrelemek</li>
+      <li>Disk Bölümünün Boyutunu Değiştirmek</li>
+      <li>Diski Genişletmek</li>
+      <li>Diski Küçültmek</li>
+      <li>tempfs ve ramfs</li>
+      <li>dumpe2fs</li>
+      <li>tune2fs</li>
+      <li>Disk Türleri Hakkında
+        <ul>
+          <li>LVM</li>
+          <li>Raid</li>
+        </ul>
+      </li>
+      <li>fdisk</li>
+      <li>cfdisk</li>
+      <li>badblocks</li>
+      <li>fsck</li>
+      <li>df</li>
+      <li>gparted</li>
+      <li>umount &amp; mount</li>
+    </ul>
+  </li>
+  <li><strong>İşlemler Hakkında</strong>
+    <ul>
+      <li>İşlem(Process) Nedir?</li>
+      <li>GNU/Linux Üzerinde İşlemlerin Oluşumu</li>
+      <li>Bash Kabuğunda İşlemlerin Oluşumu
+        <ul>
+          <li>Alt Kabuklar(Subshell) Hakkında</li>
+          <li>Komut İkamesi (Command Substitution)</li>
+          <li>İşlem İkamesi(Process Substitution)</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Job Control</td>
+              <td>İş Kontrolü</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>Ön Plandaki İşlemler</li>
+          <li>İşlemleri Arka Planda Başlatmak</li>
+          <li>İşlemleri Arka Plana Almak</li>
+          <li>İşlemleri Ön Plana Almak</li>
+          <li>jobs Komutu</li>
+          <li>wait Komutu</li>
+          <li>disown Komutu</li>
+          <li>nohup Komutu</li>
+          <li>İşlem Önceliğini Ayarlama
+            <ul>
+              <li>işlem önceliği kavramı</li>
+              <li>nice ve renice</li>
+            </ul>
+          </li>
+          <li>İş Yönetimi ve Sinyaller Hakkında
+            <ul>
+              <li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>kill Komutu</td>
+                      <td>Sinyaler</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Servislerin Yönetimi</strong>
+    <ul>
+      <li>Sistemin başlatılması
+        <ul>
+          <li>sysVinit</li>
+          <li>upstart</li>
+          <li>systemd</li>
+        </ul>
+      </li>
+      <li>Systemd
+        <ul>
+          <li>Konfigürasyon Dosyaları</li>
+          <li>systemd birim yapılandırma dosyalarının biçimi</li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Çalışma Seviyeleri</td>
+                  <td>Sistem Durumu</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+      <li>runlevel</li>
+      <li>init</li>
+      <li>/etc/inittab</li>
+      <li>/etc/rc.d</li>
+      <li>service</li>
+      <li>systemctl</li>
+      <li>Unutulan root parolası nasıl değiştirilir?</li>
+      <li>SELinux</li>
+      <li>cgroups</li>
+    </ul>
+  </li>
+  <li><strong>Zamanlanmış Görevler</strong>
+    <ul>
+      <li>systemd time</li>
+      <li>cron Servisi</li>
+      <li>crontab</li>
+    </ul>
+  </li>
+  <li><strong>Sembolik Link ve Katı Link</strong>
+    <ul>
+      <li>inode(düğüm)</li>
+      <li>Sembolik (soft) Link</li>
+      <li>Katı (hard) Link</li>
+    </ul>
+  </li>
+  <li><strong>Güncelleme Kurma Kaldırma İşlemleri</strong>
+    <ul>
+      <li>Debian Paket Yönetimi
+        <ul>
+          <li>/etc/apt/sources.list</li>
+          <li>dpkg</li>
+          <li>dpkg-reconfigure</li>
+          <li>apt-get</li>
+          <li>apt-cache</li>
+        </ul>
+      </li>
+      <li>RPM ve YUM Paket Yönetimini
+        <ul>
+          <li>rpm</li>
+          <li>rpm2cpio</li>
+          <li>/etc/yum.conf</li>
+          <li>/etc/yum.repos.d/</li>
+          <li>yum</li>
+          <li>zypper</li>
+        </ul>
+      </li>
+      <li>Kaynak Koddan Derleyerek Kurulum</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Wine Hakkında</td>
+              <td>Windows Uygulamalarını Linux’ta Çalıştırmak</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Log Kayıtları</strong>
+    <ul>
+      <li>journald</li>
+      <li>dmesg</li>
+      <li>last</li>
+      <li>Log Dosyaları</li>
+    </ul>
+  </li>
+</ul>
+
+
+<hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+	<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">👁 ️Çerez Kullanımı Hakkında Bilgilendirme</h5>
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+		
+      </div>
+      <div class="modal-body">
+        <div class="align-items-center">
+          <p>Bu platform, size daha iyi hizmet verebilmek için çerezler kullanmaktadır. Bu platformu kullanarak Google Analitics üzerinden anonim şekilde ziyaretçi verilerinin toplanmasını kabul etmiş sayılıyorsunuz.<p></p>Bu bilgilendirme mesajını tekrar görmek istemiyorsanız <strong>"Kabul Et"</strong> butonuna tıklayabilir veya <a href="http://localhost:4000/gizlilik.html" >buradan</a> gizlilik politikası hakkında daha fazla bilgi alabilirsiniz.</p>
+		   <button type="button" class="mavi btn btn-outline-primary btn-block" id="acceptCookie">Kabul Et</button>
+        </div>
+		
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// Set cookie function
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Get cookie function
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+// Check if cookie exists
+var cookieExists = getCookie("cookieAccepted");
+
+if (!cookieExists) {
+  // If cookie does not exist, show the modal
+  $('#cookieModal').modal('show');
+
+  // When the user clicks the accept button, set the cookie and hide the modal
+  $('#acceptCookie').click(function() {
+    setCookie("cookieAccepted", true, 365); // Set cookie to last for 1 year
+    $('#cookieModal').modal('hide');
+  });
+
+  // When the modal is hidden without the accept button clicked, set the cookie
+  $('#cookieModal').on('hidden.bs.modal', function(e) {
+    if (!getCookie("cookieAccepted")) {
+      setCookie("cookieAccepted", false, 365); // Set cookie to last for 1 year
+    }
+  });
+} else {
+  // If cookie exists, hide the modal
+  $('#cookieModal').modal('hide');
+}
+
+// Show the modal again when the user clicks the button
+$('#showCookieModal').click(function() {
+  $('#cookieModal').modal('show');
+});
+
+</script>
+</body>
+</html>

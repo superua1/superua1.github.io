@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Girizgah &#8211; Linux Eğitimi</title>
+<meta name="description" content="Eğitimin yapısı ve ilerleyiş biçimi hakkında bilgi ediniyoruz.">
+<meta name="keywords" content="temel linux">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/girizgah/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">0. Ders: Girizgah</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#temel linux" class="btn btn-outline-primary btn-sm" title="Pages tagged temel linux">temel linux</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/girizgah.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+4 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <h1 id="girizgah">Girizgah</h1>
+
+<p>Merhabalar,</p>
+
+<p>Eğitim serisi boyunca GNU/Linux işletim sistemini temel düzeyde tanıyıp yönetme yolculuğunda birlikte ilerliyor olacağız. Eğer eğitimi tekrar etmek için burada değilsen, bu bölümü atlamanı kesinlikle önermiyorum. Çünkü bu bölüm, eğitimden ne beklemen gerektiği ve nasıl maksimum verimi alabileceğini izah ettiğim önemli bir bölüm. Ancak her şeyden önce bu eğitimden alabileceğin verimin senin çabalarınla doğru ortanlı olduğunun da farkında ol lütfen.</p>
+
+<p class="yesil">Güzel şeyler çaba, eylem ve tercihlerimizin sonucu olarak ortaya çıkar. <strong>~Epiktetos</strong></p>
+
+<p>Olası soru işaretlerini baştan giderebilmek adına birkaç alt başlıkla temel kavramlara açıklık getirebiliriz.</p>
+
+<h3 id="hedefimiz">Hedefimiz</h3>
+
+<p>Bu eğitim Linux sistemini temel düzeyde anlayıp yönetebilmek için giriş seviyesi bilgi sunmayı amaçlıyor. Kişisel veya profesyonel(devops, siber güvenlik, veri bilimi, yazılım geliştirme, vb..) amaçlarlarla temel Linux öğrenmek isteyen herkese uygundur.</p>
+
+<h3 id="neden-linux-öğrenmeliyiz-">Neden Linux Öğrenmeliyiz ?</h3>
+
+<p>İronik olarak, Linux sistemini kullanabilmenin önemini aslında Linux sistemini tanıyıp kullandıktan sonra bizzat anlamış olacaksınız. Yine de çok kısaca özetlemek gerekirse; açık kaynak ve özgür yazılım ekosisteminin getirdiği yüksek verimli, esnek ve özgür çalışma ortamı dolayısıyla Linux sistemi hem kişisel hem de profesyonel amaçlarla tercih edilen bir işletim sistemi. Dolayısıyla Linux öğrenmek kendinize yapabileceğiniz çok mantıklı bir yatırım.</p>
+
+<h3 id="anlatım-biçimi">Anlatım Biçimi</h3>
+
+<p>Eğitim serisi boyunca yazılı ve yer yer resimler ile desteklenen sıralı bir müfredat düzenini takip edeceğiz. Baştan belirteyim; konuları kısa kesmeden, <strong>gerekeni gerektiği kadar(ne az ne çok)</strong> açıklayarak ve bizzat uygulamalar yaparak ilerliyor olacağız. Doğrudan bu komut şu işe yarar gibi bir anlatımdan ziyade Linux sisteminin temel işleyişini kavramamızı sağlayacak düzeyde tüm konuları birbiri ile bağlantılı şekilde ele alıyor olacağız. Yani komutları açıklamadan önce gereken temeli oluşturmak üzere kavram açıklamarı gerçekleştiriyor olacağız. Bu yaklaşım yeni başlayan kullanıcılara biraz sıkıcı veya gereksiz detaylı gelebiliyor olsa da kalıcı ve etkili şekilde Linux öğrenmek için doğru bir yaklaşım olduğuna inanıyorum. Özetle buradaki anlatımlar birbiri ile bağlantılı olan pek çok konu ve kavramın sırasıyla açıklanması şeklinde ele alınıyor. Yani tüm eğitim birbiri ile ilişkili olan bir bütünün parçalarından ibaret. Eğitim sonunda zaten bu durumu bizzat kendiniz de görmüş olacaksınız.</p>
+
+<h3 id="öğreneceklerimiz">Öğreneceklerimiz</h3>
+
+<p>Eğitim içerisinde pek çok farklı konu başlığı ve bölümlendirme bulunsada aslında pek çok konu birbiri ile yakından ilişkili. Bu sebeple eğitimin bazı bölümlerinde geçmişte bahsedilen kavramlara atıfta bulunuyor ya da aynı konuyu, yeni konuyla birlikte tekrar ele alıyor olacağız. Bu gibi durumlara eğitimin düştüğü tekrarlardan ziyade, öğrenilen bilgilerin sentezlenmesi olarak bakmak çok daha doğru bir yaklaşım olacaktır. Bu eğitimdeki amacımız GNU/Linux sisteminin sahip olduğu temel özellikleri kavrayıp, sistemi komut satırı üzerinden yönetebilecek becerileri kazanabilmektir. Dolayısıyla doğrudan “şu komut şu işi yapar” gibi bir anlatımdan ziyade öncelikle ele alacağımız konular için gerekli olan temel bilgilerden de bahsediyor olacağız. Zaten temeli doğru biçimde kavradıktan sonra sistemi çok daha etkili kullanma ve gerektiğinde hakkında çok daha fazla bilgiyi edinebilme kabiliyetimizin önü açılacaktır. Bizler de bu eğitimde Linux üzerinde kendimizi geliştirebilecek kadar temel bilgi düzeyine erişmeyi hedefliyoruz. Eğer bir sertifika sınavına hazırlanıyorsanız tek yapmanız gereken sertifika müfredatındaki bilmediğiniz konuları araştırıp öğrenmek. Bizim ele alacağımız konuları görmek iserseniz <a href="http://localhost:4000/temel-linux" target="_blank">buradan</a> tüm başlıklara göz atabilirsiniz.</p>
+
+<p>Ayrıca henüz eğitimin başındayken belirteyim, biz bu eğitimde <strong>grafiksel arayüze odaklanmayacağız</strong>, öncelikli hedefimiz komut satırı üzerinde sistemi rahatlıkla yönetebilme becerisi kazanmak. Ancak merak etmeyin komut satırı üzerinden sistemi tanımaya başladığınızda zaten grafiksel arayüz üzerinde de son derece rahat şekilde hareket edebiliyor olacaksınız.</p>
+
+<p>Sizlerden tek ricam tüm eğitimi sabırla ve uygulama yaparak sıralı şekilde takip etmeniz. Ayrıca benim anlatımlar sırasında örnek olarak sunduğum uygulamalar dışında da mutlaka harici olarak kendiniz de çeşitli alıştırmalar ve araştırlamar yapın lütfen. Zira her konu için çoklu örnekler vermemiz konuyu gereksiz uzatacağı için bu eğitimde yalnızca konuyu kavramanıza yetecek düzeyde örnekler bulunuyor. <strong>Yani eğitimden alacağınız fayda düzeyi aslında tamamen sizlerin gayretine bağlı.</strong></p>
+
+<h3 id="gereksinimler">Gereksinimler</h3>
+
+<p>Bu eğitim serisini takip etmek için kararlılık, merak ve mümkünse internet erişimine sahip bir bilgisayara sahip olmanız yeterli. Eğitime başlamak için daha önceden GNU/Linux sistemlerini kullanmış olmanız şart değil, çünkü sıfırdan başlayacağız.</p>
+
+<p class="mavi"><strong>Not:</strong> Eğer sürekli internet erişiminiz yoksa, bu sayfa içeriğini tarayıcınız üzerinden pdf olarak kaydedip çevrimdişi şekilde takip edebilirsiniz.</p>
+
+<p>Girizgah olarak söylemek istediklerim bunlar. Böylelikle, eğitimin amacından ve genel ilerleyiş biçiminden kısaca bahsetmiş olduk.</p>
+
+<p class="kirmizi border"><strong>Dikkat:</strong> Eğitim boyunca ele alınan tüm bilgiler eğitim amaçlı olup, kendi test ortamımda test edip size sunduğum bilgilerden oluşuyor. Eğitim içerinde ele alınan bilgilerin ve komutların kullanımı sonucu doğabilecek hata veya sorunlardan kendiniz sorumlu olacağınız için özellikle production yani canlı olarak servis sunan sistemler yerine öncelikle test ortamlarında bu komutları kullanmanızı öneriyorum. Zaten bu eğitim serisinin amacı yeni öğrenmeye başlayan kişilere Linux sistemini temel düzeyde tanıtmak olduğu için profesyonel amaçlarla kullanılan sunucular üzerinde deneyimsiz kullanıcılar tarafından uygulanması beklenmiyor. Dolayısıyla buradan öğrendiğiniz bilgileri uygulama ve sonuçları ile yüzleşme noktasında sorumluluk tamamen sizlere ait.</p>
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Temel Kavramlar</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/linux-nedir/" title="Temel Kavramlar" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#girizgah">Girizgah</a>
+<ul>
+<li class="toc-entry <hh3"><a href="#hedefimiz">Hedefimiz</a></li>
+<li class="toc-entry <hh3"><a href="#neden-linux-öğrenmeliyiz-">Neden Linux Öğrenmeliyiz ?</a></li>
+<li class="toc-entry <hh3"><a href="#anlatım-biçimi">Anlatım Biçimi</a></li>
+<li class="toc-entry <hh3"><a href="#öğreneceklerimiz">Öğreneceklerimiz</a></li>
+<li class="toc-entry <hh3"><a href="#gereksinimler">Gereksinimler</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Girizgah\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/girizgah/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/girizgah/&title=Girizgah&summary=\"Girizgah\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>

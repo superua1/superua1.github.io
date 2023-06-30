@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Metin Editörü Kullanımı &#8211; Linux Eğitimi</title>
+<meta name="description" content="Temel kavramlardan bahsederek, GNU/Linux sistemini tanıyoruz.">
+<meta name="keywords" content="Linux, çekirdek, kernel, linus torvalds, gnu, gpl, açık kaynak, özgür yazılım, unix, dağıtım">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/metin-editoru/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">12. Ders: Metin Editörü Kullanımı</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#Linux" class="btn btn-outline-primary btn-sm" title="Pages tagged Linux">Linux</a> <a href="http://localhost:4000/etiketler.html#çekirdek" class="btn btn-outline-primary btn-sm" title="Pages tagged çekirdek">çekirdek</a> <a href="http://localhost:4000/etiketler.html#kernel" class="btn btn-outline-primary btn-sm" title="Pages tagged kernel">kernel</a> <a href="http://localhost:4000/etiketler.html#linus torvalds" class="btn btn-outline-primary btn-sm" title="Pages tagged linus torvalds">linus torvalds</a> <a href="http://localhost:4000/etiketler.html#gnu" class="btn btn-outline-primary btn-sm" title="Pages tagged gnu">gnu</a> <a href="http://localhost:4000/etiketler.html#gpl" class="btn btn-outline-primary btn-sm" title="Pages tagged gpl">gpl</a> <a href="http://localhost:4000/etiketler.html#açık kaynak" class="btn btn-outline-primary btn-sm" title="Pages tagged açık kaynak">açık kaynak</a> <a href="http://localhost:4000/etiketler.html#özgür yazılım" class="btn btn-outline-primary btn-sm" title="Pages tagged özgür yazılım">özgür yazılım</a> <a href="http://localhost:4000/etiketler.html#unix" class="btn btn-outline-primary btn-sm" title="Pages tagged unix">unix</a> <a href="http://localhost:4000/etiketler.html#dağıtım" class="btn btn-outline-primary btn-sm" title="Pages tagged dağıtım">dağıtım</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/editorcover.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+44 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <h1 id="metin-editörü-kullanımı--nano--vi">Metin Editörü Kullanımı | Nano &amp; Vi</h1>
+
+<p>Konsol üzerinden dosya içeriklerini görüntüleyebileceğimiz ve farklı biçimlerde manipüle edebileceğimiz pek çok araçtan söz ettik. Şimdi de konsol üzerinden kullanabileceğimiz metin editörlerinden söz edelim.</p>
+
+<p>Grafiksel arayüzde çalışırken kullanabileceğimiz bir çok metin editörü bulunuyor. Zaten hepsinin kullanımı da hemen hemen benzer. Neticede bunlar grafiksel arayüzlü araçlar, yani üzerine ekstra konuşmamızı gerektirecek bir durum yok. Kullanmakta olduğunuz sistemde hangisi varsa, ya da siz özellikle hangisini tercih ediyorsanız onu kullanabilirsiniz.</p>
+
+<p>Bizim asıl ihtiyacımız olan grafiksel arayüzün bulunmadığı komut satırı arayüzündeyken de metinlerimizi görüntüleyip gerektiğinde düzenleyebileceğimiz bir araç. Aslında komut satırı arayüzü için de pek çok alternatif araç bulunuyor ama bizler en yaygın kullanıma sahip iki araçtan bahsedeceğiz. Bu sayede farklı sistemlerde de bu metin editörleri kuvvetle muhtemel yüklü olacağı için işlerinizi aksamadan yerine getirme yetkinliğine sahip olacaksınız. Bu durumu, tıpkı pek çok kabuk içinden bash kabuğunu tercih etmemiz gibi düşünebilirsiniz. Yaygın kullanıma sahip olması ilgili aracı öğrenmek için geçerli bir sebep.</p>
+
+<p>Anlatımın devamında sırasıyla <code class="language-plaintext highlighter-rouge">nano</code> ve <code class="language-plaintext highlighter-rouge">vi</code>-<code class="language-plaintext highlighter-rouge">vim</code> araçlarının kullanımlarına kısaca değineceğiz. Ama fark ettiyseniz kısaca diyorum, çünkü özellikle <code class="language-plaintext highlighter-rouge">vim</code> aracının tüm özelliklerinden bahsetmek için ayrıca bir eğitim hazırlamamız gerekir. Ki ben de yalnızca temel düzeyde biliyorum. Yani anlatımlar sırasında çok kısaca temel kullanımlarından ve bilmemiz gerekenlerden bahsedeceğiz.</p>
+
+<p>Anlatımlara başlamadan önce temel düzeyde metin editörlerini kullanabilmenin gerçekten çok önemli olduğunu vurgulamak istiyorum. Belki metin editörü kullanımını pek önemli bulmuyor olabilirsiniz ancak aslında metin editörleri, söz konusu sistemi komut satırından yönetmek olduğunda, komut satırındaki işlerimizi etkili şekilde halledebilmemiz için gereken en temel araçların başında geliyor. Çünkü şimdiye kadar açıkça fark ettiğimiz gibi, sistemi komut satırından yönetirken metinsel tabanlı bir arayüzde çalışıyoruz ve yönetim esnasında da sürekli olarak metinsel verileri yazıp, düzenleyip kullanıyoruz. Bu bağlamda metin editörü anlatımlarına da gereken özeni göstermenizi rica ediyorum. Zira sıklıkla ihtiyaç duyacaksınız.</p>
+
+<p>Tamamdır artık lafı daha fazla uzatmadan öncelikle <code class="language-plaintext highlighter-rouge">nano</code> aracını ele alarak başlayabiliriz.</p>
+
+<h1 id="nano">Nano</h1>
+
+<p>Nano aracı ileride ele alacağımız “<code class="language-plaintext highlighter-rouge">vi</code>” aracına oranla yeni başlayan kullanıcılar için çok daha kolay kullanıma sahip olan popüler bir metin editörüdür. Temel olarak bir metin editöründen beklediğimiz ve metin editörü ile yapmak istediğimiz işlemleri sorunsuzca yerine getiriyor. Zaten bu sebeple son derece yaygın kullanıma sahip.</p>
+
+<p>Bir dosyayı <code class="language-plaintext highlighter-rouge">nano</code> metin editöründe açmak için <code class="language-plaintext highlighter-rouge">nano dosya_adı</code> şeklinde komut girmemiz yeterli. Ben denemek için <code class="language-plaintext highlighter-rouge">nano yeni-metin</code> şeklinde komutumu giriyorum. Eğer çalışmakta olduğumuz dizinde bu isimde bir dosya yoksa, yeni bir metin editörü penceresi açılacak. Eğer bu isimde bir dosya varsa da o dosya içeriği karşımıza gelecek.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GNU nano 6.0                yeni-metin
+
+                          [ New File ]
+^G Help      ^O Write Out ^W Where Is  ^K Cut       ^T Execute
+^X Exit      ^R Read File ^\\ Replace   ^U Paste     ^J Justify
+
+</code></pre></div></div>
+
+<p>Bakın bu isimde bir dosya olmadığı için anında yeni bir sayfa <code class="language-plaintext highlighter-rouge">nano</code> metin editörü içinde açıldı. Ve bakın başlık olarak da açtığımız dosyanın ismi burada yer alıyor. İşte <code class="language-plaintext highlighter-rouge">nano</code> metin aracı bu. Bizler bu araç üzerinden kolayca dosya oluşturup, var olan dosya içeriklerini düzenleyebiliyoruz.</p>
+
+<p>Şimdi kısaca editörü tanıyacak olursak, pencerenin altında, kullanabileceğimiz en temel kısayollar açıkça yazıyor.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/484de2fb-7f46-4823-b4c7-9ca6575003dd/nano-shortcuts.png</p>
+
+<p>Pencere boyutuna göre ekran sığacak kadar olan kısayollar burada gözüküyor olacak. Yani aslında nano aracının tüm kısayolları bunlardan ibaret değil ancak pencere boyutuna göre hatırlama amaçlı bunlar gösteriliyor. Örneğin ben pencereyi biraz daha genişletip tekrar alt çubuğa bakıyorum.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4898c5a1-0fd7-4d3d-b02c-3ba1d958b4cc/nano-shortcuts2.png</p>
+
+<p>Buradaki kısayol açıklamalarına bakarak yani bu alt çubuğa bakarak <code class="language-plaintext highlighter-rouge">nano</code> metin editöründe yapabileceklerimizi kolayca takip ediyor olacağız.</p>
+
+<p>Hepsini olmasa da en temel kısayollarından bahsederek devam edecek olursak. Buralarda bulunan şapka <strong>^</strong> sembolleri <kbd>Ctrl</kbd> tuşunu temsil ediyor. Kısayolların kullanımı da son derece kolay. Tek yapmanız gereken alt çubuğu okuyup yönergeler göre hareket etmek. Zaten size sorular sorup yapmak istediğiniz işlemler için onay alınacaktır.</p>
+
+<h2 id="nano-aracını-kapatmak">Nano Aracını Kapatmak</h2>
+
+<p>Metin editöründen çıkıp komut satırına dönmek istersek burada da belirtildiği şekilde <kbd>Ctrl</kbd> + <kbd>X</kbd> kısayolunu uygulayabiliriz. Zaten dosya içerisine herhangi bir ekleme yapmadığım için editörü kapatırken bana dosyayı kaydetmekle ilgili hiç bir soru sorulmadan <code class="language-plaintext highlighter-rouge">nano</code> aracı kapanacaktır.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ffe28729-be93-4130-8189-c28accc3a014/nano-close.gif</p>
+
+<p>Normalde dosya içerisine yeni veri eklendiğinde çıkmadan önce kaydetmek istiyor muyuz diye soruyor. Denemek için yine aynı dosyamızı açıp içerisine yeni veriler ekleyelim ve <kbd>Ctrl</kbd> + <kbd>X</kbd> kısayolu ile çıkış yapalım. Çıkarken bize değişiklikler kaydedilsin mi diye soracak “y” ile onay verip enter ile işlemi bitirelim.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e0f64569-217c-4a6d-bf13-8d20fa4d964c/nano-save.gif</p>
+
+<p>Böylelikle <code class="language-plaintext highlighter-rouge">nano</code> aracı ile istediğimiz isimde yeni bir dosya açıp içerisine istediğimiz verileri ekledik ve başarıyla kaydettik.</p>
+
+<h2 id="değişiklikleri-kaydetmek">Değişiklikleri Kaydetmek</h2>
+
+<p>Gerçekleştirdiğimiz değişiklikleri kaydetmek için <kbd>Ctrl</kbd> + <kbd>O</kbd> kısayolunu kullanıp “y” tuşu ile kaydetmeyi onaylayabiliriz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eee14d35-c0d1-4202-b38f-41bda768c8e9/nano-save.png</p>
+
+<p>Kaydetme kısayolunu kullandıktan sonra bu verilerin mevcut dosya üzerine mi yoksa başka bir dosya olarak mı kaydedilmesi gerektiğini soruluyor.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7a3c24c1-975e-4ba9-8ca7-dcaa3993c0b8/nano-save2.png</p>
+
+<p>Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiştirip <kbd>enter</kbd> ile onaylayabilirsiniz. Eğer değiştirmeyecekseniz de dosya ismini aynen bırakıp <kbd>enter</kbd> ile üzerine yazmayı onaylayabilirsiniz. Ben değiştirmeden <kbd>enter</kbd>ile onaylıyorum.</p>
+
+<h3 id="farklı-dosya-olarak-kaydetmek">Farklı Dosya Olarak Kaydetmek</h3>
+
+<p>Farklı bir dosya olarak kaydetmeye örnek vermek için öncelikle dosyama “bu farklı bir dosya” verisini ekliyorum ve <kbd>Ctrl</kbd> + <kbd>O</kbd> ile dosyayı kaydediyorum. Şimdi bana sorulan dosya ismini dilediğim gibi belirtebilirim. Ben örnek olması için <strong><em>Documents</em></strong> dizini altında farklı-dosya ismi şeklinde kaydetmek istiyorum.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b9954f91-c1e2-4a39-ba70-ebe6e71970e9/save-different.png</p>
+
+<p>Farklı kaydetme işlemini de “y” ile onaylaylım.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/49d5a30f-2e66-4361-aef2-45761f501f77/save-different2.png</p>
+
+<p>Tamamdır, en son eklemiş olduğum verilerin farklı bir dosya olarak kaydedildiğini teyit etmek için <code class="language-plaintext highlighter-rouge">paste</code> komutunu kullanabilirim.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─$ paste yeni-metin ~/Documents/farklı-dosya
+bu bir metindir bu bir metindir
+ekleme  ekleme
+ekleme2 ekleme2
+        bu farklı bir dosya
+
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi farklı olarak kaydettiğim dosya tam olarak istediğim dizinde ilgili değişikliklerle birlikte kaydedilmiş.</p>
+
+<h2 id="dizinlerde-gezinmek">Dizinlerde Gezinmek</h2>
+
+<p>Nano aracından çıkmadan dosyayı kaydedeceğimiz dizini belirlemek için dosya sistemi hiyerarşisinde <kbd>Ctrl</kbd> + <kbd>T</kbd> tuşuna basıp gezinebiliriz. Bunun için öncelikle dosyayı kaydetmek istediğimizi <kbd>Ctrl</kbd> + <kbd>O</kbd> tuşu ile belirtmemiz gerek.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b038c93b-bc75-4a70-8222-7794637b2fa0/nano-save2.png</p>
+
+<p>Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, <kbd>Ctrl</kbd> + <kbd>T</kbd> tuşu ile dosya sistemi üzerinde gezinebiliriz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/09e74b41-0ffc-4270-8e37-28cf2b6ecbb0/nano-browse.png</p>
+
+<p>Bu sayede özellikle komut satırı arayüzünde çalışıyorken <code class="language-plaintext highlighter-rouge">nano</code> aracından çıkmadan dosya sisteminde nerede hangi dosya ve klasör var diye kontrol edip, mevcut dosyayı hangi isimde nereye kaydetmemiz gerektiğine karar verebiliyoruz.</p>
+
+<p>Alt çubuğa bakacak olursanız gezinme işlemi sırasında da bu iş için kullanabileceğimiz özel kısayolların mevcut olduğunu görebilirsiniz. İşlevlerini anlamak için kısa açıklamalarına bakmanız yeterli.</p>
+
+<p>Şu anda benden dosyayı nereye kaydetmem gerektiğini belirtmem isteniyor. Eğer ben herhangi bir dosyanın üzerine gelip <kbd>enter</kbd> ile onaylarsam gördüğünüz gibi bu dizindeki bu dosya zaten mevcut üzerine yazılmasını istiyor musunuz diye soruluyor.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93322cf1-f4ef-47cd-8048-776738d8f59e/save-different2.png</p>
+
+<p>Eğer “y” tuşuna basarsam şu an bu dosyada yazıklarım bu dizindeki bu dosyanın içeriğini silip üzerine yazılacak. Eğer istemezseniz <kbd>Ctrl</kbd> + <kbd>C</kbd> ile işlemi iptal edebilirsiniz.</p>
+
+<p>Neticede dosya oluşturma, mevcut dosya içeriğini düzenleyip başka bir dosya olarak kaydetme ve <code class="language-plaintext highlighter-rouge">nano</code> üzerinden dizinlerde gezinme ve gerektiğinde var olan dosyaların üzerine yazma gibi ihtiyaç duyabileceğimiz temel kısayollardan bahsettik. Zaten bu alt çubuğa baktığınız sürece tüm işlemleri rahatlıkla yerine getirebilirsiniz. Çünkü tüm adımlarda burada temel işlemlerin kısayolları açıkça belirtiliyor. Şimdi editörün kullanımıyla ilgili diğer kısayollardan bahsederek devam edebiliriz.</p>
+
+<h2 id="dosya-okuyup-i̇çeriğini-eklemek">Dosya Okuyup İçeriğini Eklemek</h2>
+
+<p>Eğer mevcut dosyaya başka bir dosyanın içeriğini eklemek istersek <kbd>Ctrl</kbd> + <kbd>R</kbd> kısayolunu kullanabiliriz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8c682ded-8e93-4893-86ec-797cdb533322/nano-insert.png</p>
+
+<p>Bakın bize hangi dosyanın ekleneceğini soruyor. İçeri aktarmak istediğimiz dosyanın tam dizin adresini buraya eklememiz gerekiyor. Gördüğünüz gibi ilgili dosyanın tüm içeriği buraya kopyalandı. Bence yerine göre gayet kullanışlı bir kısayol.</p>
+
+<h2 id="dosya-i̇çeriğinde-araştırma">Dosya İçeriğinde Araştırma</h2>
+
+<p>Mevcut dosya içinde kelimeleri araştırmak için <kbd>Ctrl</kbd> + <kbd>W</kbd> kısayolunu kullanabiliyoruz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1626bd40-5678-4ffd-a079-fdc79040632b/nano-search.png</p>
+
+<p>Ben örneğin içeri aktardığım bu kullanıcı listesinde yer alan “kali” ismini araştırmak istiyorum.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/29c01d33-9672-4d57-9c78-b78a0d26524d/nano-search2.png</p>
+
+<p>Bakın imlecim doğrudan ilgili kelimenin üstüne atlamış oldu. Özellikle büyük dosya içeriklerinde çalışıyorken bu arama özelliği kullanışlı olabiliyor.</p>
+
+<h2 id="bulup-değiştirme-i̇şlemi">Bulup Değiştirme İşlemi</h2>
+
+<p>Eşleşme sağlanan kelimelerin değiştirilmesini sağlamak için <kbd>Ctrl</kbd> + <kbd>\</kbd> kısayolunu kullanabiliyoruz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1c96a2ae-91dc-495e-8ac8-bdde8009e585/nano-replace.png</p>
+
+<p>Bakın bana hangi kelimeyi değiştirmek istediğimi soruyor ben örnek olması için “<strong>kali</strong>” yazıyorum. Şimdi de bu kelimenin yerine hangi kelimenin yazılması gerektiğini soruyor örnek olarak “<strong>taylan</strong>” yazıp onaylayabiliriz mesela.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1f8c5be6-030a-40a6-b2eb-899e31a73bc5/nano-replace2.png</p>
+
+<p>Eğer değişimleri tek tek yapmak istiyorsanız her bir eşleşmede sizden onay istenecektir. “<strong>yes</strong>” ile onayabilir “<strong>no</strong>” ile değişimi reddedebilirsiniz. Ayrıca “<strong>all</strong>” seçeneği ile tüm eşleşmelerin tek seferde değiştirilmesini de sağlayabilirsiniz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a5241b60-4299-4bd6-b826-29b3d4f9b5b9/nano-replace3.png</p>
+
+<h2 id="metinleri-kesip-yapıştırmak">Metinleri Kesip Yapıştırmak</h2>
+
+<p>İmlecimizin üzerinde bulunduğu satırı kesmek için <kbd>Ctrl</kbd> + <kbd>K</kbd> yapıştırmak için de <kbd>Ctrl</kbd> + <kbd>U</kbd> kısayollarını kullanabiliyoruz. Ben örnek olarak birden fazla satırı <kbd>Ctrl</kbd> + <kbd>K</kbd> kısayolu ile kesip birden fazla kez <kbd>Ctrl</kbd> + <kbd>U</kbd> kısayolu ile yapıştırıyorum.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/52e12e2d-c822-4f25-8ce1-7aad353d1ec0/nano-copy-paste.gif</p>
+
+<h2 id="değişiklikleri-geri-ve-i̇leri-sarmak">Değişiklikleri Geri ve İleri Sarmak</h2>
+
+<p>Şimdiye kadar dosya üzerinde pek çok değişiklik yaptık. Eğer yaptığımız değişiklikleri geri almak istersek <kbd>Alt</kbd> + <kbd>U</kbd> kısayolunu kullanabiliyoruz. Hatta geri aldığımız bir değişikliği tekrar ileri almak için <kbd>Alt</kbd> + <kbd>E</kbd> kısayoluna da sahibiz. Ben denemek için yaptığım tüm değişikleri geri alıp sonra geri aldıklarımı da tekrar ileri sarmak istiyorum.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/545bfb73-8ab0-4b70-b470-e63e79f5b960/nano-undo-redo.gif</p>
+
+<h2 id="i̇mlecin-konumun-öğrenmek">İmlecin Konumun Öğrenmek</h2>
+
+<p>Eğer büyük dosyalarda çalışıyorsanız imlecin mevcut bulunduğu konum dosyanın tam olarak hangi satırında hangi sütununda hangi karakterinde gibi çeşitli bilgileri öğrenebilirsiniz. Bakın <kbd>Ctrl</kbd> + <kbd>C</kbd> kısayolunu kullandığımda benim imlecimin bulunduğu konum hakkında tüm bilgiler alt tarafta sırasıyla yazıyor.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/84687ae2-558f-470a-8c70-bae6d0e7e7c1/nano-learn-line.png</p>
+
+<p>Bu şekilde büyük dosya içeriklerinde kaybolmadan düzenlemelerinizi kontrollü şekilde yerine getirebilirsiniz.</p>
+
+<h2 id="satırlara-hızlı-geçiş">Satırlara Hızlı Geçiş</h2>
+
+<p>Ayrıca isterseniz dosya içerisindeki herhangi bir satıra atlamak için <kbd>Ctrl</kbd> + <kbd>_</kbd> kısayolunu kullanıp atlamak istediğiniz satır numarasını girebilirsiniz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/16a915d9-d57b-4d27-a948-05d68918a118/nano-jump-line.png</p>
+
+<p>Bakın doğrudan istediğim satıra atlayabiliyorum.</p>
+
+<h2 id="satırları-numaralandırmak">Satırları Numaralandırmak</h2>
+
+<p>Hangi satırda olduğumuzu teyit etmek istersek <kbd>Alt</kbd> + <kbd>N</kbd> kısayolu ile satır numaralarının gözükmesini de sağlayabiliriz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e9ab13d3-9de7-49e6-bb0c-3bc2ec90ccfe/nano-line-number.png</p>
+
+<h2 id="sayfada-hızlı-gezinti">Sayfada Hızlı Gezinti</h2>
+
+<p><kbd>Ctrl</kbd> tuşuna basıp yukarı yön tuşuna basarsanız sayfanın en başına, aşağı yön tuşuna basarsanız da sayfanın en sonuna atlayabilirsiniz. Ya da kelime kelime atlamak için <kbd>Ctrl</kbd> tuşuna bastıktan sonra sağ sol yön tuşları ile hızlıca kelimler arasında atlayış yapabilirsiniz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/35640ba9-cd98-46d2-a2ea-56e46eb50cad/nano-navigate.gif</p>
+
+<p>Aslında yön tuşları yerine bu işlemler için 10 parmak klavyede daha ulaşılabilir kısayollar da bulunuyor. Örneğin bir üst satıra dönmek için “<strong>p</strong>revious” kısayolundan gelen <kbd>Ctrl</kbd> + <kbd>P</kbd> bir sonraki satıra geçmek için de “<strong>n</strong>ext” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>N</kbd> kısayolunu kullanabiliyoruz. Bunlar dışında bir kelime “ileri gitmek için “<strong>f</strong>orward” ilfadesinden gelen <kbd>Ctrl</kbd> + <kbd>F</kbd> veya bir karakter geri gitmek için de “<strong>b</strong>ackward” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>B</kbd> kısayolunu kullanabiliyoruz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd042298-693b-4727-998f-983ee173b1d9/nano-navigate2.gif</p>
+
+<p>Evet tüm bu bahsettiğimiz özellikler ve kısayollar konsol üzerinden metin düzenleme işlerinizde <code class="language-plaintext highlighter-rouge">nano</code> aracını rahatlıkla kullanabilmenizi sağlayacak temel kullanım bilgileridir. Tüm bunlar dışında aslında nano aracının pek çok ek özelliği yani dolayısıyla pek çok kısayolu bulunuyor. Ancak tabii ki hepsine değinmeyeceğiz. Tüm özelliklerini görmek için yardım sayfasına geçiş yapmak üzere <kbd>Ctrl</kbd> + <kbd>g</kbd> kısayolunu kullanabilirsiniz.</p>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/94e609af-afec-4920-a830-a9881112349a/nano-help.png</p>
+
+<p>Bakın burada pek çok özellik kısayol kullanımlarıyla birlikte gayet net biçimde izah edilmiş. Temelde benim bahsettiklerim neredeyse tüm temel metin düzenleme işlerinizi yapmanızı sağlayacağı için buradaki ek kısayolları ben ele almayacağım. Yine de sizler göz atıp kullanışlı bulduklarınızı uygulayarak test edebilirsiniz.</p>
+
+<p>Evet <code class="language-plaintext highlighter-rouge">nano</code> aracından yeterince bahsettik. Nano aracı temel metin düzenleme işlerimizde kullanabileceğimiz yaygın kullanım sahip olan bir metin editörü. Kullanımı da son derece kolay. Özellikle alt çubukta sürekli olarak bize hangi işlem için hangi kısayolu kullanabileceğimizin bilgisi sunulduğu için kısayolları unutmak gibi bir endişemiz olmuyor. Tek yapmamız gereken yapmak istediğimiz işlemi temsil eden alt çubuktaki kısayolu kullanmak.</p>
+
+<p>Nano editörü elbette çok sık kullanılan çok kullanışlı bir editör ancak yaygınlık ve sunulan güçlü özellikler bakımından vi kadar geniş kapsamlı değil. Nano editörü de hemen her dağıtımda varsayılan olarak yüklü bulunuyor veya kolayca yüklenebilir ancak vi editörü istisnalar hariç neredeyse tüm dağıtımlarda varsayılan olarak yüklü gelen yegane editör aslında. Bu sebeple söz konusu sistem yönetimi olduğunda siz yalnızca nano aracını kullanmayı tercih etseniz bile vi editörünü temel düzeyde kullanabilmeniz kesinlikle önemli bir yetkinlik.</p>
+
+<p>Elbette biz bu eğitimde kapsamlı şekilde vi editörünü ele almayacağız ancak vi editörü son derece güçlü bir metin editörüdür. Yeni başlayan kullanıcılar pek sevmese de yaygınlığı ve sağladığı işlevler bakımından kesinlikle öğrenilmeye değerdir ve aslında ilk başta göründüğü kadar da zor değildir. Kullanmak istemeseniz bile en azından temel düzeyde tanımanız, kullanmak zorunda kaldığınızda yararınıza olacaktır. Zaten biz yalnızca en temel özelliklerinden bahsedeceğiz. Hadi anlatımlarımıza temel seviye vi editöründen bahsederek devam edelim.</p>
+
+<h1 id="vi">Vi</h1>
+
+<p>!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c33c4161-7d45-4a7e-bfd8-11a0d76d1915/Untitled.png</p>
+
+<p>https://www.guru99.com/the-vi-editor.html</p>
+
+<p>Vi editörü posix standartlarının bir parçası olduğu için istisnai durumlar hariç kullanacağınız tüm Linux dağıtımlarında varsayılan olarak yüklü bulunan yegane metin editörüdür. Zaten ben de evrenselliği dolayısıyla vi editöründen haberdar olmanızı istiyorum. Bu sayede hangi Linux sistemini kullanırsanız kullanın en azından temel düzeyde metin düzenleme işleriniz için vi editörünü kullanabilme kabiliyetine sahip olacaksınız. Vi aracını öğrenmemizdeki en büyük motivasyon en sık karşılaşacağımız metin editörü olması ve son derece güçlü özelliklere sahip olmasıdır.</p>
+
+<p>Aslında günümüzde doğrudan vi editörü yerine vi editörünün gelişmiş hali olan vi improved yani kısaca vim editörü kullanılıyor. Dolayısıyla pek çok dağıtımda vi yerine vim editörünün çeşitli sürümleri bulunuyor. Örneğin ubuntu vim editörünün en yalın hali olan vim-tiny paketiyle birlikte geliyor. Bu sayede tıpkı vi gibi çok sade özellikler barındıran minimal metin editörüne sistemin kurulumundan itibaren her an ulaşabiliyoruz. Daha sonra eğer bizler istersek vim editörünün tam özellikleri için standart vim paketini kurup editörün daha gelişmiş halini de kullanabiliyoruz. Zaten vi editörüne yakın olan yalın vim editörünü kullanmayı öğrendikten sonra daha kapsamlı olan vim editörünün tam sürümünü de sorunsuzca kullanabiliyor olacağız. Öncelikle yalın vim editöründen yani vi editöründen bahsedelim ki, daha sonra herhangi bir sistemde karşımıza çıktığında en yalın halde bile olsa metin görüntüleme ve düzenleme işlerimizi sorunsuzca halledebilelim.</p>
+
+<p>Lafı daha fazla uzatmadan temelde bilmemiz gerekenlerden bahsederek başlayabiliriz.</p>
+
+<p>Şimdiden belirteyim, vi editörü daha önce kullandığınız diğer standart editörlerden biraz farklı çalışıyor ancak kullanımı kesinlikle zor değil. Zaten biz de temel işlevlerden bahsedip ihtiyacımız kadarlık kısmıyla ilgileneceğiz. Bazı kullanıcılar doğru şekilde öğrenmedikleri için vi editörünü pek sevmeyebiliyor hatta editörle ilk kez karşılaşıyorlarsa editörden çıkmak bile zor geldiği için nefret edip vi editörüne karşı bir önyargı geliştirebiliyor. Ancak editörü doğru şekilde tanıyıp biraz pratik yaparsanız hiç de zor olmadığını kendiniz de göreceksiniz.</p>
+
+<p><strong>Letitia E. Landon’ın da dediği gibi, <em>“İnsanlar, anlamadıkları şeylerden nefret etmeye hazırdırlar.”</em></strong></p>
+
+<p>Bu sebeple önce anlamaya çalışalım sonra nefret edip etmeyeceğimize karar veririz :)</p>
+
+<p>Vi editörünün normal, komut, görsel(visual) ve ekleme(insert) modu olmak üzere temelde dört farklı çalışma modu bulunuyor. İlk kez vi editörünü açtığımızda normal modda çalışmaya başlıyoruz. Bu moddayken yeni bir veri eklemesi yapmamız yani metin dosyasına veri girişi yapmamız mümkün olmuyor. Veri girişi için insert olarak geçen “ekleme” moduna geçiş yapmamız gerekiyor. Merak etmeyin ne denemek istediğimi örnekler üzerinden çok net biçimde anlamış olacaksınız.</p>
+
+<p>Hemen örnek üzerinden görmek için daha önce oluşturduğumuz bir metin dosyasını açmayı deneyebiliriz. Vi aracının temel özelliklerini daha net gösterebilmek adına ben uzun bir metin dosyasını açmak istiyorum. İstediğimiz metin dosyasını vi editörü ile açmak için tek yapmamız gereken vi komutundan sonra açmak istediğimiz dosyasının ismini girmek. Ben dosyamı açıyorum. Bakın dosya içeriği karşımıza geldi. Ancak vi editörü normal modda açıldığı için aslında şu anda bu dosya içeriğine yeni veri eklemesi yapamayız. Hemen bu durumu teyit etmek için buraya “deneme” yazmayı deneyebiliriz.. Bakın herhangi bir veri girişi yapamıyoruz, hatta veri girişinin aksine bastığımız tuşlar bazı kelimelerin silinmesine ve kelimeler arasında atlamamıza sebep oldu.</p>
+
+<p>Veri girişi yerine mevcut veriler üzerinde değişiklik gerçekleşti çünkü biz şu anda vi editörünü normal modda kullanıyoruz. Normal modda olduğumuz için klavyemizden bastığımız tuşlar vi editörü tarafından çeşitli işlevleri yerine getiren komut kısayolları olarak algılanıyor. Dolayısıyla bu kısayollara göre mevcut metinde düzenlemeler yapılıyor. Peki metin içerisine yeni veri eklemek için ne yapmamız gerekiyor ? Tabii ki daha önce de bahsettiğim gibi ekleme moduna geçiş yapmalıyız. Ekleme modu ingilizce olarak insert mod olarak geçtiği için bu moda geçiş yapmak için de i tuşuna basmamız yeterli oluyor. Zaten şu anda normal modda olduğumuz için i tuşuna bastığımızda bu i karakteri insert moduna geçmek için kullandığımız bir komut olarak algılanıyor.</p>
+
+<p>Ben i tuşuna bastığım için şu anda giriş modundayım. Artık istediğim ifadeyi veri olarak metin dosyama ekleyebilirim. Örneğin “bu yeni veri girişidir” şeklinde yazabiliriz. Bakın artık sorunsuzca yeni veriler ekleyebiliyorum. Şimdi eklediğimiz bu veriyi silmeyi de deneyebiliriz. Silmek için her zamanki gibi backspace tuşunu kullanabiliriz.</p>
+
+<p>Ama gördüğünüz gibi ben silmek için backspace tuşuna bastığımda karakterler silinmek yerine imlecim bir karakter geri gidiyor. Şu şekilde backspace tuşu ile karakterleri silmeye çalışırken, ilgili karakterler doğrudan silinmiş gibi gözükmese de bize bu karakterlerin üzerine yeni veriler yazma imkanı tanınıyor. Yani örneğin ben backspace ile silmeye çalıştığım ve imlecimin sola doğru kaydığı bu durumda, yeni ifadeler yazarsam; gördüğünüz gibi yazdıklarım, eski karakterlerin üzerine yazılıyor. Yani backspace sayesinde imlecin üzerine getirildiği karakterler, yeni karakter girişlerinde değiştiriliyor. Bu durumun nedeni, silme gibi işlevleri yerine getirmek için aslında tekrar normal moda geçip düzenleme yapmamız gerekmesi. Normal moda geçmeden o anlık yazdıklarımızı düzenlemek için backspace ile üzerine yazma metodu ile dilediğimiz ifadeleri silebiliyoruz.</p>
+
+<p>Daha açık bir örnek olması için ben enter ile yeni bir satıra atlayıp. Bu bir test metnidir yazıyorum.</p>
+
+<p>Şimdi bu ifadedeki metnidir kısmını silmek için backspace tuşunu kullanabiliriz. Bakın ben backspace tuşuna bastıkça eklediğim karakterlerin üzerinden geçmiş oldum. Tamamdır, silmek istediğim kadarlık kısmın üzerinden geçildi. Eğer ben buraya yeni bir ifade eklemek istiyorsam şimdi yazmam yeterli. Bene metnidir yerine “yazısı” şeklinde yazıyorum. Bakın burada fazladan “ir” ifadesi kaldı. Yani bu ifade silinmemiş gibi gözüküyor ama aslında öyle değil. Eğer biz ekleme modundan çıkıp tekrar normal moda geçiş yaparsak bu ifadenin yok olduğunu göreceğiz. Normal moda geçmek için esc tuşunu kullanmamız yeterli oluyor. Bakın sondaki “ir” ifadesi bir anda yok oldu. Çünkü aslında biz düzenleme modundayken backsapce ile sildiğimizde o karakterler silinmişti fakat bize silindikleri yansıtılmamıştı.</p>
+
+<p>Hatta testimizi daha ileri taşımak için tekrar i tuşuna basıp ekleme moduna geri dönelim. Şimdi ekleme modundayken buradaki yazısı ifadesini de backspace ile tamamen silmeyi deneyebiliriz. Ben backspace tuşuna basıyorum ama gördüğünüz gibi daha önceden eklediğim ifadeler üzerinde herhangi bir değişiklik meydana gelmiyor. Yani buradaki ifadelere ekleme modunda müdahale edemiyorum. Yeni veri eklemeyi deneyelim, örneği “yeni” şeklinde yazalım. Bakın ekleme işlemi sorunsuz. Hatta istersek bu yeni ifadesini de backspace ile silebiliriz. Ama gördüğünüz gibi en son eklediğimiz ifadeden gerisini silmeye devam edemiyoruz.</p>
+
+<p>Peki sizce neden böyle oluyor ?</p>
+
+<p>Bu durumun sebebi, ekleme modundayken yalnızca tek seferlik veri girişinde bulunma imkanımızın olması. Yani ekleme modu gerçekten de yalnızca yeni veri ekleme işlemleri için kullanılabiliyor. Daha önceden var olan verileri ekleme modunda düzenlememiz mümkün olmuyor. Yalnızca o anda girdiğimiz verileri değiştirmek için backspace kullanabiliyoruz. Normal moda geçtikten sonra tekrar ekleme modunda dönüp bu verilere müdahale imkanımız kalmıyor. Çünkü adı üstünde bu modun ismi ekleme. Dolayısıyla yalnızca ekleme yapabiliyoruz. Peki madem ekleme modunda önceki metin içeriklerinde düzenlemeler yapamıyoruz o zaman metin belgelerimizi nasıl düzenleyeceğiz ?</p>
+
+<p>Düzenleme işlemleri için normal moda geçip ilgili ifadeleri silme gibi imkanlara sahip oluyoruz. Zaten normal modun amacı, mevcut dosya içeriğinde gezinip, uygun düzenlemeleri yapabilmemize olanak sağlayacak imkanı tanımak. Bunun için bir çok kısayol tuşuna sahibiz. Örneğin karakterler veya satırlar arasında gezinmek için bile komut moduna geçiş yapmamız gerekiyor.</p>
+
+<p>Bu durumu teyit etmek için i tuşuna basıp tekrar ekleme moduna geçiş yapalım.</p>
+
+<p>Şimdi ben linux bir çekirdektir yazıyorum. Tamamdır, şimdi imlecimizi bir karakter geri götürmek istesek normalde ne yapıyoruz ? Mesela sol yön tuşunu kullanabiliyoruz. Deneyelim. Bakın ben sol yön tuşuna bastıkça yeni karakterler eklenmeye devam ediyor. Benzer şekilde diğer yön tuşlarını kullandığımda da yeni karakterler ekleniyor. Yön tuşları bile yeni karakterler olarak ekleniyor çünkü şu anda ekleme modunda çalışıyoruz. Dolayısıyla istisnai birkaç tuş dışında bastığımız tüm tuşlar veri girişi olarak algılanıyor.</p>
+
+<p>Eğer veri girişi yerine mevcut karakterler arasında gezinmek istersek bunun için normal moda geçmemiz gerekiyor. Normal moda geçmek için de esc tuşunu kullanabiliyoruz. Ben normal moda geçmek için esc tuşuna basıyorum.</p>
+
+<p>Şu anda tıpkı vi editörünün ilk açıldığında olduğu gibi normal modda çalışıyorum. Yani klavyemi kullandığımda yeni karakterler eklenmek yerine çeşitli kısayolları kullanmış olacağım.</p>
+
+<p>Örneğin denemek için klavyemizden sağ sol veya yukarı aşağı yön tuşlarını kullanabiliriz. Bakın artık istediğim şekilde gezinebiliyorum. Hatta yön tuşları yerine klavye kısayollarını da kullanabiliriz.</p>
+
+<p>Bir karakter sola gitmek için “h” bir karakter sağa gitmek için “l” bir satır yukarı gitmek için “k” bir satır aşağı gitmek için de “j” tuşunu kullanabiliyoruz. Alıştıktan sonra on parmak klavye kullanımında bu kısayollar kesinlikle yön tuşlarından daha kolay geliyor. Çok hızlı biçimde kelimeler ve satırlar arasında geçişler yapabiliyoruz.</p>
+
+<p>Hatta ekleme modundan normal moda geçmek için esc tuşu uzak kaldığı için alt tuşuna basılı tutup h l j k gibi tuşları kullanarak da hızlıca normal moda geçebiliyoruz. Normal modda işimiz bittiğinde de i tuşuna basıp tekrar ekleme moduna dönebiliyoruz. Örneğin ben ekleme modundayken birkaç yeni kelime şeklinde yazıyorum ve birkaç karakter sola gitmek istediğim için alt h tuşuna bastıktan sonra bir karakter sola gitmekle birlikte normal moda da geçmiş oluyorum. Yani artık h l j k tuşları ile veri eklemek yerine mevcut veriler üzerinde imlecimi gezdirebiliyorum. Bir kez alt kısayoluyla birlikte imleç kısayollarından birini kullandıktan sonra normal moda geçiş yapabildiğimiz için daha sonrasında alt tuşuna basmadan da h l j k gibi tuşları kullanabiliyoruz. Tekrar ekleme moduna dönmek istediğimizde de i tuşuna basıp istediğimiz eklemeleri yapabiliyoruz.</p>
+
+<p>Normal moda geçmek için esc tuşu uzak kaldığından, ben de bir kez alt tuşu ile bir kısayolu kullanıp normal moda geçtikten sonra istediğim kısayol tuşlarını hızlıca kullanabiliyorum.</p>
+
+<p>Diğer kısayol tuşları ile devam edecek olursak, örneğin tek karakterler yerine dilersek kelimeler arasında da atlayabiliriz. Bir kelime sağa atlamak için “w”, bir kelime sola atlamak için “b” ve doğrudan kelimelerin sonuna atlamak için de “e” karakterini kullanabiliyoruz.</p>
+
+<p>Bakın komut modundayken w karakteri ile birer kelime birer kelime sağa doğru atlayabiliyoruz. Bu w kısayolunu word yani “kelime” ifadesinin kısaltması olarak aklınızda tutabilirsiniz. Sola yani geriye doğru bir kelime atlamamızı sağlayan “b” tuşunu da back ifadesinin kısaltması olarak kolayca hatırlayabilirsiniz. “e” tuşu da kelimelerin sonuna atladığı için end ifadesinden geliyor. Bu şekilde kısayol tuşlarını hatırlamak çok daha kolay oluyor.</p>
+
+<p>Diğer kısayollarla devam edecek olursak eğer doğrudan satırın en sonuna atlamak istersek $ kullanabiliyorken, satır başına atlamak için de ^ kullanabiliyoruz. Bakın bu kısayollar sayesinde satır başına ve sonuna kolayca atlayabiliyorum. Zaten regex kurallarından da hatırlayacağınız gibi dolar işareti satır sonunu tanımlarken, şapka işareti de satır başını tanımlıyor. Dolayısıyla ihtiyaç duyduğunuzda bu kısayolları da kolayca hatırlayabilirsiniz. Hatta şapka işareti yerine 0 ile de satırın başına atlayabiliyoruz.</p>
+
+<p>Satır başına ve sonuna atlayabileceğimiz gibi, ilk ve son satırlara da atlayabiliyoruz. İlk satıra atlamak için gg tuşlamasını yapıyoruz. Bakın doğrudan ilk satıra atladım. Son satıra atlamak için de büyük G tuşlaması yani shift g şeklinde kısayolumuzu kullanabiliyoruz. Gördüğünüz gibi büyük G tuşlaması sayesinde son satıra doğrudan atlayabildik.</p>
+
+<p>Evet şimdiye kadar bahsettiğimiz kısayollar dosya içeriği kısa olduğunda gezinti için yeterli. Fakat kimi zaman çok uzun içeriğe sahip dosya içeriklerinde gezinmemiz gerekebiliyor. Bu durumda dosya içeriğini sayfa sayfa atlamak için kullanabileceğimiz kısayollar da mevcut.</p>
+
+<p>İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için forward yani ileri ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + F kısayolunu kullanabiliyoruz. Bakın ekranımıza sığacak kadar sayfa sayfa içeriklerde atlayabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de backward yani geri ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + B kısayolunu kullanabiliyoruz. Bakın geriye doğru ekranımıza sığacak kadar dosya içeriğini görüntüleyebiliyoruz.</p>
+
+<p>Tamamdır bence dosya içeriğinde gezintiyle ilgili temelde bilmemiz gerekenlerden bahsettik. Şimdi silme kopyalama yapıştırma gibi temel düzenleme işlevlerinden bahsederek devam edebiliriz.</p>
+
+<p>Normal moddayken eğer tek bir karakteri silmek istersek, imlecimizin üzerinde bulunduğu karakteri silmek için x tuşunu kullanabiliyoruz. Bakın ben x tuşuna bastıkça imlecim tam olarak hangi karakterin üzerindeyse o karakter siliniyor. Benzer şekilde eğer imlecin üzerinde olduğu değil de bir önceki karakterin silinmesini istiyorsak, büyük X karakterini yani shift X tuşlamasını da kullanabiliyoruz. Bakın bu kez de imlecin solundaki karakterler tek tek silinebiliyor.</p>
+
+<p>Kelime silme işlemi için de delete word ifadesinin kısalmasından gelen dw kısayolunu kullanabiliyoruz. Bu kısayolu kullandığımızda, imlecin sağında kalan kelimeyi veya kelime parçası siliniyor.</p>
+
+<p>Örneğin bir kelimenin tamamını silmek istiyorsak o kelimenin en başına gelip dw kısayolunu kullanmamız yeterli oluyor. Bakın ben kelimenin en başında olduğum için kelimenin tamamı silindi. Eğer bu işlemi bir kelimenin başında da değil de örneğin ortasında uygularsak, imlecin bulunduğu noktadan itibaren kelimenin geri kalan kısmı silinmiş olacak. Hemen deneyelim. Bakın kelimeden sonra gelen boşluk karakteri de dahil, imlecin sağ tarafında kalan kelimenin diğer yarısı dw kısayolu sayesinde silindi.</p>
+
+<p>Tek bir kelime veya tek bir karakter yerine imlecin üzerinde durduğu satırın tamamını silmek istersek dd kısayolunu kullanabiliyoruz. Hemen denemek için mevcut bulunduğum satırı dd ile silebilirim. Bakın ben dd kısayolunu kullandıkça, imlecin üzerinde durduğu satırın tamamı siliniyor.</p>
+
+<p>Hatta tek bir satır yerine dilersek istediğimiz sayıda satırın seçilip silinmesini de sağlayabiliriz. Kaç satırın silinmesini istiyorsak o sayıyı komutumuzdan önce belirtmemiz yeterli. Örneğin ben 3 satırı birden silmek istersem, 3dd şeklinde komut girebilirim. Bakın peş peşe 3 satır birden silindi.</p>
+
+<p>Ayrıca bu sayı belirtme imkanı yalnızca bu kullanıma özel değil. Tüm kısayollarla birlikte sayı belirtmemiz mümkün. Örneğin ben 5 karakterin silinmesini istersem 5x şeklinde komutumu girebilirim. Bakın tam olarak 5 karakter birden silindi. Aynı şekilde silinecek kelime sayısını da spesifik olarak belirtebiliriz. Mesela 4 kelimenin birden silinmesini istersem de 4dw şeklinde komut girmem yeterli oluyor. Bakın peş peşe 4 kelime birden silindi.</p>
+
+<p>Silme işleminden yeterince bahsettik. Şimdi kopyalama kesme ve yapıştırma işlemlerinden de bahsedelim.</p>
+
+<p>Vi editörü üzerinde kopyalama ve yapıştırma işlemi için copy paste kavramları yerine yank put kavramları kullanıldığı için bir satırı kopyalamak için yy kısayolu kullanılıyorken, kopyalanan veye kesilen satırın yapıştırılması için de put ifadesinin kısalmasından gelen p tuşu kullanılıyor.</p>
+
+<p>Örneğin bakın bu satırı kopyalamak istediğim için yy tuşlaması yapıyorum. Tamamdır artık bu satırı kopyaladım, şimdi p ile bunu istediğimiz bir satıra koyalım. Bakın ben p tuşuna bastıkça önceden kopyaladığım satırı tekrar tekrar yapıştırabiliyorum.</p>
+
+<p>Kopyalama işlemi yerine kes yapıştır işlemi için de ilgili satırı önce dd ile silip daha sonra p ile istediğimiz yere yapıştırabiliyoruz. Örneğin ben bu satırı kesmek ve başka bir yere yapıştırmak istediğim için öncelikle dd ile bu satırı siliyorum. Şimdi yapıştırmak istediğim herhangi bir satıra bu kestiğin satırı p tuşuna basarak yapıştırabilirim. Bakın buradan dd ile kestim ve buraya p ile sorunsuzca yapıştırdım. Zaten bizim normalde silme işlemi için bahsettiğimiz x ve d gibi kısayollar aslında kesme işlemi yapıyor. Biz bir yere yapıştırmadığımız zaman da ilgili karakter silindiği için silme kısayolları olarak geçiyor.</p>
+
+<p>Tabii ki yapıştırma işleminde de istediğimiz sayıda kopyanın yapıştırılmasını spesifik olarak belirtebiliyoruz. Örneğin en son kestiğim satırın 3 kez yapıştırılmasını istersem 3p şeklinde yazmam yeterli. Bakın kestiğim satır 3 kez yapıştırıldı.</p>
+
+<p>Ben kopyalama veya kesme işleminde tek satır üzerinden gösterdim ancak istediğiniz kadar karakter veya kelimeyi nasıl kesebileceğinizi veya kopyalayabileceğinizi zaten biliyorsunuz. Örneğin ben imlecimden sonraki 3 kelimenin kopyalanmasını istersem 3yw şeklinde komutumu girebilirim. Teyit etmek için kopyaladığımız kelimeleri p ile yapıştıralım. Bakın tam olarak 3 kelime yapıştırıldı çünkü daha önce 3 kelimenin kopyalanması için 3yw şeklinde komut girmiştim. Yani bu örnekler üzerinden de bizzat gördüğümüz gibi, öğrendiğimiz tüm kısayolları bir arada kullanabiliyoruz. Mesela 2 karakteri kesip başka bir yere 5 kez yapıştırmak istersek: öncelikle 2x ile kesip daha sonra 5p ile 5 kez yapıştırabiliyoruz. Bakın x ile istediğim sayıda karakteri kesip istediğim sayıda tekrar basılması için p tuşunu kullanabildim.</p>
+
+<p>Birazcık kurcalarsanız, zaten tüm öğrendiğiniz komutları ihtiyacınıza göre bir arada nasıl kullanabileceğinizi keşfedebilirsiniz.</p>
+
+<p>Var olan içeriklerin düzenlenmesi sırasında burada bahsettiğimiz kısayolları rahatlıkla kullanabiliyoruz. Ancak kimi zaman çok daha geniş veya spesifik şekilde seçimler yapmamız da gerekebiliyor. Bu seçimler için de vi editörünün visual mod olarak geçen görsel moduna geçiş yapmamız gerekiyor.</p>
+
+<p>Bu modda rakamla satır karakter veya kelime belirtmek yerine imleç hareketleri ile spesifik olarak istediğimiz bölümleri seçebiliyoruz. Visual yani görsel moda geçmek için v tuşuna basmamız gerekiyor. Bakın şu anda görsel moddayım. İmlecimi klavye kısayolları ile hareket ettirdikçe imlecimin geçtiği tüm karakterler seçiliyor. Yani aslında fare ile seçim yaparken alışık olduğumuz şekilde dosya içeriğinde seçimler yapabiliyoruz. Örneğin bu moddayken j tuşuna bastıkça imlecin ilk bulunduğu noktadan itibaren alt satırları da seçebiliyorum. Ya da k ile bir satır daha az seçebiliyorum. Benzer şekilde h ve l tuşları ile tek tek karakterler de seçebiliyorum. Kelime seçmek için de w ve b kısayollarını da kolayca kullanabiliyorum. Yani görebildiğiniz gibi bu şekilde ne kadar bölümü seçmek istiyorsam bildiğim kısayolları da kullanarak seçmekte özgürüm. Örneğin seçim yaptıktan sonra bu alanı d veya x kısayolu ile kesebilir veya y ile kopyalayabilirim. Kopyaladıktan sonra dilediğimiz yere dilediğimiz kez yapıştırabiliriz mesela. Örneğin ben 2 kez yapıştırılması için 2p şeklinde komut giriyorum. Bakın tam olarak kopyaladıklarım 2 kez yapıştırıldı.</p>
+
+<p>Bu temel görsel mod dışında iki farklı görsel mod daha bulunuyor. Eğer shift v ile görsel moda geçiş yaparsak bu modda yalnızca satır satır seçim yapabiliyoruz. Denemek için hemen shift v ile bu moda geçiş yapalım. Bakın ben bir alt veya bir üst satıra geçiş yaptığımda doğrudan tüm satır tek parça halinde seçiliyor. Hatta bu durumu teyit etmek için birkaç karakter sağa veya sola doğru da imlecimizi hareket ettirebiliriz. Bakın imlecimiz karakterler asında gezinmesine rağmen hala satırın tamamı seçili şekilde gözüküyor. Zaten shift v ile geçiş yaptığımız bu mod satırların seçilmesini sağlayan görsel mod. Bunun dışında bir de birden fazla satırda aynı anda seçim yapabilmemizi sağlayan bir görsel moda daha bulunuyor. Bu moda geçmek için de <kbd>Ctrl</kbd> v kısayolunu kullanmamız gerekiyor. Denemek için <kbd>Ctrl</kbd> v kısayolunu kullanıyorum. Şimdi örneğin ben alt alta üç satırdan dan aynı hizadaki karakterleri seçmek istersem öncelikle j tuşu ile satırlara iniyorum ve seçmek istediğim kadarlık karakter hizasında ilerlemek için l tuşu ile birer karakter sağa doğru imlecimi kaydıyorum. Bakın seçmiş olduğum satırlardaki aynı hizda yer alan karakterin hepsini aynı anda seçebiliyorum.</p>
+
+<p>Tabii ki burada da daha önce öğrendiğiniz tüm kısayolları kullanamaya devam edebilirsiniz. Örneğin sağa doğru 5 karakteri seçmek için 5l kısayolunu veya seçtiğiniz bölümü kesmek ya da silmek için x kısayolunu kullanabilirsiniz. Bakın <kbd>Ctrl</kbd> v ile geçiş yaptığımız görsel modda bize bu şekilde aynı anda birden fazla satırda işlem yapma imkanı tanıyor. İhtiyacınıza göre hangi moda geçiş yapacağınız tabii ki size kalmış. Ama hepsi yerine göre oldukça kullanışlı modlar.</p>
+
+<p>Örnekleri inanılmaz esneklikte çoğaltmamız mümkün ama bence gerek yok. Çünkü temel kısayolları bildiğinizde geriye yalnızca pratik yapmak kalıyor. Size bahsettiğim manipülasyon kısayolları ile metin editöründe 10 parmak klavye kullanımı ile hızlıca tüm işlerinizi yerine getirebilirsiniz. Burada önemli olan bu kısayollara alışmak. Alışmak için de bir süre kullanmanız gerekiyor. Mesela 2 hafta boyunca her gün düzenli olarak kendi kendinize kısa kısa çalışırsanız ne kadar hızlandığınızı siz de fark edeceksiniz. Tabii ki ben tüm kısayollardan da bahsetmedim ancak zaten temel metin görüntüleme ve düzenleme işlemleriniz için öğrendiklerimiz fazlasıyla yeterli. Daha fazlası için çok kısa bir araştırma yapabilirsiniz. İnternette “<strong><a href="https://vim.rtorr.com/">Vim Cheat Sheet</a>” şeklinde</strong> araştırdığınızda neredeyse tüm kısayollar hakkında pratik bilgiler sunan yereli yabancı pek çok rehberi kolayca bulabilirsiniz.</p>
+
+<p>Son bir kısayol tuşundan bahsetmemiz gerekirse, geri alma kısayolunu ele alabiliriz.</p>
+
+<p>Vi editörü üzerindeki en son değişikliği geri almak istersek undo ifadesinin kısaltmasından gelen u tuşunu kullanabiliyoruz. Fark ettiyseniz yalnızca son 1 adımı geri alabiliyoruz. Ve tekrar aynı tuşu kullandığımızda geri alma işlemini ileri alarak eski haline de getirebiliyoruz. Vi editörü maalesef yalnızca tek bir adımı geri almaya izin verdiği için düzenlemelerinizi bu durumun farkında olarak gerçekleştirmeniz gerekiyor. Aksi halde üst üste yaptığınız bazı düzenlemeleri geri almak istediğinizde hayal kırıklığına uğrayabilirsiniz.</p>
+
+<p>İşte vi editörünü temel düzeyde kullanmak için bilmemiz gerekenler bunlar. Son olarak vi editöründen nasıl çıkabileceğimizi ve dosyayı nasıl kaydedebileceğimizi ele alarak anlatımımızı sonlandırabiliriz.</p>
+
+<p>Biz şimdiye kadar normal modundayken kısayol tuşları ile dosya içeriğinde gezinip düzenleme yapabileceğimizden bahsettik. Ancak bununla sınırlı değiliz. Örneğin spesifik olarak bir kelimeyi dosya içinde araştırmak istiyorsak normal moddayken slash işaretinin ardından aramak istediğimiz kelimeyi yazabiliyoruz. Test etmek için aranacak bir ifade ekleyelim ve enter ile onaylayalım. Bakın bu ifadenin geçtiği satıra doğrudan atladık. Bir sonraki eşleşmeye atlamak için n tuşuna basabiliriz. Bakın eşleşen bir sonraki karaktere de n tuşu ile kolayca atlayabiliyoruz. Eğer bir önceki eşleşmeye atlamak istersek büyük N karakterini yani shift N tuşlamasını da kullanabiliyoruz. Bu şekilde mevcut dosya içeriğinde istediğimiz kelimeleri araştırabiliyoruz. Araştırma esnasında küçük büyük harf duyarlılığı aktif olduğu için tam olarak yazdığımız ifadeler araştırılıyor. Küçük büyük harf duyarlılığını nasıl kapatabileceğinizi ve ayrıca bul değiştir gibi ek işlevleri nasıl uygulayabileceğinizi sizin araştırıp test etmenizi istiyorum. Küçük büyük harf duyarlılığını komut girerek pasifleştirebildiğimiz gibi, bul değiştir işlemi için de yine uygun bir komut yapısı kullanıyoruz. Kısa bir araştırma ile keşfedebilirsiniz.</p>
+
+<p>Slash işareti ile arama işlemi dışında normal moddayken iki nokta üst üste işaretinden sonra vi aracına özel olarak çeşitli komutlar girebiliyoruz. Örneğin iki nokta işaretinden sonra bir sayı belirtip enter ile onayladığımızda, tam olarak belirtiğimiz sayının satır karşılığına atlayabiliyoruz. Yani ben 5. satıra atlamak istersem :5 şeklinde yazıp komutumu onaylayabilirim. Gördüğünüz gibi 5. satıra doğrudan atlayabildim. Tıpkı bu basit örneğimizde ele aldığımız gibi vim editörüne girebileceğimiz çok sayıda komut bulunuyor.</p>
+
+<p>Yani aslında iki nokta üstü üste işaretini kullandığımızda komut moduna geçmiş oluyoruz. Ben bu eğitimde temel düzeyde vi editörünün kullanımına odaklandığım için anlatımı çok genişletmek istemiyorum. Yani komut modundayken girebileceğimiz komutların detaylarına değinmeyeceğim. Yalnızca dosya kaydetmemize veya dosyayı kaydetmeden vi editöründen çıkmamıza yardım eden birkaç komut kullanımını ele almak istiyorum. Diğer tüm komutlar, merak edenler için çok kısa bir araştırma uzaklığında.</p>
+
+<p>Örneğin eğer mevcut dosya içeriğini kaydetmek istersek iki nokta üst üste işaretinden sonra write ifadesinin kısalmasından gelen w karakterini yazıp komutumuzu onaylamamız yeterli. Tamamdır artık dosya içeriğinde yaptığımız tüm değişiklikler dosyaya yazıldı. Editörden çıkmak için de aynı şekilde iki nokta üstü üste işaretinden sonra q karakterini girip onaylamamız yeterli. Bakın, değişiklikleri kaydettiğimiz için yani kaydedilecek bir değişiklik olmadığı için doğrudan vi editöründen çıkış yapabildik. Şimdi dosyamızı tekrar vi editörü ile açıp birkaç farklı kullanımdan daha bahsedelim.</p>
+
+<p>Ben denemek için i tuşuna basıp “vi editörü bir harika” şeklinde yeni girdilerimi ekliyorum. Şimdi eğer bu değişiklikleri kaydedip kapatmak istersem esc ile normal moda geçip :wq şeklinde komutumu girebilirim. Bu sayede dosya içeriği önce kaydedilecek daha sonra vi editörü kapatılacak. Hemen komutumuzu onaylayalım. Bakın vi editörü kapatıldı. Dosyamızı tekrar açıp değişikliğin kayıt olup olmadığına da bakabiliriz. Bakın en son eklediğimiz değişiklikler de kaydedilmiş.</p>
+
+<p>Testlerimize devam etmek için yeni veriler ekleyelim. Şimdi eğer ben yaptığım değişiklikleri kaydetmeden vi editörünü kapatmak istersem veri kaybının önlenmesi için vi editörü kapatma işlemini reddedecek. Hemen denemek için esc ile komut moduna geçip :q şeklinde komutumuzu girelim. Bakın son değişiklikten beri yazma işlemi yapılmadığı yani dosya içeriğinin kaydedilmediği konusunda uyarıldık. Eğer kaydetmeden dosyayı kapatmak istiyorsak burada da belirtildiği şekilde ünlem işaretini kullanmamız gerekiyor. Ben değişiklikler kaydedilmeden vi editörünü kapatmak istediğim için :q! şeklinde komutumu giriyorum. Bakın bu kez sorunsuzca editörü kapatabildim. Dosya içeriğini kontrol etmek için tekrar vi ile açabiliriz. Gördüğünüz gibi q! komutu ile kapattığımız için en son gerçekleştirdiğimiz değişiklikler kaydolmamış. İşte siz de bu şekilde kaydedip kaydetmek istemediğiniz durumlara göre bu basit komutları kullanabilirsiniz. Yani örneğin bir belgenin bir kısmını düzenledikten sonra w komutu ile kaydedip, daha sonra düzenlediğiniz bölümlerin kaydedilmesini istemezseniz q! komutu ile son değişikliklerin kaydolmadan vi editörünün kapatılmasını sağlayabilirsiniz.</p>
+
+<p>Vi editöründen çıkmak son derece kolay ancak bilmeyenler için kesinlikle bir zulüme dönüşüyor. Biraz araştırırsanız, insanların vi veya vim hakkında en çok sorduğu sorunun, editörden nasıl çıkılacağı olduğunu görebilirsiniz. Örneğin yakın geçmişten bir örnek vermemiz gerekirse: bir ransomware grubu üyesinin dahi vim editöründen nasıl çıkacağını bilmediğiyle karşılaşmıştık. Dolayısıyla vi editörünü temel düzeyde bilmenin, hiç değilse çıkış yapabilmenin bir itibar meselesi olduğunu düşünüyorum :)</p>
+
+<p>Ransomware operatörü vimden nasıl çıkacağını bilmiyor: https://twitter.com/captainGeech42/status/1499454419599077382</p>
+
+<p>İşin şakası bir yana, eğer vi editörüne gereken fırsatı tanır ve özveriyi gösterirseniz ne kadar işlevsel olabileceğine kendiniz de şaşıracaksınız.</p>
+
+<p>Benim vi editörü hakkında bahsetmek istediklerim bu kadar. Ancak elbette vi editörü benim anlattıklarımla kesinlikle sınırlı değil. Biraz araştırırsanız ne kadar çok özelliği olduğunu bizzat görebilirsiniz.</p>
+
+<p>Ayrıca anlatımın başında vi editörü dışında vim ve gvim gibi alternatifler olduğundan kısaca bahsetmiştim. Hatta bunlar dışında neovim gibi alternatifler de var. Bu alternatiflerin hepsi, vi editörüne daha fazla fonksiyon ekleyen alternatiflerdir. Yani temelde burada vi hakkında konuştuklarımız aynen bu editörlerde de geçerli ancak bu editörlerde vi editöründen daha fazla özellik sunuyor. Biraz araştırırsanız ne gibi artıları olduğunu ve aralarındaki farkları kolayca öğrenebilirsiniz. Araştırdığınızda aslında ne kadar geniş çaplı ve esnek bir editör yapısı olduğuna eminim şaşıracaksınız. Hatta yaygınlığı dolayısıyla kullanmakta olduğunuz sistemde vim veya gvim araçları varsayılan olarak yüklü olabilir. Yüklü değilse bile zaten kolayca kurulumlarını yapabilirsiniz çünkü çok yaygın editörler. Mutlaka sizin kullandığınız işletim sisteminin paket depolarında da mevcuttur. Örneğin benim kullandığım dağıtımda yani Ubuntu’nun mevcut sürümünde vim aracı varsayılan olarak yüklü değil ama depolardan kolayca kurabiliyorum. Kafanızda soru işareti kalmaması için kısaca kurulumu ve kıyaslamasını da yapmak istiyorum.</p>
+
+<h1 id="vim-editörünün-kurulumu">Vim Editörünün Kurulumu</h1>
+
+<p>Kurulum işlemlerini ileride ayrıca ele alacağız ancak şimdilik anlatıma devam edebilmek adına vim editörünün tam sürümünü kurmak istiyorum. Çünkü daha önce de bahsettiğim şekilde ubuntu’nun mevcut sürümünde vim editörü, yalın sürümü olan vim-tiny olarak geliyor.</p>
+
+<p>Kurulum işlemini ubuntunun kendi paket depolarından gerçekleştireceğiz. Bunun için öncelikle güncel paket bilgilerini almak adına güncelleme yapmak üzere <code class="language-plaintext highlighter-rouge">sudo apt update</code> komutunu girelim.</p>
+
+<p>Bakın en güncel paket bilgileri alınıyor. Güncelleme işlemi bitene kadar bekleyelim. Tamamdır.</p>
+
+<p>Şimdi vim aracının tam paketini kurmak üzere <code class="language-plaintext highlighter-rouge">sudo apt install vim -y</code> şeklinde komutumuzu girebiliriz. Komutumuzu onaylayıp kurulum işlemi bitene kadar bekleyelim.</p>
+
+<p>Tamamdır kurulum işlemi de tamamlandı.</p>
+
+<p>Şimdi daha önce açtığımız bir metin belgesini bu kez vim aracı ile açmayı deneyebiliriz. Ben örnek olarak kendi ev dizinimdeki .bashrc dosyasını açmak istiyorum. Vim ~/.bashrc şeklinde komutumu giriyorum. Bakın dosyam açıldı ve tüm içerik renklendirilmiş şekilde karşımıza sunuldu. Vim.tiny sürümünde yani bizim vi komutu ile açtığımız yalın editörde bu özellik yoktu mesela. Hatta teyit etmek için yeni konsol açıp bu konsolda da vi aracı ile aynı dosyayı açıp yan yana kıyaslayabiliriz. Ben yeni bir konsol açıyorum. Şimdi vi ~/.bashrc şeklinde komutumuzu girelim. Biz vi komutunu girdik ama vi editörü yerine yine tam sürüm olan vim editörü açıldı.</p>
+
+<p>Bu durumun nedeni, aslında biz Vi yazdığımızda kısayol yapısı gereği vim.tiny aracı çalıştırılıyordu. Ancak vim aracının tam paketini kurduğumuzda bu kısayol değişti ve vi yazdığımızda artık doğrudan vim aracı çalıştırılıyor. Eğer kıyaslama yapmak istiyorsak doğrudan vim.tiny ve vim komutlarını kullanarak kıyaslama yapabiliriz. Ben kıyaslama için vim.tiny ~/.bashrc şeklinde komutumu tekrar giriyorum. Bakın bu kez vi olarak bildiğimiz yalın metin editörü açıldı. Görebildiğiniz gibi aynı dosyayı açmış olmamıza karşın dosya içeriğinde herhangi bir renklendirme uygulanmamış. Zaten böyle bir özellik de beklemiyorduk çünkü bizim vi olarak bildiğimiz vim.tiny editörünün yalın bir editör olduğunu biliyoruz.</p>
+
+<p>Tabii ki tam sürüm vim editörünün özelliği yalnızca renklendirme yapması değil. Pek çok özelliği yanında birkaç kıyaslama daha yapmamız gerekirse; örneğin geçiş yaptığımız modlar alt satırda bize bilgi olarak sunuluyor. Örneğin ekleme moduna yani insert moduna geçiş yaptığımızda bakın alt tarafta insert ifadesi beliriyor. Bu sayede şu anda ekleme modunda olduğumuzu rahatlıkla görebiliyoruz. Esc ile normal moda döndüğümüzde standart mod olduğu için herhangi bir ibare yok. Ancak v ile visual yani görsel moda geçtiğimizde visual şeklinde yazıyor gördüğünüz gibi. Hatta shift v veya <kbd><kbd><kbd><kbd>Ctrl</kbd></kbd></kbd></kbd> v ile geçiş yaptığımız farklı türdeki görsel modlar hakkında bile bilgi sunabiliyor.</p>
+
+<p>Bunlar dışında örneğin tekrar ekleme moduna dönecek olursak metin dosyası mevcut bulunan yani daha önceden eklenmiş olan içerikleri doğrudan bu modayken backspace ile silebiliyoruz. Veya yön tuşları ile sorunsuzca gezinebiliyoruz. Yani vim ile çok daha kullanıcı dostu bir ortama sahip oluyoruz.</p>
+
+<p>Tabii ki vi ile vim arasındaki farklar bunlardan ibaret değil. Hatta vim editörünün anlatmakla bitmeyecek kadar çok özelliği var ve üstelik daha geniş özelleştirme imkanı için eklenti ve konfigürasyon düzenleme olanakları da çok geniş. Daha önceden pek çok farklı çözüm için geliştirilmiş olan eklentileri yükleyebilir veya kendiniz de vim editörünü istediğiniz şekilde özelleştirebilirsiniz.</p>
+
+<p>Detaylarına girmeyeceğim ama biraz araştırırsanız vim editörünüzü nasıl özelleştirebileceğinizi kolayca bulabilirsiniz. Konfigürasyon dosyalarını düzenleyerek ve eklentiler kurarak zaten istediğiniz değişikliği yapmakta özgürsünüz. Araştırırsanız bu konular hakkında pek çok rehbere ulaşabilirsiniz. Fakat size önerim, standart olarak gelen vim üzerinde özellikle temel kısayollarda çok fazla özelleştirme yapmamanız. Çünkü ileride başka bir sunucu üzerinde vim kullanmanız gerektiğinde, alıştığınız özelleştirmeler o sistemde olmayacağı için basit metin düzenlemelerini bile yerine getiremeyebilirsiniz. Yani özelleştirme size kendi çalışma ortamınızda büyük kolaylıklar sunsa da, standarttan uzaklaşmanıza neden olduysa uzun vadede işlerinizi zorlaştırabilir.</p>
+
+<p>Benim vi-vim editörü hakkında bahsetmek istediklerim bu kadardı. Anlatımın başında bahsi geçen gvim editörüne de çok kısaca değinmemiz gerekirse. Gvim editörü, vim editörünün grafiksel arayüzde konsol yani terminal aracından bağımsız çalışan alternatifidir. Gvim editörü herhangi bir terminal yani konsol aracına ihtiyaç duymadan vim editörünün aynısını grafiksel arayüzde yeni bir pencerede bize sunuyor. Yani vim editöründen bir farkı yok ancak komut satırı arayüzünden kullanmanız mümkün değil.</p>
+
+<p>Denemek istersek öncelikle kurmamız gerekiyor. Kurmak için sudo apt install vim-gtk3 -y komutunu girebiliriz. Tamamdır, aracımız kuruldu. Çalıştırmak için gvim şeklinde komut girmemiz yeterli. Bakın vim editörünün grafiksel arayüzde yeni bir pencerede sunulan hali. Gvim aracının grafiksel arayüze özgü olduğuna emin olmak istersek komut satırı arayüzüne geçip tekrar gvim aracını çalıştırmayı da deneyebiliriz. Bakın açılamadığı konusunda hata mesajı aldık. Eğer enter ile devam edersek komut satırı arayüzde de kullanabileceğimiz vim aracı açılacak. Enter ile devam edelim. Ve gördüğünüz gibi vim editörü açılmış oldu. İşte gvim editörü yalnızca grafiksel arayüzde çalışan bir alternatif.</p>
+
+<p>Ayrıca gvim dışında vim editörünün daha özelleşmiş alternatif için neo-vim aracına da göz atabilirsiniz. Neticede artık kullanmanız gerektiğinde temel işleriniz için vim editörünü nasıl kullanabileceğinizi biliyorsunuz.</p>
+
+<p>Vim editörü anlatımının burada sonuna geliyoruz. Ancak dediğim gibi zaten vim editörü başlı başına bir dokümantasyon konusu ki bu bilgileri burada izah etsek bile fazlaca gereksiz ayrıntıya değinmiş, sizlere boş yere yormuş olurduk. Vim editörü ancak baştan beri bahsi geçen kendi kendine öğrenme, deneme, alıştırma yapma ve özümseme ile öğrenilecek bir konudur.</p>
+
+<p>İnternette yer alan tüm zengin kaynaklar ile birlikte man kılavuz sayfasından veya doğrudan vim editörü içerisinde iken <code class="language-plaintext highlighter-rouge">:help</code> komutundan kolayca bilgi edinip öğrendiklerinizi pratiğe geçirebilirsiniz.</p>
+
+<p>Ve unutmayın bu araç ancak ve ancak, öğrenmek isteyen kişinin kendi kendine kurcalaması ve bolca alıştırmalar yapmasıyla öğrenilebilir. Tek ihtiyacınız pratiklik kazanmak için vi editörünü bir süre boyunca kullanmak. Örneğin 1 hafta boyunca tüm metin düzenlemelerinizi vi üzerinden gerçekleştirmeye çalışırsanız zaten kısayollara kolayca alıştığınızı ve aslında editörün ne kadar etkili kullanılabileceğini bizzat görmüş olacaksınız. Temel kısayolları öğrenmek için kendinize biraz fırsat tanıyın.</p>
+
+<p>Ayrıca vim kadar kullanışlı ve popüler olan emacs editörü de var ancak bu eğitimde bu editörden bahsetmeyeceğiz. Merak ediyorsanız emacs hakkında da araştırma yapabilirsiniz.</p>
+
+<p>Benden şimdilik bu kadar.</p>
+
+<p>Geri kalan araştırma işini size bırakıyorum.</p>
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div align="right" class="col-10">
+              <div class="mb-1 text-muted"><strong>Önceki</strong></div>
+              <p class="card-text">Kopyalama Taşıma Silme</p>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/kopyalama-ta%C5%9F%C4%B1ma-silme-i%C5%9Flemleri/" title="Kopyalama Taşıma Silme" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Arşivleme & Sıkıştırma</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/ar%C5%9Fivleme-s%C4%B1k%C4%B1%C5%9Ft%C4%B1rma/" title="Arşivleme & Sıkıştırma" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#metin-editörü-kullanımı--nano--vi">Metin Editörü Kullanımı | Nano &amp; Vi</a></li>
+<li class="toc-entry <hh1"><a href="#nano">Nano</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#nano-aracını-kapatmak">Nano Aracını Kapatmak</a></li>
+<li class="toc-entry <hh2"><a href="#değişiklikleri-kaydetmek">Değişiklikleri Kaydetmek</a>
+<ul>
+<li class="toc-entry <hh3"><a href="#farklı-dosya-olarak-kaydetmek">Farklı Dosya Olarak Kaydetmek</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh2"><a href="#dizinlerde-gezinmek">Dizinlerde Gezinmek</a></li>
+<li class="toc-entry <hh2"><a href="#dosya-okuyup-i̇çeriğini-eklemek">Dosya Okuyup İçeriğini Eklemek</a></li>
+<li class="toc-entry <hh2"><a href="#dosya-i̇çeriğinde-araştırma">Dosya İçeriğinde Araştırma</a></li>
+<li class="toc-entry <hh2"><a href="#bulup-değiştirme-i̇şlemi">Bulup Değiştirme İşlemi</a></li>
+<li class="toc-entry <hh2"><a href="#metinleri-kesip-yapıştırmak">Metinleri Kesip Yapıştırmak</a></li>
+<li class="toc-entry <hh2"><a href="#değişiklikleri-geri-ve-i̇leri-sarmak">Değişiklikleri Geri ve İleri Sarmak</a></li>
+<li class="toc-entry <hh2"><a href="#i̇mlecin-konumun-öğrenmek">İmlecin Konumun Öğrenmek</a></li>
+<li class="toc-entry <hh2"><a href="#satırlara-hızlı-geçiş">Satırlara Hızlı Geçiş</a></li>
+<li class="toc-entry <hh2"><a href="#satırları-numaralandırmak">Satırları Numaralandırmak</a></li>
+<li class="toc-entry <hh2"><a href="#sayfada-hızlı-gezinti">Sayfada Hızlı Gezinti</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#vi">Vi</a></li>
+<li class="toc-entry <hh1"><a href="#vim-editörünün-kurulumu">Vim Editörünün Kurulumu</a></li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Metin Editörü Kullanımı\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/metin-editoru/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/metin-editoru/&title=Metin Editörü Kullanımı&summary=\"Metin Editörü Kullanımı\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>

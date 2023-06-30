@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Linux'ta komut satırında mevcut dizini gösteren komut hangisidir?",
+    "options": ["ls", "cd", "pwd", "cat"],
+    "answer": "pwd"
+  },
+  {
+    "question": "Linux'ta dosya ve dizinleri listelemek için kullanılan komut hangisidir?",
+    "options": ["ls", "dir", "list", "show"],
+    "answer": "ls"
+  },
+  {
+    "question": "Linux'ta bir dizinden diğerine geçmek için kullanılan komut hangisidir?",
+    "options": ["mv", "cp", "cd", "rm"],
+    "answer": "cd"
+  },
+  {
+    "question": "Linux'ta bir dosyanın içeriğini görüntülemek için kullanılan komut hangisidir?",
+    "options": ["cat", "grep", "less", "head"],
+    "answer": "cat"
+  },
+  {
+    "question": "Linux'ta sürekli çalışan işlemleri göstermek için kullanılan komut hangisidir?",
+    "options": ["top", "ps", "kill", "pgrep"],
+    "answer": "top"
+  }
+]

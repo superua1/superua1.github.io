@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Arşivleme & Sıkıştırma &#8211; Linux Eğitimi</title>
+<meta name="description" content="Arşivleme ve sıkıştırma işlemlerinden bahsediyoruz.">
+<meta name="keywords" content="date, cal, which, type, command, builtin, file, stat, lsb_release, uname, uptime, free, du, lsusb, lspci, lshw">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/ar%C5%9Fivleme-s%C4%B1k%C4%B1%C5%9Ft%C4%B1rma/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">13. Ders: Arşivleme & Sıkıştırma</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#date" class="btn btn-outline-primary btn-sm" title="Pages tagged date">date</a> <a href="http://localhost:4000/etiketler.html#cal" class="btn btn-outline-primary btn-sm" title="Pages tagged cal">cal</a> <a href="http://localhost:4000/etiketler.html#which" class="btn btn-outline-primary btn-sm" title="Pages tagged which">which</a> <a href="http://localhost:4000/etiketler.html#type" class="btn btn-outline-primary btn-sm" title="Pages tagged type">type</a> <a href="http://localhost:4000/etiketler.html#command" class="btn btn-outline-primary btn-sm" title="Pages tagged command">command</a> <a href="http://localhost:4000/etiketler.html#builtin" class="btn btn-outline-primary btn-sm" title="Pages tagged builtin">builtin</a> <a href="http://localhost:4000/etiketler.html#file" class="btn btn-outline-primary btn-sm" title="Pages tagged file">file</a> <a href="http://localhost:4000/etiketler.html#stat" class="btn btn-outline-primary btn-sm" title="Pages tagged stat">stat</a> <a href="http://localhost:4000/etiketler.html#lsb_release" class="btn btn-outline-primary btn-sm" title="Pages tagged lsb_release">lsb_release</a> <a href="http://localhost:4000/etiketler.html#uname" class="btn btn-outline-primary btn-sm" title="Pages tagged uname">uname</a> <a href="http://localhost:4000/etiketler.html#uptime" class="btn btn-outline-primary btn-sm" title="Pages tagged uptime">uptime</a> <a href="http://localhost:4000/etiketler.html#free" class="btn btn-outline-primary btn-sm" title="Pages tagged free">free</a> <a href="http://localhost:4000/etiketler.html#du" class="btn btn-outline-primary btn-sm" title="Pages tagged du">du</a> <a href="http://localhost:4000/etiketler.html#lsusb" class="btn btn-outline-primary btn-sm" title="Pages tagged lsusb">lsusb</a> <a href="http://localhost:4000/etiketler.html#lspci" class="btn btn-outline-primary btn-sm" title="Pages tagged lspci">lspci</a> <a href="http://localhost:4000/etiketler.html#lshw" class="btn btn-outline-primary btn-sm" title="Pages tagged lshw">lshw</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/arsivcover.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+45 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <p>Genel olarak sistemdeki tarih takvim araçlar dosyalar ayarlar kayıtlar ve benzeri pek çok yapı hakkında konsol üzerinden kolayca bilgi edinebilmek için kullandığımız komutları, bilgi alma komutları başlığı altında inceleyebiliriz. Dolayısıyla aslında tüm eğitim boyunca kullandığımız ve kullanmaya da devam edeceğimiz pek çok komutu bilgi alma komutları sınıfında değerlendirmemiz mümkün. Çünkü hepsi, kendi görevleri özelinde pek çok bilgi sunma kabiliyetine sahip araçlar. En basit örnek olarak, <code class="language-plaintext highlighter-rouge">ls</code> komutu bile tek başına kullanıldığında mevcut dizinimizdeki içerikler hakkında bilgi almamızı sağlıyor.</p>
+
+<p>Yine de eğitimin geri kalanında değinmek için uygun bölümleri bulunmayan ama haberdar olmamızın faydalı olacağı bazı araçlardan “bilgi alma bölümü” altında çok kısaca bahsetmek istiyorum.</p>
+
+<p>Anlatımlarımıza öncelikle takvim ve saat gibi temel bilgileri nasıl edinebileceğimizle başlayabiliriz.</p>
+
+<h1 id="tarih-ve-saat-hakkında-bilgi-edinme">Tarih ve Saat Hakkında Bilgi Edinme</h1>
+
+<h2 id="date-komutu">date Komutu</h2>
+
+<p>Eğer grafiksel arayüz kullanıyorsanız zaten mutlaka tarih ve saati kolayca öğrenebileceğiniz bir ortama sahipsinizdir.</p>
+
+<p>Tarih bilgisini komut satırından edinmek istediğimizdeyse <code class="language-plaintext highlighter-rouge">date</code> komutunu kullanabiliyoruz. Zaten “date” ifadesi “tarih” anlamına geldiği için hatırlaması kolay bir komut. Hemen komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">date
+</span>Mon Jun 26 02:40:38 PM EDT 2023
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">date</code> komutu tek başına kullanıldığında gördüğünüz gibi sırasıyla, haftanın gününü, ayı, ayın gününü, saati, saat dilimini ve yılı içeriyor. Yani mevcut bulunduğumuz günün tüm tarihi temel bilgilerini <code class="language-plaintext highlighter-rouge">date</code> aracıyla öğrenebiliyoruz. Tabii ki aracımızın sağladığı tek bilgi mevcut günümüz de değil. Diğer seçenekleri görmek için <code class="language-plaintext highlighter-rouge">date —help</code> komutu ile yardım sayfasına bakacak olursanız ne kadar çok seçeneğin bulunduğunu görebilirsiniz. Ancak bu kadar çok seçenek olması gözünüzü korkutmasın, çünkü temelde <code class="language-plaintext highlighter-rouge">date</code> aracının yalnızca sistem tarihini öğrenmek için kullanıyoruz. Mesela tüm tarih bilgisini değil de yalnızca saat bilgisini almak istersek yardım bilgisinde gözüken <code class="language-plaintext highlighter-rouge">%r</code> parametresini kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">date</span> +%r                                                     
+02:42:24 PM
+</code></pre></div></div>
+
+<p>Bakın yalnızca saat bastırıldı. Benzer şekilde diğer parametreleri kullanarak <code class="language-plaintext highlighter-rouge">date</code> aracından dilediğiniz formda çıktı alabilirsiniz. Bu özelliğe genellikle kabuk programlamada ihtiyaç duyuyor olsak da artık bildiğinize göre ihtiyaç duyduğunuzda yardım sayfasını açıp tekrar hatırlayıp rahatlıkla kullanabilirsiniz..</p>
+
+<p>Ayrıca <code class="language-plaintext highlighter-rouge">date</code> aracı ile tarihi değiştirmemiz de mümkün fakat tarihi değiştirmek için sistem servislerini kullanmak çok daha sağlıklı bir yaklaşım. Lütfen şimdilik buradaki servis kavramına çok takılmayın. İleride servisleri ayrıca ele alacağız. O zaman servisten kastımın ne olduğunu net biçimde anlamış olacaksınız. Şimdilik <code class="language-plaintext highlighter-rouge">date</code> komutunun bize mevcut tarih bilgisini sunduğunu bilmemiz yeterli.</p>
+
+<h2 id="cal-komutu">cal Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">cal</code> aracı komut satırımız üzerinden takvim bilgisi sunan basit bir araç. Kimi sistemlerde varsayılan olarak yüklü bulunmasa da aslında çoğu dağıtımda mevcut oluyor.</p>
+
+<p>Aracın yüklü olup olmadığınız öğrenmek için tek yapmamız gereken konsolumuza <code class="language-plaintext highlighter-rouge">cal</code> komutunu girmek.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>cal
+Command <span class="s1">'cal'</span> not found, but can be installed with:
+<span class="nb">sudo </span>apt <span class="nb">install </span>ncal
+Do you want to <span class="nb">install </span>it? <span class="o">(</span>N/y<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Bakın böyle bir komut olmadığı, eğer istersek bu araçla ilişkili olan <code class="language-plaintext highlighter-rouge">ncal</code> paketinin kurulabileceği belirtiliyor. Buradaki komutu “y” ile onaylayarak ya da kendimiz de buradaki <code class="language-plaintext highlighter-rouge">sudo apt install ncal</code> komutunu girerek kurulumu yapabiliriz. Eğer size bu şekilde sorulmadıysa ve sisteminizde yüklü değilse, debian tabanlı dağıtımınıza kurmak için siz de buradaki komutu kullanabilirsiniz. Ben “y” ile aracın kurulumunu onaylıyorum ve kullanıcı hesabımın parolasını girip kurulumu başlatılıyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>cal
+Command <span class="s1">'cal'</span> not found, but can be installed with:
+<span class="nb">sudo </span>apt <span class="nb">install </span>ncal
+Do you want to <span class="nb">install </span>it? <span class="o">(</span>N/y<span class="o">)</span>y
+<span class="nb">sudo </span>apt <span class="nb">install </span>ncal
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  ncal
+0 upgraded, 1 newly installed, 0 to remove and 1830 not upgraded.
+Need to get 19.7 kB of archives.
+After this operation, 59.4 kB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main amd64 ncal amd64 12.1.8 <span class="o">[</span>19.7 kB]
+Fetched 19.7 kB <span class="k">in </span>11s <span class="o">(</span>1,828 B/s<span class="o">)</span>
+Selecting previously unselected package ncal.
+<span class="o">(</span>Reading database ... 291346 files and directories currently installed.<span class="o">)</span>
+Preparing to unpack .../archives/ncal_12.1.8_amd64.deb ...
+Unpacking ncal <span class="o">(</span>12.1.8<span class="o">)</span> ...
+Setting up ncal <span class="o">(</span>12.1.8<span class="o">)</span> ...
+Processing triggers <span class="k">for </span>kali-menu <span class="o">(</span>2021.4.2<span class="o">)</span> ...
+Processing triggers <span class="k">for </span>man-db <span class="o">(</span>2.9.4-4<span class="o">)</span> ...
+</code></pre></div></div>
+
+<p>Şimdi aracımızı çalıştırmak için <code class="language-plaintext highlighter-rouge">cal</code> komutunu tekrar girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>cal
+     June 2023        
+Su Mo Tu We Th Fr Sa  
+             1  2  3  
+ 4  5  6  7  8  9 10  
+11 12 13 14 15 16 17  
+18 19 20 21 22 23 24  
+25 26 27 28 29 30
+</code></pre></div></div>
+
+<p>Bakın mevcut ayın takvim bilgisini sorunsuzca konsola bastırmış olduk. Bu komutun dışında eğer takvimde gün isimlerinin bastırılmasını ve bizim hangi günde olduğumuzun belirtilmesini istersek <code class="language-plaintext highlighter-rouge">ncal</code> komutunu da kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>ncal
+    June 2023         
+Su     4 11 18 25   
+Mo     5 12 19 26   
+Tu     6 13 20 27   
+We     7 14 21 28   
+Th  1  8 15 22 29   
+Fr  2  9 16 23 30   
+Sa  3 10 17 24
+</code></pre></div></div>
+
+<p>Bakın sol tarafta gün isimleri sırasıyla yazıyor. Takvim de bu günlerin sıralamasına uygun şekilde basılmış oldu.</p>
+
+<p>Eğer mevcut ayı değil de geçmiş ya da gelecek bir tarihten takvim bilgisine bakmak istersek <code class="language-plaintext highlighter-rouge">cal</code> ya da <code class="language-plaintext highlighter-rouge">ncal</code> komutunun ardından ay ve yılı belirterek tam istediğimiz tarihteki takvim bilgisine de ulaşabiliriz. Ben örnek olarak <strong>2000</strong> yılının <strong>ocak</strong> ayının takvimini bastırmak üzere <code class="language-plaintext highlighter-rouge">ncal 1 2000</code> şeklinde komutumu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>ncal 1 2000
+    January 2000      
+Su     2  9 16 23 30
+Mo     3 10 17 24 31
+Tu     4 11 18 25   
+We     5 12 19 26   
+Th     6 13 20 27   
+Fr     7 14 21 28   
+Sa  1  8 15 22 29
+</code></pre></div></div>
+
+<p>Bakın 2000 yılının ocak ayı takvimi getirildi. Benzer şekilde ileri tarih de belirtebiliriz. Ben 2025 yılının 6 ayı için takvim bilgisini istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>ncal 6 2025                                                  
+    June 2025         
+Su  1  8 15 22 29   
+Mo  2  9 16 23 30   
+Tu  3 10 17 24      
+We  4 11 18 25      
+Th  5 12 19 26      
+Fr  6 13 20 27      
+Sa  7 14 21 28
+</code></pre></div></div>
+
+<p>Bakın bu takvim de bastırıldı. İşte ihtiyacınız olduğunda sizler de konsol üzerinden takvim bilgisine bu şekilde kolayca ulaşabilirsiniz. Komutun ismi “<strong>cal</strong>endar” yani “takvim” ifadesinden geldiği için hatırlaması da kolay aslında. Yine de unutursanız örneğin yardım sayfalarını <code class="language-plaintext highlighter-rouge">apropos calendar</code> komutu ile kurcalayabilirsiniz mesela.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>apropos calendar
+cal <span class="o">(</span>1<span class="o">)</span>              - displays a calendar and the <span class="nb">date </span>of Easter
+ncal <span class="o">(</span>1<span class="o">)</span>             - displays a calendar and the <span class="nb">date </span>of Easter
+zshcalsys <span class="o">(</span>1<span class="o">)</span>        - zsh calendar system
+</code></pre></div></div>
+
+<p>Bakın takvimle ilgili olan komutlar ve açıklamaları listelendi.</p>
+
+<p>Neticede takvimi öğrenebileceğimiz bir komut olduğunu bildiğimiz sürece, ilgili komutun ismini bulmak için yardım sayfalarını kolayca kullanabiliyoruz gördüğünüz gibi.</p>
+
+<h1 id="dosyalar-hakkında-bilgi-edinmek">Dosyalar Hakkında Bilgi Edinmek</h1>
+
+<h2 id="which-komutu">which Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">which</code> komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanabiliyoruz.</p>
+
+<p>Örneğin sizler de biliyorsunuz ki; ben konsola <code class="language-plaintext highlighter-rouge">ls</code> yazdığımda kabuk öncelikle <code class="language-plaintext highlighter-rouge">ls</code> isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor. Zaten bu durumdan eğitimin en başında bahsettik. İşte bash komutunun bulup çalıştırmasına benzer şekilde, <code class="language-plaintext highlighter-rouge">which</code> komutu da kendisine argüman olarak belirtilmiş olan isimdeki aracın tam dosya konumunu bize bildiriyor. Yani aslında <code class="language-plaintext highlighter-rouge">which</code> komutu da PATH yoluna bakarak argüman olarak verdiğim aracı araştırıyor. Dolayısıyla PATH yolunda olmayan araçların dosya konumları <code class="language-plaintext highlighter-rouge">which</code> komutu tarafından bastırılamıyor.</p>
+
+<p>Hemen <code class="language-plaintext highlighter-rouge">ls</code> komutunun tam dizin adresine bakalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>which <span class="nb">ls</span>
+/usr/bin/ls
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">ls</code> aracı tam olarak <strong><em>/usr/bin/ls</em></strong> dizini içindeymiş. hatta istersek <code class="language-plaintext highlighter-rouge">which</code> aracının kendi dosya adresine de bakabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>which which
+/usr/bin/which
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">which</code> aracı da <strong><em>/usr/bin/which</em></strong> dizini içindeymiş. İşte bu şekilde PATH yolu üzerindeki araçların tam dizin adreslerini öğrenebilirsiniz. Bu komut özellikle bir aracın çalıştırılabilmesi için tam dizin adresinin girilmesi gereken durumlarda bize dizin bilgisini sunması bakımından önemli. Örneğin eğer hatırlıyorsanız, varsayılan kabuğumuzu bash olarak değiştirme işleminden bahsederken, bash kabuğunun dosya konumunu da <code class="language-plaintext highlighter-rouge">which</code> komutu sayesinde bulmuştuk. <code class="language-plaintext highlighter-rouge">which</code> komutu, özellikle bash kabuk programlamada sıklıkla kullanıldığı için, ileride karşılaşmanız ve ihtiyaç duymanız olası. Yani hemen şimdi aktif olarak kullanmayacak olsanız bile bu komutu gördüğünüzde hangi amaca hizmet ettiğini artık biliyorsunuz.</p>
+
+<h2 id="type-komutu--command--builtin-komutları">type Komutu | command &amp; builtin Komutları</h2>
+
+<p><code class="language-plaintext highlighter-rouge">type</code> komutu, isminden de anlaşılabileceği gibi kabuğa girdiğimiz komutların tipiyle türleriyle ilgili bilgileri görüntülemek için kullandığımız bir araçtır. Diğer bir deyişle kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani <strong>alias</strong> tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanışlı bir bilgi edinme aracıdır.</p>
+
+<p>Ben denemek için konsola <code class="language-plaintext highlighter-rouge">type ls</code> yazıyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type ls
+ls </span>is aliased to <span class="sb">`</span><span class="nb">ls</span> <span class="nt">--color</span><span class="o">=</span>auto<span class="s1">'
+</span></code></pre></div></div>
+
+<p>Bakın kabuğa <code class="language-plaintext highlighter-rouge">ls</code> komutunu verdiğimde aslında kabuğun <code class="language-plaintext highlighter-rouge">ls</code> komutunu bir takma isim olarak kabul edip buradaki komutu çalıştırdığını öğrendik. Normalde standart <code class="language-plaintext highlighter-rouge">ls</code> aracı yani biz <code class="language-plaintext highlighter-rouge">ls</code> komutunu girdiğimizde çalıştırılan dosya <strong><em>/usr/bin/ls</em></strong> dosyası. Ama <code class="language-plaintext highlighter-rouge">ls</code> komutu ile aynı isimde yeni bir takma isim tanımlandığı için kabuk bizim girdiğimiz <code class="language-plaintext highlighter-rouge">ls</code> komutunu öncelikli olarak takma isim olarak dikkate alıyor ve buradaki takma isim tanımlamasından dolayı <code class="language-plaintext highlighter-rouge">ls —color=auto</code> komutunu çalıştırıyor.</p>
+
+<p>Takma isim dışında kabuğun yerleşik komutlarını da sorgulayabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type cd
+cd </span>is a shell <span class="nb">builtin</span>
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">cd</code> aracı bash kabuğunun yerleşik aracı olduğu için bu çıktıyı almış olduk.</p>
+
+<p>Ayrıca mesela <code class="language-plaintext highlighter-rouge">type bash</code> komutunu da girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type </span>bash
+bash is /usr/bin/bash
+</code></pre></div></div>
+
+<p>Bakın bu kez bash kabuğunun dosya konumunu aldık çünkü biz <code class="language-plaintext highlighter-rouge">bash</code> komutunu girdiğimizde mevcut kabuk bu dizindeki dosyayı çalıştırıyormuş. Bash kabuğu yerleşik bir araç olmadığı için veya bu isimde bir takma isim tanımlanmadığı için bu şekilde doğrudan çalıştırılan dosyanın konumu kabuk tarafından kullanılıyor.</p>
+
+<p>Özetle bakın <code class="language-plaintext highlighter-rouge">type</code> komutu sayesinde bizim girdiğimiz komutlardaki araç isimlerinin kabuk tarafından nasıl algılandığını öğrenebiliyoruz.</p>
+
+<p>Peki bizim girdiğimiz komutların kabuk tarafından nasıl algılandığının neden bilmemiz gerekiyor ?</p>
+
+<p>Bu bilgi önemli çünkü, tıpkı <code class="language-plaintext highlighter-rouge">ls</code> komutunda olduğu gibi yerleşik ve PATH yolundaki harici komutlarla aynı isimde takma isimler tanımlı olabiliyor. Takma isimler yerleşik ve harici komutlardan daha öncelikli değerlendirildiği için de, girdiğimiz komutlar bizim normalde beklediğimizden daha farklı sonuçlar verebiliyor.</p>
+
+<p>Örneğin ben <code class="language-plaintext highlighter-rouge">alias ls="echo ben takma isimim"</code> şeklinde yani var olan bir komutla aynı isimde bir takma isim tanımlarsam ne olur ? Hemen deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">alias ls</span><span class="o">=</span><span class="s2">"echo ben takma isimim"</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls                                                           
+</span>ben takma isimim
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi <code class="language-plaintext highlighter-rouge">ls</code> komutunun neticesinde dizin içeriğini listelemek yerine “ben takma isimim” çıktısını aldık. Çünkü kabuğa girdiğimiz komutlarda ilk olarak eğer komutla eşleşen bir takma isim varsa kabuk bunu dikkate alıyor. Nitekim çıktıdan da bu durumu teyit ettik. İşte girdiğimiz komutun beklediğimizden farklı sonuçlar verdiği durumlarda <code class="language-plaintext highlighter-rouge">type</code> komutu ile kabuğun bakış açısından girdiğimiz komutu sorgulayabiliyoruz. Bu sayede girdiğimiz komutun neden beklenmedik şekilde çalıştığına dair çözüm için fikir sahibi olmamız mümkün oluyor.</p>
+
+<p>Örneğin benim <code class="language-plaintext highlighter-rouge">ls</code> takma ismi örneğinde komutumu <code class="language-plaintext highlighter-rouge">command ls</code> şeklinde girmem gerekiyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">command ls                                                   
+ </span>abc         harf.txt           liste3            sehir
+</code></pre></div></div>
+
+<p>Bakın bu şekilde girdiğimde, <code class="language-plaintext highlighter-rouge">ls</code> ifadesinin bir komut olduğunu belirtmiş oluyorum. Benim burada kullandığım <code class="language-plaintext highlighter-rouge">command</code> komutu sayesinde kabuk takma ismi görmezden gelip normla şekilde önce yerleşik komutlara daha sonra <code class="language-plaintext highlighter-rouge">ls</code> isminin geçtiği PATH yolundaki dizinlere bakıyor ve <strong><em>/usr/bin/ls</em></strong> dosyasını bulup çalıştırabiliyor. Yani buradaki <code class="language-plaintext highlighter-rouge">command</code> komutu <code class="language-plaintext highlighter-rouge">ls</code> komutunun doğrudan çalıştırılacak komut olarak kabul edilmesini sağlıyor.</p>
+
+<p>Aynı durum yerleşik komutlar için de geçerli. Örneğin <code class="language-plaintext highlighter-rouge">cd</code> yerleşik komutu ile aynı isimde bir <code class="language-plaintext highlighter-rouge">alias</code> tanımlarsak <code class="language-plaintext highlighter-rouge">cd</code> komutunu kullandığımızda takma ismin karşılığındaki komut çalıştırılıyor olacak. Denemek için <code class="language-plaintext highlighter-rouge">alias cd=”echo ben cd komutuyum”</code> şeklinde yazıp onaylayalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">alias cd</span><span class="o">=</span><span class="s2">"echo ben cd komutuyum"</span>                             
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd                                                           
+</span>ben <span class="nb">cd </span>komutuyum
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /                                                         
+ben <span class="nb">cd </span>komutuyum /
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">cd</code> komutu asıl işlevi olan dizin geçişi işlemi yerine bizim tanımladığımız takma ismi kullanılıp konsol çıktı bastırılıyor. Hatta <code class="language-plaintext highlighter-rouge">type cd</code> komutu ile de teyit edebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type cd
+cd </span>is aliased to <span class="sb">`</span><span class="nb">echo </span>ben <span class="nb">cd </span>komutuyum<span class="s1">'
+</span></code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">cd</code> komutu kabuk tarafından artık bir takma isim olarak algılanıyormuş.</p>
+
+<p>Eğer biz bu takma isim yerine <code class="language-plaintext highlighter-rouge">command cd  /</code> veya <code class="language-plaintext highlighter-rouge">builtin cd /</code> şeklinde yazarsak, kabuk buradaki <code class="language-plaintext highlighter-rouge">cd</code> ifadesini ile tanımlı olan takma ismi görmezden gelip <code class="language-plaintext highlighter-rouge">cd</code> komutunun asıl işlevini yerine getiriyor olacak.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">command cd</span> /                                                 
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/]
+└─<span class="nv">$ </span><span class="nb">builtin cd</span> ~
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                          
+/home/kali
+</code></pre></div></div>
+
+<p>Bakın bu kez <code class="language-plaintext highlighter-rouge">cd</code> aracı yerleşik komutlar içinde bulunduğu için kök dizine sorunsuzca geçiş yaptık. Girdiğimiz komutun bir yerleşik komut olduğunu özellikle belirtmek için <code class="language-plaintext highlighter-rouge">builtin</code> komutunu da kullanabileceğimizi görmüş olduk.</p>
+
+<p>Fakat dikkat edin <code class="language-plaintext highlighter-rouge">builtin</code> komutu yalnızca yerleşik komutları niteliyorken, <code class="language-plaintext highlighter-rouge">command</code> komutu tüm komut türlerinde takma isimlerin görmezden gelinmesini sağlıyor.</p>
+
+<p>Bu durumu test etmek için yerleşik komut olmayan <code class="language-plaintext highlighter-rouge">ls</code> komutunu <code class="language-plaintext highlighter-rouge">builtin ls</code> komutu ile doğrudan çalıştırmayı deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">builtin ls                                                   
+</span>bash: <span class="nb">builtin</span>: <span class="nb">ls</span>: not a shell <span class="nb">builtin</span>
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">ls</code> aracının bash kabuğunun yerleşik aracı olmadığı konusunda hata çıktısı bastırıldı.</p>
+
+<p>Takma ismin görmezden gelinmesi için <code class="language-plaintext highlighter-rouge">command ls</code> şeklinde girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">command ls                                                   
+ </span>abc         harf.txt           liste3            sehir
+</code></pre></div></div>
+
+<p>Bakın bu kez <code class="language-plaintext highlighter-rouge">ls</code> aracı için takma isim görmezden gelinip bu isim doğrudan PATH yolundaki ilgili dosyayı çalıştırmış oldu.</p>
+
+<p>Sanırım bu örneklerle birlikte, neden <code class="language-plaintext highlighter-rouge">type</code> komutunu kullanma ihtiyacı duyabileceğimiz ve kabuğun bizim girdiğimiz komutlara bakış açısı hakkında temel düzeyde de olsa fikir sahibi olabildik.</p>
+
+<p><code class="language-plaintext highlighter-rouge">type</code> komutu hakkında dikkat etmeniz gereken detay, <code class="language-plaintext highlighter-rouge">type</code> aracının bütüncül olarak girdiğiniz çok argümanlı komutları değerlendirmek için kullanılmadığı. Yalnızca çalıştırılacak olan araçları temsil eden komutların kabuk tarafından nasıl ele alındığını görmemizi sağlıyor.</p>
+
+<p>Yani örneğin <code class="language-plaintext highlighter-rouge">ls</code> komutunun <code class="language-plaintext highlighter-rouge">-l</code> seçeneğiyle birlikte bu komutun tipini sorgulamaya çalışabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">command ls                                                   
+ </span>abc         harf.txt           liste3            sehir
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">ls</code> komutunun takma isim olduğu ama <code class="language-plaintext highlighter-rouge">-l</code> ifadesinin bulunamadığı belirtilmiş. Tırnak içinde yazmayı da deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type</span> <span class="s2">"ls -l"</span>                                                 
+bash: <span class="nb">type</span>: <span class="nb">ls</span> <span class="nt">-l</span>: not found
+
+└─<span class="nv">$ </span><span class="nb">type</span> <span class="s1">'ls -l'</span>
+bash: <span class="nb">type</span>: <span class="nb">ls</span> <span class="nt">-l</span>: not found
+</code></pre></div></div>
+
+<p>Bakın bu kez de <code class="language-plaintext highlighter-rouge">ls -l</code> komutunun bulunamadığı hatasını aldık.</p>
+
+<p>Yani bizzat buradaki örnekler üzerinden de teyit ettiğimiz gibi buradaki <code class="language-plaintext highlighter-rouge">type</code> aracı yalnızca ona verdiğimiz argümanlardaki araç isimlerin kabuk tarafından nasıl ele alınıp çalıştırılacağı konusunda bilgi sunuyor. Mesela <code class="language-plaintext highlighter-rouge">type ls echo cd nano</code> şeklinde birden fazla argüman verip, birden fazla aracı temsil eden komutların kabuk tarafından nasıl ele alındığını görebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">type ls echo cd </span>nano                                         
+<span class="nb">ls </span>is aliased to <span class="sb">`</span><span class="nb">echo </span>ben takma isimim<span class="s1">'
+echo is a shell builtin
+cd is aliased to `echo ben cd komutuyum'</span>
+nano is /usr/bin/nano
+</code></pre></div></div>
+
+<p>Bakın bu komutlar kabuk tarafından çalıştırılırken buradaki tipleri dahilinde ele alınıp çalıştırılıyorlarmış.</p>
+
+<p>En nihayetinde <code class="language-plaintext highlighter-rouge">type</code> komutunun bizlere kabuğun bakış açısından komutları görebilme imkanı tanıdığı görmüş olduk. Artık ihtiyacınız olduğunda komutların kabuktaki tip karşılığını nasıl öğrenebileceğinizi biliyorsunuz.</p>
+
+<h2 id="file-komutu">file Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">file</code> aracını dosyaların türleri hakkında bilgi almak için kullanabiliyoruz.</p>
+
+<p>Özellikle dosya uzantısı bulunmayan ve türünü bilmediğimiz dosyalar hakkında hızlıca bilgi edinmek için file aracı iyi bir tercih. Daha önce sıkıştırmış olduğumuz arşiv dosyasının türünden emin olmak için kullanmıştık hatırlıyorsanız. Tekrar hatırlayacak olursak örneğin <code class="language-plaintext highlighter-rouge">file ~/.bashrc</code> komutu ile <strong><em>.bashrc</em></strong> dosyasının türünü sorgulayabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>file ~/.bashrc
+/home/kali/.bashrc: Unicode text, UTF-8 text
+</code></pre></div></div>
+
+<p>Bakın bu dosya aslında “text” dosyasıymış.</p>
+
+<p>Başka bir örnek olarak arşiv dosyasını sorgulayabilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>file /var/log/user.log.4.gz 
+/var/log/user.log.4.gz: <span class="nb">gzip </span>compressed data, last modified: Sat Jun  3 07:27:18 2023, from Unix, original size modulo 2^32 113312
+</code></pre></div></div>
+
+<p>Bakın bu arşiv dosyasının, hangi tür arşiv olduğu burada kısaca belirtiliyor. Bu şekilde istediğiniz dosyaları sorgulayıp türleri hakkında bilgi alabilirsiniz. Tek tek tüm dosyalar üzerinde denememize gerek yok. <code class="language-plaintext highlighter-rouge">file</code> aracına argüman olarak belirttiğiniz dosyalar hakkında bu şekilde kısa bilgi alabiliyoruz. Eğer aldığınız çıktıdaki dosya türünü bilmiyorsanız internet üzerinde araştırıp gerekli bilgiye ulaşabilirsiniz.</p>
+
+<p>Son bir örnek olarak sistemde yüklü bulunan araçların dosyalarını da sorgulayabiliriz. Ben <code class="language-plaintext highlighter-rouge">file /usr/bin/ls</code> komutu ile <code class="language-plaintext highlighter-rouge">ls</code> aracının dosya türünü sorguluyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>file /usr/bin/ls                                             
+/usr/bin/ls: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>6e3da6f0bc36b6398b8651bbc2e08831a21a90da, <span class="k">for </span>GNU/Linux 3.2.0, stripped
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi tür olarak “<strong>ELF”</strong> basıldı. Bu kısaltma “<strong>E</strong>xecutable and <strong>L</strong>inkable <strong>F</strong>ormat” ifadesinin kısalmasıdır. En genel hali ile yürütülebilir dosyaları temsil ediyor. İşte tıpkı sorguladıklarımız gibi, sistem üzerinde pek çok farklı türde dosya bulunuyor. <code class="language-plaintext highlighter-rouge">file</code> komutu sayesinde de gerektiğinde dosyaların türleri hakkında bilgi edinebiliyoruz.</p>
+
+<h2 id="stat-komutu">stat Komutu</h2>
+
+<p>Şimdiye kadar <code class="language-plaintext highlighter-rouge">ls</code> komutu ile boyut tarih ve isim gibi kriterlere göre filtreleme yaparken bizzat gördüğümüz gibi sistemimizdeki dosya ve klasörlerin kendine ait “isim” “boyut” “dizin adresi” “erişim yetkileri” ve “türü” gibi pek çok öznitelik detayını temsil eden metaverileri bulunuyor. <code class="language-plaintext highlighter-rouge">stat</code> komutu da dosya veya klasörlerin sahip olduğu öznitelikler yani metaveriler hakkında detaylı bilgi sunan bir komuttur.</p>
+
+<p>Ben denemek için <code class="language-plaintext highlighter-rouge">touch yeni-dosya</code> komutuyla yeni bir dosya oluşturup stat komutu ile bu dosyanın metaverilerini kontrol etmek istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">touch </span>yeni-dosya
+
+└─<span class="nv">$ </span><span class="nb">stat </span>yeni-dosya
+  File: yeni-dosya
+  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
+Device: 801h/2049d      Inode: 2893118     Links: 1
+Access: <span class="o">(</span>0644/-rw-r--r--<span class="o">)</span>  Uid: <span class="o">(</span> 1000/    kali<span class="o">)</span>   Gid: <span class="o">(</span> 1000/    kali<span class="o">)</span>
+Access: 2023-06-27 02:05:22.675485267 <span class="nt">-0400</span>
+Modify: 2023-06-27 02:05:22.675485267 <span class="nt">-0400</span>
+Change: 2023-06-27 02:05:22.675485267 <span class="nt">-0400</span>
+ Birth: 2023-06-27 02:05:22.675485267 <span class="nt">-0400</span>
+</code></pre></div></div>
+
+<p>Bakın dosyayla ilgili pek çok detay konsolumuza bastırıldı.</p>
+
+<p>Dosyanın tam ismi, boyutu ve dosya tipi gibi detaylar burada gözüküyor. Örneğin bu dosya içerisi boş standart bir dosya olduğu için “regular empty file” şeklinde çıktı aldık.</p>
+
+<p>Bunun dışında daha önceki anlatımlarımızda kısaca ele aldığımız “inode” ve “link” bilgisi de burada açıkça belirtiliyor. Buradaki <strong>links</strong>, bu dosyanın <strong>sahip olduğu katı linkleri</strong> temsil ederken, <strong>inode</strong> değeri <strong>diskteki veriye ulaşmayı sağlayan benzersiz index numarasını</strong> belirtiyor.</p>
+
+<p>Dosyanın erişim izinlerini ve sahiplik bilgilerini de buradan görebiliyoruz. Burası dosyanın yetkilerini, sahibini ve grubunu bize bildiriyor. Erişim yetkilerinden ileride ayrıca bahsediyor olacağız.</p>
+
+<p>Ayrıca bakın burada dosyanın en son “erişim”, “düzenleme” ve “değişim” tarihleri detaylı şekilde basılmış. Biz dosyayı yeni oluşturduğumuz için hepsi aynı oldu ama aslında:</p>
+
+<p><strong>Erişim tarihi;</strong> dosyanın en son erişilen tarihi belirtiyor. Örneğin dosyanın okunması veya çalıştırılması gibi bir erişim.</p>
+
+<p><strong>Düzenleme tarihi;</strong> dosya içeriğinin en son ne zaman değiştirildiğini belirtiyor.</p>
+
+<p><strong>Değişim tarihi;</strong> dosyanın meta verilerinin en son ne zaman değiştirildiğini belirtiyor. Örneğin dosyanın ismi değiştirildiyse bu tarih de değişecektir.</p>
+
+<p>Ayrıca bakın “birth” yani dosyanın ilk oluşturulduğu ile ilgili bir satır daha bulunuyor.</p>
+
+<p>Neticede gördüğünüz gibi <code class="language-plaintext highlighter-rouge">stat</code> komutu sayesinde dosyaların meta verilerini detaylı şekilde görüntüleyebiliyoruz.</p>
+
+<h1 id="sistem-hakkında-genel-bilgi-edinmek">Sistem Hakkında Genel Bilgi Edinmek</h1>
+
+<h2 id="lsb_release">lsb_release</h2>
+
+<p><code class="language-plaintext highlighter-rouge">lsb_release</code> komutu sayesinde mevcut dağıtım hakkında çeşitli bilgiler edinebiliyoruz. Komutumuzda yer alan “<strong>lsb</strong>” ifadesi “<strong>L</strong>inux <strong>S</strong>tandard <strong>B</strong>ase” ifadesinin kısalmasından geliyor. Linux Standard Base kısaca (LSB), Linux sistem yapısını standartlaştırmak için Linux Vakfı’nın organizasyon yapısı altında yürütülen bir projedir. LSB’ projesinin en temel amacı, Linux dağıtımları arasındaki uyumluluğu sağlamak için bir dizi açık standart geliştirmek ve bunların kullanımını teşvik etmektir. İşte biz de <code class="language-plaintext highlighter-rouge">lsb_release</code> komutu ile mevcut dağıtımımızın bu standartlar dahilindeki ismi ve sürümü gibi detayları öğrenebiliyoruz. Tüm bilgileri listelemek için <code class="language-plaintext highlighter-rouge">lsb_release -a</code> komutunu kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>lsb_release <span class="nt">-a</span>                                               
+No LSB modules are available.
+Distributor ID: Kali
+Description:    Kali GNU/Linux Rolling
+Release:        2022.1
+Codename:       kali-rolling
+</code></pre></div></div>
+
+<p>Bakın çıktılarda, dağıtıcı kimliği, kullandığım dağıtım, sürümü, kodadı gibi detaylar bastırıldı. Bu bilgiler mevcut dağıtım hakkında standart düzende bilgiler sunuyor. Buradaki bilgiler sayesinde mevcut dağıtımın tam olarak hangi sürüm olduğunu anlayabiliyorum.</p>
+
+<p>Aldığımız çıktının başındaki “lsb modülü bulunamadı” hatasına takılmayın. Bu hata <code class="language-plaintext highlighter-rouge">lsb_release</code> aracının kurulu olduğu ama çekirdek modülünün kurulu olmadığını söylüyor. Şart değil ama dilerseniz lsb çekirdek modülünü nasıl kurabileceğinizi araştırıp kolayca kurulum yapabilirsiniz.</p>
+
+<p>Ayrıca <code class="language-plaintext highlighter-rouge">lsb_release —help</code> komutu ile yardım bilgilerinde de görebileceğiniz gibi aslında yalnızca -a seçeneği yok. Çeşitli bilgileri ayrı ayrı bastırmamızı sağlayan farklı seçenekler de var. Eğer kabuk programlama sırasında bu bilgilere ayrı ayrı ihtiyacınız olan bir durumla karşılaşırsanız kullanabilirsiniz. Bunun dışında ben yalnızca gerektiğinde mevcut dağıtım bilgisini edinmek için <code class="language-plaintext highlighter-rouge">lsb_release -a</code> komutunu kullanıyorum.</p>
+
+<h2 id="uname">uname</h2>
+
+<p><code class="language-plaintext highlighter-rouge">uname</code> komutu mevcut işletim sistemi ve donanımı hakkında temel bilgiler sağlayan komuttur. Tüm temel bilgilerin hepsini tek seferde öğrenmek için <code class="language-plaintext highlighter-rouge">-a</code> seçeneğiyle birlikte kullanabiliyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">uname</span> <span class="nt">-a</span>
+Linux kali 5.15.0-kali3-amd64 <span class="c">#1 SMP Debian 5.15.15-2kali1 (2022-01-31) x86_64 GNU/Linux</span>
+</code></pre></div></div>
+
+<p>Buradaki çıktılara bakarak sırasıyla; çekirdek adını, hostname bilgisini yani mevcut cihazımızın ağ üzerinden iletişim kurarken kullandığı adı, sistemin çekirdek sürümünü, tam çekirdek versiyonunu, makinenin donanım mimarisini ve son olarak da işletim sisteminin adını öğrenebiliyoruz.</p>
+
+<p>Mevcut bulunduğumuz sistemi tanımak için yeteri kadar bilgi burada sunuluyor.</p>
+
+<p>Ayrıca isterseniz tek seferde bastırdığımız tüm bu bilgileri ayrı ayrı da bastırabilirsiniz. Seçenekleri görmek için <code class="language-plaintext highlighter-rouge">uname —help</code> komutunu kullanabilirsiniz. Neticede gördüğünüz gibi <code class="language-plaintext highlighter-rouge">uname</code> komutu üzerinden mevcut sistemimiz hakkında kolayca bilgi  edinebiliyoruz.</p>
+
+<h2 id="uptime-komutu">uptime Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">uptime</code> ifadesi Türkçe olarak “çalışma süresi” anlamına geliyor.</p>
+
+<p>Adından da anlaşılabileceği gibi <code class="language-plaintext highlighter-rouge">uptime</code> aracı, sistemin ne kadar süredir çalıştığı konusunda bilgi almamızı sağlayan bir araç. Hemen komutumuzu girip sonuçları üzerinden konuşalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">uptime
+ </span>02:16:40 up 19 min,  1 user,  load average: 0.06, 0.07, 0.09
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">uptime</code> komutunu tek başına seçenek belirtilmeden kullandığımızda sırasıyla;</p>
+
+<p>mevcut sistem saatini ,</p>
+
+<p>sistemin ne kadar süredir açık olduğunu,</p>
+
+<p>mevcut sistemde açık olan kullanıcı oturumu sayısı</p>
+
+<p>ve son 1, 5 ve 15 dakikanın sistem yük ortalamalarını veriyor.</p>
+
+<p>Buradaki yük ortalaması, sistemin 1 5 ve 15 dakikalık son periyottaki meşguliyetini ifade ediyor. Bu çıktılarda sizin sisteminizde yakın zamanda yani son 15 dakikadan son 1 dakikaya doğru yük miktarın arttığı görülüyorsa sistem yükünün artmakta olduğunu düşünebilirsiniz.</p>
+
+<p>Şu anda benim sistemin yük altında olmadığı için yani çoğunlukla bekleme modunda olduğu için buradaki değerler sıfıra yakın gözüküyor. Örneğin yük durumunu gözlemlemek <code class="language-plaintext highlighter-rouge">echo {1..999999}</code> şeklinde komutumuzu girip sistemi suni olarak biraz daha yük altında bırakabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">echo</span> <span class="o">{</span>1..9999999<span class="o">}</span>
+1 2 3 4 5 5 ....
+...
+..
+
+└─<span class="nv">$ </span><span class="nb">uptime                                                       
+ </span>02:19:35 up 22 min,  1 user,  load average: 0.13, 0.09, 0.09
+</code></pre></div></div>
+
+<p>Bakın yakın zamandaki yük oranı uzak zamana göre artış gösteriyor. Bu çıktı bize, yakın zamanda sistemin daha fazla yük altına girdiğini haber veriyor.</p>
+
+<p>Burada dikkat etmeniz gereken detay Linux’ta yük ortalamaları yalnızca CPU’lara değil, disk kaynaklarına olan talebi de yansıtıyor olması. Yani disk üzerindeki okuma yazma da sistem yükü ortalamasını etkiliyor. Elbette bu konu çok daha detayı barındırıyor ancak temel seviye için bu detaylar gerekli değil. Yine de daha fazla detay için <a href="https://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html">buradaki</a> blog yazısını okuyabilirsiniz.</p>
+
+<p>Özetleyecek olursak, eğer sizdeki çıktılarda sistem yükü benim ilk aldığım çıktıda olduğu gibi düşük veya 0 olarak gözüküyorsa, bu durum sisteminizin bu kısa periyotta genellikle beklemede olduğunun bilgisini veriyordur. Eğer yakın zaman aralığında artış görülüyorsa da bu sisteminizin gittikçe daha fazla yük altında kaldığına işaret ediyordur.</p>
+
+<p>Eğer <code class="language-plaintext highlighter-rouge">uptime</code> komutundaki bu gibi detayları görmek istemezsek yani bu çıktı yerine yalnızca sistemin ne kadar süredir açık olduğunu daha okunaklı şekilde görmek istersek “<strong>p</strong>retty” ifadesinin kısalması olan <code class="language-plaintext highlighter-rouge">p</code> seçeneğini de kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">uptime</span> <span class="nt">-p</span>                                                    
+up 31 minutes
+</code></pre></div></div>
+
+<p>Bakın yalnızca sistemin ne kadar süredir açık olduğunu daha güzel yani okunaklı şekilde bastırmış olduk.</p>
+
+<p>Eğer tarih olarak sistemin ne zaman başlatıldığını yani ilk açılış zamanı görmek istersek “<strong>s</strong>ince” ifadesinin kısaltması olan <code class="language-plaintext highlighter-rouge">s</code> seçeneğini kullanabiliyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">uptime</span> <span class="nt">-s</span>
+2023-06-27 01:56:41
+</code></pre></div></div>
+
+<p>Bakın sistemin ne zaman başlatıldığı tam tarih ve saat olarak bastırılmış oldu.</p>
+
+<p><code class="language-plaintext highlighter-rouge">uptime</code> komutu sistemin çalışma durumunu kontrol etmek için kullandığımız basit ama bilgi verici güzel bir araç. <code class="language-plaintext highlighter-rouge">uptime</code> hakkında bahsetmemiz gereken ekstra bir detay da bulunmuyor. Zaten yalnızca <code class="language-plaintext highlighter-rouge">-p</code> ve <code class="language-plaintext highlighter-rouge">-s</code> olmak üzere iki işlevsel seçeneği var. Unutmanız halinde yardım sayfasından seçeneklerin işlevlerini saniyeler içinde tekrar hatırlayabilirsiniz. Önemli olan <code class="language-plaintext highlighter-rouge">uptime</code> yani çalışma süresi komutunu biliyor olmanız. Zaten ismi de tam olarak işlevini tanımladığı için kolay kolay da unutmazsınız.</p>
+
+<h2 id="free-komutu">free Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">free</code> aracı, mevcut bellek kullanımı hakkında bilgi almak için kullandığımız bir araç. Herhangi bir seçenek olmadan doğrudan <code class="language-plaintext highlighter-rouge">free</code> komutunu kullandığımızda, mevcut bellek ve takas ile ilgili bilgileri kilobayt olarak konsola bastırıyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>free
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      803840     9596448        6652      544852     9884496
+Swap:         998396           0      998396
+</code></pre></div></div>
+
+<p>Bakın fiziksel ve takas alanı için sütunlar halinde pek çok detay bastırıldı. Zaten sütun başlıklarında buradaki miktarların tam olarak neyi temsil ettiği de açıkça belirtiliyor. Buradaki büyüklük birimleri kilobayt cinsinden. Eğer kilobayt yerine daha okunaklı şekilde çıktıları bastırmak istersek “<strong>h</strong>uman readable” ifadesinden gelen “<strong>h</strong>” seçeneğini kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>free <span class="nt">-h</span>
+               total        used        free      shared  buff/cache   available
+Mem:            10Gi       783Mi       9.2Gi       6.0Mi       532Mi       9.4Gi
+Swap:          974Mi          0B       974Mi
+</code></pre></div></div>
+
+<p>Tüm çıktılar çok daha okunaklı büyüklük birimleriyle bastırılmış oldu.</p>
+
+<p>Neticede gördüğünüz gibi <code class="language-plaintext highlighter-rouge">free</code> komutu sayesinde toplam bellek ve takas alanı hakkında ve ayrıca anlık olarak kullanılan ve boştaki bellek miktarları hakkında kolayca bilgi alabiliyoruz.</p>
+
+<p>Eğer tek seferliğine değil de belirli bir aralık belirterek bu istatistikleri görmek istersek <code class="language-plaintext highlighter-rouge">-s</code> seçeneği ile kaç saniyede bir bu değerlerin bastırılacağını da özel olarak belirtebiliriz. Ben denemek için <code class="language-plaintext highlighter-rouge">free -s 3</code> komutu ile 3 saniyelik aralık belirtiyorum. Biz durduruncaya kadar bu bilgiler 3 saniyede bir konsola bastırılacak. Durdurmak için <kbd>Ctrl</kbd> + <kbd>c</kbd> kısayolunu kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>free <span class="nt">-s</span> 3
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      798048     9602124        6652      544968     9890288
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797536     9602628        6652      544976     9890800
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797276     9602880        6652      544984     9891060
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797524     9602628        6652      544988     9890812
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797508     9602628        6652      545004     9890828
+Swap:         998396           0      998396
+
+^C
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi ben durduruncaya kadar 3 saniyede bir ilgili bilgileri konsona bastırmış oldu.</p>
+
+<p>Eğer istersek buradaki gibi yalnızca saniye aralığı belirtmek yerine basılma sayısını da tam olarak belirtebiliriz. Yani biz durdurana kadar değil bizim önceden belirttiğimiz sayı kadar çıktı basılır. Bunun için “<strong>c</strong>ount” yani “sayma” anlamındaki ifadenin kısaltmasından gelen <code class="language-plaintext highlighter-rouge">c</code> seçeneği kullanabiliriz. Ben <code class="language-plaintext highlighter-rouge">free -s 2 -c 4</code> komutu ile 2 saniye aralıkla 4 kez çıktıların bastırılmasını istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>free <span class="nt">-s</span> 2 <span class="nt">-c</span> 4                                               
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      796648     9603428        6652      545064     9891684
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      796896     9603176        6652      545068     9891436
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797144     9602924        6652      545072     9891188
+Swap:         998396           0      998396
+
+               total        used        free      shared  buff/cache   available
+Mem:        10945140      797136     9602924        6652      545080     9891196
+Swap:         998396           0      998396
+</code></pre></div></div>
+
+<p>2 saniye aralıkla yalnızca 4 kez bellek kullanımı hakkındaki son durum bastırılmış oldu.</p>
+
+<p>Bu seçenekler dışında <code class="language-plaintext highlighter-rouge">free</code> komutunun yardım sayfasında yer alan seçenekler de zaten standart kullanımdaki çıktıları sınırlamak veya genişletmek için kullanılan ek özelliklerdir. Dilerseniz buradaki seçenekler ile çıktıları istediğiniz formda bastırabilirsiniz.</p>
+
+<p>Ayrıca aldığımıza çıktılarda yer alan “shared” sütunu eskiye dönük uyumluluk için mevcut olan ve günümüzde geçerli kullanımı olmayan bir sütun. Buffer ve cache kavramlarının ne ifade ettiğini bilmiyorsanız ayrıca araştırıp öğrenebilirsiniz. Tam anlaşılmaları bu bölümde tam olarak açıklanamayacak kadar uzun sürebileceği için bu araştırma işini size bırakıyorum. Eğer profesyonel anlamda sistem yönetimiyle ilgili değilseniz bu detay sizin için zaten önemli değil. Diğer sütunlardaki veriler de oldukça açık şekilde “toplam”, “kullanılan” ve “boştaki” bellek miktarları hakkında bilgi sunuyor.</p>
+
+<h2 id="du-komutu">du Komutu</h2>
+
+<p><code class="language-plaintext highlighter-rouge">du</code> komutu “<strong>d</strong>isk <strong>u</strong>sage” yani “disk kullanımı” ifadesinin kısaltmasından geliyor. Bu araç sayesinde dosyalar veya dizinler tarafından kullanılan tahmini disk alanını öğrenebiliyoruz. Büyük miktarda disk alanı kaplayan dosya ve dizinleri bulmak için kullandığımız pratik bir araç.</p>
+
+<p><code class="language-plaintext highlighter-rouge">du</code> komutu herhangi bir seçenek veya argüman olmadan çalıştırıldığında, mevcut dizindeki ve alt dizinlerdeki tüm dosya ve klasörlerin disk kullanımını bayt cinsinden konsola bastırıyor. Ben şu an kendi ev dizinimdeyim. Denemek için yalnızca <code class="language-plaintext highlighter-rouge">du</code> yazıp komutumu onaylıyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du
+</span>4       ./.gnupg/private-keys-v1.d
+8       ./.gnupg
+8       ./.java/.userPrefs/burp
+12      ./.java/.userPrefs
+16      ./.java
+4       ./Templates
+4       ./linkler
+4       ./Music
+4       ./Videos
+4       ./yeni klasor
+4       ./yeni/y
+12      ./yeni
+..
+..
+..
+36      ./.cache/pip/wheels
+100     ./.cache/pip
+436     ./.cache/samba
+4       ./.cache/mesa_shader_cache
+8       ./.cache/sessions/thumbs-kali:0
+20      ./.cache/sessions
+4       ./.cache/obexd
+185048  ./.cache
+4       ./Documents/belgeler
+12      ./Documents
+8       ./Desktop/yeni-dizin
+12      ./Desktop
+175436  ./Downloads
+8       ./calısma
+4       ./ada
+4       ./Pictures/bulbeni
+20      ./Pictures/Yeni Klasor/yeni-isim
+24      ./Pictures/Yeni Klasor
+3020    ./Pictures
+389344  <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Çıktılar çok uzun olduğu için buraya kısaltarak ekledim fakat alt dizinler de dahil tüm dizinlerdeki klasörlerin bastırıldığı ve en altta toplam disk boyutunun verdiğini görebiliyoruz.</p>
+
+<p>Fark ettiyseniz klasörler içerisinde yer alan dosyaların isimleri bastırılmadı ama tabii ki bu dosyaların boyutları bulundukları klasörler aracılığıyla burada belirtiliyor. Bu sayede çıktılar çok uzamadan mevcut dizin altındaki tüm klasörlerin büyüklüklerini listeleyebiliyoruz.</p>
+
+<p>Yine de ev dizinimde çalıştırdığım için aldığımız bu çıktılar uzun olduğu için size karmaşık gelmiş olabilir. Daha yalın bir çıktılar üzerinden konuşsak daha iyi olacak.</p>
+
+<p>Örneğin ben “<strong><em>isimler.txt</em></strong>” dosyasının boyutunu öğrenmek üzere <code class="language-plaintext highlighter-rouge">du isimler.txt</code> komutunu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du </span>isimler.txt                                               
+8       isimler.txt
+</code></pre></div></div>
+
+<p>Bakın dosyanın kaç kilobayt disk alanı kapladığı bastırıldı. Dilersek birden fazla dosyanın boyutuna da kolayca bakabiliriz. Hatta <code class="language-plaintext highlighter-rouge">-h</code> seçeneğini eklersek büyüklüklerin gösterimi bakımından daha okunaklı çıktılar da elde edebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> isimler.txt liste1 ~/Downloads/linux.zip 
+8.0K    isimler.txt
+4.0K    liste1
+58M     /home/kali/Downloads/linux.zip
+</code></pre></div></div>
+
+<p>Bakın dosyanın tam dizin adresini belirttiğimiz sürece sorunsuzca istediğimiz dosyaların boyutlarını öğrenebiliyoruz. Dosya üzerinde kullanımı gayet basit ve yalın. Birde klasörler üzerinde gözlemleyelim. Ben gözlemleyebilmek için içerisinde web sitesinin dosyalarını ve iç içe klasörler barındıran Downloads dizini atlındaki “linux-dersleri” klasörünün disk üzerinde kapladığı alanı <code class="language-plaintext highlighter-rouge">du -h ~/Downloads/linux-dersleri</code> komutu ile sorguluyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> ~/Downloads/linux-dersleri                             
+736K    /home/kali/Downloads/linux-dersleri/docs/temel_linux
+748K    /home/kali/Downloads/linux-dersleri/docs
+208K    /home/kali/Downloads/linux-dersleri/css
+1.3M    /home/kali/Downloads/linux-dersleri/img/10- Süreç İşlemleri
+3.1M    /home/kali/Downloads/linux-dersleri/img/1- Komut Satırı
+1.5M    /home/kali/Downloads/linux-dersleri/img/9- Kullanıcı İşlemleri
+120K    /home/kali/Downloads/linux-dersleri/img/0- Gerekli Ortamın Kurulması
+764K    /home/kali/Downloads/linux-dersleri/img/5- Dizin İşlemleri
+420K    /home/kali/Downloads/linux-dersleri/img/20- Log Dosyaları
+512K    /home/kali/Downloads/linux-dersleri/img/2- Yardım Alma Komutları
+5.6M    /home/kali/Downloads/linux-dersleri/img/Linux Nedir
+344K    /home/kali/Downloads/linux-dersleri/img/12- Çalışma Seviyeleri<span class="o">(</span>Runlevels<span class="o">)</span>
+320K    /home/kali/Downloads/linux-dersleri/img/15- Joker Karakterler
+1.5M    /home/kali/Downloads/linux-dersleri/img/11-Disk İşlemleri
+2.5M    /home/kali/Downloads/linux-dersleri/img/14- Güncelleme Kurma Kaldırma İşlemleri
+1.3M    /home/kali/Downloads/linux-dersleri/img/3- Bilgi Alma Komutları
+396K    /home/kali/Downloads/linux-dersleri/img/19- Zamanlanmış Görevler
+1.4M    /home/kali/Downloads/linux-dersleri/img/18- Konsol Üzerinden Dosya İndirmek
+1.2M    /home/kali/Downloads/linux-dersleri/img/6- Dosya İşlemleri
+11M     /home/kali/Downloads/linux-dersleri/img/menu
+2.6M    /home/kali/Downloads/linux-dersleri/img/17- Vim Editörü
+424K    /home/kali/Downloads/linux-dersleri/img/7- Dosya Arşivleme
+3.1M    /home/kali/Downloads/linux-dersleri/img/4 <span class="nt">-Linux</span> Dosya Sistemi Hiyerarşisi
+508K    /home/kali/Downloads/linux-dersleri/img/8- Erişim Yetkileri
+324K    /home/kali/Downloads/linux-dersleri/img/13- Sembolik Link Ve Katı Link
+21M     /home/kali/Downloads/linux-dersleri/img/21-Sistem Görünümünü Özelleştirme
+836K    /home/kali/Downloads/linux-dersleri/img/16- Ağ Komutları
+61M     /home/kali/Downloads/linux-dersleri/img
+1.1M    /home/kali/Downloads/linux-dersleri/fonts
+240K    /home/kali/Downloads/linux-dersleri/js
+63M     /home/kali/Downloads/linux-dersleri
+</code></pre></div></div>
+
+<p>Şimdi çıktılara bakalım. Bakın en altta klasörün içindeki tüm dosya ve klasörlerle birlikte diskte kapladığı toplam disk alanı basılmış. Sonda başa doğru da alt klasörlerin disk üzerindeki boyutları yer alıyor. Her dizin yalnızca kendi içindeki dosya ve klasörlerin toplam boyutunu veriyor, bu şekilde içe içe olan tüm dizinlerin boyut bilgisi sırasıyla bastırılmış oluyor. Neticede gördüğünüz gibi <code class="language-plaintext highlighter-rouge">du</code> komutu sayesinde bir klasör içinde tüm dizinlerin disk üzerinde toplam kapladıkları alan hakkında kolayca bilgi alabildik. Fakat dikkatinizi çektiyse dosyaların diskte kapladığı alan toplam alana ekleniyor olsa da dosya isimleri yine bastırılmadı.</p>
+
+<p>Eğer klasörler ile birlikte dosyaların da bastırılmasını istersek <code class="language-plaintext highlighter-rouge">a</code> seçeneği ile tüm içeriğin bastırılmasını söyleyebiliriz. Ben komutumu çağırıp, <code class="language-plaintext highlighter-rouge">a</code> seçeneği ekleyip tekrar giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-ha</span> ~/Downloads/linux-dersleri                            
+4.0K    /home/kali/Downloads/linux-dersleri/menu.html
+4.0K    /home/kali/Downloads/linux-dersleri/bildirim.html
+20K     /home/kali/Downloads/linux-dersleri/hakkinda.html
+..
+4.0K    /home/kali/Downloads/linux-dersleri/js/main.js
+4.0K    /home/kali/Downloads/linux-dersleri/js/fluidtextresizer.js
+4.0K    /home/kali/Downloads/linux-dersleri/js/script.js
+240K    /home/kali/Downloads/linux-dersleri/js
+24K     /home/kali/Downloads/linux-dersleri/sw_sayfa.js
+44K     /home/kali/Downloads/linux-dersleri/liste.html
+63M     /home/kali/Downloads/linux-dersleri
+</code></pre></div></div>
+
+<p>Çıtılar uzun olduğu için ben kısaltarak buraya ekledim fakat gördüğünüz gibi <code class="language-plaintext highlighter-rouge">a</code> seçeneği sayesinde klasörün içindeki tüm dosya ve dizinlerin disk üzerinde kapladıkları alanın bilgisini kolayca bu çıktıdan öğrenebiliyoruz.</p>
+
+<p>İlgili dizindeki tüm içeriği bastırmak dışında ayrıca dilersek yalnızca belirttiğimiz klasörün boyutunu öğrenmek için “<strong>s</strong>ummarize” yani “özetlemek” ifadesinin kısalmasından gelen <code class="language-plaintext highlighter-rouge">s</code> seçeneğini de kullanabiliriz. Ben yine “<strong><em>linux-derlseri</em></strong>” klasörü üzerinde denemek istiyorum. Bakın yalnızca bu klasörün toplam boyutunu bastırdım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-hs</span> ~/Downloads/linux-dersleri                           
+63M     /home/kali/Downloads/linux-dersleri
+</code></pre></div></div>
+
+<p>Bunlar dışında eğer istersek spesifik olarak belirttiğimiz birden fazla dosya ve klasörün toplam disk boyutunu da öğrenebiliriz. Normalde örneğin ben ev dizinimde ismi büyük “<strong>D</strong>” ile başlayan tüm içeriklerin <code class="language-plaintext highlighter-rouge">du</code> aracı ile boyut bilgisini sorgularsam hepsinin ayrı ayrı büyüklükleri bastırılacak. Hemen denemek için özet ve okunaklı çıktı almak üzere <code class="language-plaintext highlighter-rouge">du -sh ~/D*</code> şeklinde komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-sh</span> ~/D<span class="k">*</span>                                                  
+12K     /home/kali/Desktop
+12K     /home/kali/Documents
+234M    /home/kali/Downloads
+</code></pre></div></div>
+
+<p>Bakın büyük “<strong>D</strong>” karakteri ile başlayan içeriklerin hepsinin ayrı ayrı büyüklükleri konsola bastırıldı. Eğer bu içeriklerin toplam boyutlarının da bastırılmasını istiyorsak komutumuza <code class="language-plaintext highlighter-rouge">c</code> seçeneğini de ekleyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-shc</span> ~/D<span class="k">*</span>                                                 
+12K     /home/kali/Desktop
+12K     /home/kali/Documents
+234M    /home/kali/Downloads
+234M    total
+</code></pre></div></div>
+
+<p>Bakın bu kez en alt satırda, tüm içeriklerin toplam boyutu da özellikle bastırılmış oldu.</p>
+
+<p>Neticede farklı örnekler üzerinden de bizzat teyit ettiğimiz gibi dosya ve klasörlerimizin disk üzerinde kapladıkları alan bilgisini öğrenmek için <code class="language-plaintext highlighter-rouge">du</code> komutunu çok kolay şekilde kullanabiliyoruz. Ayrıca tabii ki ben <code class="language-plaintext highlighter-rouge">du</code> aracının tüm özelliklerinden yani tüm seçeneklerinden bahsetmedim. Eğer  yardım sayfasına bakacak olursanız daha fazla kullanım seçeneği olduğunu da görebilirsiniz. Ancak benim ele aldıklarım dışındaki diğer seçenekler pek sık tercih edilmediği için ve artık <code class="language-plaintext highlighter-rouge">du</code> aracının temel çalışma yapısını öğrendiğiniz için ben tüm seçenekleri tek tek açıklama gereği duymuyorum tabii ki. Dilerseniz zaten temelde nasıl çalıştığını bildiğiniz için buradaki ek seçenekleri keşfedebilirsiniz. Sizin de bildiğiniz gibi yardım sayfaları hep bir komut uzağınızda.</p>
+
+<p>Ben son olarak sistemimize bağlı bulunan bazı aygıtları listelememizi sağlayan birkaç bilgi alma komutundan da bahsedip bu bölümü sonlandırmak istiyorum.</p>
+
+<h2 id="lsusb--lspci--lshw">lsusb &amp; lspci &amp; lshw</h2>
+
+<p>Sistemimize bağlı bulunan USB aygıtları listelemek istersek, <code class="language-plaintext highlighter-rouge">lsusb</code> komutun kullanabiliyoruz. Zaten komutun ismi, işlevini gayet iyi biçimde açıklıyor. Hemen <code class="language-plaintext highlighter-rouge">lsusb</code> şeklinde komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>lsusb
+Bus 001 Device 002: ID 80ee:0021 VirtualBox USB Tablet
+Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+</code></pre></div></div>
+
+<p>Bakın benim sisteminde şu anda bu aygıtlar USB ile bağlı gözüküyor. Ben sanal makine üzerinden çalıştığım için çok aygıt listelenmedi ancak normalde USB ile bağlı olan aygıtlar burada listeleniyor. Örneğin USB üzerinden harici bir wifi kartı taktığınızda aygıt hakkında buradan bilgi alabilirsiniz. USB wifi aygıtınız sistem tarafından tanınmıyorsa, aygıtınızı takıp <code class="language-plaintext highlighter-rouge">lsusb</code> komutu ile bu liste üzerinden aygıtın buradaki ID sine bakabilirsiniz. Bu id üzerinden internette araştırma yaparak uygun aygıt sürücüsü olup olmadığını sorgulayabilirsiniz. Kullanmakta olduğunu dağıtıma kurmak için forumlarda mutlaka daha önce pek çok kişi soru sorup yanıt almıştır. Eğer sorulmadıysa siz de sorabilirsiniz. Ayrıca github gibi harici kaynaklardan da aygıt sürücülerini araştırabilirsiniz.</p>
+
+<p>Neticede <code class="language-plaintext highlighter-rouge">lsusb</code> komutu sayesinde gerektiğinde sistemimize bağlı olan USB aygıtları hakkında bilgi almamız mümkün oluyor.</p>
+
+<p>Benzer şekilde <strong>pci veriyolu</strong> üzerinden sistemimize bağlı aygıtları görüntülemek için de <code class="language-plaintext highlighter-rouge">lspci</code> komutunu kullanabiliyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>lspci
+00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC <span class="o">[</span>Natoma] <span class="o">(</span>rev 02<span class="o">)</span>
+00:01.0 ISA bridge: Intel Corporation 82371SB PIIX3 ISA <span class="o">[</span>Natoma/Triton II]
+00:01.1 IDE interface: Intel Corporation 82371AB/EB/MB PIIX4 IDE <span class="o">(</span>rev 01<span class="o">)</span>
+00:02.0 VGA compatible controller: VMware SVGA II Adapter
+00:03.0 Ethernet controller: Intel Corporation 82540EM Gigabit Ethernet Controller <span class="o">(</span>rev 02<span class="o">)</span>
+00:04.0 System peripheral: InnoTek Systemberatung GmbH VirtualBox Guest Service
+00:05.0 Multimedia audio controller: Intel Corporation 82801AA AC<span class="s1">'97 Audio Controller (rev 01)
+00:06.0 USB controller: Apple Inc. KeyLargo/Intrepid USB
+00:07.0 Bridge: Intel Corporation 82371AB/EB/MB PIIX4 ACPI (rev 08)
+00:0d.0 SATA controller: Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [AHCI mode] (rev 02)
+</span></code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">lsusb</code> komutuna benzer şekilde bu kez <strong>pci</strong> bağlantısı olan aygıtlar listelenmiş oldu.</p>
+
+<p>Eğer sisteme bağlı bulunan bütün aygıtları listelemek istersek de <code class="language-plaintext highlighter-rouge">lshw</code> komutunu kullanabiliyoruz. Buradaki “<strong>hw”</strong> ifadesi “<strong>h</strong>ard<strong>w</strong>are” yani “donanım” ifadesinin kısaltmasından geliyor. Komutumuzu girip sonuçlar üzerine tekrar konuşalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>lshw
+bash: /usr/bin/lshw: No such file or directory
+</code></pre></div></div>
+
+<p>Benim sistemimde bu araç yüklü değişmiş. Kurmak için <code class="language-plaintext highlighter-rouge">sudo apt install lshw -y</code> komutunu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>lshw
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  lshw
+0 upgraded, 1 newly installed, 0 to remove and 1829 not upgraded.
+Need to get 300 kB of archives.
+After this operation, 941 kB of additional disk space will be used.
+Get:1 http://http.kali.org/kali kali-rolling/main amd64 lshw amd64 02.19.git.2021.06.19.996aaad9c7-2+b1 <span class="o">[</span>300 kB]
+Fetched 300 kB <span class="k">in </span>11s <span class="o">(</span>26.7 kB/s<span class="o">)</span>
+Selecting previously unselected package lshw.
+<span class="o">(</span>Reading database ... 291347 files and directories currently installed.<span class="o">)</span>
+Preparing to unpack .../lshw_02.19.git.2021.06.19.996aaad9c7-2+b1_amd64.deb ...
+Unpacking lshw <span class="o">(</span>02.19.git.2021.06.19.996aaad9c7-2+b1<span class="o">)</span> ...
+Setting up lshw <span class="o">(</span>02.19.git.2021.06.19.996aaad9c7-2+b1<span class="o">)</span> ...
+Processing triggers <span class="k">for </span>kali-menu <span class="o">(</span>2021.4.2<span class="o">)</span> ...
+Processing triggers <span class="k">for </span>man-db <span class="o">(</span>2.9.4-4<span class="o">)</span> ...
+</code></pre></div></div>
+
+<p>Tamamdır aracım kuruldu. Şimdi tekrar <code class="language-plaintext highlighter-rouge">lshw</code> komutu ile tüm donanımları listelemeyi deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span>lshw
+WARNING: you should run this program as super-user.
+kali                        
+    description: Computer
+    width: 64 bits
+    capabilities: smp vsyscall32
+  <span class="k">*</span><span class="nt">-core</span>
+       description: Motherboard
+       physical <span class="nb">id</span>: 0
+     <span class="k">*</span><span class="nt">-memory</span>
+          description: System memory
+          physical <span class="nb">id</span>: 0
+          size: 10GiB
+     <span class="k">*</span><span class="nt">-cpu</span>
+          product: Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> i7-6700 CPU @ 3.40GHz
+          vendor: Intel Corp.
+          physical <span class="nb">id</span>: 1
+          bus info: cpu@0
+          version: 6.94.3
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp x86-64 constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 movbe popcnt aes rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase bmi1 bmi2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
+          configuration: <span class="nv">microcode</span><span class="o">=</span>4294967295
+     <span class="k">*</span><span class="nt">-pci</span>
+          description: Host bridge
+          product: 440FX - 82441FX PMC <span class="o">[</span>Natoma]
+          vendor: Intel Corporation
+          physical <span class="nb">id</span>: 100
+          bus info: pci@0000:00:00.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+        <span class="k">*</span><span class="nt">-usb</span>
+             description: USB controller
+             product: KeyLargo/Intrepid USB
+             vendor: Apple Inc.
+             physical <span class="nb">id</span>: 6
+             bus info: pci@0000:00:06.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: ohci bus_master cap_list
+             configuration: <span class="nv">driver</span><span class="o">=</span>ohci-pci <span class="nv">latency</span><span class="o">=</span>64
+             resources: irq:22 memory:f0804000-f0804fff
+        <span class="k">*</span><span class="nt">-bridge</span>
+             description: Bridge
+             product: 82371AB/EB/MB PIIX4 ACPI
+             vendor: Intel Corporation
+             physical <span class="nb">id</span>: 7
+             bus info: pci@0000:00:07.0
+             version: 08
+             width: 32 bits
+             clock: 33MHz
+             capabilities: bridge
+             configuration: <span class="nv">driver</span><span class="o">=</span>piix4_smbus <span class="nv">latency</span><span class="o">=</span>0
+             resources: irq:9
+  <span class="k">*</span><span class="nt">-input</span>:0
+       product: AT Translated Set 2 keyboard
+       physical <span class="nb">id</span>: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       logical name: input0::capslock
+       logical name: input0::numlock
+       logical name: input0::scrolllock
+       capabilities: i8042
+WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
+</code></pre></div></div>
+
+<p>Çıktıları kısaltarak vermiş olmama karşın farlı kategoriler altında bilgisayara bağlı bulunan aygıtların listelendiğini görebiliyoruz.</p>
+
+<p>Ayrıca benim kısaltmış olmam dışında eğer sizin aldığınız çıktılarda aygıtlar eksikse, aracınızı <code class="language-plaintext highlighter-rouge">sudo lshw</code> komutuyla yetkili şekilde çalıştırmayı deneyebilirsiniz. Tabii ki bu bilgiler sürekli olarak ihtiyacımız olacak türden bilgiler de değil. Yalnızca aygıtınızla ilgili sorun çözmeniz gerektiğinde size bilgi vermesi için veya belki forumlarda destek isterken kullanabileceğiniz basit işlevsel bir araç yalnızca.</p>
+
+<p>En nihayetinde bence komut satırı üzerinden mevcut sistemin aygıtları hakkında bilgi almak için bu bahsetmiş olduğumuz komutlar çoğu durumda yeterli.</p>
+
+<p>Ben özellikler değinmeyeceğim ama hem bu bahsetmiş olduğumuz komutların ek seçenekleri hem de ayrıca bir çok aygıt hakkında bilgi sunan ek komutlar da mevcut. Merak ediyorsanız biraz araştırma ile diğer komutları ve seçeneklere kolayca ulaşabilirsiniz. Örneğin bizim bahsetmiş olduğumuz komutların yardım sayfalarına bakarak diğer seçenekler hakkında bilgi sahibi olup, sonuçlarını bizzat test ederek gözlemleyebilirsiniz.</p>
+
+<p>Bu bölümde ele aldığımız komutlar genel bilgi alma komutları olduğu için çok fazla üzerine düşüp uzun açıklamalar yapmak istemedim çünkü pek çok farklı türde bilgi sunan komutları ele aldığımız için detaylıca bahsetmeye kalksaydık bu bölüm çok uzun sürebilirdi. Üstelik çoğu ek araç temel sistem yönetimi için bilmenizin şart olmadığı ek bilgi araçları. Ben sadece en temel bilgi alma komutlarının en temel işlevlerini odaklandım. Bu sayede daha fazlası için gerektiğinde yardım sayfaları ve internet araştırması ile tüm sorularınıza yanıt bulabilirsiniz.</p>
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div align="right" class="col-10">
+              <div class="mb-1 text-muted"><strong>Önceki</strong></div>
+              <p class="card-text">Metin Editörü Kullanımı</p>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/metin-editoru/" title="Metin Editörü Kullanımı" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Bilgi Alma Komutları</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/bilgi-alma-komutlar%C4%B1/" title="Bilgi Alma Komutları" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#tarih-ve-saat-hakkında-bilgi-edinme">Tarih ve Saat Hakkında Bilgi Edinme</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#date-komutu">date Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#cal-komutu">cal Komutu</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#dosyalar-hakkında-bilgi-edinmek">Dosyalar Hakkında Bilgi Edinmek</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#which-komutu">which Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#type-komutu--command--builtin-komutları">type Komutu | command &amp; builtin Komutları</a></li>
+<li class="toc-entry <hh2"><a href="#file-komutu">file Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#stat-komutu">stat Komutu</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#sistem-hakkında-genel-bilgi-edinmek">Sistem Hakkında Genel Bilgi Edinmek</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#lsb_release">lsb_release</a></li>
+<li class="toc-entry <hh2"><a href="#uname">uname</a></li>
+<li class="toc-entry <hh2"><a href="#uptime-komutu">uptime Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#free-komutu">free Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#du-komutu">du Komutu</a></li>
+<li class="toc-entry <hh2"><a href="#lsusb--lspci--lshw">lsusb &amp; lspci &amp; lshw</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Arşivleme & Sıkıştırma\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/ar%C5%9Fivleme-s%C4%B1k%C4%B1%C5%9Ft%C4%B1rma/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/ar%C5%9Fivleme-s%C4%B1k%C4%B1%C5%9Ft%C4%B1rma/&title=Arşivleme & Sıkıştırma&summary=\"Arşivleme & Sıkıştırma\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>

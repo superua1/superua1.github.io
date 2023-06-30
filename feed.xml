@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-30T12:22:57+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Linux Eğitimi</title><subtitle>Topluluğun gücü ile reklamsız ve ücretsiz  Türkçe içeriğe katkı sunmak üzere oluşturulmuş bir platformuz.</subtitle><entry><title type="html">Linux Üzerinde Regex Kullanımı</title><link href="http://localhost:4000/linux-regex" rel="alternate" type="text/html" title="Linux Üzerinde Regex Kullanımı" /><published>2023-06-17T00:00:00+03:00</published><updated>2023-06-17T00:00:00+03:00</updated><id>http://localhost:4000/linux-regex</id><content type="html" xml:base="http://localhost:4000/linux-regex"><![CDATA[<p>Regex, “<strong>reg</strong>ular <strong>ex</strong>pressions” yani “düzenli ifadeler” kısaltmasından gelen bir tanımlama. Ayrıca “regexp” olarak da duymuş olabilirsiniz. Regex sayesinde spesifik olarak istediğimiz türdeki veriler ile eşleşme sağlayacak şablonlar tanımlayabiliyoruz. Böylelikle metinsel verileri filtrelememiz de mümkün oluyor.</p>
+
+<p>Linux sisteminde regex yaklaşımını, <code class="language-plaintext highlighter-rouge">sed</code> <code class="language-plaintext highlighter-rouge">awk</code> <code class="language-plaintext highlighter-rouge">grep</code> <code class="language-plaintext highlighter-rouge">find</code> gibi çeşitli filtreleme araçları üzerinden kullanabiliyoruz. Söz konusu regex’in Linux üzerinde kullanımı söz konusu olduğunda da temelde iki tür Regex çeşidi mevcut:</p>
+
+<ul>
+  <li><strong>Basit Regex:</strong> POSIX Basic Regular Expression (BRE)</li>
+  <li><strong>Genişletilmiş Regex:</strong> POSIX Extended Regular Expression (ERE)</li>
+</ul>
+
+<h2 id="posix-nedir-">POSIX Nedir ?</h2>
+
+<p>Öncelikle tanımlarda geçen POSIX kavramına açıklık getirecek olursak; POSIX, “Unix için Taşınabilir İşletim Sistemi Arayüzü” ifadesinin kısaltmasından gelen bir standart. Unix benzeri işletim sistemleri için ortak bir arayüz ve davranış tanımlayan bir dizi standardı temsil ediyor. Bu oluşum sayesinde tüm sistemler ortak yaklaşımları takip edip standart ekosisteme dahil olabiliyor. Yani en özet haliyle POSIX, uymak isteyenler için ortak standartlar belirleyip yayınlayan bir oluşum. Linux sistemlerinin bileşenleri de çoğunlukla bu standarda uygun geliştiriliyor. Daha fazla bilgi için buraya göz atabilirsiniz.</p>
+
+<h2 id="hangi-regex-">Hangi Regex ?</h2>
+
+<p>İki çeşit olmasına karşın Linux sistemindeki pek çok araç genellikle yalnızca basit regex(BRE) yaklaşımının bir kısmını destekliyor. Eğer tam olarak “POSIX Basic Regular Expression (BRE)” şeklinde internet üzerinde araştırma yapacak olursanız, basit regex için tanımlı olan pek çok metakarakter olduğunu görebilirsiniz.</p>
+
+<h3 id="metakarakter-nedir-">Metakarakter Nedir ?</h3>
+
+<p>Metakarakterler, ilgili işlevi temsil eden özel karakterler verilen isim. Örneğin Regex için yıldız işareti, herhangi bir karakteri kapsama anlamına gelen bir metakarakter. Regex çeşidine göre bu metakarakterin sayısı da değişiyor. Yeri geldiğinde bu karakterin üzerinde ayrıca duruyor olacağız.</p>
+
+<p>Bu metakarakterler sayesinde çeşitli şablonlar oluşturabiliyoruz. Fakat araçların hızlı çalışabilmesi için kimi araçlar tüm basit regex kurallarını kontrol etmekle vakit kaybetmek istemediği için basit regex kurallarının da yalnızca belirli bir kısmını destekleyebiliyor. Dolayısıyla kullandığınız aracın hangi tür regex’i desteklediği ve bu regex’in de hangi kurallarını yani hangi metakarakterlerini tanıdığını ilgili aracın yardım sayfalarından kontrol etmeniz gerekebilir.</p>
+
+<p>Bu durumun farkında olmanız önemli çünkü Linux sistemi kendi içerisinde pek çok farklı amaç için pek çok farklı aracı bulunduruyor. Araçlar da kendi işlevlerini yerine getirebilmek için çoğunlukla verimli olduğunu düşündükleri yaklaşımlar doğrultusunda geliştiriliyorlar. Bu sebeple Linux sisteminde kullanacağınız bir aracının regex kurallarının hangilerini desteklediğini öğrenmenin en doğru yolu, kullandığınız aracın manual gibi yardım sayfalarına bakmaktan geçiyor. Aksi halde neden tüm regex şablonlarının tüm araçlarda çalışmadığını anlamlandırmada sorun yaşamanız kaçınılmaz.</p>
+
+<h2 id="basit-regex-ve-genişletilmiş-regex">Basit Regex ve Genişletilmiş Regex</h2>
+
+<p>Basit ve genişletilmiş regex arasındaki tek fark, birkaç özel karakterin davranışıdır. <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterleri farkı oluşturuyor.</p>
+
+<p>Temel (BRE) sözdiziminde, bu karakterlerin önüne bir ters eğik çizgi (‘<code class="language-plaintext highlighter-rouge">\</code>’) eklenmedikçe özel bir anlamı yoktur; Genişletilmiş (ERE) sözdiziminde ise tersine çevrilir: bu karakterler, önlerinde ters eğik çizgi (‘<code class="language-plaintext highlighter-rouge">\'</code>) olmadıkça özeldir.</p>
+
+<p>Kullandığınız araca göre basit veya genişletilmiş regex karakterlerinin dikkate alınma durumlarını belirtmek için özel bir seçenek belirtmeniz gerekebilir. Örneğin <code class="language-plaintext highlighter-rouge">grep</code> aracı varsayılan olarak basit regex destekliyorken, genişletilmiş regex’i dikkate alması için <code class="language-plaintext highlighter-rouge">-E</code> seçeneği ile bu durumu özellikle belirtmemiz gerekiyor.</p>
+
+<p>Basit ile genişletilmiş regex arasındaki farkı net biçimde görmek için örneğin önceki karakteri bir veya daha fazla kez temsil eden artı <code class="language-plaintext highlighter-rouge">+</code> işaretinin kullanımını ele alabiliriz.</p>
+
+<p><strong>Basit Regex:</strong></p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/1.png" alt="1.png" class="responsive" /></p>
+
+<p>Bakın gördüğünüz gibi basit regex üzerinde artı işareti tek başına bir anlam ifade etmediği için <code class="language-plaintext highlighter-rouge">echo</code> aracının çıktısındaki artı <code class="language-plaintext highlighter-rouge">+</code> işareti ile doğrudan eşleşme sağlayabildik. Basit genişletmede artı işaretinin özel anlamını kullanmak istediğimizde bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> eklememiz gerek.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/2.png" alt="2.png" class="responsive" /></p>
+
+<p>Bakın artı işaretinden önce kullandığım “a” karakterinin tekrarı olmadığı için hiç bir çıktı almadık çünkü basit regex artı <code class="language-plaintext highlighter-rouge">+</code> işaretinin bu fonksiyonunu kullandığı için eşleşme de sağlanamadı.</p>
+
+<p><strong>Genişletilmiş Regex:</strong></p>
+
+<p>Şimdi genişletilmiş regex üzerinde aynı işlemi denemek üzere <code class="language-plaintext highlighter-rouge">-E</code> seçeneğini de ekleyip komutumuzu girelim.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/3.png" alt="3.png" class="responsive" /></p>
+
+<p>Bakın bu kez herhangi bir çıktı almadık, çünkü genişletilmiş genişletme kuralına göre artı işaretinden önceki karakterin tekrarı olması durumunda eşleşme sağlanacaktı. Yani “a” karakterinden hemen sonra yine “a” karakteri bulunsaydı çıktı alacaktık.</p>
+
+<p>Şimdi bu genişletilmiş regex kuralının bu özel artı <code class="language-plaintext highlighter-rouge">+</code> karakterini görmezden gelmesi için ters slash <code class="language-plaintext highlighter-rouge">\</code> karakteri ile komutumuzu tekrar girelim.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/4.png" alt="4.png" class="responsive" /></p>
+
+<p>Bakın artı işareti sıradan bir karakter olarak görüldüğü için eşleşme sağlandı ve çıktımızı aldık.</p>
+
+<p>Basit ve genişletilmiş regex arasındaki en temel fark da zaten bu. Basit regex ters slash <code class="language-plaintext highlighter-rouge">\</code> karakterini genişletmeleri uygulamak için kullanıyorken, genişletilmiş regex ise tersi şekilde genişletmeleri görmezden gelmek için kullanıyor. Hatta kesin olarak teyit etmek için “aab=c” verisi üzerinde aynı işlemi tekrar edip, hangi genişletmenin ne zaman uygulandığına göz atabilirsiniz.</p>
+
+<p><strong>Basit Regex:</strong></p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/5.png" alt="5.png" class="responsive" /></p>
+
+<p><strong>Genişletilmiş Regex:</strong></p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/6.png" alt="6.png" class="responsive" /></p>
+
+<p>Artı işareti kendisinden önceki karakterin tekrar edip etmediğini kontrol ettiği için sonuçlarımız yukarıdaki gibi oldu. Basit ve genişletilmiş regex üzerindeki bu farkın yalnızca <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakteri üzerinde geçerli olduğunu unutmayın. Diğer karakterler için bu fark geçerli değil.</p>
+
+<h1 id="basit-regex-sözdizimi-ve-metakarakterleri">Basit Regex Sözdizimi ve Metakarakterleri</h1>
+
+<h2 id="yıldız-">Yıldız: <code class="language-plaintext highlighter-rouge">*</code></h2>
+
+<p>Bir önceki karakterin sıfır veya daha fazla kez tekrarlandığı desenleri temsil eder.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/7.png" alt="7.png" class="responsive" /></p>
+
+<p>Bakın “a*” tanımı sayesinde “a” karakterinden sonra tekrar eden tüm “a” karakterleri desen eşleşmesine dahil oldu.</p>
+
+<p>Eğer tam olarak “a*” karakterini filtrelemek istersem yıldız karakterinin görmezden gelinmesi için bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> karakterini kullanabilirim.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/8.png" alt="8.png" class="responsive" /></p>
+
+<p>Not: Basit genişletme üzerinde yalnızca <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterleri istisnadır. Bu karakterlerin özel anlamları dahilinde genişletmeleri için öncelerinde ters slash <code class="language-plaintext highlighter-rouge">\</code> kullanmak gerekir.</p>
+
+<h2 id="nokta-">Nokta: <code class="language-plaintext highlighter-rouge">.</code></h2>
+
+<p>Yeni satır dahil herhangi bir karakterle eşleşir.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/9.png" alt="9.png" class="responsive" /></p>
+
+<p>Eğer tam olarak “a.” karakterini filtrelemek istersem nokta karakterinin görmezden gelinmesi için bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> karakterini kullanabilirim.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/10.png" alt="10.png" class="responsive" /></p>
+
+<h2 id="şapka-">Şapka: <code class="language-plaintext highlighter-rouge">^</code></h2>
+
+<p>Satırın başında bulunan desen eşleşmeleri içi kullanılır.</p>
+
+<p>Örneğin “<strong><em>/etc/passwd</em></strong>” dosyasındaki satırlardan, başında “kali” ifadesi geçenleri filtrelemek için kullanabiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/11.png" alt="11.png" class="responsive" /></p>
+
+<p>Gördüğünüz gibi yalnızca satırın başında bulunan “kali” ifadesi filtrelendi. Teyit etmek istersek şapka işareti olmadan tekrar girebiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/12.png" alt="12.png" class="responsive" /></p>
+
+<p>Bakın satırın başından ziyade, hangi noktada geçtiği fark etmeksizin tüm “kali” ifadeleri filtrelenmiş.</p>
+
+<p>Yani şapka işaretinin yalnızca satır başlarındaki desenler üzerinde geçerli olduğunu teyit etmiş olduk.</p>
+
+<h2 id="dolar-i̇şareti--">Dolar İşareti:  <code class="language-plaintext highlighter-rouge">$</code></h2>
+
+<p>Satırın sonunda bulunan desen eşleşmeleri içi kullanılır.</p>
+
+<p>Örneğin “<strong><em>~/.bashrc</em></strong>” dosyasının sonunda geçen “user” ifadelerini filtrelemeyi deneyebiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/13.png" alt="13.png" class="responsive" /></p>
+
+<p>Gördüğünüz gibi yalnızca satır sonunda geçen “user” ifadesi filtrelemiş olduk. Bu durumu teyit etmek için dolar işareti <code class="language-plaintext highlighter-rouge">$</code> olamadan komutumuzu tekrar girebiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/14.png" alt="14.png" class="responsive" /></p>
+
+<p>Bakın bu kez satır sonu yerine, herhangi bir konumda geçen tüm “user” ifadeleri filtrelenmiş oldu.</p>
+
+<p>Yani dolar <code class="language-plaintext highlighter-rouge">$</code> işaretinin satır sonundaki desenleri kapsadığını teyit etmiş olduk.</p>
+
+<h2 id="köşeli-parantez-liste">Köşeli Parantez: <code class="language-plaintext highlighter-rouge">[liste]</code></h2>
+
+<p>Listedeki tek bir karakter ile eşleşen desenler oluşturur.</p>
+
+<p>Örneğin ben “a” “b” ve “c” karakterlerinden birini barındıranları filtrelemek için <code class="language-plaintext highlighter-rouge">[abc]</code> tanımını kullanıyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/16.png" alt="16.png" class="responsive" /></p>
+
+<p>Bakın gördüğünüz gibi yalnızca köşeli parantez içindeki karakterden biri barındıranlar filtrelenmiş oldu. Üstelik filtreleme işini daha spesifik hale getirmek için dilersek öncesinde veya sonrasında karakterler de ekleyebiliriz. Örneğin ben “c” ile başlayan ve devamında “a b c” karakterlerinden birini barındıranları filtrelemek istediğim için <code class="language-plaintext highlighter-rouge">c[abc]</code> tanımını kullanabilirim.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/17.png" alt="17.png" class="responsive" /></p>
+
+<p>Eğer liste ile belirttiğimiz karakterler haricindekilerle eşleşme yapmak istiyorsak da listenin başına şapka işareti <code class="language-plaintext highlighter-rouge">^</code> ekleyebiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/18.png" alt="18.png" class="responsive" /></p>
+
+<p>Bakın tam tersi şekilde köşeli parantez içindeki karakterin geçmediği desenler filtrelenmiş oldu.</p>
+
+<p>Dilersek aralık belirtmemiz de mümkün. Ben örnek olması için küçük büyük harfler ile a’dan z’ye kadar olan karakterleri ve rakamları barındıran bir dosya ile çalışacağım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali@kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cat </span>veri                                            
+a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9
+</code></pre></div></div>
+
+<p>Ben yalnızca a’dan k’ye kadar olanları filtrelemek istiyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/26.png" alt="26.png" class="responsive" /></p>
+
+<p>Bakın tam olarak benim belirttiğim gibi küçük harfli a’dan k’ye kadar olan karakterler filtrelenmiş oldu. Büyük harfleri ve sayıları da benzer şekilde ayrı ayrı filtreleyebiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/27.png" alt="27.png" class="responsive" /></p>
+
+<p>Dilersek hepsini tek seferde kapsamamız dahi mümkün.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/28.png" alt="28.png" class="responsive" /></p>
+
+<p>Bakın a’dan k’ye kadar olan küçük büyük harfli karakterleri ve 1’den 7’ye kadar olan rakamları filtrelemiş olduk.</p>
+
+<h3 id="karakter-sınıfları">Karakter Sınıfları</h3>
+
+<p>Köşeli parantez içinde kullanabileceğimiz belirli sınıfları sembolik olarak temsil eden çeşitli tanımlamalar mevcut. Bunları köşeli parantez içinde girmemiz gerekiyor.</p>
+
+<h3 id="alnum"><strong><code class="language-plaintext highlighter-rouge">[:alnum:]</code></strong></h3>
+
+<p>Yalnızca alfanümerik yani yalnızca harfler ve rakamlar dahilinde karakter desenleri için kullanılır.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/29.png" alt="29.png" class="responsive" /></p>
+
+<p>Bakın yalnızca alfanümerik filtreleme yapılmış oldu.</p>
+
+<p>Bu tanımlama aslında <code class="language-plaintext highlighter-rouge">[A-Za-z0-9]</code> tanımlaması ile aynı. Küçük büyük harfler ve 0’dan 9’a kadar olan tüm rakamları bu şekilde de ifade etmemiz mümkün.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/30.png" alt="30.png" class="responsive" /></p>
+
+<h3 id="alpha"><strong><code class="language-plaintext highlighter-rouge">[:alpha:]</code></strong></h3>
+
+<p>Küçük büyük harfler fark etmeksizin tüm alfabetik karakterler ile eşleşme sağlar.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/31.png" alt="31.png" class="responsive" /></p>
+
+<p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[A-Za-z]</code> ile aynıdır.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/32.png" alt="32.png" class="responsive" /></p>
+
+<h3 id="lower"><strong><code class="language-plaintext highlighter-rouge">[:lower:]</code></strong></h3>
+
+<p>Yalnızca küçük harfli karakter desenleri ile eşleşme sağlar.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/33.png" alt="33.png" class="responsive" /></p>
+
+<p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[a-z]</code> ile aynıdır.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/34.png" alt="34.png" class="responsive" /></p>
+
+<h3 id="upper"><strong><code class="language-plaintext highlighter-rouge">[:upper:]</code></strong></h3>
+
+<p>Yalnızca büyük harfli karakter desenleri ile eşleşme sağlar.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/35.png" alt="35.png" class="responsive" /></p>
+
+<p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[A-Z]</code> ile aynıdır.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/36.png" alt="36.png" class="responsive" /></p>
+
+<h3 id="digit"><strong><code class="language-plaintext highlighter-rouge">[:digit:]</code></strong></h3>
+
+<p>Yalnızca rakam desenleri ile eşleşme sağlar.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/37.png" alt="37.png" class="responsive" /></p>
+
+<p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[0-9]</code> ile aynıdır.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/38.png" alt="38.png" class="responsive" /></p>
+
+<h3 id="blank"><strong><code class="language-plaintext highlighter-rouge">[:blank:]</code></strong></h3>
+
+<p>space ve tab boşlukları ile eşleşme sağlar. Ben örnek için aşağıdaki dosyayı kullanacağım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali@kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cat </span>veri2                                           
+bu ilk
+bu      ikinci
+budasonsatır
+</code></pre></div></div>
+
+<p>Bakın ilk iki satırda space ve tab boşlukları var ama son satırında hiç boşluk yok. <strong><code class="language-plaintext highlighter-rouge">[:blank:]</code></strong> tanımı ile boşluk bulunanları filtrelemeyi deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>kali@kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cat </span>veri2 | <span class="nb">grep</span> <span class="o">[[</span>:blank:]]                        
+bu ilk
+bu      ikinci
+</code></pre></div></div>
+
+<p>Bakın son satır getirilmedi çünkü son sarıda hiç boşluk bulunmuyordu.</p>
+
+<h3 id="punct"><strong><code class="language-plaintext highlighter-rouge">[:punct:]</code></strong></h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Çeşitli (<code class="language-plaintext highlighter-rouge">! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ </code> {</td>
+      <td>} ~`) noktalama işaretlerini barındıran desenler ile eşleşme sağlar.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/39.png" alt="39.png" class="responsive" /></p>
+
+<p>Ben tüm hepsinden bahsetmedim, eğer tüm sınıfları öğrenmek isterseniz <a href="https://www.gnu.org/software/sed/manual/html_node/Character-Classes-and-Bracket-Expressions.html#Character-Classes-and-Bracket-Expressions">buraya</a> göz atabilirsiniz.</p>
+
+<h2 id="artı-i̇şareti-">Artı İşareti: <code class="language-plaintext highlighter-rouge">\+</code></h2>
+
+<p>Kendisinden önceki karakterin bir veya daha fazla kez tekrar ettiği desenler için kullanılır. Yıldız metakarakteri sıfır veya daha fazlasında geçerli iken, artı işareti bir veya daha fazlası için geçerli.</p>
+
+<p>Ayrıca daha önce bahsettiğimiz gibi basit regex üzerinde kullanmak için ters slash karakterinin de eklenmesi şart.</p>
+
+<p>Örneğin ben “b” karakterinin bir kez veya daha fazla kez tekrar ettiği desenleri filtrelemek istiyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/19.png" alt="19.png" class="responsive" /></p>
+
+<p>Bakın tam olarak “b” karakterinin bir veya daha fazla gez geçtiği desenler filtrelenmiş oldu. Eğer artı işareti yerine yıldız kullanacak olsaydık, “b” karakterinin sıfır veya daha fazla kez geçtiği desenler filtrelenecekti.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/20.png" alt="20.png" class="responsive" /></p>
+
+<p>Bakın “ac” ifadesinde “b” karakteri sıfır kez geçtiği için için yıldız karakteri bu ifadeyi de dahil etti. İşte artı ile yıldız karakteri arasındaki fark tam olarak bu örneklerde ele aldığımız durum.</p>
+
+<h2 id="soru-i̇şareti-">Soru İşareti: <code class="language-plaintext highlighter-rouge">\?</code></h2>
+
+<p>Kendisinden önceki karakterin sıfır veya yalnızca 1 kez tekrar ettiği desenler oluşturur.</p>
+
+<p>Denemek için “b” karakterinden sonra bu düzenli ifadeyi kullanabiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/21.png" alt="21.png" class="responsive" /></p>
+
+<p>“ac” ifadesinde sıfır, “abc” ifadesinde ise yalnızca bir adet “b” karakteri bulunduğu için yalnızca bu iki ifade filtrelenmiş oldu. “b” karakterinin birden fazla kez tekrar ettiği desenler gördüğünüz gibi dahil edilmedi.</p>
+
+<h2 id="süslü-parantez-sayı">Süslü Parantez: <code class="language-plaintext highlighter-rouge">{sayı}</code></h2>
+
+<p>Süslü parantezleri kullanarak bir karakterin üst üste tekrar sayısını belirtebiliyoruz.</p>
+
+<p>Örneğin ben peşi sıra tam olarak 3 kez “a” karakterinin geçtiği desenleri filtrelemek istiyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/22.png" alt="22.png" class="responsive" /></p>
+
+<p>Bakın yalnızca tam olarak 3 kez üst üste tekrar eden “a” karakterleri filtrelenmiş oldu.</p>
+
+<p>Tam sayı yerine aralık da belirtebiliriz. Bunun için sayıların arasına virgül koymamız yeterli. Ben 2 ile 4 arasında kez tekrar eden yani 2, 3 veya 4 kez üst üste tekrar edenleri filtrelemek istiyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/23.png" alt="23.png" class="responsive" /></p>
+
+<p>Bakın hem 2 hem 3 hem de 4 kez tekrar edenler filtrelenmiş oldu.</p>
+
+<p>Ayrıca minimum veya daha fazla tekrar sayısını da belirtebiliriz. Bunun için minimum sayıdan sonra virgül koymamız yeterli. Ben örnek olması için minimum 3 kez tekrar edenleri filtreleyecek şekilde komutumu giriyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/24.png" alt="24.png" class="responsive" /></p>
+
+<p>Bakın minimum 3 yani 3, 4 ve 5 kez tekrar eden desenler filtrelenmiş oldu.</p>
+
+<h2 id="dik-çizgi-">Dik Çizgi: <code class="language-plaintext highlighter-rouge">\|</code></h2>
+
+<p>Yada koşulu belirtmek için kullanabiliyoruz. Örneğin “a” ya da “b” ifadelerini filtrelemek için kullanabiliriz.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/25.png" alt="25.png" class="responsive" /></p>
+
+<h1 id="genişletilmiş-regex">Genişletilmiş Regex</h1>
+
+<p>Basit regex ile genişletilmiş regex arasındaki tek farkın <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterlerinin kullanımları olduğuna <a href="http://localhost:4000/linux-regex#basit-regex-ve-geni%C5%9Fletilmi%C5%9F-regex">değinmiştik</a>. Genişletilmiş regex üzerinde bu karakterlerin özel anlamları ile ele alınması için bu karakterleri olduğu gibi yazmamız şart. Ve elbette genişletilmiş regex kullanacağımız aracın genişletilmiş regex’i desteklemesi gerekiyor. Kullandığınız aracın desteği olup olmadığını yardım sayfalarından veya kısa internet araştırması ile kolayca öğrenebilirsiniz.</p>
+
+<p>Örneğin ben <code class="language-plaintext highlighter-rouge">grep</code> aracının desteğini sorgulamak için <code class="language-plaintext highlighter-rouge">grep —help</code> komutu ile yardım bilgisine göz atıyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/40.png" alt="40.png" class="responsive" /></p>
+
+<p>Bakın genişletilmiş regex için <code class="language-plaintext highlighter-rouge">-E</code> seçeneğini veya <code class="language-plaintext highlighter-rouge">—extended-regexp</code> seçeneğini özellikle kullanmamız gerektiği burada belirtiliyor.</p>
+
+<p>Ben de genişletilmiş regex’ten faydalanmak üzere grep aracıma -E seçeneğini verip komutumu öyle giriyorum.</p>
+
+<p><img src="http://localhost:4000/blog/img/linux-regex/41.png" alt="41.png" class="responsive" /></p>
+
+<p>Görebildiğiniz gibi <code class="language-plaintext highlighter-rouge">-E</code> seçeneği yokken genişletilmiş regex kuralları tanınmıyor. İşte benzer durum sistem üzerinde kullanacağınız herhangi bir araç için de aynen geçerli. Desteğini kontrol edin ve nasıl kullanabileceğinizi öğrenip komutunuzu uygun şekilde girin.</p>
+
+<p>Regex konusu gerçekten çok detaylı bir konu, ben yalnızca Linux özelinde sık ihtiyaç duyabileceğimiz ve farkında olmamız gereken bazı kavramları ele aldım. Eğer daha fazla detay öğrenmek isterseniz <a href="https://www.gnu.org/software/sed/manual/html_node/sed-regular-expressions.html" target="_blank">buradan</a> <code class="language-plaintext highlighter-rouge">sed</code> aracının GNU dokümantasyonuna göz atarak başlayabilirsiniz.</p>
+
+<h3 id="kaynakça">🌐Kaynakça</h3>
+
+<ul>
+  <li><a href="https://www.regular-expressions.info/gnu.html" target="_blank">regular-expressions.info/gnu.html</a></li>
+  <li><a href="https://www.regular-expressions.info/posixbrackets.html" target="_blank">regular-expressions.info/posixbrackets.html</a></li>
+  <li><a href="https://www.gnu.org/software/sed/manual/html_node/sed-regular-expressions.html" target="_blank">gnu.org/software/sed/manual/html_node/sed-regular-expressions.html</a></li>
+</ul>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="regex" /><summary type="html"><![CDATA[Linux sistemindeki basit ve genişletilmiş Regex yaklaşımları üzerine.]]></summary></entry><entry><title type="html">Linux Nasıl Öğrenilir ?</title><link href="http://localhost:4000/linux-nasil-ogrenilir" rel="alternate" type="text/html" title="Linux Nasıl Öğrenilir ?" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>http://localhost:4000/linux-nasil-ogrenilir</id><content type="html" xml:base="http://localhost:4000/linux-nasil-ogrenilir"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
+
+<p>Linux sistemini öğrenmek istiyorum nasıl bir yol izlemeliyim?</p>
+
+<p>Öncelikle samimi bir itiraf, ben de öğrenmek istiyorum :) Size bu rehberi sunuyor olmama karşın ben de nihai olarak “Linux bildiğimi” iddia edemem çünkü öğrenmenin bir sınırı bulunmuyor. İşte tam da bu sebeple bir hedef belirleyip ona göre kendimize başlangıç sınırı çizmemiz gerekiyor. Dolayısıyla ilk olarak Linux sistemini tam olarak hangi amaçla öğrenmek istediğinize karar vermeniz gerekiyor. Amaçları basitleştirip üç kategoride değerlendirebiliriz:</p>
+
+<ul>
+  <li>Kişisel kullanım için yani gündelik işlerimizi yerine getirmek amacıyla hobi-merak düzeyinde kalan öğrenme.</li>
+  <li>Siber güvenlik, veri bilimi gibi Linux ile kesişimi olan alanlarda gerekli olan yetkinliği kazanmak için öğrenme.</li>
+  <li>DevOps ve Linux sistem yönetimi gibi doğrudan Linux sistemini profesyonel düzeyde yönetmek için öğrenme.</li>
+</ul>
+
+<p>Tabii ki bu liste genişletilip detaylandırılabilir fakat en genel haliyle temelde benzeri amaçlar için Linux öğrenmek isteyebiliyoruz. Hangi amaçla öğreneceğimizi belirlediysek, bir sonraki adım olarak kendi seviyemize uygun olan kaynaklardan ihtiyacımız olan temel bilgiyi edinmemiz gerek. İhtiyacımız olmayan veya henüz öğrenmek için gereken temel bilgi birikimine sahip olmadığımız konular ile işimizi zorlaştırıp öğrenme sürecinden soğumamamız çok önemli. Bu bağlamda temelde üç seviyeden bahsedebiliriz:</p>
+
+<ul>
+  <li>Hiç bilmiyorum.</li>
+  <li>Biraz biliyorum, yalnızca ihtiyacım oldukça parça parça öğrendim yani sadece aşinayım.</li>
+  <li>Temel sistem yönetimini biliyorum fakat eksiklerimi fark edip kendimi geliştirmek veya tekrar yapmak istiyorum.</li>
+</ul>
+
+<p>Aşağı yukarı hangi seviyede olduğunuzu da belirlediyseniz gelin şimdi seviyeye göre izlenmesi gereken yollardan ayrı ayrı bahsedelim. Vakit kaybetmemek için yalnızca kendi seviyenize ve hedefinize uygun olan satırları okuyabilirsiniz. Aksi halde anlatım tekrarı ile karşılaşmanız kaçınılmaz.</p>
+
+<h2 id="hiç-bilmiyorum">Hiç Bilmiyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="biraz-biliyorum">Biraz Biliyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak-1">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb-1">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi-1">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="temel-sistem-yönetimini-biliyorum">Temel Sistem Yönetimini Biliyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak-2">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb-2">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi-2">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Genel olarak bilinmesi gereken konular ve kavramlardan bahsettiğimize göre çok kısaca öğrenirken izlenmesi gereken metodolojiden de bahsedelim. Esasen buradaki metodoloji yalnızca linux öğrenmekten ziyade genelde bir şeyler öğrenirken kullanılabilecek yaklaşımı tarif ediyor.</p>
+
+<p>Buradaki anlatı ile öğrenme yolculuğunda neler beklemeniz gerektiği ve nasıl etkili şekilde öğrenim yapabileceğinize dair öneri sunmak gayretindeyim. Cesaretiniz kırılmadan beklentilerinizi doğru ayarlayıp verimli bir çalışma yapabilmek konusunda yardımcı olabilir.</p>
+
+<p>“Ne kadar hata yaparsanız yapın veya ne kadar yavaş ilerlerseniz ilerleyin, hala denemeye başlamayan herkesin çok önündesiniz.” Tony Robbins</p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled.png" alt="Untitled" /></p>
+
+<p>🛎️ The Learning Pit - Öğrenme Çukuru</p>
+
+<p>“Öğrenmek akıntıya karşı yüzmek gibidir. İlerleyemediğiniz takdirde gerilersiniz.”</p>
+
+<p>📍James Nottingham’ın Öğrenme Çukuru metaforu, “anlamadan” önceki mücadeleyi gösterir.</p>
+
+<p>📍Yeni bir kavrama yaklaşmanın, bilginizle çelişkileri veya çatışmalarını ortaya çıkarma, kafa karışıklığı, yeni fikirleri bir araya getirmeye başlama ve nihayet yeni bir kavramın netliğini öğrenme aşamalarını içeren yolculuğudur.</p>
+
+<p>🎯 Yeterlilik aşamalarında, Lev Vygotsky’nin yakınsal gelişim alanı veya Carol Dweck’in büyüme zihniyeti gibi diğer modellerle doğal paralellikler vardır.</p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled%201.png" alt="Untitled" /></p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled%202.png" alt="Untitled" /></p>
+
+<p>Dunning kruger etkisini unutmayın.</p>
+
+<p>İlk başta kolay sonra zor sonra beklenen zorluklarla karşılaşma durumu.</p>
+
+<p><a href="https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799">https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799</a></p>
+
+<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[Linux öğrenmek için yol haritası; öneriler, kaynaklar ve yaklaşımlar hakkında.]]></summary></entry><entry><title type="html">Bash Konfigürasyon Dosyaları</title><link href="http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1" rel="alternate" type="text/html" title="Bash Konfigürasyon Dosyaları" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1</id><content type="html" xml:base="http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
+
+<p>Linux sistemini öğrenmek istiyorum nasıl bir yol izlemeliyim?</p>
+
+<p>Öncelikle samimi bir itiraf, ben de öğrenmek istiyorum :) Size bu rehberi sunuyor olmama karşın ben de nihai olarak “Linux bildiğimi” iddia edemem çünkü öğrenmenin bir sınırı bulunmuyor. İşte tam da bu sebeple bir hedef belirleyip ona göre kendimize başlangıç sınırı çizmemiz gerekiyor. Dolayısıyla ilk olarak Linux sistemini tam olarak hangi amaçla öğrenmek istediğinize karar vermeniz gerekiyor. Amaçları basitleştirip üç kategoride değerlendirebiliriz:</p>
+
+<ul>
+  <li>Kişisel kullanım için yani gündelik işlerimizi yerine getirmek amacıyla hobi-merak düzeyinde kalan öğrenme.</li>
+  <li>Siber güvenlik, veri bilimi gibi Linux ile kesişimi olan alanlarda gerekli olan yetkinliği kazanmak için öğrenme.</li>
+  <li>DevOps ve Linux sistem yönetimi gibi doğrudan Linux sistemini profesyonel düzeyde yönetmek için öğrenme.</li>
+</ul>
+
+<p>Tabii ki bu liste genişletilip detaylandırılabilir fakat en genel haliyle temelde benzeri amaçlar için Linux öğrenmek isteyebiliyoruz. Hangi amaçla öğreneceğimizi belirlediysek, bir sonraki adım olarak kendi seviyemize uygun olan kaynaklardan ihtiyacımız olan temel bilgiyi edinmemiz gerek. İhtiyacımız olmayan veya henüz öğrenmek için gereken temel bilgi birikimine sahip olmadığımız konular ile işimizi zorlaştırıp öğrenme sürecinden soğumamamız çok önemli. Bu bağlamda temelde üç seviyeden bahsedebiliriz:</p>
+
+<ul>
+  <li>Hiç bilmiyorum.</li>
+  <li>Biraz biliyorum, yalnızca ihtiyacım oldukça parça parça öğrendim yani sadece aşinayım.</li>
+  <li>Temel sistem yönetimini biliyorum fakat eksiklerimi fark edip kendimi geliştirmek veya tekrar yapmak istiyorum.</li>
+</ul>
+
+<p>Aşağı yukarı hangi seviyede olduğunuzu da belirlediyseniz gelin şimdi seviyeye göre izlenmesi gereken yollardan ayrı ayrı bahsedelim. Vakit kaybetmemek için yalnızca kendi seviyenize ve hedefinize uygun olan satırları okuyabilirsiniz. Aksi halde anlatım tekrarı ile karşılaşmanız kaçınılmaz.</p>
+
+<h2 id="hiç-bilmiyorum">Hiç Bilmiyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="biraz-biliyorum">Biraz Biliyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak-1">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb-1">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi-1">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="temel-sistem-yönetimini-biliyorum">Temel Sistem Yönetimini Biliyorum</h2>
+
+<h3 id="kişisel-kullanım--hobi---merak-2">Kişisel Kullanım | Hobi - Merak</h3>
+
+<p>Sistem geneli veya oyunlardaki performansı, özelleştirme imkanı gibi kişisel kullanım için cazip gelen özellikleri dolayısıyla “Linux” ismiyle karşılaştıysanız sizin ihtiyacınız çok temel düzeyde sistemin işleyişinden haberdar olmak. Özellikle istemediğiniz sürece komut satırı kullanmak zorunda değilsiniz. Yani tıpkı Windows ve MacOS üzerinde olduğu gibi işlerinizi grafiksel arayüz üzerinden sorunsuzca yürütebileceğiniz bilmeniz gerekiyor. Yine de kimi zaman bazı ekstra konfigürasyonları gerçekleştirmek için komut satırını kullanmanız da gerekebilir. Bu sebeple komut satırı nedir nasıl açılır veya neden birden fazla linux dağıtımı var ve grafiksel arayüzler birbirinden farklı gözüküyor gibi çok temel bilgileri öğrenmeniz gerek. Gözünüz korkmasın herkes için inanılmaz kolay kavramlar ve öğrenmek zorunda olmasanız bile öğrendiğinizde sistemi anlama ve kullanma noktasında işlerinizi çok kolaylaştıracağı için bu kavramları öğrenmeniz gerek bence.</p>
+
+<p>Bence öğrenmen gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, neden birden fazla dağıtım var, hangi dağıtımı seçmeliyim ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+</ul>
+
+<h3 id="linux-ile-kesişimi-olan-alanlarda-kullanım--siber-güvenli---veri-bilimi-vb-2">Linux ile Kesişimi Olan Alanlarda Kullanım | Siber Güvenli - Veri Bilimi vb..</h3>
+
+<p>İşi gereği Linux kullanması gereken ama başlarda Linux sistemine uzak veya bir türlü ısınamamış olan kişiler neden Linux ortamının tercih edildiğini anlamayabiliyorlar. Bunun altında mevcut işlerine ek olarak Linux sistem yönetimini de öğrenmenin külfet gibi gelmesi yatıyor olabilir. Hatta ön yargılı insanlar uzun yıllardır alışık oldukları windows veya macos gibi ortamlarda çok daha verimli ve rahat hissettikleri için uzun süre Linux öğrenmeye direnebiliyorlar. Ancak temel düzeyde Linux öğrenmenin kolaylığı ve öğrendikten sonra kişiye sağladığı verimlilik gibi avantajları fark ettiklerinde önyargılarının ne kadar da yersiz olduğuna şahit oluyorlar.</p>
+
+<p>Özellikle profesyonel amaçla Linux kullanırken grafiksel arayüzden ziyade komut satırı arayüzü üzerinden sistemi yönetmek çok daha verimli. Çünkü komut satırı çok daha esnek ve hızlı yönetim imkanı tanıyor. Özellikle açık kaynak ekosisteminin getirdiğini inanılmaz çeşitlilikteki araç yelpazesi ve bu araçların her birini komut satırı üzerinden birbirine bağlayarak kompleks sorunları basitçe çözebilme imkanı büyük bir kolaylık.</p>
+
+<p>Zaten bu sebeple hem geliştiriciler hem de siber güvenlik, veri bilimi gibi açık kaynak ekosistemine bağımlı ve sürekli kompleks sorunlara gebe olan alanlarda Linux kullanımı tercih ediliyor.</p>
+
+<p>Bu sebeple eğer Linux sistemini işlerimizi kolaylaştırmak için kullanacaksak komut satırı üzerinden yönetme becerisine sahip olmamız şart. Ancak gözünüz korkmasın, emin olun başta düşünülenin aksine komut satırını kullanmak grafiksel arayüzü kullanmaktan çok daha kolay. Linux sisteminin temel işleyişini kavrayıp, temel komut satırı becerilerine sahip olduğunuzda bu iş tamamdır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="profesyonel-kullanım--devops---linux-sistem-yönetimi-2">Profesyonel Kullanım | DevOps - Linux Sistem Yönetimi</h3>
+
+<p>Linux konusunda bilgi sahibi değilken sistem yöneticisi gibi alanda ilerlemek için elbette öncelikle Linux sisteminin felsefesinden başlayıp, sırasıyla tüm temel kavramları öğrenmeniz ve komut satırı üzerinde rahat hissetmeniz gerek.</p>
+
+<p>Halihazırda temel düzeyde biliyorsanız, ezbere olarak kullandığınız özelliklerin arkaplanda nasıl gerçekleştiğini öğrenerek bildiklerinizi dayanaklandırabilirsiniz. Bunu da sistemin genel işleyişi hakkında bilgi alarak ve sorgulayarak başarabilirsiniz. Bu çaba kimilerine afaki gelse de, ezebere bildiklerinizin ardındaki mantıkları öğrendiğiniz aslında iş yapış şekliniz ve verimliliğiniz de kendiliğinden değişiyor. Sistemde meydana gelen veya gelebilecek soruları anlama ve onlaya çok daha akılcı ve kalıcı çözümler getirmeniz de mümkün oluyor. Elbette sistemin tüm işleyişinin tüm detaylarını öğrenmek pek kolay ve herkes için uygulanabilir değil. Ben bundan da bahsetmiyorum. Bence en azından RHCSA veya RHCSE gibi sertifika müfredatlarında yer alan konuları araştırıp bunlar üzerine düşünmek faydalı olabilir. Doğrudan bir sertifika sınavına hazırlanamayacak olsanız bile, sektörde ihtiyaç duyulan genel bilgi birikimi için elinizde bir yol haritası mevcut olacaktır.</p>
+
+<p>Öğrenilmesi gerekenler:</p>
+
+<ul>
+  <li>Linux nedir ?</li>
+  <li>Dağıtım nedir, hangi dağıtımı neden seçmeliyiz ?</li>
+  <li>Nasıl kurulur, kurulum alternatifleri nelerdir, hangi şekilde kullanmalıyım ?</li>
+  <li>Genel grafiksel arayüzü tanıma, ve komut satırı gibi alanları kurcalama.</li>
+  <li>Teme sistem yönetimi için komut satırı kullanımını öğrenme:
+    <ul>
+      <li>Dizinlerde gezinmek</li>
+      <li>Linux dosya sistemi hiyerarşisini anlamak.</li>
+      <li>Yetki yönetimi</li>
+      <li>İşlem yönetimi</li>
+      <li>Pipe</li>
+      <li>Dosya-dizin işlemleri (oluşturma, taşıma, kopyalama, silme vb..)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Genel olarak bilinmesi gereken konular ve kavramlardan bahsettiğimize göre çok kısaca öğrenirken izlenmesi gereken metodolojiden de bahsedelim. Esasen buradaki metodoloji yalnızca linux öğrenmekten ziyade genelde bir şeyler öğrenirken kullanılabilecek yaklaşımı tarif ediyor.</p>
+
+<p>Buradaki anlatı ile öğrenme yolculuğunda neler beklemeniz gerektiği ve nasıl etkili şekilde öğrenim yapabileceğinize dair öneri sunmak gayretindeyim. Cesaretiniz kırılmadan beklentilerinizi doğru ayarlayıp verimli bir çalışma yapabilmek konusunda yardımcı olabilir.</p>
+
+<p>“Ne kadar hata yaparsanız yapın veya ne kadar yavaş ilerlerseniz ilerleyin, hala denemeye başlamayan herkesin çok önündesiniz.” Tony Robbins</p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled.png" alt="Untitled" /></p>
+
+<p>🛎️ The Learning Pit - Öğrenme Çukuru</p>
+
+<p>“Öğrenmek akıntıya karşı yüzmek gibidir. İlerleyemediğiniz takdirde gerilersiniz.”</p>
+
+<p>📍James Nottingham’ın Öğrenme Çukuru metaforu, “anlamadan” önceki mücadeleyi gösterir.</p>
+
+<p>📍Yeni bir kavrama yaklaşmanın, bilginizle çelişkileri veya çatışmalarını ortaya çıkarma, kafa karışıklığı, yeni fikirleri bir araya getirmeye başlama ve nihayet yeni bir kavramın netliğini öğrenme aşamalarını içeren yolculuğudur.</p>
+
+<p>🎯 Yeterlilik aşamalarında, Lev Vygotsky’nin yakınsal gelişim alanı veya Carol Dweck’in büyüme zihniyeti gibi diğer modellerle doğal paralellikler vardır.</p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled%201.png" alt="Untitled" /></p>
+
+<p><img src="Linux%20O%CC%88g%CC%86renmek%20ebb5aff8f8e247f5afb56f0c736e88dc/Untitled%202.png" alt="Untitled" /></p>
+
+<p>Dunning kruger etkisini unutmayın.</p>
+
+<p>İlk başta kolay sonra zor sonra beklenen zorluklarla karşılaşma durumu.</p>
+
+<p><a href="https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799">https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799</a></p>
+
+<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[/etc/profile /etc/profile.d/ ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc /etc/bash.bashrc ~/.bash_logout]]></summary></entry><entry><title type="html">Linux için Faydalı Kaynaklar</title><link href="http://localhost:4000/linux-kaynaklari" rel="alternate" type="text/html" title="Linux için Faydalı Kaynaklar" /><published>2023-04-17T00:00:00+03:00</published><updated>2023-04-17T00:00:00+03:00</updated><id>http://localhost:4000/linux-kaynaklari</id><content type="html" xml:base="http://localhost:4000/linux-kaynaklari"><![CDATA[<p>Söz konusu Linux olduğunda araştırma ve öğrenme serüveni hiç bitmiyor. Dolayısıyla esasen tüm interneti kaynağımız olarak görmeliyiz. Fakat ben tüm internetten ziyade  Linux için özelleşmiş olan faydalı olabilecek bazı kaynakları bu paylaşım altında listelemek istiyorum. Yeni kaynaklar keşfettikçe bu içeriği de güncellemeye devam etmeyi planlıyorum. Hatta faydalı olduğunu düşünüdğünüz kaynakları benimle <a href="http://localhost:4000/bildirim">geribildirim</a> sayfasından paylaşırsanız, buraya eklemekten memnuniyet duyarım.</p>
+
+<h1 id="türkçe-web-kaynakları">Türkçe Web Kaynakları</h1>
+
+<ul>
+  <li><a href="https://www.isleyen.net/" target="_blank">isleyen.net</a></li>
+  <li><a href="https://www.yusufsezer.com.tr/kategori/isletim-sistemleri/" target="_blank">yusufsezer.com.tr</a></li>
+</ul>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="kaynaklar" /><summary type="html"><![CDATA[Linux özelinde bilgi sunan yerli ve yabancı kaynaklara dair liste.]]></summary></entry></feed>

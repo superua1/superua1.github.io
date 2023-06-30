@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Dizinlerde Gezinmek &#8211; Linux Eğitimi</title>
+<meta name="description" content="Linux dosya sistemini tanıyıp, nasıl gezinebileceğimizden bahsedeceğiz.">
+<meta name="keywords" content="Linux, çekirdek, kernel, linus torvalds, gnu, gpl, açık kaynak, özgür yazılım, unix, dağıtım">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/dizinlerde-gezinmek/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">7. Ders: Dizinlerde Gezinmek</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#Linux" class="btn btn-outline-primary btn-sm" title="Pages tagged Linux">Linux</a> <a href="http://localhost:4000/etiketler.html#çekirdek" class="btn btn-outline-primary btn-sm" title="Pages tagged çekirdek">çekirdek</a> <a href="http://localhost:4000/etiketler.html#kernel" class="btn btn-outline-primary btn-sm" title="Pages tagged kernel">kernel</a> <a href="http://localhost:4000/etiketler.html#linus torvalds" class="btn btn-outline-primary btn-sm" title="Pages tagged linus torvalds">linus torvalds</a> <a href="http://localhost:4000/etiketler.html#gnu" class="btn btn-outline-primary btn-sm" title="Pages tagged gnu">gnu</a> <a href="http://localhost:4000/etiketler.html#gpl" class="btn btn-outline-primary btn-sm" title="Pages tagged gpl">gpl</a> <a href="http://localhost:4000/etiketler.html#açık kaynak" class="btn btn-outline-primary btn-sm" title="Pages tagged açık kaynak">açık kaynak</a> <a href="http://localhost:4000/etiketler.html#özgür yazılım" class="btn btn-outline-primary btn-sm" title="Pages tagged özgür yazılım">özgür yazılım</a> <a href="http://localhost:4000/etiketler.html#unix" class="btn btn-outline-primary btn-sm" title="Pages tagged unix">unix</a> <a href="http://localhost:4000/etiketler.html#dağıtım" class="btn btn-outline-primary btn-sm" title="Pages tagged dağıtım">dağıtım</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/dizincover.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+93 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <h1 id="dizinler-hakkında">Dizinler Hakkında</h1>
+
+<p>Linux işletim sisteminde bütün programlar, aygıtlar, dosyalar ve genel olarak sistemin tüm ögeleri, hiyerarşik bir düzen içerisinde çeşitli klasörlerde tutuluyor. Normalde eğer grafiksel arayüzdeyken dizinlerde gezinti yapacaksak, dosya yöneticisi aracını kullanarak istediğimiz dizinlerde gezinti yapıp dizinlerin içeriğini görüntüleyebiliyor ya da gerektiğinde düzenleyebiliyoruz.</p>
+
+<p>Grafiksel arayüze benzer şekilde söz konusu komut satırı üzerinden sistemi yönetmek olduğunda da tabii ki işlerimizi tek bir dizin altında yürütmeyeceğimiz için komut satırındayken de dizinler arasında rahatlıkla gezinebiliyor olmamız gerekiyor. İşte bu bölümde, dizinlerde rahatlıkla gezinme ve görüntüleme için gerekli komutlara tek tek değiniyor olacağız. Yani bölümün sonunda, komut satırı üzerinden tüm sistemdeki dizin hiyerarşisi içinde rahatlıkla gezinebiliyor olacaksınız.</p>
+
+<p>Fakat dizinlerde gezinmeden önce tabii ki üzerinde gezineceğimiz bu dizin yapısını tanımamız gerekiyor. Çünkü üzerinde gezineceğimiz Linux dosya sistemi hiyerarşisi, pek çoğumuzun alışık olduğu Windows’tan biraz farklı. Dizin yapısını bilmediğimizde körlemesine gezinmek zorunda kalırız bu da dizinlerde gezinti gibi son derece basit olan işlevi bile zar zor yerine getirmemize neden olur. Zaten yeni başlayan kullanıcıların dizinlerde gezinirken yaşadıkların sorunların neredeyse tamamı Linux sisteminin dizin yapısını temel düzeyde bilmiyor olmalarından kaynaklanıyor.</p>
+
+<h1 id="linux-dosya-sistemi-hiyerarşisi">Linux Dosya Sistemi Hiyerarşisi</h1>
+
+<p>Söz konusu Linux olduğunda pek çok farklı dağıtım olduğunu biliyoruz. Bu sebeple temel dosya hiyerarşisi dışında dağıtıma özel olan farklı dizinler de mevcut olabiliyor. Fakat bu durumum bizim için sorun değil çünkü temel dosya sistemi hiyerarşisi tüm dağıtımlarda ortak olmak durumunda. Biz de burada temel yapıdan bahsediyor olacağız.</p>
+
+<p>Linux’ta tüm dosya ve dizinler “<strong>root</strong>” olarak ifade edilen “<strong>kök”</strong> dizini altında hiyerarşik şekilde tutuluyor. Kök dizin de slash <code class="language-plaintext highlighter-rouge">/</code> işareti ile temsil ediliyor. Ben anlaşılır olması için temel dizinleri aşağıdaki diyagramda belirttim.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/hiyerarsi.png" alt="hiyerarsi.png" class="responsive img-zoomable" /></p>
+
+<p>Gördüğünüz gibi tüm dizinler <code class="language-plaintext highlighter-rouge">/</code> işareti ile temsil edilen kök dizinin altında bulunuyor. Bu durumu bizzat sistemimizden teyit etmek için kök dizini listelemek üzere <code class="language-plaintext highlighter-rouge">ls /</code> komutunu girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">ls</span> /
+bin             lib         opt   tmp
+boot            lib32       proc  usr
+dev             lib64       root  var
+etc             libx32      run   vmlinuz
+home            lost+found  sbin  vmlinuz.old
+initrd.img      media       srv
+initrd.img.old  mnt         sys
+</code></pre></div></div>
+
+<p>Burada kullanmış olduğumuz <code class="language-plaintext highlighter-rouge">ls</code> komutu listeleme yapan bir araç ve biz de <code class="language-plaintext highlighter-rouge">/</code> dizini içerisindekileri listelemek için <code class="language-plaintext highlighter-rouge">ls /</code> komutunu kullandık. Bu listede benim diyagramda belirttiklerime ek olarak harici dizinler olduğunu görebiliyoruz. Zaten anlatımın başında kullanılan dağıtıma göre bu gibi ekstra içerikler olabileceğinden bahsetmiştik. En temel dizinleri tanımamız yeterli. Sırasıyla açıklayarak devam edelim.</p>
+
+<h2 id="ana-dizin--kök-dizin--"><span class="text-danger">Ana Dizin</span> | <span class="text-danger">Kök Dizin</span> | <span class="text-danger">/</span></h2>
+
+<p>Dosya sistemi hiyerarşisinin en tepe noktasını yani başlangıcını temsil eden ana dizine kök(root) dizin deniyor olsa da aslında ana dizinin doğrudan bir ismi olmadığı için yalnızca slash <code class="language-plaintext highlighter-rouge">/</code> işareti ile temsil ediliyor. Kök dizin, yapısı gereği Linux sistemini başlatmak için gereken tüm dosyaları içermesi gerekiyor.</p>
+
+<h2 id="bin-ve-bin"><span class="text-danger">/</span><span class="text-primary">bin</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">bin</span></h2>
+
+<p><strong><em>/bin</em></strong> ve <strong><em>/sbin</em></strong> dizinlerinin ismi, “<strong>bin</strong>ary” yani “ikili” ifadesinin kısaltmasından geliyor. Bu dizinler içinde sistemin başlatılması, yönetimi ve gerektiğinde onarımı için kullanılan araçların çalıştırılabilir binary dosyalarını barındırılıyor. Daha önceki anlatımlarımıza, konsola girdiğimiz komutların <strong>PATH</strong> yolundaki dizinlerde bu isimle eşleşen bir dosya var mı diye bakılmasını sağladığını öğrenmiştik. İşte bu dizinlere bakılıp girilen komutla eşleşen çalıştırılabilir biçimdeki ikili yani binary dosya bulunduğunda bu dosya çalıştırılıyor. Burada bahsi geçen <strong><em>/bin</em></strong> ve <strong><em>/sbin</em></strong> dizinin içindeki binary dosyalar da işte bu dosyalar.</p>
+
+<p><strong><em>/sbin</em></strong> (<strong>S</strong>ystem <strong>Bin</strong>aries): Bu dizin, sistem yöneticileri tarafından kullanılan ve sistem yönetimiyle ilgili önemli programları içeriyor.</p>
+
+<p><strong><em>/bin</em></strong> (<strong>Bin</strong>aries): Bu dizin, tüm kullanıcıların erişebileceği temel işlevleri gerçekleştirmek için kullanılan programları içeriyor.</p>
+
+<h2 id="boot"><span class="text-danger">/</span><span class="text-primary">boot</span></h2>
+
+<p>Önyükleme yani boot aşaması için gereken dosyaları barındıran dizindir. Ne yaptığınızdan emin olmadığınız sürece bu dizini kurcalamanız gerekmeyecektir.</p>
+
+<h2 id="dev"><span class="text-danger">/</span><span class="text-primary">dev</span></h2>
+
+<p><strong><em>/dev</em></strong> dizini “<strong>dev</strong>ices” yani “aygıtlar” kelimesinin kısaltmasından geliyor. Bu dizin, sisteme bağlı olan donanım aygıtlarını temsil eden aygıt dosyalarını içeriyor. Linux üzerinde her şey bir dosya gibi ele alındığı için sisteme bağlı olan aygıtları temsil eden dosyalar da bu dizinde bulunuyor.</p>
+
+<h2 id="etc"><span class="text-danger">/</span><span class="text-primary">etc</span></h2>
+
+<p><strong><em>/etc</em></strong> dizini, sistem yapılandırma dosyalarını depolamak için kullanılıyor. Genellikle istisnalar hariç Linux sisteminde bir hizmetleri yapılandırmamız veya diğer çeşitli temel ayarları değiştirmemiz gerekiyorsa, bakacağımız ilk yer burasıdır.</p>
+
+<h2 id="home"><span class="text-danger">/</span><span class="text-warning">home</span></h2>
+
+<p>Daha önce de bahsetmiş olduğumuz gibi <strong><em>home</em></strong> dizini altında her bir kullanıcının ismiyle oluşturulmuş klasörler vardır. Bu klasörler ilgili kullanıcının ev dizini olarak geçer. Her bir kullanıcının kendi kullanıcı hesabına özgü olan çeşitli konfigürasyon dosyaları, belgeleri resimleri ve diğer çeşitli dosyaları bu dizinde bulunur. Örneğin ben “taylan” isimli kullanıcı hesabını yönettiğim için benim kullanıcı hesabımın ev dizini <strong><em>/home/taylan</em></strong> adresinde yer alıyor. Dizin içeriğine göz atmak için <code class="language-plaintext highlighter-rouge">ls /home/taylan/</code> komutuyla listeleyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> /home/taylan/
+Desktop    Music     Templates
+Documents  Pictures  Videos
+Downloads  Public    yeni-klasor
+</code></pre></div></div>
+
+<p>Bakın burada “Desktop” “Documents” “Downloads” “Pictures” ve benzeri dizinlerin yanında benim kendi oluşturduğumu dizinler ve dosyalar da bulunuyor. Eğer hatırlıyorsanız kendi kullanıcı hesabım için kabuğun konfigürasyonlarını kendi ev dizinimdeki <strong><em>.bashrc</em></strong> dosyasını değiştirerek düzenlemiştim. İşte her bir kullanıcının da kendine ait dosyaları barındırdığı ev dizinleri <strong><em>/home</em></strong> klasörü altında bulunuyor.</p>
+
+<h2 id="lib"><span class="text-danger">/</span><span class="text-primary">lib</span></h2>
+
+<p>Eğer ana dizinin içeriğini tekrar listeleyecek olursak <strong>lib</strong> ile başlayan birden fazla dizin(lib32,lib64,libx32) görebiliyoruz.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/2.png" alt="2.png" class="responsive img-zoomable" /></p>
+
+<p>Buradaki <strong>lib</strong> ifadesi “<strong>lib</strong>rary” yani “kütüphane” ifadesinin kısaltmasından geliyor.</p>
+
+<p>Sistemdeki araçların ortak olarak kullandığı kütüphane dosyaları buradaki uygun dizinlerde tutuluyor. Bu sayede tekrar tekrar aynı kütüphane dosyalarının diskte yer işgal etmesi önleniyor.  İlgili araçlar gerektiğinde ortak olarak bu kütüphane dosyaları okuyabiliyorlar. Kütüphaneler için birden fazla dizin olması da uyumluluk için 32 ve 64 bit kütüphane dosyaların barındırılmasından kaynaklanıyor.</p>
+
+<h2 id="usr"><span class="text-danger">/</span><span class="text-primary">usr</span></h2>
+
+<p><strong><em>/usr</em></strong> dizini aslında neredeyse tüm komut dosyalarının, kütüphane dosyalarının ve çeşitli dokümantasyonlarla birlikte sistemin normal işleyişi için gerekli olan dosyaların bulunduğu dizindir.</p>
+
+<p>İlk zamanlar <strong><em>lib bin sbin</em></strong> dizinleri ayrı ayrı tutuluyorken, hepsine tek bir noktadan ulaşma fikri dolayısıyla tüm dizinler aslında <strong><em>usr</em></strong> altında taşınmıştır. Bizim ana dizin altında <strong><em>lib bin sbin</em></strong> olarak gördüğünüz dizinler de aslında geriye dönük uyumluluk için ana dizinde gözüken ama <strong><em>usr</em></strong> klasörüne sembolik olarak bağlı olan dizinlerdir. Yani bu dizinlerin asılları da <strong>**</strong><strong><em>usr</em></strong><strong>**</strong> dizini altında.</p>
+
+<h2 id="opt"><span class="text-danger">/</span><span class="text-primary">opt</span></h2>
+
+<p><strong><em>/opt</em></strong> klasörü harici olarak kurulan bazı araçların(üçüncü taraf yazılımlar) kendi isimlerindeki klasörlerde tüm gerekli dosyalarının barındırıldığı dizindir. Yani <strong><em>usr</em></strong> dizininde olduğu gibi çalıştırılabilir dosyası bin dizinine ya da kütüphane dosyaları <strong><em>lib</em></strong> dizinine eklenmez. İlgili aracın tüm dosyaları <strong><em>opt</em></strong> dizini altındaki kendi ismiyle oluşturulmuş olan klasör içinde bulunur.</p>
+
+<h2 id="media-ve-mnt"><span class="text-danger">/</span><span class="text-primary">media</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">mnt</span></h2>
+
+<p><strong><em>media</em></strong> ve <strong><em>mnt</em></strong> dizinlerinin her ikisi de medya aygıtlarının bağlanması için kullanılıyor. Aralarındaki fark <strong><em>media</em></strong> dizini “USB bellek, harici disk, CD/DVD sürücüsü vb.” gibi harici çıkarılabilir medya aygıtlarını bağlamak için kullanılırken, <strong><em>mnt</em></strong> dizini ise sistem yöneticisi tarafından bir ağ paylaşımını veya geçici bir disk bölümünü bağlamak için kullanılıyor.</p>
+
+<h2 id="proc"><span class="text-danger">/</span><span class="text-primary">proc</span></h2>
+
+<p>proc dizini önyükleme sırasında oluşturulduğu ve kapatma sırasında kaldırıldığı için her zaman mevcut gibi görünse de aslında sisteminiz ve o anda çalışan işlemleri hakkında birçok alakalı bilgi içeren sanal bir dosya sistemidir.</p>
+
+<h2 id="tmp"><span class="text-danger">/</span><span class="text-primary">tmp</span></h2>
+
+<p>tmp dizini temporary yani geçici ifadesinden kısaltmasından geliyor. Geçici olarak tutulması gereken dosya ve klasörler için kullanılan bir dizin adresi. Hem kullanıcılar hem de programlar, geçici içerikler için bu dizini kullanabiliyor.</p>
+
+<h2 id="root"><span class="text-danger">/</span><span class="text-warning">root</span></h2>
+
+<p><strong><em>root</em></strong> dizini root kullanıcısının ev dizinidir. Tıpkı bizim ev dizinlerimizin <strong><em>home</em></strong> dizini altında kullanıcı adımızla barındırılıyor olması gibi root kullanıcısının ev dizini de ana dizinde “root” isimli klasörde barındırılıyor.</p>
+
+<h2 id="var"><span class="text-danger">/</span><span class="text-primary">var</span></h2>
+
+<p><strong><em>var</em></strong> dizininin ismi “<strong>var</strong>iable” yani “değişken” ifadesinin kısaltmasından geliyor. Bu şekilde isimlendirilmesinin nedeni sürekli yenileri eklenen ve değişen dosyaların burada barındırılıyor olmasıdır. Log dosyaları, çeşitli veritabanı dosyaları, posta kutuları ve benzeri pek çok veri bu dizin altında tutuluyor.</p>
+
+<h2 id="sys"><span class="text-danger">/</span><span class="text-primary">sys</span></h2>
+
+<p><strong><em>/sys</em></strong> dizini, çeşitli sistem bileşenleri ve sürücüleri hakkında bilgiler içeren dizindir.</p>
+
+<h2 id="srv"><span class="text-danger">/</span><span class="text-primary">srv</span></h2>
+
+<p><strong><em>/srv</em></strong> dizini, bir Unix/Linux işletim sistemi hiyerarşisinde bulunan bir sistem dizinidir. Bu dizin, sistemdeki servis veya sunuculara özgü verilerin depolandığı bir yerdir.</p>
+
+<h2 id="run"><span class="text-danger">/</span><span class="text-primary">run</span></h2>
+
+<p>Sistem başlangıcından itibaren, sistem kaynaklarının nasıl kullanıldığına dair çeşitli bilgileri tutan bir dizindir.</p>
+
+<p>Böylelikle temelde haberdar olmamız gereken tüm dizinlerinden kısaca bahsetmiş olduk. Bu sayede artık ihtiyacınız olan dosyaların ve dizinlerin olası konumları hakkında genel bilgi sahibisiniz. Özetleyecek olursak Linux dosya sisteminde tüm dizinler ana dizine bağlıdır. Bu sayede ağaç gibi tek bir noktadan başlayan ve dallanarak genişleyen bir hiyerarşik yapı sağlanabilir. Artık bu bilgiler ışığında bu dizin hiyerarşisi içerisinde nasıl gezinebileceğimizden bahsederek devam edebiliriz.</p>
+
+<h1 id="pwd-komutu"><code class="language-plaintext highlighter-rouge">pwd</code> Komutu</h1>
+
+<p>Hani bir yeri ziyaret ettiğimizde karşımıza çıkan haritalarda şu an buradasınız şeklinde yazar ya işte bunun komut satırı  arayüzündeki karşılığı da tam olarak pwd komutu.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/pwd.png" alt="Untitled" class="responsive img-zoomable" /></p>
+
+<p>Bu komut sayesinde mevcut bulunduğumuz dizinin tam adresini öğrenebiliyoruz. <code class="language-plaintext highlighter-rouge">pwd</code> komutu, İngilizce “<strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory” yani “çalışma dizini yazdır” ifadesinin kısaltmasından geliyor. Özellikle komutun açılımından ve İngilizce karşılığından da bahsettim çünkü komutların açılımlarını ve İngilizce karşılıklarını bilirsek, daha sonra ilgili komutları çok daha kolay hatırlayabiliyoruz. Zaten genellikle komutların açılımları da görevleri ile ilişkili oluyor.</p>
+
+<p>Komutumuzu test etmek için komut satırımızı açalım. istisnalar hariç komut satırı ilk açıldığına kabuk varsayılan olarak bizim mevcut kullanıcı hesabımızın ev dizinimizde çalışmaya başlar. Bu durumu teyit edebilmek için hemen <code class="language-plaintext highlighter-rouge">pwd</code> komutunu girelim.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">┌──</span><span class="p">(</span><span class="nx">taylan</span><span class="p">@</span><span class="nd">linuxdersleri</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~</span><span class="p">]</span>
+<span class="err">└─</span><span class="nx">$</span> <span class="nx">pwd</span>
+<span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">taylan</span>
+</code></pre></div></div>
+
+<p>Bakın aldığımız bu çıktı bizim şu an komut satırında çalışmakta olduğumuz dizini belirtiyor. Bu çıktı benim şu anda kullanmakta olduğum kullanıcının ev dizininde çalışmakta olduğumu belirtiyor. Daha net görebilmek adına grafiksel arayüz üzerinden de bizzat kontrol edebiliriz. Bunun için hemen dosya yöneticisini açalım.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/3.png" alt="3.png" class="responsive img-zoomable" /></p>
+
+<p>Zaten bakın, dosya yöneticim de varsayılan olarak benim kendi ev dizinimde açılıyor. Burada benim Desktop(Masaüstü), Documents(Dokümanlar) ya da Downloads(İndirilen) gibi kişisel amaçlarım için kullanabileceğim klasörler var. İşte burası şu anda kullandığım taylan kullanıcısına ait olan ev dizinidir.</p>
+
+<p>Bu dizinin benim ev dizinim olduğunu ve aldığımız çıktının anlamını iyi kavrayabilmemiz için ben öncelikle hemen dosya sistemi hiyeraşisinin en tepe noktasına geçiş yapıp oradan tekrar bu dizine kadar gelerek size bizzat göstermek istiyorum.</p>
+
+<p>Bunun için buradan dosya sistemi kısmına tıklayalım.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/4.png" alt="4.png" class="responsive img-zoomable" /></p>
+
+<p>Eğer sizin kullandığınız dosya yöneticisi aracında benimki gibi “file system-dosya sistemi” ifadesi geçmiyorsa, biraz kurcalayıp ana dizini bulabilirsiniz. “Diğer dizinler” şeklinde bir sekme veya “bilgisayarım” şeklinde bir sekme vardır, oradan ana dizine ulaşabilirsiniz. Grafiksel arayüzler farklı olabildiği için ana dizine nasıl ulaşacağınızı kendiniz bulabilirsiniz. Zaten ana dizine ulaştığınızda tıpkı bende olduğu şekilde bu temel klasörleri görüyor olacaksınız.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/5.png" alt="5.png" class="responsive img-zoomable" /></p>
+
+<p>Bakın şu an gördüğümüz tüm bu klasörler, mevcut işletim sistemini oluşturan dosyaları barındıran klasörler. Burada bulunduğum dizin işletim sisteminin dosyalarını barındıran tüm dosya ve klasörlerin en tepe noktası. Bu dizinin adresini görmek için adres çubuğuna bakabiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/6.png" alt="6.png" class="responsive img-zoomable" /></p>
+
+<p>Bakın bulunduğumuz dizinin ismi <strong>slash</strong> <code class="language-plaintext highlighter-rouge">/</code> karakteri olarak gözüküyor. Komut satırı arayüzünde aldığımız çıktıya da dönecek olursak bakın çıktının en başında slash işareti bulunuyor. İşte bu slash işareti tam olarak şu anda dosya yöneticisi üzerinden görüntülediğimiz bu dizini temsil ediyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/7.png" alt="7.png" class="responsive img-zoomable" /></p>
+
+<p>Bu slash dizini tüm işletim sistemini oluşturan dosyaları barındıran en tepedeki dizin. Diğer tüm dosya ve klasörler bu dizin altındaki diğer klasörlerin altında bulunuyor. Bu durumu teyit etmek için çıktıda aldığımız <strong><em>/home/taylan</em></strong> yolunu dosya yöneticisi üzerinden takip edebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/8.gif" alt="8.gif" class="responsive img-zoomable" /></p>
+
+<p>İşte komut satırında çalışmakta olduğumuz dizini belirten bu çıktı, tıpkı bizim grafiksel arayüzden de adım adım takip ettiğimiz gibi benim ev dizinimi temsil ediyor. Yani ben “taylan” kullanıcısı olarak konsolumu ilk açtığımda tıpkı dosya yöneticisinde de olduğu gibi kendi ev dizinimden(<strong><em>/home/taylan</em></strong>) çalışamaya başlıyorum.</p>
+
+<p>Neticede konsolun ilk açıldığında kullanıcının ev dizininden çalışmaya başladığını ve <code class="language-plaintext highlighter-rouge">pwd</code> komutunun da kabuğun o anda çalışmakta olduğu dizinin bilgisini verdiğini bizzat teyit etmiş olduk. Dilerseniz farklı bir dizine geçip, konsolu burada açarak <code class="language-plaintext highlighter-rouge">pwd</code> komutunu tekrar test edebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/9.gif" alt="9.gif" class="responsive img-zoomable" /></p>
+
+<p>Gördüğünüz gibi komut satırının çalışmakta olduğu dizini <code class="language-plaintext highlighter-rouge">pwd</code> komutu ile öğrenmiş olduk.</p>
+
+<p>Bence artık <code class="language-plaintext highlighter-rouge">pwd</code> komutunun işlevi tam olarak anlaşılmıştır. Komut satırı arayüzündeyken hangi dizinde çalıştığınızı merak ediyorsanız <code class="language-plaintext highlighter-rouge">pwd</code> komutunu kullanmanız yeterli.</p>
+
+<p>Ayrıca <code class="language-plaintext highlighter-rouge">pwd</code> komutu dışında eğer dikkatinizi çektiyse hangi dizinde çalıştığım aslında ismimden sonra konsolda <strong>prompt</strong> olarak isimlendirilen kısmında da gözüküyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/10.png" alt="10.png" class="responsive img-zoomable" /></p>
+
+<p>Yani <code class="language-plaintext highlighter-rouge">pwd</code> komutunu kullanmadan da buraya bakarak, hangi dizinde olduğunuzu öğrenebilirsiniz. Hatta bakın ilk açtığım konsolda ev dizinde çalıştığım için ev dizinim tilde <code class="language-plaintext highlighter-rouge">~</code> işareti ile temsil ediliyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/11.png" alt="11.png" class="responsive img-zoomable" /></p>
+
+<p>Bu sebeple burada ben uzun uzadıya <strong><em>/home/taylan/</em></strong> dizini yerine bu dizinle aynı anlama gelen <strong><em>~</em></strong> işaretini görüyorum.</p>
+
+<p>Aslında tıpkı çalışmakta olduğumuz dizini öğrenebildiğimiz gibi <strong>prompt</strong> olarak geçen bu bölümden başka bazı bilgiler de edinebiliyoruz. Ancak konumuzdan çok fazla uzaklaşmamak adına yeri geldiğinde ayrıca değinmek üzere prompt konusunu şimdilik noktalayalım. Ama aklınızda bulunsun prompt gerçekten önemli bir yapı. Tıpkı burada bahsettiğimiz gibi gerektiğinde epey bilgi verici olabiliyor.</p>
+
+<p>Konumuza dönecek olursak <strong>prompt</strong> üzerinde gözüken bu dosya bilgisi her ne kadar kullanışlı olsa da her zaman buradan bilgi edinemeyeceğiniz birkaç istisnai durum var. Öncelikle bu özellik her sistemde <strong>prompt</strong> için konfigüre edilmemiş olabilir. Bunun haricinde çalıştığınız dizin adresi çok uzun olduğu için komut satırında doğru şekilde görüntülenemiyor da olabilir.</p>
+
+<p>Dolayısıyla her ne kadar <strong>promptta</strong> yer alan, çalışmakta olduğumuz dizinin bilgisi faydalı olsa da, çalıştığımız dizin hakkında en okunaklı bilgiyi çoğunlukla yine <code class="language-plaintext highlighter-rouge">pwd</code> komutu sayesinde ediniyoruz.</p>
+
+<h1 id="cd-komutu"><code class="language-plaintext highlighter-rouge">cd</code> Komutu</h1>
+
+<p>Dizinlerde gezinmek için İngilizce “<strong>c</strong>hange <strong>d</strong>irectory” yani “dizini değiştirme” ifadesinin kısaltmasından gelen <code class="language-plaintext highlighter-rouge">cd</code> komutunu kullanabiliyoruz. Dizin değiştirmek için tek yapmamız gereken <code class="language-plaintext highlighter-rouge">cd</code> komutundan sonra gitmek istediğimiz dizinin tam adresini belirtmek.</p>
+
+<p>Öncelikle bulunduğumuz dizini öğrenmek için <code class="language-plaintext highlighter-rouge">pwd</code> komutunu kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+</code></pre></div></div>
+
+<p>Ben şu an kendi ev dizinim olan <strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong><em>/home/taylan</em></strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong> dizininde bulunuyorum. Şimdi bir de bu dizinde hangi dosya ve klasörler var diye <code class="language-plaintext highlighter-rouge">ls</code> komutu ile kontrol edelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls
+</span>Desktop    Music     Templates
+Documents  Pictures  Videos
+Downloads  Public    yeni-klasor
+</code></pre></div></div>
+
+<p>Bakın burada <code class="language-plaintext highlighter-rouge">ls</code> komutu sayesinde elde ettiğim çıktı, benim mevcut bulunduğum dizinin içeriği. Ben “<strong><em>Desktop</em></strong>” klasörüne geçiş yapmak için <code class="language-plaintext highlighter-rouge">cd Desktop</code> şeklinde komutumu girip, dizin değişimini teyit etmek için de <code class="language-plaintext highlighter-rouge">pwd</code> komutunu kullanıyorum .</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd </span>Desktop/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">pwd</code> komutunu kullanarak veya doğrudan promt üzerindeki bilgi ile de teyit edebildiğimiz üzere bakın şu an <strong><em>Desktop</em></strong> dizinine geçiş yapmış bulunuyorum. Örnek üzerinden gördüğünüz gibi, mevcut bulunduğumuz dizin içerisindeki bir klasörlere geçiş yapmak için yalnızca ilgili klasörün ismini yazmamız yeterli oldu. Yani ben ev dizinimdeydim, ev dizini içerisinde <strong><em>Desktop</em></strong> klasörü bulunuyordu. Bu sebeple yalnızca <code class="language-plaintext highlighter-rouge">cd Desktop</code> komutu ile <strong><em>Desktop</em></strong> klasörüne kolayca geçiş yapabildim. Yani <strong>yalnızca klasörün ismini yazarak geçiş yapmak için zaten halihazırda o klasörün bulunduğu dizinde olmamız gerekiyor</strong>. İşte bu kullanıma “relative path” yani “göreli yol” deniyor. Buradaki “göreli yol” ifadesi, yalnızca bulunduğunuz dizinden itibaren geçerli olan yolu tasvir ediyor.</p>
+
+<p>Geçiş yapmak istediğim klasör mevcut çalışmakta olduğum dizin içinde bulunmuyorsa, bu klasörün dosya sistemi hiyerarşisindeki tam dizin adresini belirtmek zorundayım. Örneğin ben ana(<strong><em>/</em></strong>) dizindeki <strong><em>etc</em></strong> dizini altında yer alan <strong><em>apt</em></strong> klasörüne gitmek istiyorsam <code class="language-plaintext highlighter-rouge">cd</code> komutunun ardından <strong><em>/etc/apt</em></strong> dizin adresini tam olarak girmem gerekiyor. Burada ilk girdiğim slash “<strong><em>/</em></strong>” kök dizinini yani ana dizini temsil ederken, <strong><em>etc</em></strong> ile <strong><em>apt</em></strong> arasında yer alan ikinci slash “<strong><em>/</em></strong>” işareti ise <strong><em>etc</em></strong> dizini altındaki <strong><em>apt</em></strong> klasörüne geçiş yapılması gerektiğini belirtiyor. İlk slash işaretinden sonraki slash işaretleri, dizin isimlerini birbirinden ayırmak için kullandığımız bir sembol.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/12.png" alt="12.png" class="responsive img-zoomable" /></p>
+
+<p>Hemen geçiş yapmak için komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /etc/apt  
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/etc/apt
+</code></pre></div></div>
+
+<p>Promta bakarak ve pwd komutu ile dizini değiştirdiğimizi de teyit etmiş olduk. Yani ben şu anda <strong><em>etc</em></strong> dizini altındaki <strong><em>apt</em></strong> klasöründe bulunuyorum. Peki bu dizine bir anda nasıl atlayabildik ? Tabii ki ilgili dizinin tam adresini belirterek.</p>
+
+<p>İlgili dizinin tam adresini verdiğim için kabuk tek seferde sorunsuzca ilgili dizini bulup geçiş yapabildi. Buradaki tam adresten kastım, sistem üzerindeki tüm dizinler <strong>kök(”<em>/”</em>) dizininden başladığı</strong> için kök dizini de dahil ederek ilgili dizine giden yolun tüm bilgisini adım adım sunmak. Bu şekilde belirtilen dizin adreslerine de “absolute path” yani “kesin yol” deniyor.</p>
+
+<p>Göreli yol bulunduğumuz dizinden itibaren geçerli olan adresin tarif edilmesiyken, kesin yol ilgili adresin dosya sistemi hiyerarşisinin en tepe noktasından başlanarak eksiksizce tarif edilmesiyle oluyor.</p>
+
+<p>Dizinler arasında gezinirken en çok dikkat etmeniz gereken detay bu göreli ve kesin yol kavramları. Zaten anlaşılması sön derece kolay. Hadi emin olmak için benzer örneği yanlış şekilde tekrar ele alalım. Daha önce ben kendi ev dizinimde olduğum için yalnızca <code class="language-plaintext highlighter-rouge">cd Desktop</code> komutunu girerek kendi masaüstü klasörüme geçiş yapmıştım. Şimdi aynı komutu <strong><em>apt</em></strong> dizini içindeyken girip yine masaüstüme geçiş yapmayı deneyebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">cd </span>Desktop
+bash: <span class="nb">cd</span>: Desktop: No such file or directory
+</code></pre></div></div>
+
+<p>Bakın böyle bir dosya veya klasör bulunmuyor diye hata aldık çünkü gerçekten de bulunduğumuz <strong><em>apt</em></strong> klasörü içinde <strong><em>Desktop</em></strong> isminde bir klasör bulunmuyor. Bu durumu <code class="language-plaintext highlighter-rouge">ls</code> komutu ile teyit edebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]                            
+└─<span class="nv">$ </span><span class="nb">ls                                               
+</span>apt.conf.d     sources.list    trusted.gpg.d             
+auth.conf.d    sources.list~
+preferences.d  sources.list.d
+</code></pre></div></div>
+
+<p>Ben bu <strong><em>etc</em></strong> dizini atlındaki <strong><em>apt</em></strong> klasöründeyken göreli şekilde yani <code class="language-plaintext highlighter-rouge">cd Desktop</code> şeklinde komutumu girdiğimde, kabuk mevcut dizindeki <strong><em>Desktop</em></strong> isimli klasöre geçiş yapmak istediğimi düşünüyor ancak bu dizinde bu isimde bir klasör bulunmadığı için doğal olarak hata veriyor.</p>
+
+<p>Şimdi aynı komutu bu kez kendi ev dizinimdeki <strong><em>Desktop</em></strong> klasörünün tam dizin adresini belirtecek şekilde yani kesin yolunu belirtecek şekilde de girmeyi deneyebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">cd</span> /home/taylan/Desktop/                               
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Bakın kesin yolu belirterek, şu anda hangi dizinde çalıştığım fark etmeksizin gitmek istediğim Desktop dizinine komut satırı üzerinden de sorunsuzca erişebildim.</p>
+
+<p>Neticede bizzat örnekler üzerinden de teyit ettiğimiz gibi eğer geçiş yapmak istediğiniz klasör çalışmakta olduğunuz mevcut dizinde bulunmuyorsa, ilgili klasörün <strong>tam dizin adresini</strong> yani kesin yolunu kök dizinden itibaren belirtmeniz gerekiyor. Eğer geçiş yapacağınız klasör zaten kabuğun halihazırda çalışmakta olduğu dizinin içinde veya altında bulunuyorsa o zaman göreli konumu kullanabilirsiniz. Göreli konum belirtirken dizin adresinin en başına slash işaretini eklememiz gerekmiyor çünkü <strong>en baştaki slash işareti kök dizine gidilmesi,</strong> oradan diğer dizinlere geçiş yapılması gerektiği anlamına geliyor.</p>
+
+<p>Örneğin ben tekrar ev dizinime dönmek için <code class="language-plaintext highlighter-rouge">cd /home/taylan/</code> şeklinde komutumu girebilirim. Ancak ev dizinindeyken örneğin <strong><em>Desktop</em></strong> isimli klasöre geçiş yapmak için <code class="language-plaintext highlighter-rouge">cd /Desktop</code> şeklinde komut giremem.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">cd</span> /home/taylan/                                       
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /Desktop                                          
+bash: <span class="nb">cd</span>: /Desktop: No such file or directory
+</code></pre></div></div>
+
+<p>Böyle bir dosya veya dizin yok şeklinde hata alıyoruz çünkü bu komutumuzla, öncelikle kök(”<strong><em>/</em></strong>”) dizine gitmemiz gerektiğini oradan da <strong><em>Desktop</em></strong> isimli klasöre geçiş yapılması gerektiğini belirtmiş oluyoruz. Ancak kök dizin altında “Desktop” isimli bir klasör bulunmuyor.</p>
+
+<p><code class="language-plaintext highlighter-rouge">cd /Desktop</code> komutu yerine mevcut bulunduğumuz dizin altındaki <strong><em>Desktop</em></strong> klasörüne geçmek için yalnızca komutumuzu en başta slash olmadan yani <code class="language-plaintext highlighter-rouge">cd Desktop</code> şeklinde girmemiz yeterli.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /Desktop
+bash: <span class="nb">cd</span>: /Desktop: No such file or directory
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd </span>Desktop                                          
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Yani, olay tamamen o anda hangi dizinde olduğunuz ve hangi dizine geçiş yapmak istediğinizle ilgili. Kabuk sihirli bir biçimde gitmek istediğiniz dizini kendi kendine bilemeyeceği için o anda bulunduğunuz ve gitmek istediğiniz dizinlere göre uygun şekilde komut girmeniz gerekiyor. Gitmek istediğiniz dizin, mevcut bulunduğunuz dizinde veya altındaysa bu durumda başta slash işareti olmadan göreli yolu belirtmeniz gerekiyor. Eğer gitmek istediğiniz dizin sizin o an çalışmakta olduğunuz dizinin içinde değilse, o dizine giden kesin yolu belirtmek için başta slash işareti ile ana dizinden başlayıp o dizine kadar giden tüm yolu belirtmeniz gerekiyor.</p>
+
+<p>Bu açıklamaları yapıp göreli ve kesin yol üzerinde özellikle duruyorum çünkü yeni başlayan çoğu kullanıcı kesin yol için tam dizin adresi belirtirken kök dizinini temsil eden en baştaki slash işaretini unutabiliyor. Ya da tersi şekilde mevcut bulunduğu dizin altındaki bir klasöre geçiş için en başta slash ekleyip ilgili dizinin kök dizini altında olmamasına rağmen kök dizinde aranmasına sebep olabiliyor. Neticede kabuğa doğru adres tarif edilmezse, kabuk da doğru dizini bulup geçiş yapamıyor. Gerçek dünyadaki yol tarifleri gibi düşünün, yanlış yol tarifiyle doğru adrese gitmemiz mümkün değil. Lütfen bu detaya dikkat edin. Benim anlatımlarımla sınırlı kalmayın mutlaka bu konuda pratik yapın. Zaten pratik yaptığınızda kesin yol ve göreli yol kavramını net biçimde kavrayacaksınız çünkü benim anlattığımdan çok daha kolay bir konu aslında. Yani uygulamak, anlatmaktan çok daha kolay. Tek ihtiyacınız bizzat pratik yapıp işleyişi kavramak.</p>
+
+<p>Neticede komut satırı üzerinden dizinlerde gezinmek için cd komutunu kullanabildiğimizi öğrendik. Biz en temel kullanım biçimini ele aldık fakat söz konusu komut satırı üzerinde rahatlıkla gezinebilmek olduğu için <code class="language-plaintext highlighter-rouge">cd</code> komutunun bize pek çok kolaylıkla sağlayan esnek özellikleri de bulunuyor.</p>
+
+<h3 id="üst-dizine-geçiş">Üst Dizine Geçiş</h3>
+
+<p>Bir üst dizine dönmek için <code class="language-plaintext highlighter-rouge">cd ..</code> komutunu kullanabiliyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/Desktop
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">cd</span> ..
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">pwd</code> komutu ile de teyit edebildiğimiz gibi <code class="language-plaintext highlighter-rouge">cd ..</code> komutunu kullanarak bir üstteki dizine geçiş yapabiliyoruz.</p>
+
+<p>Kabuk için tek nokta <code class="language-plaintext highlighter-rouge">.</code> karakteri <strong>mevcut dizini</strong> temsil ederken, iki nokta <code class="language-plaintext highlighter-rouge">..</code> işareti ise <strong>bir üst dizini</strong> temsil ediyor. Yani iki nokta kullandığınızda kabuk bir üst dizini kastettiğinizi anlıyor.</p>
+
+<p>Bu komut yerine bir üst dizine dönmek için <code class="language-plaintext highlighter-rouge">cd /home/taylan/</code> komutunu da kullanabildim ancak gördüğünüz gibi bu kadar zahmete hiç gerek yok. İki nokta sayesinde bir üst dizini otomatik olarak belirtebiliyorum zaten.</p>
+
+<p>Üstelik tek tek <code class="language-plaintext highlighter-rouge">cd ..</code> komutunu kullanmak yerine tek seferde, gidilecek daha üst dizinleri de belirtebiliriz. Ben iki üst dizine dönmek için <code class="language-plaintext highlighter-rouge">cd ../../</code> komutunu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> ../../
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi, iki üst dizine dönmek için peşi sıra slash işaretleri ile ayırarak iki nokta karakterlerini yazmamız yeterli oldu.</p>
+
+<p>Buradaki ilk iki nokta beni <strong><em>taylan</em></strong> dizininden çıkardı, ikinci iki nokta, <strong><em>home</em></strong> dizininden çıkardı. Neticede kök dizine ulaşmış oldum. Tıpkı iç içe olan dizinlere geçiş yaparken dizin isimlerini ayırmak için belirttiğimiz gibi tek yapmamız gereken peşi sıra iki nokta karakterini kullanırken üst dizinlere geçiş yapmak istediğimizin anlaşılması için bu iki nokta karakteri arasında slash işaretini belirtmek.</p>
+
+<p>Ayrıca bir üst dizine gidip, başka bir dizine geçiş de yapabiliriz. Örnek gösterebilmek için önce <code class="language-plaintext highlighter-rouge">cd /home/taylan/Downloads</code> komutu ile dizine geçiş yapalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/]
+└─<span class="nv">$ </span><span class="nb">cd</span> /home/taylan/Downloads/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Downloads]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/Downloads
+</code></pre></div></div>
+
+<p>Ben bu dizinden bir üst dizine dönmek, oradan da Desktop isimli klasöre geçiş yapmak istiyorum. Normalde eğer kesin yolu belirtecek olsak, <code class="language-plaintext highlighter-rouge">cd /home/taylan/Desktop</code> şeklinde uzun uzadıya yazmamız gerek ancak bunun yerine <code class="language-plaintext highlighter-rouge">cd ../Desktop</code> komutunu da kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Downloads]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/Downloads
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Downloads]
+└─<span class="nv">$ </span><span class="nb">cd</span> ../Desktop/                                       
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Burada girmiş olduğumuz <code class="language-plaintext highlighter-rouge">cd ../Desktop/</code> komutu ile, kabuğa “mevcut bulunduğun dizinden bir üst dizine dön, oradan da <strong><em>Desktop</em></strong> isimli klasöre geçiş yap” demiş oluyoruz. Bakın aslında bu da göreli bir yol. Neticede bir üst dizinde <strong><em>Desktop</em></strong> klasörünün yer aldığını bildiğimiz için mevcut bulunduğumuz konumdan iki nokta işareti ile bir üst dizine döndük, daha sonra slash işaretinin ardından yazdığımız için <strong><em>Desktop</em></strong> isimli klasöre de geçiş yapabildik.</p>
+
+<p>Zaten komutlarınızı girerken dosya sistemindeki dizinlerin iç içe klasörlerden oluştuğunun bilincinde olduğunuz sürece üst veya alt dizinde olma duruma göre uygun komutu kolaylıkla verebilirsiniz.</p>
+
+<p>Dizinler arası geçiş biçimi tamamen sizin ihtiyaçlarınıza göre şekillenecektir. Tek yapmanız gereken bildiklerinizi harmanlayıp kullanmak. Bu noktada elbette kesin yol ve göreli yol kavramını iyi bir biçimde anlamış olmanız gerekiyor. Eğer anladıysanız zaten dizinler arasında son derece esnek yöntemlerle gezinebilirsiniz.</p>
+
+<h3 id="bir-önceki-dizine-dönüş">Bir Önceki Dizine Dönüş</h3>
+
+<p>Komut satırı üzerinden işlerimizi hallerken kimi zaman birbirinden çok uzak dizinler arasında hızlıca geçiş yapmak isteyebiliriz. Bu durumda en son bulunduğumuz bir önceki dizine doğrudan atlamak için <code class="language-plaintext highlighter-rouge">cd -</code> komutunu kullanabiliyoruz.</p>
+
+<p>Hemen uygulamalı olarak görmek için öncelikle <code class="language-plaintext highlighter-rouge">cd /etc/apt</code> komutu ile geçiş yapalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /etc/apt
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/etc/apt
+</code></pre></div></div>
+
+<p>Siz dilediğiniz bir dizine geçiş yapabilirsiniz. Ben şu anda <strong><em>/etc/apt</em></strong> dizinindeyim. Buradan da cd /home/taylan/Desktop komutu ile ev dizinimdeki masaüstü dizinine geçiş yapıyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">cd</span> /home/taylan/Desktop/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Şu anda da <strong><em>Desktop</em></strong> dizinindeyim gördüğünüz gibi. Eğer bir önceki bulunduğum dizine yani <strong><em>/etc/apt</em></strong> dizinine dönmek istersem <code class="language-plaintext highlighter-rouge">cd /etc/apt</code> ya da yalnızca <code class="language-plaintext highlighter-rouge">cd -</code> komutunu kullanabilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">cd</span> -
+/etc/apt
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                  
+/etc/apt
+</code></pre></div></div>
+
+<p>Bakın bir önceki çalıştığım dizine tek seferde geçiş yaptım ve geçiş yaptığım dizin de konsola basıldı. Tekrar deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">cd</span> -                                                 
+/home/taylan/Desktop
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Bakın kısacık bir komut ile bir önceki dizin adresine anında atlayabiliyorum ve atlama işlemini kolay takip edebilmem için geçiş yaptığım dizin konsola da bastırılıyor. Bence müthiş bir kolaylık.</p>
+
+<p>Kabuk, her zaman bir önceki dizinin adres bilgisini tuttuğu için bu şekilde çalışmakta olduğumuz bir önceki dizine <code class="language-plaintext highlighter-rouge">cd -</code> komutu ile hızlıca geçiş yapabiliyoruz. Bu komut özellikle, iki dizin arasında gidip geliyorken işlerimizi inanılmaz kolaylaştırıyor. Neticede uzun uzadıya önceki çalıştığımız dizini yazmamıza veya dizinin tam yolunu hatırlamamıza gerek kalmıyor. Bu özellik, dosya yöneticisi ile dizinlerde gezinmekten yani grafiksel arayüz kullanımından bile çok daha pratik bir gezinti deneyimi sağlıyor, haksız mıyım ?</p>
+
+<p>Hazır daha iyi bir gezinti deneyiminden ve pratiklikten bahsetmişken tabii ki otomatik tamamlama nimetlerinden bahsetmesek olmaz.</p>
+
+<h3 id="otomatik-tamamlamadan-faydalanmak">Otomatik Tamamlamadan Faydalanmak</h3>
+
+<p>Daha önce kısayollar bölümünde bahsettiğimiz otomatik tamamlama özelliği sayesinde geçiş yapabileceğimiz dizin isimlerinin otomatik olarak tamamlanmasını da sağlayabiliriz.</p>
+
+<p>Örneğin ben <code class="language-plaintext highlighter-rouge">cd /home/taylan/</code> komutunu yazdıktan sonra iki kez <kbd>tab</kbd> tuşuna basarsam, <strong><em>taylan</em></strong> dizini içerisinde yer alan geçiş yapabileceğim olası dizinler listelenir.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/13.gif" alt="13.gif" class="responsive img-zoomable" /></p>
+
+<p>Gitmek istediğim dizinin birazını yazıp örneğin <strong>De</strong> yazıp tekrar <kbd>tab</kbd> tuşuna basarsam bulunduğum dizinde bu ifadeyle başlayan yalnızca <strong><em>Desktop</em></strong> klasörü bulunduğu için, klasör ismi otomatik olarak “<strong>Desktop”’a</strong> tamamlanacaktır.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/14.gif" alt="14.gif" class="responsive img-zoomable" /></p>
+
+<p>Benzer şekilde örneğin <code class="language-plaintext highlighter-rouge">cd /</code> yazıp iki kez <kbd>tab</kbd> tuşuna basrsak ana dizin altında bulunan gidilebilecek olası tüm dizinler yani klasörler listelenecektir.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/15.gif" alt="15.gif" class="responsive img-zoomable" /></p>
+
+<p>Bizzat gördüğümüz gibi <kbd>tab</kbd> ile tamamlama işlevi, yalnızca ilgili dizinin içinde bulunan diğer dizinleri karşımıza getiriyor. Zaten mantıken olması gereken de bu. Dolayısıyla bir kısmını yazdığınız dizin adresine göre, size sunulacak tamamlama önerileri de otomatik olarak değişiyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/16.gif" alt="16.gif" class="responsive img-zoomable" /></p>
+
+<p>Özetle, otomatik tamamlama özelliği sayesinde seçeneklerimizi görebiliyor ve gerektiğinde uzun uzadıya yazmadan otomatik olarak tamamlanmasını sağlayabiliyoruz.</p>
+
+<h3 id="ev-dizini-kısayolu">Ev Dizini Kısayolu</h3>
+
+<p>Hatırlıyorsanız daha önce de tilde <code class="language-plaintext highlighter-rouge">~</code> işaretinin <strong>mevcut kullanıcının ev dizinini</strong> temsil ettiğini belirtmiştik. Şimdi bu durumu uygulamalı olarak tekrar <code class="language-plaintext highlighter-rouge">cd</code> komut üzerinden de teyit edebiliriz. Örneğin ben kendi ev dizinime geçiş yapmak istediğimde <code class="language-plaintext highlighter-rouge">cd /home/kullanıcı-adım</code> yani benim durumumda <code class="language-plaintext highlighter-rouge">cd /home/taylan/</code> şeklinde komut girmem gerekiyor. Ancak aslında bu şekilde uzun uzadıya kendi ev dizinimi belirtmem de şart değil.  Bunun yerine yalnızca <code class="language-plaintext highlighter-rouge">cd ~</code> komutunu kullandığımda zaten buradaki tilde işareti otomatik olarak benim ev dizin adresimin yerine geçiyor olacak. Eğer tilde işaretini nasıl oluşturabileceğinizi bilmiyorsanız tilde işaretini oluşturmak için klavyenizden <kbd>AltGR</kbd> + <kbd>Ü</kbd> tuşlarına aynı anda basmanız yeterli.</p>
+
+<p>Ben teyit edebilmek için öncelikle <code class="language-plaintext highlighter-rouge">cd /etc/</code> komutu ile <strong><em>etc</em></strong> dizine geçmek istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /etc/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/etc
+</code></pre></div></div>
+
+<p>Şu an ben <strong><em>etc</em></strong> dizinindeydim. Buradan kendi ev dizinime dönmek için tek yapmam gereken <code class="language-plaintext highlighter-rouge">cd ~</code> komutunu girmek.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc]
+└─<span class="nv">$ </span><span class="nb">cd</span> ~
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+</code></pre></div></div>
+
+<p>Bakın kendi ev dizinime doğrudan geçiş yaptım. Bunu hem <code class="language-plaintext highlighter-rouge">pwd</code> komutunun çıktısında hem de prompt bölümündeki tilde <strong>~</strong> işareti ile teyit edebiliyorum.</p>
+
+<p>Ayrıca ben burada tilde işaretini tek başına kullandım ama aslında tilde işaretini tek başına kullanıp yalnızca ev dizinine geçiş için kullanmak zorunda da değiliz. Ev dizinimiz altında yer alan dizinlere kolayca geçiş yapmak için de tilde işaretini kullanabiliyoruz. Örneğin ben kendi ev dizinimdeki Desktop klasörüne geçiş yapmak istersem <code class="language-plaintext highlighter-rouge">cd ~/Desktop</code> şeklinde komut girebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/                        
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                  
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Ayrıca tilde kullanımı dışında eğer doğrudan ev dizinimize dönmek istersek yalnızca <code class="language-plaintext highlighter-rouge">cd</code> komutunu girebiliriz. Test etmek için yine <code class="language-plaintext highlighter-rouge">cd /etc</code> komutu ile <strong><em>etc</em></strong> dizine altında geçiş yapabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">cd</span> /etc/                             
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                  
+/etc
+</code></pre></div></div>
+
+<p>Bakın ben şu anda <strong><em>etc</em></strong> dizininde çalışıyorum. Kendi ev dizinime hızlıca dönmek için <code class="language-plaintext highlighter-rouge">cd</code> komutunu kullanmam yeterli.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc]
+└─<span class="nv">$ </span><span class="nb">cd</span>                                   
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                  
+/home/taylan
+</code></pre></div></div>
+
+<p>Bakın hangi dizinde olduğum fark etmeksizin, yalnızca <code class="language-plaintext highlighter-rouge">cd</code> komutu ile anında kendi ev dizinime dönmüş oldum. Bu da sıklıkla kullanacağımız bir kısayol.</p>
+
+<p>Belki şu an öğrendiklerinizin etkisi çok büyük gibi gelmiyor olabilir ancak aslında burada öğrendiğiniz bilgiler ile yetkiniz olduğu sürece tüm dosya sistemi üzerindeki dizinlerde rahatlıkla gezinebilirsiniz. Yani öğrendikleriniz aslında komut satırı üzerindeki hakimiyetiniz için çok değerli bilgiler. Neticede şimdiye kadar temelde <code class="language-plaintext highlighter-rouge">cd</code> komutu hakkında bilmemiz gerekenlerden bahsettik ancak ben yine de son olarak <code class="language-plaintext highlighter-rouge">cd</code> komutunu kullanırken dikkat etmeniz gereken birkaç detaydan daha bahsetmek istiyorum. Çünkü yeni öğrenen kişiler tarafından cd komutu kullanılırken bu hatalar sıklıkla yapılabiliyor.</p>
+
+<h3 id="dikkat-edilmesi-gerekenler">Dikkat Edilmesi Gerekenler</h3>
+
+<h3 id="göreli-ve-kesin-yol">Göreli ve Kesin Yol</h3>
+
+<p>Dikkat etmenizi istediğim ilk ve bence en sık yapılan hatalardan biri kesin yol belirtirken kök dizini belirtmek için kullandığımız en baştaki slash işaretini unutmamanız. Daha önce en baştaki slash işaretinin kök dizini yani ana dizini temsil ettiğini ve bu sebeple tam dizin adresi belirtilirken unutmamanız gerektiğini birden fazla kez söylemiştim. Bu önemli bir detay olduğu için tekrar hatırlatmak istiyorum.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/hiyerarsi.png" alt="hiyerarsi.png" class="responsive img-zoomable" /></p>
+
+<p>Anlatımın başında ele aldığımız hiyerarşik dosya sistemine tekrar bakacak olursak zaten sistemi oluşturan tüm klasörlerin kök dizinden başladığını görebiliyoruz. Ayrıca alt dizin ve üst dizin yaklaşımını da net biçimde görebiliyoruz. Örneğin bakın buradaki temsilde, ali kullanıcısının ev dizini kök dizini altındaki <strong><em>home</em></strong> klasöründe yer alan <strong><em>ali</em></strong> isimli klasörde bulunuyor.</p>
+
+<p><strong><em>home</em></strong> dizininde olan birisi için <strong><em>ali</em></strong> klasörü alt dizinken, kök <strong><em>/</em></strong> dizin ise bir üst dizini temsil ediyor. Komutlarımızı da bu doğrultuda girmemiz gerekiyor. Hatırlatacak olursak, mevcut bulunduğumuz dizin tek nokta <code class="language-plaintext highlighter-rouge">.</code> işareti ile temsil ediliyorken, bir üst dizin iki nokta <code class="language-plaintext highlighter-rouge">..</code> işareti ile temsil ediliyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/17.png" alt="17.png" class="responsive img-zoomable" /></p>
+
+<p>Yani örneğin <strong><em>home</em></strong> dizini içindeyken bir üst dizine dönmek için <code class="language-plaintext highlighter-rouge">cd ..</code> şeklinde komutumuzu kullandığımızda kök dizine dönmüş oluyoruz. Bunun dışında <strong><em>home</em></strong> dizini içinde bulunan herhangi bir klasöre yani alt klasöre geçiş için de ilgili klasörün ismini girmemiz yeterli oluyor. Örneğin <code class="language-plaintext highlighter-rouge">cd ali</code> <strong>**</strong>komutu ile alttaki <strong><em>ali</em></strong> klasörüne kolayca geçiş yapabiliyoruz. İşte buradaki durum göreli yola örnek. Home dizininde yer alan birine göre <strong><em>ali</em></strong> klasörü bir alttaki dizindir dolayısıyla yalnızca <code class="language-plaintext highlighter-rouge">cd ali</code> komutu ile bu dizine geçiş yapılabilir. Ya da benzeri şekilde <strong><em>ali</em></strong> dizini içinde olan birisi için <code class="language-plaintext highlighter-rouge">cd ..</code> komutu bir üst dizini yani <strong><em>home</em></strong> dizinini temsil ediyorken, <strong><em>home</em></strong> dizinindeki birisi <code class="language-plaintext highlighter-rouge">cd ..</code> komutunu girdiğimde bir üstündeki kök dizini temsil etmiş oluyor.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/18.png" alt="18.png" class="responsive img-zoomable" /></p>
+
+<p>İşte zaten kök dizinden başlayan kesin bir yol rotası belirtmeden girdiğimiz komutların hepsi mevcut bulunduğumuz dizine göre, gitmek istediğimiz dizinin nerede olduğuyla ilgili. Bu sebeple bu yola göreli yol diyoruz.</p>
+
+<p>Ayrıca alt dizin ve üst dizine geçişler dışında yani göreli yol dışında, dosya sistemi üzerinde o anda hangi dizinde olduğumuz fark etmeksizin kök dizini kullanarak kesin dizin yolunu belirtip çok farklı konumlardaki dizinlere ulaşmamız da mümkün. Örneğin ben ali kullanıcısının ev dizinindeyken <strong><em>etc</em></strong> dizini atlındaki <strong><em>apt</em></strong> klasörüne geçiş yapmak istersem <code class="language-plaintext highlighter-rouge">cd /etc/apt</code> komutu ile kesin yolunu belirterek, öncelikle kök dizine gidilmesi oradan <strong><em>etc</em></strong> dizinine geçilmesi ve son olarak da <strong><em>apt</em></strong> klasörüne geçilmesi gerektiğini kolayca ifade edebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /etc/apt/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/etc/apt]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/etc/apt
+</code></pre></div></div>
+
+<p>Eğer komut girerken en baştaki slash işaretini atlarsam kök dizini belirtmemiş olurum. Dolayısıyla mevcut bulunduğum dizindeki <strong><em>etc</em></strong> isimli bir klasöre oradan da <strong><em>apt</em></strong> isimli klasöre geçmek istediğim anlaşılır.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd </span>etc/apt/
+bash: <span class="nb">cd</span>: etc/apt/: No such file or directory
+</code></pre></div></div>
+
+<p>Bu şekilde hata aldık çünkü mevcut bulunduğum(<strong><em>/home/taylan/</em></strong>) dizin ile gerçekte gitmek istediğim <strong><em>etc/apt</em></strong> dizini aynı dizin kesişimine sahip değil. Mevcut bulunduğum dizinin altında bu isimde klasörler bulunmuyor, dolayısıyla geçiş de yapılamıyor.</p>
+
+<p>Neticede buradaki basit hiyerarşik şemaya bakarak bile, hiyerarşik dosya yapısına uygun olmayan yani gerçekte var olmayan dizin adresleri belirttiğimizde ilgili dizine geçiş yapamayacağımızı açıkça görebiliyoruz. Doğru komutlar girebilmek için kesin yol ve göreli yol kavramını anlayana kadar kendi kendinize alıştırmalar yapın lütfen.</p>
+
+<h3 id="boşluk-ve-özel-karakter-kullanımı">Boşluk ve Özel Karakter Kullanımı</h3>
+
+<p>Sık yapılan hatalardan bir diğer ise, dosya ve dizin isimlerindeki boşluklar ve özel karakterlerin kullanımı. Daha önce kabuğun nasıl çalıştığından bahsederken kabuğun, girilen komuttaki boşluk karakterlerinden komutu ayrı ayrı argümanlara ayırdığından ve kabuk için özel anlam ifade eden karakteri de özel olarak ele aldığından bahsetmiştik. Eğer komut girerken bir dosya veya klasör isminde boşluk karakteri veya kabuk için özel anlam ifade eden özel bir karakter varsa kabuk bizim girdiğimiz komutu yanlış anlayabiliyor.</p>
+
+<p>Bu sebeple isminde özel karakterler veya boşluklar içeren klasörlerin doğru algılanabilmesi için klasör isimlerini tırnak içinde yazmamız gerekiyor. Ben basit bir örnek olması için isminde boşluk bulunan bir klasör oluşturacağım. Klasör oluşturmak için ileride ayrıca ele alacağımız <code class="language-plaintext highlighter-rouge">mkdir</code> komutunu kullanabiliriz. <code class="language-plaintext highlighter-rouge">mkdir</code> komutunun ardından tırnak içinde klasörün adını <code class="language-plaintext highlighter-rouge">‘yeni klasor'</code> şeklinde yazalım ve <code class="language-plaintext highlighter-rouge">ls</code> komutu ile klasörün varlığını da teyit edelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="s1">'yeni klasor'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls
+ </span>Desktop     Music      Templates      yeni-klasor
+ Documents   Pictures   Videos
+ Downloads   Public    <span class="s1">'yeni klasor'</span>
+</code></pre></div></div>
+
+<p>Bakın “<strong><em>yeni klasor</em></strong>” isimli klasör oluşturulmuş. Eğer komutumuzu <code class="language-plaintext highlighter-rouge">mkdir 'yeni klasor'</code> şeklinde tırnak içinde girmeseydik, argümanlar arasındaki boşluktan dolayı “<strong><em>yeni</em></strong>” ve “<strong><em>klasor</em></strong>” isimli iki ayrı klasör oluşacaktı. Bu durumu teyit etmek için <code class="language-plaintext highlighter-rouge">mkdir yeni klasor</code> şeklinde komutumuzu girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">mkdir </span>yeni klasor
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls
+ </span>Desktop     klasor     Public      yeni              
+ Documents   Music      Templates  <span class="s1">'yeni klasor'</span>      
+ Downloads   Pictures   Videos      yeni-klasor
+</code></pre></div></div>
+
+<p>Tırnak kullanmadığımız için aradaki boşluk karakteri dolayısıyla iki ayrı argüman olarak algılanan “yeni” ve “klasor” isimli iki ayrı klasör oluşturuldu.</p>
+
+<p>İşte bizzat klasör oluşturma aşamasında gözlemediğimiz bu durum, aslında dizinlerde gezinirken de bizzat geçerli. Eğer geçiş yapmak istediğimiz klasör isminde boşluk veya özel bir karakter varsa, bu klasör ismini mutlaka tırnak içinde özel olarak belirtmemiz gerekiyor. Burada dikkat etmeniz gereken detay tek tırnak kullanmanızdır. Aslında bu örnek için çift tırnak kullansak da sorun yaşamazdık ancak size önerim içerisinde boşluk veya özel karakter barından komutlarınızda bu komutların özel anlamının tamamen görmezden gelinmesi için tek tırnak içinde yazmanızdır. Neden tek tırnak kullanmamız gerektiğini “kabuk genişletmeleri” bölümünde ayrıca ele alacağız.</p>
+
+<p>Örneğimize dönecek olursak neticede isminde boşluk karakteri bulunan klasör çalışmakta olduğum dizinde oluşturuldu. Bu dizine geçiş yapmak için <code class="language-plaintext highlighter-rouge">cd yeni klasor</code> şeklinde komut girmeyi deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]                                    
+└─<span class="nv">$ </span><span class="nb">cd </span>yeni klasor                                    
+bash: <span class="nb">cd</span>: too many arguments
+</code></pre></div></div>
+
+<p>Bakın “çok fazla argüman” hatası aldık çünkü girmiş olduğumuz komuttaki boşluk karakteri dolayısıyla <code class="language-plaintext highlighter-rouge">cd</code> aracına hem “<strong><em>yeni</em></strong>” hem de “<strong><em>klasor</em></strong>” isimli iki ayrı dizine geçiş yapması gerektiğini söylemiş olduk. Bunun yerine isminde boşluk karakteri bulunan dizine geçiş için tek tırnak içinde ilgili klasörün tam adını yazmamız gerek.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> <span class="s1">'yeni klasor'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                               
+/home/taylan/yeni klasor
+</code></pre></div></div>
+
+<p>Bakın isminde boşluk olan dizine geçiş yapabildik. Kullandığımız tırnaklar sayesinde girdiğimiz “<strong>yeni klasor</strong>” ifadesi kabuk tarafından tek bir argüman olarak algılanıp ilgili klasöre başarılı şekilde geçiş yapıldı. Bu örneğimizle birlikte kabuğun çalışma yapısını tekrar hatırlayıp, içinde boşluk ya da kabuk tarafından farklı algılanabilecek özel karakterler olan klasörlerin tırnak içinde tek bir argüman olarak yazılması gerektiğini de öğrenmiş olduk.</p>
+
+<p>Boşluk karakterine örnek verdik bir de özel karaktere örnek verecek olursak, mesela değişken çağırırken kullandığımız dolar işaretini kullanabiliriz. Normalde sizin de bildiğiniz gibi kabuk dolar işaretini gördüğünde bu işaretin yanındaki ifadeyi değişken olarak kabul ediyor. Yani dosya isminde dolar işareti olursa kabuk dosya ismini doğru şekilde algılayamayabilir. Ben denemek için <code class="language-plaintext highlighter-rouge">mkdir 'ben$klasor'</code> şeklinde komutumu giriyorum. Burada tek tırnak kullanmak önemli. Tek tırnak içinde yazdığımızda kabuğun bu tırnak içindeki tüm ifadelerin özel anlamlarını görmezden gelmesini sağlamış oluruz. <code class="language-plaintext highlighter-rouge">ls</code> komutu ile mevcut dizindeki dosya ve klasörleri listeleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="s1">'ben$klasor'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">ls</span>                                                
+<span class="s1">'ben$klasor'</span>
+</code></pre></div></div>
+
+<p>Bakın tam olarak tek tırnak içinde belirttiğim isimde yeni klasörüm oluşturulmuş.</p>
+
+<p>Şimdi test etmek için içerisinde özel karakter olan bu klasöre geçiş yapmak üzere ismini olduğu gibi yazmayı deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">cd </span>ben<span class="nv">$klasor</span>                                     
+bash: <span class="nb">cd</span>: ben: No such file or directory
+</code></pre></div></div>
+
+<p>Bakın yanıt olarak böyle bir dosya ya da dizin olmadığı konusunda uyarıldık. Hata aldık çünkü kabuk buradaki dolar işaretinin, klasör isminin bir parçası olduğunu bilmiyor. Dolar işaretini gördüğü için dolar işaretinden sonraki kısmı değişken olarak dikkate alıyor.</p>
+
+<p>İşte bizim bu noktada klasörün isminin kabuk tarafından sıradan bir argüman olarak anlaşılabilmesi için tek tırnak kullanmamız gerekiyor. Yani aslında tek tırnak ile bu argümanı kabuk için sıradan hale getirmemiz gerekiyor. Eğer çift tırnağın işe yarayacağını düşünüyorsanız klasör ismini çift tırnak içinde de belirtebilirsiniz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">cd</span> <span class="s2">"ben</span><span class="nv">$klasor</span><span class="s2">"</span>
+bash: <span class="nb">cd</span>: ben: No such file or directory
+</code></pre></div></div>
+
+<p>Ancak gördüğünüz gibi çift tırnak işe yaramadı. Çünkü kabuk, çift tırnağın içindeki bazı özel sembolleri de dikkate alıyor. Son olarak tek tırnak ile klasörün ismini belirtmeyi deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">cd</span> <span class="s1">'ben$klasor'</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor/ben<span class="nv">$klasor</span><span class="o">]</span>
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                               
+/home/taylan/yeni klasor/ben<span class="nv">$klasor</span>
+</code></pre></div></div>
+
+<p>Bakın klasöre sorunsuzca geçiş yapabildik. Çünkü tek tırnak işareti sayesinde kabuk, dolar işaretinin özel anlamını görmezden gelerek dolar işaretini yalnızca klasörün isminde geçen standart bir karakter olarak gördü. Dolayısıyla kabuk buradaki argümana herhangi bir müdahalede bulunmadan olduğu gibi <code class="language-plaintext highlighter-rouge">cd</code> komutuna aktardı. <code class="language-plaintext highlighter-rouge">cd</code> aracı da aldığı argüman doğrultusunda bu dizine geçiş yapabilmemizi sağladı.</p>
+
+<p>Bizzat birkaç kez teyit ettiğimiz gibi tek tırnak işareti bizim sorumuzu gayet iyi çözüyor ancak belki tek tırnak kullanımı size o kadar da konforlu gelmemiş olabilir. Bu durumda tüm ifadeyi tırnak içinde yazmak yerine kabuk için özel olan herhangi bir karakterin kabuk tarafından görmezden gelinmesi için ilgili özel karakterden hemen önce ters slash <strong>**</strong> işaretini de kullanabiliriz. Ters slash işareti, bash için <strong>kaçış karakteri</strong> anlamına geliyor ve dolayısıyla bash kabuğu bu karakteri gördüğünde bu karakterden sonraki karakterin özel anlamını görmezden geliyor. Yani örneğin ben <code class="language-plaintext highlighter-rouge">cd ~/yeni\ klasor</code> şeklinde komutumu girersem, kabuk ters slash işaretinden sonraki boşluk karakterini görmezden geliyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor/ben<span class="nv">$klasor</span><span class="o">]</span>
+└─<span class="nv">$ </span><span class="nb">cd</span> ~/yeni<span class="se">\ </span>klasor                                 
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                               
+/home/taylan/yeni klasor
+</code></pre></div></div>
+
+<p>Normalde sizin de bildiğiniz gibi kabuk için boşluk karakteri argümanları ayırmayı sağlıyor yani özel bir anlam ifade ediyor. Fakat girdiğim komutta boşluk karakterinden hemen önce ters slash <code class="language-plaintext highlighter-rouge">\</code> işareti kullanıldığı için kabuk, boşluk karakterinin özel anlamını görmezden gelip, onu standart bir karakter olarak ele aldı. Bu sayede isminde boşluk karakteri bulunan klasöre sorunsuzca geçiş yapabildik. Aynı yöntemi dolar işaretli klasör üzerinde de aynen deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor]
+└─<span class="nv">$ </span><span class="nb">cd </span>ben<span class="se">\$</span>klasor/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni klasor/ben<span class="nv">$klasor</span><span class="o">]</span>
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                               
+/home/taylan/yeni klasor/ben<span class="nv">$klasor</span>
+</code></pre></div></div>
+
+<p>Bakın ters slash yani kaçış karakteri sayesinde dolar işaretinin özel anlamı kabuk tarafından görmezden gelindi ve neticede sorunsuzca bu dizine de geçiş yapabildik.</p>
+
+<p>Görebildiğiniz gibi tek bir karakterin görmezden gelinmesi gerekiyorsa kolayca ters slash işaretini kullanabiliyoruz. Ben örnekler sırasında tek bir noktada bu karakteri kullandım ancak gerekiyorsa, görmezden gelinmesi gereken tüm karakterlerden önce bu ters slash işaretini tekrar tekrar kullanabilirsiniz. Örneğin ben “<strong><em>bu bir deneme metnidir</em></strong>” isminde bir klasör oluşturmak istersem komutumu <code class="language-plaintext highlighter-rouge">mkdir bu\ bir\ deneme\ metnidir</code> şeklinde girebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">mkdir </span>bu<span class="se">\ </span>bir<span class="se">\ </span>deneme<span class="se">\ </span>metnidir
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span>
+<span class="s1">'bu bir deneme metnidir'</span>   Music       yeni
+ Desktop                   Pictures   <span class="s1">'yeni klasor'</span>
+ Documents                 Public      yeni-klasor
+ Downloads                 Templates
+ klasor                    Videos
+</code></pre></div></div>
+
+<p>Burada kabuk tarafından görmezden gelinmesini istediğim tüm boşluk karakterlerinden önce ters slash işaretini belirtmem gerekti. Şimdi yeni oluşturduğum bu dizine geçiş yapmak için <code class="language-plaintext highlighter-rouge">cd</code> komutunda sonra bu yazıp <kbd>tab</kbd> ile otomatik olarak klasör isminin tamamlanmasını sağlıyorum.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/19.gif" alt="19.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın burada da otomatik olarak boşluk karakterlerinden önce ters slash karakteri ile öneri sunuldu. Komutumu onayladığımda ilgili dizine geçiş yapabiliyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd </span>bu<span class="se">\ </span>bir<span class="se">\ </span>deneme<span class="se">\ </span>metnidir/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/bu bir deneme metnidir]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/bu bir deneme metnidir
+</code></pre></div></div>
+
+<p>Neticede örnekler üzerinden de gördüğünüz gibi ters slash kullanışlı olsa de genelde pek okunaklı bir komut görünümü sunmadığı için genelde tırnak içine alma daha sık tercih ediliyor. Yine de artık her iki kullanım yönteminden de haberiniz var. Örneğin ters slash karakterini kullanmayı tercih etmeseniz bile isminde boşluk geçen bir klasöre geçiş yaparken<kbd>tab</kbd>önerisinde sunulan isimdeki ters slash işaretlerinin ne anlama geldiğini artık biliyorsunuz.</p>
+
+<h3 id="küçük-büyük-harf-duyarlılığı">Küçük Büyük Harf Duyarlılığı</h3>
+
+<p>Hazır kabuk üzerindeki karakterlerden bahsetmişken dikkat etmemiz gereken bir diğer önemli husus da, <strong>Linux sisteminin küçük büyük harf duyarlılığına sahip olduğu</strong> gerçeği. Küçük büyük harf duyarlılığı ile tam olarak neyi kast ediyorum ? Hemen bir örnek üzerinden açıklayalım.</p>
+
+<p>Örnek olası için grafiksel arayüzde dosya yöneticisi üzerinden isimleri aynı olan ama küçük büyük harfleri farklı olan klasörler oluşturmayı deneyebiliriz. Öncelikle Linux üzerinde test edelim.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/20.gif" alt="20.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın küçük büyük harfleri farklı ama birebir aynı isimli birden fazla klasörü oluşturabildik. Çünkü Linux için küçük büyük harfleri dolayısıyla her biri ayrı bir klasör.</p>
+
+<p>Aynı işlemi windows sisteminde de deneyebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/21.gif" alt="21.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın ismini onayladığımızda aynı isimde başka bir klasör olduğu konusunda uyarılıyoruz. Çünkü Windows üzerinde küçük büyük harf duyarlılığı bulunmuyor. Windows sistemine göre hepsi aynı.</p>
+
+<p>İşte bakın Windows üzerinden ele aldığımız bu örnek, Linux sisteminin sahip olduğu küçük büyük harf duyarlılığını kanıtlıyor. Çünkü biraz önce Linux’ta küçük büyük harflerı farklı olan aynı isimli birden fazla klasörü sorunsuzca oluşturabildik. Linux için klasör isimleri içerdikleri küçük büyük harf farkları dolayısıyla benzersiz birer klasördür. İşte harf duyarlılığı olduğu için oluşturma aşamasında olduğu gibi klasöre geçiş aşamasında da elbette klasörün küçük büyük harfli karakterlerine dikkat ederek doğru adını girmemiz gerekiyor.</p>
+
+<p>Örneğin ben tamamı büyük harflerle yazılmış olan <strong><em>DOSYA_ADI</em></strong> klasörüne gitmek istersem <code class="language-plaintext highlighter-rouge">cd ~/DOSYA_ADI</code> yazmam gerekiyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span>
+<span class="s1">'bu bir deneme metnidir'</span>   Downloads   Videos
+ Desktop                   klasor      yeni
+ Documents                 Music      <span class="s1">'yeni klasor'</span>
+ DOSYA_ADI                 Pictures    yeni-klasor
+ dosya_adı                 Public
+ Dosya_adı                 Templates
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd </span>DOSYA_ADI
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/DOSYA_ADI]
+└─<span class="nv">$ </span><span class="nb">pwd</span>
+/home/taylan/DOSYA_ADI
+</code></pre></div></div>
+
+<p>Bakın tamamı küçük harfli olan “<strong><em>dosya_adı</em></strong>” ve yalnızca başlangıç karakteri büyük olan “<strong><em>Dosya_adı</em></strong>” klasörlerine değil doğrudan tamamı büyük harflerden oluşan “<strong><em>DOSYA_ADI</em></strong>” isimli klasöre sorunsuzca geçiş yapabildim. Bizzat bu örnek üzerinden de teyit edebildiğimiz gibi Linux üzerindeki küçük büyük harf duyarlılığı sebebiyle kabuğa komutlar girerken girdiğimiz tüm komutlarda küçük büyük harf duyarlılığa dikkat etmemiz gerekiyor.</p>
+
+<p>Örneğin <code class="language-plaintext highlighter-rouge">cd ~/desktop</code> yazarsam, ev dizinimde küçük harfle başlayan <strong><em>desktop</em></strong> isimli bir klasör olmadığı için ilgili dizine geçiş yapamam.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/DOSYA_ADI]
+└─<span class="nv">$ </span><span class="nb">cd</span> ~/desktop
+bash: <span class="nb">cd</span>: /home/taylan/desktop: No such file or directory
+</code></pre></div></div>
+
+<p>Aynı komutu küçük büyük harflere dikkat ederek yani <code class="language-plaintext highlighter-rouge">cd ~/Desktop</code> şeklinde yazmam gerekiyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/DOSYA_ADI]                                
+└─<span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                     
+/home/taylan/Desktop
+</code></pre></div></div>
+
+<p>Dizinlerde gezinirken yeni başlayan kullanıcılar sıklıkla küçük büyük harf duyarlılığına dikkat etmediği için bu detaydan da özel olarak bahsetmek istedim. Ayrıca elbette <strong>küçük büyük harf duyarlılığı yalnızca klasör isimleri için değil, tüm sistem geneli için geçerli.</strong> İleride ele alacağımız komutlarda ve bu komutlara vereceğimiz seçenek ve argümanlarda da küçük büyük harf duyarlılığa dikkat ederek komut giriyor olacağız. Aksi halde doğru komutları girmemiş oluruz. Örneğin ev dizinimdeki <strong><em>Documents</em></strong> klasörüne geçiş yapmak için <code class="language-plaintext highlighter-rouge">cd</code> komutunu büyük yazıp <code class="language-plaintext highlighter-rouge">CD ~/Documents</code> şeklinde komut girmeyi deneyebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span>CD ~/Documents/
+CD: <span class="nb">command </span>not found
+</code></pre></div></div>
+
+<p>Bakın böyle bir komut bulunamadığı konusunda uyarıldık. Çünkü gerçekten de bash yerleşik kabuklarında veya <strong>PATH</strong> dizini üzerindeki herhangi bir dizinde tamamı büyük harflerden oluşan <strong>CD</strong> ismi geçmiyor. Aynı örneğin <code class="language-plaintext highlighter-rouge">cd ~/Documents</code> şeklinde tekrar deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Desktop]
+└─<span class="nv">$ </span><span class="nb">cd</span> ~/Documents/
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/Documents]
+└─<span class="nv">$ </span><span class="nb">pwd</span>                                                     
+/home/taylan/Documents
+</code></pre></div></div>
+
+<p>Dolayısıyla örneklerimiz üzerinden de bizzat tekrar tekrar teyit ettiğimiz gibi Linux üzerinde çalışıyorken her zaman küçük büyük harflere dikkat etmemiz gerekiyor.</p>
+
+<p>Tamamdır bence dizinlerde gezinmek için bilmemiz gereken tüm detaylardan bahsettik. Artık böylelikle sistem üzerinde yetkinizin bulunduğu tüm dizinlerde rahatlıkla gezinebilirsiniz. Üstelik konsol kullanımına alıştığınızda grafiksel arayüze oranla çok daha hızlı gezinebildiğinizi kendiniz de bizzat fark edeceksiniz zaten. Bu noktada sizlerden tek ricam dizinlerde gezinerek bol bol pratik yapmanız. Pratik yaptığınızda konsol üzerinden dizinlerde gezinmenin ne kadar kolay olduğunu bizzat deneyimleyeceksiniz.</p>
+
+<h1 id="ls-komutu"><code class="language-plaintext highlighter-rouge">ls</code> Komutu</h1>
+
+<p>Daha önce tekrar tekrar deneyimlediğimiz gibi komut satırı üzerinden, dizin içeriklerini listelemek için için <code class="language-plaintext highlighter-rouge">ls</code> komutunu kullanabiliyoruz. <code class="language-plaintext highlighter-rouge">ls</code> komutu İngilizce “<strong>l</strong>i<strong>s</strong>t” yani “liste-listelemek” ifadesinin kısaltmasından geliyor. En yalın kullanımı, mevcut dizindeki içerikleri listelememizi sağlıyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span>
+<span class="s1">'bu bir deneme metnidir'</span>   Downloads   Videos
+ Desktop                   klasor      yeni
+ Documents                 Music      <span class="s1">'yeni klasor'</span>
+ DOSYA_ADI                 Pictures    yeni-klasor
+ dosya_adı                 Public
+ Dosya_adı                 Template
+</code></pre></div></div>
+
+<p>Bakın bulunduğum dizindeki tüm dosya ve klasörler <code class="language-plaintext highlighter-rouge">ls</code> komutu sayesinde konsola bastırdı. <code class="language-plaintext highlighter-rouge">ls</code> komutunu tek başına kullanmak yalnızca mevcut dizindeki dosya ve klasörlerin isimlerini öğrenmek istediğimizde faydalı. Ancak bizim dosya veya klasörler ile ilgili daha detaylı bilgilere ihtiyacımız da olabilir. Şimdi istediğimiz detay seviyesinde bilgi alabilmek için <code class="language-plaintext highlighter-rouge">ls</code> komutunun diğer seçenekleri ile neler yapabileceğimizden bahsederek devam edebiliriz.</p>
+
+<h2 id="ayrıntılı-liste-almak">Ayrıntılı Liste Almak</h2>
+
+<p>Eğer aldığımız çıktıda dosyanın veya klasörün türü, yetkileri, dosyanın sahibi ve dosyanın oluşturulma veya değiştirilme tarihi gibi ekstra detayları yani uzun çıktıları da istiyorsak İngilizce “<strong>l</strong>ong” yani “uzun” ifadesinin kısaltmasından gelen  <code class="language-plaintext highlighter-rouge">-l</code> seçeneğini kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>
+total 64
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:51 <span class="s1">'bu bir deneme metnidir'</span>
+drwxr-xr-x 3 taylan taylan 4096 May 27 07:02  Desktop
+drwxr-xr-x 4 taylan taylan 4096 Jul 18  2022  Documents
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  DOSYA_ADI
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  dosya_adı
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  Dosya_adı
+drwxr-xr-x 3 taylan taylan 4096 May 26 05:36  Downloads
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  klasor
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Music
+drwxr-xr-x 4 taylan taylan 4096 May 30 13:21  Pictures
+drwxr-xr-x 3 taylan taylan 4096 Jun 25  2022  Public
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Templates
+<span class="nt">-rw-r--r--</span> 1 taylan taylan    0 Jun  4 05:06  test-dosyası
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Videos
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  yeni
+drwxr-xr-x 3 taylan taylan 4096 Jun  4 03:46 <span class="s1">'yeni klasor'</span>
+drwxr-xr-x 2 taylan taylan 4096 May 30 13:18  yeni-klasor
+</code></pre></div></div>
+
+<p>Aldığımız çıktıdaki sütunları ve bunların anlamlarını kısaca ele alacak olursak;</p>
+
+<p>En baştaki ilk karakter listelenen içeriğin tipini ifade ediyor. Örneğin başında <strong>d</strong> olanlar klasörleri temsil ediyor. Buradaki <strong>d</strong> karakteri İngilizce “<strong>d</strong>irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Başında <strong>-</strong> işareti olanlar ise standart dosyaları temsil ediyor.</p>
+
+<p>Hemen bu ilk karakterin yanında bulunan <strong>rwx</strong> gibi karakterleri barındıran üçlü grup ise ilgili dosya veya klasörün yetkilerini temsil ediyor. Bu konudan daha sonra detaylıca bahsedeceğiz zaten.</p>
+
+<p>Yetkilerin hemen yanındaki rakamlar ise, ilgili dizinin içinde kaç <strong>hardlink</strong> yani <strong>katı linki</strong> bulunduğunu belirtiyor. Hard link kavramını da henüz öğrenmedik, şimdilik bu sütunun hard link sayısını gösterdiği konusunda kulağınızı kabartmanız yeterli.</p>
+
+<p>Bir sonraki sütunda, dosya ya da klasörün sahibini, onun yanındaki ise grubunu belirtiyor. Dosyanın sahibi olan veya burada belirtilen grupta bulunan tüm kullanıcılar dosya veya klasör üzerinde burada belirtilen bazı yetkilere sahip oluyor. Bu kavramdan da ileride ayrıca bahsedeceğiz.</p>
+
+<p>Grubun hemen yanındaki sütun ise listelenen ögenin boyutunu bayt olarak ifade ediyor.</p>
+
+<p>Tarih bilgisi de ilgili dosya veya klasörün en son değiştirildiği tarihi veriyor.</p>
+
+<p>Ve elbette en son bölüm de klasör veya dosyanın ismini gösteriyor.</p>
+
+<p>Biliyorum şimdi kısaca açıklamış olsam da buradaki çıktılar sizin için çok da anlamlı gelmedi. Ancak merak etmeyin eğitimin devamında buradaki tüm çıktılar sizin için de anlam ifade ediyor olacak.</p>
+
+<h2 id="gizli-dosyaları-listelemek">Gizli Dosyaları Listelemek</h2>
+
+<p><code class="language-plaintext highlighter-rouge">-l</code> seçeneği ile tüm ekstra detayları listelemiş olsak da, bu listede gizli dosyalar yer almıyordu. Daha önce de kısaca bahsettiğimiz gibi Linux sisteminde, başında nokta bulunan dosya veya klasörler gizli statüsüne oluyor. Dolayısıyla biz özellikle belirtmediğimiz sürece gizli dosya ve klasörler listelenmiyor. Zaten dosyaların gizli olmasının nedeni o dosyaların özellikle hedef gösterilmedikleri sürece gizli tutulup çeşitli işlemlerden de muaf kalmalarını sağlamak. Gizleme özelliği sayesinde istemsizce silinmesi sorun oluşturabilecek çeşitli dosya ve klasörler bilinçsiz veya hatalı işlemlerden korumuş oluyor.</p>
+
+<p>Eğer standart olanlarla birlikte gizli içerikleri de listelemek istersek <code class="language-plaintext highlighter-rouge">-a</code> seçeneği kullanabiliriz. Bu seçenek <strong>a</strong>ll yani “hepsi” ifadesinin kısalmasından geliyor. Zaten biz de standart gizli demeden hepsini listelemek istediğimiz için all seçeneğini kullanıyoruz.</p>
+
+<p>Gizli dosyaları da listeleyebildiğimizi daha net gözlemleyebilmek için öncelikle ls daha sonra ls -a komutunu kullanıp, çıktıları kıyaslayabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>
+total 64
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:51 <span class="s1">'bu bir deneme metnidir'</span>
+drwxr-xr-x 3 taylan taylan 4096 May 27 07:02  Desktop
+drwxr-xr-x 4 taylan taylan 4096 Jul 18  2022  Documents
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  DOSYA_ADI
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  dosya_adı
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  Dosya_adı
+drwxr-xr-x 3 taylan taylan 4096 May 26 05:36  Downloads
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  klasor
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Music
+drwxr-xr-x 4 taylan taylan 4096 May 30 13:21  Pictures
+drwxr-xr-x 3 taylan taylan 4096 Jun 25  2022  Public
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Templates
+<span class="nt">-rw-r--r--</span> 1 taylan taylan    0 Jun  4 05:06  test-dosyası
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Videos
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  yeni
+drwxr-xr-x 3 taylan taylan 4096 Jun  4 03:46 <span class="s1">'yeni klasor'</span>
+drwxr-xr-x 2 taylan taylan 4096 May 30 13:18  yeni-klasor
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span>
+total 272                                                           
+drwxr-xr-x 25 taylan taylan  4096 Jun  4 05:06  <span class="nb">.</span>                       
+drwxr-xr-x  4 root root  4096 Jul 14  2022  ..                      
+<span class="nt">-rw-------</span>  1 taylan taylan 38073 May 31 14:44  .bash_history                
+<span class="nt">-rw-r--r--</span>  1 taylan taylan   220 Feb 11  2022  .bash_logout                 
+<span class="nt">-rw-r--r--</span>  1 root root  5589 May 29 04:21  .bashrc                           
+<span class="nt">-rw-r--r--</span>  1 taylan taylan  3526 Feb 11  2022  .bashrc.original                  
+<span class="nt">-rw-r--r--</span>  1 taylan taylan  5552 Jun 29  2022  .bashrc.save                      
+<span class="nt">-rw-------</span>  1 taylan taylan  5571 Jun 29  2022  .bashrc.save.1
+<span class="nt">-rw-r--r--</span>  1 taylan taylan  5572 Jun 30  2022  .bashrc.save.2
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 03:51 <span class="s1">'bu bir deneme metnidir'</span>
+drwxr-xr-x 13 taylan taylan  4096 May 29 13:49  .cache
+drwxr-xr-x 16 taylan taylan  4096 Apr 24 13:16  .config
+drwxr-xr-x  3 taylan taylan  4096 May 27 07:02  Desktop
+<span class="nt">-rw-r--r--</span>  1 taylan taylan    35 Feb 11  2022  .dmrc
+drwxr-xr-x  4 taylan taylan  4096 Jul 18  2022  Documents
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 04:07  DOSYA_ADI
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 04:07  dosya_adı
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 04:07  Dosya_adı
+drwxr-xr-x  3 taylan taylan  4096 May 26 05:36  Downloads
+<span class="nt">-rw-r--r--</span>  1 taylan taylan 11759 Feb 11  2022  .face
+lrwxrwxrwx  1 taylan taylan     5 Feb 11  2022  .face.icon -&gt; .face
+<span class="nt">-rw-r--r--</span>  1 taylan taylan     0 Jul  9  2022  .gizli-dosya
+drwxr-xr-x  2 taylan taylan  4096 Jul  9  2022  .gizli-klasor
+drwx------  3 taylan taylan  4096 Feb 11  2022  .gnupg
+<span class="nt">-rw-------</span>  1 taylan taylan     0 Feb 11  2022  .ICEauthority
+drwxr-xr-x  3 taylan taylan  4096 Feb 11  2022  .java
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 03:28  klasor
+<span class="nt">-rw-------</span>  1 taylan taylan   115 May 29 15:31  .lesshst
+drwx------  6 taylan taylan  4096 Apr 24 08:38  .local
+drwx------  5 taylan taylan  4096 Jun 18  2022  .mozilla
+drwxr-xr-x  2 taylan taylan  4096 Feb 11  2022  Music
+drwxr-xr-x  4 taylan taylan  4096 May 30 13:21  Pictures
+<span class="nt">-rw-r--r--</span>  1 taylan taylan   807 Feb 11  2022  .profile
+drwxr-xr-x  3 taylan taylan  4096 Jun 25  2022  Public
+<span class="nt">-rw-------</span>  1 root root 12288 Jul  7  2022  .swp
+drwxr-xr-x  2 taylan taylan  4096 Feb 11  2022  Templates
+<span class="nt">-rw-r--r--</span>  1 taylan taylan     0 Jun  4 05:06  test-dosyası
+<span class="nt">-rw-r-----</span>  1 taylan taylan     6 Jun  4 03:12  .vboxclient-clipboard.pid
+<span class="nt">-rw-r-----</span>  1 taylan taylan     6 Jun  4 03:12  .vboxclient-display-svga-x11.pid
+<span class="nt">-rw-r-----</span>  1 taylan taylan     6 Jun  4 03:12  .vboxclient-draganddrop.pid
+<span class="nt">-rw-r-----</span>  1 taylan taylan     6 Jun  4 03:12  .vboxclient-seamless.pid
+drwxr-xr-x  2 taylan taylan  4096 Feb 11  2022  Videos
+<span class="nt">-rw-r--r--</span>  1 taylan taylan   209 Apr 24 08:34  .wget-hsts
+<span class="nt">-rw-------</span>  1 taylan taylan    49 Jun  4 03:12  .Xauthority
+<span class="nt">-rw-------</span>  1 taylan taylan  6665 Jun  4 03:13  .xsession-errors
+<span class="nt">-rw-------</span>  1 taylan taylan  6617 Jun  3 03:27  .xsession-errors.old
+drwxr-xr-x  2 taylan taylan  4096 Jun  4 03:28  yeni
+drwxr-xr-x  3 taylan taylan  4096 Jun  4 03:46 <span class="s1">'yeni klasor'</span>
+drwxr-xr-x  2 taylan taylan  4096 May 30 13:18  yeni-klasor
+<span class="nt">-rw-------</span>  1 taylan taylan   260 May 24 11:11  .zsh_history
+<span class="nt">-rw-r--r--</span>  1 taylan taylan 10875 Feb 11  2022  .zshrc
+</code></pre></div></div>
+
+<p>Bakın bu kez standart dosya ve klasörlerle birlikte isminin başında nokta bulunan dosya ve klasörler de listelenmiş oldu. Yani aslında bu dosya ve klasörler hep buradaydı ancak biz özellikle belirtmediğimiz için daha önce görememiştik.</p>
+
+<p>Ayrıca ben burada <code class="language-plaintext highlighter-rouge">ls -la</code> şeklinde girmiş olduğum komutu dilersem seçeneklerin sıralamasını değiştirip <code class="language-plaintext highlighter-rouge">ls -al</code> <code class="language-plaintext highlighter-rouge">ls -l -a</code> ya da <code class="language-plaintext highlighter-rouge">ls -a -l</code> şeklinde de girebilirim.</p>
+
+<p><img src="http://localhost:4000/egitim/dizin/22.png" alt="22.png" class="responsive img-zoomable" /></p>
+
+<p>Görebildiğiniz gibi gizli dosya ve klasörlerin yer aldığı ayrıntılı liste karşımıza gelmiş oldu. Yani özetle aslında komut girme ve bir aracın çoklu özelliklerini aynı anda kullanabilme konusunda son derece esnekliğe sahibiz. Üstelik bu durum yalnızca <code class="language-plaintext highlighter-rouge">ls</code> komutuna özgü de değil. İstisnalar hariç pek çok komutun seçeneklerini belirtirken bu gibi esnekliklere sahibiz zaten. Eğer kullandığınız araç, spesifik olarak belirli bir sıralamada seçenekleri belirtmenizi istiyorsa o şekilde belirtmelisiniz ancak genelde seçeneklerin sıralaması konusunda esnek kullanım imkanına sahibiz. Yani nasıl rahat edecekseniz komutunuzu o şekilde girebilirsiniz. Yeter ki eksiksiz ve doğru şekilde girin. Elbette doğru özellikleri ve seçenekleri kullanmak için de komutların yardım sayfalarına da mutlaka göz atın. Örneğin kimi komut seçeneklerinin hiç uzun seçenek alternatifleri yokken kimi komutların seçenekleri çok fazla olduğu için kısa harfle kullanılamayan yalnızca uzun olarak yazılması gereken seçenekler de bulunabiliyor. Neyse neticede seçenekleri belirtme konusunda esnek olduğumuzu ls komutu üzerinden uygulamalı şekilde teyit etmiş olduk.</p>
+
+<h2 id="boyutların-okunaklı-çıktılarını-alma">Boyutların Okunaklı Çıktılarını Alma,</h2>
+
+<p>Aldığımız çıktılardaki büyüklük birimlerini daha okunaklı şekilde elde etmek için “<strong>h</strong>uman readable” yani “insan tarafından okunabilir” ifadesinin kısaltmasından gelen <code class="language-plaintext highlighter-rouge">h</code> seçeneğini kullanabiliyoruz.</p>
+
+<p>Bunun için öncelikle normalde aldığımız büyüklük cinsini görmek için ls -l şeklinde komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>                                                                                                                                         
+total 64
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:51 <span class="s1">'bu bir deneme metnidir'</span>
+drwxr-xr-x 3 taylan taylan 4096 May 27 07:02  Desktop
+drwxr-xr-x 4 taylan taylan 4096 Jul 18  2022  Documents
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  DOSYA_ADI
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  dosya_adı
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 04:07  Dosya_adı
+drwxr-xr-x 3 taylan taylan 4096 May 26 05:36  Downloads
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  klasor
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Music
+drwxr-xr-x 4 taylan taylan 4096 May 30 13:21  Pictures
+drwxr-xr-x 3 taylan taylan 4096 Jun 25  2022  Public
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Templates
+<span class="nt">-rw-r--r--</span> 1 taylan taylan    0 Jun  4 05:06  test-dosyası
+drwxr-xr-x 2 taylan taylan 4096 Feb 11  2022  Videos
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 03:28  yeni
+drwxr-xr-x 3 taylan taylan 4096 Jun  4 03:46 <span class="s1">'yeni klasor'</span>
+drwxr-xr-x 2 taylan taylan 4096 May 30 13:18  yeni-klasor
+</code></pre></div></div>
+
+<p>Bakın buradaki boyutlar hep bayt cinsinden. Şimdi daha okunaklı olması için <code class="language-plaintext highlighter-rouge">h</code> seçeneğini de ekleyebiliriz. Buradaki okunaklıdan kastımız da dosya boyutunu KB, MB, GB türünden büyüklük olarak görülebilesi.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lh</span>                                                                                                                                        
+total 64K
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 03:51 <span class="s1">'bu bir deneme metnidir'</span>
+drwxr-xr-x 3 taylan taylan 4.0K May 27 07:02  Desktop
+drwxr-xr-x 4 taylan taylan 4.0K Jul 18  2022  Documents
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 04:07  DOSYA_ADI
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 04:07  dosya_adı
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 04:07  Dosya_adı
+drwxr-xr-x 3 taylan taylan 4.0K May 26 05:36  Downloads
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 03:28  klasor
+drwxr-xr-x 2 taylan taylan 4.0K Feb 11  2022  Music
+drwxr-xr-x 4 taylan taylan 4.0K May 30 13:21  Pictures
+drwxr-xr-x 3 taylan taylan 4.0K Jun 25  2022  Public
+drwxr-xr-x 2 taylan taylan 4.0K Feb 11  2022  Templates
+<span class="nt">-rw-r--r--</span> 1 taylan taylan    0 Jun  4 05:06  test-dosyası
+drwxr-xr-x 2 taylan taylan 4.0K Feb 11  2022  Videos
+drwxr-xr-x 2 taylan taylan 4.0K Jun  4 03:28  yeni
+drwxr-xr-x 3 taylan taylan 4.0K Jun  4 03:46 <span class="s1">'yeni klasor'</span>
+drwxr-xr-x 2 taylan taylan 4.0K May 30 13:18  yeni-klasor
+</code></pre></div></div>
+
+<p>Aldığımız çıktılara bakacak olursak, daha doğrusu çıktıları kıyasladığınızda görebileceğiniz gibi <code class="language-plaintext highlighter-rouge">h</code> seçeneği sayesinde dosyaların toplam boyutu ve bireysel boyutları çok daha kolay okunur şekilde basılmış oldu. Bu seçenek özellikle büyük boyutlu dosya ve klasörlerin boyutlarını öğrenmek için oldukça kullanışlı. Bayt cinsinden olduğu için çok basamaklı sayıların büyüklük hesaplarını yapmakla uğraşmamıza gerek kalmıyor böylece. Unutmayın, insan olarak rahat okumak istiyorsanız “human readable” ifadesinin kısaltmasından gelen <code class="language-plaintext highlighter-rouge">h</code> seçeneğini kullanmanız yeterli.</p>
+
+<h2 id="boyutlarına-göre-sıralamak">Boyutlarına Göre Sıralamak</h2>
+
+<p>Eğer çıktıları büyükten küçüğe olacak şekilde boyutlarına göre sıralamak istersek, büyük <code class="language-plaintext highlighter-rouge">S</code> seçeneğini kullanabiliyoruz. Bu “S” seçeneği muhtemelen tahmin ettiğiniz gibi İngilizce “<strong>S</strong>ize” yani “boyut” ifadesinin kısaltmasından geliyor. Büyük <code class="language-plaintext highlighter-rouge">S</code> kullanıldığında tıpkı karakterindeki büyüklük gibi <strong>büyükten küçüğe</strong> doğru olacak şekilde listenin sıralanmasını sağlamış oluyoruz.</p>
+
+<p>Daha net görülebilmesi için /boot dizini üzerinde çalışabiliriz. Buradaki dosyaları ls -l ile listeleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /boot/                                                                                                                                     
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>                                                                                                                                         
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Bakın aldığımız çıktıda dosya ve klasörler isimlerine göre yukarıdan aşağıya doğru alfabetik şekilde sıralanmış halde karşımıza geldi. Şimdi bir de büyük <code class="language-plaintext highlighter-rouge">S</code> seçeneğini de ekleyip tekrar listeleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lS</span>                                                                                                                                        
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Bakın bu kez aldığımız çıktılar ilk listeden farklı olarak büyükten küçüğe sıralanmış oldu. Hatta emin olmak için dilersem <code class="language-plaintext highlighter-rouge">h</code> seçeneğini de ekleyip daha okunaklı bir çıktı elde edebilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lSh</span>                                                                                                                                       
+total 84M
+<span class="nt">-rw-r--r--</span> 1 root root  77M Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root 7.0M Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root 240K Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root 4.0K Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root   83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Bakın büyük karakterli size seçeneği yani <code class="language-plaintext highlighter-rouge">S</code> seçeneği, <code class="language-plaintext highlighter-rouge">ls</code> komutunun çıktılarını büyükten küçüğe doğru kolayca sıralayabilmemizi sağlıyor.</p>
+
+<h2 id="değiştirilme-tarihlerine-göre-sıralama">Değiştirilme Tarihlerine Göre Sıralama</h2>
+
+<p>Normalde <code class="language-plaintext highlighter-rouge">ls</code> komutunun <code class="language-plaintext highlighter-rouge">-l</code> seçeneği ile aldığımız ayrıntılı listede dosyaların oluşturulma tarihleri veya değiştirildilerse, değiştirilme tarihleri belirtiliyor. Dosya ve klasörleri <strong>değiştirilme tarihlerine göre en yeniden eskiye doğru</strong> sıralamak istersek <code class="language-plaintext highlighter-rouge">t</code> seçeneğini kullanabiliyoruz. Buradaki “<code class="language-plaintext highlighter-rouge">t</code>” seçeneği İngilizce “<strong>t</strong>ime” yani “zaman” ifadesinin kısaltmasından geliyor. Ben örnek olarak bulunduğum dizindeki dosya ve klasörleri <code class="language-plaintext highlighter-rouge">ls -lt</code> komutu ile listeliyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>                                                                                                                                         
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lt</span>                                                                                                                                        
+total 85888
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Tarih kısmına baktığımızda <code class="language-plaintext highlighter-rouge">t</code> seçeneği ile aldığımız listenin en üstünde yer alan içeriklerin, diğerlerine göre daha yeni düzenlemiş olan içerikler olduğunu görebiliyoruz.</p>
+
+<h2 id="çıktıları-tersine-çevirmek">Çıktıları Tersine Çevirmek</h2>
+
+<p>Fark ettiyseniz şu ana kadar ele aldığımız seçeneklerde hep tek yönlü listeleme mevcuttu. Örneğin boyutları sıralarken <strong>büyükten küçüğe</strong>, tarihleri de <strong>yeniden eskiye</strong> doğru sıralamıştık. Eğer <code class="language-plaintext highlighter-rouge">ls</code> çıktılarının normalde sunduğu herhangi bir çıktıyı tersten sıralamak istersek İngilizce “<strong>r</strong>everse” yani “ters” ifadesinin kısaltması olan <code class="language-plaintext highlighter-rouge">r</code> seçeneğini kullanmamız yeterli oluyor. Hemen bildiğimiz seçenekler üzerinden deneyelim.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ls -l</code> komutunu kullandığımızda dosya ve dizinler isimlerine göre alfabetik olarak sıralanıyorlar.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Bu listeyi ters alfabetik olarak almak istersek <code class="language-plaintext highlighter-rouge">r</code> seçeneğini ekleyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lr</span>
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Bakın bu kez aldığımız çıktılar önceki listenin tam tersi yani alfabetik olarak tersten sıralanmış oldu.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ls -lS</code> komutu ile <strong>büyükten küçüğe</strong> sıralama yapıyoruz. <code class="language-plaintext highlighter-rouge">r</code> seçeneği sayesinde <strong>küçükten büyüğe</strong> sıralayabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lS</span>
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lSr</span>
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Değişim tarihlerine göre yeniden eskiye sıralamak için <code class="language-plaintext highlighter-rouge">ls -lt</code> komutunu kullanıyorken, eskiden yeniye listelemek için <code class="language-plaintext highlighter-rouge">ls -ltr</code> komutunu kullanabiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lt</span>
+total 85888
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ltr</span>
+total 85888
+<span class="nt">-rw-r--r--</span> 1 root root  7316800 Jan 31  2022 vmlinuz-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root       83 Jan 31  2022 System.map-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root   245359 Jan 31  2022 config-5.15.0-taylan3-amd64
+<span class="nt">-rw-r--r--</span> 1 root root 80372540 Feb 11  2022 initrd.img-5.15.0-taylan3-amd64
+drwxr-xr-x 6 root root     4096 Jul  5  2022 grub
+</code></pre></div></div>
+
+<p>Neticede tekrar tekrar teyit edebildiğimiz üzere <code class="language-plaintext highlighter-rouge">r</code> seçeneği çıktıları tersine çevirmek için kullanılan işlevsel bir özellik. Bu seçeneği dilediğimiz başka seçenekler ile kullanıp, çıktıları tersine çevirebiliyoruz. Bu sayede her bir özelliğin ek seçeneğine ihtiyacımız olmuyor. Yani örneğin dosyaları hem küçükten büyüğe hem de büyükten küçüğe sıralamak için ayrı ayrı seçeneklere ihtiyacımız kalmıyor. Tek yapmamız gereken tersi durum için <code class="language-plaintext highlighter-rouge">r</code> seçeneğini kullanmak.</p>
+
+<h2 id="dizin-adresini-belirterek-i̇çeriğini-listelemek">Dizin Adresini Belirterek İçeriğini Listelemek</h2>
+
+<p>Eğer mevcut bulunduğumuz dizini değil de başka bir dizindeki içerikleri listelemek istersek, ilgili dizininin tam adresini tıpkı <code class="language-plaintext highlighter-rouge">cd</code> komutunda olduğu gibi <code class="language-plaintext highlighter-rouge">ls</code> komutunun ardından yazmamız yeterli.</p>
+
+<p>Örneğin ben şu anda <strong><em>/boot</em></strong> dizini altında çalışıyorum. Buradayken <code class="language-plaintext highlighter-rouge">ls</code> komutunu kullanırsam, mevcut dizindeki içerikler karşıma geliyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls                                                                                                                                            
+</span>config-5.15.0-taylan3-amd64  grub  initrd.img-5.15.0-taylan3-amd64  System.map-5.15.0-taylan3-amd64  vmlinuz-5.15.0-taylan3-amd64
+</code></pre></div></div>
+
+<p>Ama ben <strong><em>/etc</em></strong> dizini altındaki <strong><em>apt</em></strong> klasörünün içeriğini listelemek istiyorum. Bunun için tek yapmam gereken <code class="language-plaintext highlighter-rouge">ls /etc/apt</code> komutu ile içeriğini listelemek istediğim dizinin adresini açıkça belirtmek.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> /etc/apt                                                                                                                                   
+apt.conf.d  auth.conf.d  preferences.d  sources.list  sources.list~  sources.list.d  trusted.gpg.d
+</code></pre></div></div>
+
+<p>Bakın hangi konumda çalışmakta olduğumdan bağımsız olarak, <strong><em>apt</em></strong> dizinin içeriği anında konsola listelendi.</p>
+
+<p>İşte bu şekilde o konumda değilken, yetkimiz olan dizinlerin içeriklerini görüntüleyebiliyoruz. Hazır yetki kavramına da değinmişken yetkimiz olmayan dizinlerin içeriklerini görüntüleyemeyeceğimizi örneğin <strong><em>/root</em></strong> dizininin içeriğini sorgulayarak teyit edebiliriz. Normalde <strong>root</strong> kullanıcısı sistem üzerindeki <strong>en yetkili kullanıcı</strong> olduğu için bizim gibi standart kullanıcı hesapları root kullanıcısının ev dizinini temsil eden <strong><em>/root</em></strong> klasörünü üzerinde yetkiye sahip değil.</p>
+
+<p>Hemen denemek için konsola <code class="language-plaintext highlighter-rouge">ls /root</code> komutunu girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> /root                                                                                                                                      
+<span class="nb">ls</span>: cannot open directory <span class="s1">'/root'</span>: Permission denied
+</code></pre></div></div>
+
+<p>Bakın gördüğünüz gibi doğrudan yetki hatası aldım. Yetkilendirme işlemlerinden bahsederken, nasıl yetki kısıtlaması yapabileceğimizden ve yetki kısıtlaması olan dosyaları kimlerin nasıl ulaşabileceğinden de ayrıca söz edeceğiz. Şimdilik tıpkı bu <strong><em>root</em></strong> klasöründe olduğu gibi yetkimiz olmayan dizinlere erişemeyeceğimizi bilmemiz yeterli.</p>
+
+<p>Dizin adreslerini belirterek dizin içeriklerini listeleyebilme özelliği dosya taşıma kopyalama veya içerikleri teyit etme noktasında inanılmaz kolaylık sunuyor. Çünkü <code class="language-plaintext highlighter-rouge">cd</code> komutu ile ilgili dizine gidip <code class="language-plaintext highlighter-rouge">ls</code> komutunu yazmaktansa, <code class="language-plaintext highlighter-rouge">ls</code> komutuna doğrudan içeriğinin listelenmesini istediğimiz dizini argüman olarak vermek çok daha kolay.</p>
+
+<h2 id="dosya-veya-dizinin-kendisini-listelemek">Dosya veya Dizinin Kendisini Listelemek</h2>
+
+<p>Doğrudan bizim istediğimiz bir veya birden fazla dosya veya klasörlerin özelliklerini görebilmek için dosyanın tam dosya dizin adresin <code class="language-plaintext highlighter-rouge">ls -l</code> komutundan sonra yazmamız yeterli. Örneğin ben kendi ev dizinimde bulunan <strong><em>.bashrc</em></strong> dosyasının özelliklerini listelemek istersem <code class="language-plaintext highlighter-rouge">ls -l ~/.bashrc</code> şeklinde komutumu girmem yeterli.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span> ~/.bashrc                                                                                                                               
+<span class="nt">-rw-r--r--</span> 1 root root 5589 May 29 04:21 /home/taylan/.bashrc
+</code></pre></div></div>
+
+<p>Bakın yalnızca <strong><em>.bashrc</em></strong> dosyasının özellikleri konsola basılmış oldu. Benzer şekilde yalnızca tek bir klasörün özelliklerini de listeleyebiliriz.</p>
+
+<p>Normalde örneğin <code class="language-plaintext highlighter-rouge">ls -l /etc/apt</code> komutunu girdiğimizde <strong><em>apt</em></strong> dizini içindeki tüm dosya ve klasörler listeleniyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span> /etc/apt/                                                                                                                               
+total 24
+drwxr-xr-x 2 root root 4096 Feb 11  2022 apt.conf.d
+drwxr-xr-x 2 root root 4096 Jan 19  2022 auth.conf.d
+drwxr-xr-x 2 root root 4096 Jan 19  2022 preferences.d
+<span class="nt">-rw-r--r--</span> 1 root root  257 Feb 11  2022 sources.list
+<span class="nt">-rw-r--r--</span> 1 root root    0 Feb 11  2022 sources.list~
+drwxr-xr-x 2 root root 4096 Jan 19  2022 sources.list.d
+drwxr-xr-x 2 root root 4096 Feb 11  2022 trusted.gpg.d
+</code></pre></div></div>
+
+<p>Biz dizin içeriğinin değil de doğrudan <strong><em>apt</em></strong> dizinin özelliklerine bakmak istersek, <code class="language-plaintext highlighter-rouge">ls</code> komutuna “<strong>d</strong>irectory” yani “dizin” ifadesinin kısalmasında gelen <code class="language-plaintext highlighter-rouge">d</code> seçeneğini eklememiz yeterli. Denemek için bu kez <code class="language-plaintext highlighter-rouge">ls -ld /etc/apt</code> komutunu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ld</span> /etc/apt/                                                                                                                              
+drwxr-xr-x 7 root root 4096 Feb 11  2022 /etc/apt/
+</code></pre></div></div>
+
+<p>Bakın yalnızca <strong><em>/etc/apt/</em></strong> klasörünün bilgileri listelenmiş oldu. Elbette tek tek girmek zorunda da değilsiniz. İsterseniz peşi sıra birden fazla dosya ya da klasör ismini girip, özelliklerini konsola bastırabilirsiniz. Örneğin ben başka bir dizinde olan <strong><em>/var/tmp</em></strong> klasörünü de ekleyip peşi sıra özelliklerin listelenmesini sağlayabilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ld</span> /etc/apt/ /var/tmp/                                                                                                                    
+drwxr-xr-x 7 root root 4096 Feb 11  2022 /etc/apt/
+drwxrwxrwt 7 root root 4096 Jun  4 06:09 /var/tmp/
+</code></pre></div></div>
+
+<p>Bakın iki farklı konumdaki klasörlerin tam dizin adreslerini yazıp, özelliklerini kolayca listeleyebildim. Benzer şekilde elbette listelemek istediğiniz dosya veya klasörlerin da tam adını belirttiğiniz sürece sistemdeki farklı dizinlerde bulunan dosya ve dizinleri tek seferde bastırabilirsiniz. Örneğin ben komutun sonuna <strong><em>~/.bashrc</em></strong> dosyasını da listelemek için ekliyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ld</span> /etc/apt/ /var/tmp/ ~/.bashrc                                                                                                          
+drwxr-xr-x 7 root root 4096 Feb 11  2022 /etc/apt/
+<span class="nt">-rw-r--r--</span> 1 root root 5589 May 29 04:21 /home/taylan/.bashrc
+drwxrwxrwt 7 root root 4096 Jun  4 06:09 /var/tmp/
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">ls -ld</code> komutunun sonuna eklediğim klasörler ve dosyalar tek tek bastırıldı.</p>
+
+<p>Özetle <code class="language-plaintext highlighter-rouge">ls</code> komutunun görevi kendisine argüman olarak verilmiş olan dosya veya dizinleri listelemek. Bu sebeple tam dizin adresini belirttiğimiz ve yetkimiz olduğu sürece tek seferde pek çok farklı dizindeki dosya ve klasörleri kolayca listeleyebiliyoruz.</p>
+
+<h2 id="alt-dizinler-de-dahil-tüm-i̇çerikleri-listelemek">Alt Dizinler de Dahil Tüm İçerikleri Listelemek</h2>
+
+<p>Eğer herhangi bir dizin altında yer alan tüm dizinlerin içeriklerini listelemek istersek “<strong>R</strong>ecursive” yani “özyineleme” ifadesinin kısalmasından gelen büyük <strong><code class="language-plaintext highlighter-rouge">R</code></strong> seçeneğini kullanma imkanına sahibiz. Bu seçeneği kullandığımızda tüm alt klasörler de dahil mevcut dizin altındaki tüm dosya ve klasörlerin içerikleri bizim için kademe kademe listeleniyor. Zaten iç içe olan dizinlerin içeriğini bulup bize listelediği için bu seçeneğin adı özyineleme olarak geçiyor. Örnek üzerinden çok daha net anlaşılacağı için hemen basit bir örnek yapalım.</p>
+
+<p>Ben örnek olması için <strong><em>/etc/apt</em></strong> dizini altındaki tüm içeriği listelemek üzere <code class="language-plaintext highlighter-rouge">ls -R ~</code> şeklinde komutumu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/boot]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-R</span> /etc/apt                                                                                                                               
+/etc/apt:
+apt.conf.d  auth.conf.d  preferences.d  sources.list  sources.list~  sources.list.d  trusted.gpg.d
+
+/etc/apt/apt.conf.d:
+00aptitude      00trustcdrom  01autoremove-kernels     50apt-file.conf      50taylan     80debtags
+00CDMountPoint  01autoremove  02autoremove-postgresql  50command-not-found  70debconf
+
+/etc/apt/auth.conf.d:
+
+/etc/apt/preferences.d:
+
+/etc/apt/sources.list.d:
+
+/etc/apt/trusted.gpg.d:
+debian-archive-bullseye-automatic.gpg           debian-archive-buster-security-automatic.gpg   debian-archive-stretch-stable.gpg
+debian-archive-bullseye-security-automatic.gpg  debian-archive-buster-stable.gpg               taylan-archive-keyring.gpg
+debian-archive-bullseye-stable.gpg              debian-archive-stretch-automatic.gpg
+debian-archive-buster-automatic.gpg             debian-archive-stretch-security-automatic.gpg
+</code></pre></div></div>
+
+<p>Bakın tek tek hangi dizin altındaki hangi içerikler bulunduğu ve daha alt dizinlerde de aynı şekilde hangi içeriklerin bulunduğu tek tek konsola bastırıldı.</p>
+
+<p>Çıktıları incelediğimde ev dizinim altındaki tüm içeriklerin özyinelemeli olarak listelenmiş olduğunu görebiliyorum. İşte sizler de alt dizinlerler de dahil tüm içeriği görmek istediğinizde bu şekilde büyük <code class="language-plaintext highlighter-rouge">R</code> seçeneğini kullanabilirsiniz.</p>
+
+<p>Özyineleme özelliğinden de bahsettiğimize göre benim <code class="language-plaintext highlighter-rouge">ls</code> komutu hakkında aktarmak istediğim bilgilerin şimdilik sonuna gelmiş olduk.</p>
+
+<p>Elbette <code class="language-plaintext highlighter-rouge">ls</code> komutunun bütün özellikleri benim anlattıklarım ile sınırlı değil. <code class="language-plaintext highlighter-rouge">ls —help</code> komutu ile <code class="language-plaintext highlighter-rouge">ls</code> aracının sahip olduğu özellikler hakkında her zaman ek bilgi alabilirsiniz.</p>
+
+<h1 id="dizin-oluşturma-ve-silme">Dizin Oluşturma ve Silme</h1>
+
+<h2 id="dizin-oluşturma--mkdir-komutu">Dizin Oluşturma | <code class="language-plaintext highlighter-rouge">mkdir</code> Komutu</h2>
+
+<p>Şu ana kadar bulunduğumuz dizini öğrendik, dizinlerde gezindik ve dizinlerin içeriklerini listeledik ama konsol üzerinden dizin oluşturmaya dair özellikle bir anlatımda bulunmadık. Tabii ki şu ana kadar dizin oluşturmamızı sağlayan <code class="language-plaintext highlighter-rouge">mkdir</code> aracını defaatle kullandık ama, özellikle bu aracın üzerinde durmak henüz. Sizin de bildiğiniz ve birden fazla kez deneyimlediğiniz gibi konsol üzerinden dizin oluşturmak için İngilizce “<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory” yani “dizin oluştur” ifadesinin kısaltması olan <code class="language-plaintext highlighter-rouge">mkdir</code> komutunu kullanabiliyoruz. En temel kullanımı <code class="language-plaintext highlighter-rouge">mkdir klasor_adı</code> şeklinde. Bu kullanım ile mevcut çalışmakta olduğumuz dizinde bizim belirttiğimiz isimde bir klasör oluşturuluyor. Zaten eğitimin başından beri örnek vermek için ara da bu komutu bu şekilde kullandık. Yani hiç de yabancı değiliz. Yine de ele almamız gereken birkaç detayı daha bulunuyor.</p>
+
+<p>Ben öncelikle standart kullanımını tekrar ele almak için bulunduğum dizine folder1 isimli bir klasör oluşturmak üzere <code class="language-plaintext highlighter-rouge">mkdir folder1</code> komutunu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir </span>folder1
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls
+</span>folder1
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ls</code> komutu ile içerikleri listelediğimde, klasörün oluşturulduğunu görebiliyorum.</p>
+
+<p>Bulunduğumuz dizin dışında tam dizin adresi belirtirsek, eğer yetkimiz de varsa istediğimiz konumda istediğimiz isimde bir dizin de oluşturabiliriz.</p>
+
+<p>Örneğin ben <code class="language-plaintext highlighter-rouge">mkdir ~/Documents/belgeler</code> komutu ile kendi ev dizinimdeki <strong><em>Documents</em></strong> klasörünün içinde <strong><em>belgeler</em></strong> isimli yeni bir klasör oluşturabilirim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> ~/Documents/belgeler
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls</span> ~/Documents/
+belgeler        metinler
+linux-dersleri  metin.txt
+</code></pre></div></div>
+
+<p>Bakın çalışmakta olduğum dizinden bağımsız olarak istediğim bir konumda yeni klasörün oluşturulması da sağlamış oldum. Biz bu şekilde komut girdiğimizde <code class="language-plaintext highlighter-rouge">mkdir</code> aracı belirttiğimiz dizini kontrol ediyor, örneğin benim girdiğim komutta <strong><em>Documents</em></strong> dizini kontrol edildi ve burada belirtilen “<strong><em>belgeler</em></strong>” isimli bir klasör olmadığı için <code class="language-plaintext highlighter-rouge">mkdir</code> aracı bu isimde yeni bir klasör oluşturdu. Zaten bu sayede yetkimiz dahilinde olduğu sürece istediğimiz adreste istediğimiz klasörü oluşturabilme esnekliğine sahip oluyoruz.</p>
+
+<p>Daha önce yetkimiz olmayan <strong><em>/root</em></strong> dizininin içeriğini listelemeye çalışmış ve yetki hatası almıştık hatırlarsanız. Aynı durum klasör oluştururken de geçerli. Yetkimiz olmayan dizinlerin içine yeni klasörler ekleyemeyiz. Denemek için <strong><em>/root</em></strong> dizini altında “<strong><em>yetkisiz</em></strong>” isimli bir klasör oluşturmayı deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> /root/yetkisiz
+<span class="nb">mkdir</span>: cannot create directory ‘/root/yetkisiz’: Permission denied
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi yetkim olmadığı için bu dizinde yeni klasör oluşturamadım.</p>
+
+<p>Tekrar örneklerimize dönecek olursak, ben örneklerde hep tek bir klasör oluşturdum. Ancak dilersek klasör isimlerini peş peşe yazarak tek seferde birden fazla klasör de oluşturabiliriz. Denemek için üç klasör birden oluşturalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir </span>folder2 folder3 folder4
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls
+</span>folder1  folder2  folder3  folder4
+</code></pre></div></div>
+
+<p>Bakın tek seferde birden fazla klasörü oluşturabildim. İşlemin hızlıca sonuçlanması harika ama kimi zaman işlemi konsol üzerinden de takip etmek isteyebiliriz.</p>
+
+<p>Eğer çoklu klasör oluştururken klasör oluşturma işlemini daha kolay takip etmek istersek, İngilizce “<strong>v</strong>erbose” yani “ayrıntılı” ifadesinin kısaltması olan <code class="language-plaintext highlighter-rouge">v</code> seçeneğini de kullanmamız gerekiyor.</p>
+
+<p>Örneğin ben biraz önce çoklu şekilde klasör oluşturduğumda klasörlerin oluşturulduğuna dair herhangi bir çıktı almadım.</p>
+
+<p>Eğer <code class="language-plaintext highlighter-rouge">mkdir</code> komutunun <strong><code class="language-plaintext highlighter-rouge">-v</code></strong> seçeneğini kullanırsak tüm oluşturma işlemleri konsola basılacaktır.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]                              
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-v</span> a b c d                                 
+<span class="nb">mkdir</span>: created directory <span class="s1">'a'</span>                             
+<span class="nb">mkdir</span>: created directory <span class="s1">'b'</span>                                 
+<span class="nb">mkdir</span>: created directory <span class="s1">'c'</span>                                 
+<span class="nb">mkdir</span>: created directory <span class="s1">'d'</span>
+</code></pre></div></div>
+
+<p>Her bir klasörün oluşturulmasına dair adım adım bilgi edinmiş olduk. <code class="language-plaintext highlighter-rouge">mkdir</code> komutunun <strong>verbose</strong> seçeneği özellikle farklı konumlarda çoklu klasör oluşturma gibi işlemlerde, oluşturma işlemlerinin takibi konusunda çok kullanışlı olabiliyor. Zaten <strong>verbose</strong> ifadesini tüm eğitim boyunca komutların buradaki gibi işlem adımlarına dair <strong>ayrıntılı çıktılar</strong> vermesi için kullanacağımız için şimdiden tanıtmak istedim.</p>
+
+<h3 id="i̇ç-içe-dizin-oluşturma">İç içe Dizin Oluşturma</h3>
+
+<p>Şimdiye kadar hep derinliği olmayan yani alt klasörleri bulunmayan tekil klasörler oluşturduk. Normalde bildiğiniz gibi klasörlerin içinde ve üstünde dizinler yer alabiliyor. Yani iç içe bir yapı söz konusu. İşte kimi zaman tekil bir klasör oluşturmamız gerekiyorken kimi zaman da tek seferde iç içe birden fazla klasör oluşturmamız da gerekebiliyor.</p>
+
+<p>Eğer tek seferde iç içe birden fazla klasörü oluşturmak istersek <code class="language-plaintext highlighter-rouge">mkdir</code> komutunun <code class="language-plaintext highlighter-rouge">p</code> seçeneğini kullanabiliyoruz. Buradaki <code class="language-plaintext highlighter-rouge">p</code> seçeneği İngilizcedeki “<strong>p</strong>arrent” yani “ebeveyn” ifadesinin kısalmasından geliyor. Aslında bu ifade üst dizin alt dizin kavramıyla ilişkili. Örneğin ben bir klasörün içine yeni bir klasör oluşturursam, bir üst klasör alttaki klasörün <strong>parrent</strong> ı yani <strong>ebeveyni</strong> olarak kabul ediliyor. Bu seçenek de buradan aklınızda kalabilir.</p>
+
+<p>Hemen uygulamalı olarak -p seçeneğinin etkisini gözlemleyelim. Ben <code class="language-plaintext highlighter-rouge">mkdir -p buyukanne/anne/cocuk</code> şeklinde komutumu girmek istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]                                                 
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> buyukanne/anne/cocuk                                              
+                                                                               
+</code></pre></div></div>
+
+<p>Tamamdır, şimdi teyit etmek için <code class="language-plaintext highlighter-rouge">ls -R buyukanne</code> komutunu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-R</span> buyukanne/                                                                               
+buyukanne/:
+anne
+
+buyukanne/anne:
+cocuk
+
+buyukanne/anne/cocuk:
+</code></pre></div></div>
+
+<p>Bakın <strong><em>buyukanne</em></strong> klasörünün içinde “<strong><em>anne</em></strong>” onun da içinde “<strong><em>cocuk</em></strong>” isimli klasörler alt alta tek seferde <code class="language-plaintext highlighter-rouge">p</code> seçeneği sayesinde oluşturulmuşlar. Bizde <code class="language-plaintext highlighter-rouge">ls -R</code> komutu sayesinde klasör içeriğini özyinelemeli olarak bastırarak bu durumu teyit edebildik.</p>
+
+<p>Eğer <code class="language-plaintext highlighter-rouge">p</code> seçeneğini kullanmasaydık, kabuk gerçekte var olmayan bir dizin adresinde yeni klasör oluşturmaya çalıştığımız düşünecekti. Yani bizim iç içe oluşturulması için verdiğimiz klasör isimlerini sanki halihazırda var olan bir dizin yoluymuş da en sonraki klasör oluşturulacak klasör ismiymiş gibi algılanacaktı. Hemen denemek için <code class="language-plaintext highlighter-rouge">p</code> seçeneği olmadan <code class="language-plaintext highlighter-rouge">mkdir x/y/z</code> komutunu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir </span>x/y/z                                                                                    
+<span class="nb">mkdir</span>: cannot create directory ‘x/y/z’: No such file or directory
+</code></pre></div></div>
+
+<p>Böyle bir dosya ya da dizin olmadığı uyarısını döndürdü, haklı da. Gerçekten böyle bir dizin yok. Çünkü biz bu komutu girdiğimizde <code class="language-plaintext highlighter-rouge">mkdir</code> aracı <strong><em>x</em></strong> dizinine geçip oradan <strong><em>y</em></strong> dizinine geçecek, <strong><em>y</em></strong> dizini altında da <strong><em>x</em></strong> klasörünü oluşturacaktı. Çünkü <code class="language-plaintext highlighter-rouge">p</code> seçeneği olmadan bizim girdiğimiz bu komut bunu ifade ediyor. Elbette bu dizinler var olmadığı için komutumuz da hata verdi. Bizim amacımız da bu dizinin oluşturulması, bunun için özellikle <code class="language-plaintext highlighter-rouge">p</code> seçeneği ile bu durumu belirtmemiz gerekiyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> x/y/z                                                                                 
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lR</span> x/                                                                                      
+x/:
+total 4
+drwxr-xr-x 3 taylan taylan 4096 Jun  4 07:16 y
+
+x/y:
+total 4
+drwxr-xr-x 2 taylan taylan 4096 Jun  4 07:16 z
+
+x/y/z:
+total 0
+</code></pre></div></div>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">p</code> seçeneğini kullandığımda bu kez dizinler iç içe sorunsuzca oluşturuldu.</p>
+
+<p>Tamamdır bence <code class="language-plaintext highlighter-rouge">mkdir</code> aracından yeterince bahsettik. Şimdi var olan dizinleri nasıl silebileceğimizden bahsederek devam edelim.</p>
+
+<h2 id="dizin-silme--rmdir-komutu">Dizin Silme | <code class="language-plaintext highlighter-rouge">rmdir</code> Komutu</h2>
+
+<p>Söz konusu komut satırı üzerinden klasörleri silmek olduğunda da <code class="language-plaintext highlighter-rouge">rmdir</code> ve <code class="language-plaintext highlighter-rouge">rm</code> olmak üzere ihtiyacımıza göre kullanabileceğimiz iki alternatif aracımız var. Ben bu bölümde yalnızca <code class="language-plaintext highlighter-rouge">rmdir</code> aracına odaklanacağım. Ancak merak etmeyin daha sonra eğitim içerinde <code class="language-plaintext highlighter-rouge">rm</code> aracından da ayrıca bahsedeceğiz zaten.</p>
+
+<p>Biliyorsunuz klasörler yani dizin yapısı, içerisindeki dosya ve klasörleri organize şekilde bir arada tutmak için tasarlanmış olan harika bir çözüm. Yeterince alana sahip olduğumuz sürece bir klasör içerisine istediğimiz kadar dosyayı barındırabiliyoruz. Bu durum da tıpkı gerçek hayatta kullandığımız klasörleme yapısı gibi, işletim sistemleri üzerinde de bize hiyerarşik bir düzen sağlıyor. Klasörlerin içerisinde dosya barındırabilmesi her ne kadar işlevsel olsa da, bu durum aynı zamanda klasörleri riskli getiriyor. Eğer yanlışlıkla içerisinde kritik dosyaların bulunan bir klasörü silersek, tek seferde içerisindeki tüm alt dosya ve klasörler de silineceği için tek bir hatanın faturası çok ağır olabilir. Bu sebeple klasör silme işlemi Linux üzerinde ciddiye alınıyor. Zaten son derece dikkatle yapılması da gerekiyor. Klasörü silmek tek bir dosyayı silmeye benzemez. Tek seferde büyük bir yıkıma sebep olabiliriz. Zaten bu tehlike göz önünde bulundurularak klasör silmek için spesifik olarak güvenli bir araç olan <code class="language-plaintext highlighter-rouge">rmdir</code> aracı geliştirilmiştir.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rmdir</code> aracı yalnızca içeriği boş olan klasörleri silmemizi sağlıyor. Bu sayede, içeriği dolu olan klasörlerin yanlışlıkla silinmesinin de önüne geçilmiş oluyor. Özellikle toplu olarak klasör silmek için <code class="language-plaintext highlighter-rouge">rmdir</code> aracını sıklıkla kullanılıyor çünkü klasörlerin boş olduğundan emin olunabiliyor.</p>
+
+<p>Aracın kullanımına geçecek olursak en temel kullanımı <code class="language-plaintext highlighter-rouge">rmdir "silinecek klasör ismi"</code> şeklinde. Örneğin <strong><em>folder1</em></strong> klasörünü silmek için <code class="language-plaintext highlighter-rouge">rmdir folder1</code> komutunu girebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls                                                                                             
+</span>a  b  buyukanne  c  d  folder1  folder2  folder3  folder4  x
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rmdir </span>folder1                                                                                  
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls                                                                                             
+</span>a  b  buyukanne  c  d  folder2  folder3  folder4  x
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ls</code> komutu ile de teyit ettiğimde, klasörün içerisin boş olduğu için sorunsuzca silindiğini görebiliyorum. Şimdi <code class="language-plaintext highlighter-rouge">rmdir</code> aracının davranışlarını gözlemleyebilmek için içerisinde başka bir klasör bulunan <strong><em>x</em></strong> klasörünü silmeyi de deneyebiliriz. Biliyorsunuz <strong><em>x</em></strong> klasörü içinde <strong><em>y</em></strong> onun da içinde <strong><em>z</em></strong> klasörü yer alıyor, çünkü biz daha önce <code class="language-plaintext highlighter-rouge">mkdir</code> aracının <code class="language-plaintext highlighter-rouge">p</code> seçeneği sayesinde iç içe oluşturduk. Şimdi <code class="language-plaintext highlighter-rouge">rmdir x</code> komutu ile <strong><em>x</em></strong> klasörünü silmek üzere komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls                                                                                             
+</span>a  b  buyukanne  c  d  folder2  folder3  folder4  x
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rmdir </span>x
+<span class="nb">rmdir</span>: failed to remove <span class="s1">'x'</span>: Directory not empty
+</code></pre></div></div>
+
+<p>Bakın klasörün içi boş olmadığı için silme işlemi anında reddedildi. Bunun yerine iç içe olan klasörlerin tam isimlerini girmeyi de deneyebiliriz. Silme işlemini rahat gözlemleyebilmek için rmdir aracında da mevcut olan <strong>verbose</strong> yani “ayrıntılı” çıktı sağlayan <code class="language-plaintext highlighter-rouge">v</code> seçeneğini de komutumuza ekleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rmdir</span> <span class="nt">-v</span> x/y/z/                                                                                
+<span class="nb">rmdir</span>: removing directory, <span class="s1">'x/y/z/'</span>
+</code></pre></div></div>
+
+<p>Komut neticesinde en son klasör olan <strong><em>z</em></strong> klasörünün silindiğini öğrendik. Çünkü <strong><em>z</em></strong> klasörünün içeriği tamamen boştu ve biz <strong><em>z</em></strong> klasörünün tam dizin adresini <code class="language-plaintext highlighter-rouge">rmdir</code> aracına iletmiş olduk. Dolayısıyla yalnızca <strong><em>z</em></strong> klasörü içeriği boş olduğu için, <code class="language-plaintext highlighter-rouge">rmdir</code> aracı tarafından kolayca silindi. Bu durumda <strong><em>x</em></strong> ve <strong><em>y</em></strong> klasörlerinin hala silinmediğini teyit etmek için <code class="language-plaintext highlighter-rouge">ls -R x/</code> komutu ile dizin içeriğini listeleyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-R</span> x/                                                                                       
+x/:
+y
+
+x/y:
+</code></pre></div></div>
+
+<p>Bakın gördüğünüz gibi <strong><em>x/y</em></strong> dizini hala mevcut.</p>
+
+<p>Eğer tek seferde içerisi boş olan tüm iç içe dizinleri silmek istersek tıpkı dizinleri oluştururken kullandığımız gibi silerken de <code class="language-plaintext highlighter-rouge">p</code> seçeneğini kullanabiliriz. Daha önce <code class="language-plaintext highlighter-rouge">mkdir</code> aracı ile iç içe dizin oluşturmak için kullandığımız <code class="language-plaintext highlighter-rouge">p</code> seçeneğini, iç içe olan dizinleri tek seferde silmek için de kullanabiliyoruz. Ben işlem ayrıntılarını da takip edebilmek için <code class="language-plaintext highlighter-rouge">rmdir -vp x/y</code> şeklinde komutumu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rmdir</span> <span class="nt">-vp</span> x/y
+<span class="nb">rmdir</span>: removing directory, <span class="s1">'x/y'</span>
+<span class="nb">rmdir</span>: removing directory, <span class="s1">'x'</span>
+</code></pre></div></div>
+
+<p>Bakın ayrıntılı çıktılardan da takip edebildiğimiz gibi içe içe olan boş klasörleri <code class="language-plaintext highlighter-rouge">p</code> seçeneği sayesinde silmeyi başardık.</p>
+
+<p>Lütfen unutmayın, biz burada <strong>iç içe olan boş klasörleri</strong> sildik. Eğer herhangi bir klasörün içerinde dosya bulunuyor olsaydı bu işlem tabii ki başarısız olacaktı.</p>
+
+<p>Denemek için <code class="language-plaintext highlighter-rouge">mkdir -p a/b/c/</code> komutu ile iç içe yeni klasörler oluşturalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> a/b/c/
+</code></pre></div></div>
+
+<p>Klasörleri oluşturduktan sonra bu dizinlerden birine içerisi dolu bir metin dosyası ekleyebiliriz. Ben en sondaki klasöre “<strong><em>metin.txt</em></strong>” isminde bir dosya kaydetmek için <code class="language-plaintext highlighter-rouge">echo "bu bir metin dosyasıdır" &gt; a/b/c/metin.txt</code> komutunu giriyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"bu bir metin dosyasıdır"</span>  <span class="o">&gt;</span> a/b/c/metin.txt                                              
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls </span>a/b/c/
+metin.txt
+</code></pre></div></div>
+
+<p>Bakın <strong><em>metin.txt</em></strong> dosyası en alt dizinde yer alıyor.</p>
+
+<p>Şimdi tekrar <code class="language-plaintext highlighter-rouge">rmdir -vp a/</code> komutu ile iç içe olan klasörleri silmeyi deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rmdir</span> <span class="nt">-vp</span> a/
+<span class="nb">rmdir</span>: removing directory, <span class="s1">'a/'</span>
+<span class="nb">rmdir</span>: failed to remove <span class="s1">'a/'</span>: Directory not empty
+</code></pre></div></div>
+
+<p>En sonraki klasörün içeriği boş olmadığı için silinemediği belirtiliyor. Bu klasörü silmek için öncelikle içerisinde bulunan dosyaları taşımanız veya silmeniz gerek.</p>
+
+<p>Ayrıca kimi zaman içerisi dolu olan klasörleri <code class="language-plaintext highlighter-rouge">rmdir</code> aracını kullanmadan doğrudan silmek de isteyebilirsiniz. Tam olarak bu işlem için de zaten <code class="language-plaintext highlighter-rouge">rm</code> komutunu kullanabiliyoruz. Bu aracın kullanımından ileride ayrıca bahsedeceğiz. Ancak temelde bilmeniz gereken, içerisindeki her şey ile birlikte klasörleri silmek istediğimizde <code class="language-plaintext highlighter-rouge">rm -dr</code> komutunu kullanabiliyor olmamızdır. Buradaki <code class="language-plaintext highlighter-rouge">r</code> seçeneği “<strong>r</strong>ecursive” yani “özyineleme” anlamına geliyor. Bu seçenek sayesinde dizinin sonuna kadar tüm içeriklerin otomatik olarak silinmesini sağlanıyor. Buradaki <code class="language-plaintext highlighter-rouge">d</code> seçeneği de “<strong>d</strong>irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Burada özellikle <code class="language-plaintext highlighter-rouge">d</code> seçeneği ile dizin silmek istediğimizi belirtmemiz gerekiyor çünkü normalde <code class="language-plaintext highlighter-rouge">rm</code> aracı yalnızca dosyaları silmek için kullanılıyor. Hemen deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-dr</span> a/                                                                                     
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~/yeni]
+└─<span class="nv">$ </span><span class="nb">ls
+</span>b  buyukanne  c  d  folder2  folder3  folder4
+</code></pre></div></div>
+
+<p><strong><em>a</em></strong> klasörünün silinmiş olduğunu <code class="language-plaintext highlighter-rouge">ls</code> sayesinde teyit etmiş olduk.</p>
+
+<p>Zaten ileride dosyalardan bahsederken dosyaları nasıl silebileceğimizden de bahsetmemiz gerekecek. Dolayısıyla <code class="language-plaintext highlighter-rouge">rm</code> komutunun detaylarında da ayrıca bahsedeceğiz. Şimdilik bu kadarlık bilgi yeterli. Dizinler hakkında yeterince şeyden bahsettik.</p>
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div align="right" class="col-10">
+              <div class="mb-1 text-muted"><strong>Önceki</strong></div>
+              <p class="card-text">Yardım Almak</p>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/yard%C4%B1m-alma-komutlar%C4%B1/" title="Yardım Almak" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Kabuk Genişletmeleri</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/kabuk-genisletmeleri/" title="Kabuk Genişletmeleri" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#dizinler-hakkında">Dizinler Hakkında</a></li>
+<li class="toc-entry <hh1"><a href="#linux-dosya-sistemi-hiyerarşisi">Linux Dosya Sistemi Hiyerarşisi</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#ana-dizin--kök-dizin--">Ana Dizin | Kök Dizin | /</a></li>
+<li class="toc-entry <hh2"><a href="#bin-ve-bin">/bin ve /bin</a></li>
+<li class="toc-entry <hh2"><a href="#boot">/boot</a></li>
+<li class="toc-entry <hh2"><a href="#dev">/dev</a></li>
+<li class="toc-entry <hh2"><a href="#etc">/etc</a></li>
+<li class="toc-entry <hh2"><a href="#home">/home</a></li>
+<li class="toc-entry <hh2"><a href="#lib">/lib</a></li>
+<li class="toc-entry <hh2"><a href="#usr">/usr</a></li>
+<li class="toc-entry <hh2"><a href="#opt">/opt</a></li>
+<li class="toc-entry <hh2"><a href="#media-ve-mnt">/media ve /mnt</a></li>
+<li class="toc-entry <hh2"><a href="#proc">/proc</a></li>
+<li class="toc-entry <hh2"><a href="#tmp">/tmp</a></li>
+<li class="toc-entry <hh2"><a href="#root">/root</a></li>
+<li class="toc-entry <hh2"><a href="#var">/var</a></li>
+<li class="toc-entry <hh2"><a href="#sys">/sys</a></li>
+<li class="toc-entry <hh2"><a href="#srv">/srv</a></li>
+<li class="toc-entry <hh2"><a href="#run">/run</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#pwd-komutu">pwd Komutu</a></li>
+<li class="toc-entry <hh1"><a href="#cd-komutu">cd Komutu</a>
+<ul>
+<li class="toc-entry <hh3"><a href="#üst-dizine-geçiş">Üst Dizine Geçiş</a></li>
+<li class="toc-entry <hh3"><a href="#bir-önceki-dizine-dönüş">Bir Önceki Dizine Dönüş</a></li>
+<li class="toc-entry <hh3"><a href="#otomatik-tamamlamadan-faydalanmak">Otomatik Tamamlamadan Faydalanmak</a></li>
+<li class="toc-entry <hh3"><a href="#ev-dizini-kısayolu">Ev Dizini Kısayolu</a></li>
+<li class="toc-entry <hh3"><a href="#dikkat-edilmesi-gerekenler">Dikkat Edilmesi Gerekenler</a></li>
+<li class="toc-entry <hh3"><a href="#göreli-ve-kesin-yol">Göreli ve Kesin Yol</a></li>
+<li class="toc-entry <hh3"><a href="#boşluk-ve-özel-karakter-kullanımı">Boşluk ve Özel Karakter Kullanımı</a></li>
+<li class="toc-entry <hh3"><a href="#küçük-büyük-harf-duyarlılığı">Küçük Büyük Harf Duyarlılığı</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#ls-komutu">ls Komutu</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#ayrıntılı-liste-almak">Ayrıntılı Liste Almak</a></li>
+<li class="toc-entry <hh2"><a href="#gizli-dosyaları-listelemek">Gizli Dosyaları Listelemek</a></li>
+<li class="toc-entry <hh2"><a href="#boyutların-okunaklı-çıktılarını-alma">Boyutların Okunaklı Çıktılarını Alma,</a></li>
+<li class="toc-entry <hh2"><a href="#boyutlarına-göre-sıralamak">Boyutlarına Göre Sıralamak</a></li>
+<li class="toc-entry <hh2"><a href="#değiştirilme-tarihlerine-göre-sıralama">Değiştirilme Tarihlerine Göre Sıralama</a></li>
+<li class="toc-entry <hh2"><a href="#çıktıları-tersine-çevirmek">Çıktıları Tersine Çevirmek</a></li>
+<li class="toc-entry <hh2"><a href="#dizin-adresini-belirterek-i̇çeriğini-listelemek">Dizin Adresini Belirterek İçeriğini Listelemek</a></li>
+<li class="toc-entry <hh2"><a href="#dosya-veya-dizinin-kendisini-listelemek">Dosya veya Dizinin Kendisini Listelemek</a></li>
+<li class="toc-entry <hh2"><a href="#alt-dizinler-de-dahil-tüm-i̇çerikleri-listelemek">Alt Dizinler de Dahil Tüm İçerikleri Listelemek</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#dizin-oluşturma-ve-silme">Dizin Oluşturma ve Silme</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#dizin-oluşturma--mkdir-komutu">Dizin Oluşturma | mkdir Komutu</a>
+<ul>
+<li class="toc-entry <hh3"><a href="#i̇ç-içe-dizin-oluşturma">İç içe Dizin Oluşturma</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh2"><a href="#dizin-silme--rmdir-komutu">Dizin Silme | rmdir Komutu</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Dizinlerde Gezinmek\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/dizinlerde-gezinmek/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/dizinlerde-gezinmek/&title=Dizinlerde Gezinmek&summary=\"Dizinlerde Gezinmek\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>

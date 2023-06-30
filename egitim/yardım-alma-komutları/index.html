@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+<title>Linux Dersleri | Yardım Almak &#8211; Linux Eğitimi</title>
+<meta name="description" content="Linux sistemindeki çevrimdışı yardım mekanizmalarından bahsediyoruz.">
+<meta name="keywords" content="help, man, info">
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/egitim/yard%C4%B1m-alma-komutlar%C4%B1/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Linux Eğitimi Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/style.css">
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+<link rel="stylesheet" href="http://localhost:4000/assets/css/read.css">
+<style>
+ .grid {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar x-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+	
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" href="http://localhost:4000/">
+      <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+      Linux Dersleri
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/egitim.html">Eğitimler</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/blog/">Blog</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/komutlar">Komut Listesi</a>
+      </li>
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/test">Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/etiketler">Etiketler</a>
+      </li>
+	 <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:4000/hakkında.html">Hakkında</a>
+      </li>
+    </ul>
+	
+  </div>
+ 
+<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+	<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+	<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+</nav>	
+<nav class="navbar y-navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom">
+<button class="btn"  data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left"><i class="fa fa-align-justify fa-lg"></i></button>
+		<a href="http://localhost:4000/" class="btn"  ><i class="fa fa-home fa-lg"></i></a>     
+	<a class="btn" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search" style="width:16px;height:16px"></i></a>
+		
+		<a onclick="tema()" class="btn" ><i class="fa fa-adjust fa-lg"></i></a> 
+		<a href="http://localhost:4000/bildirim.html" class="btn" ><i class="fa fa-paper-plane"></i></a> 
+		
+</nav>
+
+<div style="background-color: var(--background);" id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed h-100" >
+   <div class="container">
+    
+      <a class="btn bs-canvas-close close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <a class="navbar-brand" href="http://localhost:4000/">
+        <img src="http://localhost:4000/logo.svg" width="30" height="30" class="align-top" alt="">
+        Linux Dersleri
+      </a>
+  
+    
+    
+   <hr>
+ <a data-toggle="modal" data-target="#searchModal" class="btn">🕵️ Arama</a>
+  <a href="http://localhost:4000/egitim" class="btn">🎓 Eğitimler</a>
+  <a href="http://localhost:4000/blog" class="btn">🗃️ Blog</a>
+  <a href="http://localhost:4000/komutlar" class="btn">📜 Komut Listesi</a>
+  <a href="http://localhost:4000/test" class="btn">🎯 Test</a>
+  <a href="http://localhost:4000/etiketler" class="btn">🏷️ Etiketler</a>
+  <a href="http://localhost:4000/hakkında.html" class="btn">🐧 Hakkında</a>
+ 
+  <a href="http://localhost:4000/bildirim.html" class="btn">📮 Geri Bildirim</a>
+  <hr>
+  
+  <div align="center">
+  <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href="https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img style="width: 75%;" alt="Google Play" den="" alın'="" src="https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png"></a>
+	  </ul>
+	  <hr>
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+
+	  </div>
+    
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">🕵️ Site Geneli Arama:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <link href="http://localhost:4000/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="http://localhost:4000/pagefind/pagefind-ui.js" type="text/javascript"></script>
+
+<div id="search"></div>
+<script>
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showImages: false });
+		
+    });
+	
+</script>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+<div id="progress-bar-container">
+  <div id="progress-bar"></div>
+</div>
+      <div class="container-fluid">
+  <div class="row mb-2">
+      <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
+        	<h1 align="center">6. Ders: Yardım Almak</h1> 
+<div align="center"><i class="fa fa-tags" aria-hidden="true"></i>
+          <a href="http://localhost:4000/etiketler.html#help" class="btn btn-outline-primary btn-sm" title="Pages tagged help">help</a> <a href="http://localhost:4000/etiketler.html#man" class="btn btn-outline-primary btn-sm" title="Pages tagged man">man</a> <a href="http://localhost:4000/etiketler.html#info" class="btn btn-outline-primary btn-sm" title="Pages tagged info">info</a>   
+		 <p></p> 
+		  <div align="center" class="col-sm-3">
+		<img class="responsive" src="http://localhost:4000/egitim/yardimcover.png" alt="">
+		  </div>	</div>	  
+
+		  <hr>	
+		  <h6 align="right" id="meta-da">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+40 dk.
+
+
+		   
+
+  <i class="fa fa-user" aria-hidden="true"></i><a href="http://localhost:4000/hakkında.html"> Taylan Özgür Bildik</a>
+
+
+		  
+		  </h6>  
+		  
+		  
+        <p>Söz konusu komut satırı üzerinden bir işletim sistemini yönetmek olduğunda, neredeyse sınırsız çeşitlilikte pek çok aracı kullanmamız gerekeceği için her aracın her kullanım bilgisini aklımızda tutmamız mümkün ve mantıklı değildir. Yeri geldiğinde ihtiyaçlarımıza göre pek çok farklı aracın pek çok farklı özelliğini kullanacağız. Sık kullandığımız araçlar ve bu araçların sık kullandığımız özellikleri dışındaki çoğu bilgiyi unutmamız son derece normal. Unutmaya ek olarak ayrıca her zaman internete erişmemiz de mümkün olmayabilir. Yani internet üzerinden unuttuğumuz bilgilere bakmamız kimi zaman mümkün olmayabilir. Bu noktada en büyük dostumuz, sistemde mevcut bulunan yani çevrimdışı ulaşılabilir olan yardım sayfalarıdır. En yetenekli ve bilgili sistem uzmanları bile gerektiğinde yardım sayfalarına göz atarlar. Bizler de hem öğrenme aşamasında hem de daha sonrasında sıklıkla yardım sayfalarını kullanıyor olacağız.</p>
+
+<p>Yani özetle, bu bölümde kelimenin tam anlamıyla öğrenmeyi öğreneceğiz.</p>
+
+<p>Grafiksel arayüzlü araçları kullanırken sezgisel olarak özellikleri keşfetmek ve hatırlamak komut satırı araçlarına oranla daha kolaydır. Çünkü grafiksel arayüzde menüleri kurcalayabilir ve çeşitli butonlara tıklayarak etkilerini gözlemleyebilirsiniz. Ancak komut satırı üzerinden kullanılan araçlarda grafiksel arayüzdeki gibi sezgisel olarak keşif için gerekli ortam yoktur. Çünkü komut satırı arayüzündeki araçları kullanırken istisnalar hariç, yerine getirilmesini istediğimiz görevleri spesifik olarak yazılı komutlarınızla belirtmemiz gerekiyor. İlgili komutu veya komutun özelliğini temsil eden seçeneği bilmiyorsak gereken işlemi yapamayız. Tabii ki tüm araçların tüm seçeneklerini bilme ihtimalimiz olmadığı için, komut satırı arayüzü ile çalışan araçlar, tüm özelliklerini iyi biçimde açıklayan yardım dokümantasyonlarına sahipler.</p>
+
+<p>Linux sistemlerinin temel doküman-bilgi kaynaklarını 4 türe ayırabiliriz:</p>
+
+<ul>
+  <li>kısa bilgi açıklamaları(help)</li>
+  <li>kılavuz sayfaları(manuel)</li>
+  <li>bilgi sayfaları(info)</li>
+  <li>uygulamalar ile gelen dokümanlar</li>
+</ul>
+
+<h1 id="help-komutu">help Komutu</h1>
+
+<p>Daha önce, <a href="http://localhost:4000/egitim/linux-sistem-mimarisine-giris#dahili-komutlarbuilt-ins">yerleşik(dahili)</a> ve <a href="http://localhost:4000/egitim/linux-sistem-mimarisine-giris#harici-komutlarexternal">harici</a> komutların neler olduğundan bahsetmiştik. Yerleşik komutlar kabuğun beraberinde gelen çeşitli araçlardı. İşte <code class="language-plaintext highlighter-rouge">help</code> komutu da kabukta yerleşik olarak bulunan komutların yardım açıklamalarına ulaşmak için kullandığımız bir araçtır. Hemen denemek için yerleşik bir komut olan <code class="language-plaintext highlighter-rouge">echo</code> komutunun yardım bilgilerini görüntüleyelim. Bunun için tek yapmamız gereken <code class="language-plaintext highlighter-rouge">help</code> komutunun ardından yardım bilgisine ulaşmak istediğimiz yerleşik komutu belirtmek.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">help echo
+echo</span>: <span class="nb">echo</span> <span class="o">[</span><span class="nt">-neE</span><span class="o">]</span> <span class="o">[</span>arg ...]
+    Write arguments to the standard output.
+    
+    Display the ARGs, separated by a single space character and followed by a
+    newline, on the standard output.
+    
+    Options:
+      <span class="nt">-n</span>        <span class="k">do </span>not append a newline
+      <span class="nt">-e</span>        <span class="nb">enable </span>interpretation of the following backslash escapes
+      <span class="nt">-E</span>        explicitly suppress interpretation of backslash escapes
+    
+    <span class="sb">`</span><span class="nb">echo</span><span class="s1">' interprets the following backslash-escaped characters:
+      \a        alert (bell)
+      \b        backspace
+      \c        suppress further output
+      \e        escape character
+      \E        escape character
+      \f        form feed
+      \n        new line
+      \r        carriage return
+      \t        horizontal tab
+      \v        vertical tab
+      \\        backslash
+      \0nnn     the character whose ASCII code is NNN (octal).  NNN can be
+                0 to 3 octal digits
+      \xHH      the eight-bit character whose value is HH (hexadecimal).  HH
+                can be one or two hex digits
+      \uHHHH    the Unicode character whose value is the hexadecimal value HHHH.
+                HHHH can be one to four hex digits.
+      \UHHHHHHHH the Unicode character whose value is the hexadecimal value
+                HHHHHHHH. HHHHHHHH can be one to eight hex digits.
+    
+    Exit Status:
+    Returns success unless a write error occurs.
+</span></code></pre></div></div>
+
+<p>Bakın, <code class="language-plaintext highlighter-rouge">help</code> komutu <strong>echo</strong> aracı hakkında çeşitli özet bilgiler sunan yardım bilgisini anında konsola bastırdı.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/1.png" alt="1.png" class="responsive img-zoomable" /></p>
+
+<p>Çıktıları inceleyecek olursak;</p>
+
+<p class="kirmizi">İlk olarak komutun nasıl kullanıldığına dair örnek gösterim bulunuyor. Örneğin <code class="language-plaintext highlighter-rouge">echo</code> komutunun ardından seçenekleri yazıp, daha sonra argümanları girebileceğimiz basit şekilde ifade edilmiş.</p>
+
+<p class="yesil">Alt tarafta ise araç hakkındaki bilgileri görebiliyoruz. Yani hakkında bilgi almak istediğimiz aracın işlevini buradan kısaca öğrenebiliyoruz.</p>
+
+<p class="sari">Kısa açıklamanın ardından, kullanılabilir olan seçenekler ve bunların açıklamaları yer alıyor.</p>
+
+<p class="mavi">En sonda ise bu aracın çalıştıktan sonra üreteceği çıkış kodu belirtilmiş. Bu çıkış kodu daha çok bash programlama esnasında işimize yarayan bir bildirim.</p>
+
+<p>Neticede buradaki yardım çıktılarına bakarak, sorguladığımız araç hakkında tüm temel bilgileri kolayca öğrenebiliyoruz.</p>
+
+<p>Örneğimizde şahit olduğumuz gibi <code class="language-plaintext highlighter-rouge">help</code> komutunu, genellikle ilgili komutun kullanım seçenekleri ve işlevleri hakkında kısaca bilgi almak istediğimizde sıklıkla kullanıyor olacağız.</p>
+
+<p>Ayrıca hazır yeri gelmişken <code class="language-plaintext highlighter-rouge">help</code> komutunun yalnızca yerleşik olan araçlar hakkında bilgi sunduğunu teyit etmek için yerleşik olmayan, yani harici olan bir aracın yardım bilgisini <code class="language-plaintext highlighter-rouge">help</code> komutu üzerinden sorgulamayı da deneyebiliriz. Ben denemek için harici bir araç olan <code class="language-plaintext highlighter-rouge">nano</code> aracını <code class="language-plaintext highlighter-rouge">help</code> ile sorgulamak istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">help </span>nano
+bash: <span class="nb">help</span>: no <span class="nb">help </span>topics match <span class="sb">`</span>nano<span class="s1">'.  Try `help help'</span> or <span class="sb">`</span>man <span class="nt">-k</span> nano<span class="s1">' or `info nano'</span><span class="nb">.</span>
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın, <code class="language-plaintext highlighter-rouge">nano</code> harici bir araç olduğu için <code class="language-plaintext highlighter-rouge">help</code> komutu bilgi sunmadı. Çıktı olarak da bu ifade ile eşleşen bir yardım konusunun bulunamadığı ve alternatif olarak nasıl bilgi alabileceğimiz burada belirtilmiş. Bu alternatiflerden daha sonra ayrıca bahsedeceğiz. Ben şimdi tüm araçların kendi bünyesinde bulundurduğu yardım bilgisine nasıl ulaşabileceğimizden bahsetmek istiyorum.</p>
+
+<h1 id="yardım-bilgisi----help">Yardım Bilgisi | <code class="language-plaintext highlighter-rouge">--help</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">help</code> komutunu kullanmak yerine dilerseniz, ilgili aracın isminden sonra <code class="language-plaintext highlighter-rouge">—help</code> seçeneğini de kullanabilirsiniz. Hemen <code class="language-plaintext highlighter-rouge">nano</code> aracının yardım bilgisini görmek için <code class="language-plaintext highlighter-rouge">nano —help</code> şeklinde komutumuzu girelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>nano <span class="nt">--help</span>
+Usage: nano <span class="o">[</span>OPTIONS] <span class="o">[[</span>+LINE[,COLUMN]] FILE]...
+
+To place the cursor on a specific line of a file, put the line number with
+a <span class="s1">'+'</span> before the filename.  The column number can be added after a comma.
+When a filename is <span class="s1">'-'</span>, nano reads data from standard input.
+
+ Option         Long option             Meaning
+ <span class="nt">-A</span>             <span class="nt">--smarthome</span>             Enable smart home key
+ <span class="nt">-B</span>             <span class="nt">--backup</span>                Save backups of existing files
+ <span class="nt">-C</span> &lt;<span class="nb">dir</span><span class="o">&gt;</span>       <span class="nt">--backupdir</span><span class="o">=</span>&lt;<span class="nb">dir</span><span class="o">&gt;</span>       Directory <span class="k">for </span>saving unique backup files
+ <span class="nt">-D</span>             <span class="nt">--boldtext</span>              Use bold instead of reverse video text
+ <span class="nt">-E</span>             <span class="nt">--tabstospaces</span>          Convert typed tabs to spaces
+ <span class="nt">-F</span>             <span class="nt">--multibuffer</span>           Read a file into a new buffer by default
+ <span class="nt">-G</span>             <span class="nt">--locking</span>               Use <span class="o">(</span>vim-style<span class="o">)</span> lock files
+ <span class="nt">-H</span>             <span class="nt">--historylog</span>            Save &amp; reload old search/replace strings
+ <span class="nt">-I</span>             <span class="nt">--ignorercfiles</span>         Don<span class="s1">'t look at nanorc files
+ -J &lt;number&gt;    --guidestripe=&lt;number&gt;  Show a guiding bar at this column
+ -K             --rawsequences          Fix numeric keypad key confusion problem
+ -L             --nonewlines            Don'</span>t add an automatic newline
+ <span class="nt">-M</span>             <span class="nt">--trimblanks</span>            Trim <span class="nb">tail </span>spaces when hard-wrapping
+ <span class="nt">-N</span>             <span class="nt">--noconvert</span>             Don<span class="s1">'t convert files from DOS/Mac format
+ -O             --bookstyle             Leading whitespace means new paragraph
+ -P             --positionlog           Save &amp; restore position of the cursor
+ -Q &lt;regex&gt;     --quotestr=&lt;regex&gt;      Regular expression to match quoting
+ -R             --restricted            Restrict access to the filesystem
+ -S             --softwrap              Display overlong lines on multiple rows
+ -T &lt;number&gt;    --tabsize=&lt;number&gt;      Make a tab this number of columns wide
+ -U             --quickblank            Wipe status bar upon next keystroke
+ -V             --version               Print version information and exit
+ -W             --wordbounds            Detect word boundaries more accurately
+ -X &lt;string&gt;    --wordchars=&lt;string&gt;    Which other characters are word parts
+ -Y &lt;name&gt;      --syntax=&lt;name&gt;         Syntax definition to use for coloring
+ -Z             --zap                   Let Bsp and Del erase a marked region
+ -a             --atblanks              When soft-wrapping, do it at whitespace
+ -b             --breaklonglines        Automatically hard-wrap overlong lines
+ -c             --constantshow          Constantly show cursor position
+ -d             --rebinddelete          Fix Backspace/Delete confusion problem
+ -e             --emptyline             Keep the line below the title bar empty
+ -f &lt;file&gt;      --rcfile=&lt;file&gt;         Use only this file for configuring nano
+ -g             --showcursor            Show cursor in file browser &amp; help text
+ -h             --help                  Show this help text and exit
+ -i             --autoindent            Automatically indent new lines
+ -j             --jumpyscrolling        Scroll per half-screen, not per line
+ -k             --cutfromcursor         Cut from cursor to end of line
+ -l             --linenumbers           Show line numbers in front of the text
+ -m             --mouse                 Enable the use of the mouse
+ -n             --noread                Do not read the file (only write it)
+ -o &lt;dir&gt;       --operatingdir=&lt;dir&gt;    Set operating directory
+ -p             --preserve              Preserve XON (^Q) and XOFF (^S) keys
+ -q             --indicator             Show a position+portion indicator
+ -r &lt;number&gt;    --fill=&lt;number&gt;         Set width for hard-wrap and justify
+ -s &lt;program&gt;   --speller=&lt;program&gt;     Use this alternative spell checker
+ -t             --saveonexit            Save changes on exit, don'</span>t prompt
+ <span class="nt">-u</span>             <span class="nt">--unix</span>                  Save a file by default <span class="k">in </span>Unix format
+ <span class="nt">-v</span>             <span class="nt">--view</span>                  View mode <span class="o">(</span>read-only<span class="o">)</span>
+ <span class="nt">-w</span>             <span class="nt">--nowrap</span>                Don<span class="s1">'t hard-wrap long lines [default]
+ -x             --nohelp                Don'</span>t show the two <span class="nb">help </span>lines
+ <span class="nt">-y</span>             <span class="nt">--afterends</span>             Make Ctrl+Right stop at word ends
+ -%             <span class="nt">--stateflags</span>            Show some states on the title bar
+ <span class="nt">-_</span>             <span class="nt">--minibar</span>               Show a feedback bar at the bottom
+ <span class="nt">-0</span>             <span class="nt">--zero</span>                  Hide all bars, use whole terminal
+</code></pre></div></div>
+
+<p>Bakın tıpkı daha önce <code class="language-plaintext highlighter-rouge">help</code> komutu ile bash kabuğuna yerleşik olan <code class="language-plaintext highlighter-rouge">echo</code> aracı hakkında aldığımız yardım bilgisi gibi, <code class="language-plaintext highlighter-rouge">—help</code> seçeneği sayesinde harici araç olan <code class="language-plaintext highlighter-rouge">nano</code> aracı hakkında da yardım bilgisi sorunsuzca konsola bastırıldı.</p>
+
+<p>Burada kullanmış olduğumuz <code class="language-plaintext highlighter-rouge">—help</code> seçeneği, istisnalar hariç genellikle tüm araçların temel yardım bilgilerini sunuyor. Üstelik aslında hem dahili hem de harici komutlar için <code class="language-plaintext highlighter-rouge">—help</code> seçeneğini de kullanabiliyoruz.</p>
+
+<p>Tam da bu noktada olası kafa karışıklıklarını önleyebilmek için <code class="language-plaintext highlighter-rouge">help</code> aracının ve <code class="language-plaintext highlighter-rouge">—help</code> seçeneğinin kullanımına açıklık getirmek istiyorum.</p>
+
+<p>Yerleşik komutların pek çoğu da dahil <code class="language-plaintext highlighter-rouge">—help</code> seçeneği kullanılarak ilgili komutla ilgili bilgi alabiliriz dedim. Örneğin bir diğer yerleşik komut olan <code class="language-plaintext highlighter-rouge">cd</code> komutu hakkında bilgi almak için dilersek <code class="language-plaintext highlighter-rouge">help cd</code> komutunu ya da <code class="language-plaintext highlighter-rouge">cd —help</code> komutunu kullanabiliriz. Sırasıyla komutlarımızı girip sonuçlarına bakalım.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">help cd
+cd</span>: <span class="nb">cd</span> <span class="o">[</span><span class="nt">-L</span>|[-P <span class="o">[</span><span class="nt">-e</span><span class="o">]]</span> <span class="o">[</span>-@]] <span class="o">[</span><span class="nb">dir</span><span class="o">]</span>
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+    
+    The variable CDPATH defines the search path <span class="k">for </span>the directory containing
+    DIR.  Alternative directory names <span class="k">in </span>CDPATH are separated by a colon <span class="o">(</span>:<span class="o">)</span><span class="nb">.</span>
+    A null directory name is the same as the current directory.  If DIR begins
+    with a slash <span class="o">(</span>/<span class="o">)</span>, <span class="k">then </span>CDPATH is not used.
+    
+    If the directory is not found, and the shell option <span class="sb">`</span>cdable_vars<span class="s1">' is set,
+    the word is assumed to be  a variable name.  If that variable has a value,
+    its value is used for DIR.
+    
+    Options:
+      -L        force symbolic links to be followed: resolve symbolic
+                links in DIR after processing instances of `..'</span>
+      <span class="nt">-P</span>        use the physical directory structure without following
+                symbolic links: resolve symbolic links <span class="k">in </span>DIR before
+                processing instances of <span class="sb">`</span>..<span class="s1">'
+      -e        if the -P option is supplied, and the current working
+                directory cannot be determined successfully, exit with
+                a non-zero status
+      -@        on systems that support it, present a file with extended
+                attributes as a directory containing the file attributes
+    
+    The default is to follow symbolic links, as if `-L'</span> were specified.
+    <span class="sb">`</span>..<span class="s1">' is processed by removing the immediately previous pathname component
+    back to a slash or the beginning of DIR.
+    
+    Exit Status:
+    Returns 0 if the directory is changed, and if $PWD is set successfully when
+    -P is used; non-zero otherwise.
+
+┌──(taylan@linuxdersleri)-[~]
+└─$ cd --help
+cd: cd [-L|[-P [-e]] [-@]] [dir]
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+    
+    The variable CDPATH defines the search path for the directory containing
+    DIR.  Alternative directory names in CDPATH are separated by a colon (:).
+    A null directory name is the same as the current directory.  If DIR begins
+    with a slash (/), then CDPATH is not used.
+    
+    If the directory is not found, and the shell option `cdable_vars'</span> is <span class="nb">set</span>,
+    the word is assumed to be  a variable name.  If that variable has a value,
+    its value is used <span class="k">for </span>DIR.
+    
+    Options:
+      <span class="nt">-L</span>        force symbolic links to be followed: resolve symbolic
+                links <span class="k">in </span>DIR after processing instances of <span class="sb">`</span>..<span class="s1">'
+      -P        use the physical directory structure without following
+                symbolic links: resolve symbolic links in DIR before
+                processing instances of `..'</span>
+      <span class="nt">-e</span>        <span class="k">if </span>the <span class="nt">-P</span> option is supplied, and the current working
+                directory cannot be determined successfully, <span class="nb">exit </span>with
+                a non-zero status
+      -@        on systems that support it, present a file with extended
+                attributes as a directory containing the file attributes
+    
+    The default is to follow symbolic links, as <span class="k">if</span> <span class="sb">`</span><span class="nt">-L</span><span class="s1">' were specified.
+    `..'</span> is processed by removing the immediately previous pathname component
+    back to a slash or the beginning of DIR.
+    
+    Exit Status:
+    Returns 0 <span class="k">if </span>the directory is changed, and <span class="k">if</span> <span class="nv">$PWD</span> is <span class="nb">set </span>successfully when
+    <span class="nt">-P</span> is used<span class="p">;</span> non-zero otherwise.
+</code></pre></div></div>
+
+<p>Bakın her iki çıktı da birebir aynı yardım bilgisini konsola bastırdı. Bu örnek ile yerleşik komutlarda da <code class="language-plaintext highlighter-rouge">—help</code> seçeneğini kullanabileceğimizi görebiliyoruz ancak istisnai olan komutlar da bulunduğu için <code class="language-plaintext highlighter-rouge">help</code> komutuna da ihtiyacımız var. Örneğin <code class="language-plaintext highlighter-rouge">echo</code> aracı hakkında bilgi almak için <code class="language-plaintext highlighter-rouge">echo —help</code> şeklinde komut girmeyi deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">echo</span> <span class="nt">--help</span>                                                                              
+<span class="nt">--help</span>
+</code></pre></div></div>
+
+<p>Bakın yardım bilgisi yerine doğrudan <strong>—help</strong> ifadesi konsola bastırıldı, çünkü <code class="language-plaintext highlighter-rouge">echo</code> aracının görevi kendisine argüman olarak verilmiş olan değerleri konsola bastırmaktır. Buradaki <strong>—help</strong> ifadesi de <code class="language-plaintext highlighter-rouge">echo</code> aracı için konsola bastırılması gereken sıradan bir argüman. İşte tam da <code class="language-plaintext highlighter-rouge">echo</code> komutunda da olduğu gibi bazı yerleşik komutlar hakkında bilgi almak için <code class="language-plaintext highlighter-rouge">help</code> aracına ihtiyaç duyabiliyoruz. Eğer hakkında bilgi almak istediğiniz yerleşik bir komut varsa ve bu komut <code class="language-plaintext highlighter-rouge">—help</code> seçeneği ile bilgi sunmuyorsa <code class="language-plaintext highlighter-rouge">help</code> komutundan sonra ilgili yerleşik komutu yazıp bilgi alabilirsiniz. Dolayısıyla yerleşik komutların istisnaları haricinde neredeyse tüm komutlar <code class="language-plaintext highlighter-rouge">—help</code> seçeneği ile yardım bilgisi sunabiliyor. Tek yapmanız gereken bu seçeneği kullanıp çalışıp çalışmadığını denemek. İstisnalar hariç tüm araçlar size bilgi sunmak için <code class="language-plaintext highlighter-rouge">—help</code> seçeneğini kullanmanızı bekliyor zaten.</p>
+
+<p>Umarım <code class="language-plaintext highlighter-rouge">help</code> komutu ve <code class="language-plaintext highlighter-rouge">—help</code> seçeneği arasındaki fark net bir biçimde anlaşılmıştır. Çünkü komutlar hakkında kısa ama etkili şekilde bilgi almak için bu yöntemleri sıklıkla kullanıyor olacağız.</p>
+
+<h1 id="manmanual-sayfası">man(Manual Sayfası)</h1>
+
+<p>Bir diğer yardım kaynağımız da <code class="language-plaintext highlighter-rouge">man</code> komutu ile ulaşabildiğimiz ve <strong>man pages</strong> olarak geçen yardım sayfalarıdır.</p>
+
+<p><strong>Manual</strong> ifadesinin kısalmasından gelen <strong>man</strong> sayfaları sistem üzerindeki araçlar için temel yardım bilgileri içeren hiyerarşik düzende bulunan dosyalardır. Buradaki manual ifadesinin nereden geldiğini almak için internet üzerinde görsel arama kısmına “manuals” ya da “product manuals” şeklinde yazıp aratabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/2.png" alt="2.png" class="responsive img-zoomable" /></p>
+
+<p>Karşınıza çeşitli ürünlerin kullanımlarını ve özelliklerini açıklayan kılavuz sayfalarının resimleri gelecektir. Zaten bu görseller size tanıdık geliyordur. Örneğin bir telefon veya benzeri bir araç aldığınızda mutlaka kutu içeriğinden kullanma kılavuzu da çıkmıştır. İşte <code class="language-plaintext highlighter-rouge">man</code> olarak geçen yardım sayfaları da tıpkı gerçek hayattaki “kılavuz” sayfaları gibi sistemimizde yüklü bulunan araçlar hakkında bilgi sunan kılavuz sayfalarıdır. Man ismi de buradan geliyor.</p>
+
+<p>Sistemde varsayılan olarak yüklü bulunan araçlar ve sistemin diğer çeşitli bileşenleri bu manuel sayfalarında tek tek açıklanmıştır. Ayrıca istisnalar hariç, sisteme yeni yüklenen araçlar da beraberinde ilgili araç hakkında bilgi içeren manuel sayfalarıyla birlikte geliyorlar. Bu yaklaşım sayesinde, sistem üzerinde yüklü bulunan neredeyse tüm araçlar hakkında çevrimdışıyken de bilgi alabileceğimiz hiyerarşik düzende bir kılavuza sahip oluyoruz. Yani elimizin altında bir nevi kütüphanemiz var aslında.</p>
+
+<h2 id="manual-sayfasını-açmak">Manual Sayfasını Açmak</h2>
+
+<p>Manual sayfalarına ulaşmak için, başta söz ettiğimiz <code class="language-plaintext highlighter-rouge">man</code> komutunu yani aslında <strong>man</strong> aracını kullanıyoruz. Örneğin ben <code class="language-plaintext highlighter-rouge">chmod</code> hakkındaki bilgilere ulaşmak istiyorsam konsola <code class="language-plaintext highlighter-rouge">man chmod</code> şeklinde yazarak gerekli bilgilere kolayca ulaşabilirim.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/3.png" alt="3.png" class="responsive img-zoomable" /></p>
+
+<p>Görebildiğiniz gibi <code class="language-plaintext highlighter-rouge">chmod</code> aracının manuel sayfası açılmış oldu. Tüm içerik elbette şu an gözüktüğü kadarla sınırlı değil.</p>
+
+<h2 id="sayfada-gezinti">Sayfada Gezinti</h2>
+
+<p>Açılan bu kılavuz sayfasında yön tuşlarını kullanarak yukarı aşağı sağa sola hareket edebiliriz. Ayrıca hızlıca alt satırlara inmek istersek sayfa sayfa atlamak için <kbd>space</kbd> tuşunu da kullanabiliriz. Zaten alt çubuktan da tüm manuel sayfasının ne kadarını okuduğunuzu kolayca takip edebilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/4.gif" alt="4.gif" class="responsive img-zoomable" /></p>
+
+<h2 id="yardım-bilgisi">Yardım Bilgisi</h2>
+
+<p>Ayrıca man sayfasının kısayollarını ve kullanımını görmek isterseniz man sayfası açıkken <kbd>h</kbd> tuşuna basarsanız sizi man kılavuzunun yardım sayfası karşılar, burada man komutunun kullanımı ile ilgili detaylı bilgi yardımı mevcut.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/5.png" alt="5.png" class="responsive img-zoomable" /></p>
+
+<p>Esasen bu kılavuz sayfasında gezinmek için <kbd>space</kbd> ve yukarı aşağı yön tuşları çoğu zaman yeterli olacağı için buradaki detaylı bilgilere muhtemelen pek ihtiyacınız olmayacaktır. Fakat arama özelliği işinize yarayabilir.</p>
+
+<h2 id="arama-yapmak">Arama Yapmak</h2>
+
+<p>Mevcut bulunduğunuz satırdan sonra, aradığınız kelime ile eşleşenleri bulmak için <strong>/aranacak-ifade</strong> şeklinde yazıp <kbd>enter</kbd> ile onaylayabilirsiniz. Ben denemek için “change” ifadesini araştırmak üzere <strong>/change</strong> yazıp <kbd>enter</kbd> ile onaylıyorum.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/6.gif" alt="6.gif" class="responsive img-zoomable" /></p>
+
+<p>Bakın “change” ile eşleşenler renkli şekilde aydınlatıldı. Yani aradığım ifade ile eşleşenleri görebiliyorum. Eğer eşleşmeler arası ileri geri atlamak istersek, önceki ve sonraki eşleşmelerde atlamak için <kbd>n</kbd> ve <kbd>N</kbd> tuşlarını kullanabiliyoruz. Büyük “N” karakteri için <kbd>Shift</kbd> + <kbd>n</kbd> ya da <kbd>Capslock</kbd> açıkken <kbd>n</kbd> tuşuna basmanız yeterli. Bu sayede eşleşmeler arasında ileri geri geçiş yapabilirsiniz.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/7.gif" alt="7.gif" class="responsive img-zoomable" /></p>
+
+<h2 id="manual-sayfasından-çıkış">Manual Sayfasından Çıkış</h2>
+
+<p>Kılavuz sayfasını kapatmak için <kbd>q</kbd> tuşuna basmamız yeterli.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/8.gif" alt="8.gif" class="responsive img-zoomable" /></p>
+
+<p>Neticede bizzat deneyimlediğimiz gibi herhangi bir araç hakkında bilgi almak üzere manual sayfalarını kullanmak çok basit. Şimdiye kadar nasıl açılıp, sayfalardan nasıl gezinebileceğimizden bahsettik. Şimdi biraz da <strong>man</strong> sayfasının iç yapısına yani sayfa düzenine kısaca değinelim istiyorum.</p>
+
+<h2 id="sayfa-yapısı-hakkında">Sayfa Yapısı Hakkında</h2>
+
+<p>Elbette hakkında bilgi aldığınız araca göre, kılavuz sayfasındaki başlıklar da farklı olabilir. Yine de temel olan ve sıklıkla karşılaşacağınız başlıklardan kısaca bahsedebiliriz. Benim açıkladığım başlıklar haricinde farklı başlıklara karşılaşırsanız da elbette İngilizce karşılıkları sayesinde kolayca kavrayabilirsiniz. Manuel sayfasının bölümlerini kısacak açıklayacak olursak:</p>
+
+<ul>
+  <li><strong>NAME:</strong> İlgili aracın isminin ve işlevinin kısaca açıkladığı bölümdür.</li>
+  <li><strong>SYNOPSIS:</strong> Aracın nasıl kullanılacağına dair kısa açıklamalar ve örnek komutları içerir. Bu bölümde genellikle sık kullanılan seçenek ve parametrelerinin nasıl girilmesi gerektiği şablon olarak gösterilir.</li>
+  <li><strong>DESCRIPTION:</strong> İlgili aracın yerine getirdiği görev hakkında nispeten daha uzun ve detaylı şekilde açıklama içeren bölüm yani esas açıklama bölümü.</li>
+  <li><strong>OPTIONS:</strong> Aracın sahip olduğu seçenekler ve bu seçeneklerin kullanımı hakkında bilgi sunan bölümdür. Buradaki bilgiler çoğunlukla ilgili aracın —help seçeneği ile sunulan seçenek bilgileridir.</li>
+  <li><strong>EXAMPLES:</strong> İlgili aracın kullanıma dair örneklerin yer aldığı bölümdür. Bu bölümde genellikle çok sık tercih edilen, ya da aracın kabiliyetlerini kavramamızı sağlayacak örneklere sıklıkla yer veriliyor.</li>
+  <li><strong>AUTHOR:</strong> Yazarların isimleri ve iletişim bilgilerinin yer aldığı bölümdür.</li>
+  <li><strong>REPORTING BUGS:</strong> Hata veya eksikleri bildirebileceğiniz iletişim adresleri hakkında bilgi sunuyor.</li>
+  <li><strong>COPYRIGHT VE SEE ALSO:</strong> Son bölümde ise, telif hakları ve daha fazla bilgiyi nereden alabileceğimiz gibi ekstra detayları belirten açıklama bulunuyor.</li>
+</ul>
+
+<p>Artık, ihtiyaç duyduğumuzda kılavuz sayfalarından nasıl bilgi edinebileceğimizi öğrendik.</p>
+
+<p>Ben sistemimi İngilizce kullandığım için manual sayfaları da İngilizce açıklamalar içeriyor. Eğer siz Türkçe olarak kullanıyorsanız hepsi olmasa da bazı manual sayfalarının Türkçeleştirildiğini görebilirsiniz.</p>
+
+<p>Manuel sayfalarının farklı dillere çevrilmesi kimi kullanıcılar için kolaylık sağlasa da manuel sayfalarının yerelleştirilmesi çoğunlukla eksik kaldığından en doyurucu bilgiye standart olan İngilizce dili üzerinden ulaşabiliyoruz. Bu sebeple ben sizlere ingilizce haricindeki manuel sayfalarını kullanmanızı önermiyorum. En ulaşılabilir ve en detaylı olanı ingilizcede bulunuyor. Eğer kendi dilinizde kullanmak isterseniz kısa bir araştırma ile nasıl yapabileceğinizi öğrenebilirsiniz.</p>
+
+<p>Manual sayfaları hakkındaki anlatımları bitirmeden önce aradığımız yardım bilgisine daha kolay erişebileceğimiz bir kullanım biçiminden daha bahsetmek istiyorum.</p>
+
+<p>Araç veya aracın kısa işlev açıklaması ile eşleşen manual sayfalarını listeleyebilmek isteseydik ne yapmamız gerekirdi ? Yani örneğin ben <strong>chmod</strong> isimli aracın ismini hatırlayamadım ama işlevini hatırlıyorum diyelim. İşte bu durumda tüm manual sayfaları içinde benim araştırdığım kelime ile eşleşen manual sayfaları bana liste olarak sunulabilir. Ne demek istediğimi daha net anlamak için gelin <code class="language-plaintext highlighter-rouge">man -k</code> ve <code class="language-plaintext highlighter-rouge">apropos</code> komutlarının kullanımlarından bahsederek devam edelim.</p>
+
+<h2 id="manual-sayfalarında-araştırma">Manual Sayfalarında Araştırma</h2>
+
+<p>Manual sayfaları her ne kadar bütüncül olarak faydalı kaynaklar olsa da manuel sayfalarını yalnızca spesifik bir konu veya araç hakkında yekpare bilgi almak için kullanmanız gerekmiyor. Yani manual sayfalarını yalnızca dokümanları baştan sonra okumak için kullanmamız şart değil. Örneğin yalnızca manual sayfalarının başında yer alan, ilgili aracın isminin ve işlevinin açıklandığı bölümden de faydalanmak isteyebiliriz. Bu duruma örnek verebilmek için öncelikle <code class="language-plaintext highlighter-rouge">man passwd</code> komutu ile <strong>passwd</strong> aracının açıklandığı manual sayfası açalım.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/9.png" alt="9.png" class="responsive img-zoomable" /></p>
+
+<p>Bakın burada isim bölümünde, daha önce de izah ettiğimiz şekilde, aracın ismi ve işlevi hakkında kısa bir açıklama bulunuyor. İşte bizler bu bölümdeki açıklamaları kullanarak, aracın isminden kısaca işlevini ya da tersi şekilde, aracın işlev açıklamasından aracın adını bulabiliriz. Örneğin <strong>passwd</strong> aracının işlevini yani kullanıcı parolası değiştirme işlevini hatırlıyorsunuz ancak <strong>passwd</strong> aracının ismi aklınıza gelmedi diyelim. İşte tam bu noktada <code class="language-plaintext highlighter-rouge">man</code> komutunun <code class="language-plaintext highlighter-rouge">-k</code> seçeneğini kullanıp, argüman olarak aracın işlevini yazıp aratabilirsiniz. Şu an çok net anlaşılmamış olabilir hemen basit bir örnek üzerinden ele alalım. Bunun için hemen yeni bir konsol açalım, ve komut satırına <code class="language-plaintext highlighter-rouge">man -k passwd</code> komutunu girelim.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/10.png" alt="10.png" class="responsive img-zoomable" /></p>
+
+<p>Bakın, burada yazmış olduğum komut sayesinde manuel sayfasının <strong>NAME</strong> yani isim bölümünde yazan araç ismi ve kısaca açıklamasında <code class="language-plaintext highlighter-rouge">passwd</code> ifadesi geçen tüm manuel sayfaları tek tek konsola bastırıldı. Kimisinin sadece adında, kimisinin de işlev açıklamasında <strong>passwd</strong> ifadesi geçiyor gördüğünüz gibi. Diğer çıktılar isminin bir kısmında veya açıklamasının bir bölümünde passwd yani aradığımız ifade geçen manual sayfaları.</p>
+
+<p>Neticede işte bizler <code class="language-plaintext highlighter-rouge">man -k</code> komutu ile araştırma yaparken aslında tüm manual sayfalarının isim bölümlerine bakılıyor ve araştırdığımız ifade veya ifadeler ile eşleşen bir manual sayfası varsa bize çıktı olarak sunuluyor.</p>
+
+<p>Ben örnek olarak <strong>passwd</strong> aracının ismini yazdım ancak manuel sayfalarının <strong>NAME</strong> başlığı altında geçen dilediğiniz bir kelimeyi veya kelime gruplarını araştırmanız mümkündür. Ben bu kez yeni bir örnek olarak “<strong>change file</strong>” kelimelerini araştırabiliriz. Yani bu kez, aracın işlevinden aracın ismine ulaşmayı deneyelim.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/11.png" alt="11.png" class="responsive img-zoomable" /></p>
+
+<p>Görebildiğiniz gibi içerisinde tam olarak “change file” ifadesi geçen tüm manuel sayfaları listelendi. Buradaki eşleşmenin, ismin yanındaki kısa açıklama bilgisi sayesinde yakalandığını da buradaki çıktılara bakarak kolayca teyit edebiliyoruz.</p>
+
+<p>Netice buradaki örneklerimizde bizzat deneyimlediğimiz gibi manual sayfalarının isim bölümlerinde araştırma yapmak için <code class="language-plaintext highlighter-rouge">man -k</code> komutundan yararlanabiliyoruz. Yalnız burada dikkat etmeniz gereken detay, bütünleşik olarak birden fazla kelime içeren bir araştırma yapmak istiyorsanız bu kelimeleri tırnak işareti içine alarak yazmanızdır. Örneğin ben <code class="language-plaintext highlighter-rouge">man -k “change file”</code> komutunu girdiğim için doğrudan bu ifade ile eşleşenler konsola bastırıldı. Eğer tırnak içinde yazmasaydım hem “<strong>change</strong>” hem de “<strong>file</strong>” ifadelerinden tek biri veya her ikisi ile de eşleşen tüm sayfalar tek tek bastırılacaktı. Hemen deneyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>man <span class="nt">-k</span> change file
+7z <span class="o">(</span>1<span class="o">)</span>               - A file archiver with high compression ratio format
+7za <span class="o">(</span>1<span class="o">)</span>              - A file archiver with high compression ratio format
+7zr <span class="o">(</span>1<span class="o">)</span>              - A file archiver with high compression ratio format
+...
+ALTER_INDEX <span class="o">(</span>7<span class="o">)</span>      - change the definition of an index
+ALTER_AGGREGATE <span class="o">(</span>7<span class="o">)</span>  - change the definition of an aggregate <span class="k">function
+</span>ALTER_COLLATION <span class="o">(</span>7<span class="o">)</span>  - change the definition of a collation
+ALTER_CONVERSION <span class="o">(</span>7<span class="o">)</span> - change the definition of a conversion
+ALTER_DATABASE <span class="o">(</span>7<span class="o">)</span>   - change a database
+...
+zipgrep <span class="o">(</span>1<span class="o">)</span>          - search files <span class="k">in </span>a ZIP archive <span class="k">for </span>lines matching a pattern
+zipnote <span class="o">(</span>1<span class="o">)</span>          - write the comments <span class="k">in </span>zipfile to stdout, edit comments and rena...
+zipsplit <span class="o">(</span>1<span class="o">)</span>         - <span class="nb">split </span>a zipfile into smaller zipfiles
+zless <span class="o">(</span>1<span class="o">)</span>            - file perusal filter <span class="k">for </span>crt viewing of compressed text
+zmore <span class="o">(</span>1<span class="o">)</span>            - file perusal filter <span class="k">for </span>crt viewing of compressed text
+znew <span class="o">(</span>1<span class="o">)</span>             - recompress .Z files to .gz files
+</code></pre></div></div>
+
+<p>Bakın tırnak içinde yazmadığım için aralarında boşluk bulunan “<strong>change</strong>” ve “<strong>file”</strong> kelimeleri ayrı ayrı değerlendirildi ve bunlardan biri veya birden fazlasıyla eşleşen tüm sayfalar bastırıldı. Bu örnekte de görebildiğiniz gibi eğer girdiğiniz kelimeler ayrı ayrı araştırılsın istemiyorsanız mutlaka tırnak içinde yazmanız gerekiyor.</p>
+
+<p>Hazır <code class="language-plaintext highlighter-rouge">man -k</code> komutundan bahsetmişken <code class="language-plaintext highlighter-rouge">apropos</code> komutunda da bahsetmemek olmaz. <code class="language-plaintext highlighter-rouge">apropos</code> komutu da <code class="language-plaintext highlighter-rouge">man -k</code> komutu ile birebir aynı işlevde. Yani dilersek <code class="language-plaintext highlighter-rouge">man -k</code> yerine doğrudan <code class="language-plaintext highlighter-rouge">apropos</code> komutu ile de aynı şekilde manual sayfalarının isim bölümlerinde araştırma yapabiliriz. Teyit etmek için bir önceki komutu bu kez <code class="language-plaintext highlighter-rouge">apropos</code> ile tekrar girmeyi deneyebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>man <span class="nt">-k</span> <span class="s2">"change file"</span>                                                                 
+chattr <span class="o">(</span>1<span class="o">)</span>           - change file attributes on a Linux file system
+<span class="nb">chcon</span> <span class="o">(</span>1<span class="o">)</span>            - change file security context
+<span class="nb">chmod</span> <span class="o">(</span>1<span class="o">)</span>            - change file mode bits
+<span class="nb">chown</span> <span class="o">(</span>1<span class="o">)</span>            - change file owner and group
+<span class="nb">touch</span> <span class="o">(</span>1<span class="o">)</span>            - change file timestamps
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>apropos <span class="s2">"change file"</span>                                                                
+chattr <span class="o">(</span>1<span class="o">)</span>           - change file attributes on a Linux file system
+<span class="nb">chcon</span> <span class="o">(</span>1<span class="o">)</span>            - change file security context
+<span class="nb">chmod</span> <span class="o">(</span>1<span class="o">)</span>            - change file mode bits
+<span class="nb">chown</span> <span class="o">(</span>1<span class="o">)</span>            - change file owner and group
+<span class="nb">touch</span> <span class="o">(</span>1<span class="o">)</span>            - change file timestamps
+</code></pre></div></div>
+
+<p>Bakın birebir aynı çıktıyı aldık çünkü <code class="language-plaintext highlighter-rouge">man -k</code> ile <code class="language-plaintext highlighter-rouge">apropos</code> komutu aynı işlevi gören iki farklı komut. Hatta <code class="language-plaintext highlighter-rouge">man —help</code> komutu ile man aracının yardım bilgisini listeleyip kontrol edebiliriz.</p>
+
+<p><img src="http://localhost:4000/egitim/yardım/12.png" alt="12.png" class="responsive img-zoomable" /></p>
+
+<p>Bakın <code class="language-plaintext highlighter-rouge">-k</code> seçeneğinin uzun karşılığı olarak burada da <strong>apropos</strong> ifadesinin kullanıldığını görebiliyoruz. <strong>apropos</strong> aracının ismi de buradan geliyor zaten. Apropos ifadesi Türkçe olarak “uygun” ifadesine karşılık geldiği için bizler de bu aracı aradığımız kelimelere uygun olan manual sayfalarını bulmak amacıyla kullandığımızdan bence hatırlaması kolay bir komut. Sizin için hangisi daha akılda kalıcı ise onu kullanmakta özgürsünüz.</p>
+
+<p>Yani özetle, man sayfalarında yer alan açıklamalar sayesinde, tam olarak ismini hatırlayamadığınız araçların isimlerini ya da tam tersi şekilde ismini bilip işlevini hatırlayamadığınız durumlarda da işlevlerini <code class="language-plaintext highlighter-rouge">apropos</code> ya da <code class="language-plaintext highlighter-rouge">man -k</code> komutu yardımıyla kolaylıkla sorgulayabilirsiniz.</p>
+
+<p>Sanırım, manuel sayfalarının ne kadar faydalı olabileceğine dair az çok fikir edinebildik. Şimdiye kadar özellikle değinmedik ancak, elbette manual sayfalarındaki bilgilerin faydalı olabilmesi için güncel olmaları da gerekiyor. O halde son olarak manuel sayfalarını nasıl güncelleyebileceğimizi de ele alalım.</p>
+
+<h2 id="manual-sayfalarını-güncellemek--mandb">Manual Sayfalarını Güncellemek | <code class="language-plaintext highlighter-rouge">mandb</code></h2>
+
+<p>Eski bilgileri güncellemek veya aradığımızda ulaşamadığımız manuel bilgilerine ulaşabilmek için ara ara manuel sayfalarını güncellememiz gerekiyor. Çünkü sisteme kurulan veya kaldırılan araçlarla birlikte manual sayfalarının içeriklerinde değişimler olması kaçınılmaz. Örneğin sisteminizi yeni yüklediğiniz bir aracın manual sayfasına bakıp bilgi almak istediniz ancak böyle bir manual sayfası olmadığı konusunda uyarı aldınız. İşte bu durumda <code class="language-plaintext highlighter-rouge">mandb</code> komutu ile manual sayfalarındaki değişikliklerin taranıp güncellenmesini sağlamamız gerekiyor.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>mandb
+0 man subdirectories contained newer manual pages.
+0 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="err">$</span>
+</code></pre></div></div>
+
+<p>Bakın görebildiğiniz gibi işlem son derece kısa sürdü ve güncelleme işleminden sonra yapılan değişiklikleri de son satırda bizlere bildirir. Eğer sisteminizde manual sayfalarının değişmesine sebep olabilecek herhangi bir değişim meydana gelmediyse doğal olarak ben de olduğu gibi herhangi bir güncelleme de yapılmıyor. Yine de eğer aradığınız manual sayfasını bulamıyorsanız ya da <code class="language-plaintext highlighter-rouge">apropos</code> veya <code class="language-plaintext highlighter-rouge">man -k</code> komutu ile araştırdığınız kelime ile eşleşme sağlanmıyorsa <code class="language-plaintext highlighter-rouge">mandb</code> komutu ile manual içeriklerini güncelleyip tekrar araştırmayı deneyebilirsiniz.</p>
+
+<h1 id="info-komutu">info Komutu</h1>
+
+<p>Türkçe kılavuz olarak geçen <strong>man</strong> yani <strong>manual</strong>‘e ek olarak 90’ların başında, GNU projesi “<strong>man</strong>” dokümantasyon sisteminin güncelliğini yitirdiğine karar verdi ve onun yerini alması için <strong>info</strong> aracı geliştirildi. Ancak ne yazık ki <strong>info</strong>, dönemine göre nispeten daha kolay okunur olsa da hiç bir zaman man kadar popüler olamadı. Nitekim günümüzde de <strong>man</strong> kılavuz sayfaları halen <strong>info</strong> ya oranla daha sık tercih ediliyor. Man sayfalarını kullanamaya benzer olması ve bilmenin elzem olmaması sebebiyle info aracını özellikle ele alarak vakit kaybetmek istemiyorum. Bilseniz fena olmaz, ama şart da sayılmaz. Kısa bir araştırma ile tıpkı <strong>man</strong> gibi kullanılabildiğini kendiniz de bizzat görebilirsiniz.</p>
+
+<h1 id="dokümantasyonlar">Dokümantasyonlar</h1>
+
+<p>İstisnalar hariç, genellikle sistem bir araç kurulduğu zaman bu araçla birlikte ilgili aracın kullanımı hakkında bilgi, örnek ve değişim notları gibi detayları içeren dokümantasyonlar da sisteme ekleniyor. Bu dokümanların içeriğini sınırlayarak anlatmam mümkün değil çünkü ilgili aracın kullanım alanına göre pek çok türde dosya bulunabiliyor. Bu dokümanlar da varsayılan olarak sistemde <strong><em>/usr/share/doc</em></strong> dizini altında tutuluyor. Hemen bu dizinde ne kadar çok araca ait doküman klasörü olduğunu görebilmek için <code class="language-plaintext highlighter-rouge">cd /usr/share/doc</code> komutu ile ilgili dizine geçiş yapıp <code class="language-plaintext highlighter-rouge">ls</code> komutu ile içeriği listeleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[~]
+└─<span class="nv">$ </span><span class="nb">cd</span> /usr/share/doc                                                                    
+
+┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/usr/share/doc]
+└─<span class="nv">$ </span><span class="nb">ls</span>
+...                                                 
+xorg-docs-core
+xserver-common
+xserver-xorg
+xserver-xorg-core
+xserver-xorg-input-all
+xserver-xorg-input-libinput
+xserver-xorg-legacy
+...
+xsltproc
+xterm
+xtightvncviewer
+xvfb
+xxd
+xz-utils
+zenity
+zenity-common
+....
+zsh
+zsh-autosuggestions
+zsh-common
+zsh-syntax-highlighting
+</code></pre></div></div>
+
+<p class="mavi"><strong>Not:</strong> Çıktı çok uzun olduğu için kısaltarak verdim.</p>
+
+<p>Bakın burada sistemde yüklü bulunan pek çok araca ait dokümanların klasörleri bulunuyor.</p>
+
+<p>Ben örnek olarak ileride ayrıca kullanımını ele alacağımız <strong>nano</strong> aracının dokümanlarına göz atmak istiyorum. <code class="language-plaintext highlighter-rouge">cd nano</code> komutu ile geçiş yapıp <code class="language-plaintext highlighter-rouge">ls</code> komutu ile listeleyelim.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/usr/share/doc/nano]
+└─<span class="nv">$ </span><span class="nb">ls                                                                                   
+</span>AUTHORS              changelog.gz  examples  IMPROVEMENTS.gz  NEWS.gz    THANKS.gz
+changelog.Debian.gz  copyright     faq.html  nano.html        README.gz  TODO
+</code></pre></div></div>
+
+<p>Bakın burada birtakım dosyalar ve klasörler bulunuyor. Elbette tüm araçların dokümantasyon içeriği buradaki ile birebir aynı olmayacaktır. Ancak bu dizinin içeriği bize az çok dokümantasyon dizininde hangi türden içeriğin olduğuna dair bir fikir verebilir. Örneğin aracın yazarları, değişim notları, telif hakkı, örnek klasörü, sıkça sorulanlar, geliştirmeler, yenilikler ve benzeri pek çok farklı türde bilgiyi sunan farklı türde dosyalar burada bulunuyor. İhtiyaç halinde gerekli olan bilgilere buradaki dosyalar üzerinden ulaşabilirsiniz.</p>
+
+<p>Ben yalnızca <strong>nano</strong> aracı üzerinden inceleme yaptım ancak farklı araçların dokümanlarına baktığınızda, pek çok türde dosyanın yer aldığını sizler de bizzat göreceksiniz. Ayrıca başta da belirttiğim şekilde her aracın doküman dosyaları olacak diye bir kaide de yok. Kimi aracın vardır, kimisinin yoktur.</p>
+
+<p>Neticede bizzat teyit ettiğimiz üzere, sistemde yüklü bulunan araçların, dokümanları da bu konumda yer alıyor. Dolayısıyla sizler de gerektiğinde değişim notları, yenilikler, örnek dosyalar ve benzeri dokümantasyon kaynakları için bu dizini kontrol edebilirsiniz. Buradaki dokümanlar help ya da manuel sayfalarından çok daha farklı türde pek çok bilgi barındırıyor. Yani aslında buradaki dokümanlara muhtemelen çok sıklıkla ihtiyaç duymayabilirsiniz ancak yine de araçlarla birlikte sisteme eklenmiş olan dokümanlardan da haberdar olmamız kimi araçları kullanırken gerekli olabilir. Dokümantasyonların varlığından haberdar olmak bence önemli, bu sebeple kısaca bahsetmek istedim.</p>
+
+<p>Ayrıca bu bölümü bitirmeden önce, yardım sayfaları için katı bir kural olmadığını da hatırlatmak istiyorum. Yardım sayfaları konusunda benimsenmiş tek bir yaklaşım olamadığı için bu bölüm içinde bahsetmiş olduğumuz gibi birden fazla alternatif yönetimi bilmemiz gerekiyor.</p>
+
+<p>Örneğin yerleşik komutlar hakkında bilgi almak için <code class="language-plaintext highlighter-rouge">help</code> komutunu kullanabileceğimizden bahsetmiştik. Bunun yanında eğer yerleşik komutların manuel sayfalarına bakmak istersek, kimi komutların manuel sayfalarının olmadığını görebiliriz. Hemen deneyelim, ben <code class="language-plaintext highlighter-rouge">man cd</code> yazarak, yerleşik olan <code class="language-plaintext highlighter-rouge">cd</code> komutu hakkında almak istiyorum.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/usr/share/doc/nano]
+└─<span class="nv">$ </span>man <span class="nb">cd                                                                               
+</span>No manual entry <span class="k">for </span><span class="nb">cd</span>
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi <code class="language-plaintext highlighter-rouge">cd</code> komutu için manuel sayfası yok. Çünkü dahili komutlar <strong>bash</strong> kabuğunun bir parçası olduğu için bash kabuğu haricinde manual sayfalarında ayrı ayrı açıklamaları yer almıyor. Eğer bu durumu teyit etmek isterseniz <code class="language-plaintext highlighter-rouge">man bash</code> komutunu girip, bash kabuğunda yerleşik olan komutların bu manual sayfası içinde açıklanmış olduğunu bizzat teyit edebilirsiniz.</p>
+
+<p>Bunun yanında örneğin bash kabuğunun dahili komutu olan <code class="language-plaintext highlighter-rouge">pwd</code> komutu için <code class="language-plaintext highlighter-rouge">man pwd</code> komutu ile manual sayfasını kontrol edecek olursak bu isimde bir sayfa olduğunu görebiliriz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PWD<span class="o">(</span>1<span class="o">)</span>                               User Commands                              PWD<span class="o">(</span>1<span class="o">)</span>
+
+NAME
+       <span class="nb">pwd</span> - print name of current/working directory
+
+SYNOPSIS
+       <span class="nb">pwd</span> <span class="o">[</span>OPTION]...
+
+DESCRIPTION
+       Print the full filename of the current working directory.
+
+       <span class="nt">-L</span>, <span class="nt">--logical</span>
+              use PWD from environment, even <span class="k">if </span>it contains symlinks
+
+       <span class="nt">-P</span>, <span class="nt">--physical</span>
+              avoid all symlinks
+
+       <span class="nt">--help</span> display this <span class="nb">help </span>and <span class="nb">exit</span>
+
+       <span class="nt">--version</span>
+              output version information and <span class="nb">exit
+
+ </span>Manual page <span class="nb">pwd</span><span class="o">(</span>1<span class="o">)</span> line 1 <span class="o">(</span>press h <span class="k">for </span><span class="nb">help </span>or q to quit<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Gördüğünüz gibi <code class="language-plaintext highlighter-rouge">pwd</code> komutu için manuel sayfaları mevcut. Bu durumun nedeni aslında buradaki <code class="language-plaintext highlighter-rouge">pwd</code> aracının bash kabuğundaki yerleşik <code class="language-plaintext highlighter-rouge">pwd</code> aracı yerine kullanılan alternatif araç olması. Sistemimizde farklı sebeplerden dolayı, kabukta bulunan bazı araçlarla aynı isimli olan harici araçlar yüklü olabiliyor. İşte <code class="language-plaintext highlighter-rouge">pwd</code> aracı da buna bir örnek. Dahili araçla aynı isimde harici bir araç olduğu için de bu aracın kendisine ait bir manual sayfası var. Bu sebeple <code class="language-plaintext highlighter-rouge">cd</code> komutu için harici bir manual sayfası yokken, <code class="language-plaintext highlighter-rouge">pwd</code> aracı için mevcut gözüküyor.</p>
+
+<p>İşte bu örnekler üzerinden de teyit edebildiğimiz gibi, yardım sayfalarında katı bir zorunluluk olmadığından, komutlar hakkında bilgi edinmek için farklı yardım araçlarını kullanmamız gerekebiliyor. Ancak sorun değil, zaten tüm temel yardım araçlarını öğrendiğimiz için, gerektiğinde alternatif yardım araçlarını kullanabiliriz. Örneğin <code class="language-plaintext highlighter-rouge">cd</code> komutu için manuel sayfası yok, ama <code class="language-plaintext highlighter-rouge">help cd</code> komutu ile ya da <code class="language-plaintext highlighter-rouge">cd —help</code> komutu ile yardım bilgisine kolayca ulaşabiliyoruz.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──<span class="o">(</span>taylan@linuxdersleri<span class="o">)</span>-[/usr/share/doc/nano]
+└─<span class="nv">$ </span><span class="nb">help cd                                                                              
+cd</span>: <span class="nb">cd</span> <span class="o">[</span><span class="nt">-L</span>|[-P <span class="o">[</span><span class="nt">-e</span><span class="o">]]</span> <span class="o">[</span>-@]] <span class="o">[</span><span class="nb">dir</span><span class="o">]</span>
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+    
+    The variable CDPATH defines the search path <span class="k">for </span>the directory containing
+    DIR.  Alternative directory names <span class="k">in </span>CDPATH are separated by a colon <span class="o">(</span>:<span class="o">)</span><span class="nb">.</span>
+    A null directory name is the same as the current directory.  If DIR begins
+    with a slash <span class="o">(</span>/<span class="o">)</span>, <span class="k">then </span>CDPATH is not used.
+    
+    If the directory is not found, and the shell option <span class="sb">`</span>cdable_vars<span class="s1">' is set,
+    the word is assumed to be  a variable name.  If that variable has a value,
+    its value is used for DIR.
+    
+    Options:
+      -L        force symbolic links to be followed: resolve symbolic
+                links in DIR after processing instances of `..'</span>
+      <span class="nt">-P</span>        use the physical directory structure without following
+                symbolic links: resolve symbolic links <span class="k">in </span>DIR before
+                processing instances of <span class="sb">`</span>..<span class="s1">'
+      -e        if the -P option is supplied, and the current working
+                directory cannot be determined successfully, exit with
+                a non-zero status
+      -@        on systems that support it, present a file with extended
+                attributes as a directory containing the file attributes
+    
+    The default is to follow symbolic links, as if `-L'</span> were specified.
+    <span class="sb">`</span>..<span class="s1">' is processed by removing the immediately previous pathname component
+    back to a slash or the beginning of DIR.
+    
+    Exit Status:
+    Returns 0 if the directory is changed, and if $PWD is set successfully when
+    -P is used; non-zero otherwise.
+
+┌──(taylan@linuxdersleri)-[/usr/share/doc/nano]
+└─$ cd --help                                                                            
+cd: cd [-L|[-P [-e]] [-@]] [dir]
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+    
+    The variable CDPATH defines the search path for the directory containing
+    DIR.  Alternative directory names in CDPATH are separated by a colon (:).
+    A null directory name is the same as the current directory.  If DIR begins
+    with a slash (/), then CDPATH is not used.
+    
+    If the directory is not found, and the shell option `cdable_vars'</span> is <span class="nb">set</span>,
+    the word is assumed to be  a variable name.  If that variable has a value,
+    its value is used <span class="k">for </span>DIR.
+    
+    Options:
+      <span class="nt">-L</span>        force symbolic links to be followed: resolve symbolic
+                links <span class="k">in </span>DIR after processing instances of <span class="sb">`</span>..<span class="s1">'
+      -P        use the physical directory structure without following
+                symbolic links: resolve symbolic links in DIR before
+                processing instances of `..'</span>
+      <span class="nt">-e</span>        <span class="k">if </span>the <span class="nt">-P</span> option is supplied, and the current working
+                directory cannot be determined successfully, <span class="nb">exit </span>with
+                a non-zero status
+      -@        on systems that support it, present a file with extended
+                attributes as a directory containing the file attributes
+    
+    The default is to follow symbolic links, as <span class="k">if</span> <span class="sb">`</span><span class="nt">-L</span><span class="s1">' were specified.
+    `..'</span> is processed by removing the immediately previous pathname component
+    back to a slash or the beginning of DIR.
+    
+    Exit Status:
+    Returns 0 <span class="k">if </span>the directory is changed, and <span class="k">if</span> <span class="nv">$PWD</span> is <span class="nb">set </span>successfully when
+    <span class="nt">-P</span> is used<span class="p">;</span> non-zero otherwise.
+</code></pre></div></div>
+
+<h1 id="genel-özet">Genel Özet</h1>
+
+<p>Bu bölümü bitirmeden önce son bir kısa özet ve hatırlatmada bulunmam gerekirse: daha önce ele aldığımız <code class="language-plaintext highlighter-rouge">—help</code> seçeneği, genellikle ilgili aracın işlevine ve kullanımına dair özet bilgi sunarken, manual sayfaları araçlarla ilgili çok daha fazla detay bulunuyor. Pek sık tercih edilmese de manual sayfalarına ek olarak tıpkı manual sayfaları gibi uzun açıklamalar bulunduran ve komut satırı üzerinden daha rahat dolaşım imkanı tanıyan <code class="language-plaintext highlighter-rouge">info</code> aracını da kullanabilirsiniz. Ancak tüm dağıtımlarda varsayılan olarak yüklü bulunmadığı için öncelikli tercihiniz manual sayfaları olabilir. Ayrıca tüm bunların yanında, eğer kullandığınız araç, harici olarak dokümanlar sunuyorsa gerektiğinde <strong><em>/usr/share/doc/</em></strong> dizini altındaki bu dokümanları da kullanabilirsiniz.</p>
+
+<p>Özetle kapsamlı bilgi almak için <code class="language-plaintext highlighter-rouge">man</code> ya da <code class="language-plaintext highlighter-rouge">info</code> sayfalarını tercih ederken, komutun unuttuğumuz özelliklerini işlevlerini hızlıca hatırlamak için genellikle <code class="language-plaintext highlighter-rouge">—help</code> seçeneğini kullanıyoruz. Ek dokümanlar ile de araca dair ek bilgiler edinebiliyoruz.</p>
+
+<p>Evet neticede sistem üzerinde yer alan tüm temel yardım mekanizmalarından kısaca söz ettik. Artık yardım gerektiğinde kendi başınızın çaresine nasıl bakacağınızı biliyorsunuz. Elbette yardım alırken yalnızca sistem üzerindeki kaynaklarla sınırlı değilsiniz. Dilerseniz internet üzerinden de ekstra pek çok bilgiye ulaşabilirsiniz. Doğru şekilde araştırdığınız sürece blog yazıları, forum siteleri ve benzeri pek çok kaynaktan örneklerle açıklanmış pek çok bilgiye rahatlıkla ulaşabilirsiniz. Yine de sistem üzerindeki yardım mekanizmaları çoğu zaman ilk başvurduğumuz kaynaklar olacağından, burada anlatılan yardım alma yöntemlerini dikkate almanızı şiddetle tavsiye ederim.</p>
+
+
+<p></p>
+          <div align="center" class="custom-control custom-switch">
+                
+            <input type="checkbox" class="custom-control-input" id="readCheckbox"  onchange="markAsRead()">
+            <label class="custom-control-label" for="readCheckbox">Okundu Olarak İşaretle  </label>
+          </div>
+          <p></p>
+          <div align="center">
+            <button id="linkedinShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"></path></g></svg>
+              Paylaş
+            </button>
+            <button id="twitterShareButton" class="mavi btn btn-outline-primary">
+              <svg width="24px" height="24px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Twitter-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-300.000000, -164.000000)" fill="#00AAEC"> <path d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283" id="Twitter"> </path> </g> </g> </g></svg>
+              Paylaş
+            </button>
+            <p></p>
+            <h5>📮 Hata, eksik ve öneri bildirimlerinizi <a href="http://localhost:4000/bildirim.html">buradan</a> iletebilirsiniz. </h5>
+          </div>
+
+        <p></p>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+
+
+<div data-pagefind-ignore="all" class="row mb-2">
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div align="right" class="col-10">
+              <div class="mb-1 text-muted"><strong>Önceki</strong></div>
+              <p class="card-text">Linux Kısayolları</p>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/linux-k%C4%B1sayollar%C4%B1/" title="Linux Kısayolları" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+
+  
+      
+    <div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <div class="row">
+            <div align="left" class="col-10">
+              <div class="mb-1 text-muted"><strong>Sonraki</strong></div>
+              <p class="card-text">Dizinlerde Gezinmek</p>
+            </div>
+            <div align="right" class="align-self-center col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                <!--! Font Awesome icon code -->
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+          <a href="http://localhost:4000/egitim/dizinlerde-gezinmek/" title="Dizinlerde Gezinmek" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+
+      </div>
+
+      <div class="col-md-3">
+        <p></p>
+        <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <h3 align="center" class="mavi">Sayfa İçeriği</h3>
+          <div data-pagefind-subpage>
+            <ul id="toc" class="section-nav">
+<li class="toc-entry <hh1"><a href="#help-komutu">help Komutu</a></li>
+<li class="toc-entry <hh1"><a href="#yardım-bilgisi----help">Yardım Bilgisi | --help</a></li>
+<li class="toc-entry <hh1"><a href="#manmanual-sayfası">man(Manual Sayfası)</a>
+<ul>
+<li class="toc-entry <hh2"><a href="#manual-sayfasını-açmak">Manual Sayfasını Açmak</a></li>
+<li class="toc-entry <hh2"><a href="#sayfada-gezinti">Sayfada Gezinti</a></li>
+<li class="toc-entry <hh2"><a href="#yardım-bilgisi">Yardım Bilgisi</a></li>
+<li class="toc-entry <hh2"><a href="#arama-yapmak">Arama Yapmak</a></li>
+<li class="toc-entry <hh2"><a href="#manual-sayfasından-çıkış">Manual Sayfasından Çıkış</a></li>
+<li class="toc-entry <hh2"><a href="#sayfa-yapısı-hakkında">Sayfa Yapısı Hakkında</a></li>
+<li class="toc-entry <hh2"><a href="#manual-sayfalarında-araştırma">Manual Sayfalarında Araştırma</a></li>
+<li class="toc-entry <hh2"><a href="#manual-sayfalarını-güncellemek--mandb">Manual Sayfalarını Güncellemek | mandb</a></li>
+</ul>
+</li>
+<li class="toc-entry <hh1"><a href="#info-komutu">info Komutu</a></li>
+<li class="toc-entry <hh1"><a href="#dokümantasyonlar">Dokümantasyonlar</a></li>
+<li class="toc-entry <hh1"><a href="#genel-özet">Genel Özet</a></li>
+</ul>
+          </div>
+        </div>
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="mavi text-primary">Video Eğitim</p>
+		<img src="http://localhost:4000/video-egitim.png"/>
+          <p class="card-text mb-auto">Buradaki anlatımları, video eğitim üzerinden takip etmek ve gerektiğinde soru sorabilmek isterseniz kursa gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+        <p></p>
+
+	  
+	  
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<p align="center" class="kirmizi text-danger">Kitap</p>
+		<img src="http://localhost:4000/kitap.png"/>
+          <p class="card-text mb-auto">Linux sistem yönetimine giriş için kitap arıyorsnız gözatın.</p>
+         <a href="https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2" class=" stretched-link"></a>
+        </div>
+        </div>
+  
+      </div>
+	  
+    </div>
+</div>
+  
+  <hr>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-6 col-md">
+ <h5><a href="/">Linux Dersleri</a> | <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io"><i class="fa fa-github fa-lg"></i></a></h5>
+ <p class="small">GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.</p>
+	 
+	  
+    </div>
+    <div class="col-6 col-md">
+      <h5>Eğitim Serileri</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Sıralı Doküman</a></li>
+        <li><a class="text-muted" href="#">Video Eğitim</a></li>
+      </ul>
+    </div>
+    
+  
+    <div class="col-6 col-md">
+      <h5>Hakkında</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="http://localhost:4000/sıkca-sorulan-sorular.html">S.S.S.</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/gizlilik.html">Veri Politikası</a></li>
+        <li><a class="text-muted" href="http://localhost:4000/bildirim.html">Geri Bildirim</a></li>
+		<li><a class="text-muted" href="mailto: info@linuxdersleri.net">İletişim</a></li>
+      </ul>
+    </div>
+	<div class="col-6 col-md">
+      <h5>Android Uygulaması</h5>
+      <ul class="list-unstyled text-small">
+        <a href='https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 75%;" alt='Google Play'den alın' src='https://play.google.com/intl/en_us/badges/static/images/badges/tr_badge_web_generic.png'/></a>
+	  </ul>
+	  
+    </div>
+  </div>
+</footer>
+
+
+<script src="http://localhost:4000/assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="http://localhost:4000/assets/js/script.js"></script>		
+<script src="http://localhost:4000/assets/js/bootstrap.min.js"></script>
+
+<script>
+    // Twitter share button functionality
+    var twitterShareButton = document.getElementById("twitterShareButton");
+        twitterShareButton.addEventListener("click", function() {
+          var tweetText = " #Linux Dersleri platformundaki \"Yardım Almak\" içeriğini faydalı bulduğum için paylaşmak istedim. http://localhost:4000/egitim/yard%C4%B1m-alma-komutlar%C4%B1/";
+          var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+          window.open(tweetUrl, "_blank");
+        });
+  
+        // LinkedIn share button functionality
+        var linkedinShareButton = document.getElementById("linkedinShareButton");
+        linkedinShareButton.addEventListener("click", function() {
+          var postUrl = "https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://localhost:4000/egitim/yard%C4%B1m-alma-komutlar%C4%B1/&title=Yardım Almak&summary=\"Yardım Almak\" içeriğini faydalı bulduğum için paylaşmak istedim.";
+          window.open(postUrl, "_blank");
+        });
+        </script>
+<script src="http://localhost:4000/assets/js/read.js"></script>
+<script src="http://localhost:4000/assets/js/zooming.min.js"></script>
+<script>
+   // Listen to images after DOM content is fully loaded
+   document.addEventListener('DOMContentLoaded', function () {
+        new Zooming({
+          // options...
+        }).listen('.img-zoomable')
+      })
+</script>
+</body>
+
+</html>
