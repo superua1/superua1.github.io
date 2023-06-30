@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-30T12:22:57+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Linux Eğitimi</title><subtitle>Topluluğun gücü ile reklamsız ve ücretsiz  Türkçe içeriğe katkı sunmak üzere oluşturulmuş bir platformuz.</subtitle><entry><title type="html">Linux Üzerinde Regex Kullanımı</title><link href="http://localhost:4000/linux-regex" rel="alternate" type="text/html" title="Linux Üzerinde Regex Kullanımı" /><published>2023-06-17T00:00:00+03:00</published><updated>2023-06-17T00:00:00+03:00</updated><id>http://localhost:4000/linux-regex</id><content type="html" xml:base="http://localhost:4000/linux-regex"><![CDATA[<p>Regex, “<strong>reg</strong>ular <strong>ex</strong>pressions” yani “düzenli ifadeler” kısaltmasından gelen bir tanımlama. Ayrıca “regexp” olarak da duymuş olabilirsiniz. Regex sayesinde spesifik olarak istediğimiz türdeki veriler ile eşleşme sağlayacak şablonlar tanımlayabiliyoruz. Böylelikle metinsel verileri filtrelememiz de mümkün oluyor.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://superua1.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://superua1.github.io//" rel="alternate" type="text/html" /><updated>2023-06-30T12:22:57+03:00</updated><id>https://superua1.github.io//feed.xml</id><title type="html">Linux Eğitimi</title><subtitle>Topluluğun gücü ile reklamsız ve ücretsiz  Türkçe içeriğe katkı sunmak üzere oluşturulmuş bir platformuz.</subtitle><entry><title type="html">Linux Üzerinde Regex Kullanımı</title><link href="https://superua1.github.io//linux-regex" rel="alternate" type="text/html" title="Linux Üzerinde Regex Kullanımı" /><published>2023-06-17T00:00:00+03:00</published><updated>2023-06-17T00:00:00+03:00</updated><id>https://superua1.github.io//linux-regex</id><content type="html" xml:base="https://superua1.github.io//linux-regex"><![CDATA[<p>Regex, “<strong>reg</strong>ular <strong>ex</strong>pressions” yani “düzenli ifadeler” kısaltmasından gelen bir tanımlama. Ayrıca “regexp” olarak da duymuş olabilirsiniz. Regex sayesinde spesifik olarak istediğimiz türdeki veriler ile eşleşme sağlayacak şablonlar tanımlayabiliyoruz. Böylelikle metinsel verileri filtrelememiz de mümkün oluyor.</p>
 
 <p>Linux sisteminde regex yaklaşımını, <code class="language-plaintext highlighter-rouge">sed</code> <code class="language-plaintext highlighter-rouge">awk</code> <code class="language-plaintext highlighter-rouge">grep</code> <code class="language-plaintext highlighter-rouge">find</code> gibi çeşitli filtreleme araçları üzerinden kullanabiliyoruz. Söz konusu regex’in Linux üzerinde kullanımı söz konusu olduğunda da temelde iki tür Regex çeşidi mevcut:</p>
 
@@ -35,11 +35,11 @@
 
 <p><strong>Basit Regex:</strong></p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/1.png" alt="1.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/1.png" alt="1.png" class="responsive" /></p>
 
 <p>Bakın gördüğünüz gibi basit regex üzerinde artı işareti tek başına bir anlam ifade etmediği için <code class="language-plaintext highlighter-rouge">echo</code> aracının çıktısındaki artı <code class="language-plaintext highlighter-rouge">+</code> işareti ile doğrudan eşleşme sağlayabildik. Basit genişletmede artı işaretinin özel anlamını kullanmak istediğimizde bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> eklememiz gerek.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/2.png" alt="2.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/2.png" alt="2.png" class="responsive" /></p>
 
 <p>Bakın artı işaretinden önce kullandığım “a” karakterinin tekrarı olmadığı için hiç bir çıktı almadık çünkü basit regex artı <code class="language-plaintext highlighter-rouge">+</code> işaretinin bu fonksiyonunu kullandığı için eşleşme de sağlanamadı.</p>
 
@@ -47,13 +47,13 @@
 
 <p>Şimdi genişletilmiş regex üzerinde aynı işlemi denemek üzere <code class="language-plaintext highlighter-rouge">-E</code> seçeneğini de ekleyip komutumuzu girelim.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/3.png" alt="3.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/3.png" alt="3.png" class="responsive" /></p>
 
 <p>Bakın bu kez herhangi bir çıktı almadık, çünkü genişletilmiş genişletme kuralına göre artı işaretinden önceki karakterin tekrarı olması durumunda eşleşme sağlanacaktı. Yani “a” karakterinden hemen sonra yine “a” karakteri bulunsaydı çıktı alacaktık.</p>
 
 <p>Şimdi bu genişletilmiş regex kuralının bu özel artı <code class="language-plaintext highlighter-rouge">+</code> karakterini görmezden gelmesi için ters slash <code class="language-plaintext highlighter-rouge">\</code> karakteri ile komutumuzu tekrar girelim.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/4.png" alt="4.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/4.png" alt="4.png" class="responsive" /></p>
 
 <p>Bakın artı işareti sıradan bir karakter olarak görüldüğü için eşleşme sağlandı ve çıktımızı aldık.</p>
 
@@ -61,11 +61,11 @@
 
 <p><strong>Basit Regex:</strong></p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/5.png" alt="5.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/5.png" alt="5.png" class="responsive" /></p>
 
 <p><strong>Genişletilmiş Regex:</strong></p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/6.png" alt="6.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/6.png" alt="6.png" class="responsive" /></p>
 
 <p>Artı işareti kendisinden önceki karakterin tekrar edip etmediğini kontrol ettiği için sonuçlarımız yukarıdaki gibi oldu. Basit ve genişletilmiş regex üzerindeki bu farkın yalnızca <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakteri üzerinde geçerli olduğunu unutmayın. Diğer karakterler için bu fark geçerli değil.</p>
 
@@ -75,13 +75,13 @@
 
 <p>Bir önceki karakterin sıfır veya daha fazla kez tekrarlandığı desenleri temsil eder.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/7.png" alt="7.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/7.png" alt="7.png" class="responsive" /></p>
 
 <p>Bakın “a*” tanımı sayesinde “a” karakterinden sonra tekrar eden tüm “a” karakterleri desen eşleşmesine dahil oldu.</p>
 
 <p>Eğer tam olarak “a*” karakterini filtrelemek istersem yıldız karakterinin görmezden gelinmesi için bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> karakterini kullanabilirim.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/8.png" alt="8.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/8.png" alt="8.png" class="responsive" /></p>
 
 <p>Not: Basit genişletme üzerinde yalnızca <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterleri istisnadır. Bu karakterlerin özel anlamları dahilinde genişletmeleri için öncelerinde ters slash <code class="language-plaintext highlighter-rouge">\</code> kullanmak gerekir.</p>
 
@@ -89,11 +89,11 @@
 
 <p>Yeni satır dahil herhangi bir karakterle eşleşir.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/9.png" alt="9.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/9.png" alt="9.png" class="responsive" /></p>
 
 <p>Eğer tam olarak “a.” karakterini filtrelemek istersem nokta karakterinin görmezden gelinmesi için bu karakterden önce ters slash <code class="language-plaintext highlighter-rouge">\</code> karakterini kullanabilirim.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/10.png" alt="10.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/10.png" alt="10.png" class="responsive" /></p>
 
 <h2 id="şapka-">Şapka: <code class="language-plaintext highlighter-rouge">^</code></h2>
 
@@ -101,11 +101,11 @@
 
 <p>Örneğin “<strong><em>/etc/passwd</em></strong>” dosyasındaki satırlardan, başında “kali” ifadesi geçenleri filtrelemek için kullanabiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/11.png" alt="11.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/11.png" alt="11.png" class="responsive" /></p>
 
 <p>Gördüğünüz gibi yalnızca satırın başında bulunan “kali” ifadesi filtrelendi. Teyit etmek istersek şapka işareti olmadan tekrar girebiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/12.png" alt="12.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/12.png" alt="12.png" class="responsive" /></p>
 
 <p>Bakın satırın başından ziyade, hangi noktada geçtiği fark etmeksizin tüm “kali” ifadeleri filtrelenmiş.</p>
 
@@ -117,11 +117,11 @@
 
 <p>Örneğin “<strong><em>~/.bashrc</em></strong>” dosyasının sonunda geçen “user” ifadelerini filtrelemeyi deneyebiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/13.png" alt="13.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/13.png" alt="13.png" class="responsive" /></p>
 
 <p>Gördüğünüz gibi yalnızca satır sonunda geçen “user” ifadesi filtrelemiş olduk. Bu durumu teyit etmek için dolar işareti <code class="language-plaintext highlighter-rouge">$</code> olamadan komutumuzu tekrar girebiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/14.png" alt="14.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/14.png" alt="14.png" class="responsive" /></p>
 
 <p>Bakın bu kez satır sonu yerine, herhangi bir konumda geçen tüm “user” ifadeleri filtrelenmiş oldu.</p>
 
@@ -133,15 +133,15 @@
 
 <p>Örneğin ben “a” “b” ve “c” karakterlerinden birini barındıranları filtrelemek için <code class="language-plaintext highlighter-rouge">[abc]</code> tanımını kullanıyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/16.png" alt="16.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/16.png" alt="16.png" class="responsive" /></p>
 
 <p>Bakın gördüğünüz gibi yalnızca köşeli parantez içindeki karakterden biri barındıranlar filtrelenmiş oldu. Üstelik filtreleme işini daha spesifik hale getirmek için dilersek öncesinde veya sonrasında karakterler de ekleyebiliriz. Örneğin ben “c” ile başlayan ve devamında “a b c” karakterlerinden birini barındıranları filtrelemek istediğim için <code class="language-plaintext highlighter-rouge">c[abc]</code> tanımını kullanabilirim.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/17.png" alt="17.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/17.png" alt="17.png" class="responsive" /></p>
 
 <p>Eğer liste ile belirttiğimiz karakterler haricindekilerle eşleşme yapmak istiyorsak da listenin başına şapka işareti <code class="language-plaintext highlighter-rouge">^</code> ekleyebiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/18.png" alt="18.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/18.png" alt="18.png" class="responsive" /></p>
 
 <p>Bakın tam tersi şekilde köşeli parantez içindeki karakterin geçmediği desenler filtrelenmiş oldu.</p>
 
@@ -154,15 +154,15 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N 
 
 <p>Ben yalnızca a’dan k’ye kadar olanları filtrelemek istiyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/26.png" alt="26.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/26.png" alt="26.png" class="responsive" /></p>
 
 <p>Bakın tam olarak benim belirttiğim gibi küçük harfli a’dan k’ye kadar olan karakterler filtrelenmiş oldu. Büyük harfleri ve sayıları da benzer şekilde ayrı ayrı filtreleyebiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/27.png" alt="27.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/27.png" alt="27.png" class="responsive" /></p>
 
 <p>Dilersek hepsini tek seferde kapsamamız dahi mümkün.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/28.png" alt="28.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/28.png" alt="28.png" class="responsive" /></p>
 
 <p>Bakın a’dan k’ye kadar olan küçük büyük harfli karakterleri ve 1’den 7’ye kadar olan rakamları filtrelemiş olduk.</p>
 
@@ -174,53 +174,53 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N 
 
 <p>Yalnızca alfanümerik yani yalnızca harfler ve rakamlar dahilinde karakter desenleri için kullanılır.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/29.png" alt="29.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/29.png" alt="29.png" class="responsive" /></p>
 
 <p>Bakın yalnızca alfanümerik filtreleme yapılmış oldu.</p>
 
 <p>Bu tanımlama aslında <code class="language-plaintext highlighter-rouge">[A-Za-z0-9]</code> tanımlaması ile aynı. Küçük büyük harfler ve 0’dan 9’a kadar olan tüm rakamları bu şekilde de ifade etmemiz mümkün.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/30.png" alt="30.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/30.png" alt="30.png" class="responsive" /></p>
 
 <h3 id="alpha"><strong><code class="language-plaintext highlighter-rouge">[:alpha:]</code></strong></h3>
 
 <p>Küçük büyük harfler fark etmeksizin tüm alfabetik karakterler ile eşleşme sağlar.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/31.png" alt="31.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/31.png" alt="31.png" class="responsive" /></p>
 
 <p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[A-Za-z]</code> ile aynıdır.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/32.png" alt="32.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/32.png" alt="32.png" class="responsive" /></p>
 
 <h3 id="lower"><strong><code class="language-plaintext highlighter-rouge">[:lower:]</code></strong></h3>
 
 <p>Yalnızca küçük harfli karakter desenleri ile eşleşme sağlar.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/33.png" alt="33.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/33.png" alt="33.png" class="responsive" /></p>
 
 <p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[a-z]</code> ile aynıdır.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/34.png" alt="34.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/34.png" alt="34.png" class="responsive" /></p>
 
 <h3 id="upper"><strong><code class="language-plaintext highlighter-rouge">[:upper:]</code></strong></h3>
 
 <p>Yalnızca büyük harfli karakter desenleri ile eşleşme sağlar.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/35.png" alt="35.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/35.png" alt="35.png" class="responsive" /></p>
 
 <p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[A-Z]</code> ile aynıdır.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/36.png" alt="36.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/36.png" alt="36.png" class="responsive" /></p>
 
 <h3 id="digit"><strong><code class="language-plaintext highlighter-rouge">[:digit:]</code></strong></h3>
 
 <p>Yalnızca rakam desenleri ile eşleşme sağlar.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/37.png" alt="37.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/37.png" alt="37.png" class="responsive" /></p>
 
 <p>Bu tanımlama <code class="language-plaintext highlighter-rouge">[0-9]</code> ile aynıdır.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/38.png" alt="38.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/38.png" alt="38.png" class="responsive" /></p>
 
 <h3 id="blank"><strong><code class="language-plaintext highlighter-rouge">[:blank:]</code></strong></h3>
 
@@ -254,7 +254,7 @@ bu      ikinci
   </tbody>
 </table>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/39.png" alt="39.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/39.png" alt="39.png" class="responsive" /></p>
 
 <p>Ben tüm hepsinden bahsetmedim, eğer tüm sınıfları öğrenmek isterseniz <a href="https://www.gnu.org/software/sed/manual/html_node/Character-Classes-and-Bracket-Expressions.html#Character-Classes-and-Bracket-Expressions">buraya</a> göz atabilirsiniz.</p>
 
@@ -266,11 +266,11 @@ bu      ikinci
 
 <p>Örneğin ben “b” karakterinin bir kez veya daha fazla kez tekrar ettiği desenleri filtrelemek istiyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/19.png" alt="19.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/19.png" alt="19.png" class="responsive" /></p>
 
 <p>Bakın tam olarak “b” karakterinin bir veya daha fazla gez geçtiği desenler filtrelenmiş oldu. Eğer artı işareti yerine yıldız kullanacak olsaydık, “b” karakterinin sıfır veya daha fazla kez geçtiği desenler filtrelenecekti.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/20.png" alt="20.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/20.png" alt="20.png" class="responsive" /></p>
 
 <p>Bakın “ac” ifadesinde “b” karakteri sıfır kez geçtiği için için yıldız karakteri bu ifadeyi de dahil etti. İşte artı ile yıldız karakteri arasındaki fark tam olarak bu örneklerde ele aldığımız durum.</p>
 
@@ -280,7 +280,7 @@ bu      ikinci
 
 <p>Denemek için “b” karakterinden sonra bu düzenli ifadeyi kullanabiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/21.png" alt="21.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/21.png" alt="21.png" class="responsive" /></p>
 
 <p>“ac” ifadesinde sıfır, “abc” ifadesinde ise yalnızca bir adet “b” karakteri bulunduğu için yalnızca bu iki ifade filtrelenmiş oldu. “b” karakterinin birden fazla kez tekrar ettiği desenler gördüğünüz gibi dahil edilmedi.</p>
 
@@ -290,19 +290,19 @@ bu      ikinci
 
 <p>Örneğin ben peşi sıra tam olarak 3 kez “a” karakterinin geçtiği desenleri filtrelemek istiyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/22.png" alt="22.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/22.png" alt="22.png" class="responsive" /></p>
 
 <p>Bakın yalnızca tam olarak 3 kez üst üste tekrar eden “a” karakterleri filtrelenmiş oldu.</p>
 
 <p>Tam sayı yerine aralık da belirtebiliriz. Bunun için sayıların arasına virgül koymamız yeterli. Ben 2 ile 4 arasında kez tekrar eden yani 2, 3 veya 4 kez üst üste tekrar edenleri filtrelemek istiyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/23.png" alt="23.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/23.png" alt="23.png" class="responsive" /></p>
 
 <p>Bakın hem 2 hem 3 hem de 4 kez tekrar edenler filtrelenmiş oldu.</p>
 
 <p>Ayrıca minimum veya daha fazla tekrar sayısını da belirtebiliriz. Bunun için minimum sayıdan sonra virgül koymamız yeterli. Ben örnek olması için minimum 3 kez tekrar edenleri filtreleyecek şekilde komutumu giriyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/24.png" alt="24.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/24.png" alt="24.png" class="responsive" /></p>
 
 <p>Bakın minimum 3 yani 3, 4 ve 5 kez tekrar eden desenler filtrelenmiş oldu.</p>
 
@@ -310,21 +310,21 @@ bu      ikinci
 
 <p>Yada koşulu belirtmek için kullanabiliyoruz. Örneğin “a” ya da “b” ifadelerini filtrelemek için kullanabiliriz.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/25.png" alt="25.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/25.png" alt="25.png" class="responsive" /></p>
 
 <h1 id="genişletilmiş-regex">Genişletilmiş Regex</h1>
 
-<p>Basit regex ile genişletilmiş regex arasındaki tek farkın <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterlerinin kullanımları olduğuna <a href="http://localhost:4000/linux-regex#basit-regex-ve-geni%C5%9Fletilmi%C5%9F-regex">değinmiştik</a>. Genişletilmiş regex üzerinde bu karakterlerin özel anlamları ile ele alınması için bu karakterleri olduğu gibi yazmamız şart. Ve elbette genişletilmiş regex kullanacağımız aracın genişletilmiş regex’i desteklemesi gerekiyor. Kullandığınız aracın desteği olup olmadığını yardım sayfalarından veya kısa internet araştırması ile kolayca öğrenebilirsiniz.</p>
+<p>Basit regex ile genişletilmiş regex arasındaki tek farkın <code class="language-plaintext highlighter-rouge">?</code> <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">{}</code> ve <code class="language-plaintext highlighter-rouge">|</code> karakterlerinin kullanımları olduğuna <a href="https://superua1.github.io//linux-regex#basit-regex-ve-geni%C5%9Fletilmi%C5%9F-regex">değinmiştik</a>. Genişletilmiş regex üzerinde bu karakterlerin özel anlamları ile ele alınması için bu karakterleri olduğu gibi yazmamız şart. Ve elbette genişletilmiş regex kullanacağımız aracın genişletilmiş regex’i desteklemesi gerekiyor. Kullandığınız aracın desteği olup olmadığını yardım sayfalarından veya kısa internet araştırması ile kolayca öğrenebilirsiniz.</p>
 
 <p>Örneğin ben <code class="language-plaintext highlighter-rouge">grep</code> aracının desteğini sorgulamak için <code class="language-plaintext highlighter-rouge">grep —help</code> komutu ile yardım bilgisine göz atıyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/40.png" alt="40.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/40.png" alt="40.png" class="responsive" /></p>
 
 <p>Bakın genişletilmiş regex için <code class="language-plaintext highlighter-rouge">-E</code> seçeneğini veya <code class="language-plaintext highlighter-rouge">—extended-regexp</code> seçeneğini özellikle kullanmamız gerektiği burada belirtiliyor.</p>
 
 <p>Ben de genişletilmiş regex’ten faydalanmak üzere grep aracıma -E seçeneğini verip komutumu öyle giriyorum.</p>
 
-<p><img src="http://localhost:4000/blog/img/linux-regex/41.png" alt="41.png" class="responsive" /></p>
+<p><img src="https://superua1.github.io//blog/img/linux-regex/41.png" alt="41.png" class="responsive" /></p>
 
 <p>Görebildiğiniz gibi <code class="language-plaintext highlighter-rouge">-E</code> seçeneği yokken genişletilmiş regex kuralları tanınmıyor. İşte benzer durum sistem üzerinde kullanacağınız herhangi bir araç için de aynen geçerli. Desteğini kontrol edin ve nasıl kullanabileceğinizi öğrenip komutunuzu uygun şekilde girin.</p>
 
@@ -336,7 +336,7 @@ bu      ikinci
   <li><a href="https://www.regular-expressions.info/gnu.html" target="_blank">regular-expressions.info/gnu.html</a></li>
   <li><a href="https://www.regular-expressions.info/posixbrackets.html" target="_blank">regular-expressions.info/posixbrackets.html</a></li>
   <li><a href="https://www.gnu.org/software/sed/manual/html_node/sed-regular-expressions.html" target="_blank">gnu.org/software/sed/manual/html_node/sed-regular-expressions.html</a></li>
-</ul>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="regex" /><summary type="html"><![CDATA[Linux sistemindeki basit ve genişletilmiş Regex yaklaşımları üzerine.]]></summary></entry><entry><title type="html">Linux Nasıl Öğrenilir ?</title><link href="http://localhost:4000/linux-nasil-ogrenilir" rel="alternate" type="text/html" title="Linux Nasıl Öğrenilir ?" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>http://localhost:4000/linux-nasil-ogrenilir</id><content type="html" xml:base="http://localhost:4000/linux-nasil-ogrenilir"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
+</ul>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="regex" /><summary type="html"><![CDATA[Linux sistemindeki basit ve genişletilmiş Regex yaklaşımları üzerine.]]></summary></entry><entry><title type="html">Linux Nasıl Öğrenilir ?</title><link href="https://superua1.github.io//linux-nasil-ogrenilir" rel="alternate" type="text/html" title="Linux Nasıl Öğrenilir ?" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>https://superua1.github.io//linux-nasil-ogrenilir</id><content type="html" xml:base="https://superua1.github.io//linux-nasil-ogrenilir"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
 
 <p>Linux sistemini öğrenmek istiyorum nasıl bir yol izlemeliyim?</p>
 
@@ -596,7 +596,7 @@ bu      ikinci
 
 <p><a href="https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799">https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799</a></p>
 
-<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[Linux öğrenmek için yol haritası; öneriler, kaynaklar ve yaklaşımlar hakkında.]]></summary></entry><entry><title type="html">Bash Konfigürasyon Dosyaları</title><link href="http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1" rel="alternate" type="text/html" title="Bash Konfigürasyon Dosyaları" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1</id><content type="html" xml:base="http://localhost:4000/bash-konfigurasyon-dosyalar%C4%B1"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
+<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[Linux öğrenmek için yol haritası; öneriler, kaynaklar ve yaklaşımlar hakkında.]]></summary></entry><entry><title type="html">Bash Konfigürasyon Dosyaları</title><link href="https://superua1.github.io//bash-konfigurasyon-dosyalar%C4%B1" rel="alternate" type="text/html" title="Bash Konfigürasyon Dosyaları" /><published>2023-04-18T00:00:00+03:00</published><updated>2023-04-18T00:00:00+03:00</updated><id>https://superua1.github.io//bash-konfigurasyon-dosyalar%C4%B1</id><content type="html" xml:base="https://superua1.github.io//bash-konfigurasyon-dosyalar%C4%B1"><![CDATA[<h1 id="linux-öğrenmek">Linux Öğrenmek</h1>
 
 <p>Linux sistemini öğrenmek istiyorum nasıl bir yol izlemeliyim?</p>
 
@@ -856,7 +856,7 @@ bu      ikinci
 
 <p><a href="https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799">https://evrimagaci.org/dunningkruger-etkisi-nedir-neyi-bildigimizi-ve-neyi-bilmedigimizi-ne-kadar-biliyoruz-2799</a></p>
 
-<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[/etc/profile /etc/profile.d/ ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc /etc/bash.bashrc ~/.bash_logout]]></summary></entry><entry><title type="html">Linux için Faydalı Kaynaklar</title><link href="http://localhost:4000/linux-kaynaklari" rel="alternate" type="text/html" title="Linux için Faydalı Kaynaklar" /><published>2023-04-17T00:00:00+03:00</published><updated>2023-04-17T00:00:00+03:00</updated><id>http://localhost:4000/linux-kaynaklari</id><content type="html" xml:base="http://localhost:4000/linux-kaynaklari"><![CDATA[<p>Söz konusu Linux olduğunda araştırma ve öğrenme serüveni hiç bitmiyor. Dolayısıyla esasen tüm interneti kaynağımız olarak görmeliyiz. Fakat ben tüm internetten ziyade  Linux için özelleşmiş olan faydalı olabilecek bazı kaynakları bu paylaşım altında listelemek istiyorum. Yeni kaynaklar keşfettikçe bu içeriği de güncellemeye devam etmeyi planlıyorum. Hatta faydalı olduğunu düşünüdğünüz kaynakları benimle <a href="http://localhost:4000/bildirim">geribildirim</a> sayfasından paylaşırsanız, buraya eklemekten memnuniyet duyarım.</p>
+<p>imposter sendromundan da bahet.</p>]]></content><author><name>Taylan Özgür Bildik</name></author><category term="blog" /><category term="linux öğrenmek" /><summary type="html"><![CDATA[/etc/profile /etc/profile.d/ ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc /etc/bash.bashrc ~/.bash_logout]]></summary></entry><entry><title type="html">Linux için Faydalı Kaynaklar</title><link href="https://superua1.github.io//linux-kaynaklari" rel="alternate" type="text/html" title="Linux için Faydalı Kaynaklar" /><published>2023-04-17T00:00:00+03:00</published><updated>2023-04-17T00:00:00+03:00</updated><id>https://superua1.github.io//linux-kaynaklari</id><content type="html" xml:base="https://superua1.github.io//linux-kaynaklari"><![CDATA[<p>Söz konusu Linux olduğunda araştırma ve öğrenme serüveni hiç bitmiyor. Dolayısıyla esasen tüm interneti kaynağımız olarak görmeliyiz. Fakat ben tüm internetten ziyade  Linux için özelleşmiş olan faydalı olabilecek bazı kaynakları bu paylaşım altında listelemek istiyorum. Yeni kaynaklar keşfettikçe bu içeriği de güncellemeye devam etmeyi planlıyorum. Hatta faydalı olduğunu düşünüdğünüz kaynakları benimle <a href="https://superua1.github.io//bildirim">geribildirim</a> sayfasından paylaşırsanız, buraya eklemekten memnuniyet duyarım.</p>
 
 <h1 id="türkçe-web-kaynakları">Türkçe Web Kaynakları</h1>
 
