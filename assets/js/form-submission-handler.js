@@ -11,7 +11,6 @@ function validateHuman(honeypot) {
         console.log("Welcome Human!");
     }
 }
-
 function getFormData() {
     var form = document.getElementById("gform");
     var elements = form.elements;
@@ -55,7 +54,11 @@ function handleFormSubmit(event) {
         document.getElementById('email-invalid').style.display = 'block';
         return false;
     } else {
-        var url = event.target.action;
+        var button = document.getElementById("submit");
+        button.value = "Gönderiliyor...";
+        button.disabled = true;
+        var form = event.target;
+        var url = form.action;
         var xhr = new XMLHttpRequest();
         xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -78,10 +81,10 @@ function handleFormSubmit(event) {
     }
 }
 
-
 function loaded() {
-    console.log('contact form submission handler loaded successfully');
+    console.log('Contact form submission handler loaded successfully');
     var form = document.getElementById('gform');
     form.addEventListener("submit", handleFormSubmit, false);
-};
+}
+
 document.addEventListener('DOMContentLoaded', loaded, false);

@@ -77,9 +77,22 @@ function updateReadingProgressAndScrollPosition() {
   const documentHeight = document.documentElement.scrollHeight;
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const maxScrollTop = documentHeight - windowHeight;
-  const progress = Math.round((scrollTop / maxScrollTop) * 100);
-  storeReadingProgressAndScrollPosition(progress, scrollTop);
+
+  // Get the position of the element with ID "okundu"
+  const okunduElement = document.getElementById('okundu');
+  const okunduOffsetTop = okunduElement ? okunduElement.offsetTop : documentHeight;
+
+  // Calculate the scroll position relative to the "okundu" element
+  const scrollPosition = Math.min(scrollTop, okunduOffsetTop - windowHeight);
+
+  // Calculate the progress based on the scroll position relative to the "okundu" element
+  const progress = Math.round((scrollPosition / (okunduOffsetTop - windowHeight)) * 100);
+
+  // Store the progress and scroll position
+  storeReadingProgressAndScrollPosition(progress, scrollPosition);
 }
+
+
 
 // Restore the reading progress and scroll position when the page is loaded
 function restoreReadingProgressAndScrollPosition() {
