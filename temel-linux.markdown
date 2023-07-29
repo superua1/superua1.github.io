@@ -18,7 +18,7 @@ author: Taylan Özgür Bildik
 </div>
 
 <div class="row mb-2">
-  {% assign sorted_posts = site.egitim | sort: 'tutorial' %}
+  {% assign sorted_posts = site.egitim | sort: 'ders' %}
 {% for post in sorted_posts %}
   <div class="col-md-6">
     <div class="no-gutters border rounded overflow-hidden mb-4 shadow-sm h-md-250 position-relative">
@@ -29,7 +29,7 @@ author: Taylan Özgür Bildik
         <div class="col-sm-9 p-4">
           <div class="d-flex align-self-center justify-content-between">
             <div>
-              <p class="text-primary">{{ post.tutorial }}. Doküman</p>
+              <p class="text-primary">{{ post.ders }}. Doküman</p>
             </div>
             <div>
               <p class="readStatus"></p>

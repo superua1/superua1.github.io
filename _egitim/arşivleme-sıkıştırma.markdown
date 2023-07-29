@@ -6,7 +6,7 @@ excerpt: "Arşivleme ve sıkıştırma işlemlerinden bahsediyoruz."
 tags: [ tar , gzip , bzip2 , zcat , zgrep , zip , rar]
 categories: [egitimserisi, temel_linux]
 cover: arsivcover.png
-tutorial: [13]
+ders: [13]
 toc: true  
 ---
 

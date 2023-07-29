@@ -6,7 +6,7 @@ excerpt: "Bash kabuğunun genişletmelerinden ve regex kavramından bahsediyoruz
 tags: [kabuk genişletmesi , regex , komut ikamesi]
 categories: [egitimserisi, temel_linux]
 cover: genisletmecover.png
-tutorial: [8]
+ders: [8]
 toc: true  
 ---
 

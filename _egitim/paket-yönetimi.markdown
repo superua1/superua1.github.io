@@ -6,7 +6,7 @@ excerpt: "Güncelleme, kurma ve kaldırma gibi işlemler için paket yönetimini
 tags: [dpkg , apt , rpm , dnf , yum ]
 categories: [egitimserisi, temel_linux]
 cover: paketcover.png
-tutorial: [15]
+ders: [15]
 toc: true  
 ---
 

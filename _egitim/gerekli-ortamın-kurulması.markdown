@@ -7,7 +7,7 @@ excerpt: "Linux sisteminin kurulum alternatiflerinden bahsediyoruz."
 tags: [kurulum metodları ]
 categories: [egitimserisi, temel_linux]
 cover: kurulumcover.png
-tutorial: [2]
+ders: [2]
 toc: true  
 ---
 

@@ -1,5 +1,5 @@
 <p></p>
-{% assign sorted_posts = site.egitim | sort: 'tutorial' | reverse %}
+{% assign sorted_posts = site.egitim | sort: 'tutorial' %}
 
 {% for post in sorted_posts %}
   {% if post.url == page.url %}

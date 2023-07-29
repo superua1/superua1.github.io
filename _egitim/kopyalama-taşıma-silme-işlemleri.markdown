@@ -7,7 +7,7 @@ excerpt: "Komut satırında kopyalama, taşıma silme gibi işlemleri ele alıyo
 tags: [cp , mv , rm , shred , inode , ln]
 categories: [egitimserisi, temel_linux]
 cover: metinselvericover.png
-tutorial: [11]
+ders: [11]
 toc: true 
 ---
 

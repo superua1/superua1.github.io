@@ -6,7 +6,7 @@ excerpt: "Bash kabuğunun komutları nasıl anlamlandırabildiğinden bahsediyor
 tags: [bash , shell , PATH , değişken , export , source]
 categories: [egitimserisi, temel_linux]
 cover: kabukcover.png
-tutorial: [4]
+ders: [4]
 toc: true  
 ---
 

@@ -6,7 +6,7 @@ excerpt: "Linux dosya sistemini tanıyıp, nasıl gezinebileceğimizden bahsedec
 tags: [pwd , cd , ls , rmdir]
 categories: [egitimserisi, temel_linux]
 cover: dizincover.png
-tutorial: [7]
+ders: [7]
 toc: true  
 ---
 

@@ -7,7 +7,7 @@ excerpt: "Metinsel verileri işlemek adına Linux'un dosyalara yaklaşımını e
 tags: [yönlendirmeler , cat , tac , rev , touch , echo , paste , sort , shuf , nl , wc]
 categories: [egitimserisi, temel_linux]
 cover: metinselveriislemekcover.png
-tutorial: [9]
+ders: [9]
 toc: true 
 ---
 

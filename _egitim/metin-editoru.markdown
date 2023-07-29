@@ -7,7 +7,7 @@ excerpt: "Nano ve Vi editörlerinin temel kullanımlarını ele alıyoruz."
 tags: [nano, vi]
 categories: [egitimserisi, temel_linux]
 cover: editorcover.png
-tutorial: [12]
+ders: [12]
 toc: true 
 ---
 

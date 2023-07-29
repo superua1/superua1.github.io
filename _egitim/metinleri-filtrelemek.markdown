@@ -7,7 +7,7 @@ excerpt: "Metinler üzerinde çalışmak için gerekli olan yaklaşımları ve a
 tags: [pipe , xargs , grep , regex , find , locate , cut , tr , sed , awk , more , less , head , tail]
 categories: [egitimserisi, temel_linux]
 cover: metinfiltrecover.png
-tutorial: [10]
+ders: [10]
 toc: true 
 ---
 

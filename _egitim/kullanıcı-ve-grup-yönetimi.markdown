@@ -6,7 +6,7 @@ excerpt: "Kullanıcı ve grupların yönetimi için erişim yetkilerinden bahsed
 tags: [su , sudo , sudoers , adduser , useradd , userdel ,  passwd , chmod , chown , gpasswd , groups]
 categories: [egitimserisi, temel_linux]
 cover: kullanıcıvegrupcover.png
-tutorial: [16]
+ders: [16]
 toc: true  
 ---
 

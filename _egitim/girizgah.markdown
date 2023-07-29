@@ -6,7 +6,7 @@ author: Taylan Özgür Bildik
 excerpt: "Eğitimin yapısı ve ilerleyiş biçimi hakkında bilgi ediniyoruz."
 tags: [temel linux,]
 categories: [egitimserisi, temel_linux]
-tutorial: 0
+ders: 0
 cover: girizgah.png
 toc: true 
 ---
