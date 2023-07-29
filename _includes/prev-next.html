@@ -1,9 +1,7 @@
 <p></p>
-<<<<<<< HEAD
-{% assign sorted_posts = site.egitim | sort: 'tutorial' %}
-=======
+
 {% assign sorted_posts = site.egitim | sort: 'ders' %}
->>>>>>> 2d65288ad6f1df2688e4c63b89001d8cb895b1c3
+
 
 {% for post in sorted_posts %}
   {% if post.url == page.url %}
