@@ -6,7 +6,7 @@ excerpt: "Bilgi edinmek üzere kullanabileceğimiz bazı araçlardan bahsediyoru
 tags: [date , cal , which , type , command , builtin , file , stat , lsb_release , uname , uptime , free , du , lsusb , lspci , lshw]
 categories: [egitimserisi, temel_linux]
 cover: bilgialmacover.png
-ders: [14]
+ders: 14
 toc: true  
 ---
 

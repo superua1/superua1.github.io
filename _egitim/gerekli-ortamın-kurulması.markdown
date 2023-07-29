@@ -7,7 +7,7 @@ excerpt: "Linux sisteminin kurulum alternatiflerinden bahsediyoruz."
 tags: [kurulum metodları ]
 categories: [egitimserisi, temel_linux]
 cover: kurulumcover.png
-ders: [2]
+ders: 2
 toc: true  
 ---
 
@@ -43,7 +43,7 @@ En genel haliyle temel kullanım alternatifleri ve kısa açıklamaları bu şek
 Profesyonel kullanımda farklı yaklaşımlar söz konusu olsa da **sanallaştırma işlemi kısaca;** kurmak istediğiniz yeni bir işletim sistemini, diske kalıcı kuruluma ihtiyaç duymadan, mevcut işletim sistemi üzerinden sanallaştırma teknolojisi ile çalıştırabilmeniz anlamına geliyor. Sanallaştırma teknolojisi sayesinde, kullanmakta olduğunuz işletim sisteminden çıkmadan, tıpkı program çalıştırır gibi; herhangi bir işletim sistemini sanal olarak çalıştırabilirsiniz. Sanallaştırma işlemini; bu iş için geliştirilmiş olan ”**Vmware”** ve ”**Virtualbox”** gibi çeşitli özel yazılımlar sayesinde kolayca uygulayabiliyoruz. Sanallaştırma işleminin avantajlarından bahsedecek olursak;
 
 
-### <span class="yesil">Avantajları</span>
+### <span class="yesil small text-success">Avantajları</span>
 
 - Sistemin yedeğini alarak, büyük bir sorun ile karşılaştığımızda aldığımız yedeği kolaylıkla geri yükleyebiliriz.
 - Snapshot yani anlık görüntü özelliği sayesinde sistem çalışırken herhangi bir çalışma anını kaydedip, daha sonra istediğimiz zaman bu anlık görüntüyü kullanarak sistemi aynen en son anlık görüntüsü alındığı andan devam edecek şekilde kullanabiliyoruz. Bu durumu oyunlardaki checkpoint sisteminin çok daha esnek bir hali gibi de düşünebilirsiniz.
@@ -54,7 +54,7 @@ Profesyonel kullanımda farklı yaklaşımlar söz konusu olsa da **sanallaştı
 **Kısacası;** sanallaştırma, Linux’u yeni öğrenmeye başlayan kişiler için ideal bir test ortamı görevi görür. Örneğin snapshot ve yedekleme özellikleri sayesinde hatalardan kolaylıkla geri dönülmesi mümkündür. Eğer; mevcut sistemime zarar vermeden gönül rahatlığı ile sanallaştırma üzerinden Linux’u kurcalayayım, deneme yanılma ile öğreneyim derseniz "sanal olarak kullanım" sizin için biçilmiş kaftandır. Bizler de zaten tam olarak bu sebeple eğitim boyunca Linux işletim sistemini sanallaştırma yazılımı üzerinden kullanacağız. Ancak elbette tüm bu avantajlarının yanında elbette birkaç belirgin dezavantajı da bulunuyor. 
 
 
-### <span class="kirmizi">Dezavantajları</span>
+### <span class="kirmizi small text-danger">Dezavantajları</span>
 
 
 Esasen sanallaştırmanın sağladığı avantajların yanında, dezavantajlarının sayısı ve etkisi çok büyük sayılmaz. Yine de dezavantaj sayacak olursak;
@@ -78,7 +78,7 @@ Normalde standart şekilde bilgisayarımızdaki sabit diskte tekil olarak Linux 
 
 Özetle bu yöntem**;** mevcut işletim sisteminin kurulu olduğu diskte yeni bölüm oluşturup, bu bolüme ikincil sistem olarak Linux işletim sistemini kurmaktır. Bu kurulumun ardından sistem, başlangıçta hangi işletim sistemini kullanmak istediğinizi sorar ve seçiminize göre ilgili sistemi başlatır. Bu sebeple zaten bu yöntem dualboot olarak da biliniyor. Bu yöntemin avantajlarından bahsedecek olursak;
 
-### <span class="yesil">Avantajları</span>
+### <span class="yesil small text-success">Avantajları</span>
 
 
 - Sanal kuruluma oranla performans açısından oldukça verimlidir. Çünkü aynı anda hem ana işletim sistemi hem de sanal olmak üzere iki işletim sisteminin çalıştırılması gerekmiyor. Böylece bilgisayarın tüm kaynakları o an kullanılmakta olan tek bir sistem için ayrılabiliyor.
@@ -86,7 +86,7 @@ Normalde standart şekilde bilgisayarımızdaki sabit diskte tekil olarak Linux 
 
 Kısaca dezavantajlarından da bahsedecek olursak;
 
-### <span class="kirmizi">Dezavantajları</span>
+### <span class="kirmizi small text-danger">Dezavantajları</span>
 
 
 - Sistem yedeğini almak ve ilgili yedeğe dönmek, sanal kullanıma oranla daha zahmetlidir.
@@ -105,7 +105,7 @@ Live olarak kullanmak; Linux işletim sistemini USB diskimiz üzerine kurup, sis
 
 USB üzerinden kullanma seçeneğini, sanal kullanımda eğitime devam edemeyecek kadar performans sorunu yaşayanlara ve sabit diskine kurmak istemeyenlere önerebilirim. Kısaca USB üzerinden kullanımın avantajlarına değinecek olursak;
 
-### <span class="yesil">Avantajları</span>
+### <span class="yesil small text-success">Avantajları</span>
 
 
 - Sabit diske kurulum gerektirmez, yalnızca USB disk yeterlidir. Bu sayede sabit diskinizde ek alan ayırmak zorunda kalmazsınız.
@@ -114,7 +114,7 @@ USB üzerinden kullanma seçeneğini, sanal kullanımda eğitime devam edemeyece
 
 Biraz da dezavantajlarına değinmemiz gerekirse;
 
-### <span class="kirmizi">Dezavantajları</span>
+### <span class="kirmizi small text-danger">Dezavantajları</span>
 
 
 - USB üzerinden kullanımda verim alabilmek için USB diskinizin en az 8 GB depolama kapasitesi olması gerekiyor. Ve ayrıca mümkünse okuma yazma hızı yüksek olan bir USB aygıtı kullanmalısınız. Eğer kullanacağınız USB aygıtın okuma yazma hızı düşükse sistem performansı oldukça kötü etkilenebiliyor. Çünkü okuma yazma hızı düşük olan bir depolama birimi kullanıldığında, ram ve cpu gibi bileşenlerin iyi olması okuma yazma hızının oluşturacağı darboğaz dolayısıyla sistem performansına olumlu katkı sunamıyor maalesef.
@@ -129,14 +129,14 @@ Eğer fiziksel olarak güçlü bir bilgisayarınız yoksa ve ödeme yapabilme im
 
 Aslında açıklama esnasında az çok değinmiş olsak da bir kez daha kısaca VPS kullanım avantajlarından madde madde bahsedelim.
 
-### <span class="yesil">Avantajları</span>
+### <span class="yesil small text-success">Avantajları</span>
 
 
 - Mevcut donanımınızın çok güçlü olması gerekmez. Tek ihtiyacınız olan uzak sunucuya bağlanıp komut girebileceğiniz basit özellikteki cihaz ve internet erişimi.
 - İstenilen yerden ve istenilen cihazdan(*pc, laptop, tablet, telefon..*) uzak sunucudaki sisteme komut verilebilir. Cihaz bağlamında esneklik sunuyor yani.
 - Kullandığınız servise göre değişiklik gösterse de servis sağlayıcının sunduğu imkanlar dahilinde sistem yedeği alma ve üst düzey sistem performansı imkanına sahip olabiliyorsunuz. Sunucu özelliklerine bakarsanız, kullanılan disk tipi gibi donanımsal tercih imkanlarınız olduğunu da görebilirsiniz.
 
-### <span class="kirmizi">Dezavantajları</span>
+### <span class="kirmizi small text-danger">Dezavantajları</span>
 
 
 - Bu hizmetler ücretlidir. Eğer ihtiyacınızdan fazla özelliklerde hizmetler kiralarsanız gereksiz harcamalara sebep olabilirsiniz.

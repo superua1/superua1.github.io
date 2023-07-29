@@ -6,7 +6,7 @@ excerpt: "Eğitim hakkında son açıklamalar."
 tags: [temel linux]
 categories: [egitimserisi, temel_linux]
 cover: soncover.png
-ders: [21]
+ders: 22
 toc: true  
 ---
 

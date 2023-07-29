@@ -6,7 +6,7 @@ excerpt: "Disk yönetimi için gerekli olan temel yaklaşımları ele alıyoruz.
 tags: [mbr , gpt , bios , uefi , lsblk , fdisk , mkfs , lvm]
 categories: [egitimserisi, temel_linux]
 cover: diskyonetimicover.png
-ders: [17]
+ders: 17
 toc: true  
 ---
 

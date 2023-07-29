@@ -6,7 +6,7 @@ excerpt: "Bash kabuğunun genişletmelerinden ve regex kavramından bahsediyoruz
 tags: [kabuk genişletmesi , regex , komut ikamesi]
 categories: [egitimserisi, temel_linux]
 cover: genisletmecover.png
-ders: [8]
+ders: 8
 toc: true  
 ---
 
@@ -225,7 +225,7 @@ Teorik açıklamanın anlamalı hale gelmesi için tabii ki örnekler yapmamız 
 
 Daha önce süslü parantez genişletmesinde olduğu gibi bu genişletmelerin sonuçlarını rahat gözlemleyebilmek adına yine `echo` komutunu kullanabiliriz.
 
-### Yıldız Karakteri
+## Yıldız Karakteri
 
 Eğer `echo` komutumun ardından **yıldız joker karakterini** eklersem, bu var olan tüm dosya ve klasörlerin bastırılması demek oluyor. 
 
@@ -300,7 +300,7 @@ Bakın bu girdiğimiz genişletme tanımı sayesinde dosya veya klasör isimleri
 
 İşte sizler de sıfır veya daha fazla sayıda herhangi bir karakter ile eşleşecek bir düzende dosya veya dizin ismi genişletmesi yapılsın istiyorsanız yıldız joker karakterini uygun biçimde, genişletmenin başında sonunda veya her ikisinde de birden ihtiyacınıza uygun şekilde kullanabilirsiniz. 
 
-### Soru İşareti
+## Soru İşareti
 
 Daha önce soru işareti karakterinin herhangi bir tek karakter yerine geçtiğini belirtmiştik. Burada dikkat etmeniz gereken detay soru işareti joker karakterinin sıfır değil her zaman **tam olarak tek bir** karakteri temsil ettiği. 
 
@@ -350,7 +350,7 @@ Bakın tam olarak isminde 3 karakter bulunan içerikler konsolumuza bastırılm�
 
 Yani özetle tekrar tekrar teyit ettiğimiz gibi buradaki soru işareti mutlaka tek bir karakter ile eşleşecek şekilde genişletiliyor. Kaç tane soru işareti kullanıldıysa o kadar sayıda herhangi bir karakter ile eşleşme sağlanabiliyor. 
 
-### Köşeli Parantez
+## Köşeli Parantez
 
 Köşeli parantez içerisine yazdığımız karakterler soldan sağa doğru genişletiliyor. Örneğin başlangıcında **a c z** ve **d** karakterlerinden herhangi biri olan tüm içerikleri bastırmak istersem komutumu `echo [aczd]*` şeklinde girebilirim. 
 
@@ -424,7 +424,7 @@ Bakın tam da söylediğim gibi, belirttiğimiz bu aralık sayesinde başlangı�
 
 Ben örnek olarak hep başlangıçtaki karakterler üzerinden çalıştım ancak siz yıldız işaretinin ve soru işaretinin işlevini öğrendiğiniz için istediğiniz şekilde çıktıları sınırlayabilirsiniz. Genişletme karakterlerini istediğiniz sonuçları elde etmek için özelleştirebileceğiniz kadar detay öğrendik. Zaten temel dosya ismi genişletmeleri için 3 joker karakter(`*`,`?`,`[]`) kullanıyoruz hepsi bu. 
 
-### Hariç Tutmak
+## Hariç Tutmak
 
 Biz şu ana kadar hep belirttiğimiz karakterler ile eşleşecek şekilde komut girdik. Dilersek köşeli parantez genişletmesini kullanırken, belirttiğimiz karakterler dışındakileri kapsayacak şekilde de komut girebiliriz. Yani hariç tutulacak karakterleri özellikle belirtip, geri kalan karakteri barındıran dosya ve dizinlerin genişletilmesini sağlayabiliriz. Bunun için tek yapmamız gereken ünlem `!` işaretini kullanmak. Örneğin başlangıcında a’dan y’ye kadar olan herhangi bir karakter geçmeyen içerikleri bastırmak istersek komutumuzu `echo [!a-y]*`  şeklinde girebiliriz. 
 
@@ -516,7 +516,7 @@ Bakın süslü parantez kullandığımızda dosya ismi genişletmesi karakteri o
 
 Dosya ismi genişletmesini anlatımlarını noktalamadan önce, “dosya ismi” genişletmesi ile sıklıkla karıştırılan “regex” kavramından da bahsetmek istiyorum. Bu sayede dosya ismi genişletmelerini daha net anlamış olacağız. 
 
-## Regex
+# Regex
 
 Eğer daha önce herhangi bir programlama dili ile ilgilendiyseniz “**regex**” yani “**reg**ular **ex**pression” kavramıyla mutlaka karşılaşmışsınızdır. Regex en özet haliyle, spesifik olarak belirli bir karakter kalıbı ile eşleşecek desenler oluşturmamıza izin veren özel karaktere verilen isimdir. Regex doğru şekilde kullanıldığında her türlü metinsel ifadenin aranması bulunması ve ayrıştırılması konusunda inanılmaz kolaylık sağlıyor. Biz regex ile aradığımız karakter kalıbını belirtip metinsel veri girişi sağladığımızda regex, metinsel verideki kalıba uyan tüm karakterleri sorunsuzca ayrıştırıp bize iletiyor. Yani regex kullanırken dosya ismi genişletmesinde olduğu gibi yalnızca mevcut dosya veya dizin isimleri ile sınırlı değiliz. Regex’e istediğimiz metinsel veriyi girdi olarak verip bu verilerden istediklerimizi ayrıştırabiliyoruz.
 
@@ -540,7 +540,7 @@ Regex ile kabuğa ait genişletmeler arasındaki farkı iyi anlamamız, kabuğa 
 
 Ben kabuğa ait genişletme karakterleri ile regex in farkını size göstermek için çok basit bir örnek ele almak istiyorum. Ancak vereceğim örneğin net biçimde anlaşılabilmesi için de öncelikle alıntı karakteri olarak geçen tek ve çift tırnak kullanımına da çok kısaca değinmemiz gerekiyor.
 
-## Alıntı Karakterleri
+# Alıntı Karakterleri
 
 Kabuk için özel anlam ifade eden metakarakterlerin(`? { } $ ; & | < > ( ) ' " \ # ~ ! ^ = + - _ . , : % @ / *`) kabuk tarafından özel anlamlarına genişletildiğini tüm bu bölüm boyunca adım adım ele aldık. Eğer kabuk için özel anlamı olan karakterlerin kabuğun genişletmesinden muaf tutulmasını istersek bu karakterleri tırnak içinde yazarak kabuk için sıradan karakterler olarak görülmelerini sağlayabiliyoruz. 
 

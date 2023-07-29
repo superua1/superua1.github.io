@@ -6,7 +6,7 @@ excerpt: "Bash kısayollarıyla, kabuğu nasıl daha verimli kullanabileceğimiz
 tags: [bash , history , kısayollar , alias , unalias]
 categories: [egitimserisi, temel_linux]
 cover: kisayolcover.png
-ders: [5]
+ders: 5
 toc: true  
 ---
 

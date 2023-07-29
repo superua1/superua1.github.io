@@ -7,7 +7,7 @@ excerpt: "Metinler üzerinde çalışmak için gerekli olan yaklaşımları ve a
 tags: [pipe , xargs , grep , regex , find , locate , cut , tr , sed , awk , more , less , head , tail]
 categories: [egitimserisi, temel_linux]
 cover: metinfiltrecover.png
-ders: [10]
+ders: 10
 toc: true 
 ---
 
@@ -445,7 +445,7 @@ Bakın `tee` aracı sayesinde `ls` komutunun çıktıları konsola bastırılmak
 
 `tee` aracının kullanımı gördüğünüz gibi son derece kolay olduğu için daha fazla örneğe gerek yok. Yine de son olarak birkaç kullanım detayını daha bilmenizde fayda var. 
 
-### Üzerine Ekleme
+## Üzerine Ekleme
 
 Normalde `tee` komutu aynı isimde bir dosya varsa onun üzerine yazar. Yani o dosyanın içeriğini yok edip, elindeki verileri o dosyaya yazar. Eğer aynı isimli dosya varsa dosya içeriğinin sonuna yeni verilerin eklenmesini istersek “**a**ppend” yani “ekleme” ifadesinin kısaltması olan `a` seçeneğini kullanabiliriz.
 
@@ -1011,7 +1011,7 @@ Bakın isimle eşleşen hem klasör hem de dosya, tam konumlarıyla birlikte lis
 
 `find` komutunun en yalın kullanımı bu şekilde. Tabii ki tüm kullanım imkanı bundan ibaret değil. Araştırma yapılırken filtreleme yapılabilmesi için aranacak dosya veya klasörün özelliklerine göre kullanabileceğimiz birden fazla seçenekler bulunuyor. Hemen kısaca bunlardan söz edelim.
 
-### Tipine Göre Filtreleme | Dosya - Dizin
+## Tipine Göre Filtreleme | Dosya - Dizin
 
 Eğer **yalnızca dosyaları** filtrelemek istiyorsak `type` seçeneğinin ardından “**f**ile” yani “dosya” ifadesinin kısaltmasından gelen `f` parametresini yazmamız gerekiyor. Eğer **klasörleri filtrelemek** istersek de “**d**irectory” yani “klasör” ifadesinin kısaltmasından gelen `d` ifadesini kullanabiliyoruz. Hemen örneğimiz üzerinden deneyelim.
 
@@ -1083,7 +1083,7 @@ find: ‘/root’: Permission denied
 
 Tabii ki bu işlem tüm sistem hiyerarşisinin kontrol edilmesini gerektirdiği için biraz vakit alabilir. Ancak neticede gördüğünüz gibi istediğimiz bir dizin altında aradığımız isimle eşleşen dosya ve dizinleri belirtebiliyoruz.
 
-### Boyutlarına Göre Filtreleme
+## Boyutlarına Göre Filtreleme
 
 Boyuta göre filtreleme yapmak için `size` seçeneğini kullanmamız gerekiyor. Örneğin bulunduğumuz dizin altındaki 1 megabayttan büyük olan tüm dosyaları getirmek için `find . -type f -size +1M` şeklinde komutumuzu kullanabiliriz.
 
@@ -1146,7 +1146,7 @@ Boyutu farklı girmek isterseniz;
 
 Gördüğünüz gibi 1 gigabayttan büyük olan dosyam bulunmuş oldu. Siz de istediğiniz büyüklük birimine göre filtreleme yapabilirsiniz. 
 
-### Tarihlerine Göre Filtreleme
+## Tarihlerine Göre Filtreleme
 
 Ayrıca erişim, değişim ve düzenleme tarihlerine göre de filtrelemeniz de mümkün. Zaten bu tarihlerin neyi ifade ettiğini daha önce açıklamıştık.
 
@@ -1334,7 +1334,7 @@ Henüz daha öğrenmediğimiz için yetkilere ve sahipliğe göre filtrelemeden 
 
 Ben dediğim gibi yetki ve sahip kavramlarından henüz bahsetmediğimiz için kafanızın karşımasını istemiyorum, zaten aynı şekilde tek yaptığımız bu özelliklere göre filtreleme yapmak. Bu konuları öğrendiğinizde dönüp `find` ile bu kriterlere göre filtreleme yapmakta özgürsünüz.
 
-### Olumsuzlama Seçeneği | `-not`
+## Olumsuzlama Seçeneği | `-not`
 
 İlgili seçenekten önce `-not` seçeneğini kullanarak, ilgili filtrelemenin tam tersini elde edebiliriz.
 
@@ -1423,7 +1423,7 @@ Eğer buradaki `mtime` seçeneğinden önce `-not` seçeneğini ekleyecek olursa
 
 Bu şekilde tüm filtreleme seçeneklerinden önce `-not` kullanarak ilgili filtrelemeyi tersine çevirmeniz mümkün.
 
-### Ve - Ya Da Koşulları | `-and` `-or`
+## Ve - Ya Da Koşulları | `-and` `-or`
 
 Filtrelemeyi tek bir kritere göre değil de birden fazla kritere göre yapmak istersek koşul belirten “`-and`” “`-or`” gibi seçenekleri kullanabiliyoruz. Örneğin ben sonu “.txt” ile veya “.png” ile bitenleri filtrelemek istersem `find -name “*.txt” -or -name “*.png”` komutunu girebilirim.
 
@@ -1524,7 +1524,7 @@ Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz -and seçeneği
 
 İşte siz de bu şekilde spesifik olarak aradığınız özelliklere uyan filtremeler yapmak için bu koşul seçeneklerini kullanabilirsiniz.
 
-### `find` Üzerinde Regex Kullanımı
+## `find` Üzerinde Regex Kullanımı
 
 Normalde firnd komutu biz aksini `-regex` seçeneği ile belirtmediğimiz sürece daha önce kabuk genişletmeleri bölümünde ele aldığımız “wildcards” yaklaşımını kullanıyor. Yani biz -name seçeneğini kullandığımızda isimler aslında “wildcards” kuralları dahilinde değerlendiriliyor.
 
@@ -1643,7 +1643,7 @@ Ben hemen test etmek için bir önceki derste `find` aracıyla bulmak için olu�
 
 Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturduğumuz için `locate` aracının kullandığı veritabanına bu dosya ve klasörün dizin adresi eklenmedi. Dolayısıyla bu isimde bir eşleşme olmadı.
 
-### `locate` Veritabanını Güncellemek | `updatedb`
+## `locate` Veritabanını Güncellemek | `updatedb`
 
 `locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. İşlemi yetkili olarak gerçekleştirdiğimiz için parolamızı girip anlayamamız gerek.  Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek. 
 
@@ -1669,7 +1669,7 @@ Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturdu
 
 Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi konsola bastırıldı. Bizzat sizin de deneyimleyebileceğiniz gibi `locate` aracı hızlı çalışıyor olmasına rağmen, veritabanı `updatedb` komutu ile güncellenmediyse sistemde mevcut olan yeni dosya ve dizinleri bulamıyor. Dolayısıyla `locate` aracını kullanmadan önce sağlıklı çıktılar almak istiyorsanız mutlaka `updatedb` komutuyla güncelleme yapın. Normalde her gün düzenli olarak bu veritabanı otomatik olarak güncelleniyor ancak dediğim gibi kullanmadan önce stabil çıktılar istiyorsanız `updatedb` komutunu çalıştırmanız şart.
 
-### Harf Duyarlılığını Kaldırmak
+## Harf Duyarlılığını Kaldırmak
 
 Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
 
@@ -1698,7 +1698,7 @@ Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifade
 
 Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler listelenmiş oldu.
 
-### Eşleşme Sayısını Öğrenmek
+## Eşleşme Sayısını Öğrenmek
 
 Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz. 
 
@@ -1714,7 +1714,7 @@ Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifades
 
 Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eşleşme olurken, harf duyarlılığı varken yalnızca 17 eşleşme bulunmuş. 
 
-### `locate` Üzerinde Regex Kullanımı
+## `locate` Üzerinde Regex Kullanımı
 
 `locate` aracında regex kullanmak istediğimizde bunu özellikle `—regex` seçeneğiyle belirtmemiz gerekiyor. Ben denemek için öncelikle `locate "(\.rar|\.zip)”` şeklinde regex tanımıyla eşleşme sağlamak üzere komutumu giriyorum. 
 
@@ -1761,7 +1761,7 @@ Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebe
 
 Tamamdır en nihayetinde benim `locate` aracı hakkında bahsetmek istediklerim bunlar. Son olarak `locate` ile `find` arasındaki farkı vurgulamak istiyorum.
 
-### `locate` ve `find` Arasındaki Fark
+## `locate` ve `find` Arasındaki Fark
 
 `find` komutu ile dosyaları özniteliklerine göre filtreleyebildiğiniz için çok daha fazla seçeneğe sahibiz. Zaten `find` komutunu ele alırken dosyaların çeşitli özelliklerine göre nasıl filtreleme yapabileceğimizi ele aldık. `locate` komutu ise yalnızca kendi veritabanındaki dosya isimleri ile eşleşme var mı diye kontrol ettiği için, `find` komutu ile kullanabileceğiniz dosya özelliklerini filtreleme gibi işlevleri e aracında kullanamazsınız. 
 
@@ -2074,7 +2074,7 @@ Yardım çıktısında yer alan buradaki kalıplar üzerinde pratik yaptığın�
 
 Bu ifadeler dışında biraz da seçeneklerinden bahsedebiliriz.
 
-### Peş Peşe Tekrar Eden Karakterlerin Sadeleştirilmesi
+## Peş Peşe Tekrar Eden Karakterlerin Sadeleştirilmesi
 
 Eğer peş peşe tekrar eden karakterlerden yalnızca bir tane kalmasını istersek, `-s` seçeneğini kullanabiliriz. Buradaki `s` seçeneği “**s**queeze” yani “sıkmak”, sıkıştırmaktan aklınıza gelebilir. Ben denemek için [www.linuxdersleri.net](http://www.linuxdersleri.net) adresindeki “www” karakterlerini teke indirmek istiyorum.
 
@@ -2110,7 +2110,7 @@ Bakın `[:digit:]` kalıbı sayesinde yalnızca peş peşe tekrar eden sayılar 
 
 Her neyse, neticede `s` seçeneğinin **art arda tekrar eden** karakterleri teke düşürdüğünü teyit etmiş olduk. Tekrarların peşi sıra gerçekleştiğine dikkat edin. 
 
-### Karakterlerin Silinmesi
+## Karakterlerin Silinmesi
 
 Doğrudan karakteri bulup silmek için de `tr` aracını kullanmamız mümkün. Bunun için “`d`elete” yani “silme” ifadesinin kısaltması olan `d` seçeneğini kullanabiliyoruz. Ben denemek için web adresindeki noktaları silmek istiyorum. Tek yapmam gereken `tr` aracının `-d` seçeneğini kullandıktan sonra silinmesini istediğim karakteri belirtmek.
 

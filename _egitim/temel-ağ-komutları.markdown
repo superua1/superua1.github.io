@@ -6,7 +6,7 @@ excerpt: "Temel ağ komutlarını ele alıyoruz."
 tags: [date , cal , which , type , command , builtin , file , stat , lsb_release , uname , uptime , free , du , lsusb , lspci , lshw]
 categories: [egitimserisi, temel_linux]
 cover: networkcover.png
-ders: [20]
+ders: 21
 toc: true  
 ---
 

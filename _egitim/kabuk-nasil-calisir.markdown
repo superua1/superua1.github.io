@@ -6,7 +6,7 @@ excerpt: "Bash kabuğunun komutları nasıl anlamlandırabildiğinden bahsediyor
 tags: [bash , shell , PATH , değişken , export , source]
 categories: [egitimserisi, temel_linux]
 cover: kabukcover.png
-ders: [4]
+ders: 4
 toc: true  
 ---
 
@@ -60,7 +60,7 @@ Elbette kullanılan araca göre seçeneklerin veya parametrelerin çeşidi ve s�
 
 Temel kavramlardan da bahsettiğimize göre anlatım sırasında bahsi geçen **PATH** dizini kavramından bahsederek devam edebiliriz.
 
-## PATH Yolu
+# PATH Yolu
 
 PATH esasen sistem üzerinde tanımlı olan bir değişkendir. Bu değişken, kabuğun çalıştırılacak dosyaları araması gereken dizin adreslerini tutuyor. Bu adresleri öğrenmek için daha önce varsayılan kabuğumuzu öğrenirken sorguladığımız **SHELL** değişkinine benzer şekilde PATH değişkenini sorgulamak için kabuğa `echo $PATH` komutunu girebiliriz. Buradaki dolar işareti `echo` aracının, **PATH** isimli değişkenin değerini konsola bastırmasını sağlıyor. Bu durumdan daha sonra ayrıca detaylı şekilde bahsedeceğiz. Şimdi aldığımız çıktıya odaklanacak olursak:
 
@@ -185,7 +185,7 @@ Program Çalıştı!
 
 İşte bizzat teyit ettiğimiz gibi bu örnek, kabuğun harici bir programı çalıştırmak için **PATH** olarak geçen dizinlere baktığını kanıtlıyor. Sizler de bu şekilde, kabuk üzerinden ismiyle çağırıp çalıştırmak istediğiniz programlarınızı **PATH** dizinlerinden birine taşıyabilirsiniz. Ayrıca dilersek PATH üzerinde yer alan dizinlere yeni bir dizin daha ekleyebiliriz. Bu sayede eklediğimiz dizin içinde yer alan dosyalar bash kabuğu tarafından çalıştırılacak dosya ismi olarak görülebilirler. 
 
-### PATH Yoluna Yeni Dizin Eklemek
+## PATH Yoluna Yeni Dizin Eklemek
 
 Anlatımla başlamadan önce PATH yoluna yeni bir dizin eklemenin güvenlik açısından pek önerilen bir işlem olmadığını belirtmek istiyorum. Güvenli değil çünkü yeni eklediğiniz dizin adresi için gereken yetkilendirme ve sıkılaştırma önlemlerini almamış olabiliyoruz. Varsayılan olarak tanımlı olan PATH adreslerinde ise zaten yetkilendirme ayarları yapılmış oluyor. Hatırlarsanız zaten betik dosyamızı taşımak için `sudo` komutu ile yetkili olduğumuzu kanıtlamamız gerekmişti. Yani varsayılan PATH dizinlerinin yalnızca yetkili kişilerce düzenlenebilecek şekilde sıkılaştırıldığını bizzat deneyimledik. Bizim sonradan ekleyeceğimiz dizinin yetki ayarları doğu şekilde tanımlı olmazsa bu dizine yetkisiz kullanıcılar da dosya taşıyabilir ve kabuğun bu dosyaları da çalıştırmasını sağlayabilir. Bu durum elbette güvenlik riski demek oluyor. 
 
@@ -193,7 +193,7 @@ Dolayısıyla varsayılan olarak tanımlı olan PATH adreslerini kullanmanız ç
 
 Bildiğiniz gibi PATH yolu üzerindeki dizinlerin hangileri olduğunu öğrenmek için `echo $PATH` komutunu kullanıyoruz. Hatta kullandığımız bu komutun anlamını özellikle çok kısaca da olsa açıklamıştık hatırlıyorsanız. `echo` komutu, kendisine argüman olarak verilen değerleri çıktı olarak bastırıyor. Buradaki `$PATH` ifadesi ise bir değişkendir. Eğer programlama geçmişiniz varsa zaten değişkenlerin ne olduğunu mutlaka biliyorsunuzdur. Değişkenler, tanımlı olan değerlere tekrar tekrar tek bir değişken ismi üzerinden ulaşılabilmesini sağlayan yapılardır. Bash kabuğunda da bizzat daha önce de gördüğümüz SHELL ve PATH gibi değişkenler olduğunu zaten biliyoruz. Eğer biz PATH yolunu değiştirmek istiyorsak, PATH değişkeninde tanımlı olan dizinleri yani PATH değişkenin değerini yeniden düzenleyebiliriz. Ancak yeni bir PATH dizini eklemeden önce bash kabuğunda değişkenlerin nasıl çalıştığına temel olarak değinmek istiyorum. Bu sayede gerçekleştireceğimiz işlemleri çok daha bilinçli şekilde yerine getiriyor olacağız.
 
-## Değişkenler
+# Değişkenler
 
 Bask kabuğunda değişken tanımlamak çok kolay. Ben basit bir örnek olması için `ad=taylan` şeklinde yazıp **ad** isimli değişkene “**taylan**” değerini tanımlıyorum.
 
@@ -220,7 +220,7 @@ Bakın “taylan” çıktısını almış oldum. Çünkü `echo` aracına burad
 
 İşte en yalın haliyle bir değişken tanımlamak ve değişkenin değerine görüntülemek bu şekilde. Değişkenler ile ilgili diğer detaylara girmeyeceğiz fakat çok ufak bir detaydan haberdar olmamız gerekir. Bu detay da değişkenin alt kabuklar üzerinde de geçerli olabilmesini sağlayan `export` komutu. 
 
-### `export` Komutu | Global Değişkenler
+## `export` Komutu | Global Değişkenler
 
 Eğer biz tanımlamış olduğumuz değişkeni `export` ile global hale getirmezsek, mevcut kabuğun altında başlatılan diğer kabuklar üzerinden bu değişken değerine ulaşamıyoruz. Bu durumu daha iyi anlamak için mevcut konsolumuza bash komutunu girip yeni bir kabuk başlatalım. 
 
@@ -306,23 +306,19 @@ Eğer biz de değişkenlerimizi kabuk tarafından okunan bu konfigürasyon dosya
 
 Bash kabuğu konfigürasyonlar için temelde iki tür dosyayı okuyor. Bunlar; sistem genelinde **tüm kullanıcılar için geçerli olan** ve **spesifik kullanıcıya özel olan** iki farklı türdeki konfigürasyon dosyalarıdır. 
 
-## Konfigürasyon Dosyaları
+# Konfigürasyon Dosyaları
 
-<h5 class="turuncu">Sistem Geneli İçin Yapılandırma</h5>
+## <span class="turuncu small text-danger">Sistem Geneli İçin Yapılandırma</span>
 
 Linux çok kullanıcılı bir işletim sistemi olduğu için tüm kullanıcılar üzerinde geçerli olabilecek toplu yapılandırma kuralları tanımlayabilmek adına sistem genelinde kullanılan yapılandırma dosyalarında düzenlemeler yapabiliriz. 
-
-<strong class="turuncu">Sistem Geneli:</strong>
 
 - /etc/profile
 - /etc/bashrc
 - /etc/bash.bashrc
 
-<h5 class="yesil">Kullanıcı Bazlı Yapılandırma</h5>
+## <span class="yesil small text-success">Kullanıcı Bazlı Yapılandırma</span>
 
 Değişikliklerin tüm kullanıcıları değil de özel olarak tek bir kullanıcıyı etkilemesini istersek, kullanıcının kendi ev dizininde bulunan yapılandırma dosyalarında düzenlemeler yapabiliriz.
-
-<strong class="yesil">Kullanıcıya Özel:</strong>
 
 - ~/.bash_profile
 - ~/.bashrc

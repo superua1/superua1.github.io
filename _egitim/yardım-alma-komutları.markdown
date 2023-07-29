@@ -6,7 +6,7 @@ excerpt: "Linux sistemindeki çevrimdışı yardım mekanizmalarından bahsediyo
 tags: [help , man , info]
 categories: [egitimserisi, temel_linux]
 cover: yardimcover.png
-ders: [6]
+ders: 6
 toc: true  
 ---
 

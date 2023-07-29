@@ -6,7 +6,7 @@ excerpt: "Linux dosya sistemini tanıyıp, nasıl gezinebileceğimizden bahsedec
 tags: [pwd , cd , ls , rmdir]
 categories: [egitimserisi, temel_linux]
 cover: dizincover.png
-ders: [7]
+ders: 7
 toc: true  
 ---
 
@@ -46,7 +46,7 @@ Burada kullanmış olduğumuz `ls` komutu listeleme yapan bir araç ve biz de `/
 
 Dosya sistemi hiyerarşisinin en tepe noktasını yani başlangıcını temsil eden ana dizine kök(root) dizin deniyor olsa da aslında ana dizinin doğrudan bir ismi olmadığı için yalnızca slash `/` işareti ile temsil ediliyor. Kök dizin, yapısı gereği Linux sistemini başlatmak için gereken tüm dosyaları içermesi gerekiyor.
 
-## <span class="text-danger">/</span><span class="text-primary">bin</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">bin</span>
+## <span class="text-danger">/</span><span class="text-primary">bin</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">sbin</span>
 
 ***/bin*** ve ***/sbin*** dizinlerinin ismi, “**bin**ary” yani “ikili” ifadesinin kısaltmasından geliyor. Bu dizinler içinde sistemin başlatılması, yönetimi ve gerektiğinde onarımı için kullanılan araçların çalıştırılabilir binary dosyalarını barındırılıyor. Daha önceki anlatımlarımıza, konsola girdiğimiz komutların **PATH** yolundaki dizinlerde bu isimle eşleşen bir dosya var mı diye bakılmasını sağladığını öğrenmiştik. İşte bu dizinlere bakılıp girilen komutla eşleşen çalıştırılabilir biçimdeki ikili yani binary dosya bulunduğunda bu dosya çalıştırılıyor. Burada bahsi geçen ***/bin*** ve ***/sbin*** dizinin içindeki binary dosyalar da işte bu dosyalar. 
 
@@ -330,7 +330,7 @@ Bu açıklamaları yapıp göreli ve kesin yol üzerinde özellikle duruyorum ç
 
 Neticede komut satırı üzerinden dizinlerde gezinmek için cd komutunu kullanabildiğimizi öğrendik. Biz en temel kullanım biçimini ele aldık fakat söz konusu komut satırı üzerinde rahatlıkla gezinebilmek olduğu için `cd` komutunun bize pek çok kolaylıkla sağlayan esnek özellikleri de bulunuyor.
 
-### Üst Dizine Geçiş
+## Üst Dizine Geçiş
 
 Bir üst dizine dönmek için `cd ..` komutunu kullanabiliyoruz.
 
@@ -404,7 +404,7 @@ Zaten komutlarınızı girerken dosya sistemindeki dizinlerin iç içe klasörle
 
 Dizinler arası geçiş biçimi tamamen sizin ihtiyaçlarınıza göre şekillenecektir. Tek yapmanız gereken bildiklerinizi harmanlayıp kullanmak. Bu noktada elbette kesin yol ve göreli yol kavramını iyi bir biçimde anlamış olmanız gerekiyor. Eğer anladıysanız zaten dizinler arasında son derece esnek yöntemlerle gezinebilirsiniz.
 
-### Bir Önceki Dizine Dönüş
+## Bir Önceki Dizine Dönüş
 
 Komut satırı üzerinden işlerimizi hallerken kimi zaman birbirinden çok uzak dizinler arasında hızlıca geçiş yapmak isteyebiliriz. Bu durumda en son bulunduğumuz bir önceki dizine doğrudan atlamak için `cd -` komutunu kullanabiliyoruz.
 
@@ -460,7 +460,7 @@ Kabuk, her zaman bir önceki dizinin adres bilgisini tuttuğu için bu şekilde 
 
 Hazır daha iyi bir gezinti deneyiminden ve pratiklikten bahsetmişken tabii ki otomatik tamamlama nimetlerinden bahsetmesek olmaz.
 
-### Otomatik Tamamlamadan Faydalanmak
+## Otomatik Tamamlamadan Faydalanmak
 
 Daha önce kısayollar bölümünde bahsettiğimiz otomatik tamamlama özelliği sayesinde geçiş yapabileceğimiz dizin isimlerinin otomatik olarak tamamlanmasını da sağlayabiliriz. 
 
@@ -482,7 +482,7 @@ Bizzat gördüğümüz gibi <kbd>tab</kbd> ile tamamlama işlevi, yalnızca ilgi
 
 Özetle, otomatik tamamlama özelliği sayesinde seçeneklerimizi görebiliyor ve gerektiğinde uzun uzadıya yazmadan otomatik olarak tamamlanmasını sağlayabiliyoruz.
 
-### Ev Dizini Kısayolu
+## Ev Dizini Kısayolu
 
 Hatırlıyorsanız daha önce de tilde `~` işaretinin **mevcut kullanıcının ev dizinini** temsil ettiğini belirtmiştik. Şimdi bu durumu uygulamalı olarak tekrar `cd` komut üzerinden de teyit edebiliriz. Örneğin ben kendi ev dizinime geçiş yapmak istediğimde `cd /home/kullanıcı-adım` yani benim durumumda `cd /home/taylan/` şeklinde komut girmem gerekiyor. Ancak aslında bu şekilde uzun uzadıya kendi ev dizinimi belirtmem de şart değil.  Bunun yerine yalnızca `cd ~` komutunu kullandığımda zaten buradaki tilde işareti otomatik olarak benim ev dizin adresimin yerine geçiyor olacak. Eğer tilde işaretini nasıl oluşturabileceğinizi bilmiyorsanız tilde işaretini oluşturmak için klavyenizden <kbd>AltGR</kbd> + <kbd>Ü</kbd> tuşlarına aynı anda basmanız yeterli. 
 

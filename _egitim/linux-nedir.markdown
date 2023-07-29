@@ -7,7 +7,7 @@ excerpt: "Temel kavramlardan bahsederek, GNU/Linux sistemini tanıyoruz."
 tags: [linux , kernel , linus torvalds , gnu , gpl , açık kaynak , özgür yazılım , unix , dağıtım , debian , redhat , centos]
 categories: [egitimserisi, temel_linux]
 cover: temelkavramlarcover.png
-ders: [1]
+ders: 1
 toc: true 
 ---
 

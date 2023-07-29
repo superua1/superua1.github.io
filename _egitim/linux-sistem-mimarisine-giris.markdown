@@ -7,7 +7,7 @@ excerpt: "Giriş seviyesinde Linux sisteminin temel mimarisini ele alıyoruz."
 tags: [linus torvalds, kernel, shell, açık kaynak, özgür yazılım]
 categories: [egitimserisi, temel_linux]
 cover: sistem.png
-ders: [3]
+ders: 3
 toc: true 
 ---
 

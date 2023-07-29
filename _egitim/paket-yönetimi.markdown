@@ -6,7 +6,7 @@ excerpt: "Güncelleme, kurma ve kaldırma gibi işlemler için paket yönetimini
 tags: [dpkg , apt , rpm , dnf , yum ]
 categories: [egitimserisi, temel_linux]
 cover: paketcover.png
-ders: [15]
+ders: 15
 toc: true  
 ---
 
@@ -1850,10 +1850,10 @@ Buna ek olarak tabii ki indirmiş olduğunuz bu dosyayı da artık silebilirsini
 GNU Wget 1.21.4 built on linux-gnu.
 ```
 
-En nihayetinde deleme işlemini tamamladık. 
+En nihayetinde derleme işlemini tamamladık. 
 
-Elbette ben bağımlılık sorunları ile boğuşmak istemediğim için çok fazla ek bağımlılığı olmayan `wget` aracının kurulumunu ele aldım. Ancak sizler geliştiricilerin sunduğu kurulum rehbelerinin ışında bağımlılık sorunlarını da daha önce öğrendiğiniz paket yükleme araçlarının yardımıyla ve internetin yardımıyla çözerek istediğiniz aracı kaynak koddan derleyerek kurabilirsiniz. Önemli olan geliştiricilerin sunduğu adımları dikkatlice takip etmenizdir.
+Elbette ben bağımlılık sorunları ile boğuşmak istemediğim için çok fazla ek bağımlılığı olmayan `wget` aracının kurulumunu ele aldım. Ancak sizler geliştiricilerin sunduğu kurulum rehberlerinin ışığında bağımlılık sorunlarını da daha önce öğrendiğiniz paket yükleme araçlarının yardımıyla ve internetin yardımıyla çözerek istediğiniz aracı kaynak koddan derleyerek kurabilirsiniz. Önemli olan geliştiricilerin sunduğu adımları dikkatlice takip etmenizdir.
 
-Zaten depolarda bulunmayan özel sürümler veya bağımsız harici araçlara ihtiyaç duymadığınız sürece kaynak koddan derlemeye neredeyse hiç ihtiyaç duyamayacaksınız. Kaynak koddan derleme işlemini genellikle wifi kartları gibi harici sürücülerini kurulumu noktasında kullanıyoruz. 
+Zaten depolarda bulunmayan özel sürümler veya bağımsız harici araçlara ihtiyaç duymadığınız sürece, kaynak koddan derlemeye neredeyse hiç ihtiyaç duymayacaksınız. Kaynak koddan derleme işlemini genellikle wifi kartları gibi harici sürücülerin kurulumu noktasında kullanıyoruz. 
 
-Neyse artık genel olarak kaynak koddan derleme işlemini de öğrendiğimize göre bu bölümü de sonlandırabiliriz. 
+Genel olarak kaynak koddan derleme işlemini de öğrendiğimize göre bu bölümü de sonlandırabiliriz. 

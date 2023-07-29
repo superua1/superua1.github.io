@@ -6,7 +6,7 @@ excerpt: "Linux işlem(process) yönetimini ele alıyoruz."
 tags: [jobs , fg , bg , top , ps , kill , killall , pgrep]
 categories: [egitimserisi, temel_linux]
 cover: islemcover.png
-ders: [18]
+ders: 18
 toc: true  
 ---
 

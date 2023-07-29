@@ -2,877 +2,834 @@
 layout: tutorial
 title:  "Servis Yönetimi"
 author: Taylan Özgür Bildik
-excerpt: "Bilgi edinmek üzere kullanabileceğimiz bazı araçlardan bahsediyoruz."
-tags: [date , cal , which , type , command , builtin , file , stat , lsb_release , uname , uptime , free , du , lsusb , lspci , lshw]
+excerpt: "systemd üzerinden servislerin yönetimini ele alıyoruz."
+tags: [systemd, systemctl]
 categories: [egitimserisi, temel_linux]
 cover: servisyonetimicover.png
-ders: [19]
+ders: 19
 toc: true  
 ---
 
 
-Genel olarak sistemdeki tarih takvim araçlar dosyalar ayarlar kayıtlar ve benzeri pek çok yapı hakkında konsol üzerinden kolayca bilgi edinebilmek için kullandığımız komutları, bilgi alma komutları başlığı altında inceleyebiliriz. Dolayısıyla aslında tüm eğitim boyunca kullandığımız ve kullanmaya da devam edeceğimiz pek çok komutu bilgi alma komutları sınıfında değerlendirmemiz mümkün. Çünkü hepsi, kendi görevleri özelinde pek çok bilgi sunma kabiliyetine sahip araçlar. En basit örnek olarak, `ls` komutu bile tek başına kullanıldığında mevcut dizinimizdeki içerikler hakkında bilgi almamızı sağlıyor.
+# Servis Yönetimi
 
-Yine de eğitimin geri kalanında değinmek için uygun bölümleri bulunmayan ama haberdar olmamızın faydalı olacağı bazı araçlardan “bilgi alma bölümü” altında çok kısaca bahsetmek istiyorum.
+Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve sisteme işlevsellik sağlayan arka plan işlemleridir. Genellikle sistem başlangıcında otomatik olarak başlatılır ve sistem çalıştığı süre boyunca aksini gerektiren bir durum olmadığı sürece çalışırlar.
 
-Anlatımlarımıza öncelikle takvim ve saat gibi temel bilgileri nasıl edinebileceğimizle başlayabiliriz. 
+Sistem üzerindeki servisleri yönetmek için de birden fazla alternatif servis yöneticisi vardır. Fakat biz bu bölümde yalnızca en güncel ve yaygın kullanıma sahip olan “**systemd**” servis yöneticisini ele alıyor olacağız. Dilerseniz alternatif servis yöneticilerini ve bunların farklarını araştırıp öğrenebilirsiniz. 
 
-# Tarih ve Saat Hakkında Bilgi Edinme
+# systemd
 
-## date Komutu
+**systemd** yönetimi çok detaylı bir konu olmakla birlikte çoğunlukla en temel işlevlerine ihtiyacımız olduğu için öğrenmek oldukça kolay. Temel işleyişi bildiğimizde spesifik ihtiyaçlara yönelik konfigürasyonları araştırıp uygulamamız zaten mümkün. Bu sebeple biz yalnızca en temel kullanıma odaklanıyor olacağız.
 
-Eğer grafiksel arayüz kullanıyorsanız zaten mutlaka tarih ve saati kolayca öğrenebileceğiniz bir ortama sahipsinizdir. 
+**systemd** aracı, kontrolü altındaki tüm yapıları “**birim**” yani “**unit**” olarak görüyor. Yazıyı hazırladığım sırada araç dokümanlarında yer alan birimlerin tablosu aşağıdaki gibidir. 
 
-Tarih bilgisini komut satırından edinmek istediğimizdeyse `date` komutunu kullanabiliyoruz. Zaten “date” ifadesi “tarih” anlamına geldiği için hatırlaması kolay bir komut. Hemen komutumuzu girelim.
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>Unit Type</th>
+      <th>File Extension</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Service unit</td>
+      <td>.service</td>
+      <td>A system service.</td>
+    </tr>
+    <tr>
+      <td>Target unit</td>
+      <td>.target</td>
+      <td>A group of systemd units.</td>
+    </tr>
+    <tr>
+      <td>Automount unit</td>
+      <td>.automount</td>
+      <td>A file system automount point.</td>
+    </tr>
+    <tr>
+      <td>Device unit</td>
+      <td>.device</td>
+      <td>A device file recognized by the kernel.</td>
+    </tr>
+    <tr>
+      <td>Mount unit</td>
+      <td>.mount</td>
+      <td>A file system mount point.</td>
+    </tr>
+    <tr>
+      <td>Path unit</td>
+      <td>.path</td>
+      <td>A file or directory in a file system.</td>
+    </tr>
+    <tr>
+      <td>Scope unit</td>
+      <td>.scope</td>
+      <td>An externally created process.</td>
+    </tr>
+    <tr>
+      <td>Slice unit</td>
+      <td>.slice</td>
+      <td>A group of hierarchically organized units that manage system processes.</td>
+    </tr>
+    <tr>
+      <td>Snapshot unit</td>
+      <td>.snapshot</td>
+      <td>A saved state of the systemd manager.</td>
+    </tr>
+    <tr>
+      <td>Socket unit</td>
+      <td>.socket</td>
+      <td>An inter-process communication socket.</td>
+    </tr>
+    <tr>
+      <td>Swap unit</td>
+      <td>.swap</td>
+      <td>A swap device or a swap file.</td>
+    </tr>
+    <tr>
+      <td>Timer unit</td>
+      <td>.timer</td>
+      <td>A systemd timer.</td>
+    </tr>
+  </tbody>
+</table>
 
-```bash
-└─$ date
-Mon Jun 26 02:40:38 PM EDT 2023
-```
+Örneğin systemd üzerinden servisleri yönetmek istediğimizde “service unit” üzerinde işlem yapmamız gerekiyor. Biz bu bölümde yalnızca servisler özelinde anlatımlar gerçekleştireceğiz. Daha fazlası için ek araştırma yapmanız yeterli. Bu açıklama şu an için pek anlamlı gelmemiş olabilir fakat bölüm sonunda netleşecek. 
 
-Bakın `date` komutu tek başına kullanıldığında gördüğünüz gibi sırasıyla, haftanın gününü, ayı, ayın gününü, saati, saat dilimini ve yılı içeriyor. Yani mevcut bulunduğumuz günün tüm tarihi temel bilgilerini `date` aracıyla öğrenebiliyoruz. Tabii ki aracımızın sağladığı tek bilgi mevcut günümüz de değil. Diğer seçenekleri görmek için `date —help` komutu ile yardım sayfasına bakacak olursanız ne kadar çok seçeneğin bulunduğunu görebilirsiniz. Ancak bu kadar çok seçenek olması gözünüzü korkutmasın, çünkü temelde `date` aracının yalnızca sistem tarihini öğrenmek için kullanıyoruz. Mesela tüm tarih bilgisini değil de yalnızca saat bilgisini almak istersek yardım bilgisinde gözüken `%r` parametresini kullanabiliriz. 
+**systemd** aracını yönetirken `systemctl` komutunu kullanıyor olacağız. Anlatımlarımıza birimleri listeleyerek başlayalım.
 
-```bash
-└─$ date +%r                                                     
-02:42:24 PM
-```
+## Birimleri Listelemek
 
-Bakın yalnızca saat bastırıldı. Benzer şekilde diğer parametreleri kullanarak `date` aracından dilediğiniz formda çıktı alabilirsiniz. Bu özelliğe genellikle kabuk programlamada ihtiyaç duyuyor olsak da artık bildiğinize göre ihtiyaç duyduğunuzda yardım sayfasını açıp tekrar hatırlayıp rahatlıkla kullanabilirsiniz..  
-
-Ayrıca `date` aracı ile tarihi değiştirmemiz de mümkün fakat tarihi değiştirmek için sistem servislerini kullanmak çok daha sağlıklı bir yaklaşım. Lütfen şimdilik buradaki servis kavramına çok takılmayın. İleride servisleri ayrıca ele alacağız. O zaman servisten kastımın ne olduğunu net biçimde anlamış olacaksınız. Şimdilik `date` komutunun bize mevcut tarih bilgisini sunduğunu bilmemiz yeterli.
-
-## cal Komutu
-
-`cal` aracı komut satırımız üzerinden takvim bilgisi sunan basit bir araç. Kimi sistemlerde varsayılan olarak yüklü bulunmasa da aslında çoğu dağıtımda mevcut oluyor. 
-
-Aracın yüklü olup olmadığınız öğrenmek için tek yapmamız gereken konsolumuza `cal` komutunu girmek. 
-
-```bash
-└─$ cal
-Command 'cal' not found, but can be installed with:
-sudo apt install ncal
-Do you want to install it? (N/y)
-```
-
-Bakın böyle bir komut olmadığı, eğer istersek bu araçla ilişkili olan `ncal` paketinin kurulabileceği belirtiliyor. Buradaki komutu “y” ile onaylayarak ya da kendimiz de buradaki `sudo apt install ncal` komutunu girerek kurulumu yapabiliriz. Eğer size bu şekilde sorulmadıysa ve sisteminizde yüklü değilse, debian tabanlı dağıtımınıza kurmak için siz de buradaki komutu kullanabilirsiniz. Ben “y” ile aracın kurulumunu onaylıyorum ve kullanıcı hesabımın parolasını girip kurulumu başlatılıyorum.
-
-```bash
-└─$ cal
-Command 'cal' not found, but can be installed with:
-sudo apt install ncal
-Do you want to install it? (N/y)y
-sudo apt install ncal
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following NEW packages will be installed:
-  ncal
-0 upgraded, 1 newly installed, 0 to remove and 1830 not upgraded.
-Need to get 19.7 kB of archives.
-After this operation, 59.4 kB of additional disk space will be used.
-Get:1 http://kali.download/kali kali-rolling/main amd64 ncal amd64 12.1.8 [19.7 kB]
-Fetched 19.7 kB in 11s (1,828 B/s)
-Selecting previously unselected package ncal.
-(Reading database ... 291346 files and directories currently installed.)
-Preparing to unpack .../archives/ncal_12.1.8_amd64.deb ...
-Unpacking ncal (12.1.8) ...
-Setting up ncal (12.1.8) ...
-Processing triggers for kali-menu (2021.4.2) ...
-Processing triggers for man-db (2.9.4-4) ...
-```
-
-Şimdi aracımızı çalıştırmak için `cal` komutunu tekrar girelim. 
-
-```bash
-└─$ cal
-     June 2023        
-Su Mo Tu We Th Fr Sa  
-             1  2  3  
- 4  5  6  7  8  9 10  
-11 12 13 14 15 16 17  
-18 19 20 21 22 23 24  
-25 26 27 28 29 30
-```
-
-Bakın mevcut ayın takvim bilgisini sorunsuzca konsola bastırmış olduk. Bu komutun dışında eğer takvimde gün isimlerinin bastırılmasını ve bizim hangi günde olduğumuzun belirtilmesini istersek `ncal` komutunu da kullanabiliriz. 
-
-```bash
-└─$ ncal
-    June 2023         
-Su     4 11 18 25   
-Mo     5 12 19 26   
-Tu     6 13 20 27   
-We     7 14 21 28   
-Th  1  8 15 22 29   
-Fr  2  9 16 23 30   
-Sa  3 10 17 24
-```
-
-Bakın sol tarafta gün isimleri sırasıyla yazıyor. Takvim de bu günlerin sıralamasına uygun şekilde basılmış oldu. 
-
-Eğer mevcut ayı değil de geçmiş ya da gelecek bir tarihten takvim bilgisine bakmak istersek `cal` ya da `ncal` komutunun ardından ay ve yılı belirterek tam istediğimiz tarihteki takvim bilgisine de ulaşabiliriz. Ben örnek olarak **2000** yılının **ocak** ayının takvimini bastırmak üzere `ncal 1 2000` şeklinde komutumu giriyorum. 
+Sistemimizde aktif olan tüm birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz. 
 
 ```bash
-└─$ ncal 1 2000
-    January 2000      
-Su     2  9 16 23 30
-Mo     3 10 17 24 31
-Tu     4 11 18 25   
-We     5 12 19 26   
-Th     6 13 20 27   
-Fr     7 14 21 28   
-Sa  1  8 15 22 29
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl list-units
+  UNIT                                                                                     LOAD   ACTIVE SUB       DESCRIPTION                                                   >
+  proc-sys-fs-binfmt_misc.automount                                                        loaded active waiting   Arbitrary Executable File Formats File System Automount Point >
+  sys-devices-pci0000:00-0000:00:01.1-ata2-host3-target3:0:0-3:0:0:0-block-sr0.device      loaded active plugged   VBOX_CD-ROM
+  sys-devices-pci0000:00-0000:00:03.0-net-eth0.device                                      loaded active plugged   82540EM Gigabit Ethernet Controller (PRO/1000 MT Desktop Adapt>
+  sys-devices-pci0000:00-0000:00:05.0-sound-card0-controlC0.device                         loaded active plugged   /sys/devices/pci0000:00/0000:00:05.0/sound/card0/controlC0
+  sys-devices-pci0000:00-0000:00:0d.0-ata3-host0-target0:0:0-0:0:0:0-block-sdd-sdd1.device loaded active plugged   VBOX_HARDDISK 1
+  sys-devices-pci0000:00-0000:00:0d.0-ata3-host0-target0:0:0-0:0:0:0-block-sdd-sdd2.device loaded active plugged   VBOX_HARDDISK 2
+  sys-devices-pci0000:00-0000:00:0d.0-ata3-host0-target0:0:0-0:0:0:0-block-sdd-sdd5.device loaded active plugged   VBOX_HARDDISK 5
+  sys-devices-pci0000:00-0000:00:0d.0-ata3-host0-target0:0:0-0:0:0:0-block-sdd.device      loaded active plugged   VBOX_HARDDISK
+  sys-devices-pci0000:00-0000:00:0d.0-ata4-host2-target2:0:0-2:0:0:0-block-sda-sda1.device loaded active plugged   VBOX_HARDDISK 1
+  sys-devices-pci0000:00-0000:00:0d.0-ata4-host2-target2:0:0-2:0:0:0-block-sda.device      loaded active plugged   VBOX_HARDDISK
+  sys-devices-pci0000:00-0000:00:0d.0-ata5-host4-target4:0:0-4:0:0:0-block-sdb.device      loaded active plugged   VBOX_HARDDISK
+  sys-devices-pci0000:00-0000:00:0d.0-ata6-host5-target5:0:0-5:0:0:0-block-sdc.device      loaded active plugged   VBOX_HARDDISK
+  sys-devices-pci0000:00-0000:00:0e.0-nvme-nvme0-nvme0n1.device                            loaded active plugged   ORCL-VBOX-NVME-VER12
+  sys-devices-pci0000:00-0000:00:0e.0-nvme-nvme0-nvme0n2.device                            loaded active plugged   ORCL-VBOX-NVME-VER12
+  sys-devices-platform-serial8250-tty-ttyS0.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS0
+  sys-devices-platform-serial8250-tty-ttyS1.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS1
+  sys-devices-platform-serial8250-tty-ttyS2.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS2
+  sys-devices-platform-serial8250-tty-ttyS3.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS3
+  sys-devices-virtual-misc-rfkill.device                                                   loaded active plugged   /sys/devices/virtual/misc/rfkill
+  sys-module-configfs.device                                                               loaded active plugged   /sys/module/configfs
+  sys-module-fuse.device                                                                   loaded active plugged   /sys/module/fuse
 ```
 
-Bakın 2000 yılının ocak ayı takvimi getirildi. Benzer şekilde ileri tarih de belirtebiliriz. Ben 2025 yılının 6 ayı için takvim bilgisini istiyorum. 
+Ben çıktıları kısaltarak ekledim, fakat siz kendi konsolunuz üzerinde pek çok farklı türde “**unit**” yani “**birim**” olduğunu bizzat görebilirsiniz. Zaten birimler, “**.automount”**, “**.device”**, “**.service”** şeklinde isminin sonunda nokta ve birim ismiyle açıkça belirtiliyor. 
+
+Buradaki çıktılarda yalnızca aktif olan yani halihazırda çalışmakta olan birimler listelenmiş oldu. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz.
 
 ```bash
-└─$ ncal 6 2025                                                  
-    June 2025         
-Su  1  8 15 22 29   
-Mo  2  9 16 23 30   
-Tu  3 10 17 24      
-We  4 11 18 25      
-Th  5 12 19 26      
-Fr  6 13 20 27      
-Sa  7 14 21 28
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl list-units --all
+  UNIT                                                                                                   LOAD      ACTIVE   SUB       DESCRIPTION                                >
+  proc-sys-fs-binfmt_misc.automount                                                                      loaded    active   waiting   Arbitrary Executable File Formats File Syst>
+  dev-cdrom.device                                                                                       loaded    active   plugged   VBOX_CD-ROM
+  dev-disk-by\x2did-ata\x2dVBOX_CD\x2dROM_VB2\x2d01700376.device                                         loaded    active   plugged   VBOX_CD-ROM
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VB3ccf8e6f\x2da9e91513.device                                   loaded    active   plugged   VBOX_HARDDISK
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VB45786de4\x2d3738de63.device                                   loaded    active   plugged   VBOX_HARDDISK
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VB45786de4\x2d3738de63\x2dpart1.device                          loaded    active   plugged   VBOX_HARDDISK 1
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VB45786de4\x2d3738de63\x2dpart2.device                          loaded    active   plugged   VBOX_HARDDISK 2
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VB45786de4\x2d3738de63\x2dpart5.device                          loaded    active   plugged   VBOX_HARDDISK 5
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VBda1e68a2\x2d30c6e453.device                                   loaded    active   plugged   VBOX_HARDDISK
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VBe669bbe4\x2d6b8b9ee2.device                                   loaded    active   plugged   VBOX_HARDDISK
+  dev-disk-by\x2did-ata\x2dVBOX_HARDDISK_VBe669bbe4\x2d6b8b9ee2\x2dpart1.device                          loaded    active   plugged   VBOX_HARDDISK 1
+  dev-disk-by\x2did-lvm\x2dpv\x2duuid\x2d5JMH8c\x2dE6sH\x2dCU8Q\x2dffxQ\x2dM2Qf\x2dibd9\x2diwfl4z.device loaded    active   plugged   ORCL-VBOX-NVME-VER12
+  dev-disk-by\x2did-lvm\x2dpv\x2duuid\x2dx0PYst\x2d25V2\x2drYcj\x2dxXIC\x2dEAvQ\x2dKFun\x2d11WCWu.device loaded    active   plugged   VBOX_HARDDISK 1
 ```
 
-Bakın bu takvim de bastırıldı. İşte ihtiyacınız olduğunda sizler de konsol üzerinden takvim bilgisine bu şekilde kolayca ulaşabilirsiniz. Komutun ismi “**cal**endar” yani “takvim” ifadesinden geldiği için hatırlaması da kolay aslında. Yine de unutursanız örneğin yardım sayfalarını `apropos calendar` komutu ile kurcalayabilirsiniz mesela. 
+Ben çıktıları kısalttığım için inaktif olanlar buraya eklediğim çıktılarda gözükmüyor ancak `—state=inactive` seçeneği ile inaktif olanları da özellikle filtreleyebiliriz.
 
 ```bash
-└─$ apropos calendar
-cal (1)              - displays a calendar and the date of Easter
-ncal (1)             - displays a calendar and the date of Easter
-zshcalsys (1)        - zsh calendar system
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl list-units --all --state=inactive                                                                                                                             
+  UNIT                                                                                 LOAD      ACTIVE   SUB  DESCRIPTION                                                       >
+● home.mount                                                                           not-found inactive dead home.mount
+  proc-sys-fs-binfmt_misc.mount                                                        loaded    inactive dead Arbitrary Executable File Formats File System
+● tmp.mount                                                                            not-found inactive dead tmp.mount                                                         >
+  systemd-ask-password-console.path                                                    loaded    inactive dead Dispatch Password Requests to Console Directory Watch             >
+  apparmor.service                                                                     loaded    inactive dead Load AppArmor profiles
+● auditd.service                                                                       not-found inactive dead auditd.service
+  auth-rpcgss-module.service                                                           loaded    inactive dead Kernel Module supporting RPCSEC_GSS
+● console-screen.service                                                               not-found inactive dead console-screen.service
+  dm-event.service                                                                     loaded    inactive dead Device-mapper event daemon
+  dpkg-db-backup.service                                                               loaded    inactive dead Daily dpkg database backup service
+  e2scrub_all.service                                                                  loaded    inactive dead Online ext4 Metadata Check for All Filesystems
+  e2scrub_reap.service                                                                 loaded    inactive dead Remove Stale Online ext4 Metadata Check Snapshots
+  emergency.service                                                                    loaded    inactive dead Emergency Shell
 ```
 
-Bakın takvimle ilgili olan komutlar ve açıklamaları listelendi.
+Gördüğünüz gibi yalnızca inaktif olanları da filtrelemiş olduk.
 
-Neticede takvimi öğrenebileceğimiz bir komut olduğunu bildiğimiz sürece, ilgili komutun ismini bulmak için yardım sayfalarını kolayca kullanabiliyoruz gördüğünüz gibi.
-
-# Dosyalar Hakkında Bilgi Edinmek
-
-## which Komutu
-
-`which` komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanabiliyoruz.  
-
-Örneğin sizler de biliyorsunuz ki; ben konsola `ls` yazdığımda kabuk öncelikle `ls` isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor. Zaten bu durumdan eğitimin en başında bahsettik. İşte bash komutunun bulup çalıştırmasına benzer şekilde, `which` komutu da kendisine argüman olarak belirtilmiş olan isimdeki aracın tam dosya konumunu bize bildiriyor. Yani aslında `which` komutu da PATH yoluna bakarak argüman olarak verdiğim aracı araştırıyor. Dolayısıyla PATH yolunda olmayan araçların dosya konumları `which` komutu tarafından bastırılamıyor. 
-
-Hemen `ls` komutunun tam dizin adresine bakalım. 
+Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneğini kullanabiliyoruz. Ben denemek için **apache2** servisini sorguluyorum. 
 
 ```bash
-└─$ which ls
-/usr/bin/ls
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2
+○ apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
+       Docs: https://httpd.apache.org/docs/2.4/
 ```
 
-Bakın `ls` aracı tam olarak ***/usr/bin/ls*** dizini içindeymiş. hatta istersek `which` aracının kendi dosya adresine de bakabiliriz. 
+<p class="mavi"><strong>ℹ️ Not:</strong> Sizin kullanmakta olduğunuz sistemde <strong>apache</strong> servisi farklı bir kısayol ismi ile tanımlı olabilir. Örneğin Apache servisi, RedHat üzerinde <strong>httpd</strong> olarak geçiyor. Birimleri listelediğiniz çıktılardan, sizin sisteminizdeki ismini öğrenebilirsiniz. Ayrıca apache için sizin sisteminizde tanımlı bir servis mevcut olmayabilir. Ben yalnızca kendi sistemimden örnek vermek için <strong>apache</strong> ismi üzerinden apache servisinde uygulamalar gerçekleştiriyorum. Siz dilediğiniz bir servisi kullanabilirsiniz.</p>
+
+# Unit(Birim) Yönetimi
+
+## Başlatmak | `start`
+
+İnaktif durumdaki bir birimi başlatmak için `sudo systemctl start birim-adı` şeklinde komutumuzu girebiliyoruz. Ben denemek için kapalı olan **apache2.service** isimli servisi başlatmak istiyorum.
 
 ```bash
-└─$ which which
-/usr/bin/which
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl start apache2.service 
+[sudo] password for taylan: 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2.service 
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:08:06 EDT; 6s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 15355 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 15390 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 19.2M
+        CPU: 110ms
+     CGroup: /system.slice/apache2.service
+             ├─15390 /usr/sbin/apache2 -k start
+             ├─15391 /usr/sbin/apache2 -k start
+             ├─15392 /usr/sbin/apache2 -k start
+             ├─15393 /usr/sbin/apache2 -k start
+             ├─15394 /usr/sbin/apache2 -k start
+             └─15395 /usr/sbin/apache2 -k start
+
+Jul 24 10:08:01 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:08:06 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
 ```
 
-Bakın `which` aracı da ***/usr/bin/which*** dizini içindeymiş. İşte bu şekilde PATH yolu üzerindeki araçların tam dizin adreslerini öğrenebilirsiniz. Bu komut özellikle bir aracın çalıştırılabilmesi için tam dizin adresinin girilmesi gereken durumlarda bize dizin bilgisini sunması bakımından önemli. Örneğin eğer hatırlıyorsanız, varsayılan kabuğumuzu bash olarak değiştirme işleminden bahsederken, bash kabuğunun dosya konumunu da `which` komutu sayesinde bulmuştuk. `which` komutu, özellikle bash kabuk programlamada sıklıkla kullanıldığı için, ileride karşılaşmanız ve ihtiyaç duymanız olası. Yani hemen şimdi aktif olarak kullanmayacak olsanız bile bu komutu gördüğünüzde hangi amaca hizmet ettiğini artık biliyorsunuz.
+Ben **apache2.service** şeklinde birimin türünü(**.service**) açıkça belirttim fakat **apache2** isminde başka bir birim türü yoksa **apache2.service** yerine doğrudan apache2 şeklinde de girebilirdim. 
 
-## type Komutu | command & builtin Komutları
+## Durdurmak | `stop`
 
-`type` komutu, isminden de anlaşılabileceği gibi kabuğa girdiğimiz komutların tipiyle türleriyle ilgili bilgileri görüntülemek için kullandığımız bir araçtır. Diğer bir deyişle kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanışlı bir bilgi edinme aracıdır.
-
-Ben denemek için konsola `type ls` yazıyorum. 
+Çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutunu kullanabiliyoruz. Ben başlattığım apache2 servis birimini durduracağım. 
 
 ```bash
-└─$ type ls
-ls is aliased to `ls --color=auto'
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl stop apache2
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2
+○ apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
+       Docs: https://httpd.apache.org/docs/2.4/
+
+Jul 24 10:08:01 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:08:06 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
+Jul 24 10:08:33 linuxdersleri.net systemd[1]: Stopping The Apache HTTP Server...
+Jul 24 10:08:38 linuxdersleri.net systemd[1]: apache2.service: Deactivated successfully.
+Jul 24 10:08:38 linuxdersleri.net systemd[1]: Stopped The Apache HTTP Server.
 ```
 
-Bakın kabuğa `ls` komutunu verdiğimde aslında kabuğun `ls` komutunu bir takma isim olarak kabul edip buradaki komutu çalıştırdığını öğrendik. Normalde standart `ls` aracı yani biz `ls` komutunu girdiğimizde çalıştırılan dosya ***/usr/bin/ls*** dosyası. Ama `ls` komutu ile aynı isimde yeni bir takma isim tanımlandığı için kabuk bizim girdiğimiz `ls` komutunu öncelikli olarak takma isim olarak dikkate alıyor ve buradaki takma isim tanımlamasından dolayı `ls —color=auto` komutunu çalıştırıyor.
+## Yeniden Başlatmak | `restart` `reload`
 
-Takma isim dışında kabuğun yerleşik komutlarını da sorgulayabiliriz. 
+Birimi yeniden başlatmak için `restart` seçeneğini kullanabiliyoruz. Örneğin birim dosyası üzerinde konfigürasyon değişikliği yaptığınızda, ilgili birimde bu değişikliğin geçerli olması için yeniden başlatabilirsiniz. Bu seçenek, hem kapalı hem de halihazırda çalışmakta olan birimin yeniden başlatılmasını sağlıyor. 
 
 ```bash
-└─$ type cd
-cd is a shell builtin
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl restart apache2.service 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2.service 
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 23s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 15683 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 15749 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 12.1M
+        CPU: 60ms
+     CGroup: /system.slice/apache2.service
+             ├─15749 /usr/sbin/apache2 -k start
+             ├─15754 /usr/sbin/apache2 -k start
+             ├─15755 /usr/sbin/apache2 -k start
+             ├─15756 /usr/sbin/apache2 -k start
+             ├─15757 /usr/sbin/apache2 -k start
+             └─15758 /usr/sbin/apache2 -k start
+
+Jul 24 10:09:12 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:09:17 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
 ```
 
-Bakın `cd` aracı bash kabuğunun yerleşik aracı olduğu için bu çıktıyı almış olduk.
-
-Ayrıca mesela `type bash` komutunu da girebiliriz. 
+Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
 
 ```bash
-└─$ type bash
-bash is /usr/bin/bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl reload apache2.service                                                                                                                  
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2.service                                                                                                                   
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 56s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 15683 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+    Process: 15939 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)
+   Main PID: 15749 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 12.3M
+        CPU: 149ms
+     CGroup: /system.slice/apache2.service
+             ├─15749 /usr/sbin/apache2 -k start
+             ├─15983 /usr/sbin/apache2 -k start
+             ├─15984 /usr/sbin/apache2 -k start
+             ├─15985 /usr/sbin/apache2 -k start
+             ├─15986 /usr/sbin/apache2 -k start
+             └─15987 /usr/sbin/apache2 -k start
+
+Jul 24 10:09:12 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:09:17 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
+Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server...
+Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
 
-Bakın bu kez bash kabuğunun dosya konumunu aldık çünkü biz `bash` komutunu girdiğimizde mevcut kabuk bu dizindeki dosyayı çalıştırıyormuş. Bash kabuğu yerleşik bir araç olmadığı için veya bu isimde bir takma isim tanımlanmadığı için bu şekilde doğrudan çalıştırılan dosyanın konumu kabuk tarafından kullanılıyor.
+## Birimlerin Aktif Pasif Hale Getirilmesi
 
-Özetle bakın `type` komutu sayesinde bizim girdiğimiz komutlardaki araç isimlerinin kabuk tarafından nasıl algılandığını öğrenebiliyoruz. 
+Birimleri yalnızca manuel olarak başlatıp, durdurmamız gerekmiyor. Sistem başlangıcında otomatik olarak başlamasını istediğimiz birimleri **systemd** üzerinden “**enabled**” yani “aktif” şekilde tanımlamamız yeterli.
 
-Peki bizim girdiğimiz komutların kabuk tarafından nasıl algılandığının neden bilmemiz gerekiyor ? 
+### Aktifleştirmek | `enable`
 
-Bu bilgi önemli çünkü, tıpkı `ls` komutunda olduğu gibi yerleşik ve PATH yolundaki harici komutlarla aynı isimde takma isimler tanımlı olabiliyor. Takma isimler yerleşik ve harici komutlardan daha öncelikli değerlendirildiği için de, girdiğimiz komutlar bizim normalde beklediğimizden daha farklı sonuçlar verebiliyor.
-
-Örneğin ben `alias ls="echo ben takma isimim"` şeklinde yani var olan bir komutla aynı isimde bir takma isim tanımlarsam ne olur ? Hemen deneyelim. 
+Ben denemek için apache2 servisini aktifleştirmek üzere `sudo systemctl enable apache2` şeklinde komutumu giriyorum.
 
 ```bash
-└─$ alias ls="echo ben takma isimim"
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl enable apache2
+Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable apache2
+Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 
-┌──(taylan@linuxdersleri)-[~]
-└─$ ls                                                           
-ben takma isimim
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 19min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 15749 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 12.3M
+        CPU: 220ms
+     CGroup: /system.slice/apache2.service
+             ├─15749 /usr/sbin/apache2 -k start
+             ├─15983 /usr/sbin/apache2 -k start
+             ├─15984 /usr/sbin/apache2 -k start
+             ├─15985 /usr/sbin/apache2 -k start
+             ├─15986 /usr/sbin/apache2 -k start
+             └─15987 /usr/sbin/apache2 -k start
+
+Jul 24 10:09:12 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:09:17 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
+Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server...
+Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
 
-Gördüğünüz gibi `ls` komutunun neticesinde dizin içeriğini listelemek yerine "ben takma isimim" çıktısını aldık. Çünkü kabuğa girdiğimiz komutlarda ilk olarak eğer komutla eşleşen bir takma isim varsa kabuk bunu dikkate alıyor. Nitekim çıktıdan da bu durumu teyit ettik. İşte girdiğimiz komutun beklediğimizden farklı sonuçlar verdiği durumlarda `type` komutu ile kabuğun bakış açısından girdiğimiz komutu sorgulayabiliyoruz. Bu sayede girdiğimiz komutun neden beklenmedik şekilde çalıştığına dair çözüm için fikir sahibi olmamız mümkün oluyor. 
+apache2 servisi “enable” yani “aktif” hale gelmiş oldu. Yani sistem başlangıcında otomatik olarak başlatılıyor olacak. 
 
-Örneğin benim `ls` takma ismi örneğinde komutumu `command ls` şeklinde girmem gerekiyor. 
+### Devre Dışı Bırakmak | `disable`
+
+Eğer aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneğini kullanabiliriz.
 
 ```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl disable apache2                                                                                                                 
+Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable apache2
+Removed /etc/systemd/system/multi-user.target.wants/apache2.service.
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status apache2                                                                                                                          
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 21min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 15749 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 12.3M
+        CPU: 227ms
+     CGroup: /system.slice/apache2.service
+             ├─15749 /usr/sbin/apache2 -k start
+             ├─15983 /usr/sbin/apache2 -k start
+             ├─15984 /usr/sbin/apache2 -k start
+             ├─15985 /usr/sbin/apache2 -k start
+             ├─15986 /usr/sbin/apache2 -k start
+             └─15987 /usr/sbin/apache2 -k start
+
+Jul 24 10:09:12 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:09:17 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
+Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server...
+Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
 
-Bakın bu şekilde girdiğimde, `ls` ifadesinin bir komut olduğunu belirtmiş oluyorum. Benim burada kullandığım `command` komutu sayesinde kabuk takma ismi görmezden gelip normla şekilde önce yerleşik komutlara daha sonra `ls` isminin geçtiği PATH yolundaki dizinlere bakıyor ve ***/usr/bin/ls*** dosyasını bulup çalıştırabiliyor. Yani buradaki `command` komutu `ls` komutunun doğrudan çalıştırılacak komut olarak kabul edilmesini sağlıyor.
+Gördüğünüz gibi `enable` seçeneği ile aktifleştiriyorken, `disable` seçeneği ile de pasif konuma getirebiliyoruz. 
 
-Aynı durum yerleşik komutlar için de geçerli. Örneğin `cd` yerleşik komutu ile aynı isimde bir `alias` tanımlarsak `cd` komutunu kullandığımızda takma ismin karşılığındaki komut çalıştırılıyor olacak. Denemek için `alias cd=”echo ben cd komutuyum”` şeklinde yazıp onaylayalım. 
+# Birimleri Gruplamak | Target
+
+Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak aktifleştirilmesini isteyebiliriz. systemd bu durumlar için “**target**” ismi verilen birimleri kullanıyor. target sayesinde sistem başlangıcında başlatılmasını istediğimiz tüm birimleri gruplayabiliyoruz. Temel target birimlerini listeleyecek olursak:
+
+- *poweroff*
+- *rescue*
+- *multi-user*
+- *graphical*
+- *reboot*
+
+Bu target’lar, içerisinde amaçları doğrultusunda uygun olan birimleri barındıran gruplardır. Örneğin poweroff.target aslında systemd’nin tüm birimleri sonlandırması sonucu sistemin kapanmasını sağlayan gruptur. 
+
+Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutunu girebilirsiniz.
 
 ```bash
-└─$ alias cd="echo ben cd komutuyum"                             
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ cd                                                           
-ben cd komutuyum
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ cd /                                                         
-ben cd komutuyum /
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl get-default 
+graphical.target
 ```
 
-Bakın `cd` komutu asıl işlevi olan dizin geçişi işlemi yerine bizim tanımladığımız takma ismi kullanılıp konsol çıktı bastırılıyor. Hatta `type cd` komutu ile de teyit edebiliriz. 
+Benim kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen çok kullanıcılı işletim sistemini yönetebiliyorum.
+
+Eğer varsayılan target birimini değiştirmek istersek `set-default` seçeneğinin ardından ilgili target biriminin tam ismini girebiliriz. Fakat ben öncelikle mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutunu giriyorum.
 
 ```bash
-└─$ type cd
-cd is aliased to `echo ben cd komutuyum'
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl list-units --type target --all                                                                                                                
+  UNIT                                                                                 LOAD   ACTIVE   SUB    DESCRIPTION                                  >
+  basic.target                                                                         loaded active   active Basic System
+  blockdev@dev-disk-by\x2duuid-00253fba\x2dff78\x2d4f04\x2db189\x2dfbc974082345.target loaded inactive dead   Block Device Preparation for /dev/disk/by-uui>
+  blockdev@dev-disk-by\x2duuid-491d3534\x2db3d9\x2d47af\x2dad63\x2d66b0e72fe8dd.target loaded inactive dead   Block Device Preparation for /dev/disk/by-uui>
+  blockdev@dev-sda5.target                                                             loaded inactive dead   Block Device Preparation for /dev/sda5
+  cryptsetup.target                                                                    loaded active   active Local Encrypted Volumes
+  emergency.target                                                                     loaded inactive dead   Emergency Mode
+  first-boot-complete.target                                                           loaded inactive dead   First Boot Complete
+  getty-pre.target                                                                     loaded inactive dead   Preparation for Logins
+  getty.target                                                                         loaded active   active Login Prompts
+  graphical.target                                                                     loaded active   active Graphical Interface
+  initrd-root-fs.target                                                                loaded inactive dead   Initrd Root File System
+  initrd-usr-fs.target                                                                 loaded inactive dead   Initrd /usr File System
+  integritysetup.target                                                                loaded active   active Local Integrity Protected Volumes
+  local-fs-pre.target                                                                  loaded active   active Preparation for Local File Systems
+  local-fs.target                                                                      loaded active   active Local File Systems
+  multi-user.target                                                                    loaded active   active Multi-User System
+  network-online.target                                                                loaded inactive dead   Network is Online
+  network-pre.target                                                                   loaded inactive dead   Preparation for Network
+  network.target                                                                       loaded active   active Network
+  nfs-client.target                                                                    loaded active   active NFS client services
+  nss-lookup.target                                                                    loaded inactive dead   Host and Network Name Lookups
+  nss-user-lookup.target                                                               loaded inactive dead   User and Group Name Lookups
+  paths.target                                                                         loaded active   active Path Units
+  remote-fs-pre.target                                                                 loaded active   active Preparation for Remote File Systems
+  remote-fs.target                                                                     loaded active   active Remote File Systems
+  rescue.target                                                                        loaded inactive dead   Rescue Mode
+  shutdown.target                                                                      loaded inactive dead   System Shutdown
+  slices.target                                                                        loaded active   active Slice Units
+  sockets.target                                                                       loaded active   active Socket Units
+  sound.target                                                                         loaded active   active Sound Card
+  stunnel.target                                                                       loaded active   active TLS tunnels for network services - per-config>
+  swap.target                                                                          loaded active   active Swaps
+  sysinit.target                                                                       loaded active   active System Initialization
+  time-set.target                                                                      loaded active   active System Time Set
+  time-sync.target                                                                     loaded inactive dead   System Time Synchronized
+  timers.target                                                                        loaded active   active Timer Units
+  umount.target                                                                        loaded inactive dead   Unmount All Filesystems
+  veritysetup.target                                                                   loaded active   active Local Verity Protected Volumes
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+38 loaded units listed.
+To show all installed unit files use 'systemctl list-unit-files'.
 ```
 
-Bakın `cd` komutu kabuk tarafından artık bir takma isim olarak algılanıyormuş.
+Bakın benim sistemimde, başta vermiş olduğum standart tablodan çok daha fazla target tanımlı gözüküyor. Dilersek biz de spesifik bir amaç için bir target birimi oluşturup bu birimin başlatması gereken birimleri bu birim altında gruplayabiliriz. Bu konuya değinmeyeceğiz fakat hazır yeri gelmişken, ihtiyaca yönelik olarak tüm birimleri konfigüre edebileceğimize vurgu yapmak istedim.
 
-Eğer biz bu takma isim yerine `command cd  /` veya `builtin cd /` şeklinde yazarsak, kabuk buradaki `cd` ifadesini ile tanımlı olan takma ismi görmezden gelip `cd` komutunun asıl işlevini yerine getiriyor olacak. 
+Ben varsayılan target seviyesini değiştirmeyi örneklemek için **graphical.target** yerine **multi-user.target**’ı varsayılan olarak tanımlamak istiyorum.
 
 ```bash
-└─$ command cd /                                                 
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl get-default 
+graphical.target
 
-┌──(taylan@linuxdersleri)-[/]
-└─$ builtin cd ~
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl set-default multi-user.target                                                                                                                 
+Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi-user.target.
 
-┌──(taylan@linuxdersleri)-[~]
-└─$ pwd                                                          
-/home/taylan
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl get-default                                                                                                                 
+multi-user.target
 ```
 
-Bakın bu kez `cd` aracı yerleşik komutlar içinde bulunduğu için kök dizine sorunsuzca geçiş yaptık. Girdiğimiz komutun bir yerleşik komut olduğunu özellikle belirtmek için `builtin` komutunu da kullanabileceğimizi görmüş olduk.
+Gördüğünüz gibi varsayılan target değişmiş oldu. Bu değişiklik sistem başlangıcında geçerli olacak.
 
-Fakat dikkat edin `builtin` komutu yalnızca yerleşik komutları niteliyorken, `command` komutu tüm komut türlerinde takma isimlerin görmezden gelinmesini sağlıyor.
+Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek `sudo systemctl isolate isim.target` şeklinde komutumuzu girebiliriz. Örneğin `sudo systemctl isolate reboot.target` komutunu girecek olursak, **reboot.target** birimi konfigürasyonları sebebiyle sistemin yeniden başlatılmasını sağlayacaktır. Bu komutu onayladığınız anda sisteminiz yeniden başlatılacaktır. Çünkü **reboot.target** birimi bunun için özel olarak konfigüre edilmiştir. 
 
-Bu durumu test etmek için yerleşik komut olmayan `ls` komutunu `builtin ls` komutu ile doğrudan çalıştırmayı deneyebiliriz. 
+Ayrıca birimleri aktif ve pasif şekilde tanımlarken, komut çıktılarında ilgili birimin multi-user.target ile ilişkili olan dosya konumuna sembolik olarak bağlandığını da görmüştük. Bu sayede sistem multi-user.target birimi ile başlatılırken, aktifleştirmiş olduğumuz birim de bu grup dahilinde başlatılmış oluyor.
 
 ```bash
-└─$ builtin ls                                                   
-bash: builtin: ls: not a shell builtin
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl enable apache2
+Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable apache2
+Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-Bakın `ls` aracının bash kabuğunun yerleşik aracı olmadığı konusunda hata çıktısı bastırıldı. 
+Bakın multi-user.target birimi altına bu servis sembolik olan bağlanmış oldu. Bu sayede sistem multi-user.target birimi ile başlatılırken bu servis de otomatik olarak başlatılıyor olacak. 
 
-Takma ismin görmezden gelinmesi için `command ls` şeklinde girebiliriz. 
+Eğer bu birimi devredışı bırakırsak da bu sembolik link silinecek. Hemen deneyelim.
 
 ```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl disable apache2.service                             
+Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable apache2                 
+Removed /etc/systemd/system/multi-user.target.wants/apache2.service.
 ```
 
-Bakın bu kez `ls` aracı için takma isim görmezden gelinip bu isim doğrudan PATH yolundaki ilgili dosyayı çalıştırmış oldu.
+İlgili sembolik linkin silinmesiyle bu servis de pasif konumuna geçerek, mult-user.target birimi ile ilişkisi kesilmiş oldu. Bu sebeple sistem başlangıcında bu servis birimi otomatik olarak başlatılmayacak. 
 
-Sanırım bu örneklerle birlikte, neden `type` komutunu kullanma ihtiyacı duyabileceğimiz ve kabuğun bizim girdiğimiz komutlara bakış açısı hakkında temel düzeyde de olsa fikir sahibi olabildik.
-
-`type` komutu hakkında dikkat etmeniz gereken detay, `type` aracının bütüncül olarak girdiğiniz çok argümanlı komutları değerlendirmek için kullanılmadığı. Yalnızca çalıştırılacak olan araçları temsil eden komutların kabuk tarafından nasıl ele alındığını görmemizi sağlıyor.
-
-Yani örneğin `ls` komutunun `-l` seçeneğiyle birlikte bu komutun tipini sorgulamaya çalışabiliriz.
+Tam bu noktada mevcut sistemimdeki varsayılan target bilgisini almak için kullandığım systemctl get-default komutunun çıktısındaki “graphical.target” sonucu kafanızı karıştırmış olabilir.
 
 ```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
+┌──(taylan㉿linuxdersleri)-[~]                                               
+└─$ systemctl get-default 
+graphical.target
 ```
 
-Bakın `ls` komutunun takma isim olduğu ama `-l` ifadesinin bulunamadığı belirtilmiş. Tırnak içinde yazmayı da deneyebiliriz. 
+Evet benim sistemimde [graphical.target](http://graphical.target) standart target fakat, aslında bu target da [multi-user.target](http://multi-user.target) ile bağlantılı çalışıyor. multi-user.target birimindekilere ek olarak grafiksel arayüz için gereken birimler de graphical.target biriminde tanımlı. Bu durumu teyit etmek için `cat /lib/systemd/system/graphical.target` komutu ile graphical.target birim dosyasını inceleyebiliriz.
 
 ```bash
-└─$ type "ls -l"                                                 
-bash: type: ls -l: not found
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /lib/systemd/system/graphical.target                                                                                         
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
 
-└─$ type 'ls -l'
-bash: type: ls -l: not found
+[Unit]
+Description=Graphical Interface
+Documentation=man:systemd.special(7)
+Requires=multi-user.target
+Wants=display-manager.service
+Conflicts=rescue.service rescue.target
+After=multi-user.target rescue.service rescue.target display-manager.service
+AllowIsolate=yes
 ```
 
-Bakın bu kez de `ls -l` komutunun bulunamadığı hatasını aldık.
+Şimdi buradaki konfigürayonları açıklayacak olursak:
 
-Yani bizzat buradaki örnekler üzerinden de teyit ettiğimiz gibi buradaki `type` aracı yalnızca ona verdiğimiz argümanlardaki araç isimlerin kabuk tarafından nasıl ele alınıp çalıştırılacağı konusunda bilgi sunuyor. Mesela `type ls echo cd nano` şeklinde birden fazla argüman verip, birden fazla aracı temsil eden komutların kabuk tarafından nasıl ele alındığını görebiliriz. 
+**`Requires=multi-user.target`**: Bu satır, bağımlılığı belirtiyor. Yani, mevcut birim çalıştırılmadan önce multi-user.target birimi de çalıştırılmalıdır. Eğer multi-user.target çalıştırılamazsa, bu birim yani graphical.target birimi de çalıştırılmayacaktır.
+
+**`Wants=display-manager.service`**: Bu satır, birim dosyanın display-manager.service birimini bağımlılık olarak istediğini belirtir. **`Requires`**'dan farklı olarak, **`Wants`** bağımlılığı zorunlu kılmaz. Eğer display-manager.service mevcut değilse, bu birim hala çalıştırılabilir. Ancak eğer varsa, display-manager.service ile birlikte çalışacaktır.
+
+**`Conflicts=rescue.service rescue.target`**: Bu satır, birim dosyanın rescue.service veya rescue.target ile çakışmaması gerektiğini belirtir. Yani, eğer rescue.service veya rescue.target çalışıyorsa, bu birim çalıştırılmaz.
+
+**`After=multi-user.target rescue.service rescue.target display-manager.service`**: Bu satır, birimin çalıştırılması gereken sıralamayı belirtir. Yani mevcut graphical.target birimi, multi-user.target, rescue.service, rescue.target ve display-manager.service birimlerinden sonra çalıştırılmalıdır. Bu, belirli bir sıra sağlamak için kullanılır.
+
+**`AllowIsolate=yes`**: Bu satır, bu birimin "isolate" komutunu destekleyeceğini belirtir. isolete komutu ile anında target birimlerinde geçiş yapabileceğinizi biliyorsunuz, işte bu tanımlama buna izin veriyor.
+
+Gördüğünüz gibi grafiksel arayüz için gereken display-manager.service ve çok kullanıcılı standart sistem yönetimi için gerekli olan multi-user.target kullanılarak graphical.target birimi meydana getirilimiş. Bu sayede grafiksel arayüzlü çok kullanıcılı bir sistem için gereken tüm birimler başlatılabiliyor.
+
+Bu kısa açıklama ile, birimlerin nasıl aktif ve pasif olarak tanımlandığı ve target birimlerinin bu konudaki işlevi biraz daha net anlaşılmıştır diye umuyorum.
+
+# Yeni Servis Tanımlaması
+
+Basit bir örnek olarak kendimize yeni bir servis tanımlamayı deneyebiliriz. Ben servis olarak arka planda çalıştırılması için bir betik hazırlamak istiyorum. 
+
+Örnek olarak; çalıştığı her dakika boyunca ***/home/taylan/Desktop/zaman.log*** isimli dosyaya çalışma saatlerini bastıran bir betik kullanacağım.
 
 ```bash
-└─$ type ls echo cd nano                                         
-ls is aliased to `echo ben takma isimim'
-echo is a shell builtin
-cd is aliased to `echo ben cd komutuyum'
-nano is /usr/bin/nano
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat > zaman.sh
+#! /usr/bin/bash
+
+while true; do
+    date >> /home/taylan/Desktop/zaman.log
+    sleep 60 
+done
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ chmod +x zaman.sh 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ./zaman.sh
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat ~/Desktop/zaman.log 
+Wed Jul 26 10:05:24 AM EDT 2023
 ```
 
-Bakın bu komutlar kabuk tarafından çalıştırılırken buradaki tipleri dahilinde ele alınıp çalıştırılıyorlarmış.
+Betik dosyamı hazırladım ve sorunsuzca çalıştığını da teyit ettim. Şimdi bu betik dosyasının servis olarak arka planda çalışması için tanımlama yapalım. 
 
-En nihayetinde `type` komutunun bizlere kabuğun bakış açısından komutları görebilme imkanı tanıdığı görmüş olduk. Artık ihtiyacınız olduğunda komutların kabuktaki tip karşılığını nasıl öğrenebileceğinizi biliyorsunuz.
-
-## file Komutu
-
-`file` aracını dosyaların türleri hakkında bilgi almak için kullanabiliyoruz.
-
-Özellikle dosya uzantısı bulunmayan ve türünü bilmediğimiz dosyalar hakkında hızlıca bilgi edinmek için file aracı iyi bir tercih. Daha önce sıkıştırmış olduğumuz arşiv dosyasının türünden emin olmak için kullanmıştık hatırlıyorsanız. Tekrar hatırlayacak olursak örneğin `file ~/.bashrc` komutu ile ***.bashrc*** dosyasının türünü sorgulayabiliriz. 
+Servis dosyasını `/etc/systemd/system/` dizini altında ***servis-ismi.service*** ismiyle oluşturmamız gerekiyor. Bunun için `nano` aracından faydalanabilirsiniz. 
 
 ```bash
-└─$ file ~/.bashrc
-/home/taylan/.bashrc: Unicode text, UTF-8 text
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo nano /etc/systemd/system/zaman.service
+[sudo] password for taylan:
 ```
 
-Bakın bu dosya aslında “text” dosyasıymış.
-
-Başka bir örnek olarak arşiv dosyasını sorgulayabilirim. 
+Öncelikle tanımlamayı yapıp dosyamızı kaydedelim. 
 
 ```bash
-└─$ file /var/log/user.log.4.gz 
-/var/log/user.log.4.gz: gzip compressed data, last modified: Sat Jun  3 07:27:18 2023, from Unix, original size modulo 2^32 113312
+[Unit]
+Description=zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
+
+[Service]                                                                    
+ExecStart=/home/taylan/zaman.sh                                              
+                                                                             
+[Install]                                                                    
+WantedBy=multi-user.target
 ```
 
-Bakın bu arşiv dosyasının, hangi tür arşiv olduğu burada kısaca belirtiliyor. Bu şekilde istediğiniz dosyaları sorgulayıp türleri hakkında bilgi alabilirsiniz. Tek tek tüm dosyalar üzerinde denememize gerek yok. `file` aracına argüman olarak belirttiğiniz dosyalar hakkında bu şekilde kısa bilgi alabiliyoruz. Eğer aldığınız çıktıdaki dosya türünü bilmiyorsanız internet üzerinde araştırıp gerekli bilgiye ulaşabilirsiniz.
+**`[Unit]`**, birim hakkında bilgi girdiğimiz bölümdür. `Description` seçeneğinin ardından, mevcut birim hakkında açıklama ekliyoruz. 
 
-Son bir örnek olarak sistemde yüklü bulunan araçların dosyalarını da sorgulayabiliriz. Ben `file /usr/bin/ls` komutu ile `ls` aracının dosya türünü sorguluyorum. 
+**`[Service]`** servisle ilgili konfigürasyonları tanımlayabileceğimiz başlıktır. Bu başlık altında servisin çalışma şekli hakkında ihtiyacımıza yönelik tanımlamalarda bulunabiliyoruz. Ben yalnızca ***/home/taylan/zaman.sh*** konumundaki betik dosyasını çalıştırmak istediğim için “`ExecStart=`” tanımından sonra bu betik dosyasının tam konumunu girdim. Siz çalıştırmak istediğiniz dosyanın tam konumunu belirtebilirsiniz.
+
+**`[Install]`** başlığı ise, bu birimin ne zaman yani hangi target ile başlatılacağını belirtmemizi sağlıyor. Ben standart olan çok kullanıcılı multi-user.target grubunu belirttim. Bu sayede sistem başlangıcında otomatik olarak bu servis başlatılıp, betik dosyası çalıştırılıyor olacak. Çünkü benim sistemim bu target ile başlatılıyor.
+
+Bu değişikliğin geçerli olması için systemd aracının konfigürasyon değişikliklerini tanıması üzere `sudo systemctl daemon-reload` komutunu girmemiz gerek.
 
 ```bash
-└─$ file /usr/bin/ls                                             
-/usr/bin/ls: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6e3da6f0bc36b6398b8651bbc2e08831a21a90da, for GNU/Linux 3.2.0, stripped
+┌──(taylan㉿linuxdersleri)-[~]                                               
+└─$ sudo systemctl daemon-reload
+                                                                             
+┌──(taylan㉿linuxdersleri)-[~]                                               
+└─$ systemctl status zaman
+○ zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
+     Loaded: loaded (/etc/systemd/system/zaman.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
 ```
 
-Gördüğünüz gibi tür olarak “**ELF”** basıldı. Bu kısaltma “**E**xecutable and **L**inkable **F**ormat” ifadesinin kısalmasıdır. En genel hali ile yürütülebilir dosyaları temsil ediyor. İşte tıpkı sorguladıklarımız gibi, sistem üzerinde pek çok farklı türde dosya bulunuyor. `file` komutu sayesinde de gerektiğinde dosyaların türleri hakkında bilgi edinebiliyoruz. 
+Çıktıadaki “loaded” ifedsine bakarak servisin **systemd** tarafından tanındığını görebiliyoruz. Fakat **status** çıktısından bizzat teyit edebildiğimiz gibi bu servis şu anda çalışmıyor ve ayrıca aktif durumda da değil. Yani sistem başlangıcında otomatik olarak başlatılmayacak çünkü “**pasif**” yani “**disabled**” olarak tanımlı gözüküyor.
 
-## stat Komutu
-
-Şimdiye kadar `ls` komutu ile boyut tarih ve isim gibi kriterlere göre filtreleme yaparken bizzat gördüğümüz gibi sistemimizdeki dosya ve klasörlerin kendine ait "isim" "boyut" "dizin adresi" "erişim yetkileri" ve “türü” gibi pek çok öznitelik detayını temsil eden metaverileri bulunuyor. `stat` komutu da dosya veya klasörlerin sahip olduğu öznitelikler yani metaveriler hakkında detaylı bilgi sunan bir komuttur. 
-
-Ben denemek için `touch yeni-dosya` komutuyla yeni bir dosya oluşturup stat komutu ile bu dosyanın metaverilerini kontrol etmek istiyorum. 
+Servisi başlatmak için `sudo systemctl start zaman.service` şeklinde komutumuzu girebiliriz.
 
 ```bash
-└─$ touch yeni-dosya
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl start zaman                                                                                                                          
 
-└─$ stat yeni-dosya
-  File: yeni-dosya
-  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
-Device: 801h/2049d      Inode: 2893118     Links: 1
-Access: (0644/-rw-r--r--)  Uid: ( 1000/    taylan)   Gid: ( 1000/    taylan)
-Access: 2023-06-27 02:05:22.675485267 -0400
-Modify: 2023-06-27 02:05:22.675485267 -0400
-Change: 2023-06-27 02:05:22.675485267 -0400
- Birth: 2023-06-27 02:05:22.675485267 -0400
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status zaman.service 
+● zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
+     Loaded: loaded (/etc/systemd/system/zaman.service; disabled; vendor preset: disabled)
+     Active: active (running) since Wed 2023-07-26 10:45:43 EDT; 9s ago
+   Main PID: 11958 (zaman.sh)
+      Tasks: 2 (limit: 12719)
+     Memory: 584.0K
+        CPU: 9ms
+     CGroup: /system.slice/zaman.service
+             ├─11958 /usr/bin/bash /home/taylan/zaman.sh
+             └─11960 sleep 60
+
+Jul 26 10:45:43 linuxdersleri.net systemd[1]: Started zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır..
 ```
 
-Bakın dosyayla ilgili pek çok detay konsolumuza bastırıldı.
-
-Dosyanın tam ismi, boyutu ve dosya tipi gibi detaylar burada gözüküyor. Örneğin bu dosya içerisi boş standart bir dosya olduğu için “regular empty file” şeklinde çıktı aldık.  
-
-Bunun dışında daha önceki anlatımlarımızda kısaca ele aldığımız “inode” ve “link” bilgisi de burada açıkça belirtiliyor. Buradaki **links**, bu dosyanın **sahip olduğu katı linkleri** temsil ederken, **inode** değeri **diskteki veriye ulaşmayı sağlayan benzersiz index numarasını** belirtiyor. 
-
-Dosyanın erişim izinlerini ve sahiplik bilgilerini de buradan görebiliyoruz. Burası dosyanın yetkilerini, sahibini ve grubunu bize bildiriyor. Erişim yetkilerinden ileride ayrıca bahsediyor olacağız. 
-
-Ayrıca bakın burada dosyanın en son “erişim”, “düzenleme” ve “değişim” tarihleri detaylı şekilde basılmış. Biz dosyayı yeni oluşturduğumuz için hepsi aynı oldu ama aslında:
-
-**Erişim tarihi;** dosyanın en son erişilen tarihi belirtiyor. Örneğin dosyanın okunması veya çalıştırılması gibi bir erişim.
-
-**Düzenleme tarihi;** dosya içeriğinin en son ne zaman değiştirildiğini belirtiyor. 
-
-**Değişim tarihi;** dosyanın meta verilerinin en son ne zaman değiştirildiğini belirtiyor. Örneğin dosyanın ismi değiştirildiyse bu tarih de değişecektir. 
-
-Ayrıca bakın “birth” yani dosyanın ilk oluşturulduğu ile ilgili bir satır daha bulunuyor. 
-
-Neticede gördüğünüz gibi `stat` komutu sayesinde dosyaların meta verilerini detaylı şekilde görüntüleyebiliyoruz. 
-
-# Sistem Hakkında Genel Bilgi Edinmek
-
-## lsb_release
-
-`lsb_release` komutu sayesinde mevcut dağıtım hakkında çeşitli bilgiler edinebiliyoruz. Komutumuzda yer alan “**lsb**” ifadesi “**L**inux **S**tandard **B**ase” ifadesinin kısalmasından geliyor. Linux Standard Base kısaca (LSB), Linux sistem yapısını standartlaştırmak için Linux Vakfı'nın organizasyon yapısı altında yürütülen bir projedir. LSB' projesinin en temel amacı, Linux dağıtımları arasındaki uyumluluğu sağlamak için bir dizi açık standart geliştirmek ve bunların kullanımını teşvik etmektir. İşte biz de `lsb_release` komutu ile mevcut dağıtımımızın bu standartlar dahilindeki ismi ve sürümü gibi detayları öğrenebiliyoruz. Tüm bilgileri listelemek için `lsb_release -a` komutunu kullanabiliriz. 
+Servisimiz şu anda çalışıyor fakat sistem başlangıcında otomatik olarak başlatılmayacak. Eğer başlatılmasını istiyorsak `sudo systemctl enable zaman.service` komutu ile aktifleştirebiliriz.
 
 ```bash
-└─$ lsb_release -a                                               
-No LSB modules are available.
-Distributor ID: Kali
-Description:    Kali GNU/Linux Rolling
-Release:        2022.1
-Codename:       kali-rolling
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo systemctl enable zaman.service 
+Created symlink /etc/systemd/system/multi-user.target.wants/zaman.service → /etc/systemd/system/zaman.service.
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status zaman.service 
+● zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
+     Loaded: loaded (/etc/systemd/system/zaman.service; enabled; vendor preset: disabled)
+     Active: active (running) since Wed 2023-07-26 10:45:43 EDT; 2min 36s ago
+   Main PID: 11958 (zaman.sh)
+      Tasks: 2 (limit: 12719)
+     Memory: 596.0K
+        CPU: 21ms
+     CGroup: /system.slice/zaman.service
+             ├─11958 /usr/bin/bash /home/taylan/zaman.sh
+             └─12459 sleep 60
+
+Jul 26 10:45:43 linuxdersleri.net systemd[1]: Started zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır..
 ```
 
-Bakın çıktılarda, dağıtıcı kimliği, kullandığım dağıtım, sürümü, kodadı gibi detaylar bastırıldı. Bu bilgiler mevcut dağıtım hakkında standart düzende bilgiler sunuyor. Buradaki bilgiler sayesinde mevcut dağıtımın tam olarak hangi sürüm olduğunu anlayabiliyorum.
+Servis, multi-user.target ile ilişkili olan dizine sembolik linkle bağlanmış oldu. Yani artık böylelikle sistemimiz multi-user.target olarak başlatıldığında “**zaman.service**” birimi de otomatik olarak başlatılacak. Teyit etmek isterseniz sisteminizi yeniden başlatıp deneyebilirsiniz. 
 
-Aldığımız çıktının başındaki “lsb modülü bulunamadı” hatasına takılmayın. Bu hata `lsb_release` aracının kurulu olduğu ama çekirdek modülünün kurulu olmadığını söylüyor. Şart değil ama dilerseniz lsb çekirdek modülünü nasıl kurabileceğinizi araştırıp kolayca kurulum yapabilirsiniz.
+Elbette servisi nasıl sonlandırabileceğinizi ve pasif hale getirebileceğinizi de biliyorsunuz. Eğer servisi kalıcı olarak silmek isterseniz de, oluşturduğunuz servis birimi dosyasını silmeniz yeterli. 
 
-Ayrıca `lsb_release —help` komutu ile yardım bilgilerinde de görebileceğiniz gibi aslında yalnızca -a seçeneği yok. Çeşitli bilgileri ayrı ayrı bastırmamızı sağlayan farklı seçenekler de var. Eğer kabuk programlama sırasında bu bilgilere ayrı ayrı ihtiyacınız olan bir durumla karşılaşırsanız kullanabilirsiniz. Bunun dışında ben yalnızca gerektiğinde mevcut dağıtım bilgisini edinmek için `lsb_release -a` komutunu kullanıyorum.
+Biz burada yalnızca çok basit düzeyde servis tanımlamayı ele aldık. Fakat servisin yerine getireceği görevlere göre tanımlanması gereken konfigürasyonalar çok çeşitli olabilir. 
 
-## uname
-
-`uname` komutu mevcut işletim sistemi ve donanımı hakkında temel bilgiler sağlayan komuttur. Tüm temel bilgilerin hepsini tek seferde öğrenmek için `-a` seçeneğiyle birlikte kullanabiliyoruz. 
+Örneğin apache2 servisini incelemek için `cat /lib/systemd/system/apache2.service` komutunu girelim. 
 
 ```bash
-└─$ uname -a
-Linux kali 5.15.0-kali3-amd64 #1 SMP Debian 5.15.15-2kali1 (2022-01-31) x86_64 GNU/Linux
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /lib/systemd/system/apache2.service
+[Unit]
+Description=The Apache HTTP Server
+After=network.target remote-fs.target nss-lookup.target
+Documentation=https://httpd.apache.org/docs/2.4/
+
+[Service]
+Type=forking
+Environment=APACHE_STARTED_BY_SYSTEMD=true
+ExecStart=/usr/sbin/apachectl start
+ExecStop=/usr/sbin/apachectl graceful-stop
+ExecReload=/usr/sbin/apachectl graceful
+KillMode=mixed
+PrivateTmp=true
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-Buradaki çıktılara bakarak sırasıyla; çekirdek adını, hostname bilgisini yani mevcut cihazımızın ağ üzerinden iletişim kurarken kullandığı adı, sistemin çekirdek sürümünü, tam çekirdek versiyonunu, makinenin donanım mimarisini ve son olarak da işletim sisteminin adını öğrenebiliyoruz.
+Gördüğünüz gibi bizim tanımladığımıza ek olarak daha farklı konfigürasyonlar da mevcut. Tüm konfigürasyonlardan bahsetmemiz mümkün değil. Çünkü hepsi ihtiyaca yönelik olarak tanımlanıyor. Yani sık kullanılmayanların akılda kalması veya tüm konfigürasyonların bilinmesi gibi bir durum mümkün değil. İhtiyaç duyduğunuz konfigürasyonları öğrenmek için systemd aracını manual sayfalarını ve interneti kullanabilirsiniz. 
 
-Mevcut bulunduğumuz sistemi tanımak için yeteri kadar bilgi burada sunuluyor.
+Ayrıca dikkat ettiyseniz, araçlarla birlikte gelen servisler, ***/lib/systemd/system/*** dizini altında tutuluyor. Gerekirse buradan ilgili servis birimlerinin konfigürasyonlarına göz atıp düzenleyebilirsiniz. 
 
-Ayrıca isterseniz tek seferde bastırdığımız tüm bu bilgileri ayrı ayrı da bastırabilirsiniz. Seçenekleri görmek için `uname —help` komutunu kullanabilirsiniz. Neticede gördüğünüz gibi `uname` komutu üzerinden mevcut sistemimiz hakkında kolayca bilgi  edinebiliyoruz.
+# Zamanlanmış Görevler | cron systemd timer
 
-## uptime Komutu
+Belirli görevlerin tanımlandıkları aralıklara çalıştırılması için **cron** ile zamanlanmış görevler tanımlayabiliyoruz. Fakat ben **cron** yapısına değinmekten ziyade daha güncel olan systemd aracının benzer amaçla sunduğu **timer** birimini ele almak istiyorum. Daha önce nasıl yeni bir servis tanımlayabileceğimize değindiğimiz için aslında bizim için çok kolay olacak.
 
-`uptime` ifadesi Türkçe olarak “çalışma süresi” anlamına geliyor. 
-
-Adından da anlaşılabileceği gibi `uptime` aracı, sistemin ne kadar süredir çalıştığı konusunda bilgi almamızı sağlayan bir araç. Hemen komutumuzu girip sonuçları üzerinden konuşalım.
-
- 
+Ben denemek için daha önce oluşturduğum servisi kullanarak, betik dosyasının spesifik bir aralıkta çalıştırılması için tanımlamada bulunacağım. Bunun için `nano /lib/systemd/system/zaman.timer` ******komutu ile zamanlanmış görev için **timer** birim dosyası oluşturalım.
 
 ```bash
-└─$ uptime
- 02:16:40 up 19 min,  1 user,  load average: 0.06, 0.07, 0.09
+[Unit]
+Description=zaman.service için zamanlanmış görev tanımı
+
+[Timer]
+OnBootSec=1min
+OnCalendar=*:*:0/30
+Unit=zaman.service
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-`uptime` komutunu tek başına seçenek belirtilmeden kullandığımızda sırasıyla; 
+**`[Timer]`** başlığı altında hangi servisin hangi sıklıkla çalıştırılması gerektiğini tanımlayabiliyoruz. 
 
-mevcut sistem saatini ,
+`OnBootSec` seçeneği, **1min** tanımlamasıyla systemd aracının bu zamanlanmış görevi sistem başlatıldıktan **1 dakika sonra** tetiklemesi gerektiği belirtiyor. Eğer anında geçerli olması gerekiyorsa **0min** şeklinde de tanımlanabilir.
 
-sistemin ne kadar süredir açık olduğunu,
+Tanımlamak için **`YYYY-MM-DD HH:MM:SS`** modeli kullanıyor. 
 
-mevcut sistemde açık olan kullanıcı oturumu sayısı
+Yani: `Yıl-Ay-Gün Saat:Dakika:Saniye` şeklinde tanımlayabiliyoruz.
 
-ve son 1, 5 ve 15 dakikanın sistem yük ortalamalarını veriyor.
+Ben örnek olarak 30 saniyede bir çalıştırılacak şekilde zamanladım. Fakat daha net anlaşılması için birkaç farklı tanımlamayı örnekleyecek olursak:
 
-Buradaki yük ortalaması, sistemin 1 5 ve 15 dakikalık son periyottaki meşguliyetini ifade ediyor. Bu çıktılarda sizin sisteminizde yakın zamanda yani son 15 dakikadan son 1 dakikaya doğru yük miktarın arttığı görülüyorsa sistem yükünün artmakta olduğunu düşünebilirsiniz. 
-
-Şu anda benim sistemin yük altında olmadığı için yani çoğunlukla bekleme modunda olduğu için buradaki değerler sıfıra yakın gözüküyor. Örneğin yük durumunu gözlemlemek `echo {1..999999}` şeklinde komutumuzu girip sistemi suni olarak biraz daha yük altında bırakabiliriz. 
+Spesifik bir tarih için, örneğin 2023 yılının 12. ayının 1. gününde 23.59 da çalışması için: 
 
 ```bash
-└─$ echo {1..9999999}
-1 2 3 4 5 5 ....
-...
-..
-
-└─$ uptime                                                       
- 02:19:35 up 22 min,  1 user,  load average: 0.13, 0.09, 0.09
+OnCalendar=2023-12-01 23:59:00 
 ```
 
-Bakın yakın zamandaki yük oranı uzak zamana göre artış gösteriyor. Bu çıktı bize, yakın zamanda sistemin daha fazla yük altına girdiğini haber veriyor. 
-
-Burada dikkat etmeniz gereken detay Linux'ta yük ortalamaları yalnızca CPU'lara değil, disk kaynaklarına olan talebi de yansıtıyor olması. Yani disk üzerindeki okuma yazma da sistem yükü ortalamasını etkiliyor. Elbette bu konu çok daha detayı barındırıyor ancak temel seviye için bu detaylar gerekli değil. Yine de daha fazla detay için [buradaki](https://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html) blog yazısını okuyabilirsiniz.
-
-Özetleyecek olursak, eğer sizdeki çıktılarda sistem yükü benim ilk aldığım çıktıda olduğu gibi düşük veya 0 olarak gözüküyorsa, bu durum sisteminizin bu kısa periyotta genellikle beklemede olduğunun bilgisini veriyordur. Eğer yakın zaman aralığında artış görülüyorsa da bu sisteminizin gittikçe daha fazla yük altında kaldığına işaret ediyordur. 
-
-Eğer `uptime` komutundaki bu gibi detayları görmek istemezsek yani bu çıktı yerine yalnızca sistemin ne kadar süredir açık olduğunu daha okunaklı şekilde görmek istersek “**p**retty” ifadesinin kısalması olan `p` seçeneğini de kullanabiliriz. 
+Her gün saat 9.30 da çalışması için: **
 
 ```bash
-└─$ uptime -p                                                    
-up 31 minutes
+OnCalendar=*-*-* 09:30:00
 ```
 
-Bakın yalnızca sistemin ne kadar süredir açık olduğunu daha güzel yani okunaklı şekilde bastırmış olduk.
-
-Eğer tarih olarak sistemin ne zaman başlatıldığını yani ilk açılış zamanı görmek istersek “**s**ince” ifadesinin kısaltması olan `s` seçeneğini kullanabiliyoruz. 
+Her gün sabah 12 ve akşam 12 de çalışması için: 
 
 ```bash
-└─$ uptime -s
-2023-06-27 01:56:41
+OnCalendar=*-*-* 12:00:00
+OnCalendar=*-*-* 00:00:00
 ```
 
-Bakın sistemin ne zaman başlatıldığı tam tarih ve saat olarak bastırılmış oldu.
-
-`uptime` komutu sistemin çalışma durumunu kontrol etmek için kullandığımız basit ama bilgi verici güzel bir araç. `uptime` hakkında bahsetmemiz gereken ekstra bir detay da bulunmuyor. Zaten yalnızca `-p` ve `-s` olmak üzere iki işlevsel seçeneği var. Unutmanız halinde yardım sayfasından seçeneklerin işlevlerini saniyeler içinde tekrar hatırlayabilirsiniz. Önemli olan `uptime` yani çalışma süresi komutunu biliyor olmanız. Zaten ismi de tam olarak işlevini tanımladığı için kolay kolay da unutmazsınız.
-
-## free Komutu
-
-`free` aracı, mevcut bellek kullanımı hakkında bilgi almak için kullandığımız bir araç. Herhangi bir seçenek olmadan doğrudan `free` komutunu kullandığımızda, mevcut bellek ve takas ile ilgili bilgileri kilobayt olarak konsola bastırıyor. 
+Her saat çalışması için:
 
 ```bash
-└─$ free
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      803840     9596448        6652      544852     9884496
-Swap:         998396           0      998396
+OnCalendar=*-*-* *:00:00
 ```
 
-Bakın fiziksel ve takas alanı için sütunlar halinde pek çok detay bastırıldı. Zaten sütun başlıklarında buradaki miktarların tam olarak neyi temsil ettiği de açıkça belirtiliyor. Buradaki büyüklük birimleri kilobayt cinsinden. Eğer kilobayt yerine daha okunaklı şekilde çıktıları bastırmak istersek “**h**uman readable” ifadesinden gelen “**h**” seçeneğini kullanabiliriz. 
+İki saatte bir çalışması için
 
 ```bash
-└─$ free -h
-               total        used        free      shared  buff/cache   available
-Mem:            10Gi       783Mi       9.2Gi       6.0Mi       532Mi       9.4Gi
-Swap:          974Mi          0B       974Mi
+OnCalendar=*-*-* 00/2:00:00
 ```
 
-Tüm çıktılar çok daha okunaklı büyüklük birimleriyle bastırılmış oldu. 
+Buradaki taksim işaretinden sonraki sayı, tekrar edecek olan sayının katlarını belirtiliyor. Bu sayede 00 dan başlayıp 2 şer şer artarak 2 saatte bir çalıştırılmış olacak.
 
-Neticede gördüğünüz gibi `free` komutu sayesinde toplam bellek ve takas alanı hakkında ve ayrıca anlık olarak kullanılan ve boştaki bellek miktarları hakkında kolayca bilgi alabiliyoruz. 
-
-Eğer tek seferliğine değil de belirli bir aralık belirterek bu istatistikleri görmek istersek `-s` seçeneği ile kaç saniyede bir bu değerlerin bastırılacağını da özel olarak belirtebiliriz. Ben denemek için `free -s 3` komutu ile 3 saniyelik aralık belirtiyorum. Biz durduruncaya kadar bu bilgiler 3 saniyede bir konsola bastırılacak. Durdurmak için <kbd>Ctrl</kbd> + <kbd>c</kbd> kısayolunu kullanabiliriz. 
+Her dakika çalıştırmak için:
 
 ```bash
-└─$ free -s 3
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      798048     9602124        6652      544968     9890288
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797536     9602628        6652      544976     9890800
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797276     9602880        6652      544984     9891060
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797524     9602628        6652      544988     9890812
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797508     9602628        6652      545004     9890828
-Swap:         998396           0      998396
-
-^C
+OnCalendar=*-*-* *:*:00
 ```
 
-Gördüğünüz gibi ben durduruncaya kadar 3 saniyede bir ilgili bilgileri konsona bastırmış oldu. 
-
-Eğer istersek buradaki gibi yalnızca saniye aralığı belirtmek yerine basılma sayısını da tam olarak belirtebiliriz. Yani biz durdurana kadar değil bizim önceden belirttiğimiz sayı kadar çıktı basılır. Bunun için “**c**ount” yani “sayma” anlamındaki ifadenin kısaltmasından gelen `c` seçeneği kullanabiliriz. Ben `free -s 2 -c 4` komutu ile 2 saniye aralıkla 4 kez çıktıların bastırılmasını istiyorum.
+5 dakikadaki bir çalıştırmak için:
 
 ```bash
-└─$ free -s 2 -c 4                                               
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      796648     9603428        6652      545064     9891684
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      796896     9603176        6652      545068     9891436
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797144     9602924        6652      545072     9891188
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797136     9602924        6652      545080     9891196
-Swap:         998396           0      998396
+OnCalendar=*-*-* *:00/5:00
 ```
 
-2 saniye aralıkla yalnızca 4 kez bellek kullanımı hakkındaki son durum bastırılmış oldu.
-
-Bu seçenekler dışında `free` komutunun yardım sayfasında yer alan seçenekler de zaten standart kullanımdaki çıktıları sınırlamak veya genişletmek için kullanılan ek özelliklerdir. Dilerseniz buradaki seçenekler ile çıktıları istediğiniz formda bastırabilirsiniz.
-
-Ayrıca aldığımıza çıktılarda yer alan “shared” sütunu eskiye dönük uyumluluk için mevcut olan ve günümüzde geçerli kullanımı olmayan bir sütun. Buffer ve cache kavramlarının ne ifade ettiğini bilmiyorsanız ayrıca araştırıp öğrenebilirsiniz. Tam anlaşılmaları bu bölümde tam olarak açıklanamayacak kadar uzun sürebileceği için bu araştırma işini size bırakıyorum. Eğer profesyonel anlamda sistem yönetimiyle ilgili değilseniz bu detay sizin için zaten önemli değil. Diğer sütunlardaki veriler de oldukça açık şekilde “toplam”, “kullanılan” ve “boştaki” bellek miktarları hakkında bilgi sunuyor.
-
-## du Komutu
-
-`du` komutu "**d**isk **u**sage" yani "disk kullanımı" ifadesinin kısaltmasından geliyor. Bu araç sayesinde dosyalar veya dizinler tarafından kullanılan tahmini disk alanını öğrenebiliyoruz. Büyük miktarda disk alanı kaplayan dosya ve dizinleri bulmak için kullandığımız pratik bir araç.
-
-`du` komutu herhangi bir seçenek veya argüman olmadan çalıştırıldığında, mevcut dizindeki ve alt dizinlerdeki tüm dosya ve klasörlerin disk kullanımını bayt cinsinden konsola bastırıyor. Ben şu an kendi ev dizinimdeyim. Denemek için yalnızca `du` yazıp komutumu onaylıyorum.
+20 saniyede bir çalıştırmak için:
 
 ```bash
-└─$ du
-4       ./.gnupg/private-keys-v1.d
-8       ./.gnupg
-8       ./.java/.userPrefs/burp
-12      ./.java/.userPrefs
-16      ./.java
-4       ./Templates
-4       ./linkler
-4       ./Music
-4       ./Videos
-4       ./yeni klasor
-4       ./yeni/y
-12      ./yeni
-..
-..
-..
-36      ./.cache/pip/wheels
-100     ./.cache/pip
-436     ./.cache/samba
-4       ./.cache/mesa_shader_cache
-8       ./.cache/sessions/thumbs-kali:0
-20      ./.cache/sessions
-4       ./.cache/obexd
-185048  ./.cache
-4       ./Documents/belgeler
-12      ./Documents
-8       ./Desktop/yeni-dizin
-12      ./Desktop
-175436  ./Downloads
-8       ./calısma
-4       ./ada
-4       ./Pictures/bulbeni
-20      ./Pictures/Yeni Klasor/yeni-isim
-24      ./Pictures/Yeni Klasor
-3020    ./Pictures
-389344  .
+OnCalendar=*-*-* *:*:00/20
 ```
 
-Çıktılar çok uzun olduğu için buraya kısaltarak ekledim fakat alt dizinler de dahil tüm dizinlerdeki klasörlerin bastırıldığı ve en altta toplam disk boyutunun verdiğini görebiliyoruz.
-
-Fark ettiyseniz klasörler içerisinde yer alan dosyaların isimleri bastırılmadı ama tabii ki bu dosyaların boyutları bulundukları klasörler aracılığıyla burada belirtiliyor. Bu sayede çıktılar çok uzamadan mevcut dizin altındaki tüm klasörlerin büyüklüklerini listeleyebiliyoruz.
-
-Yine de ev dizinimde çalıştırdığım için aldığımız bu çıktılar uzun olduğu için size karmaşık gelmiş olabilir. Daha yalın bir çıktılar üzerinden konuşsak daha iyi olacak.
-
-Örneğin ben “***isimler.txt***” dosyasının boyutunu öğrenmek üzere `du isimler.txt` komutunu giriyorum.
+Pazartesiden cumaya her saat çalıştırmak için:
 
 ```bash
-└─$ du isimler.txt                                               
-8       isimler.txt
+OnCalendar=Mon..Fri *-*-* *:00:00
 ```
 
-Bakın dosyanın kaç kilobayt disk alanı kapladığı bastırıldı. Dilersek birden fazla dosyanın boyutuna da kolayca bakabiliriz. Hatta `-h` seçeneğini eklersek büyüklüklerin gösterimi bakımından daha okunaklı çıktılar da elde edebiliriz. 
+Yalnızca hafta sonları 6 saatte bir çalıştırmak için:
 
 ```bash
-└─$ du -h isimler.txt liste1 ~/Downloads/linux.zip 
-8.0K    isimler.txt
-4.0K    liste1
-58M     /home/taylan/Downloads/linux.zip
+OnCalendar=Sat,Sun *-*-*/6:00:00
 ```
 
-Bakın dosyanın tam dizin adresini belirttiğimiz sürece sorunsuzca istediğimiz dosyaların boyutlarını öğrenebiliyoruz. Dosya üzerinde kullanımı gayet basit ve yalın. Birde klasörler üzerinde gözlemleyelim. Ben gözlemleyebilmek için içerisinde web sitesinin dosyalarını ve iç içe klasörler barındıran Downloads dizini atlındaki “linux-dersleri” klasörünün disk üzerinde kapladığı alanı `du -h ~/Downloads/linux-dersleri` komutu ile sorguluyorum.
+Yalnızca pazartesi çarşamba ve cuma günleri her saat başında çalıştırmak için:
 
 ```bash
-└─$ du -h ~/Downloads/linux-dersleri                             
-736K    /home/taylan/Downloads/linux-dersleri/docs/temel_linux
-748K    /home/taylan/Downloads/linux-dersleri/docs
-208K    /home/taylan/Downloads/linux-dersleri/css
-1.3M    /home/taylan/Downloads/linux-dersleri/img/10- Süreç İşlemleri
-3.1M    /home/taylan/Downloads/linux-dersleri/img/1- Komut Satırı
-1.5M    /home/taylan/Downloads/linux-dersleri/img/9- Kullanıcı İşlemleri
-120K    /home/taylan/Downloads/linux-dersleri/img/0- Gerekli Ortamın Kurulması
-764K    /home/taylan/Downloads/linux-dersleri/img/5- Dizin İşlemleri
-420K    /home/taylan/Downloads/linux-dersleri/img/20- Log Dosyaları
-512K    /home/taylan/Downloads/linux-dersleri/img/2- Yardım Alma Komutları
-5.6M    /home/taylan/Downloads/linux-dersleri/img/Linux Nedir
-344K    /home/taylan/Downloads/linux-dersleri/img/12- Çalışma Seviyeleri(Runlevels)
-320K    /home/taylan/Downloads/linux-dersleri/img/15- Joker Karakterler
-1.5M    /home/taylan/Downloads/linux-dersleri/img/11-Disk İşlemleri
-2.5M    /home/taylan/Downloads/linux-dersleri/img/14- Güncelleme Kurma Kaldırma İşlemleri
-1.3M    /home/taylan/Downloads/linux-dersleri/img/3- Bilgi Alma Komutları
-396K    /home/taylan/Downloads/linux-dersleri/img/19- Zamanlanmış Görevler
-1.4M    /home/taylan/Downloads/linux-dersleri/img/18- Konsol Üzerinden Dosya İndirmek
-1.2M    /home/taylan/Downloads/linux-dersleri/img/6- Dosya İşlemleri
-11M     /home/taylan/Downloads/linux-dersleri/img/menu
-2.6M    /home/taylan/Downloads/linux-dersleri/img/17- Vim Editörü
-424K    /home/taylan/Downloads/linux-dersleri/img/7- Dosya Arşivleme
-3.1M    /home/taylan/Downloads/linux-dersleri/img/4 -Linux Dosya Sistemi Hiyerarşisi
-508K    /home/taylan/Downloads/linux-dersleri/img/8- Erişim Yetkileri
-324K    /home/taylan/Downloads/linux-dersleri/img/13- Sembolik Link Ve Katı Link
-21M     /home/taylan/Downloads/linux-dersleri/img/21-Sistem Görünümünü Özelleştirme
-836K    /home/taylan/Downloads/linux-dersleri/img/16- Ağ Komutları
-61M     /home/taylan/Downloads/linux-dersleri/img
-1.1M    /home/taylan/Downloads/linux-dersleri/fonts
-240K    /home/taylan/Downloads/linux-dersleri/js
-63M     /home/taylan/Downloads/linux-dersleri
+Mon,Wed,Fri *-*-* *:00:00
 ```
 
-Şimdi çıktılara bakalım. Bakın en altta klasörün içindeki tüm dosya ve klasörlerle birlikte diskte kapladığı toplam disk alanı basılmış. Sonda başa doğru da alt klasörlerin disk üzerindeki boyutları yer alıyor. Her dizin yalnızca kendi içindeki dosya ve klasörlerin toplam boyutunu veriyor, bu şekilde içe içe olan tüm dizinlerin boyut bilgisi sırasıyla bastırılmış oluyor. Neticede gördüğünüz gibi `du` komutu sayesinde bir klasör içinde tüm dizinlerin disk üzerinde toplam kapladıkları alan hakkında kolayca bilgi alabildik. Fakat dikkatinizi çektiyse dosyaların diskte kapladığı alan toplam alana ekleniyor olsa da dosya isimleri yine bastırılmadı. 
-
-Eğer klasörler ile birlikte dosyaların da bastırılmasını istersek `a` seçeneği ile tüm içeriğin bastırılmasını söyleyebiliriz. Ben komutumu çağırıp, `a` seçeneği ekleyip tekrar giriyorum. 
+Yılın ilk altı ayında 10 günde bir kez çalıştırmak için:
 
 ```bash
-└─$ du -ha ~/Downloads/linux-dersleri                            
-4.0K    /home/taylan/Downloads/linux-dersleri/menu.html
-4.0K    /home/taylan/Downloads/linux-dersleri/bildirim.html
-20K     /home/taylan/Downloads/linux-dersleri/hakkinda.html
-..
-4.0K    /home/taylan/Downloads/linux-dersleri/js/main.js
-4.0K    /home/taylan/Downloads/linux-dersleri/js/fluidtextresizer.js
-4.0K    /home/taylan/Downloads/linux-dersleri/js/script.js
-240K    /home/taylan/Downloads/linux-dersleri/js
-24K     /home/taylan/Downloads/linux-dersleri/sw_sayfa.js
-44K     /home/taylan/Downloads/linux-dersleri/liste.html
-63M     /home/taylan/Downloads/linux-dersleri
+OnCalendar=Jan..Jun/10 00:00:00
 ```
 
-Çıtılar uzun olduğu için ben kısaltarak buraya ekledim fakat gördüğünüz gibi `a` seçeneği sayesinde klasörün içindeki tüm dosya ve dizinlerin disk üzerinde kapladıkları alanın bilgisini kolayca bu çıktıdan öğrenebiliyoruz.
+Liste bu şekilde uzar gider. Tanımlama aşamasında emin olamazsanız, interneti kullanabilirsiniz. Zaten sıklıkla zamanlanmış görevler tanımlamayacağınız için hatırlamamanız veya karıştırmanız olağan.
 
-İlgili dizindeki tüm içeriği bastırmak dışında ayrıca dilersek yalnızca belirttiğimiz klasörün boyutunu öğrenmek için “**s**ummarize” yani “özetlemek” ifadesinin kısalmasından gelen `s` seçeneğini de kullanabiliriz. Ben yine “***linux-derlseri***” klasörü üzerinde denemek istiyorum. Bakın yalnızca bu klasörün toplam boyutunu bastırdım.
+Zamanlanmış görevi timer birimi olarak tanımladıktan sonra, çalışması için aktifleştirmemiz gerek. Bunun için de `systemctl enable zaman.timer` komutunu kullanıyoruz.
 
 ```bash
-└─$ du -hs ~/Downloads/linux-dersleri                           
-63M     /home/taylan/Downloads/linux-dersleri
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl enable zaman.timer 
+Created symlink /etc/systemd/system/multi-user.target.wants/zaman.timer → /lib/systemd/system/zaman.timer.
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status zaman.timer                                                                                                                            
+○ zaman.timer - zaman.service için zamanlanmış görev tanımı
+     Loaded: loaded (/lib/systemd/system/zaman.timer; enabled; vendor preset: enabled)
+     Active: inactive (dead)
+    Trigger: n/a
+   Triggers: ● zaman.service
 ```
 
-Bunlar dışında eğer istersek spesifik olarak belirttiğimiz birden fazla dosya ve klasörün toplam disk boyutunu da öğrenebiliriz. Normalde örneğin ben ev dizinimde ismi büyük “**D**” ile başlayan tüm içeriklerin `du` aracı ile boyut bilgisini sorgularsam hepsinin ayrı ayrı büyüklükleri bastırılacak. Hemen denemek için özet ve okunaklı çıktı almak üzere `du -sh ~/D*` şeklinde komutumuzu girelim. 
+zaman.timer birimi de multi-user.target birimine sembolik linkle dahil edildiği için biz devredışı bırakana kadar sistem başlangıcında otomatik olarak başlatılıyor olacak. Ayrıca `status` komutunun çıktısında gördüğünüz gibi tanımladığım “zaman.timer” zamanlanmış görevi “zaman.service” servisini tetikleyecek şekilde aktif olarak çalışıyor. Ve sistem başlangıcından 1 dakika sonra da her 30 saniyede bir çalışmaya devam edecek. 
 
-```bash
-└─$ du -sh ~/D*                                                  
-12K     /home/taylan/Desktop
-12K     /home/taylan/Documents
-234M    /home/taylan/Downloads
-```
+İşte zamanlanmış görev tanımlamak da bu kadar kolay.
 
-Bakın büyük “**D**” karakteri ile başlayan içeriklerin hepsinin ayrı ayrı büyüklükleri konsola bastırıldı. Eğer bu içeriklerin toplam boyutlarının da bastırılmasını istiyorsak komutumuza `c` seçeneğini de ekleyebiliriz. 
-
-```bash
-└─$ du -shc ~/D*                                                 
-12K     /home/taylan/Desktop
-12K     /home/taylan/Documents
-234M    /home/taylan/Downloads
-234M    total
-```
-
-Bakın bu kez en alt satırda, tüm içeriklerin toplam boyutu da özellikle bastırılmış oldu.
-
-Neticede farklı örnekler üzerinden de bizzat teyit ettiğimiz gibi dosya ve klasörlerimizin disk üzerinde kapladıkları alan bilgisini öğrenmek için `du` komutunu çok kolay şekilde kullanabiliyoruz. Ayrıca tabii ki ben `du` aracının tüm özelliklerinden yani tüm seçeneklerinden bahsetmedim. Eğer  yardım sayfasına bakacak olursanız daha fazla kullanım seçeneği olduğunu da görebilirsiniz. Ancak benim ele aldıklarım dışındaki diğer seçenekler pek sık tercih edilmediği için ve artık `du` aracının temel çalışma yapısını öğrendiğiniz için ben tüm seçenekleri tek tek açıklama gereği duymuyorum tabii ki. Dilerseniz zaten temelde nasıl çalıştığını bildiğiniz için buradaki ek seçenekleri keşfedebilirsiniz. Sizin de bildiğiniz gibi yardım sayfaları hep bir komut uzağınızda.
-
-Ben son olarak sistemimize bağlı bulunan bazı aygıtları listelememizi sağlayan birkaç bilgi alma komutundan da bahsedip bu bölümü sonlandırmak istiyorum.
-
-## lsusb & lspci & lshw
-
-Sistemimize bağlı bulunan USB aygıtları listelemek istersek, `lsusb` komutun kullanabiliyoruz. Zaten komutun ismi, işlevini gayet iyi biçimde açıklıyor. Hemen `lsusb` şeklinde komutumuzu girelim.
-
-```bash
-└─$ lsusb
-Bus 001 Device 002: ID 80ee:0021 VirtualBox USB Tablet
-Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
-```
-
-Bakın benim sisteminde şu anda bu aygıtlar USB ile bağlı gözüküyor. Ben sanal makine üzerinden çalıştığım için çok aygıt listelenmedi ancak normalde USB ile bağlı olan aygıtlar burada listeleniyor. Örneğin USB üzerinden harici bir wifi kartı taktığınızda aygıt hakkında buradan bilgi alabilirsiniz. USB wifi aygıtınız sistem tarafından tanınmıyorsa, aygıtınızı takıp `lsusb` komutu ile bu liste üzerinden aygıtın buradaki ID sine bakabilirsiniz. Bu id üzerinden internette araştırma yaparak uygun aygıt sürücüsü olup olmadığını sorgulayabilirsiniz. Kullanmakta olduğunu dağıtıma kurmak için forumlarda mutlaka daha önce pek çok kişi soru sorup yanıt almıştır. Eğer sorulmadıysa siz de sorabilirsiniz. Ayrıca github gibi harici kaynaklardan da aygıt sürücülerini araştırabilirsiniz.
-
-Neticede `lsusb` komutu sayesinde gerektiğinde sistemimize bağlı olan USB aygıtları hakkında bilgi almamız mümkün oluyor.
-
-Benzer şekilde **pci veriyolu** üzerinden sistemimize bağlı aygıtları görüntülemek için de `lspci` komutunu kullanabiliyoruz. 
-
-```bash
-└─$ lspci
-00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC [Natoma] (rev 02)
-00:01.0 ISA bridge: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II]
-00:01.1 IDE interface: Intel Corporation 82371AB/EB/MB PIIX4 IDE (rev 01)
-00:02.0 VGA compatible controller: VMware SVGA II Adapter
-00:03.0 Ethernet controller: Intel Corporation 82540EM Gigabit Ethernet Controller (rev 02)
-00:04.0 System peripheral: InnoTek Systemberatung GmbH VirtualBox Guest Service
-00:05.0 Multimedia audio controller: Intel Corporation 82801AA AC'97 Audio Controller (rev 01)
-00:06.0 USB controller: Apple Inc. KeyLargo/Intrepid USB
-00:07.0 Bridge: Intel Corporation 82371AB/EB/MB PIIX4 ACPI (rev 08)
-00:0d.0 SATA controller: Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [AHCI mode] (rev 02)
-```
-
-Bakın `lsusb` komutuna benzer şekilde bu kez **pci** bağlantısı olan aygıtlar listelenmiş oldu.
-
-Eğer sisteme bağlı bulunan bütün aygıtları listelemek istersek de `lshw` komutunu kullanabiliyoruz. Buradaki “**hw”** ifadesi “**h**ard**w**are” yani “donanım” ifadesinin kısaltmasından geliyor. Komutumuzu girip sonuçlar üzerine tekrar konuşalım. 
-
-```bash
-└─$ lshw
-bash: /usr/bin/lshw: No such file or directory
-```
-
-Benim sistemimde bu araç yüklü değişmiş. Kurmak için `sudo apt install lshw -y` komutunu girelim.
-
-```bash
-└─$ sudo apt install lshw
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following NEW packages will be installed:
-  lshw
-0 upgraded, 1 newly installed, 0 to remove and 1829 not upgraded.
-Need to get 300 kB of archives.
-After this operation, 941 kB of additional disk space will be used.
-Get:1 http://http.kali.org/kali kali-rolling/main amd64 lshw amd64 02.19.git.2021.06.19.996aaad9c7-2+b1 [300 kB]
-Fetched 300 kB in 11s (26.7 kB/s)
-Selecting previously unselected package lshw.
-(Reading database ... 291347 files and directories currently installed.)
-Preparing to unpack .../lshw_02.19.git.2021.06.19.996aaad9c7-2+b1_amd64.deb ...
-Unpacking lshw (02.19.git.2021.06.19.996aaad9c7-2+b1) ...
-Setting up lshw (02.19.git.2021.06.19.996aaad9c7-2+b1) ...
-Processing triggers for kali-menu (2021.4.2) ...
-Processing triggers for man-db (2.9.4-4) ...
-```
-
-Tamamdır aracım kuruldu. Şimdi tekrar `lshw` komutu ile tüm donanımları listelemeyi deneyelim.
-
-```bash
-└─$ lshw
-WARNING: you should run this program as super-user.
-kali                        
-    description: Computer
-    width: 64 bits
-    capabilities: smp vsyscall32
-  *-core
-       description: Motherboard
-       physical id: 0
-     *-memory
-          description: System memory
-          physical id: 0
-          size: 10GiB
-     *-cpu
-          product: Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
-          vendor: Intel Corp.
-          physical id: 1
-          bus info: cpu@0
-          version: 6.94.3
-          width: 64 bits
-          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp x86-64 constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 movbe popcnt aes rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase bmi1 bmi2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
-          configuration: microcode=4294967295
-     *-pci
-          description: Host bridge
-          product: 440FX - 82441FX PMC [Natoma]
-          vendor: Intel Corporation
-          physical id: 100
-          bus info: pci@0000:00:00.0
-          version: 02
-          width: 32 bits
-          clock: 33MHz
-        *-usb
-             description: USB controller
-             product: KeyLargo/Intrepid USB
-             vendor: Apple Inc.
-             physical id: 6
-             bus info: pci@0000:00:06.0
-             version: 00
-             width: 32 bits
-             clock: 33MHz
-             capabilities: ohci bus_master cap_list
-             configuration: driver=ohci-pci latency=64
-             resources: irq:22 memory:f0804000-f0804fff
-        *-bridge
-             description: Bridge
-             product: 82371AB/EB/MB PIIX4 ACPI
-             vendor: Intel Corporation
-             physical id: 7
-             bus info: pci@0000:00:07.0
-             version: 08
-             width: 32 bits
-             clock: 33MHz
-             capabilities: bridge
-             configuration: driver=piix4_smbus latency=0
-             resources: irq:9
-  *-input:0
-       product: AT Translated Set 2 keyboard
-       physical id: 1
-       logical name: input0
-       logical name: /dev/input/event0
-       logical name: input0::capslock
-       logical name: input0::numlock
-       logical name: input0::scrolllock
-       capabilities: i8042
-WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
-```
-
-Çıktıları kısaltarak vermiş olmama karşın farlı kategoriler altında bilgisayara bağlı bulunan aygıtların listelendiğini görebiliyoruz. 
-
-Ayrıca benim kısaltmış olmam dışında eğer sizin aldığınız çıktılarda aygıtlar eksikse, aracınızı `sudo lshw` komutuyla yetkili şekilde çalıştırmayı deneyebilirsiniz. Tabii ki bu bilgiler sürekli olarak ihtiyacımız olacak türden bilgiler de değil. Yalnızca aygıtınızla ilgili sorun çözmeniz gerektiğinde size bilgi vermesi için veya belki forumlarda destek isterken kullanabileceğiniz basit işlevsel bir araç yalnızca. 
-
-En nihayetinde bence komut satırı üzerinden mevcut sistemin aygıtları hakkında bilgi almak için bu bahsetmiş olduğumuz komutlar çoğu durumda yeterli. 
-
-Ben özellikler değinmeyeceğim ama hem bu bahsetmiş olduğumuz komutların ek seçenekleri hem de ayrıca bir çok aygıt hakkında bilgi sunan ek komutlar da mevcut. Merak ediyorsanız biraz araştırma ile diğer komutları ve seçeneklere kolayca ulaşabilirsiniz. Örneğin bizim bahsetmiş olduğumuz komutların yardım sayfalarına bakarak diğer seçenekler hakkında bilgi sahibi olup, sonuçlarını bizzat test ederek gözlemleyebilirsiniz. 
-
-Bu bölümde ele aldığımız komutlar genel bilgi alma komutları olduğu için çok fazla üzerine düşüp uzun açıklamalar yapmak istemedim çünkü pek çok farklı türde bilgi sunan komutları ele aldığımız için detaylıca bahsetmeye kalksaydık bu bölüm çok uzun sürebilirdi. Üstelik çoğu ek araç temel sistem yönetimi için bilmenizin şart olmadığı ek bilgi araçları. Ben sadece en temel bilgi alma komutlarının en temel işlevlerini odaklandım. Bu sayede daha fazlası için gerektiğinde yardım sayfaları ve internet araştırması ile tüm sorularınıza yanıt bulabilirsiniz.
+Anlatım boyunca tekrar tekrar dile getirdiğim üzere, elbette systemd aracının tüm özellikleri ve kullanım detayları bu bölümde bahsetmiş olduklarımdan ibaret değil. Fakat temel sistem yönetimi kapsamında servis yönetimi için bu kadarlık bilgi yeterli. Özellikle konfigürasyonlar söz konusu olduğunda ben de sıklıkla yardım sayfalarından ve internetteki kaynaklardan yardım alıyorum. Yardım sayfalarını biraz kurcalayacak olursanız, ne kadar geniş çapkı bilgi birikimi olduğunu bizzat görebilirsiniz.

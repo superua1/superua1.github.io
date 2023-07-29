@@ -6,7 +6,7 @@ excerpt: "Kullanıcı ve grupların yönetimi için erişim yetkilerinden bahsed
 tags: [su , sudo , sudoers , adduser , useradd , userdel ,  passwd , chmod , chown , gpasswd , groups]
 categories: [egitimserisi, temel_linux]
 cover: kullanıcıvegrupcover.png
-ders: [16]
+ders: 16
 toc: true  
 ---
 
@@ -1859,7 +1859,7 @@ Komutumuzu root yetkileri ile çalıştırmış olmamızın yanında eğer dikka
 
 İşte bizzat bu basit örnekle teyit ettiğimiz gibi `sudo` aracı bizlere güvenli yoldan root yetkileri ile çalışabilmeyi sağlayan bir çözüm aslında.
 
-### ***sudoers*** Dosyasını Düzenlemek
+## ***sudoers*** Dosyasını Düzenlemek
 
 `sudo` aracını kimlerin ne şekilde kullanabileceğini düzenlemek için ***/etc/sudoers*** dosyasını metin editöründe açıp düzenleyebiliriz. Düzenleme işlemi için de `visudo` komutunu aracını kullanmamız gerekiyor. Aslında normalde herhangi bir metin editörünü de kullanabiliriz fakat `visudo` aracı sayesinde dosyadaki yeni tanımların hata kontrolü yapıldığı için olası yanlış konfigürasyonların önüne geçmemiz de mümkün oluyor.
 
@@ -2084,7 +2084,7 @@ Eğer süper kullanıcı yetkilerine kendi hesabının şifresini bile girmeden 
 
 Şimdi gelin çok kısaca bu tanımlamalardan bahsederek devam edelim.
 
-### Özel Kural Tanımlama
+## Özel Kural Tanımlama
 
 Spesifik olarak bir kullanıcı gibi komut yürütmek için `sudo -u kullanıcı-adı` komut şeklinde komut girmemiz gerekiyor. Benzer şekilde spesifik bir grup için de `sudo -g grup` komut şeklinde girmemiz gerekiyor. Biz ALL ile tüm kullanıcı ve grupları temsil ettiğimiz için hangi kullanıcı olarak davranmamız gerektiği sorulmadan tüm kullanıcılar gibi davranabilmemiz sağlanıyor.
 
@@ -2102,7 +2102,7 @@ kali
 
 Artık ***sudoers*** dosyasının genel sözdizimine aşina olduğumuza göre, ihtiyaçlarımıza göre bazı yeni kurallar tanımlayabiliriz. Tanımlama yaparken ***/etc/sudoers*** dosyası içinde veya ***/etc/sudoers.d*** dizini altındaki dosyalarda tanımlama yapmamız mümkün. Ben bu dizin altında yeni konfigürasyon dosyası oluşturmak için `sudo visudo /etc/sudoers.d/yeni-tanim` şeklinde komutumu giriyorum.
 
-#### Kullanıcıya Özel Tanımlama
+### Kullanıcıya Özel Tanımlama
 
 Ben öncelikle tek bir kullanıcı için özel tanımla yapmak istiyorum. İlk olarak tanımlamayı yapıp, daha sonra üzerine konuşalım.
 
