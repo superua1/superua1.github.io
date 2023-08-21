@@ -35,7 +35,6 @@ plugins:
   - jekyll-toc
   - kramdown
 
-
 toc:
   min_level: 1
   max_level: 6
