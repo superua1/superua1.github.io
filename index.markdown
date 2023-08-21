@@ -39,7 +39,22 @@ search_omit: true
       {% assign post_date = post.date | date: "%Y-%m-%d" %}
   {% assign post_modified = post.modified | date: "%Y-%m-%d" %}
       <i class="fa fa-calendar fa-fw text-muted"></i>
-      <span class="text-muted timeago" data-toggle="tooltip" data-placement="bottom" title="Yayınlanma Tarihi: {{ post.date }}">{{ post.date | timeago }}</span>
+      <span class="text-muted timeago" data-toggle="tooltip" data-placement="bottom" title="Yayınlanma Tarihi: {{ post.date }}">
+      {% assign current_date = 'now' | date: '%s' %}
+{% assign post_date = post.date | date: '%s' %}
+{% assign time_diff = current_date | minus: post_date %}
+{% assign days = time_diff | divided_by: 86400 %}
+{% assign weeks = days | divided_by: 7 %}
+{% assign months = days | divided_by: 30 %}
+{% if months > 0 %}
+  {{ months }} ay
+{% elsif weeks > 0 %}
+  {{ weeks }} hafta
+{% else %}
+  {{ days }} gün
+{% endif %}
+önce
+</span>
 
   {% if post_modified > post_date %}
     <span class="small text-success yesil" data-toggle="tooltip" data-placement="bottom" title="Düzenlenme Tarihi: {{ post.modified }}">Güncellendi</span>

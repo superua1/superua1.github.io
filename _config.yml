@@ -29,7 +29,6 @@ github_username:  linux-dersleri
 # Build settings
 
 plugins:
-  - jekyll-timeago
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
@@ -37,14 +36,6 @@ plugins:
   - kramdown
 
 
-jekyll_timeago:
-  depth: 1
-  threshold: 1
-  translations_path: "/data/tr.yml"
-  default_locale: 'tr'
-  available_locales:
-    - 'tr'
- 
 toc:
   min_level: 1
   max_level: 6
