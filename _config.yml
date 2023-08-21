@@ -38,12 +38,14 @@ plugins:
 
 
 jekyll_timeago:
-  depth: 1
-  threshold: 1
+  depth: 2
   translations_path: "/data/tr.yml"
-  default_locale: 'tr'
+  default_locale: 'en'
+  fallbacks: true
   available_locales:
-    - 'tr'
+    - 'en'
+    - 'es'
+    - 'fr'
  
 toc:
   min_level: 1
