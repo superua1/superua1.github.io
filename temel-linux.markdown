@@ -2,14 +2,15 @@
 layout: simple
 title: Temel Linux Eğitimi
 excerpt: "Temel Linux Eğitimi Sıralı Müfredatı"
-categories: [egitim-serisi]
+categories: [temel-linux]
+type: [egitim-serisi]
 search_omit: true
 author: Taylan Özgür Bildik
 ---
 
 <div class="row">
  <div class="col-md-3 order-md-2">
-    <img class="card-img" src="{{ site.url }}/temel-linux.png" alt="Card image">
+    <img class="card-img" src="{{ site.url }}/data/img/temel-linux.png">
   </div>
   <div class="col-md-9 order-md-1">
     <h1>Herkes için Temel Linux Eğitimi</h1>
@@ -18,18 +19,18 @@ author: Taylan Özgür Bildik
 </div>
 
 <div class="row mb-2">
-  {% assign sorted_posts = site.egitim | sort: 'ders' %}
+  {% assign sorted_posts = site.egitim | where: 'categories', 'temel-linux' | sort: 'tutorial' %}
 {% for post in sorted_posts %}
   <div class="col-md-6">
     <div class="no-gutters border rounded overflow-hidden mb-4 shadow-sm h-md-250 position-relative">
       <div class="row">
         <div class="col-sm-3 d-flex align-self-center justify-content-center ">
-          <img class="responsive ml-3" src="{{ site.url }}/egitim/{{ post.cover }}" alt="">
+          <img class="responsive ml-3" src="{{ site.url }}/egitim/{{ page.categories }}/{{ post.cover }}" alt="">
         </div>
         <div class="col-sm-9 p-4">
           <div class="d-flex align-self-center justify-content-between">
             <div>
-              <p class="text-primary">{{ post.ders }}. Doküman</p>
+              <p class="text-primary">{{ post.tutorial }}. Doküman</p>
             </div>
             <div>
               <p class="readStatus"></p>

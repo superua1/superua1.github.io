@@ -9,7 +9,7 @@
 		  {% endif %}
 <p></p>
 <div ><i class="fa fa-tags" aria-hidden="true"></i>
-          {% for tag in page.tags %}<a href="{{ site.url }}/etiketler.html#{{ tag }}" class="btn btn-outline-primary btn-sm" title="Pages tagged {{ tag }}">{{ tag }}</a> {% endfor %}  	</div>	  
+          {% for tag in page.tags %}<a href="{{ site.url }}/etiketler.html#{{ tag }}" class="btn btn-outline-primary btn-sm mb-2" title="{{ tag }} Etiketli Tüm İçerikler">{{ tag }}</a> {% endfor %}  	</div>	  
 		  <hr>
 		  <h1 data-pagefind-meta="title" >{{ page.title }}</h1> 
 		  {% if page.puan %}

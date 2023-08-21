@@ -18,9 +18,11 @@ Linux sisteminde Regex yaklaşımını, `sed` `awk` `grep` `find` gibi çeşitli
 - **Basit Regex:** POSIX Basic Regular Expression (BRE)
 - **Genişletilmiş Regex:** POSIX Extended Regular Expression (ERE)
 
+<p class="mavi"><strong>ℹ️ Not:</strong> Esasen regex çeşidi olarak PCRE (Perl-Compatible Regular Expressions) da Linux üzerinde çeşitli araçlar tarafından destekleniyor fakat biz bu yazımızda PCRE'yi görmezden geleceğiz. PCRE, Perl dilindeki düzenli ifadeleri temel alarak geliştirilen bir regex türüdür. Daha fazla detay için bu doğrultuda araştırma yapabilirsiniz.</p>
+
 ## POSIX Nedir ?
 
-Öncelikle tanımlarda geçen POSIX kavramına açıklık getirecek olursak; POSIX, "Unix için Taşınabilir İşletim Sistemi Arayüzü" ifadesinin kısaltmasından gelen bir standart. Unix benzeri işletim sistemleri için ortak bir arayüz ve davranış tanımlayan bir dizi standardı temsil ediyor. Bu oluşum sayesinde tüm sistemler ortak yaklaşımları takip edip standart ekosisteme dahil olabiliyor. Yani en özet haliyle POSIX, uymak isteyenler için ortak standartlar belirleyip yayınlayan bir oluşum. Linux sistemlerinin bileşenleri de çoğunlukla bu standarda uygun geliştiriliyor. Daha fazla bilgi için [buraya](https://tr.wikipedia.org/wiki/POSIX){:target="_blank"} göz atabilirsiniz. 
+Öncelikle tanımlarda geçen "**POSIX**" kavramına açıklık getirecek olursak; POSIX, "Unix için Taşınabilir İşletim Sistemi Arayüzü" ifadesinin kısaltmasından gelen bir standart. Unix benzeri işletim sistemleri için ortak bir arayüz ve davranış tanımlayan bir dizi standardı temsil ediyor. Bu oluşum sayesinde tüm sistemler ortak yaklaşımları takip edip standart ekosisteme dahil olabiliyor. Yani en özet haliyle POSIX, uymak isteyenler için ortak standartlar belirleyip yayınlayan bir oluşum. Linux sistemlerinin bileşenleri de çoğunlukla bu standarda uygun geliştiriliyor. Daha fazla bilgi için [buraya](https://tr.wikipedia.org/wiki/POSIX){:target="_blank"} göz atabilirsiniz. 
 
 ## Hangi Regex ?
 

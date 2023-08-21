@@ -21,8 +21,7 @@
 title: "Linux Eğitimi"
 email: derslinux@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Topluluğun gücü ile reklamsız ve ücretsiz 
-  Türkçe içeriğe katkı sunmak üzere oluşturulmuş bir platformuz.
+  GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  linux-dersleri
@@ -79,7 +78,7 @@ defaults:
     path: ''
     type: authors
   values:
-    permalink: "/authors/:name/"
+    permalink: "/yazar/:name/"
     layout: author
     twitter:
 - scope:
@@ -93,7 +92,7 @@ defaults:
     path: ''
     type: egitim
   values:
-    permalink: "/egitim/:title/"
+    permalink: "/egitim/:categories/:title/"
     layout: title
     twitter:
 - scope:

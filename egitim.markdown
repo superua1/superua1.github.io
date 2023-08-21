@@ -7,41 +7,60 @@ search_omit: true
 
 
 <h1 class="text-primary" align="center">🎓<br>Eğitimler</h1>
-<h2 align="center">Herkes için Temel Linux Eğitimi</h2>
-<p align="center"> Linux'u kişisel kullanım veya profesyonel(devops, veri bilimi, siber güvenlik, vb.) gereksinimler dolayısıyla temel düzeyde öğrenmek istiyorsanız eğitim serilerine göz atabilirsiniz.</p>
+<h2 >Herkes için Temel Linux Eğitimi</h2>
+<p > Linux'u kişisel kullanım veya profesyonel(devops, veri bilimi, siber güvenlik, vb.) gereksinimler dolayısıyla temel düzeyde öğrenmek istiyorsanız eğitim serilerine göz atabilirsiniz.</p>
 
-<div align="center" >
-    
-	<div class="row">
+<div align="center" class="row">
 	<div class="col-md-6">
-      <div class="card row-flex no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-	 
-        <div class="col p-4 d-flex flex-column position-static">
- 	<p class="yesil text-success">Sıralı Doküman</p>
-	<img src="{{ site.url }}/linux-doc.png"/>
+    <div class="card row-flex no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col p-4 d-flex flex-column position-static">
+ 	  <p class="yesil text-success">Sıralı Doküman</p>
+	  <img src="{{ site.url }}/data/img/linux-doc.png"/>
           <p class="card-text mb-auto">Temel Linux kullanımı için sıralı dokümanlar.</p>
 		  <p></p>
           <a href="{{ site.url }}/temel-linux" class=" stretched-link"></a>
-        </div>
-        </div>
-      </div>
-   
-    
-		<div class="col-md-6">
-      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-			<p class="mavi text-primary">Video Eğitim</p>
-		<img src="{{ site.url }}/video-egitim.png"/>
-          <p class="card-text mb-auto">Temel Linux kullanımı için video, doküman ve testleri barından udemy eğitimi.</p>
-          <a href="{{ site.url }}/kurs" class=" stretched-link"></a>
-        </div>
-        </div>
-      </div>
-    
-    
-		
+    </div>
     </div>
   </div>
+	<div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+			<p class="mavi text-primary">Video Eğitim</p>
+		<img src="{{ site.url }}/data/img/video-egitim.png"/>
+          <p class="card-text mb-auto">Temel Linux kullanımı için video, doküman ve testleri barından udemy eğitimi.</p>
+          <a href="{{ site.url }}/kurs" class=" stretched-link"></a>
+      </div>
+      </div>
+  </div>
+</div>
+ 
+<h2>Ağ Temellerine Giriş</h2>
+<p> Temel network işleyişinin teorik olarak ele alındığı giriş düzeyi eğitim serisidir.</p>
+
+<div align="center" class="row">
+	<div class="col-md-6">
+    <div class="card row-flex no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col p-4 d-flex flex-column position-static">
+ 	  <p class="yesil text-success">Sıralı Doküman</p>
+	  <img src="{{ site.url }}/data/img/network-doc.png"/>
+          <p class="card-text mb-auto">Ağ temellerinin açıklandığı sıralı dokümanlar.</p>
+		  <p></p>
+          <a href="{{ site.url }}/temel-network" class=" stretched-link"></a>
+    </div>
+    </div>
+  </div>
+	<div class="col-md-6">
+      <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+			<p class="mavi text-primary">Video Eğitim</p>
+		<img src="{{ site.url }}/data/img/network-video.png"/>
+          <p class="card-text mb-auto">Ağ temellerini ele alan ücretsiz video eğitim.</p>
+          <a href="{{ site.url }}/kurs" class=" stretched-link"></a>
+      </div>
+      </div>
+  </div>
+</div>
+
 <div style="display:none;">
 <h2 align="center">Linux Sistem Yöneticiliğine Giriş Eğitimi</h2>
 <p>Profesyonel anlamda Linux sistem yöneticiliğine giriş için bu eğitim iyi bir başlangıç olabilir. Doğrudan herhangi bir sertifika programı kapsamında hazırlanmış olmasada, Linux+ CompTIA LPI LFCS RHCSA gibi sertifika sınavlarına hazırlanırken kısmi olarak yararlanabileceğiniz bir kaynak olarak kullanabilirsiniz. Eğitim müfredatı şahsi kanaatime göre temelde bilinmesi gereken konuların kapsamı dahilinde hazırlandığı için size herhangi bir sertifika veya nihai sonuç için garanti veremem. Ancak yine de en azından Türkçe kaynak olarak Linux için bir başlangıç noktası olarak görülebilir. </p>
@@ -77,6 +96,6 @@ search_omit: true
     
 		</div>
     
-  </div>
+
 
 

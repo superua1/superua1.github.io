@@ -1,20 +1,21 @@
 <p></p>
+{% assign current_page_categories = page.categories %}
+{% assign all_posts = site.egitim | sort: 'tutorial' %}
 
-{% assign sorted_posts = site.egitim | sort: 'ders' %}
-
-
-{% for post in sorted_posts %}
-  {% if post.url == page.url %}
-    {% assign current_index = forloop.index0 %}
-    {% assign previous_index = current_index | minus: 1 %}
-    {% assign next_index = current_index | plus: 1 %}
-    
-
-
-<div data-pagefind-ignore="all" class="row mb-2">
-  {% if previous_index >= 0 %}
-      {% assign previous_post = sorted_posts[previous_index] %}
-    <div class="col-md-6">
+{% for current_category in current_page_categories %}
+  {% assign filtered_posts = all_posts | where: 'categories', current_category %}
+  {% assign sorted_posts = filtered_posts | sort: 'tutorial' %}
+  
+  {% for post in sorted_posts %}
+    {% if post.url == page.url %}
+      {% assign current_index = forloop.index0 %}
+      {% assign previous_index = current_index | minus: 1 %}
+      {% assign next_index = current_index | plus: 1 %}
+      
+      <div data-pagefind-ignore="all" class="row mb-2">
+        {% if previous_index >= 0 %}
+            {% assign previous_post = sorted_posts[previous_index] %}
+          <div class="col-md-6">
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <div class="row">
@@ -33,11 +34,11 @@
         </div>
       </div>
     </div>
-  {% endif %}
-
-  {% if next_index < sorted_posts.size %}
-      {% assign next_post = sorted_posts[next_index] %}
-    <div class="col-md-6">
+    {% endif %}
+  
+    {% if next_index < sorted_posts.size %}
+        {% assign next_post = sorted_posts[next_index] %}
+      <div class="col-md-6">
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <div class="row">
@@ -56,9 +57,10 @@
         </div>
       </div>
     </div>
-  {% endif %}
-</div>
-
-{% break %}
+    {% endif %}
+  </div>
+  
+  {% break %}
 {% endif %}
+{% endfor %}
 {% endfor %}

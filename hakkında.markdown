@@ -70,13 +70,14 @@ Linux Dersleri, <a href="https://www.linkedin.com/in/taylanbildik/">Taylan Özg�
     </a>
 	<div class="collapse" id="collapse17">
   <div class="card card-body">
-   <li>Site içi arama yapılabilmesi için arama fonksiyonu eklendi.</li>
-   <li>Sıralı komut listesi eklendi.</li>
+   <li>"Temel Ağ Eğitimi" eklendi.</li>
    <li>"Temel Linux Eğitimi" dokümantasyon içeriği baştan sonra yenilendi.</li>
+   <li>Site içi arama yapılabilmesi için arama fonksiyonu eklendi.</li>
+   <li>Komut listesi bölümü eklendi.</li>
    <li>Blog bölümü eklendi.</li>
-    <li>Test bölümü eklendi.</li>
-   <li>Platform verilerini takip edebilmek için Google Analitics eklendi.</li>
+   <li>Test bölümü eklendi.</li>
    <li>Sıkça Sorulan Sorular bölümü eklendi.</li>
+   <li>Platform verilerini takip edebilmek için Google Analitics eklendi.</li>
 	  </div>
   </div>
 	<a class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapse16" role="button" aria-expanded="false" aria-controls="collapse16">

@@ -13,7 +13,7 @@ toc: true
 
 Unutulan veya çeşitli sebeplerle tahrip edilmiş olan root parolasını sistem başlangıcında yenilememiz mümkün. Ben anlatım sırasında Kali Linux dağıtımını kullandım, fakat siz kullanmakta olduğunuz dağıtım üzerinden de aynı adımları takip edebilirsiniz.
 
-Öncelikle sistemimiz yeniden başlatıyoruz.
+Öncelikle sistemi yeniden başlatıyoruz.
 
 Karşımıza gelen **GNU GRUB** ekranındayken <kbd>E</kbd> tuşuna basarak “**edit**” yani “**düzenleme**” moduna geçiyoruz.
 
@@ -51,6 +51,6 @@ Son olarak şifre belirlemek üzere `passwd` komutunu girelim.
 
 Ve işlemler bu kadar !
 
-Gördüğünüz gibi işlem başarılı bir şekilde gerçekleşti  ve ”**passwd: password updated successfully”** çıktısını aldık. Yani root hesabının parolasını değiştirmiş olduk. 
+Gördüğünüz gibi işlem başarılı bir şekilde gerçekleşti ve ”**passwd: password updated successfully”** çıktısını aldık. Yani root hesabının parolasını değiştirmiş olduk. 
 
 `reboot -f` komutu ile sistemi yeniden başlatıp, tanımlamış olduğunuz root parolasını kullanabilirsiniz.

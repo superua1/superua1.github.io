@@ -53,7 +53,12 @@
             {% include toc.html html=content %}
           </div>
         </div>
-        {% include temel-linux-egitimi-card.html %}
+        {% if page.categories contains "temel-linux" %}
+          {% include temel-linux-egitimi-card.html %}
+          {% else %}
+          {% include temel-linux-egitimi-card-harici.html %}
+        {% endif %}
+       
       </div>
 	  
     </div>

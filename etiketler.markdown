@@ -37,6 +37,7 @@ search_omit: true
 <div class="alert mavi">
   <strong>Not:</strong> Birden fazla etikete sahip olan konuları farklı etiket başlıkları altında tekrar tekrar görebilirsiniz.
 </div>
+
 {% assign sorted_tags = all_tags | sort %}
 {% for tag in sorted_tags %}
   {% assign tag_posts = site.posts | where: 'tags', tag %}
@@ -53,11 +54,11 @@ search_omit: true
           <li>
             <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
             {% if post.url contains '/egitim/' %}
-              <span class="badge badge-primary">Doküman</span>
+              <span class="text-success small yesil" data-toggle="tooltip" data-placement="bottom" title="{{ post.coursetitle }}">Doküman</span>
             {% elsif post.url contains '/komut/' %}
-              <span class="badge badge-success">Komut</span>
+              <span class="text-primary small mavi">Komut</span>
             {% else %}
-              <span class="badge badge-warning">Blog</span>
+              <span class="text-warning small sari">Blog</span>
             {% endif %}
           </li>
         {% endif %}

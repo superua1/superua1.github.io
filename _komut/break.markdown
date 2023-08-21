@@ -1,6 +1,6 @@
 ---
 layout: komut
-author: Ahmet
+author: Taylan Özgür Bildik
 title: "break Komutu"
 modified: 2021-04-14
 excerpt: "Bash üzerinde kurulmuş olan döngülerin 'kırılması' yani sonlandırılması için kullanılır."
