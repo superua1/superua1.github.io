@@ -29,6 +29,7 @@ github_username:  linux-dersleri
 # Build settings
 
 plugins:
+  - jekyll-timeago
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
