@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Kullanıcı ve grupların yönetimi için erişim yetkilerinden bahsediyoruz."
 tags: [su , sudo , sudoers , adduser , useradd , userdel ,  passwd , chmod , chown , gpasswd , groups]
 categories: [temel-linux]
-cover: kullanıcıvegrupcover.png
+cover: kullanıcıvegrupcover.webp
 tutorial: 16
 toc: true  
 ---
@@ -226,7 +226,7 @@ ali:x:1002:1004::/home/ali:/bin/sh
 
 Bakın dosyanın sonuna, yeni eklemiş olduğum iki kullanıcı hesabı için iki satır daha eklenmiş. Bu dosyada, sistemdeki her bir kullanıcı hesabının soldan sağa sırasıyla; ismi, parolası, kullanıcı numarası, grup numarası, hesap bilgileri(hesap bilgilerinden kasıt, `adduser` komutuyla bize sorulan tam isim, telefon numarası, oda numarası gibi bilgiler), ev dizini ve varsayılan kabuk programını bilgisini satırlar halinde tutuluyor. 
 
-![passwd.png]({{ site.url }}/egitim/temel-linux/kullanici/passwd.png){:class="responsive img-zoomable"}
+![passwd.webp]({{ site.url }}/egitim/temel-linux/kullanici/passwd.webp){:class="responsive img-zoomable"}
 
 Biz `adduser` ya da `useradd` gibi araçları kullanarak kullanıcı oluşturduğumuzda aslında araçların yaptığı işlerden biri de bu dosyaya ilgili kullanıcı hesabının detaylarını eklemek oluyor.
 
@@ -247,7 +247,7 @@ Bu dosya kullanıcıların hesap detaylarını barındırdığı için dosya iç
 
 **ali** kullanıcısının kabuğunda değişiklik yapmak için son satıra gelip, kabuk bölümüne bash kabuğunun dosya adresini yazabiliriz. 
 
-![change-shell.png]({{ site.url }}/egitim/temel-linux/kullanici/change-shell.png){:class="responsive img-zoomable"}
+![change-shell.webp]({{ site.url }}/egitim/temel-linux/kullanici/change-shell.webp){:class="responsive img-zoomable"}
 
 Dosyamı kaydettiğimde **ali** kullanıcısının kabuğu da bash olarak değişmiş olacak. Hatırlarsanız eğitimin başında varsayılan kabuğunu bash olarak değiştirmek için de bu dosyada değişiklik yapmıştık. İşte Linux sisteminde her şey dosya yapısı üzerinden ele alındığı için sistem yönetimi ve düzenlemesi de dosyalar üzerinden kolayca yapılabiliyor. Pek çok araç yani pek çok komutta aslında bu ve bunun gibi dosyalarda kısayoldan değişiklik yapmamızı sağlıyor. Biz hangi dosyanın hangi işlevde olduğunu biliyorsak, istersek manuel olarak elle dosyayı düzenleriz istersek de aynı işi yapan bir aracı yani komutu kullanırız. Bu dosya üzerinden açıkladığımız gibi sistemdeki dosyaların işlevlerini bildiğimiz zaman denetim ve yönetim noktasında pek çok avantaja sahip oluyoruz. Ben <kbd>ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydetmek üzere kapatıp kaydetme işlemini de onaylıyorum. Neticede **ali** kullanıcı hesabı için varsayılan kabuğu, kullanıcı hesapları hakkında bilgileri barındıran bu dosyada düzenlemek yaparak değiştirmiş oldum.
 
@@ -350,7 +350,7 @@ Dosya hakkında konuşmak için önce dosyamızı açalım. Ben açmak için `su
 └─$ sudo nano /etc/shadow
 ```
 
-![shadow.png]({{ site.url }}/egitim/temel-linux/kullanici/shadow.png){:class="responsive img-zoomable"}
+![shadow.webp]({{ site.url }}/egitim/temel-linux/kullanici/shadow.webp){:class="responsive img-zoomable"}
 
 Bakın tıpkı ***passwd*** dosyasına benziyor fakat ***shadow*** dosyasında kullanıcıların parolalarıyla ilgili çeşitli bilgiler tutuluyor. 
 
@@ -638,11 +638,11 @@ drwxr-xr-x 2 taylan taylan 4096 Jun 28 01:35  Videos
 
 Aldığımız çıktılarda yer alan ilk sütun dosya ve dizinlerin yetkilerini diğer bir deyişle modlarını temsil eden bölüm. Buradaki “**mod**” ifadesi önemli çünkü ileride bu yetkileri değiştirirken aslında “**mod**” değiştirme aracını kullanıyor olacağız. Devamında yer alan buradaki sütunlar da ilgili dosya ve dizinin hangi kullanıcı ve hangi gruba ait olduğunu belirtiyor.
 
-![ls -l.png]({{ site.url }}/egitim/temel-linux/kullanici/ls-l.png){:class="responsive img-zoomable"}
+![ls -l.webp]({{ site.url }}/egitim/temel-linux/kullanici/ls-l.webp){:class="responsive img-zoomable"}
 
 Ben kendi ev dizinimi listelediğim için tüm dosya ve dizinleri sahibi ve grubu hep **taylan** kullanıcısı olacak gözüküyor. Bu konuya ayrıca değineceğiz. Şimdi tekrar buradaki yetki yani mod tanımlamalarına dönecek olursak, en genel açıklama aşağıdaki görselde olduğu şekilde.
 
-![permission.png]({{ site.url }}/egitim/temel-linux/kullanici/permission.png){:class="responsive img-zoomable"}
+![permission.webp]({{ site.url }}/egitim/temel-linux/kullanici/permission.webp){:class="responsive img-zoomable"}
 
 Elbette kavramların netleşebilmesi için tek tek buradaki karakterlerin ne anlama geldiğini açıklamamız gerek.
 
@@ -650,13 +650,13 @@ Elbette kavramların netleşebilmesi için tek tek buradaki karakterlerin ne anl
 
 İlk karakter her zaman dosya veya dizinin türü hakkında bilgi sunan karakter oluyor. Örneğin bakın dizinler “**d**irectory” ifadesinin kısaltmasından gelen “**d**” karakteri ile temsil ediliyorken, standart dosyalar kısa çizgi “**-**” ile belirtiliyor. Ayrıca sembolik linkler de “**l**” karakteri ile temsil ediliyor. Tabii ki buradaki çıktılar yalnızca örnek yani sistemdeki tüm dosya türleri burada yer almıyor. Aldığınız çıktıdaki karakterin ne anlama geldiğini bilmediğinizde kısa bir internet araştırmasıyla bu karakter temsili hakkında kolayca pek çok bilgi edinebilirsiniz. Şimdilik yalnızca bu ilk karakter alanın mevcut dosya veya klasörün türünü temsil ettiğini bilmemiz yeterli.
 
-![permission-first-column.png]({{ site.url }}/egitim/temel-linux/kullanici/permission-first-column.png){:class="responsive img-zoomable"}
+![permission-first-column.webp]({{ site.url }}/egitim/temel-linux/kullanici/permission-first-column.webp){:class="responsive img-zoomable"}
 
 ## Erişim Yetkileri
 
 Dosya türünün arından gelen 9 basamaklı karakterlere geçecek olursak. Bu karakterleri 3 er basamaklı 3 gruba ayırmamız gerekiyor. Çünkü buradaki ilk üç karakter bu dosyanın sahibinin izinlerini temsil ediyorken, ikinci üç karakter de bu dosyanın grubunun sahip olduğu yetkileri temsil ediyor. Son üç karakter ise ilk iki grup haricindekileri yani hem bu dosyanın sahibi olmayan hem de bu dosyanın grubuyla aynı grupta bulunmayan diğer kullanıcılar için yetkileri temsil ediyor.
 
-![ownership.png]({{ site.url }}/egitim/temel-linux/kullanici/ownership.png){:class="responsive img-zoomable"}
+![ownership.webp]({{ site.url }}/egitim/temel-linux/kullanici/ownership.webp){:class="responsive img-zoomable"}
 
 Bu üç ayrı yetki grubu sayesinde her bir dosya ve klasörü yalnızca istediğimiz kullanıcıların erişebileceği şekilde yetkilendirebiliyoruz. 
 
@@ -1866,7 +1866,7 @@ Komutumuzu root yetkileri ile çalıştırmış olmamızın yanında eğer dikka
 
 Konfigürasyon dosyasını açmak için `sudo visudo` komutuyla dosyamızı yetkili şekilde açabiliriz. 
 
-![visudo.png]({{ site.url }}/egitim/temel-linux/kullanici/visudo.png){:class="responsive img-zoomable"}
+![visudo.webp]({{ site.url }}/egitim/temel-linux/kullanici/visudo.webp){:class="responsive img-zoomable"}
 
 Bakın dosyam şu anda template(***sudoers.tmp***) şablon halinde olduğu için burada ***.tmp*** uzantısı var. Eğer değişiklik yapıp kaydedecek olursak asıl dosya olan ***/etc*** dizini atlındaki ***sudoers*** dosyasına kaydolmuş olacak. 
 

@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Metinsel verileri işlemek adına Linux'un dosyalara yaklaşımını ele alıyoruz."
 tags: [yönlendirmeler , cat , tac , rev , touch , echo , paste , sort , shuf , nl , wc]
 categories: [temel-linux]
-cover: metinselveriislemekcover.png
+cover: metinselveriislemekcover.webp
 tutorial: 9
 toc: true 
 ---
@@ -41,7 +41,7 @@ Eğer bir dosyanın yani örneğin bir aracın ürettiği **hatalı çıktılar�
 
 Linux üzerinde her şey dosya gibi ele alındığı için konsol aracı da ***/dev/tty*** isimli dosya ile temsil ediliyor. Yani veri girişi yaparken ve hatalı-hatasız çıktıları alırken aşağıdaki gibi işleyiş mevcut.
 
-![1.png]({{ site.url }}/egitim/temel-linux/metin/1.png){:class="responsive img-zoomable"}
+![1.webp]({{ site.url }}/egitim/temel-linux/metin/1.webp){:class="responsive img-zoomable"}
 
 Hemen somut bir örnek üzerinden görelim. Ben test edebilmek için aynı anda hem hatalı hem de hatasız çıktılar üreten basit bir betik dosyası oluşturmak istiyorum. 
 
@@ -96,7 +96,7 @@ Bu hatasız bir çıktı
 
 Bakın hatasız çıktı da bu dosyaya kaydolmuş. Şema üzerinden bakacak olursak, girdiğimiz komuttaki yönlendirme aşağıdaki gibi temsil edebilir. 
 
-![2.png]({{ site.url }}/egitim/temel-linux/metin/2.png){:class="responsive img-zoomable"}
+![2.webp]({{ site.url }}/egitim/temel-linux/metin/2.webp){:class="responsive img-zoomable"}
 
 Burada hatasız olan çıktıları yönlendirmek için `1>` operatörünü kullandık ama aslında standart çıktılar varsayılan olarak yalnızca tek bir büyüktür `>` işareti ile de yönlendirilebiliyor. Hemen deneyelim. 
 
@@ -130,7 +130,7 @@ Bu hatasız bir çıktı
 
 Bakın hatalı çıktıları bu dosyaya yönlendirdiğimiz için bu kez da konsola yalnızca hatasız olan çıktılar bastırıldı. Yönlendirme yaptığımız dosyanın içeriğini ise yalnızca hatalı çıktı bulunuyor çünkü ben betik dosyasının ürettiği hatalı çıktıları **2** numaralı dosya tanımlayıcı ve buradaki büyüktür yönlendirme operatörü ile bu dosyaya yönlendirdim. Şema üzerinden bakacak olursak, girdiğimiz komuttaki yönlendirme aşağıdaki gibi temsil edebilir. 
 
-![3.png]({{ site.url }}/egitim/temel-linux/metin/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/metin/3.webp){:class="responsive img-zoomable"}
 
 İşte bu örneklerde ele aldığımız gibi ihtiyacımıza göre hatasız ve hatalı olan çıktıları istediğimiz bir dosyaya yönlendirebiliyoruz. 
 
@@ -161,7 +161,7 @@ Bakın herhangi bir çıktı almadık çünkü aslında bu dosya verileri boşlu
 
 Şema üzerinden bakacak olursak, girdiğimiz komuttaki yönlendirme aşağıdaki gibi temsil edebilir. 
 
-![4.png]({{ site.url }}/egitim/temel-linux/metin/4.png){:class="responsive img-zoomable"}
+![4.webp]({{ site.url }}/egitim/temel-linux/metin/4.webp){:class="responsive img-zoomable"}
 
 Tekrar asıl konumuza dönecek olursak, hatalı ve hatasız çıktıları ayrı ayrı nasıl yönlendirebileceğimizden açıkça bahsettim. Fakat kimi zaman ayrı ayrı yönlendirmek yerine tüm çıktıları tek bir adrese yönlendirmek de isteyebiliriz.  Bu işlem için yönlendirme operatöründen önce “ve” “`&`” işaretini yani “**ampersant**” işaretini ekleyip `&>` operatörünü kullanabiliyoruz. Buradaki ampersant olarak da bilinen “`&`” işaretini hem **hatalı** ve hem de **hatasız** çıktıları temsil ediyor gibi düşünebilirsiniz. Denemek için `./test.sh &> sonuc` şeklinde komutumuzu girelim. 
 
@@ -189,7 +189,7 @@ Bakın tüm çıktılar bu “***sonuc***” dosyasına eklenmiş. Yani **hatal�
 
 Şema üzerinden bakacak olursak, girdiğimiz komuttaki yönlendirme aşağıdaki gibi temsil edebilir. 
 
-![5.png]({{ site.url }}/egitim/temel-linux/metin/5.png){:class="responsive img-zoomable"}
+![5.webp]({{ site.url }}/egitim/temel-linux/metin/5.webp){:class="responsive img-zoomable"}
 
 Esasen söz konusu yönlendirmeler olduğunda çok daha fazla detay ve alternatif yaklaşım söz konusu. Örneğin yukarıdaki şemaya bakacak olursanız aslında bu yönlendirmede, hatalı çıktıları hatasız olanlara yönlendirip, hatasız olanlara birlikte bunları ilgili dosyaya yönlendirmeyi sağlamış oluyoruz. Fakat temel düzey için hatalı ve hatasız çıktıları yönlendirmek için `&>` operatörünü kullanabileceğinizi bilmeniz yeterli. Zira bu eğitimde bu konunun detaylarına girmemiz kafa karıştırıcı olabilir. Ben yalnızca basit düzeyde temel yaklaşımları ele aldım. Daha fazlası için kısa bir araştırma yapmanız yeterli.
 
@@ -302,7 +302,7 @@ Buradaki “küçüktür” `<` yönlendirme operatörü `cat` aracına bu dosya
 
 <p class="mavi"><strong>ℹ️ Not:</strong> <code class="language-plaintext highlighter-rouge">cat</code> aracı sistem üzerinde <strong><em>/usr/bin/cat</em></strong> konumunda bulunduğu için temsil edilirken bu dosya ismini kullandım.</p>
 
-![6.png]({{ site.url }}/egitim/temel-linux/metin/6.png){:class="responsive img-zoomable"}
+![6.webp]({{ site.url }}/egitim/temel-linux/metin/6.webp){:class="responsive img-zoomable"}
 
 Normalde doğrudan `cat sonuc` komutu ile de okuyabileceğimiz için belki bu örneğimiz size çok mantıklı gelmemiş olabilir ancak merak etmeyin ileride farklı araçlar üzerinde kullanırken daha anlamlı hale gelecek. Fakat biraz önce de belirttiğim gibi bir araca bu şekilde yönlendirme operatörü ile veri iletmek için **o aracın standart girdiden veri kabul ediyor olması gerekiyor**. Eğer o araç standart girdiye bakmıyorsa yani buradan veri kabul etmiyorsa yönlendirmiş olduğunuz hiç bir veri bu araç tarafından işlenmez.
 
@@ -318,7 +318,7 @@ Bu duruma örnek olarak `echo` aracını ele alabiliriz mesela. `echo` aracını
 
 Bakın herhangi bir çıktı almadık çünkü `echo` aracı standart girdiden veri okumuyor. Dolayısıyla bizim veri yönlendirmiş olmamız `echo` için hiç bir anlam ifade etmiyor. Yani aşağıdakine benzer bir işleyiş söz konusu.
 
-![7.png]({{ site.url }}/egitim/temel-linux/metin/7.png){:class="responsive img-zoomable"}
+![7.webp]({{ site.url }}/egitim/temel-linux/metin/7.webp){:class="responsive img-zoomable"}
 
 Ek bir örnek daha vermemiz gerekirse örneğin tıpkı `echo` aracı gibi, klasör oluşturmamızı sağlayan `mkdir` aracı da standart girdiden veri okuması yapmıyor. Bu sebeple eğer biz klasör oluşturmak istiyorsak, klasör ismini `mkdir` aracına argüman olarak vermemiz gerekiyor. Ben denemek için `mkdir` aracına `mkdir < sonuc` komutu ile yine “***sonuc***” dosyasının içeriğini girdi olarak yönlendirmeyi deniyorum. 
 
@@ -1046,7 +1046,7 @@ Bakın, gördüğünüz gibi konsola herhangi bir çıktı basılmadı. Çünkü
 
 Zaten `help echo` komutu ile yardım sayfasına göz atacak olursanız, yardım bilgisinin en üstünde `echo` komutunun argümanları standart çıktıya yazdırdığı açıkça yazıyor. 
 
-![8.png]({{ site.url }}/egitim/temel-linux/metin/8.png){:class="responsive img-zoomable"}
+![8.webp]({{ site.url }}/egitim/temel-linux/metin/8.webp){:class="responsive img-zoomable"}
 
 Ayrıca gördüğünüz gibi standart girdiden veri kabul ettiğine dair herhangi bir açıklama da bulunmuyor. Burada kast edilen argüman yapısının ne olduğunu zaten biliyorsunuz. 
 

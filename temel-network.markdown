@@ -10,7 +10,7 @@ author: Taylan Özgür Bildik
 
 <div class="row">
  <div class="col-md-3 order-md-2">
-    <img class="card-img" src="{{ site.url }}/data/img/temel-network.png">
+    <img class="card-img" src="{{ site.url }}/data/img/temel-network.webp">
   </div>
   <div class="col-md-9 order-md-1">
     <h1>Ağ Temelleri Eğitimi</h1>

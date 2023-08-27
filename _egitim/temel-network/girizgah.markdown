@@ -8,7 +8,7 @@ excerpt: "Eğitimin yapısı ve ilerleyiş biçimi hakkında bilgi ediniyoruz."
 tags: [network]
 categories: [temel-network]
 tutorial: 0
-cover: girizgahcover.png
+cover: girizgahcover.webp
 toc: true 
 ---
 

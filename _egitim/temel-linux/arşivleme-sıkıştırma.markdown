@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Arşivleme ve sıkıştırma işlemlerinden bahsediyoruz."
 tags: [ tar , gzip , bzip2 , zcat , zgrep , zip , rar]
 categories: [temel-linux]
-cover: arsivcover.png
+cover: arsivcover.webp
 tutorial: 13
 toc: true  
 ---
@@ -22,8 +22,8 @@ Bir grup dosya veya klasörü tek bir arşiv dosyası içerisinde toparlamaya ar
 
 Komut satırı üzerinden arşivler üzerinde çalışmak için kullandığımız `tar` aracının ismi "**T**ape **AR**chive" ifadesinden geliyor. İsmi şu an size garip gelmiş olabilir ancak bu araç manyetik bantlar için arşiv oluşturmak üzere geliştirildiği için bu isim verilmiş. Bu ifadeyi arama motorunun görseller bölümünde arattığınızda manyetik bantların depolandığı pek çok arşiv odası resmi karşınıza çıkacaktır. 
 
-![tape archive]({{ site.url }}/egitim/temel-linux/arsiv/tape_archive.jpg){:class="responsive img-zoomable"}
-[Resim Kaynağı](https://commons.wikimedia.org/wiki/File:Video_tape_archive_%286498650083%29.jpg){:target="_blank"}
+![tape archive]({{ site.url }}/egitim/temel-linux/arsiv/tape_archive.webp){:class="responsive img-zoomable"}
+[Resim Kaynağı](https://commons.wikimedia.org/wiki/File:Video_tape_archive_%286498650083%29.webp){:target="_blank"}
 
 Zaten aracımızın ismi de buradan geliyor. Akılda kalıcı olması için isminden bahsetmek istedim ancak isminin nerden geldiği çok da önemli değil. Neticede `tar` aracını kullanarak arşivler oluşturabiliyoruz.
 
@@ -37,20 +37,20 @@ Ben arşivleme örnekleri sırasında mevcut platformun Github üzerindeki dosya
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]
 └─$ ls linux-dersleri/                                                                                                                                      
  404.html                                   'hakk'$'\302\215''nda.markdown'                   _plugins
-'al'$'\302\215''st'$'\302\215''rmalar.png'   _includes                                        _posts
+'al'$'\302\215''st'$'\302\215''rmalar.webp'   _includes                                        _posts
  assets                                      index.markdown                                   public
  _authors                                   ''$'\302\200''izimler'                            questions.json
- bildirim.html                               kitap.png                                        README.md
- blog                                        _komut                                           sistem-yonetim.png
+ bildirim.html                               kitap.webp                                        README.md
+ blog                                        _komut                                           sistem-yonetim.webp
  _config.yml                                 komutlar                                         site
  _egitim                                     kurs.markdown                                   's'$'\302\215''kca-sorulan-sorular.markdown'
- egitim.markdown                             _layouts                                         telefon.png
- etiketler.markdown                          linux-doc.png                                    temel-linux.markdown
- feedback.png                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.png
- feedback-sended.png                         logo.svg                                         test.markdown
- Gemfile                                     pagefind                                         video-egitim.png
+ egitim.markdown                             _layouts                                         telefon.webp
+ etiketler.markdown                          linux-doc.webp                                    temel-linux.markdown
+ feedback.webp                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.webp
+ feedback-sended.webp                         logo.svg                                         test.markdown
+ Gemfile                                     pagefind                                         video-egitim.webp
  Gemfile.lock                                pagefind.yml
- gizlilik.markdown                           panic.png
+ gizlilik.markdown                           panic.webp
 ```
 
 Bakın websitesinin tüm dosyaları burada bulunuyor. Ben alt klasörlerdekiler de dahil tüm dosya ve klasörleri tek bir arşiv dosyası içine almak istiyorum. Normalde arşivleme işlemi sonrası arşivlenen dosyaların boyutlarında bir değişiklik olmuyor. Çünkü biz özellikle belirtmediğimiz sürece arşivleme işlemi sırasında sıkıştırma yapılmıyor. Arşivleme işlemi, ilgili dosya ve klasörlerin tek bir arşiv dosyası altında toparlanmasını sağlıyor. 
@@ -94,11 +94,11 @@ Bakın dosya ismi genişletmesi sayesinde bu dizinin ve arşiv dosyasının boyu
 
 Eğer sizin oluşturduğunuz arşiv dosyası tıpkı bende olduğu gibi orijinal dizin veya dosyalardan biraz daha küçükse, bu durumun nedeni arşivleme yapılırken verilerin standart dosya sisteminde olduğu gibi bloklar halinde değil bir arada saklanıyor olmasındır. Örneğin mevcut dosya sisteminde verileri saklamak için kullanılan bloklar 4 kb’lık bloklarsa, biz 1 kb’lık bir dosya oluşturduğumuzda bu dosyayı temsil eden verilere bir bloğa kaydoluyor ve 3 kb’ın boşta durmasına sebep oluyor. 
 
-![disk-block.png]({{ site.url }}/egitim/temel-linux/arsiv/disk-block.png){:class="responsive img-zoomable"}
+![disk-block.webp]({{ site.url }}/egitim/temel-linux/arsiv/disk-block.webp){:class="responsive img-zoomable"}
 
 Özellikle çok fazla bu gibi dosya olduğunda da bloklarda boşta kalan alan miktarı artabiliyor. İşte `tar` aracı bu blok yaklaşımı yerine tüm verileri peşi sıra birleştirdiği için arşiv dosyası orijinalinden biraz daha küçük olabiliyor.
 
-![disk-archived-block.png]({{ site.url }}/egitim/temel-linux/arsiv/disk-archived-block.png){:class="responsive img-zoomable"}
+![disk-archived-block.webp]({{ site.url }}/egitim/temel-linux/arsiv/disk-archived-block.webp){:class="responsive img-zoomable"}
 
 Mevcut konu bağlamından uzaklaşacağımız için ben şimdi bu konunun ayrıntısına girmek istemiyorum, ancak çok kısa bir araştırma ile bu konu hakkında yeterli bilgiye ulaşabilirsiniz.
 
@@ -291,20 +291,20 @@ linux-dersleri
 
 linux/linux-dersleri:
  404.html                                   'hakk'$'\302\215''nda.markdown'                   _plugins
-'al'$'\302\215''st'$'\302\215''rmalar.png'   _includes                                        _posts
+'al'$'\302\215''st'$'\302\215''rmalar.webp'   _includes                                        _posts
  assets                                      index.markdown                                   public
  _authors                                   ''$'\302\200''izimler'                            questions.json
- bildirim.html                               kitap.png                                        README.md
- blog                                        _komut                                           sistem-yonetim.png
+ bildirim.html                               kitap.webp                                        README.md
+ blog                                        _komut                                           sistem-yonetim.webp
  _config.yml                                 komutlar                                         site
  _egitim                                     kurs.markdown                                   's'$'\302\215''kca-sorulan-sorular.markdown'
- egitim.markdown                             _layouts                                         telefon.png
- etiketler.markdown                          linux-doc.png                                    temel-linux.markdown
- feedback.png                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.png
- feedback-sended.png                         logo.svg                                         test.markdown
- Gemfile                                     pagefind                                         video-egitim.png
+ egitim.markdown                             _layouts                                         telefon.webp
+ etiketler.markdown                          linux-doc.webp                                    temel-linux.markdown
+ feedback.webp                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.webp
+ feedback-sended.webp                         logo.svg                                         test.markdown
+ Gemfile                                     pagefind                                         video-egitim.webp
  Gemfile.lock                                pagefind.yml
- gizlilik.markdown                           panic.png
+ gizlilik.markdown                           panic.webp
 
 linux/linux-dersleri/assets:
 css  fonts  img  js
@@ -330,20 +330,20 @@ Bakın tüm arşiv içeriğinin hedef dizine yani “***linux***” klasörüne 
 └─$ ls -R linux-dersleri/                                                                                                                                     
 linux-dersleri/:
  404.html                                   'hakk'$'\302\215''nda.markdown'                   _plugins
-'al'$'\302\215''st'$'\302\215''rmalar.png'   _includes                                        _posts
+'al'$'\302\215''st'$'\302\215''rmalar.webp'   _includes                                        _posts
  assets                                      index.markdown                                   public
  _authors                                   ''$'\302\200''izimler'                            questions.json
- bildirim.html                               kitap.png                                        README.md
- blog                                        _komut                                           sistem-yonetim.png
+ bildirim.html                               kitap.webp                                        README.md
+ blog                                        _komut                                           sistem-yonetim.webp
  _config.yml                                 komutlar                                         site
  _egitim                                     kurs.markdown                                   's'$'\302\215''kca-sorulan-sorular.markdown'
- egitim.markdown                             _layouts                                         telefon.png
- etiketler.markdown                          linux-doc.png                                    temel-linux.markdown
- feedback.png                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.png
- feedback-sended.png                         logo.svg                                         test.markdown
- Gemfile                                     pagefind                                         video-egitim.png
+ egitim.markdown                             _layouts                                         telefon.webp
+ etiketler.markdown                          linux-doc.webp                                    temel-linux.markdown
+ feedback.webp                                linux-sistem-yonetimine-giris-egitimi.markdown   temel-linux.webp
+ feedback-sended.webp                         logo.svg                                         test.markdown
+ Gemfile                                     pagefind                                         video-egitim.webp
  Gemfile.lock                                pagefind.yml
- gizlilik.markdown                           panic.png
+ gizlilik.markdown                           panic.webp
 
 linux-dersleri/assets:
 css  fonts  img  js
@@ -1159,7 +1159,7 @@ Benzer şekilde `grep` aracının sunduğu çözümü **gzip** ile sıkıştır�
 
 Biliyorum çok çok basit bir örnek olacak fakat ben daha önce sıkıştırmış olduğum test dosyası içinde “**de**” ifadesi geçiyor mu diye kontrol etmek için `zgrep` aracını kullanmak istiyorum. Çıktıların renklendirilmesi için de komutumu `zgrep —color “de” test1.gz` şeklinde giriyorum.
 
-![zgrep.png]({{ site.url }}/egitim/temel-linux/arsiv/zgrep.png){:class="responsive img-zoomable"}
+![zgrep.webp]({{ site.url }}/egitim/temel-linux/arsiv/zgrep.webp){:class="responsive img-zoomable"}
 
 Bakın tam olarak “**de**” ifadesi ile eşleşen kısım renkli şekilde `zgrep` aracı yardımıyla filtrelenmiş oldu.
 

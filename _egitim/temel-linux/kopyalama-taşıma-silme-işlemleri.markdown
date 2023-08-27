@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Komut satırında kopyalama, taşıma silme gibi işlemleri ele alıyoruz."
 tags: [cp , mv , rm , shred , inode , ln]
 categories: [temel-linux]
-cover: metinselvericover.png
+cover: metinselvericover.webp
 tutorial: 11
 toc: true 
 ---
@@ -488,13 +488,13 @@ Geri döndürülemez yani kalıcı silme kavramından bahsetmeden önce silme i�
 
 Eğer herhangi bir dosyayı sildiğinizde o dosyanın tamamen yok olduğunu düşünüyorsanız kesinlikle yanılıyorsunuz. Kısaca özetlemek gerekirse işletim sistemleri dosya silme emri aldığında o dosyayı gerçekten diskten silmek yerine, dosyaya ulaşmanızı sağlayan yolun bilgisini silerler. 
 
-![shred-1.png]({{ site.url }}/egitim/temel-linux/metin/shred-1.png){:class="responsive img-zoomable"}
+![shred-1.webp]({{ site.url }}/egitim/temel-linux/metin/shred-1.webp){:class="responsive img-zoomable"}
 
 Yani aslında dosya hala disk üzerinde mevcut olmasına rağmen, sadece dosyaya giden bağlantı siliniyor. Bu yöntemin kullanılma nedeni dosyayı gerçekten silmeye oranla çok daha hızlı sonuç vermesidir. Peki ama gerçek silme işleminden kastımız tam olarak ne ?
 
 Gerçek silme işlemi dediğimiz kavram; disk üzerinde yer kaplayan her türlü verinin ancak üzerine yeni veriler yazılması ile ortadan kaldırılabilecek olmasını ifade ediyor. 
 
-![shred-2.png]({{ site.url }}/egitim/temel-linux/metin/shred-2.png){:class="responsive img-zoomable"}
+![shred-2.webp]({{ site.url }}/egitim/temel-linux/metin/shred-2.webp){:class="responsive img-zoomable"}
 
 Çünkü üstüne yeni veri yazılarak tahrip edilmeyen her türlü verinin tekrar kurtarılma ihtimali var. Adli bilişim alanında bu iş için kullanılan pek çok yazılımsal ve harici olarak fiziksel kurtarma yöntemi bulunuyor.
 
@@ -609,7 +609,7 @@ Dosya sistemindeki veriler depolama birimlerimizde yani diskte bloklar halinde t
 
 Örneğin ben ***metin.txt*** isimli bir dosyanın içerisine “merhabalar” yazıp kaydettiğimde, “merhabalar“ ifadesi diskte belirli bir bloğa kaydediliyor. Ve bu verinin disk üzerinde tam olarak bulunduğu bloğun veya blokların bilgisi de **inode** olarak isimlendirilen benzersiz sayısal bir değere atanıyor. ***metin.txt*** dosyası ise bu **inode** değerine link olarak bağlanıyor. Bu sayede biz ***metin.txt*** dosyasının içeriğini okumak istediğimizde aslında arkaplanda ***metin.txt*** dosyasının bağlı olduğu **inode** değerine bakılıyor. **inode** değerinin disk üzerinde işaret ettiği bloklardan da bu veriler getiriliyor. Neticede biz metin.txt ismiyle ilişkili olan "merhabalar" verisine disk üzerinde kaydedildiği yerden tekrar ulaşmış oluyoruz. 
 
-![inode.png]({{ site.url }}/egitim/temel-linux/metin/inode.png){:class="responsive img-zoomable"}
+![inode.webp]({{ site.url }}/egitim/temel-linux/metin/inode.webp){:class="responsive img-zoomable"}
 
 Yani aslında buradaki ***metin.txt*** dosyası yalnızca benzersiz bir **inode** değerine bağlı olan **linktir**. **inode** değeri de ilgili verinin diskteki yerini bildiği için ***metin.txt*** linki üzerinden bu veriye ulaşabiliyoruz.
 
@@ -707,11 +707,11 @@ Bakın sembolik bağlantıdaki değişiklik orijinal dosyada da geçerli olmuş.
 
 Biz burada bu dosyaya veri eklemek üzere komutumuzu girdiğimizde, bu sembolik linke yönlendirmiş olduğumuz veriler orijinal dosyaya yönlendirilip, bu dosya üzerinden diskteki verilere ekleme yapılması sağlanıyor. Bu sayede tıpkı orijinal dosya üzerinden ekleme yapmışız gibi değişiklikler geçerli oluyor.
 
-![soft-link.png]({{ site.url }}/egitim/temel-linux/metin/soft-link.png){:class="responsive img-zoomable"}
+![soft-link.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link.webp){:class="responsive img-zoomable"}
 
 Yani bizzat teyit ettiğimiz gibi sembolik bağlantılar aslında orijinal dosyaya yönlendirme yapan kısayol dosyaları. Bu sebeple örneğin orijinal dosya silinirse, sembolik linkler üzerinden diskteki verilere ulaşmamız mümkün olmuyor. Çünkü dediğimiz gibi sembolik linkler yalnızca orijinal dosyaya yönlendirme yapıyor, bu orijinal dosya da zaten disk üzerindeki verilere ulaşmamızı sağlayan bir bağlantı. Eğer bu bağlantı kesilirse, diskteki veriler silinmemiş bile olsa o verilere ulaşmamız mümkün olmuyor. 
 
-![soft-link-hard-link-deleted.png]({{ site.url }}/egitim/temel-linux/metin/soft-link-hard-link-deleted.png){:class="responsive img-zoomable"}
+![soft-link-hard-link-deleted.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link-hard-link-deleted.webp){:class="responsive img-zoomable"}
 
 Zaten biz standart şekilde dosya sildiğimizde arkaplanda yalnızca diskteki o verilere giden bu bağlantı adresi silinmiş oluyor. Yani diskte veriler mevcut olsa da o verilere ulaşmamızı sağlayan bağlantıyı kaybettiğimiz için ulaşamıyoruz. Bu sebeple standart şekilde silinen ve üzerine veri yazılamayan verilerin diskten kurtarılması mümkün oluyor.
 
@@ -727,7 +727,7 @@ cat: sembolik_metin: No such file or directory
 
 Bakın böyle bir dosya veya dizin yok hatası alıyoruz. `ls -l` komutu ile listeleyelim. 
 
-![soft-link-deleted.png]({{ site.url }}/egitim/temel-linux/metin/soft-link-deleted.png){:class="responsive img-zoomable"}
+![soft-link-deleted.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link-deleted.webp){:class="responsive img-zoomable"}
 
 Bakın sembolik link dosyası gözüküyor ama orijinal dosya silindiği için bu sembolik link kırmızı renkle listelenmiş oldu. Zaten sembolik link bizi bu dosyaya yönlendirdiği, ama bu dizinde böyle bir dosya olmadığı için bu hatayı aldık.
 
@@ -814,21 +814,21 @@ Bakın dosyam oluşturulmuş fakat bu dosyanın bir link dosyası olduğuna dair
 
 Burada katı linke dair özel bir çıktı almadık çünkü aslında katı link dediğimiz kavram sistemimiz üzerindeki tüm standart dosya ve dizinleri temsil ediyor. Yani benim oluşturduğum orijinal metin dosyası da disk üzerindeki verilere yönlendirme yapan bir katı link.
 
-![hard-link.png]({{ site.url }}/egitim/temel-linux/metin/hard-link.png){:class="responsive img-zoomable"}
+![hard-link.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link.webp){:class="responsive img-zoomable"}
 
 Ben burada “***kati-metin***” isimli yeni bir katı link oluşturduğumda, tıpkı orijinal dosya gibi doğrudan beni diskteki verilere yönlendiren inode değerine bir bağlantı oluşturmuş oldum.
 
-![hard-link2.png]({{ site.url }}/egitim/temel-linux/metin/hard-link2.png){:class="responsive img-zoomable"}
+![hard-link2.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link2.webp){:class="responsive img-zoomable"}
 
 Sembolik linkte nasıl oluyordu. Sembolik linkler, orijinal linklere yani aslında katı linkli dosyalara yönlendirme yapıyordu, oradan da disk üzerindeki verilere ulaşabiliyorduk.,
 
-![soft-link2.png]({{ site.url }}/egitim/temel-linux/metin/soft-link2.png){:class="responsive img-zoomable"}
+![soft-link2.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link2.webp){:class="responsive img-zoomable"}
 
 Katı linkte ise hem orijinal dosya hem de yeni oluşturduğumuz katı link dosyası inode değerine bağlı olduğu için aynı disk verisinin yerini biliyor ve bizi oraya yönlendirebiliyor.
 
 Dolayısıyla ben orijinal veya bu yeni oluşturduğum katı link dosyasında değişiklik yaptığımda diskteki bu veri değiştiği için bu değişikliğe her iki dosya üzerinden de ulaşabiliyorum. Hatta orijinal dosya silinse bile yeni oluşturduğum katı link dosyası inode sayesinde verilerin disk üzerinde tam olarak hangi bloklarda olduğunu bildiği için benim o verilere ulaşmam mümkün oluyor.
 
-![hard-link3.png]({{ site.url }}/egitim/temel-linux/metin/hard-link3.png){:class="responsive img-zoomable"}
+![hard-link3.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link3.webp){:class="responsive img-zoomable"}
 
 Hemen bu durumu bizzat teyit etmek için öncelikle basit bir test olarak yeni oluşturduğumuz katı link dosyası üzerinden yeni veri eklemeyi deneyebiliriz.
 
@@ -877,7 +877,7 @@ orijinal ekleme
 
 Gördüğünüz gibi orijinal dosya silinmiş olmasına rağmen hala disk üzerindeki aynı verilere erişmeye devam edebiliyorum. Çünkü işleyiş aslında aşağıdaki şemadaki gibi.
 
-![hard-link3.png]({{ site.url }}/egitim/temel-linux/metin/hard-link3.png){:class="responsive img-zoomable"}
+![hard-link3.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link3.webp){:class="responsive img-zoomable"}
 
 En nihayetinde gördüğünüz gibi aslında sistemiz üzerindeki standart dosya ve klasörler disk üzerindeki veri bloklarına inode üzerinden yönlendirme yapan bağlantı adresleri. Biz bu bağlantı adresleri yani linkler sayesinde kolay okunabilir isimlerle diskteki verilerimizi düzenle tutup tekrar tekrar erişebiliyoruz.
 
@@ -885,7 +885,7 @@ Yeni katı link oluşturma yaklaşımı sayesinde disk üzerinde tekrar aynı ve
 
 Tabii ki katı linkler örneklerimiz üzerinden bizzat teyit ettiğimiz gibi mevcut verilerin üzerine yazılmasına engel olmuyor. Yalnızca ilişkili verilere giden yolun silinmesi ihtimali için yedekleme imkanı tanıyor. Yani eğer üzerine veri yazılması konusunda endişe duyduğunuz verileriniz varsa tabii ki bunları başka bir dizine kopyalayıp tekrar aynı verilerin diskte farklı bloklarda yedeklenmesini sağlamanız gerekiyor.
 
-![backup.png]({{ site.url }}/egitim/temel-linux/metin/backup.png){:class="responsive img-zoomable"}
+![backup.webp]({{ site.url }}/egitim/temel-linux/metin/backup.webp){:class="responsive img-zoomable"}
 
 Bakın dosyayı kopyaladığımızda, dosya içindeki veriler disk üzerinde başka bir bloğa yazılıp, bu bloğun adresi de yeni inode numarası üzerinden ulaşılabilir oluyor. Bu sayede orijinal dosyanın üzerine veri yazılsa bile bu bloktaki verilere müdahele edilmemiş oluyor.
 

@@ -19,7 +19,7 @@ Bu platformu, faydalı olabileceğini düşündüğüm Türkçe Linux notlarım�
 ---
 
 <h3 class="text-primary">İçerikleri farklı platformlarda paylaşabilir miyim ?</h3>
-Platformdaki resimler de dahil tüm içerikler mevcut platforma özel olarak hazırlanmıştır. Dolayısıyla buradaki içerikleri harici bir platformda paylaşırken, kaynak göstermelisiniz. 
+Platformdaki resimler de dahil tüm içerikler mevcut platforma özel olarak hazırlanmıştır. Dolayısıyla buradaki içerikleri harici bir platformda paylaşırken, bu platformu kaynak olarak göstermelisiniz. 
 
 ---
 
@@ -35,9 +35,10 @@ Kullanıcıların okuma deneyimini olumsuz yönde etkilemesini istemediğim içi
 
 <h3 class="text-primary">İçeriklere ben de katkı sunabilir miyim ?</h3>
 
-Katkı sunmanızın birkaç yolu olabilir:
+İçeriklere katkıda bulunmak istemeniz harika❤️Platformun faydalı içeriklere dolup taşmasını ben de çok istiyorum. Fakat maalesef daha önceki deneyimlerime dayanarak maddi çıkar çatışması sebebiyle bunun şu an için pek olası olduğunu düşünmüyorum. Zira mevcut platform henüz herhangi bir düzenli maddi kazanç elde edebilecek yapıda değil. Dolayısıyla yazarlara hakkı olan ödemeyi yapma noktasında sorun yaşanması kaçınılmaz. Ayrıca sizin maddi kazanç beklentiniz olmasa bile bu platformda bana ait olan yazılı eğitim serilerinin ücretli video eğitimlerini tanıttığım için sizin emeğinizi maddi karşılıksız bırakamam. Ayrıca şimdilik harici içeriklerin mevcut platforma uyumunu ve genel kalite kontrolünü sağlamak için de yeterince vakte sahip değilim. İleride tanıtım veya sponsorluklar sayesinde elde edilecek olası kazanç durumununda dönemsel olarak yeni içerik alımı mümkün olabilir. Olası değişiklikte, ana sayfa üzerinde mutlaka duyuru yapmış olurum.
 
-- İçeriklere katkıda bulunmak istemeniz harika❤️. Platformun faydalı içeriklere dolup taşmasını ben de çok istiyorum. Fakat maalesef daha önceki deneyimlerime dayanarak maddi çıkar çatışması sebebiyle bunun şu an için pek olası olduğunu düşünmüyorum. Zira mevcut platform henüz herhangi bir düzenli maddi kazanç elde edebilecek yapıda değil. Dolayısıyla yazarlara hakkı olan ödemeyi yapma noktasında sorun yaşanması kaçınılmaz. Ayrıca sizin maddi kazanç beklentiniz olmasa bile bu platformda bana ait olan yazılı eğitim serilerinin ücretli video eğitimlerini tanıttığım için sizin emeğinizi maddi karşılıksız bırakamam. Ayrıca şimdilik harici içeriklerin mevcut platforma uyumunu ve genel kalite kontrolünü sağlamak için de yeterince vakte sahip değilim. İleride tanıtım veya sponsorluklar sayesinde elde edilecek olası kazanç durumununda dönemsel olarak yeni içerik alımı mümkün olabilir. Olası değişiklikte, ana sayfa üzerinde mutlaka duyuru yapmış olurum.
+Yine de katkı sunmanızın birkaç yolu olabilir:
+
 - Eğer içerik dışında katkı sunmak istiyorsanız ve platformu paylaşacak kadar beğendiyseniz, çevrenizdeki insanlara bu platformdan bahsedebilirsiniz. 
 - Mevcut içeriklerdeki hata ve eksikleri [mail](mailto: info@linuxdersleri.net){:target="_blank"} veya [geri bildirim]({{site.url}}/bildirim.html){:target="_blank"} sayfası üzerinden iletebilirsiniz.
 

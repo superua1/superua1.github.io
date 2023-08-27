@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Disk yönetimi için gerekli olan temel yaklaşımları ele alıyoruz."
 tags: [mbr , gpt , bios , uefi , lsblk , fdisk , mkfs , lvm]
 categories: [temel-linux]
-cover: diskyonetimicover.png
+cover: diskyonetimicover.webp
 tutorial: 17
 toc: true  
 ---
@@ -24,11 +24,11 @@ Bu 0 ve 1 sinyalleri de bilgisayarlar üzerindeki en küçük veri birimi olan *
 
 **8 tane bit** yan yana getirilerek de bir **bayt** oluşturuluyor. Baytlar da büyük **B** ile ifade ediliyor. Bir bayt 2^8 den tam 256 farklı değeri temsil edebiliyor. Bu baytlar da **ascii** gibi standartlarca belirlenmiş olan özel karaktere karşılık geliyor. Örneğin büyük **A** harfinin ikili sayı sistemindeki karşılığı **0 1 0 0 0 0 0 1** olup **ascii** kodu **65’**tir. Bizi şu an doğrudan ilgilendirmediği için **ascii** kodunun nasıl hesaplandığına değinmek istemiyorum. Kısa bir ek araştırma ile ulaşabilirsiniz.
 
-![aschii.png]({{ site.url }}/egitim/temel-linux/disk/aschii.png){:class="responsive img-zoomable"}
+![aschii.webp]({{ site.url }}/egitim/temel-linux/disk/aschii.webp){:class="responsive img-zoomable"}
 
 Neticede burada esas vurgulamak istediğim, biz tek bir karakteri kullandığımızda örneğin klavyemizden “a” tuşuna bastığımızda bu karakter toplam 8 bitten 1 bayta karşılık geliyor ve bilgisayar bu “a” karakterini ikili kod olarak ele alıp işliyor. Elbette sizlerin de bildiği gibi büyüklük birimleri bitlerden ve baytlardan ibaret değil. Buradaki tabloya bakarak diğer büyüklük birimlerini de görebiliriz. Normalde bizler hep ondalık sayı sistemine göre karşılıklarını telaffuz ediyoruz ancak bazı komut çıktılarında da karşılaşabileceğimiz gibi büyüklük birimlerinin ikili gösterimi de bulunuyor. 
 
-![decimal-binary-table]({{ site.url }}/egitim/temel-linux/disk/decimal-binary.png){:class="responsive img-zoomable"}
+![decimal-binary-table]({{ site.url }}/egitim/temel-linux/disk/decimal-binary.webp){:class="responsive img-zoomable"}
 [Tablo Kaynağı](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units){:target="_blank"}
 
 **Ondalık(Decimal) Gösterim:**
@@ -53,13 +53,13 @@ Yine de ikili sayı sistemine oranla ticari olarak, ondalık gösterim daha büy
 
 Normalde karıştırılanın aksine örneğin 1 gigabayt 1024 megabayt değildir. Hatta teyit etmek için Google’a “**1 gb to mb**” şeklinde yazıp aratabiliriz. 
 
-![gb-to-mb.png]({{ site.url }}/egitim/temel-linux/disk/gb-to-mb.png){:class="responsive img-zoomable"}
+![gb-to-mb.webp]({{ site.url }}/egitim/temel-linux/disk/gb-to-mb.webp){:class="responsive img-zoomable"}
 
 Bakın sonuçta aldığımız çıktıda da **1 gigabyte**’ın **1000 megabyte** olduğu belirtiliyor. Zaten bu sebeple satın aldığımız diskler sisteme bağladığımızda bizim beklediğimizden daha az depolama alanına sahip gözüküyor. 
 
 Örneğin **1 terabayt**lık disk, sistem üzerinde yaklaşık **931 gibibyte** olarak gözüküyor. Çünkü depolama alanının büyüklük birimi **terabayttan gibibyte** dönüştürülüyor. Yine Google üzerinden de bu durumu teyit edebiliriz. 
 
-![tb-to-gib.png]({{ site.url }}/egitim/temel-linux/disk/tb-to-gib.png){:class="responsive img-zoomable"}
+![tb-to-gib.webp]({{ site.url }}/egitim/temel-linux/disk/tb-to-gib.webp){:class="responsive img-zoomable"}
 
 Bakın **1 terabayt** aslında yaklaşık olarak **931 gibibayt**. Bilgisayar ikili sayı sistemi üzerinden hesaplama yaptığı için onluktan ikili düzene geçişte bu farklar ortaya çıkıyor. Bizler de işletim sistemleri üzerinden bu büyüklük farklarını görebiliyoruz.
 
@@ -73,19 +73,19 @@ Büyüklük birimlerinden bahsettiğimize göre verilerin diskte nasıl depoland
 
 **8 bit’**in **1 byte** ettiğini öğrendik. Baytlar da disk üzerindeki en küçük birim olan **sektörler** üzerinde barındırılıyor. Sektör dediğimiz kavram, diskteki verileri tutan fiziksel bir noktadır. Standart bir sabit diskte de her bir sektör 512 bayt veri tutabiliyor.
 
-![sector.png]({{ site.url }}/egitim/temel-linux/disk/sector.png){:class="responsive img-zoomable"}
+![sector.webp]({{ site.url }}/egitim/temel-linux/disk/sector.webp){:class="responsive img-zoomable"}
 
 ## Blok
 
 Sektör birimi dışında bir de blok olarak isimlendirilen işletim sistemleri için gruplanmış birimler vardır. Bloklar, en genel tanımıyla işletim sisteminin adresleyebileceği yani işaret edebileceği bir sektör grubudur. Bir blok yalnızca tek bir sektörden ibaret olabilir, ya da 2li 4lü 8li 16lı gibi birden çok sektörün bir araya gelmesiyle de oluşturulabilir.
 
-![block.png]({{ site.url }}/egitim/temel-linux/disk/block.png){:class="responsive img-zoomable"}
+![block.webp]({{ site.url }}/egitim/temel-linux/disk/block.webp){:class="responsive img-zoomable"}
 
 Blok olarak ifade ettiğimiz birim, aslında dosya sisteminin adresleyebileceği en küçük depolama birimini temsil eden bir soyutlamadır. Hatırlıyorsanız inode kavramından bahsederken, inode’un aslında disk üzerindeki verilerin hangi bloklarda olduğunu söyleyen yapı olduğunu öğrenmiştik. Yani aslında verilerin disk üzerinde bloklar halinde tutulduğunu daha önce de üstü kapalı şekilde öğrendik. Verilerin disk üzerinde bloklar halinde tutulmasının nedeni diskin en verimli şekilde işletim sistemi tarafından yönetilebilmesini sağlamaktır. Ama şu an bu konunun detaylarına girmek istemiyorum. Anlatımın devamında neden blok yaklaşımın kullanıldığından zaten bahsedeceğiz. Şimdi blok kavramının tam olarak neyi ifade ettiği üzerinde biraz daha duralım istiyorum. 
 
 İşletim sisteminin ana yapısı olan çekirdek, tüm dosya sistemi işlemlerini blok birimleri üzerinden ele alınır. Burada depolama bağlamında kullandığımız blok ifadesi, disk donanımı ile sistemin kaynaklarını yönetmekten sorumlu olan çekirdek arasında arabirim oluşturabilen en küçük boyuttur. Yani fiziksel olarak böyle bir gruplama söz konusu değil. Yalnızca soyut olarak sektörlerin gruplanmış haline blok diyoruz. Dolayısıyla işletim sisteminin emirleri doğrultusunda bir diskten veri okunurken veya bir diske veri yazılırken, veriler bloklar halinde okunur veya yazılır. Örneğin Linux sisteminin varsayılan dosya sistemi formatı olan **ext4**’ün, standart blok boyutu **4096 byte**dir. Disk üzerindeki en küçük birim olan tek bir sektör **512 byte** veri tutabildiği için bize soyutlama katmanı sunan ext4’ün varsayılan olarak ele aldığı en küçük disk birimi **8 sektörden meydana gelmiş tek bir bloktur**. Yani **ext4** dosya sistemine sahip disk bölümlerine veriler yazılırken veya okunurken disk üzerinde **4096 byte** karşılık gelen 8’er sektörlük birimler kullanılır. Bu da her veri kümesi için 4096 baytlık veri bloklarının kullanılacağı anlamına geliyor. 
 
-![ext4-sector.png]({{ site.url }}/egitim/temel-linux/disk/ext4-sector.png){:class="responsive img-zoomable"}
+![ext4-sector.webp]({{ site.url }}/egitim/temel-linux/disk/ext4-sector.webp){:class="responsive img-zoomable"}
 
 Belki buradaki açıklamalarım yeterince anlaşılır gelmemiş olabilir. Hemen somut bir örnek üzerinden açıklamalarımızı pekiştirelim.
 
@@ -125,7 +125,7 @@ Tüm bu çıktılardan biz şimdilik yalnızca büyüklükler hakkında bilgi su
 
 Bakın dosyanın gerçek boyutu(Size:) **1** bayt olarak gözüküyor. Blocks ifadesinin karşısında da kaç tane sektörü işgal ettiği yazıyor. Hemen yanında da bloğun boyutu yazıyor. Buradaki “io” ifadesi “**i**nput **o**utput” ifadesinden geliyor. Bu bilgi de mevcut dosya sisteminin tek bir blok boyutunu belirtiyor. Neticede 1 baytlık bu dosyanın 4096 baytlık bir blok üzerinde 8 sektörlük disk alanını işgal ettiğini bu çıktılara bakarak teyit edebiliyoruz. Bizim örneğimizdeki tek bir karakterin diskte barındırılması için; bir sektör 512 bayt olduğu için tek bir blok için 8 sektör yani 4096 baytlık alan kullanılmış oldu.
 
-![1byte.png]({{ site.url }}/egitim/temel-linux/disk/1byte.png){:class="responsive img-zoomable"}
+![1byte.webp]({{ site.url }}/egitim/temel-linux/disk/1byte.webp){:class="responsive img-zoomable"}
 
 Emin olmak için dosya boyutunu bir blok boyutunu aşacak şekilde revize edebiliriz. Ben örnek olarak `echo {1..1045} > test2` şeklinde komutumu giriyorum. 
 
@@ -151,7 +151,7 @@ Change: 2023-07-09 05:12:35.272248119 -0400
 
 Bakın dosyanın boyutu 4096 baytı sadece biraz geçmiş olmasına rağmen 16 sektörü yani toplam iki blokluk 8192 byte alanı işgal ediyor.
 
-![4118byte.png]({{ site.url }}/egitim/temel-linux/disk/4118byte.png){:class="responsive img-zoomable"}
+![4118byte.webp]({{ site.url }}/egitim/temel-linux/disk/4118byte.webp){:class="responsive img-zoomable"}
 
 İşte bizzat teyit edebildiğimiz gibi dosya sisteminin sahip olduğu blok boyutuna göre veriler, bloklar halinde diskte depolanıyor ve tekrar bu bloklar üzerinden okunuyor. Tam da bu noktada, bu yaklaşımla depolama biriminin tam olarak verimli kullanılamadığını yani bloklardaki boş disk alanlarının kullanılması gerektiğini düşünüyorsunuz. Ancak bu tam olarak doğru bir yaklaşım olmaz.
 
@@ -169,7 +169,7 @@ Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar iç
 
 MBR artık eskimiş olan ancak hala çok sık karşılaştığımız ve karşılaşmaya devam edeceğimiz disk bölümleme tablosudur. MBR disk bölümleme tablosu maksimum 2 TB'a kadar olsak disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil bölüme ayrılabiliyor. Yine de birincil bölüm sınırlamasını aşmak için, birincil bölümlerden birini mantıksal bölümlere ayrılan genişletilmiş bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz. 
 
-![mbr-max.png]({{ site.url }}/egitim/temel-linux/disk/mbr-max.png){:class="responsive img-zoomable"}
+![mbr-max.webp]({{ site.url }}/egitim/temel-linux/disk/mbr-max.webp){:class="responsive img-zoomable"}
 
 ## GPT
 
@@ -189,11 +189,11 @@ Eğer sizin cihazınızda BIOS kullanılıyorsa MBR disk bölümleme tablosunu k
 
 BIOS genel işlem akışı.
 
-![bios.png]({{ site.url }}/egitim/temel-linux/disk/bios.png){:class="responsive img-zoomable"}
+![bios.webp]({{ site.url }}/egitim/temel-linux/disk/bios.webp){:class="responsive img-zoomable"}
 
 UEFI genel işlem akışı.
 
-![uefi.png]({{ site.url }}/egitim/temel-linux/disk/uefi.png){:class="responsive img-zoomable"}
+![uefi.webp]({{ site.url }}/egitim/temel-linux/disk/uefi.webp){:class="responsive img-zoomable"}
 
 Esasen bu konu pek çok detayı barındırıyor, fakat temel seviye için bu başlangıç yeterli. Netleştirmek için mutlaka ek olarak araştırmanızı öneririm. Yine de bu bölümdeki anlatımları takip etmek için şimdilik bu kadarlık bilgi yeterli.
 
@@ -259,63 +259,63 @@ Ayrıca zaman içinde arayüz değişiminden dolayı, buradaki sanal disk ekleme
 
 Öncelikle sanal makinenizi kapatmanız gerekiyor. Çünkü makine açıkken ayarlarını değiştirmemiz mümkün değil.
 
-![close-virtualbox.png]({{ site.url }}/egitim/temel-linux/disk/close-virtualbox.png){:class="responsive img-zoomable"}
+![close-virtualbox.webp]({{ site.url }}/egitim/temel-linux/disk/close-virtualbox.webp){:class="responsive img-zoomable"}
 
 Sanal makinenizin üzerine sağ tıklayıp ayarları açın.
 
-![virtualbox-settings.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-settings.png){:class="responsive img-zoomable"}
+![virtualbox-settings.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-settings.webp){:class="responsive img-zoomable"}
 
 Ayar penceresindeki “**Depolama**” sekmesine tıklayın.
 
-![virtualbox-settings-storage.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-settings-storage.png){:class="responsive img-zoomable"}
+![virtualbox-settings-storage.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-settings-storage.webp){:class="responsive img-zoomable"}
 
 Denetleyici üzerindeki disk ekleme ikonuna tıklayın.
 
-![virtualbox-controller.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller.png){:class="responsive img-zoomable"}
+![virtualbox-controller.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller.webp){:class="responsive img-zoomable"}
 
 Yeni disk oluşturmak üzere “**Oluştur**” butonuna basın.
 
-![virtualbox-add-disk.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk.webp){:class="responsive img-zoomable"}
 
 Bu pencerede bize oluşturmak istediğimiz sanal diskin türü soruluyor. Standart olan seçenekle devam edebiliriz. Merak ediyorsanız diğer seçenekleri araştırabilirsiniz.
 
-![virtualbox-add-disk2.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk2.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk2.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk2.webp){:class="responsive img-zoomable"}
 
 İlgili disk bölümü sanal makinede doldurulmadığı sürece gerçek diskteki alan dolmayacağı için varsayılan seçenekle devam edebilirsiniz. Eğer burada “Tam boyutu önceden ayır” seçeneğini seçerseniz, ilgili disk sanal sistemde kullanılsa da kullanılmasa da mevcut diskinizden sizin belirlediğiniz disk boyutu kadar alan ayrılacaktır. Bu yöntem sanal diskin hızlı çalışmasını sağlasa da eğer diskinizde çok alan yoksa bu seçeneği seçmenizi önermem. Bırakın, sanal disk kullanıldıkça fiziksel diskinizden alan ayrılsın.
 
-![virtualbox-add-disk3.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk3.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk3.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk3.webp){:class="responsive img-zoomable"}
 
 Sanal diskin boyutunu ve nerede barındırılması gerektiğini belirlememiz gerekiyor. Ben açıklamalar sırasında vereceğim örnekler için yeterli olacağından, yalnızca 2GB boyutunda disk oluşturuyorum. 
 
-![virtualbox-add-disk4.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk4.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk4.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk4.webp){:class="responsive img-zoomable"}
 
 Son olarak oluşturduğunuz yeni sanal diski makineye eklemek için buradan seçmemiz gerek.
 
-![virtualbox-add-disk5.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk5.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk5.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk5.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi disk bölümü sanal makineye eklenmiş bulunuyor.
 
-![virtualbox-add-disk-final.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk-final.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk-final.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk-final.webp){:class="responsive img-zoomable"}
 
 Bu şekilde sanal makinenize sanal diskler ekleyebilirsiniz. Ben tıpkı burada ele aldığım şekilde örnekler sırasında kullanmak üzere 2 tane daha 1GB’lık disk ekleyeceğim.
 
-![virtualbox-add-disk-final2.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk-final2.png){:class="responsive img-zoomable"}
+![virtualbox-add-disk-final2.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-disk-final2.webp){:class="responsive img-zoomable"}
 
 Ben sanal sata disklerini oluşturdum.
 
 Örnek için yalnızca SATA denetleyicisi üzerinden disk oluşturdum ama farklı disk biçimlerini de kullanabiliriz. Pratikler sırasında farklı disk biçimlerini de görebilmek adına oluşturduğumuz sanal disklere ek olarak bir de sanal `NVM**e**` disk de eklesek iyi olabilir. Bunun için öncelikle uygun denetleyiciyi eklememiz gerekiyor.
 
-![virtualbox-add-controller.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-controller.png){:class="responsive img-zoomable"}
+![virtualbox-add-controller.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-controller.webp){:class="responsive img-zoomable"}
 
-![virtualbox-controller-nvme.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme.png){:class="responsive img-zoomable"}
+![virtualbox-controller-nvme.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme.webp){:class="responsive img-zoomable"}
 
 Tıpkı daha önce SATA denetleyicisi üzerinden yaptığımız gibi, şimdi de bu denetleyici üzerinden aynı şekilde yeni disk ekleyebiliriz.
 
-![virtualbox-controller-nvme2.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme2.png){:class="responsive img-zoomable"}
+![virtualbox-controller-nvme2.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme2.webp){:class="responsive img-zoomable"}
 
 Ben 10GB ve 1GB olmak üzere iki tane NVMe disk eklemek istiyorum.
 
-![virtualbox-controller-nvme3.png]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme3.png){:class="responsive img-zoomable"}
+![virtualbox-controller-nvme3.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-controller-nvme3.webp){:class="responsive img-zoomable"}
 
 Ben örnek olarak anlatım sırasında bu diskleri kullanıyor olacağım. Sizler bu kadar disk oluşturmak zorunda değilsiniz. Ben sadece birden fazla diskin nasıl görüneceği hakkında fikir sahibi olabilmemiz için birden fazla ve farklı türde disk ekledim sadece. Hepsini doğrudan kullanmayacağım. Sizler dilediğiniz boyutta dilediğiniz kadar disk oluşturabilirsiniz. Yani fiziksel diskinizde uygun alan yoksa benimle aynı şekilde ve sayıda disk oluşturmak zorunda değilsiniz. 1 veya 2 disk oluşturabiliyorsanız da beni rahatlıkla takip edebilirsiniz. Yalnızca açıklamalarımı dikkatlice takip etmeniz yeterli. Şimdi sanal makinemizi çalıştırıp diskler üzerinde pratik yapmaya başlayabiliriz.
 
@@ -1328,7 +1328,7 @@ Söz konusu LVM olduğunda temelde üç katman bulunuyor.
 
 Yapıyı en genel haliyle aşağıdaki şekilde soyutlayabiliriz.
 
-![LVM-structure.png]({{ site.url }}/egitim/temel-linux/disk/LVM-structure.png){:class="responsive img-zoomable"}
+![LVM-structure.webp]({{ site.url }}/egitim/temel-linux/disk/LVM-structure.webp){:class="responsive img-zoomable"}
 
 Bu iş için tanımlanan fiziksel disklerdeki depolama alanları birleştirilip tek bir grup içerisinde toparlanıyor, daha sonra bu toplam disk kapasitesinden sanal olarak ihtiyaca yönelik disk bölümleri oluşturulabiliyor. Bu sayede disk alanlarını genişletip küçültme gibi işlevler veri kayıpları olmadan kolayca ele alınabiliyor. Yani fiziksel olarak tek bir diskte sahip olmamız veya fiziksel sınırlara takılmamız gerekmiyor. Soyutlayarak çok daha pratik çözümler üretebiliyoruz. Bu yaklaşım sayesinde yedekleme, snapshot, ve diğer disk yönetimi sorunlarını kolayca idare edebiliyoruz.
 

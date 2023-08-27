@@ -1,7 +1,7 @@
 ---
 layout: b-post
 title:  "apt ile apt-get Arasındaki Fark"
-modified: 2023-06-17
+modified:
 author: Taylan Özgür Bildik
 tags: [apt , apt-get]
 categories: blog 

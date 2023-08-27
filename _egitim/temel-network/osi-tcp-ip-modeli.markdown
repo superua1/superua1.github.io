@@ -8,7 +8,7 @@ excerpt: "OSI ve TCP/IP modellerini ele alarak ağın temel çalışma yapısın
 tags: [tcp, udp,]
 categories: [temel-network]
 tutorial: 3
-cover: osi-tcp-ip-modelcover.png
+cover: osi-tcp-ip-modelcover.webp
 toc: true 
 ---
 
@@ -33,7 +33,7 @@ Ayrıca bunlar dışında örneğin sinyalleri tekrarlayarak hat üzerinde daha 
 
 Hatta Hub olarak geçen cihazlar da aslında fiziksel(layer 1) katmandadır çünkü bağlı bulunan hostlar arasında ayrım yapmadan verileri tüm hostlara aynı şekilde iletiyor. Bu bağlamda sıradan bir ethernet kablodan farkı yoktur çünkü herhangi bir ayrım yapmadan bağlı bulunan tüm uç noktalara veriyi iletir.  
 
-![layer1.png]({{ site.url }}/egitim/temel-network/osi-modeli/layer1.png){:class="responsive img-zoomable"}
+![layer1.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer1.webp){:class="responsive img-zoomable"}
 
 # Layer 2 - Data Link
 
@@ -49,7 +49,7 @@ Router ve Switch cihazları da MAC adresi vasıtasıyla yönlendirme yaptığı 
 
 Örneğin ağları birbirine bağlamak üzere router cihazlarını kullandığımızda, aslında ağları routerların portlarındaki NIC kartlarına bağlıyoruz. Her bir ağ kartının benzersiz bir MAC adresi olduğu için de ağlar arasındaki yönlendirme bu MAC adresleri sayesinde mümkün olabiliyor.
 
-![router-mac.png]({{ site.url }}/egitim/temel-network/osi-modeli/router-mac.png){:class="responsive img-zoomable"}
+![router-mac.webp]({{ site.url }}/egitim/temel-network/osi-modeli/router-mac.webp){:class="responsive img-zoomable"}
 
 ℹ️ Not: MAC adresleri sembolik olarak kısaltılmıştır. 
 
@@ -63,41 +63,41 @@ Ağ katmanının ana işlevi, veri paketlerini kaynak cihazdan hedef cihaza ula�
 
 Daha iyi anlamak için birbirinden farklı iki ağdaki cihazların veri alışverişinde bulunmak istediğini düşünelim. Yönlendirme işinden routerlar sorumlu olduğu için biz hedef ip adresini belirtip, bizim ağımıza bağlı bulunan routera bu paketi iletiyoruz. Router da bağlı olduğu ağlardan uygun olanlara bu paketi iletip ilgili ip adresine bu paketin ulaşmasını sağlıyor. Nasıl olduğunu adım adım ele alalım:
 
-![r1.png]({{ site.url }}/egitim/temel-network/osi-modeli/r1.png){:class="responsive img-zoomable"}
+![r1.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r1.webp){:class="responsive img-zoomable"}
 
 Bakın kaynak ve hedef ip adresi pakete eklendi. Ayrıca bu paketi uygun yere yönlendirebilmesi için router cihazının MAC adresi de hedef adres olarak eklendi. 
 
-![r2.png]({{ site.url }}/egitim/temel-network/osi-modeli/r2.png){:class="responsive img-zoomable"}
+![r2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r2.webp){:class="responsive img-zoomable"}
 
 Bu paket routera geldiğinde router alıp inceliyor ve hedef ip adresinin kendisine bağlı olan bir ağda olup olmadığını kontrol ediyor. 
 
-![r3.png]({{ site.url }}/egitim/temel-network/osi-modeli/r3.png){:class="responsive img-zoomable"}
+![r3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r3.webp){:class="responsive img-zoomable"}
 
 Kendisine bağlı bir ağda bu IP adresine sahip cihaz olmadığı için bununu bağlı olduğu diğer router cihazına, MAC adresi yardımıyla yönlendiriyor.
 
-![r4.png]({{ site.url }}/egitim/temel-network/osi-modeli/r4.png){:class="responsive img-zoomable"}
+![r4.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r4.webp){:class="responsive img-zoomable"}
 
-![r5.png]({{ site.url }}/egitim/temel-network/osi-modeli/r5.png){:class="responsive img-zoomable"}
+![r5.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r5.webp){:class="responsive img-zoomable"}
 
 Bu paket ikinci router cihazına geldiğinde router hedef ip adresini kontrol ediyor. 
 
-![r6.png]({{ site.url }}/egitim/temel-network/osi-modeli/r6.png){:class="responsive img-zoomable"}
+![r6.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r6.webp){:class="responsive img-zoomable"}
 
 Hedef ip adresinin, bağlı olduğu ağdaki bir hosta ait olduğunu öğrendiğinde bu hosta bu paketi iletmek için hedef MAC adresi olarak bu hostun MAC adresini ekleyip gönderiyor.
 
-![r7.png]({{ site.url }}/egitim/temel-network/osi-modeli/r7.png){:class="responsive img-zoomable"}
+![r7.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r7.webp){:class="responsive img-zoomable"}
 
-![r8.png]({{ site.url }}/egitim/temel-network/osi-modeli/r8.png){:class="responsive img-zoomable"}
+![r8.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r8.webp){:class="responsive img-zoomable"}
 
 Bu paketi alan host, paketin göndericisini ve hedefini kontrol ediyor. Bu sayede paketin kendisi için olup olmadığını ve yanıt vermek istediğinde yanıtını hangi ip adresine göndermesi gerektiğini öğrenmiş oluyor. 
 
-![r9.png]({{ site.url }}/egitim/temel-network/osi-modeli/r9.png){:class="responsive img-zoomable"}
+![r9.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r9.webp){:class="responsive img-zoomable"}
 
 IP adresi kendisine ait olduğu için bu paketi kabul edip, içeriğini yani DATA kısmını okuyor.
 
-![r10.png]({{ site.url }}/egitim/temel-network/osi-modeli/r10.png){:class="responsive img-zoomable"}
+![r10.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r10.webp){:class="responsive img-zoomable"}
 
-![r11.png]({{ site.url }}/egitim/temel-network/osi-modeli/r11.png){:class="responsive img-zoomable"}
+![r11.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r11.webp){:class="responsive img-zoomable"}
 
 Böylelikle farklı ağlardaki iki hostun iletişim kurması mümkün oluyor.
 
@@ -117,15 +117,15 @@ Burada router cihazlarının IP ile MAC adresini eşleştirebilmesini sağlayan 
 
 Her bir aracın kendisine ait bir port numarası bulunuyor. Bu sayede veriler bu portlar aracılığı ile yalnızca ilgili olan araçlara iletilebiliyor. Yani tek bir hat üzerinden geliyor olsa da veriler birbirinden izole şekilde, yalnızca doğru portlara iletiliyor. 
 
-![transport-port.png]({{ site.url }}/egitim/temel-network/osi-modeli/transport-port.png){:class="responsive img-zoomable"}
+![transport-port.webp]({{ site.url }}/egitim/temel-network/osi-modeli/transport-port.webp){:class="responsive img-zoomable"}
 
 Servislerle iletişim kurulurken gönderici rastgele bir port üzerinden veri gönderip yine aynı port üzerinden veri alabilir. Örneğin bir websitesini ziyaret etmek istediğinizde aşağıdaki gibi ip ve port numaraları adresi üzerinden iletişim kurulabiliyor. 
 
-![src-dst-port.png]({{ site.url }}/egitim/temel-network/osi-modeli/src-dst-port.png){:class="responsive img-zoomable"}
+![src-dst-port.webp]({{ site.url }}/egitim/temel-network/osi-modeli/src-dst-port.webp){:class="responsive img-zoomable"}
 
 Örneğin web tarayıcısını kullandığınızda açtığınız her yeni sekme aslında rastgele farklı bir port üzerinden ilgili servislere haberleşecek. Bu sayede farklı sekmelerdeki veriler birbirinden izole şekilde doğru sekmeye iletilebiliyor. Ben farklı sekmelerde aynı websitesini ziyaret edecek olursam aşağıdaki gibi bir iletişim söz konusu olacak.
 
-![multi-tab-port.png]({{ site.url }}/egitim/temel-network/osi-modeli/multi-tab-port.png){:class="responsive img-zoomable"}
+![multi-tab-port.webp]({{ site.url }}/egitim/temel-network/osi-modeli/multi-tab-port.webp){:class="responsive img-zoomable"}
 
 Rastgele tanımlanan port numaraları haricinde çeşitli servisler için kullanılan bazı standart portlar vardır. Örneğin birkaç tanesi aşağıdaki gibidir:
 
@@ -152,7 +152,7 @@ Hedef sunucu bu **SYN** paketini alırsa, yanıt olarak istemciye onay yani **SY
 
 İstemci, hedef sunucunun SYN-ACK paketini aldığında bu bağlantıyı **ACK** onaylar ve her ikisi de gerçek veri aktarımını başlatacakları güvenilir bir bağlantı kurar.
 
-![SYN-ACK.png]({{ site.url }}/egitim/temel-network/osi-modeli/SYN-ACK.png){:class="responsive img-zoomable"}
+![SYN-ACK.webp]({{ site.url }}/egitim/temel-network/osi-modeli/SYN-ACK.webp){:class="responsive img-zoomable"}
 
 Daha sonra veri paketleri hedefe gönderilir. Ayrıca veri iletimi sırasında, gönderilen veri paketleri kaybolabilir, gecikebilir veya bozulabilir. Ancak TCP, bu tür sorunlarla başa çıkmak için hata kontrolü ve eksik veya bozulmuş verinin yeniden iletilmesi gibi mekanizmalara sahiptir. Bu sayede, güvenilir ve düzenli veri iletimi sağlanır. Bu yaklaşımı sebebiyle TCP, veri bütünlüğünün önemli olduğu durumlarda eksiksiz iletim için kullanılıyor. Örneğin e-posta, websitesi içeriğinin alınması, veya dosya indirme gibi tüm verilerin eksiksiz iletiminin şart olduğu durumlarda TCP kullanılıyor. 
 
@@ -162,7 +162,7 @@ UDP, “**U**ser **D**atagram **P**rotocol” ifadesinin kısaltmasından geliyo
 
 Kısacası, TCP güvenilir veri iletimini sağlarken, UDP hızlı ancak veri bütünlüğü konusunda daha az güvenilir bir iletim sağlıyor.
 
-![TCP-UDP.png]({{ site.url }}/egitim/temel-network/osi-modeli/TCP-UDP.png){:class="responsive img-zoomable"}
+![TCP-UDP.webp]({{ site.url }}/egitim/temel-network/osi-modeli/TCP-UDP.webp){:class="responsive img-zoomable"}
 
 # Session - Presentation - Application Layers
 
@@ -176,11 +176,11 @@ Bu örneklere benzer şekilde pek çok farklı amaç için kullanılan pek çok 
 
 Şimdiye kadar ele aldığımız OSI modelinde, ağ ile ilgili uygulamaların iletişimi üç farklı katmanda ele alınıyor. 
 
-![Application-layer.png]({{ site.url }}/egitim/temel-network/osi-modeli/Application-layer.png){:class="responsive img-zoomable"}
+![Application-layer.webp]({{ site.url }}/egitim/temel-network/osi-modeli/Application-layer.webp){:class="responsive img-zoomable"}
 
 Fakat günümüzde daha yaygın kullanımda olan **TCP/IP** isimli ağ modelinde ise tüm bu katmanlar **Application** katmanı altında tek bir katmanda ele alınıyor. 
 
-![OSI-TCP-IP.png]({{ site.url }}/egitim/temel-network/osi-modeli/OSI-TCP-IP.png){:class="responsive img-zoomable"}
+![OSI-TCP-IP.webp]({{ site.url }}/egitim/temel-network/osi-modeli/OSI-TCP-IP.webp){:class="responsive img-zoomable"}
 
 Her iki model de aynı temel standartları ifade ediyor olmasına karşın TCP/IP isimli ağ modeli biraz daha sadeleştirilmiş bir temsile sahip. Yoksa OSI ve TCP/IP modellerinin her ikisi de aynı şekilde sorunsuz ağ iletişimi için gereken temel protokollerin tanımlandığı modellerdir.
 
@@ -192,49 +192,49 @@ Ağdaki veri akışını anlamak için önemli olan OSI modelinde **1-4** veya *
 
 Uygulama katmanından gönderilen veriler “encapsulation” yani “kapsülleme” denilen bir metotla alt katmanlara iletiliyor. 
 
-![encapsulation.png]({{ site.url }}/egitim/temel-network/osi-modeli/encapsulation.png){:class="responsive img-zoomable"}
+![encapsulation.webp]({{ site.url }}/egitim/temel-network/osi-modeli/encapsulation.webp){:class="responsive img-zoomable"}
 
 Uygulama katmanından gelen veriye öncelikle hangi taşıma yöntemi ile taşınacağının bilgisi eklenerek bu veri kapsülleniyor. Verinin bu haline de “**Segment**” deniyor.
 
-![layer4.png]({{ site.url }}/egitim/temel-network/osi-modeli/layer4.png){:class="responsive img-zoomable"}
+![layer4.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer4.webp){:class="responsive img-zoomable"}
 
 Ağ katmanında gönderici ve alıcı ip adresi ekleniyor. Buna da “**packet**” deniyor.
 
-![layer3.png]({{ site.url }}/egitim/temel-network/osi-modeli/layer3.png){:class="responsive img-zoomable"}
+![layer3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer3.webp){:class="responsive img-zoomable"}
 
 Data link katmanında da gönderici ve alıcı MAC adresi eklenip hedef cihazın belirtilmesi sağlanıyor. Buna da “**frame**” yani “**çerçeve**” deniyor.
 
-![layer2.png]({{ site.url }}/egitim/temel-network/osi-modeli/layer2.png){:class="responsive img-zoomable"}
+![layer2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer2.webp){:class="responsive img-zoomable"}
 
 En nihayetinde fiziksel katmanda frame, hat üzerinden iletilmek üzere 0 ve 1’lere dönüştürülüp hat üzerinde hedefe gönderiliyor.
 
-![physical-layer.png]({{ site.url }}/egitim/temel-network/osi-modeli/physical-layer.png){:class="responsive img-zoomable"}
+![physical-layer.webp]({{ site.url }}/egitim/temel-network/osi-modeli/physical-layer.webp){:class="responsive img-zoomable"}
 
 Özetle “encapsulation” yani “kapsülleme” işlemi bu şekilde. 
 
-![encapsulation.png]({{ site.url }}/egitim/temel-network/osi-modeli/encapsulation.png){:class="responsive img-zoomable"}
+![encapsulation.webp]({{ site.url }}/egitim/temel-network/osi-modeli/encapsulation.webp){:class="responsive img-zoomable"}
 
 ## Decapsulation
 
 Alıcı ise aynı işlemleri tersten gerçekleştirerek, kapsülü katman katman açıyor. Buna “**decapsulation**” yani “**kapsülü açma**” deniyor. 
 
-![decapsulation.png]({{ site.url }}/egitim/temel-network/osi-modeli/decapsulation.png){:class="responsive img-zoomable"}
+![decapsulation.webp]({{ site.url }}/egitim/temel-network/osi-modeli/decapsulation.webp){:class="responsive img-zoomable"}
 
 Yani 0 ve 1’leri frame haline çevirip data link katmanına gönderiyor.
 
-![de-layer1.png]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer1.png){:class="responsive img-zoomable"}
+![de-layer1.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer1.webp){:class="responsive img-zoomable"}
 
 Buradaki MAC bilgisine bakılarak hangi ağ kartının MAC adresinin hedeflendiği öğreniliyor.
 
-![de-layer2.png]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer2.png){:class="responsive img-zoomable"}
+![de-layer2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer2.webp){:class="responsive img-zoomable"}
 
 Daha sonra ip adresine bakılarak bu adresin doğruluğu kontrol ediliyor. IP adresi, verinin nereye yönlendirilmesi gerektiğini gösterir. Eğer IP adresi doğruysa, veri taşıma katmanına iletilir.
 
-![de-layer3.png]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer3.png){:class="responsive img-zoomable"}
+![de-layer3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer3.webp){:class="responsive img-zoomable"}
 
 Taşıma katmanında TCP veya UDP sayesinde verilerin taşınma yöntemi ve hangi porta veri gönderildiği öğrenilip bu porta veri yönlendiriliyor.
 
-![de-layer4.png]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer4.png){:class="responsive img-zoomable"}
+![de-layer4.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer4.webp){:class="responsive img-zoomable"}
 
 Son olarak uygulama katmanı da, kendisine gönderilene veri paketini alıp uygun şekilde işliyor.
 

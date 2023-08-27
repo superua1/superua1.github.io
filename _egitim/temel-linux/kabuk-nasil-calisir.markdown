@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Bash kabuğunun komutları nasıl anlamlandırabildiğinden bahsediyoruz."
 tags: [bash , shell , PATH , değişken , export , source]
 categories: [temel-linux]
-cover: kabukcover.png
+cover: kabukcover.webp
 tutorial: 4
 toc: true  
 ---
@@ -39,11 +39,11 @@ Bakın find aracı tam da istediğim şekilde “***test.txt***” dosyaları bu
 
 Kabuğa `find /home/ -name test.txt` komutunu girdik. Kabuk öncelikle arasında boşluk bulunan tüm ifadeleri argümanlar olarak ayırdı. 
 
-![1.png]({{ site.url }}/egitim/temel-linux/kabuk/1.png){:class="responsive img-zoomable"}
+![1.webp]({{ site.url }}/egitim/temel-linux/kabuk/1.webp){:class="responsive img-zoomable"}
 
 İlk girilen komut yani ilk argüman **find** olduğu için kabuk "find" ifadesini çalıştırılacak araç olarak kabul ediliyor. Ve bu aracı çalıştırmak için de tabii ki önce bu aracı bulması gerekiyor. Bunun için de ilk olarak bu isimle ile eşleşen dahili bir araç var mı diye bakıyor. Hatırlıyorsanız eğitimin başında kabukların dahili araçları bulunduğundan bahsetmiştik. İşte kabuk bir aracı çalıştırmadan önce kendisine verilmiş olan komuttaki ilk argümanın, dahili bir aracın ismi olup olmadığını kontrol ediyor. find aracı bash kabuğunda dahili bir araç olmadığı için elbette herhangi bir eşleşme olmuyor. find komutu dahili bir komut olmadığı için kabuk bu kez PATH olarak geçen birtakım dizinlerin içinde find ismiyle eşleşen çalıştırabilir bir dosya var mı diye bakıyor. Ve neticede bu dizinlerin birinde find aracının dosyası bulunduğu için bu dosya kabuk tarafından çalıştırıyor. 
 
-![2.png]({{ site.url }}/egitim/temel-linux/kabuk/2.png){:class="responsive img-zoomable"}
+![2.webp]({{ site.url }}/egitim/temel-linux/kabuk/2.webp){:class="responsive img-zoomable"}
 
 Çalıştırılacak araç bulunduktan sonra burada yer alan ilk argümandan sonraki argümanlar, istisnai durumlar dışında çalıştırılan araca verilecek argümanlar olarak kabul ediliyor. Dolayısıyla find argümanından ardından yazılmış olan argümanlar find aracının çalışma şeklini tanımlamak için bulunuyor. Örneğin ikinci argüman find aracının nerede araştırma yapması yani nereye bakması gerektiğini belirten bir **parametredir**. Buradaki argümana “**parametre**” diyorum çünkü bu argüman find aracının spesifik olarak nereye bakması gerektiğini haber veren bir bilgi bulunduruyor. Buradaki “**/home/taylan/**” dizini yerine başka herhangi bir dizin de belirtilebilir. Yani buradaki argüman aslında çalıştırılan araç için bir parametre. 
 
@@ -51,7 +51,7 @@ Kabuğa `find /home/ -name test.txt` komutunu girdik. Kabuk öncelikle arasında
 
 Burada “`-name`” **seçeneğinin** ardından girdiğimiz “**test**” **argümanı** da aranacak dosya veya klasörün ismini belirten parametredir. Biz `-name` seçeneği sayesinde find aracına “**test.txt**” ismini araştırmasını özellikle belirtebiliyoruz. 
 
-![3.png]({{ site.url }}/egitim/temel-linux/kabuk/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/kabuk/3.webp){:class="responsive img-zoomable"}
 
 En nihayetinde doğru şekilde kullandığımız tüm seçenek ve parametrelerle birlikte find aracına istediğimiz görevi yazılı şekilde iletip, işin yerine getirilmesini sağlayabiliyoruz.
 
@@ -289,11 +289,11 @@ Bakın bu kez sorunsuzca değişken değerine ulaşabildik çünkü `export` kom
 
 Denemek için yeni bir konsol penceresi açıp `echo $ad` komutu ile değişkeni sorgulayabiliriz. 
 
-![4.png]({{ site.url }}/egitim/temel-linux/kabuk/4.png){:class="responsive img-zoomable"}
+![4.webp]({{ site.url }}/egitim/temel-linux/kabuk/4.webp){:class="responsive img-zoomable"}
 
 Yeni açtığımız konsolda hiç bir çıktı alamadık. Şimdi bir de bu konsol üzerinden **PATH** değişkenini bastırmayı deneyelim.
 
-![5.png]({{ site.url }}/egitim/temel-linux/kabuk/5.png){:class="responsive img-zoomable"}
+![5.webp]({{ site.url }}/egitim/temel-linux/kabuk/5.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi her iki konsolda da PATH değişken değeri basıldı. Peki ama nasıl oluyor da bizim `export` komutu ile global hale getirdiğimiz değişkene başka bir konsoldan ulaşamıyorken, **PATH** değişkenine tüm konsollardan ulaşabiliyoruz ? 
 
@@ -373,7 +373,7 @@ Dizin adresinden emin olduktan sonra `export PATH=”$PATH:yeni-dizin-adresi”`
 export PATH=”$PATH:/home/taylan/Desktop/yeni-dizin/”
 ```
 
-![7.png]({{ site.url }}/egitim/temel-linux/kabuk/7.png){:class="responsive img-zoomable"}
+![7.webp]({{ site.url }}/egitim/temel-linux/kabuk/7.webp){:class="responsive img-zoomable"}
 
 Tanımlamayı açıklayacak olursak buradaki `export` komutu bildiğiniz gibi kendisinden sonraki değişkeni global hale getiriyor. Buradaki değişikliğin bu konfigürasyon dosyasını okuyan tüm kabuklarda geçerli olması için `export` kullandık. `export` komutundan sonra tekrar **PATH** isimli değişken tanımlayıp `$PATH` sayesinde mevcut PATH değişkenin değerini koruduk. Mevcut değişken değerinden sonra iki nokta karakterinin hemen ardından da yeni dizin adresini ekledik. Bu sayede PATH yolundaki eski dizin adresleri korunup, yeni dizin adresi de sonuna eklenmiş oldu. 
 
@@ -438,7 +438,7 @@ Ben örnek olması için tüm kullanıcıları etkileyen ***/etc/bash.bashrc*** 
 
 Hazır yeri gelmişken belirtelim, Linux sisteminde isminin başında nokta bulunan dosya ve klasörler gizli olarak sayılıyorlar. Örneğin grafiksel arayüzdeki dosya yöneticisini açtığınızda bu dosya yöneticisi varsayılan olarak ev dizininizde çalışmaya başlar. Fakat buraya göz atacak olursanız burada ***.bashrc*** isimli bir dosya göremezsiniz. Çünkü bu dosya isminin başındaki nokta karakteri bu dosyanın gizli olmasını sağlıyor. 
 
-![9.png]({{ site.url }}/egitim/temel-linux/kabuk/9.png){:class="responsive img-zoomable"}
+![9.webp]({{ site.url }}/egitim/temel-linux/kabuk/9.webp){:class="responsive img-zoomable"}
 
 Grafiksel arayüzden gizli dosyaları görmek için dosya yöneticisinin ayarlarına göz atıp gizli dosyaları gösterme özelliğini aktifleştirebiliriz. Biraz kurcalarsanız sizin kullandığınız dosya yöneticisinde nasıl yapabileceğinizi kolaylıkla keşfedebilirsiniz. Gizli dosyaları nasıl görünür kılacağınızı kendiniz keşfetmelisiniz çünkü bu ayarın konumu, kullandığınız dosya yöneticisine göre değişiklik gösterecektir. 
 

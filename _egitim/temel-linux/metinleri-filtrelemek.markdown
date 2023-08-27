@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Metinler üzerinde çalışmak için gerekli olan yaklaşımları ve araçları tanıyoruz."
 tags: [pipe , xargs , grep , regex , find , locate , cut , tr , sed , awk , more , less , head , tail]
 categories: [temel-linux]
-cover: metinfiltrecover.png
+cover: metinfiltrecover.webp
 tutorial: 10
 toc: true 
 ---
@@ -130,7 +130,7 @@ Peki bu çıktıyı tam olarak nasıl elde ettik yani pipe tam olarak nasıl ça
 
 Bizim girdiğimiz komutta bulunan üç farklı araç aynı anda üç ayrı işlem olarak başlatıldı. İlk aracın standart çıktısı ikinci aracın standart girdisine bağlandı. İkinci aracın standart çıktısı da üçüncü aracın standart girdisine bağlandı. Üçüncüsü de özellikle başka bir yere yönlendirilmediği için çıktılarını konsola(***/dev/tty*** olarak temsil edildi) bastırmış oldu.
 
-![9.png]({{ site.url }}/egitim/temel-linux/metin/9.png){:class="responsive img-zoomable"}
+![9.webp]({{ site.url }}/egitim/temel-linux/metin/9.webp){:class="responsive img-zoomable"}
 
 Elbette bu işlemi her bir komutun çıktılarını bir dosyaya aktarıp ilgili dosyadan diğer araçların verileri okumasını sağlayarak da yapabilirdik fakat bu komutu yazmak hem daha uğraştırıcı olacaktı hem de araçlarımız pipe kullanımına oranla daha verimsiz çalışacaktı. Hemen bu durumu gözlemleyelim.
 
@@ -159,7 +159,7 @@ Aynı işlemi bu kez dosyalara yönlendirme ile deneyelim. Öncelikle komutu yaz
 
 Bu girdiğimiz komutta önce `find` komutu çalıştırılacak ve işini tamamladığında çıktılarını “***bul***” isimli dosyaya aktaracak. Daha sonra `sort` komutu “***bul***” isimli dosyayı okuyacak ve içeriğindeki verileri sıraladıktan sonra “***sırala***” isimli dosyaya aktaracak. En son `nl` komutu “***sırala***” isimli dosyadaki içeriği okuyup numaralandıracak ve çıktısını konsolumuza basacak. İşte girdiğimiz komutun çalışma yapısı tam olarak bu. Komutların arasında girmiş olduğumuz noktalı virgül karakterleri tek satırda belirtmiş olduğumuz bu komutların sırasıyla çalıştırılmasını sağlıyor. İleride bu konudan da ayrıca bahsedeceğiz.
 
-![10.png]({{ site.url }}/egitim/temel-linux/metin/10.png){:class="responsive img-zoomable"}
+![10.webp]({{ site.url }}/egitim/temel-linux/metin/10.webp){:class="responsive img-zoomable"}
 
 Bakın pipe yerine kullandığımız bu yönlendirme alternatifini yazması ve açıklaması dahi uzun sürdü.
 
@@ -226,7 +226,7 @@ dosya1  dosya2  dosys3  oku-beni
 
 Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluşturulmuş. Yani `xargs` aracının standart girdiden okuduğu verileri hemen yanındaki komutun argümanı olarak çalıştırdığını bizzat teyit etmiş olduk. 
 
-![11.png]({{ site.url }}/egitim/temel-linux/metin/11.png){:class="responsive img-zoomable"}
+![11.webp]({{ site.url }}/egitim/temel-linux/metin/11.webp){:class="responsive img-zoomable"}
 
 `xargs` aracı kendisine girdi olarak verilerin tüm verileri standart şekilde boşluklarından parçalara ayırıp bunların her birini hemen yanındaki komuta ayrı ayrı argüman olarak iletiyor. Zaten bu sebeple benim bu dosyada aralarında boşluk bırakarak yazdığım tüm verilerim argüman olarak `touch` aracına iletildi.
 
@@ -319,7 +319,7 @@ vmlinuz.old
 
 Gördüğünüz gibi `ls` komutunun tüm çıktıları da bu listeye kaydedilmiş. Yani `tee` komutu `ls` komutunun çıktılarını hem dosyaya hem de bir sonraki işlem olan `head` işlemine iletmiş oldu. Burada fark ettiyseniz `tee` aracı kendisine verilen tüm verileri hem dosyaya hem de bir sonraki araca eksiksiz şekilde iletiyor. İşte `tee` komutu pipeline üzerinde bu amaçla sıklıkla kullanılıyor.
 
-![12.png]({{ site.url }}/egitim/temel-linux/metin/12.png){:class="responsive img-zoomable"}
+![12.webp]({{ site.url }}/egitim/temel-linux/metin/12.webp){:class="responsive img-zoomable"}
 
 Mesela `ls / | head | tee liste.txt` şeklinde komut girecek olursak size nasıl bir çıktı alırız ? Hemen girip deneyelim.
 
@@ -356,7 +356,7 @@ lib64
 
 Bakın `ls /` komutunun çıktıları pipe ile `head` aracına iletildi. `head` aracı da ilk 10 satırı alıp `tee` aracına iletti. `tee` aracı da kendisine iletilen bu 10 satırı hem “***liste.txt***” dosyasına hem de konsola yönlendirdi. Bu sebeple hem konsol çıktısında hem de “***liste.txt***” dosyasında ilk 10 satırı almış olduk.
 
-![13.png]({{ site.url }}/egitim/temel-linux/metin/13.png){:class="responsive img-zoomable"}
+![13.webp]({{ site.url }}/egitim/temel-linux/metin/13.webp){:class="responsive img-zoomable"}
 
 Bence buradaki iki örnek `tee` aracının nasıl çalıştığını gayet iyi biçimde özetliyor.
 
@@ -442,7 +442,7 @@ oku-beni
 
 Bakın `tee` aracı sayesinde `ls` komutunun çıktıları konsola bastırılmakla birlikte dosyaya da kaydedilmiş. Eğer ben `tee` aracından sonra bir pipe daha kullanıp bir araç ismi yazsaydım `tee` aracının elindeki veriler bu araca yönlendirilecekti. Fakat `tee` aracından sonra bir araç ismi girmediğim için `tee` aracı elindeki verileri dosyaya yazmasının yanı sıra standart çıktı adresi olan konsola da bastırmış oldu.
 
-![14.png]({{ site.url }}/egitim/temel-linux/metin/14.png){:class="responsive img-zoomable"}
+![14.webp]({{ site.url }}/egitim/temel-linux/metin/14.webp){:class="responsive img-zoomable"}
 
 `tee` aracının kullanımı gördüğünüz gibi son derece kolay olduğu için daha fazla örneğe gerek yok. Yine de son olarak birkaç kullanım detayını daha bilmenizde fayda var. 
 
@@ -561,11 +561,11 @@ Bakın konsola herhangi bir çıktı bastırılmadı çünkü standart çıktıy
 
 Ben denemek için ***/etc/passwd*** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını `grep "false" /etc/passwd` şeklinde giriyorum.
 
-![15.png]({{ site.url }}/egitim/temel-linux/metin/15.png){:class="responsive img-zoomable"}
+![15.webp]({{ site.url }}/egitim/temel-linux/metin/15.webp){:class="responsive img-zoomable"}
 
 Bakın içerisinde “**false**” ifadesi bulunan tüm satırlar listelendi. Benzer şekilde aslında standart girdiden alınan veriler de `grep` tarafından işlendiği için komutumuzu `cat /etc/passwd | grep false` şeklinde de girebilirdik.
 
-![16.png]({{ site.url }}/egitim/temel-linux/metin/16.png){:class="responsive img-zoomable"}
+![16.webp]({{ site.url }}/egitim/temel-linux/metin/16.webp){:class="responsive img-zoomable"}
 
 Bakın yine aynı sonucu elde ettik çünkü `cat` aracı ***/etc/passwd*** dosyasının içeriğini pipe ile `grep` aracına aktardı, `grep` de benim istediğim doğrultusunda içinde “**false**” ifadesi geçen satıları filtreleyip standart çıktıya yani konsola yönlendirdi. İşte `grep` aracının en temel kullanımı bu şekilde. İster dosyadan isterseniz de standart girdiden `grep` aracına veri yönlendirip verilerin okunmasını sağlayabilirsiniz.
 
@@ -634,7 +634,7 @@ Bakın “false” ifadesinin geçtiği satırlar hariç tüm içerikler konsola
 
 Ben yalnızca tek bir dosya üzerinde filtreleme yaptım ancak istersek birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Ben denemek için ***/etc/passwd*** ve ***/etc/group*** dosya içeriklerinde “**root**” ifadesinin aranmasını istiyorum. Bunun için `grep “root” /etc/passwd /etc/group` şeklinde komutumu giriyorum.
 
-![17.png]({{ site.url }}/egitim/temel-linux/metin/17.png){:class="responsive img-zoomable"}
+![17.webp]({{ site.url }}/egitim/temel-linux/metin/17.webp){:class="responsive img-zoomable"}
 
 Bakın eşleşmiş olan satırlar hangi dosyada bulundukları da belirtilerek filtrelenmiş oldu. Yani gördüğünüz gibi istersek aynı anda çoklu şekilde dosyalar üzerinde de çalışabiliyoruz. Çoklu dosyalarla çalışmanın yanında dilersek alt dizinlerdekiler de dahil bir dizin içindeki tüm içeriklerin `grep` aracı tarafından filtrelenmesini sağlayabiliriz. Bunun için özyineleme yani “**r**ecursive” seçeneğinin kısalması olan `r` seçeneğini kullanabiliyoruz.
 
@@ -809,13 +809,13 @@ Dilersek verileri aşamalı olarak filtreleyip istediğimiz nihai verilere ulaş
 
 Örneğin ben /var/log/user.log dosyasında "kali" ve “error” ifadelerinin geçtiği satırları filtrelemek istiyorum. Eğer komutumu `cat /var/log/user.log | grep “kali”` şeklinde girecek olursam yalnızca “kali” ifadesinin geçtiği satırlar getirilecek. 
 
-![25.png]({{ site.url }}/egitim/temel-linux/metin/25.png){:class="responsive img-zoomable"}
+![25.webp]({{ site.url }}/egitim/temel-linux/metin/25.webp){:class="responsive img-zoomable"}
 
 Ama ben hem “kali” hem de küçük büyük harf fark etmeksizin “error” ifadesinin geçtiği satırları filtrelemek istiyorum. Bunun için bir önceki komutumuza bir `grep` filtresi daha ekleyebiliriz.
 
 Pipe yardımıyla ilk `grep` aracının filtrelediği sonuçları alıp, ikinci `grep` aracına filtrelemesi için iletelim.
 
-![26.png]({{ site.url }}/egitim/temel-linux/metin/26.png){:class="responsive img-zoomable"}
+![26.webp]({{ site.url }}/egitim/temel-linux/metin/26.webp){:class="responsive img-zoomable"}
 
 Bakın bu kez “kali” ve “error” ifadelerinin bulunduğu satırları filtrelemiş olduk. Yani bu basit örneğimiz üzerinden pipe mekanizması sayesinde aslında ne kadar esnekliğe sahip olduğumuzu bir kez daha bizzat teyit etmiş olduk. Siz de benzer çözümler için dilediğiniz kadar aracı uygun şekilde birbirine bağlayıp çalıştırabilirsiniz.
 
@@ -889,11 +889,11 @@ Nokta işareti sayesinde tek bir karakter ile eşleşecek şekilde tanımlama ya
 
 Denemek için `grep “ay.” isimler.txt` şeklinde komutumuzu girelim.
 
-![18.png]({{ site.url }}/egitim/temel-linux/metin/18.png){:class="responsive img-zoomable"}
+![18.webp]({{ site.url }}/egitim/temel-linux/metin/18.webp){:class="responsive img-zoomable"}
 
 Bakın “**ay**” ifadesi ve devamında küçük büyük olması fark etmeksizin **herhangi bir karakteri** barındıran tüm veriler filtrelenmiş oldu. Örneğin bir nokta daha eklersek, herhangi bir karakter daha ekleneceği için “**ay**” ile başlayıp devamında herhangi iki karakteri barındıranlar filtrelenecek.
 
-![19.png]({{ site.url }}/egitim/temel-linux/metin/19.png){:class="responsive img-zoomable"}
+![19.webp]({{ site.url }}/egitim/temel-linux/metin/19.webp){:class="responsive img-zoomable"}
 
 Bakın tam olarak beklediğimiz gibi “ay” ile başlayan ve devamında herhangi iki karakteri barındıran tüm satırılar filtrelendi.
 
@@ -903,17 +903,17 @@ Eğer rastgele karakterler yerine spesifik olarak bizim istediğimiz bazı karak
 
 Örneğin ben “a” karakterinden sonra yalnızca “k” “l” ve “r” karakterlerinden birini barındıran verileri filtrelemek istediğim için `grep “a[klr]” isimler.txt` şeklinde komutumu giriyorum.
 
-![20.png]({{ site.url }}/egitim/temel-linux/metin/20.png){:class="responsive img-zoomable"}
+![20.webp]({{ site.url }}/egitim/temel-linux/metin/20.webp){:class="responsive img-zoomable"}
 
 Bakın tam olarak “a” karakterinden sonra köşeli parantez içinde belirttiğimiz karakterlerden birini barındıran tüm veriler filtrelendi. Tersi şekilde eğer köşeli parantez içindeki karakteri hariç tutup bunlar dışındaki herhangi karakterleri kapsamak istersek de köşeli parantezin en başında şapka `^` işaretini kullanabiliyoruz.
 
-![21.png]({{ site.url }}/egitim/temel-linux/metin/21.png){:class="responsive img-zoomable"}
+![21.webp]({{ site.url }}/egitim/temel-linux/metin/21.webp){:class="responsive img-zoomable"}
 
 Yani gördüğünüz gibi şapka işareti sayesinde buradaki karakterleri hariç tutarak filtreleme yapabiliyoruz. 
 
 Burada dikkat ettiyseniz bizim köşeli parantez içinde yazdığımız karakterler yalnızca tek bir karakter ile eşleşme sağlıyor. Örneğin ben “a” karakterinden sonra “k” “l” “r” karakterlerini bulundurmayan ama “a” “b” ve “c” karakterinden birini bulunduran veriyi filtrelemek istersem komutumu `grep a[^klr][abc] isimler.txt` şeklinde girebilirim. 
 
-![22.png]({{ site.url }}/egitim/temel-linux/metin/22.png){:class="responsive img-zoomable"}
+![22.webp]({{ site.url }}/egitim/temel-linux/metin/22.webp){:class="responsive img-zoomable"}
 
 Bakın tam olarak “a” karakterinde sonra “k” “l” “r” karakterini barındırmayan ama üçüncü karakterinde “a” “b” ve “c” karakterlerinden herhangi birini barındıran tüm veriler filtrelenerek renklendirilmiş oldu.
 
@@ -1120,7 +1120,7 @@ Bakın buradaki tüm dosyalar 1 megabayttan büyük olan dosyalar. Eğer küçü
 ./.config/xfce4/desktop/icons.screen0-2544x966.rc
 ./Desktop/test.txt
 ./dosys3
-./calısma/y5t.jpg
+./calısma/y5t.webp
 ```
 
 Bakın bu aldığımız çıktılar da 1 megabayttan küçük olanlar.
@@ -1339,45 +1339,45 @@ Ben dediğim gibi yetki ve sahip kavramlarından henüz bahsetmediğimiz için k
 
 İlgili seçenekten önce `-not` seçeneğini kullanarak, ilgili filtrelemenin tam tersini elde edebiliriz.
 
-Örneğin ben `find -name “*.png”` komutuyla mevcut dizinim altındaki sonu “**.png**” ile biten tüm içerikleri filtrelersem, gördüğünüz gibi tam istediğim gibi bu adresleri öğrenebiliyoruz. 
+Örneğin ben `find -name “*.webp”` komutuyla mevcut dizinim altındaki sonu “**.webp**” ile biten tüm içerikleri filtrelersem, gördüğünüz gibi tam istediğim gibi bu adresleri öğrenebiliyoruz. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.png"                                           
-./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.png
-./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.png
-./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.png
-./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.png
-./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.png
-./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.png
-./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.png
-./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.png
-./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.png
-./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.png
-./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.png
-./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.png
-./.cache/sessions/thumbs-taylan:0/Default.png
-./Pictures/Screenshot_2023-05-30_10_28_23.png
-./Pictures/Screenshot_2023-05-24_11_11_16.png
-./Pictures/Screenshot_2022-07-03_06_45_05.png
-./Pictures/Screenshot_2023-05-30_13_21_21.png
-./Pictures/Screenshot_2022-07-03_06_45_04.png
-./Pictures/Screenshot_2022-07-03_06_45_03.png
-./Pictures/Screenshot_2022-06-30_03_23_40.png
-./Pictures/Screenshot_2023-05-30_10_28_26.png
-./Pictures/Screenshot_2023-05-30_10_28_19.png
-./Pictures/Screenshot_2022-06-17_13_15_28.png
-./Pictures/Screenshot_2022-07-03_06_45_02.png
-./Pictures/Screenshot_2022-06-17_13_15_26.png
-./Pictures/Screenshot_2023-05-28_10_42_36.png
-./Pictures/Screenshot_2022-07-03_06_45_24.png
+└─$ find -name "*.webp"                                           
+./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
+./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
+./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
+./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.webp
+./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.webp
+./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.webp
+./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.webp
+./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.webp
+./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.webp
+./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.webp
+./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.webp
+./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.webp
+./.cache/sessions/thumbs-taylan:0/Default.webp
+./Pictures/Screenshot_2023-05-30_10_28_23.webp
+./Pictures/Screenshot_2023-05-24_11_11_16.webp
+./Pictures/Screenshot_2022-07-03_06_45_05.webp
+./Pictures/Screenshot_2023-05-30_13_21_21.webp
+./Pictures/Screenshot_2022-07-03_06_45_04.webp
+./Pictures/Screenshot_2022-07-03_06_45_03.webp
+./Pictures/Screenshot_2022-06-30_03_23_40.webp
+./Pictures/Screenshot_2023-05-30_10_28_26.webp
+./Pictures/Screenshot_2023-05-30_10_28_19.webp
+./Pictures/Screenshot_2022-06-17_13_15_28.webp
+./Pictures/Screenshot_2022-07-03_06_45_02.webp
+./Pictures/Screenshot_2022-06-17_13_15_26.webp
+./Pictures/Screenshot_2023-05-28_10_42_36.webp
+./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Eğer ben bu komutumu tekrar çağırıp, tersini kullanmak istediğim seçenekten hemen önce `-not` seçeneğini ekleyecek olursam yani `find -not -name “*.png”` şeklinde komut girersem bu kez sonunda “***.png***” ismi olanlar **hariç** tüm içerikler bulunup konsola bastırılacak.
+Eğer ben bu komutumu tekrar çağırıp, tersini kullanmak istediğim seçenekten hemen önce `-not` seçeneğini ekleyecek olursam yani `find -not -name “*.webp”` şeklinde komut girersem bu kez sonunda “***.webp***” ismi olanlar **hariç** tüm içerikler bulunup konsola bastırılacak.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -not -name "*.png"
+└─$ find -not -name "*.webp"
 .
 ./yepyenidosya
 ./.bashrc.original
@@ -1426,13 +1426,13 @@ Bu şekilde tüm filtreleme seçeneklerinden önce `-not` kullanarak ilgili filt
 
 ## Ve - Ya Da Koşulları | `-and` `-or`
 
-Filtrelemeyi tek bir kritere göre değil de birden fazla kritere göre yapmak istersek koşul belirten “`-and`” “`-or`” gibi seçenekleri kullanabiliyoruz. Örneğin ben sonu “.txt” ile veya “.png” ile bitenleri filtrelemek istersem `find -name “*.txt” -or -name “*.png”` komutunu girebilirim.
+Filtrelemeyi tek bir kritere göre değil de birden fazla kritere göre yapmak istersek koşul belirten “`-and`” “`-or`” gibi seçenekleri kullanabiliyoruz. Örneğin ben sonu “.txt” ile veya “.webp” ile bitenleri filtrelemek istersem `find -name “*.txt” -or -name “*.webp”` komutunu girebilirim.
 
-Bakın burada isim filtrelemesi için iki özel isim belirtip, bu isimlerin arasına da `-or` seçeneği ile “veya” koşulu eklemiş olduk. Bu sayede sonu “.txt” ile veya “.png” biten tüm içerikler filtrelenecek.
+Bakın burada isim filtrelemesi için iki özel isim belirtip, bu isimlerin arasına da `-or` seçeneği ile “veya” koşulu eklemiş olduk. Bu sayede sonu “.txt” ile veya “.webp” biten tüm içerikler filtrelenecek.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.txt" -or -name "*.png"                         
+└─$ find -name "*.txt" -or -name "*.webp"                         
 ./dosya.txt
 ./hatasız.txt
 ./metin1.txt
@@ -1463,65 +1463,65 @@ Bakın burada isim filtrelemesi için iki özel isim belirtip, bu isimlerin aras
 ./.mozilla/firefox/d5n1etpa.default-esr/SiteSecurityServiceState.txt
 ./.mozilla/firefox/d5n1etpa.default-esr/pkcs11.txt
 ./hatasız2.txt
-./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.png
-./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.png
-./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.png
-./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.png
-./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.png
-./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.png
-./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.png
-./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.png
-./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.png
-./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.png
-./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.png
-./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.png
-./.cache/sessions/thumbs-taylan:0/Default.png
+./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
+./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
+./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
+./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.webp
+./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.webp
+./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.webp
+./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.webp
+./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.webp
+./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.webp
+./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.webp
+./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.webp
+./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.webp
+./.cache/sessions/thumbs-taylan:0/Default.webp
 ./Documents/metin.txt
 ./sayi.txt
 ./metin2.txt
 ./hello.txt
 ./Desktop/test.txt
-./Pictures/Screenshot_2023-05-30_10_28_23.png
-./Pictures/Screenshot_2023-05-24_11_11_16.png
-./Pictures/Screenshot_2022-07-03_06_45_05.png
-./Pictures/Screenshot_2023-05-30_13_21_21.png
-./Pictures/Screenshot_2022-07-03_06_45_04.png
-./Pictures/Screenshot_2022-07-03_06_45_03.png
-./Pictures/Screenshot_2022-06-30_03_23_40.png
-./Pictures/Screenshot_2023-05-30_10_28_26.png
-./Pictures/Screenshot_2023-05-30_10_28_19.png
-./Pictures/Screenshot_2022-06-17_13_15_28.png
-./Pictures/Screenshot_2022-07-03_06_45_02.png
-./Pictures/Screenshot_2022-06-17_13_15_26.png
-./Pictures/Screenshot_2023-05-28_10_42_36.png
-./Pictures/Screenshot_2022-07-03_06_45_24.png
+./Pictures/Screenshot_2023-05-30_10_28_23.webp
+./Pictures/Screenshot_2023-05-24_11_11_16.webp
+./Pictures/Screenshot_2022-07-03_06_45_05.webp
+./Pictures/Screenshot_2023-05-30_13_21_21.webp
+./Pictures/Screenshot_2022-07-03_06_45_04.webp
+./Pictures/Screenshot_2022-07-03_06_45_03.webp
+./Pictures/Screenshot_2022-06-30_03_23_40.webp
+./Pictures/Screenshot_2023-05-30_10_28_26.webp
+./Pictures/Screenshot_2023-05-30_10_28_19.webp
+./Pictures/Screenshot_2022-06-17_13_15_28.webp
+./Pictures/Screenshot_2022-07-03_06_45_02.webp
+./Pictures/Screenshot_2022-06-17_13_15_26.webp
+./Pictures/Screenshot_2023-05-28_10_42_36.webp
+./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ./karisik.txt
 ./liste2.txt
 ```
 
-Bakın tam da beklediğimiz gibi koşul çalıştı ve “**.txt**” ile **veya** “**.png**” biten dosyaları aldık.
+Bakın tam da beklediğimiz gibi koşul çalıştı ve “**.txt**” ile **veya** “**.webp**” biten dosyaları aldık.
 
-`-and` koşuluna bir örnek vermemiz gerekirse örneğin sonu “**.png**” ile biten **ve** 100 kilobayttan büyük olanları filtrelemeyi deneyebiliriz.
+`-and` koşuluna bir örnek vermemiz gerekirse örneğin sonu “**.webp**” ile biten **ve** 100 kilobayttan büyük olanları filtrelemeyi deneyebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.png" -and -size +100k                          
-./Pictures/Screenshot_2023-05-30_10_28_23.png
-./Pictures/Screenshot_2023-05-24_11_11_16.png
-./Pictures/Screenshot_2022-07-03_06_45_05.png
-./Pictures/Screenshot_2023-05-30_13_21_21.png
-./Pictures/Screenshot_2022-07-03_06_45_04.png
-./Pictures/Screenshot_2022-07-03_06_45_03.png
-./Pictures/Screenshot_2022-06-30_03_23_40.png
-./Pictures/Screenshot_2023-05-30_10_28_26.png
-./Pictures/Screenshot_2023-05-30_10_28_19.png
-./Pictures/Screenshot_2022-06-17_13_15_28.png
-./Pictures/Screenshot_2022-07-03_06_45_02.png
-./Pictures/Screenshot_2022-06-17_13_15_26.png
-./Pictures/Screenshot_2022-07-03_06_45_24.png
+└─$ find -name "*.webp" -and -size +100k                          
+./Pictures/Screenshot_2023-05-30_10_28_23.webp
+./Pictures/Screenshot_2023-05-24_11_11_16.webp
+./Pictures/Screenshot_2022-07-03_06_45_05.webp
+./Pictures/Screenshot_2023-05-30_13_21_21.webp
+./Pictures/Screenshot_2022-07-03_06_45_04.webp
+./Pictures/Screenshot_2022-07-03_06_45_03.webp
+./Pictures/Screenshot_2022-06-30_03_23_40.webp
+./Pictures/Screenshot_2023-05-30_10_28_26.webp
+./Pictures/Screenshot_2023-05-30_10_28_19.webp
+./Pictures/Screenshot_2022-06-17_13_15_28.webp
+./Pictures/Screenshot_2022-07-03_06_45_02.webp
+./Pictures/Screenshot_2022-06-17_13_15_26.webp
+./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz -and seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.png” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk. 
+Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz -and seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.webp” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk. 
 
 İşte siz de bu şekilde spesifik olarak aradığınız özelliklere uyan filtremeler yapmak için bu koşul seçeneklerini kullanabilirsiniz.
 
@@ -1529,87 +1529,87 @@ Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz -and seçeneği
 
 Normalde firnd komutu biz aksini `-regex` seçeneği ile belirtmediğimiz sürece daha önce kabuk genişletmeleri bölümünde ele aldığımız “wildcards” yaklaşımını kullanıyor. Yani biz -name seçeneğini kullandığımızda isimler aslında “wildcards” kuralları dahilinde değerlendiriliyor.
 
-Örneğin `find -name "*.png"`  komutunu kullandığımda, mevcut bulunduğum dizin altında başında herhangi bir karakter olan devamındaki “.png” ifadesi yer alan tüm dosya ve klasörler getiriliyor. Dosya ismi genişletmesinden bahsederken benzer örnekler yapmıştık hatırlarsanız.
+Örneğin `find -name "*.webp"`  komutunu kullandığımda, mevcut bulunduğum dizin altında başında herhangi bir karakter olan devamındaki “.webp” ifadesi yer alan tüm dosya ve klasörler getiriliyor. Dosya ismi genişletmesinden bahsederken benzer örnekler yapmıştık hatırlarsanız.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.png" 
-./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.png
-./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.png
-./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.png
-./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.png
-./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.png
-./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.png
-./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.png
-./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.png
-./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.png
-./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.png
-./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.png
-./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.png
-./.cache/sessions/thumbs-taylan:0/Default.png
-./Pictures/Screenshot_2023-05-30_10_28_23.png
-./Pictures/Screenshot_2023-05-24_11_11_16.png
-./Pictures/Screenshot_2022-07-03_06_45_05.png
-./Pictures/Screenshot_2023-05-30_13_21_21.png
-./Pictures/Screenshot_2022-07-03_06_45_04.png
-./Pictures/Screenshot_2022-07-03_06_45_03.png
-./Pictures/Screenshot_2022-06-30_03_23_40.png
-./Pictures/Screenshot_2023-06-17_06_27_08.png
-./Pictures/Screenshot_2023-05-30_10_28_26.png
-./Pictures/Screenshot_2023-05-30_10_28_19.png
-./Pictures/Screenshot_2022-06-17_13_15_28.png
-./Pictures/Screenshot_2022-07-03_06_45_02.png
-./Pictures/Screenshot_2022-06-17_13_15_26.png
-./Pictures/Screenshot_2023-05-28_10_42_36.png
-./Pictures/Screenshot_2022-07-03_06_45_24.png
+└─$ find -name "*.webp" 
+./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
+./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
+./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
+./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.webp
+./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.webp
+./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.webp
+./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.webp
+./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.webp
+./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.webp
+./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.webp
+./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.webp
+./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.webp
+./.cache/sessions/thumbs-taylan:0/Default.webp
+./Pictures/Screenshot_2023-05-30_10_28_23.webp
+./Pictures/Screenshot_2023-05-24_11_11_16.webp
+./Pictures/Screenshot_2022-07-03_06_45_05.webp
+./Pictures/Screenshot_2023-05-30_13_21_21.webp
+./Pictures/Screenshot_2022-07-03_06_45_04.webp
+./Pictures/Screenshot_2022-07-03_06_45_03.webp
+./Pictures/Screenshot_2022-06-30_03_23_40.webp
+./Pictures/Screenshot_2023-06-17_06_27_08.webp
+./Pictures/Screenshot_2023-05-30_10_28_26.webp
+./Pictures/Screenshot_2023-05-30_10_28_19.webp
+./Pictures/Screenshot_2022-06-17_13_15_28.webp
+./Pictures/Screenshot_2022-07-03_06_45_02.webp
+./Pictures/Screenshot_2022-06-17_13_15_26.webp
+./Pictures/Screenshot_2023-05-28_10_42_36.webp
+./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Eğer buradaki “`*.png`” ifadesi wildcards olarak ele alınmıyor olsaydı bu çıktıyı alamayacaktık. Denemek için aynı ifadeyi bu kez `-regex` seçeneği ile deneyelim.
+Eğer buradaki “`*.webp`” ifadesi wildcards olarak ele alınmıyor olsaydı bu çıktıyı alamayacaktık. Denemek için aynı ifadeyi bu kez `-regex` seçeneği ile deneyelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.png" 
+└─$ find -name "*.webp" 
 
 ┌──(taylan@linuxdersleri)-[~]
 └─$
 ```
 
-Bakın herhangi bir çıktı alamadık çünkü regex kuralları gereği yıldız işareti kendisinden önceki karakteri sıfır veya daha fazla kez tekrar ediyor. Fakat burada yıldız karakterinden önce bir karakter bulunmadığı için regex kurallarına göre tekrar eden bir örüntü tanımlaması da yapılmamış oluyor. Regex ile bu filtrelemeyi yapmak için "`.*.png`” ifadesini kullanabiliriz. 
+Bakın herhangi bir çıktı alamadık çünkü regex kuralları gereği yıldız işareti kendisinden önceki karakteri sıfır veya daha fazla kez tekrar ediyor. Fakat burada yıldız karakterinden önce bir karakter bulunmadığı için regex kurallarına göre tekrar eden bir örüntü tanımlaması da yapılmamış oluyor. Regex ile bu filtrelemeyi yapmak için "`.*.webp`” ifadesini kullanabiliriz. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -regex ".*.png"                                         
-./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.png
-./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.png
-./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.png
-./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.png
-./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.png
-./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.png
-./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.png
-./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.png
-./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.png
-./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.png
-./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.png
-./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.png
-./.cache/sessions/thumbs-taylan:0/Default.png
-./Pictures/Screenshot_2023-05-30_10_28_23.png
-./Pictures/Screenshot_2023-05-24_11_11_16.png
-./Pictures/Screenshot_2022-07-03_06_45_05.png
-./Pictures/Screenshot_2023-05-30_13_21_21.png
-./Pictures/Screenshot_2022-07-03_06_45_04.png
-./Pictures/Screenshot_2022-07-03_06_45_03.png
-./Pictures/Screenshot_2022-06-30_03_23_40.png
-./Pictures/Screenshot_2023-06-17_06_27_08.png
-./Pictures/Screenshot_2023-05-30_10_28_26.png
-./Pictures/Screenshot_2023-05-30_10_28_19.png
-./Pictures/Screenshot_2022-06-17_13_15_28.png
-./Pictures/Screenshot_2022-07-03_06_45_02.png
-./Pictures/Screenshot_2022-06-17_13_15_26.png
-./Pictures/Screenshot_2023-05-28_10_42_36.png
-./Pictures/Screenshot_2022-07-03_06_45_24.png
+└─$ find -regex ".*.webp"                                         
+./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
+./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
+./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
+./.cache/thumbnails/large/b3fe8ef292b398b5ff2b48953a2dcaa3.webp
+./.cache/thumbnails/large/601fa98430e31526893c2cd4c497fb77.webp
+./.cache/thumbnails/large/e0142d1bb7807691d1f3c6fbef0db9d6.webp
+./.cache/thumbnails/large/4d47671573280bf1e30ef346ecd154ed.webp
+./.cache/thumbnails/normal/4ef1aeb4f74b05b642089a3fa725f6ff.webp
+./.cache/thumbnails/normal/fd024d11882b348b20550093e6339f54.webp
+./.cache/thumbnails/normal/ce9a4aafaf687c2389abce167751da5e.webp
+./.cache/thumbnails/normal/b229cfc54c3672c84da5bfb87f3c7ec9.webp
+./.cache/mozilla/firefox/d5n1etpa.default-esr/thumbnails/b8d33cbd34677070b8b70079044c40aa.webp
+./.cache/sessions/thumbs-taylan:0/Default.webp
+./Pictures/Screenshot_2023-05-30_10_28_23.webp
+./Pictures/Screenshot_2023-05-24_11_11_16.webp
+./Pictures/Screenshot_2022-07-03_06_45_05.webp
+./Pictures/Screenshot_2023-05-30_13_21_21.webp
+./Pictures/Screenshot_2022-07-03_06_45_04.webp
+./Pictures/Screenshot_2022-07-03_06_45_03.webp
+./Pictures/Screenshot_2022-06-30_03_23_40.webp
+./Pictures/Screenshot_2023-06-17_06_27_08.webp
+./Pictures/Screenshot_2023-05-30_10_28_26.webp
+./Pictures/Screenshot_2023-05-30_10_28_19.webp
+./Pictures/Screenshot_2022-06-17_13_15_28.webp
+./Pictures/Screenshot_2022-07-03_06_45_02.webp
+./Pictures/Screenshot_2022-06-17_13_15_26.webp
+./Pictures/Screenshot_2023-05-28_10_42_36.webp
+./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Bakın bu kez “.png” uzantılı dosyaları bulabildik. Çünkü yıldız işaretinden önce kullandığımız nokta işareti herhangi bir tek karakteri temsil ediyor, dolayısıyla yıldız işareti de sıfır veya daha fazla sayıda herhangi bir karakteri barındıran ifadeleri kapsamış oluyor. 
+Bakın bu kez “.webp” uzantılı dosyaları bulabildik. Çünkü yıldız işaretinden önce kullandığımız nokta işareti herhangi bir tek karakteri temsil ediyor, dolayısıyla yıldız işareti de sıfır veya daha fazla sayıda herhangi bir karakteri barındıran ifadeleri kapsamış oluyor. 
 
 **Wildcards ve Regex farkını özetleyecek olursak;**
 
@@ -1746,7 +1746,7 @@ Bakın herhangi bir çıktı almadık çünkü regex çalışmadı. Bu girmiş o
 
 Bakın bu kez tam olarak isminin herhangi bir noktasında “.rar” veya “.zip” geçen tüm içerikler bastırılmış oldu. Ayrıca mesela `locate —help` komutuyla bir bakacak olursak: 
 
-![23.png]({{ site.url }}/egitim/temel-linux/metin/23.png){:class="responsive img-zoomable"}
+![23.webp]({{ site.url }}/egitim/temel-linux/metin/23.webp){:class="responsive img-zoomable"}
 
 Bakın genişletilmiş regex kuralları için `—regex` kullanırken, **basit regex** kuralları için de `-r` veya `—regexp` seçeneğini kullanabileceğimiz belirtilmiş. Ben aynı örneği basit regex üzerinden denemek istiyorum
 
@@ -2359,7 +2359,7 @@ sonrası
 
 `awk` aracında veriler, kayıtlar(records) ve alanlar(fields) olmak üzere iki parçaya ayrılıyorlar. 
 
-![awk1.png]({{ site.url }}/egitim/temel-linux/metin/awk1.png){:class="responsive img-zoomable"}
+![awk1.webp]({{ site.url }}/egitim/temel-linux/metin/awk1.webp){:class="responsive img-zoomable"}
 
 `awk`, girişin sonuna ulaşılana kadar her seferinde bir kayıt üzerinde çalışır. Kayıtlar(records), kayıt ayırıcı(record separator) adı verilen bir karakterle ayrılır. `RS` değişkeni kullanılarak yeni bir kayıt ayırıcı ayarlanabilir. Varsayılan kayıt ayırıcı, yeni satır karakteridir; bu, metin verilerindeki her satırın bir kayıt olduğu anlamına gelir. Yani awk aracı her seferinde sırasıyla tek bir satır üzerinde çalışır.
 
@@ -2367,7 +2367,7 @@ sonrası
 
 Alanalar(fields) ise boşluk karakteri ile birbirinden ayrılıp, kayıtları(records) oluşturuyor. Her kayıttaki alanlara dolar işareti (`$`) ve ardından 1 ile başlayan alan numarası verilir. İlk alan `$1` ile, ikincisi `$2` ile vb. temsil edilir. Son alana `$NF` özel değişkeni ile de başvurulabilir. Tüm kayda `$0` ile başvurulabilir.
 
-![awk2.png]({{ site.url }}/egitim/temel-linux/metin/awk2.png){:class="responsive img-zoomable"}
+![awk2.webp]({{ site.url }}/egitim/temel-linux/metin/awk2.webp){:class="responsive img-zoomable"}
 
 ## `awk` Programı
 
@@ -2518,7 +2518,7 @@ Komut satırı üzerinde çalışıyorken, araçların ürettiği çıktıları 
 
 Denemek isterseniz komut satırı arayüzüne geçip uzun bir dosya içeriğini `cat` komutu ile okuyabilirsiniz. Ben denemek için daha önce oluşturduğum “***isimler.txt***” dosyamı okumak için `cat isimler.txt` komutunu giriyorum.
 
-![tty-scroll.png]({{ site.url }}/egitim/temel-linux/metin/tty-scroll.png){:class="responsive img-zoomable"}
+![tty-scroll.webp]({{ site.url }}/egitim/temel-linux/metin/tty-scroll.webp){:class="responsive img-zoomable"}
 
 Bakın yalnızca dosyanın sonunu görebiliyoruz. Faremizin scroll tuşu ile daha önceki çıktıları görme imkanımız da yok.
 
@@ -2532,7 +2532,7 @@ Zaten `more` ismi de “daha” anlamına geliyor. Biz istedikçe verilerin geri
 
 Ben örnek olması için ***/etc*** dizinin içeriğini listeleyip, tüm listeye parça parça bakmak istiyorum. Örneğin `ls -l /etc` şeklinde komutumuzu girdiğimizde tek seferde tüm çıktıları göremeyiz.
 
-![without-more.png]({{ site.url }}/egitim/temel-linux/metin/without-more.png){:class="responsive img-zoomable"}
+![without-more.webp]({{ site.url }}/egitim/temel-linux/metin/without-more.webp){:class="responsive img-zoomable"}
 
 Bu sorunu çözmek içim bu çıktıları pipe ile `more` aracına yönlendirip çıktılara parça parça bakabiliriz. 
 

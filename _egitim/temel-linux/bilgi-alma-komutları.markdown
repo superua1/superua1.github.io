@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Bilgi edinmek üzere kullanabileceğimiz bazı araçlardan bahsediyoruz."
 tags: [date , cal , which , type , command , builtin , file , stat , lsb_release , uname , uptime , free , du , lsusb , lspci , lshw]
 categories: [temel-linux]
-cover: bilgialmacover.png
+cover: bilgialmacover.webp
 tutorial: 14
 toc: true  
 ---

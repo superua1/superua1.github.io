@@ -8,7 +8,7 @@ search_omit: true
  <h1>🎯 Linux Testi | 200 Soru</h1>
   <hr>
   <div id="info-text">
-    <p class="mavi">Bu test, Linux sistem yönetiminin temellerine ne kadar hakim olduğunuz konusunda fikir verebilir. Ancak unutmayın, burada asıl mesele sorulara ezberden cevap vermekten ziyade, ilgili soruna nasıl çözüm bulabileceğinizi kendi başınıza keşfedebilmenizdir. Yani soruların yanıtları anında aklınıza gelmiyor olabilir. Bu sebeple soruları cevaplarken man sayfaları gibi offline yardım kaynaklarını ve elbette komut satırını serbestçe kullanabilirsiniz.</p>
+    <p class="mavi">Bu test, Linux temellerine ne kadar hakim olduğunuz konusunda fikir verebilir. Ancak unutmayın, burada asıl mesele sorulara ezberden cevap vermekten ziyade, ilgili soruna nasıl çözüm bulabileceğinizi kendi başınıza keşfedebilmenizdir. Yani soruların yanıtları anında aklınıza gelmiyor olabilir. Bu sebeple soruları cevaplarken man sayfaları gibi offline yardım kaynaklarını ve elbette komut satırını serbestçe kullanabilirsiniz.</p>
     <button class="mavi btn btn-outline-primary btn-lg" onclick="startQuiz()">Teste Başla</button>
   </div>
   <div id="quiz" style="display: none;">
@@ -203,7 +203,7 @@ fetch("{{ site.url }}/questions.json") // Replace "abc.json" with the actual pat
 // Twitter share button functionality
       var twitterShareButton = document.getElementById("twitterShareButton");
       twitterShareButton.addEventListener("click", function() {
-        var tweetText = "I scored " + trueCount + " out of " + questions.length + " in the quiz! Can you beat my score?";
+        var tweetText = "#Linux Dersleri platformundaki testte " + questions.length + "/" + trueCount + " skor yaptım. Linux bilginizi test etmek isterseniz göz atın. {{ site.url }}{{ page.url }}";
         var tweetUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
         window.open(tweetUrl, "_blank");
       });
@@ -211,9 +211,10 @@ fetch("{{ site.url }}/questions.json") // Replace "abc.json" with the actual pat
       // LinkedIn share button functionality
       var linkedinShareButton = document.getElementById("linkedinShareButton");
       linkedinShareButton.addEventListener("click", function() {
-        var shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=";
+        var shareText = "#Linux Dersleri platformundaki testte " + questions.length + "/" + trueCount + " skor yaptım. Linux bilginizi test etmek isterseniz göz atın.";
+        var shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}&summary=";
         var quizUrl = "{{ site.url }}/test"; // Replace with your quiz URL
-        var postUrl = shareUrl + encodeURIComponent(quizUrl);
+        var postUrl = shareUrl + encodeURIComponent(shareText) + encodeURIComponent(quizUrl);
         window.open(postUrl, "_blank");
       });
     

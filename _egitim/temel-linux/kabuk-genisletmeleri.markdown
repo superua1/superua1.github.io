@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Bash kabuğunun genişletmelerinden ve regex kavramından bahsediyoruz."
 tags: [kabuk genişletmesi , regex , komut ikamesi]
 categories: [temel-linux]
-cover: genisletmecover.png
+cover: genisletmecover.webp
 tutorial: 8
 toc: true  
 ---
@@ -21,7 +21,7 @@ Kabuğa bir komut girdiğimizde girdiğimiz komut “**lexical analysis & parsin
 
  
 
-![diagram.png]({{ site.url }}/egitim/temel-linux/genisletme/diagram.png){:class="responsive img-zoomable"}
+![diagram.webp]({{ site.url }}/egitim/temel-linux/genisletme/diagram.webp){:class="responsive img-zoomable"}
 
 Yani sırasıyla burada görselleştirmeye çalıştığım şemaya benzer bir işleyiş söz konusu. Fakat tabii ki temel düzey için buradaki tüm kavramlar fazla gelebilir. Bu sebeple biz bu eğitimde yalnızca en yaygın kullanıma sahip birkaç genişletmeyi ele alacağız. Yine de daha fazla detay almak isterseniz, GNU dokümanları içinde yer alan bu [bash dokümantasyonu](https://www.gnu.org/software/bash/manual/bash.html) ihtiyacınız olan tüm bilgileri size sağlayacaktır. 
 
@@ -47,7 +47,7 @@ Bakın yıldız karakteri yerine, konsolun çalışmakta olduğu mevcut dizindek
 
 Bu durumun nedeni ikinci örneğimizde kullanmış olduğumuz `*` yıldız(asterix) işaretinin bash üzerinde özel bir anlam taşıyor olması. Yıldız işareti bash kabuğuna göre özel anlam taşıdığı için bash kabuğu burada yıldız karakterini doğrudan `echo` aracına argüman olarak iletip konsola bastırtmak yerine, `echo` aracını çalıştırmadan önce yıldız karakterini genişletip, genişletme sonucu ortaya çıkan argümanları `echo` aracına iletiyor. Normalde buradaki yıldız joker karakteri mevcut dosya ve klasör isimlerindeki olası tüm karakterleri kapsama işlevinde. Bizim örneğimizde kabuk `echo` komutundan sonra yıldız karakterini gördüğünde, bu özel karakterin mevcut bulunduğumuz dizindeki tüm dosya ve klasörlerin isimlerini temsil etmek için konulduğunu düşünüyor ve bu doğrultuda yıldız karakterini dosya ve dizin isimleri olarak genişletiyor. Neticede bizim `echo *` olarak girdiğimiz komut kabuk tarafından `echo dosya ve dizin isimleri` olarak genişletilmiş oluyor. `echo` aracı da kendisine argüman olarak verilmiş olan dosya ve dizin isimlerini konsola bastırıyor.
 
-![2.png]({{ site.url }}/egitim/temel-linux/genisletme/2.png){:class="responsive img-zoomable"}
+![2.webp]({{ site.url }}/egitim/temel-linux/genisletme/2.webp){:class="responsive img-zoomable"}
 
 İşte tıpkı bu örneğimizde de deneyimlediğimiz gibi kabuk, bizim yazılı şekilde verdiğimiz emirleri doğru şekilde algılayabilmek için komutları çalıştırmadan önce komut metni içerisindeki özel anlam taşıyan ifadeleri bulup gerçekte neyin kast edildiğini anlayabilmek için çeşitli bağlamlara göre değerlendiriyor. Bu değerlendirme işini de tıpkı şemada açıkladığımız gibi adım adım gerçekleştiriyor. Yani kabuk kendisinde tanımlı olan görevler dahilinde, girdiğimiz komutta kendisinin yapması gereken işlemler varsa ilk olarak bunları yapıyor. Girilen komutlar yani argümanlar kabuk tarafından işlenip uygun şekilde genişletildikten sonra da zaten ilgili araca bu argümanlar aktarılıyor. 
 
@@ -644,11 +644,11 @@ Bakın bu dosyada da “**a**” ile başlayıp “**a**” ile biten çeşitli 
 
 Şimdi ben `grep 'a*a' metin*.txt` şeklinde komutumu giriyorum.
 
-![3.png]({{ site.url }}/egitim/temel-linux/genisletme/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/genisletme/3.webp){:class="responsive img-zoomable"}
 
 Bakın içerisinde “a” ile başlayıp “a” ile biten bütün kelimelerdeki “a” karakterleri renkli şekilde bize sunuldu. Yani filtrelemiş olduk. Şimdi aynı komutu tırnak işaretleri olmadan tekrar girmeyi deneyebiliriz. 
 
-![4.png]({{ site.url }}/egitim/temel-linux/genisletme/4.png){:class="responsive img-zoomable"}
+![4.webp]({{ site.url }}/egitim/temel-linux/genisletme/4.webp){:class="responsive img-zoomable"}
 
 Bakın bu kez yalnızca “ada” ifadesini içeren satırın filtrelendiğini ve “ada” ifadesinin renklendirildiğini görüyoruz. Şimdi neden bu iki çıktının birbirinden farklı olduğunu açıklayacak olursak. 
 
@@ -662,7 +662,7 @@ Kabuğa girdimiz komutlar öncelikle kabuk tarafından anlamlandırıldığı i�
 
 Bu sebeple kabuğun genişletmesinden kaçıp, girdiğimiz bu argümanın `grep` aracına bu şekilde ulaşması için de tırnak içinde yazmamız gerekti. Hatta tırnak içinde yazmadan kaçış karakteri sayesinde yine bu asterix karakterinin özel anlamının kabuk tarafından görmezden gelinmesini de sağlayabiliriz. Ben denemek için komutumu `grep a\*a metin*` şeklinde giriyorum. 
 
-![5.png]({{ site.url }}/egitim/temel-linux/genisletme/5.png){:class="responsive img-zoomable"}
+![5.webp]({{ site.url }}/egitim/temel-linux/genisletme/5.webp){:class="responsive img-zoomable"}
 
 Bakın tıpkı tırnak içinde yazdığımızdaki gibi buradaki ifade dosya ismi genişletmesi olarak sayılmadan `grep` aracına iletildiği için bu kalıp da regex dahilinde değerlendirildi. Buradaki ters slash `\` kaçış karakteri, kendisinden sonra gelen karakterin özel anlamının görmezden gelinmesini sağladığı için ben asterix karakterinden hemen önce kullanarak kabuğun dosya ismi genişletmesini önlemiş oldum.
 
@@ -819,7 +819,7 @@ Bu betik mevcut bulunduğunuz dizine 75 rastgele dosya oluşturacaktır. Bu saye
 
 1. Başlangıcında herhangi tek bir karakter olan ve devamındaki karakterler "**x**", "**y**" veya "**t**" olup sonraki karakterleri de herhangi türden karakter olan dosya ismi genişletmesini nasıl tanımlarsınız?
 
-2. Başlangıcında "**a**" olan ve sonu "**.txt**" veya "**.pdf**" veya "**.jpg**" ile biten dosya ve dizinleri nasıl filtreleyebilirsiniz?
+2. Başlangıcında "**a**" olan ve sonu "**.txt**" veya "**.pdf**" veya "**.webp**" ile biten dosya ve dizinleri nasıl filtreleyebilirsiniz?
 
 3. "**a**" ile başlayıp "**g**" ile biten tüm dosya ve klasörleri kapsamak için genişletmeyi nasıl tanımlarsınız?
 

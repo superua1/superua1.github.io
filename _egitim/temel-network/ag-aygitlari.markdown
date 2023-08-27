@@ -8,7 +8,7 @@ excerpt: "Ağ oluşturma ve yönetme konusunda çözümler sunan bazı temel ağ
 tags: [hub, bridge, switch, router,]
 categories: [temel-network]
 tutorial: 2
-cover: ag-aygitlaricover.png
+cover: ag-aygitlaricover.webp
 toc: true 
 ---
 
@@ -19,7 +19,7 @@ Bu bölümde, ağ oluşturma ve yönetme konusunda çözümler sunan bazı temel
 
 Cihazlar arasında veri alışverişi olabilmesi için elbette bu verilerin bir kanalda taşınıyor olması gerekiyor. Veri iletimi için de temelde birkaç farklı çözüm mevcut.
 
-![chanel.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/chanel.png){:class="responsive img-zoomable"}
+![chanel.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/chanel.webp){:class="responsive img-zoomable"}
 
 Örneğin sıradan ethernet kablosu, coaxial kablo, fiber, veya wi-fi ile veri iletmemiz mümkün.
 
@@ -43,7 +43,7 @@ Elbette bu taşıma yöntemlerinin de kendi içinde çeşitli versiyonları var.
 
 Cihazların ağa bağlanmasını sağlayan ağ kartlarına “**N**etwork **I**nterface **C**ard” yani kısaca **NIC** deniyor. Bu kartlar ağ üzerinden gelen verilerin alınmasını ve yine ağa veri iletilmesini sağlıyor. Yani kablolu veya kablosuz şekilde ağa bağlanırken bu ağ kartlarını kullanıyoruz. Bu kartlar genellikle kullanılan cihazda gömülü olarak gelmekle birlikte harici olarak bağlayabileceğimiz ağ kartları da var. Bu ağ arayüz kartları aşağıdaki şekilde gözüküyor.
 
-![nics.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/nics.png){:class="responsive img-zoomable"}
+![nics.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/nics.webp){:class="responsive img-zoomable"}
 
 # Repeater | Tekrarlayıcı
 
@@ -51,33 +51,33 @@ Repeater kelimesi “tekrarlayıcı” anlamına geliyor ve bu cihazın işlevi 
 
 Kablolu veya kablosuz fark etmeksizin veri iletiminin fiziksel sınırları olduğu için belirli bir mesafenin üzerinde veri sinyalleri yavaşlayarak kaybolabiliyor. 
 
-![repeater.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater.png){:class="responsive img-zoomable"}
+![repeater.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater.webp){:class="responsive img-zoomable"}
 
 Bu sebeple araya bu sinyalleri tekrarlatacak bir cihaz koyduğumuzda verileri daha uzun mesafelere iletmemiz mümkün oluyor.
 
-![repeater2.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater2.png){:class="responsive img-zoomable"}
+![repeater2.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater2.webp){:class="responsive img-zoomable"}
 
 Örneğin standart bir ethernet kablosu ile sağlanan 100 metre ve üzerinde bağlantılarda kopmalar meydana gelebiliyor. Bu durumda veri sinyallerini kuvvetlendirmek üzere bu bağlantıya repeater eklenerek sinyallerin daha ileriye iletilmesi sağlanabilir. Benzer şekilde Wi-Fi sinyalleri de duvar gibi fiziksel engeller dolayısıyla absorbe olabildiği için araya bu Wi-Fi sinyallerini tekrarlayacak bir cihaz bağlanarak bu sinyallerin daha geniş alanlara iletilmesi mümkün oluyor.
 
-![repeater-devices.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater-devices.png){:class="responsive img-zoomable"}
+![repeater-devices.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/repeater-devices.webp){:class="responsive img-zoomable"}
 
 # Hub
 
 Ağ oluşturmak üzere birden fazla cihazı yani host’u birbirine bağlayabileceğimizi biliyoruz. Fakat özellikle host sayısı artmaya başladığında bu bağlantının kurulumu ve yönetimi zahmetli olabiliyor. Hemen basit bir örnek olması için 5 host’u birbirine bağlayalım. Her host’un, birbiri ile haberleşebiliyor olması gerek.
 
-![connect-5-host.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/connect-5-host.png){:class="responsive img-zoomable"}
+![connect-5-host.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/connect-5-host.webp){:class="responsive img-zoomable"}
 
 Görüldüğü üzere bu biraz karmaşık bir yapı. Ve ağa yeni bir host ekleyip çıkarmak istediğimizde de zahmetli bir iş. Bunun yerine tüm host bağlantılarını tek bir noktada toplamak için “hub” cihazlarını kullanabiliyoruz.
 
-![Hub.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/Hub.png){:class="responsive img-zoomable"}
+![Hub.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/Hub.webp){:class="responsive img-zoomable"}
 
 Hub cihazdı da kendisine gönderilmiş olan veri paketini, bağlı bulunan tüm hostlara iletiyor. Bu herkese iletilmesi yani aslında “**yayın yapılması**” metoduna da “**broadcasting**” deniyor.
 
-![hub-broadcasting.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/hub-broadcasting.png){:class="responsive img-zoomable"}
+![hub-broadcasting.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/hub-broadcasting.webp){:class="responsive img-zoomable"}
 
 Hub aygıtı bu yaklaşımı tüm hostlardan gelen tüm istekler için aynen uyguluyor. Yani ağ üzerinde yalnızca iki host birbiri ile haberleşmek istiyor olsa bile her defasında tüm paketler tüm hostlara gönderiliyor. Bu sebeple HUB kullanımının esasen ağ trafiğinde yük oluşturma ve güvenlik konusunda olumsuz bir etkisi mevcut. Hub cihazı aşağıdaki şekilde gözüküyor.
 
-![hub-device.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/hub-device.png){:class="responsive img-zoomable"}
+![hub-device.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/hub-device.webp){:class="responsive img-zoomable"}
 
 # Bridge
 
@@ -85,15 +85,15 @@ Bridge ifadesi Türkçe olarak “köprü” anlamına geliyor. Bridge aygıtı 
 
 Örneğin aşağıdaki diyagram üzerinden inceleyecek olursak: sol taraftaki bir host yine sol taraftaki bir hosta veri göndereceği zaman bridge bu verinin sol taraftaki ağda kalması gerektiğini bildiği için bu veriyi sağ taraftaki ağa iletmez.
 
-![bridge-broadcast.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast.png){:class="responsive img-zoomable"}
+![bridge-broadcast.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast.webp){:class="responsive img-zoomable"}
 
 Aynı şekilde sağdaki ağda yer alan bir host kendi ağı içindeki bir hosta veri iletmek istediğinde, köprü bu verilerin yalnızca sağ taraftaki ağda kalmasını sağlar.
 
-![bridge-broadcast2.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast2.png){:class="responsive img-zoomable"}
+![bridge-broadcast2.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast2.webp){:class="responsive img-zoomable"}
 
 Elbette ağlar arasında veri aktarılacağında da bridge hangi hostun hangi ağda olduğunu bildiği için bu aktarıma izin veriyor. Örneğin gerektiğinde sol taraftaki bir host sağ tarafta yer alan ağdaki bir hosta veri gönderebilir.
 
-![bridge-broadcast3.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast3.png){:class="responsive img-zoomable"}
+![bridge-broadcast3.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/bridge-broadcast3.webp){:class="responsive img-zoomable"}
 
 Diyagramlar üzerinden de açıkça görebildiğimiz gibi standart bridge cihazları da broadcast yayını şeklinde verileri iletir. Yani spesifik olarak bir hosta veri iletmek istiyor olsak bile bu veri HUB vasıtasıyla tüm hostlara iletilir. Bu durum da ağ üzerinde gereksiz trafik yükü oluşturur. Özellikle büyük ağlarda bu yaklaşımın kullanımı güvenli ve verimli değildir. 
 
@@ -103,17 +103,17 @@ Switch cihazı aslında HUB aygıtlarının daha akıllı bir alternatifidir. Sw
 
 Bildiğiniz gibi HUB aygıtları verileri “**broadcast**” ile, kendisine bağlı bulunan tüm hostlara gönderiyor. Switch ise hangi hostun hangi porta bağlı olduğunu bildiği için verileri spesifik olarak ilgili hosta yönlendiriyor. Bu hedef odaklı veri iletilmesine de “unique” yani “benzersiz” ifadesinin kısaltmasından gelen “**unicast**” deniyor. Veriler hedef odaklı iletildiği için her seferinde ağdaki tüm hostlar boş yere meşgul edilmemiş, ağ trafik yükü azaltılmış oluyor. Dolayısıyla daha hızlı bir iletişim sağlanabiliyor.
 
-![switch-unicast.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-unicast.png){:class="responsive img-zoomable"}
+![switch-unicast.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-unicast.webp){:class="responsive img-zoomable"}
 
 Switch cihazına bağlı olan tüm hostlar aynı ağdadır ve hepsinin benzersiz bir IP adresi vardır. 
 
-![switch-ip-address.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-ip-address.png){:class="responsive img-zoomable"}
+![switch-ip-address.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-ip-address.webp){:class="responsive img-zoomable"}
 
 Ben kısaltma şeklinde verdim fakat network adresi **192.168.1.0** şeklinde. Fakat “0” yerine hostların IP adresi gelebileceği için “X” ile ağ adresini belirttim. Ve tüm hostlar aynı ağda olduğu için network adresi olan **192.168.1** adresinin tekrar tekrar yazmak yerine yalnızca benzersiz host numaralarını yazım. Yani örneğin ilk bilgisayar **192.168.1.10** ip adresine sahip fakat kısaca “**.10**” ile temsil ediliyor.
 
 Bu örnek diyagram tek bir ağdaki hostların switch ile bağlantısını temsil ediyor. Eğer hostları ayrı ağlara bölmek istersek bunun için birden fazla switch kullanabiliyoruz.
 
-![2-network-with-switch.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/2-network-with-switch.png){:class="responsive img-zoomable"}
+![2-network-with-switch.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/2-network-with-switch.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi hostları switch ile gruplayarak ayrı ağlar oluşturduk. Bu hostlar yalnızca kendi ağları içindeki hostlar ile iletişim kurabilir. Çünkü her iki ağ birbirinden izole.
 
@@ -123,11 +123,11 @@ Farklı ağlardaki hostlar birbiri ile iletişim kurmak istiyorsa router ile bu 
 
 Router, ağları birbirine bağlayan bir kontrol cihazıdır. Ağlar arasındaki tüm trafik router üzerinden yönlendirildiği için her türlü filtreleme ve yönlendirme konfigürasyonu tanımlamamız da mümkün oluyor. Örneğin switchleri router ile bağlayarak birden fazla ağı birbirine bağlayabiliriz. 
 
-![router-with-switchs.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/router-with-switchs.png){:class="responsive img-zoomable"}
+![router-with-switchs.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/router-with-switchs.webp){:class="responsive img-zoomable"}
 
 Router bu yönlendirme işini, kendi bünyesinde tuttuğu yönlendirme tablosu(routing table) sayesinde gerçekleştiriyor. Bu yönlendirme tablosundan daha sonra ayrıca bahsedeceğiz. Yönlendirme tablosu dışında routerlar aslında her bir ağa dahil olmak üzere benzersiz bir IP adresine de sahiptirler.
 
-![router-with-switchs-ip.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/router-with-switchs-ip.png){:class="responsive img-zoomable"}
+![router-with-switchs-ip.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/router-with-switchs-ip.webp){:class="responsive img-zoomable"}
 
 Yukarıdaki diyagramda **192.168.1.X** ağında bağlı cihazlar routerın ip adresini **192.168.1.1** olarak görüyor. 
 
@@ -135,27 +135,27 @@ Yukarıdaki diyagramda **192.168.1.X** ağında bağlı cihazlar routerın ip ad
 
 Bu sayede ağlara dahil olup ağlar arasında “**getway**” olarak isimlendirilen “geçit” görevi görebiliyorlar. Örneğin **192.168.1.**0 ağındaki **30** numaralı hostun “default getway” adresi aşağıdaki gibidir. 
 
-![default-getway.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway.png){:class="responsive img-zoomable"}
+![default-getway.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway.webp){:class="responsive img-zoomable"}
 
 Hostlar kendi ağlarının dışındaki bir host ile iletişime geçmek istediklerinde, diğer ağlara veri paketlerini yönlendiren yapı “default getway”’dir. 
 
 Örneğin aynı router’a bağlı olan **192.168.2.X** ağındaki bir host için **default getway** adresi de **192.168.2.254**’dür.
 
-![default-getway2.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway2.png){:class="responsive img-zoomable"}
+![default-getway2.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway2.webp){:class="responsive img-zoomable"}
 
 Benzer şekilde ev ağımız olan LAN üzerinden internet olarak bilinen geniş WAN ağına çıkmak için router kullanıyoruz. Bu sayede evimizdeki ağa bağlı olan tüm cihazlar router üzerinden internete bağlanabiliyor. 
 
 Modem olarak bildiğiniz cihaz da aslında kendi içinde switch ve router barındıran bir cihazdır. Bu cihaz sayesinde evimizdeki cihazlar birer host olarak kendi ağımıza bağlanıp, bu ağ da router ile internet servis sağlayıcına bağlanarak internet ağına erişmemiz mümkün oluyor.
 
-![LAN-to-WAN-with-router.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/LAN-to-WAN-with-router.png){:class="responsive img-zoomable"}
+![LAN-to-WAN-with-router.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/LAN-to-WAN-with-router.webp){:class="responsive img-zoomable"}
 
 Gerçek dünya örneği olması açısından modeminiz yani routerınızın ip adresinin bu ağa bağlı olan hostların default getway adresi olduğunu kendi ağınız üzerinden teyit edebilirsiniz. Bunu için daha önce lokal ip adresinizi öğrenmek üzere konsola girmiş olduğunuz `ifconfig` veya `ip addr` komutlarını tekrar girip çıktılara göz atabilirsiniz.
 
-![ipconfig.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.png){:class="responsive img-zoomable"}
+![ipconfig.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.webp){:class="responsive img-zoomable"}
 
 Bakın burada, benim Windows hostum **Default Getway** adresi olarak **192.168.1.1** değerini almış. Eğer bu ip adresini tarayıcıma yazıp onaylayacak olursam, modemimin konfigürasyon penceresi açılacak.
 
-![default-getway-login.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway-login.png){:class="responsive img-zoomable"}
+![default-getway-login.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway-login.webp){:class="responsive img-zoomable"}
 
 Bu pencere açıldı çünkü benim bilgisayarımda default getway olarak bu modem(router) kullanılıyor. Yani ben lokal ağımdan geniş ağ olan internete bu geçit(getway) görevi gören modem(router) üzerinden çıkış yapıyorum. Dolayısıyla bu ip adresini girdiğimde modemimi konfigüre edebileceğim pencere açılıyor.
 
@@ -163,7 +163,7 @@ Burada modem, lokal ip adreslerini internet servis sağlayıcısının bana tahs
 
 Router sayesinde ağları hiyerarşik bir biçimde birbirine bağlamamız mümkün oluyor. Daha önce örneğini verdiğimiz “bir şirketin alt ağlara bölünmesi” durumu da routerlar sayesinde mümkün oluyor. 
 
-![company-router.png]({{ site.url }}/egitim/temel-network/ag-aygitlari/company-router.png){:class="responsive img-zoomable"}
+![company-router.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/company-router.webp){:class="responsive img-zoomable"}
 
 Hazır yeri gelmişken çok kısaca hatırlayacak olursak; switchler, hostlar arasındaki iletişimi mümkün kılarken, routerlar ise ağlar arasındaki iletişimi mümkün kılarlar. 
 

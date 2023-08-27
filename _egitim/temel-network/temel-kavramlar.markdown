@@ -8,7 +8,7 @@ excerpt: "Eğitim boyunca karşılaşacağımız temel kavramları ele alıyoruz
 tags: [network, host, client, server, ip, subnetting]
 categories: [temel-network]
 tutorial: 1
-cover: temel-kavramlarcover.png
+cover: temel-kavramlarcover.webp
 toc: true 
 ---
 
@@ -29,19 +29,19 @@ Ağ üzerindeki hostlar, büründükleri roller gereği “**Client**” ve “*
 
 Client talep eden, Server ise yanıtlayan taraftır. Örneğin bir websitesine ulaşmak üzere client istekte bulunur web server ise yanıt olarak websitesini sunar.
 
-![client-server.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/client-server.png){:class="responsive img-zoomable"}
+![client-server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/client-server.webp){:class="responsive img-zoomable"}
 
 Sunucular da aslında içerisinde spesifik yanıtlara karşılık verebilecek yazılımların kurulu olduğu sıradan bilgisayarlardır. Herhangi bir bilgisayara uygun yazılımları kurup bu bilgisayarın sunucu olarak hizmet vermesini sağlayabiliyoruz. Örneğin websitenizi sunmak için gereken yazılımları kurup websitenizi kendi bilgisayarınız üzerinden internete açabilirsiniz. Yani kendi bilgisayarınızı sunucu haline getirebilirsiniz. Sizin websitenize ulaşmak isteyene clientlar da sizin bilgisayarınıza yani sunucuya istekte bulunur, bilgisayarınız da server rolü gereği bu istekleri yanıtlar.
 
-![server.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/server.png){:class="responsive img-zoomable"}
+![server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/server.webp){:class="responsive img-zoomable"}
 
 Aslında bu roller değişkendir. Örneğin bir web sunucusu da websitesinin dosyalarını istemek için file servera istekte bulunabilir. Bu durumda web server istemci halini alırken, file server sunucu rolündedir. 
 
-![file-server.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/file-server.png){:class="responsive img-zoomable"}
+![file-server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/file-server.webp){:class="responsive img-zoomable"}
 
 Benzer şekilde örneğin file server da güncelleme almak için update server dan istekte bulunacak olursa, bu durumda file server istemci, update server ise sunucu rolünü üstlenmiş oluyor.
 
-![update-server.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/update-server.png){:class="responsive img-zoomable"}
+![update-server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/update-server.webp){:class="responsive img-zoomable"}
 
 Yani istemci ve sunucu olma durumu tamamen değişken bir kavramdır. İstemci, veri veya hizmet talep eden tarafı temsil ederken, sunucu ise bu taleplere yanıt veren tarafı temsil eder.
 
@@ -49,13 +49,13 @@ Yani istemci ve sunucu olma durumu tamamen değişken bir kavramdır. İstemci, 
 
 Yerel ağlar, isminden anlaşılabileceği gibi ofis ve ev gibi sınırlı bir alan içindeki cihazların yerel iletişimi sağlamak üzere kullanılan ağın kapsamını belirtiyor. Örneğin ofisteki bilgisayarların yazıcıya erişmek için yerel ağda olmaları yeterlidir. 
 
-![LAN.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/LAN.png){:class="responsive img-zoomable"}
+![LAN.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/LAN.webp){:class="responsive img-zoomable"}
 
 # WAN (Wide Area Network)
 
 Birden fazla yerel ağın(LAN) birleştirilmesi ile oluşturulan daha geniş bir ağ kümesine WAN deniyor. En geniş WAN “internet” olarak bildiğimiz ağdır. Cihazlar kendi bulundukları lokal ağlarından, uygun şekilde herkesin bağlı olduğu bu ağa bağlanarak, ağdaki tüm cihazlar ile uygun koşullar altında iletişim kurabiliyor. 
 
-![WAN.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/WAN.png){:class="responsive img-zoomable"}
+![WAN.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/WAN.webp){:class="responsive img-zoomable"}
 
 Yani en az iki lokal ağın birbirine bağlanmasıyla bile WAN ağı oluşturulabilir. Buradaki amaç ağlar arasındaki veri iletiminin sağlanabilmesidir. 
 
@@ -67,11 +67,11 @@ IP adresi her host’un sahip olması gereken benzersiz kimliğidir. Bu kimlik s
 
 Örneğin bir websitesini ziyaret etmek istediğinizde, ziyaret etmek istediğiniz web server’ın ip adresi hedef ip, sizin ip adresiniz de kaynak ip olarak bir pakete eklenip bu istek ağ üzerinden hedef server’a iletiliyor. 
 
-![IP.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/IP.png){:class="responsive img-zoomable"}
+![IP.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/IP.webp){:class="responsive img-zoomable"}
 
 Bu sayede hedefteki server da yanıtını hangi ip adresini göndermesi gerektiğini, kaynak ip adresine bakarak öğreniyor ve yanıtını bu ip adresine iletebiliyor. 
 
-![IP-response.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/IP-response.png){:class="responsive img-zoomable"}
+![IP-response.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/IP-response.webp){:class="responsive img-zoomable"}
 
 Bu yaklaşım sayesinde ağdaki tüm hostlar benzersiz kimlikleri sayesinde birbiri ile uygun şekilde haberleşebiliyor. 
 
@@ -83,19 +83,19 @@ Bilgisayar dünyasında verilerin 0 ve 1’lerden ibaret olduğunu mutlaka daha 
 
 IPv4 olarak geçen ip adresleri birbirinden noktalar ile ayrılmış 4 adet 8’er bitten toplam 32 bit uzunluğunda bir değerdir. IP adresindeki her **8 bitlik** bloklar da aslında “**oktet**” ****olarak isimlendiriliyor. Dolayısıyla bir ip adresi aşağıdaki aralıkta olabilir.
 
-![ip-range.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-range.png){:class="responsive img-zoomable"}
+![ip-range.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-range.webp){:class="responsive img-zoomable"}
 
 Fakat bu sayılar bizim için pek okunaklı olmadığından bunları daha aşina olduğumuz ondalık gösterime çevirebiliriz. Hesaplama için de her bir oktetteki basamak sayısına göre ikinin üsleri ile çarpıp sonuçları toplamamız gerek. 
 
 Öncelikle “**00000000**” oktetini hesaplayalım.
 
-![binary-to-decimal.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/binary-to-decimal.png){:class="responsive img-zoomable"}
+![binary-to-decimal.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/binary-to-decimal.webp){:class="responsive img-zoomable"}
 
 Diğer 3 oktet de aynı olduğu için ondalık gösterimde IPv4 adresleri **0.0.0.0**’dan başlıyor.
 
 En son verilebilecek IP adresini öğrenmek için “**11111111**” oktetini de hesaplayalım.
 
-![binary-to-decimal2.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/binary-to-decimal2.png){:class="responsive img-zoomable"}
+![binary-to-decimal2.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/binary-to-decimal2.webp){:class="responsive img-zoomable"}
 
 Diğer 3 oktet de aynı olduğu için ondalık gösterimde IPv4 adresleri en fazla **255.255.255.255** değerini alabiliyor. Yani aslında ondalık gösterimde **0.0.0.0-255.255.255.255** aralığında IP adresi tanımlaması yapmamız mümkün.
 
@@ -111,7 +111,7 @@ Her bir IP adresi üzerinde aslında “network” ve “host” olmak üzere ik
 
 Çok basit şekilde bu durumu görselleştirecek olursak “X Ağı” ve “Y Ağı” olmak üzere iki ayrı ağdaki hostları düşünelim.
 
-![x-y-networks.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/x-y-networks.png){:class="responsive img-zoomable"}
+![x-y-networks.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/x-y-networks.webp){:class="responsive img-zoomable"}
 
 Örneğin X ağındaki 192.168.1.2 ip adresine sahip host, kendi ağındaki 192.168.1.4 ip adresine sahip olan host ile iletişime geçmek isterse bunu rahatlıkla yapabilir çünkü aynı ağda olduklarını 192.168.1 değerine bakarak anlayabiliyor. Dikkat edecek olursanız aynı ağdaki tüm hostlar aynı ip adresi ile başlıyor. Bu adres de zaten bulundukları network yani ağın adresini belirtiyor.
 
@@ -131,7 +131,7 @@ IP adresi üzerinde “network” ve “host” ayrımını yapabilmek için “
 
 Yani bu ip adresi **192.168.1.0** ağındaki **10** numaralı hosta işaret ediyor. Peki ama bunu nasıl anladık ? Tabii ki subnet mask olarak geçen değere bakarak. En yalın haliyle IP adresini ve subnet mask değerini alt alta koyup, subnet mask değerindeki her 255 sayısına karşılık gelen IP adresindeki oktetlerin ağ adresini temsil ettiğini bilmeniz yeterli. Ağ adresi dışında kalan kısım ise host kısmını temsil eder. Aşağıdaki görsel bu durumu açıklıyor.
 
-![ip-subnetmask.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnetmask.png){:class="responsive img-zoomable"}
+![ip-subnetmask.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnetmask.webp){:class="responsive img-zoomable"}
 
 Dolayısıyla 192.168.1.0 ağında 0 ila 255 arasında host bulunabiliyor. Yani biz bu 192.168.1.0 ağına bağlı olan cihazlara bu kadar sayıda ip tanımlaması yapabiliyoruz.
 
@@ -189,7 +189,7 @@ Subnet mask hakkında biraz daha detaydan bahsedecek olursak, elbette subnet mas
 
 Örneğin yalnızca 60 hostluk bir ağa ihtiyacımız var diyelim. Bunun için ağ büyüklüğünü istediğimiz ölçüye göre daraltabiliriz. Sizin de bildiğiniz gibi hostlar, IP gösteriminde subnet mask değerinin 0 olduğu bölümlerde bulunduğu için bize 60 civarı host sağlayacak kadar 0 değerinin subnet mask üzerinde bulunması gerek. Oktetlerin her basamağında 2’nin üssü olarak ip adreslerinin üretildiğini biliyoruz. Bu sebeple 60 civarına gelene kadar ikinin üssü şekilde yazıp toplayalım. 
 
-![subnet-calc.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/subnet-calc.png){:class="responsive img-zoomable"}
+![subnet-calc.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/subnet-calc.webp){:class="responsive img-zoomable"}
 
 Bakın peşi sıra yazıp topladığımızda **2^5** değerine kadar olan üslerin toplamı sayesinde **63** sayısına ulaşbildiğimizi hesapladık. Yani gördüğünüz gibi 60 civarı bir host için gereken sayıya 6 basamakta ulaşabiliyoruz. IP adresi üzerinde hostların alanı “0” ile temsil edildiği için de subnet mask değerinin sonunda 6 tane 0 bulunması gerektiğini bu şekilde hesaplamış olduk.
 
@@ -209,15 +209,15 @@ Bu araçlar üzerinde oluşturmak istediğiniz ağın büyüklüğünü ve ağ a
 
 Ben denemek üzere örnek olarak ele aldığımız ip adresi tanımlamasını internet üzerinde bulduğum araçlardan birine giriyorum.
 
-![ip-subnet-calculator.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator.png){:class="responsive img-zoomable"}
+![ip-subnet-calculator.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator.webp){:class="responsive img-zoomable"}
 
 Bakın gördüğünüz gibi tam olarak bizim belirttiğimiz şekilde hostlar için kullanılabilir “62” tane ip adresi olduğu açıkça belirtiliyor.
 
-![ip-subnet-calculator-result.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator-result.png){:class="responsive img-zoomable"}
+![ip-subnet-calculator-result.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator-result.webp){:class="responsive img-zoomable"}
 
 Ayrıca aldığım sonuçların alt tarafında,192.168 ile başlayan 4 ağ oluşturabileceğimiz de belirtilmiş. 
 
-![ip-subnet-calculator-result2.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator-result2.png){:class="responsive img-zoomable"}
+![ip-subnet-calculator-result2.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip-subnet-calculator-result2.webp){:class="responsive img-zoomable"}
 
 Sırasıyla bu ağların ip adresleri, hostlara tanımlanabilir ip aralığı ve broadcast adresleri açıkça belirtiliyor. 
 
@@ -233,7 +233,7 @@ Gördüğünüz gibi 192.168.1.70/26 şeklinde tanımlı bir ip adresinin ağ ad
 
 Benzer şekilde siz de kaç ağ ve kaç host için tanımlama yapacaksanız buradaki değerleri uygun şekilde konfigüre edebilirsiniz. Gerçek dünya örneği vermemiz gerekirse, örneğin bir şirket farklı şehirlerdeki şubeler için farklı ağlar kullanabilir. Ayrıca bu ağlar içinde farklı departmanlar için de farklı ağlar kurabilir. Bu sayede ağların yönetimi kolaylaşmış olur. 
 
-![subnetting-for-company.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/subnetting-for-company.png){:class="responsive img-zoomable"}
+![subnetting-for-company.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/subnetting-for-company.webp){:class="responsive img-zoomable"}
 
 IP adresi ve subnet mask tanımlaması genellikle karıştırılan bir konu fakat temel düzeyde işleyişi bildiğimizde aslında pek de karmaşık değil. Zaten ben de bu sebeple temel işleyişi çok kısaca izah etmeye çalıştım. Ayrıca eğer gözünüz korktuysa kesinlikle endişelenmeyin zira sürekli hesaplama yapmanızı gerektiren bir işiniz yoksa hesaplama yöntemi hafızanızda birebir kalmayacağı için internet üzerinden bu tür araçlardan yardım almanız son derece normal. Eğer ezber gerektiren bir sınava hazırlanmıyorsanız, gerçek dünyada işi sağlama almak için zaten araç kullanabilirsiniz. 
 
@@ -245,11 +245,11 @@ IP adresi tanımlaması aslında “**public-genel**” ve “**local(private)-�
 
 Lokal ağınızda çalışırken, modeminiz tarafından size tanımlanmış olan ip adresleri aslında kendi lokal ağınızdaki haberleşme için kullanılan “local ip” adresidir. Bu ip adresleri ile internete çıkmazsınız. Modeminiz, internet servis sağlayıcısının size tahsis etmiş olduğu “public ip” adresi ile, lokal ağdaki tüm cihazların internete çıkmasını sağlar. Yani lokal ağınızdaki ip adresleri internet üzerindeki ip adresiniz değildir. Lokal ağınızdaki ip adresi dünya üzerinde milyarlarca cihazın lokal ip adresi ile aynı olabilir. Bu önemli değildir çünkü, lokal ip adresleri modem gibi araçlar vasıtasıyla internet üzerindeki public bir ip ile internete çıkar. 
 
-![LAN-to-WAN.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/LAN-to-WAN.png){:class="responsive img-zoomable"}
+![LAN-to-WAN.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/LAN-to-WAN.webp){:class="responsive img-zoomable"}
 
 Dolayısıyla sizin ağınıza bağlı olan tüm cihazlar aslında aynı “**public ip**” adresi ile internete çıkarlar. Bu durumu teyit etmek isterseniz, ağınıza bağlı farklı cihazlar üzerinden internet üzerinde  “***what is my ip address***” yazıp araştırabilirsiniz. 
 
-![what-is-my-ip-address.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/what-is-my-ip-address.png){:class="responsive img-zoomable"}
+![what-is-my-ip-address.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/what-is-my-ip-address.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi aynı ağa bağlı olan iki farklı cihaz da internete aynı “public ip” adresi ile çıkıyor. İşte bu yaklaşım sayesinde sınırlı sayıda olan ip adresleri idareli şekilde kullanılabiliyor. İnternete bağlı olan tüm cihazların da public yani genel ip adresi olmak zorundadır. 
 
@@ -265,13 +265,13 @@ Yani aslında lokal ağlarda kullanım ihtiyaçlarına göre ihtiyaç duyulabile
 
 Eğer Windows üzerinden takip ediyorsanız **cmd** yani komut satırı aracınızı açıp `ipconfig` komutunu girecek olursanız sizin ip adresinizin de 192.168 ile başladığını görebilirsiniz. Çünkü siz de standart bir kullanıcı olarak kendi ev ağınıza bağlısınız. 
 
-![ipconfig.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.png){:class="responsive img-zoomable"}
+![ipconfig.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.webp){:class="responsive img-zoomable"}
 
 Benim Windows hostun lokal ip adresi **192.168.1.9** olarak gözüküyor. 
 
 Linux üzerinde de  `ip addr` komutunu girebilirsiniz.
 
-![ip addr.png]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip addr.png){:class="responsive img-zoomable"}
+![ip addr.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ip addr.webp){:class="responsive img-zoomable"}
 
 Linux makinenin lokal ip adresi ise **192.168.1.11** şeklinde tanımlanmış. Her iki hostun da subnet mask değeri de **255.255.255.0** ya da **24** olarak ifade edilmiş. Bu bilgilere bakarak **192.168.1.0** ağı içerisinde **9** ve **11** numaralı hostlar olduğunu biliyoruz. 
 

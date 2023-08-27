@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Bash kısayollarıyla, kabuğu nasıl daha verimli kullanabileceğimizi ele alıyoruz."
 tags: [bash , history , kısayollar , alias , unalias]
 categories: [temel-linux]
-cover: kisayolcover.png
+cover: kisayolcover.webp
 tutorial: 5
 toc: true  
 ---
@@ -33,7 +33,7 @@ Bash kabuğundaki tüm kısayollar esasen metin bazlı düzenleme için yani asl
 
 İmleç kısayollarından bahsetmeden önce imlecin kabaca bir tanımını yapacak olursak: komut girerken genellikle yanıp sönerek bizi bekleyen bu işarete imleç diyoruz. 
 
-![1.png]({{ site.url }}/egitim/temel-linux/kısayol/1.png){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
+![1.webp]({{ site.url }}/egitim/temel-linux/kısayol/1.webp){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
 
 İmlecin temel işlevi satırda nerede bulunduğumuzu göstermek. Bu sayede komut girerken satırın hangi noktasında kaldığımızı takip edip imlecin bunduğu konumdan komutlarımızı girmeye devam edebiliyoruz. İmleç neredeyse, bizim girdiğimiz yeni komutlar da imleçten sonra konsola aktarılıyor. Dolayısıyla özellikle uzun olan komutları kullanırken, imleci kısayollar ile esnek şekilde hızlıca hareket ettirebilmek gerçekten bize çok hız kazandırıyor. Normalde sizlerin de bildiği gibi sol sağ yön tuşları ile tüm karakterler arasında tek tek geçiş yapabiliyoruz fakat bu komutun da uzunluğuna bağlı olarak epey vakit alabiliyor. Örneğin "bu uzun uzun yazılmış bir deneme komutudur" ifadesini yazıp satırın başından sonuna ve sonundan başına sağ sol yön tuşları ile geçiş yapmayı deneyebiliriz.
 
@@ -322,7 +322,7 @@ bu bir deneme komutudur
 
 Bakın iki kez kullandığım ünlem işareti en son komutu tekrar çağırıp çalıştırdı. Bu da oldukça kullanışlı bir kısayol. Ayrıca bu kısayollar dışında eğer geçmiş listesinde araştırma yapıp, aradığınız komutlar ile eşleşenleri geçmişten getirmek isterseniz <kbd>Ctrl</kbd> + <kbd>r</kbd> kısayolunu uygulayıp, geçmiş listesinde aradığınız komutun bir kısmını yazabilirsiniz. 
 
-![20.png]({{ site.url }}/egitim/temel-linux/kısayol/20.png){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
+![20.webp]({{ site.url }}/egitim/temel-linux/kısayol/20.webp){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
 
 Buraya gireceğimiz ifadeler küçük büyük harf duyarlılığı dahilinde geçmişte girdiğimiz komutlar içinden araştırılma yapılmasını sağlayacak. Örneğin ben `echo` komutunu araştırmak için “**ec**” şeklinde yazıyorum ve en son girmiş olduğu “**ec**” ile başlayan komut bulunduğu için <kbd>enter</kbd> ile komutu çalıştırıyorum.
 
@@ -375,7 +375,7 @@ Bakın ben `bas` yazdıkça aynı komut çalışıyor. Görebildiğiniz gibi tak
 
 Takma isim kullanırken, tıpkı değişkenlerde olduğu gibi takma isimlerin de kabuğa özel olarak tanımlandıklarına unutmayın. Yani benim bu konsol üzerinden tanımladığım takma isime başka bir konsol üzerinden ulaşmam mümkün değil. Test etmek için yeni bir konsol açalım. Ve bu konsola `bas` yazıp takma ismi kontrol edelim. 
 
-![25.png]({{ site.url }}/egitim/temel-linux/kısayol/25.png){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
+![25.webp]({{ site.url }}/egitim/temel-linux/kısayol/25.webp){:class="responsive img-zoomable"}{:class="responsive img-zoomable"}
 
 Bakın `bas` komutu bulunmadı şeklinde bir hata aldık. Çünkü takma isimler de tıpkı değişkenlerde olduğu gibi yalnızca tanımlandıkları kabuklarda geçerli. Örneğin kendi kullanıcı hesabımdaki tüm etkileşimli kabuklarda bu takma isim geçerli olsun istersem, kendi ev dizinimdeki ***.bashrc*** dosyasına bu takma ismi eklemem gerekiyor. Benzer şekilde tüm kullanıcılarda geçerli olması için de ***/etc/bash.bashrc*** ya da ***/etc/.bashrc*** dosyalarından hangisi mevcutsa ona ekleyip, tanımladığım takma isimin tüm kullanıcılara tarafından ortak şekilde kullanılabilmesini sağlayabilirim. Zaten bu konfigürasyon dosyalarından ve etkilerinden daha önce bahsettik. Tek yapmanız gereken ihtiyacınıza uygun olan dosyaya bu takma ismi tanımlayıp dosyayı kaydetmektir. 
 

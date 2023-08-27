@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Linux sisteminin kurulum alternatiflerinden bahsediyoruz."
 tags: [kurulum metodları ]
 categories: [temel-linux]
-cover: kurulumcover.png
+cover: kurulumcover.webp
 tutorial: 2
 toc: true  
 ---

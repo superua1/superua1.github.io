@@ -5,10 +5,10 @@ modified: 2023-05-20
 author: Taylan Özgür Bildik
 coursetitle: "Temel Ağ Eğitimi"
 excerpt: "Host cihazlarının nasıl iletişim kurduğundan bahsediyoruz."
-tags: [hub, bridge, switch, router,]
+tags: [host]
 categories: [temel-network]
 tutorial: 4
-cover: hostcover.png
+cover: hostcover.webp
 toc: true 
 ---
 
@@ -21,7 +21,7 @@ Bu bölümde host cihazlarının birbiri ile iletişim kurabilmesi için gereken
 
 Bir host aynı ağda olduğu bir başka hosta veri göndereceği zaman, hedef hostun ip adresini bilmesinin yanında MAC adresini de bilmek zorunda. Çünkü daha önce ele aldığımız OSI ve TCP/IP modellerinde de bizzat gördüğümüz gibi cihazların IP adresinden önce MAC adresi tanınıyor. 
 
-![de-layer2.png]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer2.png){:class="responsive img-zoomable"}
+![de-layer2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer2.webp){:class="responsive img-zoomable"}
 
 Doğru MAC eşleşmesi olmadan IP adresinin kontrolü de gerçekleşmediği için öncelikle MAC adresi belirtilmeli. 
 
@@ -33,21 +33,21 @@ Ağ yapısı gereği MAC adresleri donanımlara kalıcı olarak tanımlanmışke
 
 Aşağıdaki gibi iki LAN ağının birbirine router ile bağlı olduğunu varsayalım.
 
-![LAN-to-LAN.png]({{ site.url }}/egitim/temel-network/hostlar/LAN-to-LAN.png){:class="responsive img-zoomable"}
+![LAN-to-LAN.webp]({{ site.url }}/egitim/temel-network/hostlar/LAN-to-LAN.webp){:class="responsive img-zoomable"}
 
 192.168.1.20 ip numaralı host, 192.168.1.10 ip adresli hosta veri göndermek isterse öncelikle bu hostun MAC adresini öğrenmesi gerek. Bunun için ARP broadcast yayını ile herkese bu ip adresinin MAC adresini sorabilir. Bu ARP paketinde da kendi IP ve MAC adresi ve hedef IP adresi yer alır.
 
-![ARP-1.png]({{ site.url }}/egitim/temel-network/hostlar/ARP-1.png){:class="responsive img-zoomable"}
+![ARP-1.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP-1.webp){:class="responsive img-zoomable"}
 
 Bu ARP sorgusu lokal ağdaki tüm cihazlara gönderilir. Router özellikle konfigüre edilmediği sürece broadcast yayınını diğer ağlara taşımaz. Bu sebeple ARP mesajı yalnızca lokal ağdaki cihazlara ulaştırılır.
 
-![ARP-2.png]({{ site.url }}/egitim/temel-network/hostlar/ARP-2.png){:class="responsive img-zoomable"}
+![ARP-2.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP-2.webp){:class="responsive img-zoomable"}
 
 ARP mesajını da yalnızca hedefteki IP adresine sahip olan host yanıtlar. Yanıtlama işlemi sırasında da kaynağın IP ve MAC bilgisini öğrendiği için bunları, daha sonra kullanmak üzere kendi ARP tablosuna ekler. Kaynak adresini öğrendiği için de yanıtı doğrudan kaynağa unicast olarak iletir.
 
-![ARP3.png]({{ site.url }}/egitim/temel-network/hostlar/ARP3.png){:class="responsive img-zoomable"}
+![ARP3.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP3.webp){:class="responsive img-zoomable"}
 
-![ARP4.png]({{ site.url }}/egitim/temel-network/hostlar/ARP4.png){:class="responsive img-zoomable"}
+![ARP4.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP4.webp){:class="responsive img-zoomable"}
 
 ARP yanıtı sayesinde B hostu da, A hostunun IP ve MAC bilgisini kendi ARP tablosuna ekler. Bu sayede artık B hostuna yani 192.168.1.10 ip adresini veri iletmek istediğinde MAC adresini buradan kontrol edip doğrudan o hosta veri iletebiliyor olacak. En yalın haliyle lokal ağdaki bir cihazın MAC adresinin öğrenilmesi bu şekilde gerçekleşiyor.
 
@@ -63,37 +63,37 @@ Bir host harici bir ağdaki host ile iletişime geçmek istediğinde, hedef ip a
 
 Elbette bu bilgi yeterli değil çünkü hedef cihazın MAC adresinin de bilinmesi gerekiyor. Bu noktada devreye router aygıtının yardımı giriyor. Router bağlı olduğu ağlardaki cihazların IP ve MAC kayıtlarını kendi tablosunda tuttuğu için paketlerin hangi cihazlara gönderilmesi gerektiğini belirleyebiliyor.
 
-![router-ip-table.png]({{ site.url }}/egitim/temel-network/hostlar/router-ip-table.png){:class="responsive img-zoomable"}
+![router-ip-table.webp]({{ site.url }}/egitim/temel-network/hostlar/router-ip-table.webp){:class="responsive img-zoomable"}
 
 Daha önce routerların ağlar arasındaki “getway” olduğundan bahsetmiştik. Bu sebeple her host bağlı olduğu getway adresini yani routerın bu ağdaki ip adresini biliyor. Bu sebeple eğer iletişime geçeceği ip adresi kendi ağında değilse bu paketi getway olarak bilinen routera teslim ediyor. Fakat teslim etme işlemi için de elbette ilk olarak bu routerın MAC adresini bilmesi gerek. Çünkü sizin de bildiğiniz gibi yalnızca ip adresi ile veri iletilemez. 
 
 Host, Router aygıtının MAC adresini öğrenmek üzere ARP ile bu IP adresinin MAC adresini broadcast şeklinde kendi ağındaki herkese soruyor. 
 
-![ARP5.png]({{ site.url }}/egitim/temel-network/hostlar/ARP5.png){:class="responsive img-zoomable"}
+![ARP5.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP5.webp){:class="responsive img-zoomable"}
 
-![ARP6.png]({{ site.url }}/egitim/temel-network/hostlar/ARP6.png){:class="responsive img-zoomable"}
+![ARP6.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP6.webp){:class="responsive img-zoomable"}
 
 Bu ARP sorgusuna yalnızca hedef ip adresine sahip olan router cevap veriyor. Bu sayede hem router hem de sorgu yapan host birbirilerinin IP ve MAC bilgilerini kendi tablolarına kaydediyorlar. 
 
-![ARP7.png]({{ site.url }}/egitim/temel-network/hostlar/ARP7.png){:class="responsive img-zoomable"}
+![ARP7.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP7.webp){:class="responsive img-zoomable"}
 
-![ARP8.png]({{ site.url }}/egitim/temel-network/hostlar/ARP8.png){:class="responsive img-zoomable"}
+![ARP8.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP8.webp){:class="responsive img-zoomable"}
 
 Artık böylelikle lokal ağ dışındaki bir hosta veri göndermek için bu verileri routera teslim etmemiz gerekiyor. Yani hedef ip olarak harici ağdaki hostun ip adresini belirtiyorken, MAC adresi olarak default getway olan router aygıtının MAC adresini belirtiyoruz.
 
-![ARP9.png]({{ site.url }}/egitim/temel-network/hostlar/ARP9.png){:class="responsive img-zoomable"}
+![ARP9.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP9.webp){:class="responsive img-zoomable"}
 
 Bu sayede bu frame halindeki veri paketi routera ulaştığında router bu frame’i açarak hangi ip adresine gönderildiğini öğreniyor. Bu ip adresi kendisine bağlı olan ağdaysa bunu ilgili adrese iletiyor. 
 
-![ARP10.png]({{ site.url }}/egitim/temel-network/hostlar/ARP10.png){:class="responsive img-zoomable"}
+![ARP10.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP10.webp){:class="responsive img-zoomable"}
 
-![ARP11.png]({{ site.url }}/egitim/temel-network/hostlar/ARP11.png){:class="responsive img-zoomable"}
+![ARP11.webp]({{ site.url }}/egitim/temel-network/hostlar/ARP11.webp){:class="responsive img-zoomable"}
 
 Paketi alan host, gönderici ip adresi olarak diğer ağdaki hostun olduğunu öğrendiği için yanıt verirken benzer yolu izleyerek yanıtı ilgili hosta ulaştırabiliyor.
 
 Router bağlı olduğu ağlardaki cihazların IP ve MAC bilgilerini de ARP ile öğrenip kendi tablosunu tuttuğu için ağlar arasında yönlendirme işlemi gerçekleştirebiliyor. Bu sayede lokal ağımızın dışında bulunan bir ağdaki host ile veri alışverişinde bulunabiliyoruz. 
 
-![router-ip-arp-table.png]({{ site.url }}/egitim/temel-network/hostlar/router-ip-arp-table.png){:class="responsive img-zoomable"}
+![router-ip-arp-table.webp]({{ site.url }}/egitim/temel-network/hostlar/router-ip-arp-table.webp){:class="responsive img-zoomable"}
 
 Örneğin geniş ağ olan internet üzerinde başka bir ip adresine paket iletmek istediğinizde, yine kendi ağınızdaki default getway olarak kullanılan routera bu paketi teslim ediyorsunuz. Default getway da internet servis sağlayıcınıza bağlı olduğu için ilgili paketin hedefe ulaştırılması bu noktadan sonra onların yönlendirmesine bağlı oluyor. Zaten servis sağlayıcınız da internet ağına bağlı olduğu için ilgili paket internet ağı üzerinden hedefe ulaştırılmış oluyor. 
 

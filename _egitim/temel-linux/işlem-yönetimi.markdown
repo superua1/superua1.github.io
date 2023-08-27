@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Linux işlem(process) yönetimini ele alıyoruz."
 tags: [jobs , fg , bg , top , ps , kill , killall , pgrep]
 categories: [temel-linux]
-cover: islemcover.png
+cover: islemcover.webp
 tutorial: 18
 toc: true  
 ---
@@ -23,7 +23,7 @@ Bu bölümde "**process**" olarak geçen "**işlem**" kavramının anlaşılmas�
 
 Oldukça genel bir tanımla, söz konusu işletim sistemleri olduğunda; diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda olan her türlü programın öncelikle RAM yani hafızaya yüklenmesi ve oradan da sırası geldiğinde CPU yani işlemci üzerinde işlenmesine bütüncül olarak "***process***" yani "***işlem***" diyoruz. 
 
-![process.png]({{ site.url }}/egitim/temel-linux/islem/process.png){:class="responsive img-zoomable"}
+![process.webp]({{ site.url }}/egitim/temel-linux/islem/process.webp){:class="responsive img-zoomable"}
 
 Buradaki açıklama **son derece yüzeysel** fakat bulunduğumuz noktada temel işlem yönetimi için daha fazla bilgiye henüz gerek yok.
 
@@ -48,7 +48,7 @@ Arka plandaki(background) işlemler terminal aracından bağımsızdır. Yöneti
 
 Örneğin konsola `firefox` komutunu girecek olursak mevcut kabuk, `firefox` aracını bulup çalıştıracaktır. 
 
-![firefox.png]({{ site.url }}/egitim/temel-linux/islem/firefox.png){:class="responsive img-zoomable"}
+![firefox.webp]({{ site.url }}/egitim/temel-linux/islem/firefox.webp){:class="responsive img-zoomable"}
 
 Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz. 
 
@@ -92,7 +92,7 @@ Ben <kbd>Ctrl</kbd> + <kbd>D</kbd> tuşlaması ile veri girişini sonlandırana 
 
 Arka plan işlemleri sistem tarafından başlatılabileceği gibi kabuğumuz üzerinden başlatmamız da mümkündür. Örneğin ben **firefox** aracını arka planda başlatmak ve mevcut konsolu meşgul etmesini önlemek istersem bash kabuğuna `firefox &` komutunu girebilirim.
 
-![firefox-bg.png]({{ site.url }}/egitim/temel-linux/islem/firefox-bg.png){:class="responsive img-zoomable"}
+![firefox-bg.webp]({{ site.url }}/egitim/temel-linux/islem/firefox-bg.webp){:class="responsive img-zoomable"}
 
 Bakın konsola başlatılan **firefox** işleminin **pid** yani **işlem numarası** bastırıldı ve aracım açıldı. Burada bahsi geçen **pid** yani **işlem numarası** ileride kullanacağımız benzersiz bir değer. Şimdilik bu değere takılmayın. Firefox aracı arka planda açıldığı için bu aracı açan konsol bu işlem ile meşgul değil. Bu sebeple konsola yeni komutlar girmemiz mümkün.
 

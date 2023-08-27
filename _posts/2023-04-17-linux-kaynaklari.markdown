@@ -5,7 +5,7 @@ modified: 2023-04-16
 author: Taylan Özgür Bildik
 tags: [kaynaklar]
 categories: blog 
-cover: harici-kaynaklar.png
+cover: harici-kaynaklar.webp
 permalink: /:title
 toc: true
 ---

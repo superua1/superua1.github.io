@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Linux üzerindeki log kayıtları hakkında kısa bilgilendirme."
 tags: [rsyslogd, dmesg]
 categories: [temel-linux]
-cover: logcover.png
+cover: logcover.webp
 tutorial: 20
 toc: true  
 ---

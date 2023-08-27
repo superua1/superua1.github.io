@@ -8,7 +8,7 @@ excerpt: "Eğitimin yapısı ve ilerleyiş biçimi hakkında bilgi ediniyoruz."
 tags: [temel linux,]
 categories: [temel-linux]
 tutorial: 0
-cover: girizgah.png
+cover: girizgah.webp
 toc: true 
 ---
 

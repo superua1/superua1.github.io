@@ -1,11 +1,11 @@
 ---
 layout: b-post
 title:  "Unutulan Root Parolasını Değiştirmek"
-modified: 2023-07-17
+modified: 
 author: Taylan Özgür Bildik
 tags: [passwd]
 categories: blog 
-cover: change-root-password.png
+cover: change-root-password.webp
 permalink: /:title
 toc: true
 ---
@@ -17,15 +17,15 @@ Unutulan veya çeşitli sebeplerle tahrip edilmiş olan root parolasını sistem
 
 Karşımıza gelen **GNU GRUB** ekranındayken <kbd>E</kbd> tuşuna basarak “**edit**” yani “**düzenleme**” moduna geçiyoruz.
 
-![gnu-grub]({{ site.url }}/blog/img/root-parolası/gnu-grub.png){:class="responsive img-zoomable"}
+![gnu-grub]({{ site.url }}/blog/img/root-parolası/gnu-grub.webp){:class="responsive img-zoomable"}
 
 Düzenleme modundayken klavyemizdeki yön tuşları ile alt satırlara inerek “**linux**” satırını bulmamız gerek.
 
-![edit-gnu-grub.png]({{ site.url }}/blog/img/root-parolası/edit-gnu-grub.png){:class="responsive img-zoomable"}
+![edit-gnu-grub.webp]({{ site.url }}/blog/img/root-parolası/edit-gnu-grub.webp){:class="responsive img-zoomable"}
 
 linux satırında bulunan “**ro**” ifadesini “**rw**” ile değiştirdikten sonra, satırın sonuna ”**init=/bin/bash**” ifadesini ekliyoruz. Bu değişiklik sayesinde disk üzerinde **yazma yetkisi** ve sistem başlangıcında **bash** kabuğuna erişim kazanmış olacağız.
 
-![edit-gnu-grub-changed.png]({{ site.url }}/blog/img/root-parolası/edit-gnu-grub-changed.png){:class="responsive img-zoomable"}
+![edit-gnu-grub-changed.webp]({{ site.url }}/blog/img/root-parolası/edit-gnu-grub-changed.webp){:class="responsive img-zoomable"}
 
 Değişiklikleri kaydetmek için <kbd>Ctrl</kbd> **+** <kbd>X</kbd> ya da <kbd>F10</kbd> tuşlarını kullanabiliriz.
 
@@ -33,21 +33,21 @@ Yaptığımız değişikliğin anlamı; **ro** ifadesi **read only** anlamı
 
 Satırın sonuna eklemiş olduğumuz **init=/bin/bash** ifadesi ise sistemi boot ettikten sonra bash kabuğunun açılmasını sağlıyor. **Eğer bu ifadeyi eklemezseniz sistemi boot ettiğinizde aşağıdaki görselde yer alan komut satırı açılmaz.**
 
-![root-shell.png]({{ site.url }}/blog/img/root-parolası/root-shell.png){:class="responsive img-zoomable"}
+![root-shell.webp]({{ site.url }}/blog/img/root-parolası/root-shell.webp){:class="responsive img-zoomable"}
 
 Boot ettikten sonra bash kabuğu root yetkileriyle açılmış oldu. Öncelikle dosya sistemini yazılabilir olması için `mount -o remount,rw /` komutuyla kök dizini okunabilir biçimde bağlayalım.
 
-![mount.png]({{ site.url }}/blog/img/root-parolası/mount.png){:class="responsive img-zoomable"}
+![mount.webp]({{ site.url }}/blog/img/root-parolası/mount.webp){:class="responsive img-zoomable"}
 
 Son olarak şifre belirlemek üzere `passwd` komutunu girelim.
 
-![passwd.png]({{ site.url }}/blog/img/root-parolası/passwd.png){:class="responsive img-zoomable"}
+![passwd.webp]({{ site.url }}/blog/img/root-parolası/passwd.webp){:class="responsive img-zoomable"}
 
 `passwd` komutunu girdikten sonra resimdeki gibi konsol bizden yeni şifre oluşturmamızı isteyecek ve bunu tekrar girmemizi isteyecek.
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Parolanızı yazarken yazdığınız gözükmeyebilir bu bir güvenlik önlemidir siz yazmaya devam edin.</p>
 
-![passwd-changed.png]({{ site.url }}/blog/img/root-parolası/passwd-changed.png){:class="responsive img-zoomable"}
+![passwd-changed.webp]({{ site.url }}/blog/img/root-parolası/passwd-changed.webp){:class="responsive img-zoomable"}
 
 Ve işlemler bu kadar !
 

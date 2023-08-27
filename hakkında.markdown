@@ -35,7 +35,7 @@ Linux Dersleri, <a href="https://www.linkedin.com/in/taylanbildik/">Taylan Özg�
 </svg>
 </div>
 		  <p>Github Kaynağı</p>
-          <a target="_blank" href="https://github.com/taylanbildik/Linux_Dersleri#s%C4%B1ral%C4%B1-%C5%9Fekilde-konu-konu-linux-komut-sat%C4%B1r%C4%B1-dok%C3%BCmantasyon-m%C3%BCfredat%C4%B1" class="stretched-link"></a>
+          <a target="_blank" href="https://github.com/Linux-Dersleri/linux-dersleri.github.io" class="stretched-link"></a>
 			
         </div>
         

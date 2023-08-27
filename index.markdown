@@ -11,7 +11,7 @@ search_omit: true
 
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-		<img src="{{ site.url }}/data/img/video-egitim.png"/>
+		<img src="{{ site.url }}/data/img/video-egitim.webp"/>
     <p></p>
           <p class="card-text mb-auto">Temel Linux kullanımı için eğitim içerikleri.</p>
           <a href="{{ site.url }}/egitim" class=" stretched-link"></a>
@@ -56,9 +56,8 @@ search_omit: true
 önce
 </span>
 
-  {% if post_modified > post_date %}
+{% if post_modified > post_date %}
     <span class="small text-success yesil" data-toggle="tooltip" data-placement="bottom" title="Düzenlenme Tarihi: {{ post.modified }}">Güncellendi</span>
-
   {% endif %}
 
     </div>

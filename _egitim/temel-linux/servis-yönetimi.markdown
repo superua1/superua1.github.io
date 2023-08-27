@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "systemd üzerinden servislerin yönetimini ele alıyoruz."
 tags: [systemd, systemctl]
 categories: [temel-linux]
-cover: servisyonetimicover.png
+cover: servisyonetimicover.webp
 tutorial: 19
 toc: true  
 ---

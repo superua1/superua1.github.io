@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Nano ve Vi editörlerinin temel kullanımlarını ele alıyoruz."
 tags: [nano, vi]
 categories: [temel-linux]
-cover: editorcover.png
+cover: editorcover.webp
 tutorial: 12
 toc: true 
 ---
@@ -52,11 +52,11 @@ Bakın bu isimde bir dosya olmadığı için anında yeni bir sayfa `nano` metin
 
 Şimdi kısaca editörü tanıyacak olursak, pencerenin altında, kullanabileceğimiz en temel kısayollar açıkça yazıyor.
 
-![nano-shortcuts]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts.png){:class="responsive img-zoomable"}
+![nano-shortcuts]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts.webp){:class="responsive img-zoomable"}
 
 Pencere boyutuna göre ekran sığacak kadar olan kısayollar burada gözüküyor olacak. Yani aslında nano aracının tüm kısayolları bunlardan ibaret değil ancak pencere boyutuna göre hatırlama amaçlı bunlar gösteriliyor. Örneğin ben pencereyi biraz daha genişletip tekrar alt çubuğa bakıyorum.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts2.webp){:class="responsive img-zoomable"}
 
 Buradaki kısayol açıklamalarına bakarak yani bu alt çubuğa bakarak `nano` metin editöründe yapabileceklerimizi kolayca takip ediyor olacağız.
 
@@ -78,11 +78,11 @@ Böylelikle `nano` aracı ile istediğimiz isimde yeni bir dosya açıp içerisi
 
 Gerçekleştirdiğimiz değişiklikleri kaydetmek için <kbd>Ctrl</kbd> + <kbd>O</kbd> kısayolunu kullanıp “y” tuşu ile kaydetmeyi onaylayabiliriz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save.webp){:class="responsive img-zoomable"}
 
 Kaydetme kısayolunu kullandıktan sonra bu verilerin mevcut dosya üzerine mi yoksa başka bir dosya olarak mı kaydedilmesi gerektiğini soruluyor.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save2.webp){:class="responsive img-zoomable"}
 
 Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiştirip <kbd>enter</kbd> ile onaylayabilirsiniz. Eğer değiştirmeyecekseniz de dosya ismini aynen bırakıp <kbd>enter</kbd> ile üzerine yazmayı onaylayabilirsiniz. Ben değiştirmeden <kbd>enter</kbd>ile onaylıyorum.
 
@@ -90,11 +90,11 @@ Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiş
 
 Farklı bir dosya olarak kaydetmeye örnek vermek için öncelikle dosyama “bu farklı bir dosya” verisini ekliyorum ve <kbd>Ctrl</kbd> + <kbd>O</kbd> ile dosyayı kaydediyorum. Şimdi bana sorulan dosya ismini dilediğim gibi belirtebilirim. Ben örnek olması için ***Documents*** dizini altında farklı-dosya ismi şeklinde kaydetmek istiyorum.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different.webp){:class="responsive img-zoomable"}
 
 Farklı kaydetme işlemini de “y” ile onaylaylım.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different2.webp){:class="responsive img-zoomable"}
 
 Tamamdır, en son eklemiş olduğum verilerin farklı bir dosya olarak kaydedildiğini teyit etmek için `paste` komutunu kullanabilirim.
 
@@ -113,11 +113,11 @@ Gördüğünüz gibi farklı olarak kaydettiğim dosya tam olarak istediğim diz
 
 Nano aracından çıkmadan dosyayı kaydedeceğimiz dizini belirlemek için dosya sistemi hiyerarşisinde <kbd>Ctrl</kbd> + <kbd>T</kbd> tuşuna basıp gezinebiliriz. Bunun için öncelikle dosyayı kaydetmek istediğimizi <kbd>Ctrl</kbd> + <kbd>O</kbd> tuşu ile belirtmemiz gerek.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save2.webp){:class="responsive img-zoomable"}
 
 Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, <kbd>Ctrl</kbd> + <kbd>T</kbd> tuşu ile dosya sistemi üzerinde gezinebiliriz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-browse.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-browse.webp){:class="responsive img-zoomable"}
 
 Bu sayede özellikle komut satırı arayüzünde çalışıyorken `nano` aracından çıkmadan dosya sisteminde nerede hangi dosya ve klasör var diye kontrol edip, mevcut dosyayı hangi isimde nereye kaydetmemiz gerektiğine karar verebiliyoruz.
 
@@ -125,7 +125,7 @@ Alt çubuğa bakacak olursanız gezinme işlemi sırasında da bu iş için kull
 
 Şu anda benden dosyayı nereye kaydetmem gerektiğini belirtmem isteniyor. Eğer ben herhangi bir dosyanın üzerine gelip <kbd>enter</kbd> ile onaylarsam gördüğünüz gibi bu dizindeki bu dosya zaten mevcut üzerine yazılmasını istiyor musunuz diye soruluyor.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different2.webp){:class="responsive img-zoomable"}
 
 Eğer “y” tuşuna basarsam şu an bu dosyada yazıklarım bu dizindeki bu dosyanın içeriğini silip üzerine yazılacak. Eğer istemezseniz <kbd>Ctrl</kbd> + <kbd>C</kbd> ile işlemi iptal edebilirsiniz.
 
@@ -135,7 +135,7 @@ Neticede dosya oluşturma, mevcut dosya içeriğini düzenleyip başka bir dosya
 
 Eğer mevcut dosyaya başka bir dosyanın içeriğini eklemek istersek <kbd>Ctrl</kbd> + <kbd>R</kbd> kısayolunu kullanabiliriz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-insert.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-insert.webp){:class="responsive img-zoomable"}
 
 Bakın bize hangi dosyanın ekleneceğini soruyor. İçeri aktarmak istediğimiz dosyanın tam dizin adresini buraya eklememiz gerekiyor. Gördüğünüz gibi ilgili dosyanın tüm içeriği buraya kopyalandı. Bence yerine göre gayet kullanışlı bir kısayol.
 
@@ -143,11 +143,11 @@ Bakın bize hangi dosyanın ekleneceğini soruyor. İçeri aktarmak istediğimiz
 
 Mevcut dosya içinde kelimeleri araştırmak için <kbd>Ctrl</kbd> + <kbd>W</kbd> kısayolunu kullanabiliyoruz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-search.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-search.webp){:class="responsive img-zoomable"}
 
 Ben örneğin içeri aktardığım bu kullanıcı listesinde yer alan “kali” ismini araştırmak istiyorum.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-search2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-search2.webp){:class="responsive img-zoomable"}
 
 Bakın imlecim doğrudan ilgili kelimenin üstüne atlamış oldu. Özellikle büyük dosya içeriklerinde çalışıyorken bu arama özelliği kullanışlı olabiliyor.
 
@@ -155,15 +155,15 @@ Bakın imlecim doğrudan ilgili kelimenin üstüne atlamış oldu. Özellikle b�
 
 Eşleşme sağlanan kelimelerin değiştirilmesini sağlamak için <kbd>Ctrl</kbd> + <kbd>\</kbd> kısayolunu kullanabiliyoruz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace.webp){:class="responsive img-zoomable"}
 
 Bakın bana hangi kelimeyi değiştirmek istediğimi soruyor ben örnek olması için “**kali**” yazıyorum. Şimdi de bu kelimenin yerine hangi kelimenin yazılması gerektiğini soruyor örnek olarak “**taylan**” yazıp onaylayabiliriz mesela.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace2.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace2.webp){:class="responsive img-zoomable"}
 
 Eğer değişimleri tek tek yapmak istiyorsanız her bir eşleşmede sizden onay istenecektir. “**yes**” ile onayabilir “**no**” ile değişimi reddedebilirsiniz. Ayrıca “**all**” seçeneği ile tüm eşleşmelerin tek seferde değiştirilmesini de sağlayabilirsiniz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace3.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-replace3.webp){:class="responsive img-zoomable"}
 
 ## Metinleri Kesip Yapıştırmak
 
@@ -181,7 +181,7 @@ Eğer değişimleri tek tek yapmak istiyorsanız her bir eşleşmede sizden onay
 
 Eğer büyük dosyalarda çalışıyorsanız imlecin mevcut bulunduğu konum dosyanın tam olarak hangi satırında hangi sütununda hangi karakterinde gibi çeşitli bilgileri öğrenebilirsiniz. Bakın <kbd>Ctrl</kbd> + <kbd>C</kbd> kısayolunu kullandığımda benim imlecimin bulunduğu konum hakkında tüm bilgiler alt tarafta sırasıyla yazıyor.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-learn-line.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-learn-line.webp){:class="responsive img-zoomable"}
 
 Bu şekilde büyük dosya içeriklerinde kaybolmadan düzenlemelerinizi kontrollü şekilde yerine getirebilirsiniz.
 
@@ -189,7 +189,7 @@ Bu şekilde büyük dosya içeriklerinde kaybolmadan düzenlemelerinizi kontroll
 
 Ayrıca isterseniz dosya içerisindeki herhangi bir satıra atlamak için <kbd>Ctrl</kbd> + <kbd>_</kbd> kısayolunu kullanıp atlamak istediğiniz satır numarasını girebilirsiniz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-jump-line.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-jump-line.webp){:class="responsive img-zoomable"}
 
 Bakın doğrudan istediğim satıra atlayabiliyorum.
 
@@ -197,7 +197,7 @@ Bakın doğrudan istediğim satıra atlayabiliyorum.
 
 Hangi satırda olduğumuzu teyit etmek istersek <kbd>Alt</kbd> + <kbd>N</kbd> kısayolu ile satır numaralarının gözükmesini de sağlayabiliriz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-line-number.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-line-number.webp){:class="responsive img-zoomable"}
 
 ## Sayfada Hızlı Gezinti
 
@@ -211,7 +211,7 @@ Aslında yön tuşları yerine bu işlemler için 10 parmak klavyede daha ulaş�
 
 Evet tüm bu bahsettiğimiz özellikler ve kısayollar konsol üzerinden metin düzenleme işlerinizde `nano` aracını rahatlıkla kullanabilmenizi sağlayacak temel kullanım bilgileridir. Tüm bunlar dışında aslında nano aracının pek çok ek özelliği yani dolayısıyla pek çok kısayolu bulunuyor. Ancak tabii ki hepsine değinmeyeceğiz. Tüm özelliklerini görmek için yardım sayfasına geçiş yapmak üzere <kbd>Ctrl</kbd> + <kbd>g</kbd> kısayolunu kullanabilirsiniz.
 
-![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-help.png){:class="responsive img-zoomable"}
+![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-help.webp){:class="responsive img-zoomable"}
 
 Bakın burada pek çok özellik kısayol kullanımlarıyla birlikte gayet net biçimde izah edilmiş. Temelde benim bahsettiklerim neredeyse tüm temel metin düzenleme işlerinizi yapmanızı sağlayacağı için buradaki ek kısayolları ben ele almayacağım. Yine de sizler göz atıp kullanışlı bulduklarınızı uygulayarak test edebilirsiniz.
 
@@ -241,7 +241,7 @@ Vi editörünün "**komut**" ve "**ekleme**(**insert**)" olmak üzere temelde ik
 
 Hemen örnek üzerinden görmek için daha önce oluşturduğumuz bir metin dosyasını açmayı deneyebiliriz. İstediğimiz metin dosyasını vi editörü ile açmak için tek yapmamız gereken `vi` komutundan sonra açmak istediğimiz dosyasının ismini girmek. Ben `vi isimler.txt` komutuyla dosyamı açıyorum.
 
-![vi]({{ site.url }}/egitim/temel-linux/metin-editoru/vi.png){:class="responsive img-zoomable"}
+![vi]({{ site.url }}/egitim/temel-linux/metin-editoru/vi.webp){:class="responsive img-zoomable"}
 
 Bakın dosya içeriği karşımıza geldi. Komut modundayken dosya içeriğinde gezinmek için kullanabileceğimiz bazı kısayallara sahibiz. Temel gezinti için imleci hareket ettirmek üzere aşağıdaki tuşlamaları bilmeniz yeterli.
 
@@ -277,11 +277,11 @@ Tabii ki daha önce de bahsettiğim gibi “insert” yani “ekleme moduna” g
 
 Insert moduna geçiş yapmak için Komut modundayken `i` tuşuna basmamız yeterli.
 
-![vi-insert]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-insert.png){:class="responsive img-zoomable"}
+![vi-insert]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-insert.webp){:class="responsive img-zoomable"}
 
 Bakın “ekleme-insert” moduna geçiş yaptığım sol alt köşede açıkça belirtiliyor. Ekleme modunda olduğum için artık istediğim ifadeyi veri olarak metin dosyama ekleyebilirim. Ben denemek için “Linux bir çekirdektir” yazıyorum.
 
-![vi-insert2]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-insert2.png){:class="responsive img-zoomable"}
+![vi-insert2]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-insert2.webp){:class="responsive img-zoomable"}
 
 Veri girişimiz sonlandığında ekleme modundan çıkmamız gerek. Çünkü bu moddayken birkaç kısayol hariç bastığımız tüm tuşlar veri girişi olarak algılanacak. Yani imleci sağa sola veya yukarı aşağı hareket ettirmek için kullanacağımız bazı kısayollar da veri girişi olacak görülecektir. Denemek isterseniz bir üst bölümde bahsettiğimiz klavye kısayollarını tekrar kullanmayı deneyebilirsiniz. 
 

@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Güncelleme, kurma ve kaldırma gibi işlemler için paket yönetimini ele alıyoruz."
 tags: [dpkg , apt , rpm , dnf , yum ]
 categories: [temel-linux]
-cover: paketcover.png
+cover: paketcover.webp
 tutorial: 15
 toc: true  
 ---
@@ -55,11 +55,11 @@ Normalde `dpkg` aracını kullanarak yalnızca indirmiş olduğumuz yani lokal o
 
 Aracın Linux için indirme kaynağını kısa bir internet araştırması ile bulabilirsiniz. 
 
-![zoom-for-linux.png]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux.png){:class="responsive img-zoomable"}
+![zoom-for-linux.webp]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux.webp){:class="responsive img-zoomable"}
 
 Bakın indirmeden önce hangi Linux dağıtımını kullandığımı seçmem gereken bir listeyle karşılaştım. Özellikle farklı ana dağıtımlar farklı paket yönetim sistemi kullandıkları için buradan kullanmakta olduğunuz dağıtıma uygun olan paketi seçmeniz önemli. Görebildiğiniz gibi buradaki seçeneklerde doğrudan Ubuntu, Mint gibi Debian tabanlı olan dağıtımlar da var ancak kali Debian tabanlı olduğu için doğrudan Debian dağıtımını seçmem daha doğru olacaktır. İndirme butonuna basarak da Debian dağıtımlarına uygun olan ***.deb*** uzantılı paketi indirebiliriz. 
 
-![zoom-for-linux2.png]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux2.png){:class="responsive img-zoomable"}
+![zoom-for-linux2.webp]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux2.webp){:class="responsive img-zoomable"}
 
 ## Paket Kurulumu
 
@@ -135,11 +135,11 @@ Paketleri bulmak için Google gibi bir arama motoru üzerinden araştırma yapab
 
   
 
-![dpkg-download.png]({{ site.url }}/egitim/temel-linux/paket/dpkg-download.png){:class="responsive img-zoomable"}
+![dpkg-download.webp]({{ site.url }}/egitim/temel-linux/paket/dpkg-download.webp){:class="responsive img-zoomable"}
 
 Ayrıca kurulacak olan paketlerin de kendi bağımlılıkları olacağı için bunları da kurmamız gerekecek. Hatta varsa o indirdiğimiz paketlerin bağımlı olduğu paketleri de indirmemiz gerekiyor. Bağımlılıkları [packages.Debian.org](https://packages.Debian.org/search?keywords=search) adresi üzerinden görebilirsiniz. 
 
-![dpkg-dependency.png]({{ site.url }}/egitim/temel-linux/paket/dpkg-dependency.png){:class="responsive img-zoomable"}
+![dpkg-dependency.webp]({{ site.url }}/egitim/temel-linux/paket/dpkg-dependency.webp){:class="responsive img-zoomable"}
 
 İşte görebildiğiniz gibi hepsini tek elle indirmek zorundayız ve bu gerçekten çok verimsiz bir yöntem. Ben tek tek tüm paketlerin kurulumuna değinmek istemiyorum. Eğer siz ***.deb*** uzantılı bir paketi kurmak istiyorsanız tek yapmanız gereken burada ele aldığımız şekilde tüm bağımlıkları için gereken paketleri indirip `dpkg -i paket-adı` komutu ile tek tek kurmaktır. Lokal paketlerin yani internet bağlantısının olmadığı durumlarda disk üzerindeki paketlerin kurulumu için `dpkg` aracını kullanıyoruz. Ancak internet bağlantımız varken `dpkg` aracı ile kurulum için uğraşmak pek mantıklı değil. Yine de ihtiyaç duyduğumuzda kullanabilmemiz için `dpkg` aracını da öğrenmemiz gerekiyor. Gelin yüklü bulunan paketleri nasıl kaldırabileceğimizle devam edelim.
 
@@ -331,15 +331,15 @@ Bir paketi yeniden konfigüre etmek için `dpkg-reconfigure paketin-adı` şekli
 
 Bakın konfigürasyona dair bir çıktı almadım. Tıpkı daha önce söylediğim gibi pek çok araçta konfigürasyonlar sessizce gerçekleşiyor. Yine de bizden konfigürasyon için seçip yapmamızın istendiği araçlar da var. Bu duruma basit bir örnek olarak sistemdeki yerelleştirmeden sorumlu `locales` aracını ele alabiliriz. Ben `locales` aracını tekrar konfigüre etmek için `sudo dpkg-reconfigure locales` şeklinde komutumu giriyorum. 
 
-![dpkg-reconfigure-locales.png]({{ site.url }}/egitim/temel-linux/paket/dpkg-reconfigure-locales.png){:class="responsive img-zoomable"}
+![dpkg-reconfigure-locales.webp]({{ site.url }}/egitim/temel-linux/paket/dpkg-reconfigure-locales.webp){:class="responsive img-zoomable"}
 
 Bakın etkileşimli konfigürasyon penceresi açıldı ve benden seçim yapmam isteniyor. Klavyemdeki yön tuşlarını kullanarak istediğimi seçin üzerine gelip <kbd>enter</kbd> ile onaylayabilirim. Örneğin benim sistem dilim İngilizce ama ben Türkçe yapmak istersem buradan Türkçeyi bulup <kbd>space</kbd> ile seçerek ilgili konfigürasyonların geçerli olmasını sağlayabilirim. 
 
-![locales-tr.png]({{ site.url }}/egitim/temel-linux/paket/locales-tr.png){:class="responsive img-zoomable"}
+![locales-tr.webp]({{ site.url }}/egitim/temel-linux/paket/locales-tr.webp){:class="responsive img-zoomable"}
 
 <kbd>space</kbd> ile seçtikten sonra <kbd>tab</kbd> tuşuna basıp **Ok** seçeneğinin üzerine gelip <kbd>enter</kbd> ile bu değişimi onaylayabilirim. Daha sonra bana sistem genelinde hangi dil ayarının geçerli olması gerektiğini soran bir seçenek getiriliyor. Ben buradan da Türkçe’nin üzerine gelip <kbd>tab</kbd> ile **Ok** seçeneğinin üzerine gelip değişimi onaylıyorum.
 
-![locales-tr-set.png]({{ site.url }}/egitim/temel-linux/paket/locales-tr-set.png){:class="responsive img-zoomable"}
+![locales-tr-set.webp]({{ site.url }}/egitim/temel-linux/paket/locales-tr-set.webp){:class="responsive img-zoomable"}
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Eğer burada Türkçe seçeneği çıkmazsa mevcut seçeneklerden birini seçip tekrar bu konfigürasyon menüsüne girmek için <code class="language-plaintext highlighter-rouge">sudo dpkg-reconfigure locales</code> şeklinde yazın ve yine Türkçe dilini bulup seçin. İkinci sefer denediğinizde mutlaka eklediğiniz ek dil seçeneği gelecektir.</p>
 
@@ -356,11 +356,11 @@ Generation complete.
 
 Bu işlemin ardından oturumumu kapatıp tekrar oturum açtığımda, oturum ekranında Türkçe desteğinin gelmiş olduğunu görebiliyorum.
 
-![locale-change.png]({{ site.url }}/egitim/temel-linux/paket/locale-change.png){:class="responsive img-zoomable"}
+![locale-change.webp]({{ site.url }}/egitim/temel-linux/paket/locale-change.webp){:class="responsive img-zoomable"}
 
 Oturum açtıktan sonra da klasör isimlerinin dile göre güncellenmesi için seçenek sunulduğunu görebiliyoruz. Yani dil değişimi tamamdır. 
 
-![locales-reboot.png]({{ site.url }}/egitim/temel-linux/paket/locales-reboot.png){:class="responsive img-zoomable"}
+![locales-reboot.webp]({{ site.url }}/egitim/temel-linux/paket/locales-reboot.webp){:class="responsive img-zoomable"}
 
 Eğer yaptığınız değişikliği geri almak isterseniz de yine `dpkg-reconfigure locales` komutu ile dil konfigürasyonlarınızı eski haline getirebilirsiniz. Türkçe dilini seçtiyseniz, yine Türkçeyi bulun ve üzerine gelip <kbd>space</kbd> tuşu ile dil paketini kaldırın ve seçim menüsünden de İngilizce paketi seçip onaylayın. Ben İngilizce kullanımı tercih ettiğim için tekrar eski haline çevireceğim. Size de İngilizce şekilde kullanmanızı tavsiye ederim. 
 
@@ -516,7 +516,7 @@ Eğer siz bu kurulum komutundan önce `apt-get update` ya da `apt update` komutu
 
 Şimdi `leafpad` komutunu girip kurduğumuzu aracın çalışma durumunu kontrol edelim.
 
-![leafpad.png]({{ site.url }}/egitim/temel-linux/paket/leafpad.png){:class="responsive img-zoomable"}
+![leafpad.webp]({{ site.url }}/egitim/temel-linux/paket/leafpad.webp){:class="responsive img-zoomable"}
 
 İşte `apt` aracı ile paketlerin kurulumu bu kadar kolay. 
 
@@ -690,7 +690,7 @@ Press ENTER or type command to continue
 
 Bakın `vim` aracı hata verdi. Bu eğer <kbd>enter</kbd>’a tıklarsam aracım açılacak ancak hangi işlevlerin kaybolduğunu bilemiyorum. 
 
-![vim.png]({{ site.url }}/egitim/temel-linux/paket/vim.png){:class="responsive img-zoomable"}
+![vim.webp]({{ site.url }}/egitim/temel-linux/paket/vim.webp){:class="responsive img-zoomable"}
 
 **vim-runtime** paketi olmadığı için `vim` aracım eskisi gibi stabil çalışmayacak. <kbd>esc</kbd> tuşuna basıp `:q` komutu ile araçtan çıkıp konsola dönüyorum. Ben bağımlılık sorununu biliyorum. Ancak normalde bizim farkında olmadan bozduğumuz ya da sildiğimiz paketler olabileceği için en ideal yol `apt` aracının **fix** seçeneğini kullanmak. Bunun için aşağıdaki her iki komuttan birini girebiliriz.
 
@@ -769,7 +769,7 @@ Reading state information... Done
 
 Bakın herhangi bir bağımlılık sorunu bulunamadı. Ayrıca `vim` komutunu da tekrar girebiliriz.
 
-![vim.png]({{ site.url }}/egitim/temel-linux/paket/vim.png){:class="responsive img-zoomable"}
+![vim.webp]({{ site.url }}/egitim/temel-linux/paket/vim.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi `vim` aracı herhangi bir hata vermeden anında açıldı. Netice `apt` aracının düzeltme seçeneği sayesinde bağımlılık sorunlarını çözebileceğimizi de öğrenmiş olduk. Eğer bazı araçları kullanırken hata alıyorsanız veya araçlar açılmıyorsa öncelikle burada ele aldığımız şekilde bağımlılık sorunlarının kontrol edilip çözülmesini deneyebilirsiniz. Ayrıca bağımlılık sorunlarını kontrol etmeden evvel tabii ki repodaki güncel paket bilgilerini almak için `sudo apt update` komutunu da girin mutlaka. Özellikle uzun süredir paket kurma veya güncelleme gibi faaliyetler yapmadıysanız repo listeniz eskide kalmış olabilir. Bu da bağımlılık sorunlarının bulunamamasına neden olabilir. 
 
@@ -1107,7 +1107,7 @@ Tanımlı olan repoları anlamak veya doğru şekilde yeni repo tanımlaması ya
 
 Ben örnek olarak “**kali linux repositroy**” yazıp araştırıyorum. 
 
-![kali-repo.png]({{ site.url }}/egitim/temel-linux/paket/kali-repo.png){:class="responsive img-zoomable"}
+![kali-repo.webp]({{ site.url }}/egitim/temel-linux/paket/kali-repo.webp){:class="responsive img-zoomable"}
 
 Bu rehberde Kali Linux'un resmi reposunun nasıl tanımlanması gerektiği belirtilmiş. 
 
@@ -1147,7 +1147,7 @@ rpm uzantılı bir paketi kurmak için tek yapmamız gereken `rpm -i` komutunun 
 
 Ben tıpkı Debian üzerinde uyguladığım gibi “zoom” aracının Red Hat dağıtımlarına uygun olan “***.rpm***” paketini indirip kurmak istiyorum. Bunun için öncelikle zoom aracının rpm uzantılı paketini indirmem lazım. Zaten indirme sayfasını açmıştım. Buradan ben Rocky Linux kullanıyorum ancak zaten Red Hat tabanlı olduğu için buradan Red Hat seçeneğini seçebilirim. 
 
-![Red Hat-zoom.png]({{ site.url }}/egitim/temel-linux/paket/redhat-zoom.png){:class="responsive img-zoomable"}
+![Red Hat-zoom.webp]({{ site.url }}/egitim/temel-linux/paket/redhat-zoom.webp){:class="responsive img-zoomable"}
 
 Şimdi paketi kurmak için konsoldan indirilenler konumuna geçiş yapalım ve `ls` komutu ile dizin içeriğini listeleyelim. 
 
@@ -1480,7 +1480,7 @@ Bakın mevcut dağıtım için depolarda daha güncel bir sürüm sunulmamış. 
 
 Şimdi `wget` aracının kaynak kodunu araştırmak üzere arama motorunu kullanabiliriz. Kaynak kodlara ulaşmak için “**wget source code**” şeklinde araştırmamız yeterli. `wget` aracı GNU altında geliştirilen bir araç olduğu için GNU'nun websitesi üzerinden kaynak kodlarına ulaşabiliyoruz. 
 
-![wget.png]({{ site.url }}/egitim/temel-linux/paket/wget.png){:class="responsive img-zoomable"}
+![wget.webp]({{ site.url }}/egitim/temel-linux/paket/wget.webp){:class="responsive img-zoomable"}
 
 Ancak kaynak kodları bulma konusunda çok dikkatli olmanız gerekiyor. Benim örneğimde GNU güvenilir kaynak olduğu için sorun yok. Ancak sizin kurmak istediğiniz aracın kaynak kodu geliştiricinin websitesinde ya da Github gibi açık kaynaklı projelerin paylaşıldığı platformlarda olabilir. Eğer kaynak kodu websitesi üzerinden indiriyorsanız bu sitenin geliştiriciye ait olduğuna ya da güvenilir bir kaynak olduğuna emin olmadığınız sürece sakın bu aracı kurmayın. Websitesini doğrulamak için internet üzerinde ek araştırma yapabilir ya da çeşitli forumlar ve yardım sayfalarında bu sitenin ve aracın güvenilir olup olmadığına ve ilgili aracın kaynak kodlarına ulaşmak için hangi adresi kullanmanız gerektiğini sorgulayabilirsiniz.
 
@@ -1488,7 +1488,7 @@ Yani aslında Github gibi platformlarda açık kaynaklı ve resmi repolarda bulu
 
 Doğrudan `wget` aracının kaynak kodlarının sürümlere göre ftp sunucusundaki listesin GNU sitesi üzerinden ulaştım. 
 
-![wget-download.png]({{ site.url }}/egitim/temel-linux/paket/wget-download.png){:class="responsive img-zoomable"}
+![wget-download.webp]({{ site.url }}/egitim/temel-linux/paket/wget-download.webp){:class="responsive img-zoomable"}
 
 Ben en güncel sürümü istediğim için buradan en son sürümü içeren arşiv dosyasının üzerine tıklayıp indiriyorum. ***Downloads*** dizinine geçiyorum ve `tar -xf` komutu ile arşiv dosyasını buraya çıkarıyorum. 
 

@@ -6,7 +6,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Linux dosya sistemini tanıyıp, nasıl gezinebileceğimizden bahsedeceğiz."
 tags: [pwd , cd , ls , rmdir]
 categories: [temel-linux]
-cover: dizincover.png
+cover: dizincover.webp
 tutorial: 7
 toc: true  
 ---
@@ -26,7 +26,7 @@ Söz konusu Linux olduğunda pek çok farklı dağıtım olduğunu biliyoruz. Bu
 
 Linux’ta tüm dosya ve dizinler “**root**” olarak ifade edilen “**kök”** dizini altında hiyerarşik şekilde tutuluyor. Kök dizin de slash `/` işareti ile temsil ediliyor. Ben anlaşılır olması için temel dizinleri aşağıdaki diyagramda belirttim.
 
-![hiyerarsi.png]({{ site.url }}/egitim/temel-linux/dizin/hiyerarsi.png){:class="responsive img-zoomable"}
+![hiyerarsi.webp]({{ site.url }}/egitim/temel-linux/dizin/hiyerarsi.webp){:class="responsive img-zoomable"}
 
 Gördüğünüz gibi tüm dizinler `/` işareti ile temsil edilen kök dizinin altında bulunuyor. Bu durumu bizzat sistemimizden teyit etmek için kök dizini listelemek üzere `ls /` komutunu girebiliriz. 
 
@@ -85,7 +85,7 @@ Bakın burada “Desktop” “Documents” “Downloads” “Pictures” ve be
 
 Eğer ana dizinin içeriğini tekrar listeleyecek olursak **lib** ile başlayan birden fazla dizin(lib32,lib64,libx32) görebiliyoruz. 
 
-![2.png]({{ site.url }}/egitim/temel-linux/dizin/2.png){:class="responsive img-zoomable"}
+![2.webp]({{ site.url }}/egitim/temel-linux/dizin/2.webp){:class="responsive img-zoomable"}
 
 Buradaki **lib** ifadesi “**lib**rary” yani “kütüphane” ifadesinin kısaltmasından geliyor.
 
@@ -139,7 +139,7 @@ Böylelikle temelde haberdar olmamız gereken tüm dizinlerinden kısaca bahsetm
 
 Hani bir yeri ziyaret ettiğimizde karşımıza çıkan haritalarda şu an buradasınız şeklinde yazar ya işte bunun komut satırı  arayüzündeki karşılığı da tam olarak pwd komutu.
 
-![Untitled]({{ site.url }}/egitim/temel-linux/dizin/pwd.png){:class="responsive img-zoomable"}
+![Untitled]({{ site.url }}/egitim/temel-linux/dizin/pwd.webp){:class="responsive img-zoomable"}
 
 Bu komut sayesinde mevcut bulunduğumuz dizinin tam adresini öğrenebiliyoruz. `pwd` komutu, İngilizce "**p**rint **w**orking **d**irectory" yani "çalışma dizini yazdır" ifadesinin kısaltmasından geliyor. Özellikle komutun açılımından ve İngilizce karşılığından da bahsettim çünkü komutların açılımlarını ve İngilizce karşılıklarını bilirsek, daha sonra ilgili komutları çok daha kolay hatırlayabiliyoruz. Zaten genellikle komutların açılımları da görevleri ile ilişkili oluyor. 
 
@@ -153,7 +153,7 @@ Komutumuzu test etmek için komut satırımızı açalım. istisnalar hariç kom
 
 Bakın aldığımız bu çıktı bizim şu an komut satırında çalışmakta olduğumuz dizini belirtiyor. Bu çıktı benim şu anda kullanmakta olduğum kullanıcının ev dizininde çalışmakta olduğumu belirtiyor. Daha net görebilmek adına grafiksel arayüz üzerinden de bizzat kontrol edebiliriz. Bunun için hemen dosya yöneticisini açalım. 
 
-![3.png]({{ site.url }}/egitim/temel-linux/dizin/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/dizin/3.webp){:class="responsive img-zoomable"}
 
 Zaten bakın, dosya yöneticim de varsayılan olarak benim kendi ev dizinimde açılıyor. Burada benim Desktop(Masaüstü), Documents(Dokümanlar) ya da Downloads(İndirilen) gibi kişisel amaçlarım için kullanabileceğim klasörler var. İşte burası şu anda kullandığım taylan kullanıcısına ait olan ev dizinidir.
 
@@ -161,19 +161,19 @@ Bu dizinin benim ev dizinim olduğunu ve aldığımız çıktının anlamını i
 
 Bunun için buradan dosya sistemi kısmına tıklayalım.
 
-![4.png]({{ site.url }}/egitim/temel-linux/dizin/4.png){:class="responsive img-zoomable"}
+![4.webp]({{ site.url }}/egitim/temel-linux/dizin/4.webp){:class="responsive img-zoomable"}
 
 Eğer sizin kullandığınız dosya yöneticisi aracında benimki gibi “file system-dosya sistemi” ifadesi geçmiyorsa, biraz kurcalayıp ana dizini bulabilirsiniz. “Diğer dizinler” şeklinde bir sekme veya “bilgisayarım” şeklinde bir sekme vardır, oradan ana dizine ulaşabilirsiniz. Grafiksel arayüzler farklı olabildiği için ana dizine nasıl ulaşacağınızı kendiniz bulabilirsiniz. Zaten ana dizine ulaştığınızda tıpkı bende olduğu şekilde bu temel klasörleri görüyor olacaksınız. 
 
-![5.png]({{ site.url }}/egitim/temel-linux/dizin/5.png){:class="responsive img-zoomable"}
+![5.webp]({{ site.url }}/egitim/temel-linux/dizin/5.webp){:class="responsive img-zoomable"}
 
 Bakın şu an gördüğümüz tüm bu klasörler, mevcut işletim sistemini oluşturan dosyaları barındıran klasörler. Burada bulunduğum dizin işletim sisteminin dosyalarını barındıran tüm dosya ve klasörlerin en tepe noktası. Bu dizinin adresini görmek için adres çubuğuna bakabiliriz.
 
-![6.png]({{ site.url }}/egitim/temel-linux/dizin/6.png){:class="responsive img-zoomable"}
+![6.webp]({{ site.url }}/egitim/temel-linux/dizin/6.webp){:class="responsive img-zoomable"}
 
 Bakın bulunduğumuz dizinin ismi **slash** `/` karakteri olarak gözüküyor. Komut satırı arayüzünde aldığımız çıktıya da dönecek olursak bakın çıktının en başında slash işareti bulunuyor. İşte bu slash işareti tam olarak şu anda dosya yöneticisi üzerinden görüntülediğimiz bu dizini temsil ediyor. 
 
-![7.png]({{ site.url }}/egitim/temel-linux/dizin/7.png){:class="responsive img-zoomable"}
+![7.webp]({{ site.url }}/egitim/temel-linux/dizin/7.webp){:class="responsive img-zoomable"}
 
 Bu slash dizini tüm işletim sistemini oluşturan dosyaları barındıran en tepedeki dizin. Diğer tüm dosya ve klasörler bu dizin altındaki diğer klasörlerin altında bulunuyor. Bu durumu teyit etmek için çıktıda aldığımız ***/home/taylan*** yolunu dosya yöneticisi üzerinden takip edebiliriz.
 
@@ -191,11 +191,11 @@ Bence artık `pwd` komutunun işlevi tam olarak anlaşılmıştır. Komut satır
 
 Ayrıca `pwd` komutu dışında eğer dikkatinizi çektiyse hangi dizinde çalıştığım aslında ismimden sonra konsolda **prompt** olarak isimlendirilen kısmında da gözüküyor. 
 
-![10.png]({{ site.url }}/egitim/temel-linux/dizin/10.png){:class="responsive img-zoomable"}
+![10.webp]({{ site.url }}/egitim/temel-linux/dizin/10.webp){:class="responsive img-zoomable"}
 
 Yani `pwd` komutunu kullanmadan da buraya bakarak, hangi dizinde olduğunuzu öğrenebilirsiniz. Hatta bakın ilk açtığım konsolda ev dizinde çalıştığım için ev dizinim tilde `~` işareti ile temsil ediliyor. 
 
-![11.png]({{ site.url }}/egitim/temel-linux/dizin/11.png){:class="responsive img-zoomable"}
+![11.webp]({{ site.url }}/egitim/temel-linux/dizin/11.webp){:class="responsive img-zoomable"}
 
 Bu sebeple burada ben uzun uzadıya ***/home/taylan/*** dizini yerine bu dizinle aynı anlama gelen ***~*** işaretini görüyorum. 
 
@@ -242,7 +242,7 @@ Bakın burada `ls` komutu sayesinde elde ettiğim çıktı, benim mevcut bulundu
 
 Geçiş yapmak istediğim klasör mevcut çalışmakta olduğum dizin içinde bulunmuyorsa, bu klasörün dosya sistemi hiyerarşisindeki tam dizin adresini belirtmek zorundayım. Örneğin ben ana(***/***) dizindeki ***etc*** dizini altında yer alan ***apt*** klasörüne gitmek istiyorsam `cd` komutunun ardından ***/etc/apt*** dizin adresini tam olarak girmem gerekiyor. Burada ilk girdiğim slash “***/***” kök dizinini yani ana dizini temsil ederken, ***etc*** ile ***apt*** arasında yer alan ikinci slash “***/***” işareti ise ***etc*** dizini altındaki ***apt*** klasörüne geçiş yapılması gerektiğini belirtiyor. İlk slash işaretinden sonraki slash işaretleri, dizin isimlerini birbirinden ayırmak için kullandığımız bir sembol. 
 
-![12.png]({{ site.url }}/egitim/temel-linux/dizin/12.png){:class="responsive img-zoomable"}
+![12.webp]({{ site.url }}/egitim/temel-linux/dizin/12.webp){:class="responsive img-zoomable"}
 
 Hemen geçiş yapmak için komutumuzu girelim. 
 
@@ -554,17 +554,17 @@ Belki şu an öğrendiklerinizin etkisi çok büyük gibi gelmiyor olabilir anca
 
 Dikkat etmenizi istediğim ilk ve bence en sık yapılan hatalardan biri kesin yol belirtirken kök dizini belirtmek için kullandığımız en baştaki slash işaretini unutmamanız. Daha önce en baştaki slash işaretinin kök dizini yani ana dizini temsil ettiğini ve bu sebeple tam dizin adresi belirtilirken unutmamanız gerektiğini birden fazla kez söylemiştim. Bu önemli bir detay olduğu için tekrar hatırlatmak istiyorum.
 
-![hiyerarsi.png]({{ site.url }}/egitim/temel-linux/dizin/hiyerarsi.png){:class="responsive img-zoomable"}
+![hiyerarsi.webp]({{ site.url }}/egitim/temel-linux/dizin/hiyerarsi.webp){:class="responsive img-zoomable"}
 
 Anlatımın başında ele aldığımız hiyerarşik dosya sistemine tekrar bakacak olursak zaten sistemi oluşturan tüm klasörlerin kök dizinden başladığını görebiliyoruz. Ayrıca alt dizin ve üst dizin yaklaşımını da net biçimde görebiliyoruz. Örneğin bakın buradaki temsilde, ali kullanıcısının ev dizini kök dizini altındaki ***home*** klasöründe yer alan ***ali*** isimli klasörde bulunuyor. 
 
 ***home*** dizininde olan birisi için ***ali*** klasörü alt dizinken, kök ***/*** dizin ise bir üst dizini temsil ediyor. Komutlarımızı da bu doğrultuda girmemiz gerekiyor. Hatırlatacak olursak, mevcut bulunduğumuz dizin tek nokta `.` işareti ile temsil ediliyorken, bir üst dizin iki nokta `..` işareti ile temsil ediliyor. 
 
-![17.png]({{ site.url }}/egitim/temel-linux/dizin/17.png){:class="responsive img-zoomable"}
+![17.webp]({{ site.url }}/egitim/temel-linux/dizin/17.webp){:class="responsive img-zoomable"}
 
 Yani örneğin ***home*** dizini içindeyken bir üst dizine dönmek için `cd ..` şeklinde komutumuzu kullandığımızda kök dizine dönmüş oluyoruz. Bunun dışında ***home*** dizini içinde bulunan herhangi bir klasöre yani alt klasöre geçiş için de ilgili klasörün ismini girmemiz yeterli oluyor. Örneğin `cd ali` ******komutu ile alttaki ***ali*** klasörüne kolayca geçiş yapabiliyoruz. İşte buradaki durum göreli yola örnek. Home dizininde yer alan birine göre ***ali*** klasörü bir alttaki dizindir dolayısıyla yalnızca `cd ali` komutu ile bu dizine geçiş yapılabilir. Ya da benzeri şekilde ***ali*** dizini içinde olan birisi için `cd ..` komutu bir üst dizini yani ***home*** dizinini temsil ediyorken, ***home*** dizinindeki birisi `cd ..` komutunu girdiğimde bir üstündeki kök dizini temsil etmiş oluyor. 
 
-![18.png]({{ site.url }}/egitim/temel-linux/dizin/18.png){:class="responsive img-zoomable"}
+![18.webp]({{ site.url }}/egitim/temel-linux/dizin/18.webp){:class="responsive img-zoomable"}
 
 İşte zaten kök dizinden başlayan kesin bir yol rotası belirtmeden girdiğimiz komutların hepsi mevcut bulunduğumuz dizine göre, gitmek istediğimiz dizinin nerede olduğuyla ilgili. Bu sebeple bu yola göreli yol diyoruz.
 
@@ -988,7 +988,7 @@ Bakın bu kez standart dosya ve klasörlerle birlikte isminin başında nokta bu
 
 Ayrıca ben burada `ls -la` şeklinde girmiş olduğum komutu dilersem seçeneklerin sıralamasını değiştirip `ls -al` `ls -l -a` ya da `ls -a -l` şeklinde de girebilirim.
 
-![22.png]({{ site.url }}/egitim/temel-linux/dizin/22.png){:class="responsive img-zoomable"}
+![22.webp]({{ site.url }}/egitim/temel-linux/dizin/22.webp){:class="responsive img-zoomable"}
 
 Görebildiğiniz gibi gizli dosya ve klasörlerin yer aldığı ayrıntılı liste karşımıza gelmiş oldu. Yani özetle aslında komut girme ve bir aracın çoklu özelliklerini aynı anda kullanabilme konusunda son derece esnekliğe sahibiz. Üstelik bu durum yalnızca `ls` komutuna özgü de değil. İstisnalar hariç pek çok komutun seçeneklerini belirtirken bu gibi esnekliklere sahibiz zaten. Eğer kullandığınız araç, spesifik olarak belirli bir sıralamada seçenekleri belirtmenizi istiyorsa o şekilde belirtmelisiniz ancak genelde seçeneklerin sıralaması konusunda esnek kullanım imkanına sahibiz. Yani nasıl rahat edecekseniz komutunuzu o şekilde girebilirsiniz. Yeter ki eksiksiz ve doğru şekilde girin. Elbette doğru özellikleri ve seçenekleri kullanmak için de komutların yardım sayfalarına da mutlaka göz atın. Örneğin kimi komut seçeneklerinin hiç uzun seçenek alternatifleri yokken kimi komutların seçenekleri çok fazla olduğu için kısa harfle kullanılamayan yalnızca uzun olarak yazılması gereken seçenekler de bulunabiliyor. Neyse neticede seçenekleri belirtme konusunda esnek olduğumuzu ls komutu üzerinden uygulamalı şekilde teyit etmiş olduk. 
 

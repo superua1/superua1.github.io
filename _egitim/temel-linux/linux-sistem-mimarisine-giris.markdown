@@ -7,7 +7,7 @@ coursetitle: "Temel Linux Eğitimi"
 excerpt: "Giriş seviyesinde Linux sisteminin temel mimarisini ele alıyoruz."
 tags: [linus torvalds, kernel, shell, açık kaynak, özgür yazılım]
 categories: [temel-linux]
-cover: sistem.png
+cover: sistem.webp
 tutorial: 3
 toc: true 
 ---
@@ -17,7 +17,7 @@ Gerekli çalışma ortamını kurduğumuza göre artık sistemi daha yakından t
 
 Linux’un ne olduğundan bahsettiğimiz bölümde bilgisayarı ve içindeki işletim sistemini bu şekilde soyutlamıştık hatırlarsanız. 
 
-![1.png]({{ site.url }}/egitim/temel-linux/Temel Kavramlar/2.png){:class="responsive img-zoomable"}
+![1.webp]({{ site.url }}/egitim/temel-linux/Temel Kavramlar/2.webp){:class="responsive img-zoomable"}
 
 
 Şimdi tekrar bu şemaya dönecek olursak bakın temelde bir işletim sisteminde “kullanıcı” ve “çekirdek” olmak üzere iki temel alan bulunuyor. Biz kullanıcı alanındaki araçları kullandığımızda, buradaki araçlar çekirdek ile iletişime geçip ilgili görevin çekirdek tarafından donanıma doğru şekilde ifade edilip yaptırılmasını sağlıyorlar. Bu durumdan zaten daha önce de bahsettik. Şimdi çekirdek bölümünü bir kenara bırakıp kullanıcı alanına odaklanmak istiyorum.
@@ -28,7 +28,7 @@ Standart bir kullanıcı olarak sistem üzerinde herhangi bir işi yaparken çok
 
 Bizzat metin belgesi oluşturma örneğini ele alacak olursak; öncelikle grafiksel arayüzden metin editörü aracını bulup çalıştırmam daha sonra istediğim metni yazıp dosyayı kaydetmem yeterli. Bu sayede grafiksel arayüz üzerinden metin belgesi oluşturma amacımıza ulaşmış oluyoruz.
 
-![1.png]({{ site.url }}/egitim/temel-linux/sistem/1.png){:class="responsive img-zoomable"}
+![1.webp]({{ site.url }}/egitim/temel-linux/sistem/1.webp){:class="responsive img-zoomable"}
 
 Peki bu işimizi nasıl yerine getirdik ? Tabii ki grafiksel arayüzü kullanarak aracımızı bulduk ve çalıştırdık. 
 
@@ -36,11 +36,11 @@ Yani aslında bu örnekte bizzat gördüğümüz gibi, ben kullanıcı olarak bi
 
 İşte bizim grafiksel arayüzlü menüleri ve metin editörünü kullanırken yaptığımız şey aslında kullanıcı alanındaki araçları kullanarak sisteme emirler vermekti. Daha önce bahsetmiş olduğum kullanıcı alanı işte tam olarak burası. 
 
-![3.png]({{ site.url }}/egitim/temel-linux/Temel Kavramlar/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/Temel Kavramlar/3.webp){:class="responsive img-zoomable"}
 
 Yani kullanıcı alanına aslında komuta kontrol alanı da diyebiliriz. Nitekim ben metin editörünü bulup çalıştırırken ve yazı yazarken aslında grafiksel arayüze sahip kullanıcı alanında çalıştım. Ayrıca henüz bahsetmedik ancak tıpkı grafiksel arayüz ortamı gibi kullanıcıların sistemi yönetmek için kullandıkları komut satırı arayüzü de bulunuyor. Yani aslında kullanıcı alanı olarak tabir ettiğimiz soyut katmanın kendisi de "grafiksel kullanıcı arayüzü(GUI)" ve "komutu satırı arayüzü(CLI)" olmak üzere iki tür arayüz ortamını barındırıyor. 
 
-![2.png]({{ site.url }}/egitim/temel-linux/sistem/2.png){:class="responsive img-zoomable"}
+![2.webp]({{ site.url }}/egitim/temel-linux/sistem/2.webp){:class="responsive img-zoomable"}
 
 Şimdi burada bahsedilenleri daha iyi anlamak adına anlatımlarımıza sırasıyla bu ortam arayüzlerinden bahsederek devam edebiliriz. 
 
@@ -68,11 +68,11 @@ Yani temelde biz klasör oluştururken bu yapılar arkaplanda bizim istediğimiz
 
 Grafiksel arayüze sahip olmayan komut satırı arayüzlü araçlar için de aslında benzer işleyiş geçerli. Bu durumu teyit etmek üzere komut satırı arayüzü ile klasör oluşturulma akışına da göz atabiliriz. Komut girebilmek için öncelikle komut satırı aracını açmamız gerekiyor. Komut satırı aracını yani terminal veya konsol olarak geçen aracı grafiksel arayüzden menüleri kurcalayarak bulup açabilirsiniz. Ayrıca pek çok dağıtımda sağ tıkladığınızda, burada bir konsol başlat gibi bir seçenek de oluyor. 
 
-![3.png]({{ site.url }}/egitim/temel-linux/sistem/3.png){:class="responsive img-zoomable"}
+![3.webp]({{ site.url }}/egitim/temel-linux/sistem/3.webp){:class="responsive img-zoomable"}
 
 Konsol aracını açtıysak şimdi klasörü oluşturmak üzere `mkdir Klasor` şeklinde komutumuzu girelim. 
 
-![4.png]({{ site.url }}/egitim/temel-linux/sistem/4.png){:class="responsive img-zoomable"}
+![4.webp]({{ site.url }}/egitim/temel-linux/sistem/4.webp){:class="responsive img-zoomable"}
 
 Bakın belirttiğim isimdeki klasörün oluşturulduğunu grafiksel arayüz sayesinde görebiliyorum. Yani komut satırı üzerinden komut girerek de grafiksel arayüzdeki klasör oluşturma işleminin aynısını gerçekleştirebildim. Peki ama işletim sistemi, girdiğim `mkdir Klasor` kutuyla aslında benim bir klasör oluşturmak istediğimi nasıl anladı ? 
 
@@ -100,7 +100,7 @@ Kabuğa komut girmek için kullandığım bu konsol aracı aslında sizlerin de 
 
 Yani özetle grafiksel arayüzde çalışan komut satırı araçları-konsollardan kastım benim şu an kullandığım bu araç gibi olağan şekilde pencereli yapıda ve birtakım butonları menüleri olan standart grafiksel arayüzlü yazılımlardır. 
 
-![]({{ site.url }}/egitim/temel-linux/sistem/gui-terminals.png){:class="responsive img-zoomable"}
+![]({{ site.url }}/egitim/temel-linux/sistem/gui-terminals.webp){:class="responsive img-zoomable"}
 
 Grafiksel arayüzde çalışan konsol araçlarına; "xterm", "gnome-terminal", "Xfce4 terminal", "Terminator" ve benzeri pek çok alternatif aracı sayabiliriz. Ama neticede hepsinin ortak amacı bizlere grafiksel arayüz ortamında çalışırken bile kabuğa komutlar verebilme imkanı sağlamaktır. Grafiksel arayüzdeyken konsol aracını çalıştırmak için kullanmakta olduğunuz dağıtımın araç çubuğuna, menülerine göz atmanız veya arama çubuğunu kullanmanız yeterli. “Konsol” veya “Terminal” şeklinde arattığınızda zaten yüklü bulunan komut satırı aracına kolayca erişebilirsiniz. 
 
@@ -116,11 +116,11 @@ Grafiksel arayüze sahip olan dağıtımlarda, komut satırı arayüzüne geçi�
 
 Örneğin ben `Ctrl + Alt + F3` tuşlaması ile 3. tty konsoluna geçiş yaptım. 
 
-![5.png]({{ site.url }}/egitim/temel-linux/sistem/5.png){:class="responsive img-zoomable"}
+![5.webp]({{ site.url }}/egitim/temel-linux/sistem/5.webp){:class="responsive img-zoomable"}
 
 Kaçıncı tty konsolunda olduğunuzu “tty” ardındaki numaraya bakarak öğrenebilirsiniz.. Ben ctrl alt f3 tuşlaması yaptığım için 3. tty konsola geçmiş oldum. Bu konsol üzerinden komut girebilmek tabii ki öncelikle konsolda oturum açmamız gerekiyor. Sırasıyla kullanıcı adınızı ve parolanızı yazıp oturum açabilirsiniz. Bu durumu grafiksel arayüzdeki oturum açma ekranı gibi düşünebilirsiniz. Tıpkı grafiksel arayüzde olduğu gibi eğer oturum açmaya yetkimiz yoksa komut satırına da erişemiyoruz. Önce oturum açmamız gerekiyor. 
 
-![6.png]({{ site.url }}/egitim/temel-linux/sistem/6.png){:class="responsive img-zoomable"}
+![6.webp]({{ site.url }}/egitim/temel-linux/sistem/6.webp){:class="responsive img-zoomable"}
 
 Ben kendi hesabımda oturumumu açtım yani artık kendi hesabımın yetkileri dahilinde buradan istediğim gibi komut girebilirim. 
 
@@ -140,11 +140,11 @@ Tahmin edebileceğiniz gibi grafiksel arayüze sahip olan uygulamaları yalnızc
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Eğer sizin kullanmakta olduğunuz dağıtımda firefox aracı yüklü değilse, beni takip ederken grafiksel arayüzde çalışabilecek herhangi bir aracı da test için kullanabilirsiniz. Burada önemli olan tek şey grafiksel arayüze çalışan herhangi bir aracı çalıştırmak. İsminin ne olduğu önemli değil. Ben test ederken firefox aracını kullanacağım. </p>
 
-![7.png]({{ site.url }}/egitim/temel-linux/sistem/7.png){:class="responsive img-zoomable"}
+![7.webp]({{ site.url }}/egitim/temel-linux/sistem/7.webp){:class="responsive img-zoomable"}
 
 Firefox aracı benim sistemimde yüklü olduğu için bulabildim ve üzerine tıkladığımda açıldı. Hatta bu aracı bulup çalıştırmak için aslında bu menüyü ya da arama çubuğunu kullanmak zorunda da değilim. Grafiksel arayüzdeki menülere ek olarak, terminale `firefox` yazarak kabuğun benim için bu aracı bulup mevcut grafiksel ortamda açmasını da sağlayabilirim. 
 
-![8.png]({{ site.url }}/egitim/temel-linux/sistem/8.png){:class="responsive img-zoomable"}
+![8.webp]({{ site.url }}/egitim/temel-linux/sistem/8.webp){:class="responsive img-zoomable"}
 
 Bakın grafiksel arayüze sahip olan aracımı komut satırına komut girerek de çalıştırabildim. Neticede ben şu an grafiksel arayüzde çalıştığım için, grafiksel arayüze sahip olan aracımı her iki şekilde de çağırıp çalıştırabildim. Çünkü şu an grafiksel arayüzün çalışabileceği uygun ortama sahibim. 
 
@@ -158,7 +158,7 @@ Bakın grafiksel arayüzdeki konsol aracına `nano` komutunu girdiğimde **nano*
 
 İlk olarak grafiksel arayüze sahip olan firefox aracını çalıştırmak için `firefox` komutunu girmeyi deneyebiliriz. 
 
-![10.png]({{ site.url }}/egitim/temel-linux/sistem/10.png){:class="responsive img-zoomable"}
+![10.webp]({{ site.url }}/egitim/temel-linux/sistem/10.webp){:class="responsive img-zoomable"}
 
 Bakın, firefox aracı bulunmasına rağmen bu aracı çalıştırabilecek grafiksel arayüz ortamı bulunmadığı için hata aldık.
 
@@ -249,13 +249,13 @@ Bash kabuğunu kendi kullanıcı hesabımın varsayılan kabuğu olarak tanımla
 
 Şimdi açılmış olan passwd dosyasında kendi kullanıcı adımızın geçtiği satırı bulmamız gerek. Dosya içeriğinde gezinmek için klavyemizdeki aşağı yukarı yön tuşlarını kullanabiliriz. Benim kullanıcı adım "taylan" olduğu için “taylan” olan satırı buluyorum. Siz de hangi kullanıcının kabuğunu değiştirmek istiyorsanız o kullanıcının satırını bulmanız gerekiyor. Yani kendi hesabınızı düzenliyorsanız kendi kullanıcı adınızı içeren satırı buradan bulmanız gerekiyor. 
 
-![14.png]({{ site.url }}/egitim/temel-linux/sistem/14.png){:class="responsive img-zoomable"}
+![14.webp]({{ site.url }}/egitim/temel-linux/sistem/14.webp){:class="responsive img-zoomable"}
 
 Bakın burada kullanıcı adımın geçtiği satırın sonunda gördüğünüz gibi benim kullanıcı hesabım için tanımlı olan kabuk programının dosya konumu belirtilmiş. Benim kabuğum zsh olduğu için bu kabuğun dosya konumu yazıyor ancak sizde hangi kabuk programı varsa burada o kabuk programının dizin adresi olacaktır. Örneğin sizin hesabınız için burada sh ya da fish kabuklarının dosya konumları bulunuyor olabilir. Kabuğu değiştirmek için tek yapmamız gereken, hangi kabuğu kullanacaksanız o kabuğun dosya konumunu tam olarak buraya yazmak. 
 
 Ben bash kabuğunu varsayılan kabuğum yapmak için daha önce `which bash` komutu sayesinde öğrenmiş olduğum bash kabuk programının tam dosya konumunu zsh yerine ekliyorum. 
 
-![15.png]({{ site.url }}/egitim/temel-linux/sistem/15.png){:class="responsive img-zoomable"}
+![15.webp]({{ site.url }}/egitim/temel-linux/sistem/15.webp){:class="responsive img-zoomable"}
 
 Dosyadaki değişikliği kaydedip nano aracından çıkmak için `Ctrl` + `X` kısayolunu kullanıp “*değişiklik kaydedilsin mi*” sorusuna da “*yes*” ile onay vermemiz gerek. 
 

@@ -10,7 +10,7 @@ author: Taylan Özgür Bildik
 
 <div class="row">
  <div class="col-md-3 order-md-2">
-    <img class="card-img" src="{{ site.url }}/data/img/temel-linux.png">
+    <img class="card-img" src="{{ site.url }}/data/img/temel-linux.webp">
   </div>
   <div class="col-md-9 order-md-1">
     <h1>Herkes için Temel Linux Eğitimi</h1>

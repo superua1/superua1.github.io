@@ -19,11 +19,10 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "Linux Eğitimi"
-email: derslinux@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur.
+email: info@linuxdersleri.net
+description: "GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.linuxdersleri.net"
 github_username:  linux-dersleri
 
 # Build settings
@@ -35,6 +34,15 @@ plugins:
   - jekyll-toc
   - kramdown
 
+
+jekyll_timeago:
+  depth: 1
+  threshold: 1
+  translations_path: "/data/tr.yml"
+  default_locale: 'tr'
+  available_locales:
+    - 'tr'
+ 
 toc:
   min_level: 1
   max_level: 6

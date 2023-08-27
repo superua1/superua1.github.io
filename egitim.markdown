@@ -15,7 +15,7 @@ search_omit: true
     <div class="card row-flex no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     <div class="col p-4 d-flex flex-column position-static">
  	  <p class="yesil text-success">Sıralı Doküman</p>
-	  <img src="{{ site.url }}/data/img/linux-doc.png"/>
+	  <img src="{{ site.url }}/data/img/linux-doc.webp"/>
           <p class="card-text mb-auto">Temel Linux kullanımı için sıralı dokümanlar.</p>
 		  <p></p>
           <a href="{{ site.url }}/temel-linux" class=" stretched-link"></a>
@@ -26,7 +26,7 @@ search_omit: true
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static">
 			<p class="mavi text-primary">Video Eğitim</p>
-		<img src="{{ site.url }}/data/img/video-egitim.png"/>
+		<img src="{{ site.url }}/data/img/video-egitim.webp"/>
           <p class="card-text mb-auto">Temel Linux kullanımı için video, doküman ve testleri barından udemy eğitimi.</p>
           <a href="{{ site.url }}/kurs" class=" stretched-link"></a>
       </div>
@@ -42,18 +42,18 @@ search_omit: true
     <div class="card row-flex no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     <div class="col p-4 d-flex flex-column position-static">
  	  <p class="yesil text-success">Sıralı Doküman</p>
-	  <img src="{{ site.url }}/data/img/network-doc.png"/>
+	  <img src="{{ site.url }}/data/img/network-doc.webp"/>
           <p class="card-text mb-auto">Ağ temellerinin açıklandığı sıralı dokümanlar.</p>
 		  <p></p>
           <a href="{{ site.url }}/temel-network" class=" stretched-link"></a>
     </div>
     </div>
   </div>
-	<div class="col-md-6">
+	<div style="display:none;" class="col-md-6">
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static">
 			<p class="mavi text-primary">Video Eğitim</p>
-		<img src="{{ site.url }}/data/img/network-video.png"/>
+		<img src="{{ site.url }}/data/img/network-video.webp"/>
           <p class="card-text mb-auto">Ağ temellerini ele alan ücretsiz video eğitim.</p>
           <a href="{{ site.url }}/kurs" class=" stretched-link"></a>
       </div>
@@ -70,7 +70,7 @@ search_omit: true
       <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
  	<p class="kirmizi text-danger">Kitap</p>
-		<img src="{{ site.url }}/kitap.png"/>
+		<img src="{{ site.url }}/kitap.webp"/>
           <p class="card-text mb-auto">Linux Sistem Yönetimi için giriş seviyesi kitap arıyorsanız göz atabilirsiniz. Kitabın ismi "Linux: Sistem Yönetimine Giriş"dir. İçeriğini inceleme için tıklayın.</p>
           <a href="{{ site.url }}/linux-sistem-yonetimine-giris-egitimi" class=" stretched-link"></a>
         </div>
@@ -83,7 +83,7 @@ search_omit: true
         <div class="col p-4 d-flex flex-column position-static">
 
  	<p class="yesil text-success">Video + Doküman + Canlı Eğitim</p>
-			<img src="{{ site.url }}/sistem-yonetim.png"/>
+			<img src="{{ site.url }}/sistem-yonetim.webp"/>
           <p class="card-text mb-auto">Linux sistem yönetimi için giriş seviyesi eğitim arıyorsanız, 96 saatlik canlı ders, 50 saat video eğitim, kitap, kurs içi diagram kaynakları için bu eğitime kaydolabilirsiniz. </p>
 		  <h3 class="mb-0">Boş Kontenjan:
 			<span class="badge badge-warning badge-pill"><i class="fa fa-user" aria-hidden="true"></i>Tükendi!</span>
