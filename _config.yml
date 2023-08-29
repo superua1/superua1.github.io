@@ -102,7 +102,7 @@ defaults:
     layout: title
     twitter:       
 # pagefind.yml
-bundle_dir: _pagefind    
+bundle_dir: pagefind    
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
