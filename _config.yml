@@ -71,6 +71,8 @@ collections:
     output: true
   komut:
     output: true
+  pagefind:
+    output: true
 
 defaults:
 - scope:
@@ -100,9 +102,10 @@ defaults:
   values:
     permalink: "/komut/:title/"
     layout: title
-    twitter:       
+    twitter:
+         
 # pagefind.yml
-bundle_dir: pagefind    
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
