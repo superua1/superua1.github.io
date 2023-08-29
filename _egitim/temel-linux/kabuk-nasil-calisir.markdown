@@ -22,7 +22,7 @@ Anlatımlarımıza öncelikle kabuğun bizim girdiğimiz komutları nasıl algı
 
 Bulunmasını istediğimiz dosyaları kendimiz oluşturabiliriz. Bunun için grafiksel arayüzü de kullanabiliriz fakat ben komut satırından kolayca oluşturmak için `touch ~/test.txt ~/Desktop/test.txt` komutunu giriyorum. Bu komut sayesinde kendi ev dizinimde ve ev dizimin altındaki Desktop klasörü içinde “test.txt” isimli birer dosya oluşturulmuş olacak. Komutu anlamasanız bile şimdilik dosyaları oluşturmak için kopyala yapıştır şekilde kullanabilirsiniz.
 
-Şimdi find aracını kullanarak bu dosyaların nasıl bulunabileceğinde bahsederken, bash kabuğunun çalışma yapısını ele almaya çalışalım.
+Şimdi find aracını kullanarak bu dosyaların nasıl bulunabileceğinden bahsederken, bash kabuğunun çalışma yapısını ele almaya çalışalım.
 
 Örnek senaryomuz için diyelim ki benim ev dizinimde birçok dosya ve klasör bulunuyor ve ben de dosya ismi “test.txt” olan dosyalar burada mevcut mu varsa tam olarak hangi dizinde yer alıyorlar diye öğrenmek istiyorum. İşte bu örnek senaryomuz için find aracını kullanabiliriz. Ben kendi ev dizinimdeki test isimli tüm dosyaların bulunması için `find /home/ -name test`.txt komutunu giriyorum.
 
@@ -63,14 +63,14 @@ Temel kavramlardan da bahsettiğimize göre anlatım sırasında bahsi geçen **
 
 # PATH Yolu
 
-PATH esasen sistem üzerinde tanımlı olan bir değişkendir. Bu değişken, kabuğun çalıştırılacak dosyaları araması gereken dizin adreslerini tutuyor. Bu adresleri öğrenmek için daha önce varsayılan kabuğumuzu öğrenirken sorguladığımız **SHELL** değişkinine benzer şekilde PATH değişkenini sorgulamak için kabuğa `echo $PATH` komutunu girebiliriz. Buradaki dolar işareti `echo` aracının, **PATH** isimli değişkenin değerini konsola bastırmasını sağlıyor. Bu durumdan daha sonra ayrıca detaylı şekilde bahsedeceğiz. Şimdi aldığımız çıktıya odaklanacak olursak:
+PATH esasen sistem üzerinde tanımlı olan bir değişkendir. Bu değişken, kabuğun çalıştırılacak dosyaları araması gereken dizin adreslerini tutuyor. Bu adresleri öğrenmek için daha önce varsayılan kabuğumuzu öğrenirken sorguladığımız **SHELL** değişkenine benzer şekilde PATH değişkenini sorgulamak için kabuğa `echo $PATH` komutunu girebiliriz. Buradaki dolar işareti `echo` aracının, **PATH** isimli değişkenin değerini konsola bastırmasını sağlıyor. Bu durumdan daha sonra ayrıca detaylı şekilde bahsedeceğiz. Şimdi aldığımız çıktıya odaklanacak olursak:
 
 ```jsx
 └─$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
 ```
 
-Bakın sıralı şekilde bazı dizin adresleri çıktı olarak bastırıldı. Burada gördüğümüz iki nokta işareti ile ayrılmış olan her bir dizin adresi, kabuğun bir aracın çalıştırılabilir dosyasını ararken soldan sağa doğru sırasıyla bakacağı dizinlerin adresidir. İşte sırasıyla bakılan bu dizinlere de PATH yolu deniyor. Kabuk, harici bir komutu hangi dizinlerde arayacağını bu PATH değişkinine bakarak öğreniyor. Dolayısıyla eğer kabuk üzerinden bir aracı çalıştırmak istiyorsanız, aracın çalıştırılabilir dosyası mutlaka PATH değişkeninde tanımlı olan dizinlerden birinde olmalı. Ayrıca dilerseniz, PATH değişkenine yeni dizin adresleri ekleyerek, kabuğun bakması gereken dizinleri de çoğaltabilirsiniz. Neticede kabuk çalıştırılabilir dosyaları nerelerde araması gerektiğini PATH değişkeninden öğreniyor. 
+Bakın sıralı şekilde bazı dizin adresleri çıktı olarak bastırıldı. Burada gördüğümüz iki nokta işareti ile ayrılmış olan her bir dizin adresi, kabuğun bir aracın çalıştırılabilir dosyasını ararken soldan sağa doğru sırasıyla bakacağı dizinlerin adresidir. İşte sırasıyla bakılan bu dizinlere de PATH yolu deniyor. Kabuk, harici bir komutu hangi dizinlerde arayacağını bu PATH değişkenine bakarak öğreniyor. Dolayısıyla eğer kabuk üzerinden bir aracı çalıştırmak istiyorsanız, aracın çalıştırılabilir dosyası mutlaka PATH değişkeninde tanımlı olan dizinlerden birinde olmalı. Ayrıca dilerseniz, PATH değişkenine yeni dizin adresleri ekleyerek, kabuğun bakması gereken dizinleri de çoğaltabilirsiniz. Neticede kabuk çalıştırılabilir dosyaları nerelerde araması gerektiğini PATH değişkeninden öğreniyor. 
 
 Kabuğa bir komut girdiğimizde, kabuğun bu komut ile eşleşen dosyayı PATH yolunda aradığını ve bulabilirse çalıştırdığını kanıtlamak için hemen basit bir test yapabiliriz. 
 
@@ -188,7 +188,7 @@ Program Çalıştı!
 
 ## PATH Yoluna Yeni Dizin Eklemek
 
-Anlatımla başlamadan önce PATH yoluna yeni bir dizin eklemenin güvenlik açısından pek önerilen bir işlem olmadığını belirtmek istiyorum. Güvenli değil çünkü yeni eklediğiniz dizin adresi için gereken yetkilendirme ve sıkılaştırma önlemlerini almamış olabiliyoruz. Varsayılan olarak tanımlı olan PATH adreslerinde ise zaten yetkilendirme ayarları yapılmış oluyor. Hatırlarsanız zaten betik dosyamızı taşımak için `sudo` komutu ile yetkili olduğumuzu kanıtlamamız gerekmişti. Yani varsayılan PATH dizinlerinin yalnızca yetkili kişilerce düzenlenebilecek şekilde sıkılaştırıldığını bizzat deneyimledik. Bizim sonradan ekleyeceğimiz dizinin yetki ayarları doğu şekilde tanımlı olmazsa bu dizine yetkisiz kullanıcılar da dosya taşıyabilir ve kabuğun bu dosyaları da çalıştırmasını sağlayabilir. Bu durum elbette güvenlik riski demek oluyor. 
+Anlatımla başlamadan önce PATH yoluna yeni bir dizin eklemenin güvenlik açısından pek önerilen bir işlem olmadığını belirtmek istiyorum. Güvenli değil çünkü yeni eklediğiniz dizin adresi için gereken yetkilendirme ve sıkılaştırma önlemlerini almamış olabiliyoruz. Varsayılan olarak tanımlı olan PATH adreslerinde ise zaten yetkilendirme ayarları yapılmış oluyor. Hatırlarsanız zaten betik dosyamızı taşımak için `sudo` komutu ile yetkili olduğumuzu kanıtlamamız gerekmişti. Yani varsayılan PATH dizinlerinin yalnızca yetkili kişilerce düzenlenebilecek şekilde sıkılaştırıldığını bizzat deneyimledik. Bizim sonradan ekleyeceğimiz dizinin yetki ayarları doğru şekilde tanımlı olmazsa bu dizine yetkisiz kullanıcılar da dosya taşıyabilir ve kabuğun bu dosyaları da çalıştırmasını sağlayabilir. Bu durum elbette güvenlik riski demek oluyor. 
 
 Dolayısıyla varsayılan olarak tanımlı olan PATH adreslerini kullanmanız çok daha doğru ve güvenli bir yaklaşımdır. Yine de ihtiyaç duymanız halinde kullanabilmeniz, ve kabuğun çalışma yapısını daha iyi kavrayabilmeniz için kısaca PATH yoluna nasıl yeni dizin ekleyebileceğimize de değinmek istiyorum.
 
@@ -297,7 +297,7 @@ Yeni açtığımız konsolda hiç bir çıktı alamadık. Şimdi bir de bu konso
 
 Gördüğünüz gibi her iki konsolda da PATH değişken değeri basıldı. Peki ama nasıl oluyor da bizim `export` komutu ile global hale getirdiğimiz değişkene başka bir konsoldan ulaşamıyorken, **PATH** değişkenine tüm konsollardan ulaşabiliyoruz ? 
 
-Bu durumun sebebi miras yapısıdır. Mevcut kabuk yalnızca kendisinin başlatmış olduğu yeni işlemlere değişken gibi değerleri miras bırakabiliyor. Biz yeni bir konsol penceresi açtığımızda, halihazırda çalışmakta olan kabuklardan bağımsız yeni bir kabuk bu konsolda başlatılıyor. Dolayısıyla bağımsız bir kabuk tarafından **export** edilen değişken, bir diğer bağımsız kabuk tarafından miras alınamıyor. Çünkü arasında değişken aktarımını gerektirecek bir mirasa bağı bulunmuyor. Mevcut kabuk üzerinden `bash` komutu ile yeni kabuk başlattığımızdaysa, mevcut kabuk bu işlemi kendisi başlattığı için değişkenlerini yeni kabuğa miras olarak aktarabiliyor. Tüm meselenin özeti aslında bu.
+Bu durumun sebebi miras yapısıdır. Mevcut kabuk yalnızca kendisinin başlatmış olduğu yeni işlemlere değişken gibi değerleri miras bırakabiliyor. Biz yeni bir konsol penceresi açtığımızda, halihazırda çalışmakta olan kabuklardan bağımsız yeni bir kabuk bu konsolda başlatılıyor. Dolayısıyla bağımsız bir kabuk tarafından **export** edilen değişken, bir diğer bağımsız kabuk tarafından miras alınamıyor. Çünkü arasında değişken aktarımını gerektirecek bir miras bağı bulunmuyor. Mevcut kabuk üzerinden `bash` komutu ile yeni kabuk başlattığımızdaysa, mevcut kabuk bu işlemi kendisi başlattığı için değişkenlerini yeni kabuğa miras olarak aktarabiliyor. Tüm meselenin özeti aslında bu.
 
 Peki ama **PATH** değişkenine nasıl tüm konsollardan yani tüm bağımsız kabuklardan ortak olarak ulaşabiliyoruz ? 
 
@@ -340,7 +340,7 @@ Bu kadar açıklama yeter. Bizzat uygulayarak bahsetmiş olduklarımızın sonu�
 
 Ben PATH yolundaki değişikliğin tüm sistem genelinde yani tüm kullanıcılar üzerinde ortak olarak etkili olmasını istediğim için ***/etc/bash.bashrc*** dosyasında değişiklik yapacağım. 
 
-Öncelikle ekleyeceğimiz yeni dizini oluşturmak üzere `mkdir ~/Desktop/yeni-dizin`komutu ile masaüstü dizinimizde “***yeni-dizin***” isimli klasörümüzü oluşturalım.
+Öncelikle ekleyeceğimiz yeni dizini oluşturmak üzere `mkdir ~/Desktop/yeni-dizin` komutu ile masaüstü dizinimizde “***yeni-dizin***” isimli klasörümüzü oluşturalım.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -359,7 +359,7 @@ Ben PATH yolundaki değişikliğin tüm sistem genelinde yani tüm kullanıcıla
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Burada dosyanın ismini nokta da dahil eksiksiz yazdığınızdan emin olun. Eğer doğru yazmazsanız veya gereksiz yere boşluk bırakırsanız dosya açılmaz çünkü ilgili dosya bulunamaz. </p>
 
-Açılmış olan bu dosya içerisine **PATH** değişkeninin değeri olarak yeni oluşturduğumuz dizini de eklememiz gerekiyor. Bu noktada eklemek istediğiniz dizinin tam adresini doğru şekilde girmeniz şart. Örneğin ben taylan kullanıcısının ev dizini altındaki ***Desktop*** klasörü içerisinde “yeni-dizin” isimli klasörü eklemek istediğim için tam olarak “***/home/taylan/Desktop/yeni-dizin***” dizinini belirtmem gerek. Siz de kendi dizininize göre bu adresi belirtmelisiniz. Eğer eklemek istediğiniz dizinin tam konumunu bilmiyorsanız ilgili dizindeyken sağ tıklayıp konsolu burada başlata seçeneği ile konsolu açın ve `pwd` komutunu girip mevcut dizin adresini öğrenin. 
+Açılmış olan bu dosya içerisine **PATH** değişkeninin değeri olarak yeni oluşturduğumuz dizini de eklememiz gerekiyor. Bu noktada eklemek istediğiniz dizinin tam adresini doğru şekilde girmeniz şart. Örneğin ben taylan kullanıcısının ev dizini altındaki ***Desktop*** klasörü içerisinde “yeni-dizin” isimli klasörü eklemek istediğim için tam olarak “***/home/taylan/Desktop/yeni-dizin***” dizinini belirtmem gerek. Siz de kendi dizininize göre bu adresi belirtmelisiniz. Eğer eklemek istediğiniz dizinin tam konumunu bilmiyorsanız ilgili dizindeyken sağ tıklayıp "konsolu burada başlat" seçeneği ile konsolu açın ve `pwd` komutunu girip mevcut dizin adresini öğrenin. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/Desktop/yeni-dizin]       

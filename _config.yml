@@ -22,7 +22,7 @@ title: "Linux Eğitimi"
 email: info@linuxdersleri.net
 description: "GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://superua1.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.linuxdersleri.net"
 github_username:  linux-dersleri
 
 # Build settings

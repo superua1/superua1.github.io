@@ -179,6 +179,9 @@
 	--foreground: var(--dark-fg-color); 	
 	--borderground: var(--dark-br-color);
 	--codeground: var(--dark-cd-color);
+    --pagefind-ui-text: var(--font-color)!important;
+    --pagefind-ui-background: var(--dark-bg-color)!important;
+
 	}
 .navbar{
 	background-color:var(--foreground)!important;

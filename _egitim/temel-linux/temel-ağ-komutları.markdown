@@ -261,67 +261,126 @@ Temelde `ip` aracının kullanımı bu şekilde.
 
 # nmcli | nmtui
 
-`nmcli` ifadesi “**n**etwork **m**anager **c**ommand **l**ine **i**nterface” kısaltmasından geliyor. Ve ağ ile ilgili düzenlemeleri komut satırı üzerinden gerçekleştirebilmemizi sağlıyor. Ayrıca `nmtui` isimli alternatif sayesinde de yine komut satırı üzerinden ama bu kez görsel bir arayüzü bulunan araç ile temel ağ ayarlarını düzenlememiz mümkün oluyor. `nmtui` ifadesi “**n**etwork **m**anager **t**erminal **u**ser **i**nterface” ifadesinin kısaltmasından geliyor. Temel ağ konfigürasyonları için son derece yeterli ve kolay kullanılabilir olduğu için biz `nmtui` aracını ele alalım.
+`nmcli` ifadesi “**n**etwork **m**anager **c**ommand **l**ine **i**nterface” kısaltmasından geliyor. Ve ağ ile ilgili düzenlemeleri komut satırı üzerinden gerçekleştirebilmemizi sağlıyor. Ayrıca `nmtui` isimli alternatif sayesinde de yine komut satırı üzerinden ama bu kez görsel bir arayüzü bulunan araç ile temel ağ ayarlarını düzenlememiz mümkün oluyor. `nmtui` ifadesi “**n**etwork **m**anager **t**erminal **u**ser **i**nterface” ifadesinin kısaltmasından geliyor. Her iki araç da **systemd** tarafından sağlanan “**NetworkManager**” servisinin yönetilmesini sağlıyor. 
+
+Temel ağ konfigürasyonları için son derece yeterli ve kolay kullanılabilir olduğu için biz `nmtui` aracını ele alalım.
 
 Aracı çalıştırmak için konsola `nmtui` komutunu girelim.
 
-![nmtui.webp]({{ site.url }}/egitim/temel-linux/network/nmtui.webp){:class="responsive img-zoomable"}
+![nmtui.png]({{ site.url }}/egitim/temel-linux/network/nmtui.webp){:class="responsive img-zoomable"}
 
 Araç ilk açıldığında “ağ konfigürasyonlarını düzenleme”, “ağ arayüzlerini aktifleştirme” ve sistemin “hostname bilgisini tanımlama” seçenekleri sunuyor. Öncelikle **ağ bağlantısını konfigüre etme** seçeneği ile devam edelim.
 
-![nmtui-connection.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection.webp){:class="responsive img-zoomable"}
+![nmtui-connection.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection.webp){:class="responsive img-zoomable"}
 
 Burada bağlı olduğum ağ arayüzü gözüküyor. Benim sistemimde şu an yalnızca ethernet bağlı bulunduğu için yalnızca ethernet var. Eğer yeni bir bağlantı türü eklemek istersem, klavyemdeki yön tuşlarını kullanarak, sağ taraftaki **Add** seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylayabilirim. 
 
-![nmtui-connection-add.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add.webp){:class="responsive img-zoomable"}
+![nmtui-connection-add.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add.webp){:class="responsive img-zoomable"}
 
 Buradaki listeden, hangi türde bağlantı tanımlanacaksa onu seçip gerekli konfigürasyonları gerçekleştirmemiz mümkün. Örneğin Wi-Fi bağlantısı gerçekleştirilecekse, bu seçenek seçilip, gerekli aygıt ve ağ bilgililerinin tanımlanması mümkün. 
 
-![nmtui-connection-add-wifi.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add-wifi.webp){:class="responsive img-zoomable"}
+![nmtui-connection-add-wifi.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-add-wifi.webp){:class="responsive img-zoomable"}
 
 Değişiklikleri kaydetmek için **OK** seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylamanız yeterli. Eğer değişiklikleri kaydetmek istemiyorsanız **Cancel** seçeneğini <kbd>enter</kbd> ile onaylayabilirsiniz. Ayrıca <kbd>esc</kbd> tuşu ile de değişiklikleri iptal edip bir önceki menüye hızlıca dönmeniz mümkün. 
 
 Yeni ağ bağlantısı tanımlamak yerine mevcut olan bağlantıyı konfigüre etmek istersek, ilgili bağlantının üstündeyken <kbd>enter</kbd> ile veya menüdeki **Edit** seçeneğine <kbd>enter</kbd> ile tıklayabiliriz. 
 
-![nmtui-connection-edit.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit.webp){:class="responsive img-zoomable"}
+![nmtui-connection-edit.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit.webp){:class="responsive img-zoomable"}
 
 Düzenleme penceresi üzerinde, ilgili bağlantının türüne göre tanımlayabileceğimiz seçenekler gözüküyor. Örneğin ben ethernet bağlantısındaki IPv4 ip adreslerinin otomatik olarak alınması yerine kendim elle girmek istersem bu seçeneği değiştirmek üzere <kbd>enter</kbd> ile seçeneğe tıklayabilirim.
 
-![nmtui-connection-edit-ipv4.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4.webp){:class="responsive img-zoomable"}
+![nmtui-connection-edit-ipv4.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4.webp){:class="responsive img-zoomable"}
 
 IP adresini elle girmek istediğim için “**Manual**” seçeneğini seçebilirim. Bu seçimin ardından konfigürasyon ayrıntıları için sağ taraftaki “**Show**” seçeneğine de tıklamamız gerek.
 
-![nmtui-connection-edit-ipv4-manual.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4-manual.webp){:class="responsive img-zoomable"}
+![nmtui-connection-edit-ipv4-manual.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-edit-ipv4-manual.webp){:class="responsive img-zoomable"}
 
 Artık buradan istediğim ip bilgilerini girmem mümkün. Bu değişimleri onaylamak için “**OK**” seçeneğinin üstüne gelip <kbd>enter</kbd> ile onaylamamız gerek. Daha sonra ağ arayüzünü kapatıp tekrar açtığımızda bu değişimler de gerçekleşmiş olacak. Ağ arayüzünü açıp kapatmak için de menüye dönüp buradan “**Activate a connection**” seçeneğine tıklamamız gerek.
 
-![nmtui-connection-activate.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate.webp){:class="responsive img-zoomable"}
+![nmtui-connection-activate.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate.webp){:class="responsive img-zoomable"}
 
 Buradan ilgili bağlantıya <kbd>enter</kbd> ile tıkladığınızda aktif ise pasif, pasif ise aktif forma geçecektir. Yani buradan ilgili ağ arayüzünü açıp kapatmanız mümkün.
 
-![nmtui-connection-activate-on-off.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate-on-off.webp){:class="responsive img-zoomable"}
+![nmtui-connection-activate-on-off.png]({{ site.url }}/egitim/temel-linux/network/nmtui-connection-activate-on-off.webp){:class="responsive img-zoomable"}
 
 hostname bilgisini yani cihazın ağ üzerindeki ismini değiştirmek isterseniz ana menüden “**Set system hostname**” seçeneğine tıklayabilirsiniz.
 
-![nmtui-hostname.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname.webp){:class="responsive img-zoomable"}
+![nmtui-hostname.png]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname.webp){:class="responsive img-zoomable"}
 
 Buradan dilediğiniz bir hostname bilgisi girip “**OK**” ile onaylayabilirsiniz. 
 
-<p class="sari"><strong>⚠️ Dikkat:</strong> Ben menüde yer aldığı için burada hostname değişiminden bahsediyorum fakat sizin şu an hostname bilgisini değiştirmenizi kesinlikle önermiyorum. Çünkü hostname değişimi için uygulanması gereken ek konfigürasyonlar da mevcut. İleride hostname konusundan ayrıca bahsettiğimizde daha bilinçli şekilde değişim yapabiliyor olacaksınız. Ben burada yalnızca bir alternatif olduğu için bu değişimden bahsediyorum fakat şimdilik siz hostname bilgisini değiştirmeyin. Aksi halde sistem yönetimi noktasında sorun yaşamanız kaçınılmaz olur.</p>
+⚠️ Dikkat: Ben menüde yer aldığı için burada hostname değişiminden bahsediyorum fakat sizin şu an hostname bilgisini değiştirmenizi kesinlikle önermiyorum. Çünkü hostname değişimi için uygulanması gereken ek konfigürasyonlar da mevcut. İleride hostname konusundan ayrıca bahsettiğimizde daha bilinçli şekilde değişim yapabiliyor olacaksınız. Ben burada yalnızca bir alternatif olduğu için bu değişimden bahsediyorum fakat şimdilik siz hostname bilgisini değiştirmeyin. Aksi halde sistem yönetimi noktasında sorun yaşamanız kaçınılmaz olur.
 
-![nmtui-hostname-set.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set.webp){:class="responsive img-zoomable"}
+![nmtui-hostname-set.png]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set.webp){:class="responsive img-zoomable"}
 
 Bu noktada sizden yetkili olduğunuzu kanıtlamanız için parola bilgisi istenebilir. Değişim için parolanızı girin. 
 
-![nmtui-hostname-set-passwd.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set-passwd.webp){:class="responsive img-zoomable"}
+![nmtui-hostname-set-passwd.png]({{ site.url }}/egitim/temel-linux/network/nmtui-hostname-set-passwd.webp){:class="responsive img-zoomable"}
 
 Son olarak tüm işlerinizi bitirdiğinizde aracı kapatmak üzere “**Quit**” seçeneğinin üstüne gelip <kbd>enter</kbd> ile aracı kapatabilirsiniz.
 
-![nmtui-quit.webp]({{ site.url }}/egitim/temel-linux/network/nmtui-quit.webp){:class="responsive img-zoomable"}
+![nmtui-quit.png]({{ site.url }}/egitim/temel-linux/network/nmtui-quit.webp){:class="responsive img-zoomable"}
 
 Ağ konfigürasyonları için ihtiyaç duyabileceğiniz temel işlemler için `nmtui` son derece kullanışlı bir araç. 
 
 Eğer benzer konfigürasyonları komut satırı üzerinden gerçekleştirmek isterseniz `nmcli` aracını da kullanabilirsiniz. Fakat temel kullanımda `nmtui` çok daha kolay olduğu için daha çok tercih ediliyor. `nmcli` aracını kullanmak istiyorsanız, temel seçenekler için yardım sayfasına göz atabilirsiniz. 
+
+Burada gerçekleştirilen tüm konfigürasyonlar ***/etc/NetworkManager/system-connections/*** dizini altında, ilgili ağ arayüzünü temsil eden konfigürasyon dosyasında tutuluyor. Ben Debian ve Redhat tabanlı dağıtımlarda bu içeriğe göz atıp aşağıya ekledim.
+
+**Debian:**
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]                                                                                                                             
+└─$ sudo cat /etc/NetworkManager/system-connections/Ethernet\ connection\ 1.nmconnection                                                                   
+[connection]                                                                                                                                               
+id=Ethernet connection 1                                                                                                                                   
+uuid=0ba239d3-24c0-4511-87d6-749b381231a4                                                                                                                  
+type=ethernet                                                                                                                                              
+permissions=                                                                                                                                               
+timestamp=1693291090                                                                                                                                       
+                                                                                                                                                           
+[ethernet]
+mac-address-blacklist=
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]
+```
+
+**RedHat:**
+
+```bash
+[root@linuxdersleri ~]# cat /etc/NetworkManager/system-connections/enp0s3.nmconnection 
+[connection]
+id=enp0s3
+uuid=ebbc2f9d-0363-3da7-ab54-11479d0c8546
+type=ethernet
+autoconnect-priority=-999
+interface-name=enp0s3
+timestamp=1678973669
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=eui64
+method=auto
+
+[proxy]
+```
+
+Bu sayede sistem başlangıcında, buradaki konfigürasyonlar dahilinde ağ ayarları kullanıma hazır hale getiriliyor. Bu sebeple sistem üzerinde ağ ile ilgili çeşitli özellikleri barındıran konfigürasyon dosyalarında manuel olarak değişim yapıp, sistemi yeniden başlatacak olursak bu değişimler silinmiş olacak. Dolayısıyla **NetworkManager** ile gerçekleştirebileceğiniz işlerinizi `nmcli` veya `nmtui` gibi araçlar yardımıyla gerçekleştirmeniz çok daha doğru bir yaklaşım olacaktır. 
+
+Örneğin ileride DNS bilgisinin tutulduğu ***/etc/resolv.conf*** dosyasından bahsedeceğiz. Bu dosyada elle değişim yaparsanız, sistemi yeniden başlattığınızda yine **NetworkManager** tarafından tanımlanmış olan konfigürasyonlar geçerli olacak. Bu sebeple, kalıcı olmasını istediğiniz değişimler için `nmcli` veya `nmtui` araçlarını kullanmalısınız.
 
 # SSH
 
@@ -861,7 +920,7 @@ Operating System: Kali GNU/Linux Rolling
   Hardware Model: VirtualBox
 ```
 
-Konsoldaki promt alanında hala “linuxdersleri” gözüküyor fakat yeni bir konsol ya da kabuk başlattğınızda bu da değişmiş olacak. 
+Konsoldaki prompt alanında hala “linuxdersleri” gözüküyor fakat yeni bir konsol ya da kabuk başlattığınızda bu da değişmiş olacak. 
 
 ## domainname
 

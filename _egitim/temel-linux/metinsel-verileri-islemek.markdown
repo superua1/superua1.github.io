@@ -45,7 +45,7 @@ Linux üzerinde her şey dosya gibi ele alındığı için konsol aracı da ***/
 
 Hemen somut bir örnek üzerinden görelim. Ben test edebilmek için aynı anda hem hatalı hem de hatasız çıktılar üreten basit bir betik dosyası oluşturmak istiyorum. 
 
-Bunun için `cat > test.sh` komutunu girip, sırasıyla hatasız ve hatalı çıktıları üretecek olan komutları girip <kbd>Ctrl</kbd>+<kbd>d</kbd> kısayolu ile verilen dosyaya yazılmasını sağlayalım. 
+Bunun için `cat > test.sh` komutunu girip, sırasıyla hatasız ve hatalı çıktıları üretecek olan komutları girip <kbd>Ctrl</kbd> + <kbd>d</kbd> kısayolu ile verilen dosyaya yazılmasını sağlayalım. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -765,7 +765,7 @@ bir metin
 dosyasıdır
 ```
 
-Veri girişini sonlandırıp dosyaya kaydetmek için <kbd>Ctrl</kbd>+ <kbd>d</bkd> tuşlamasını yapmamız yeterli.
+Veri girişini sonlandırıp dosyaya kaydetmek için <kbd>Ctrl</kbd> + <kbd>d</kbd> tuşlamasını yapmamız yeterli.
 
 Aradaki farkı net gözlemleyebilmek için oluşturduğumuz dosyayı hem `cat` hem de `rev` araçları ile okumayı deneyebiliriz. 
 
@@ -891,7 +891,7 @@ Change: 2023-06-11 10:41:09.213674288 -0400
  Birth: 2023-06-11 05:22:23.195248608 -0400
 ```
 
-Bakın erşim tarihi bu komutu girdiğim zaman olarak değişmiş.
+Bakın erişim tarihi bu komutu girdiğim zaman olarak değişmiş.
 
 Benzer şekilde yalnızca düzenlenme tarihini değiştirmek istiyorsam “modify” ifadesinin kısaltmasından gelen `m` seçeneğini de kullanabilirim. 
 

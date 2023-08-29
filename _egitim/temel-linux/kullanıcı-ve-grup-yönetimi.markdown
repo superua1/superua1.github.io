@@ -24,7 +24,7 @@ Sistem kaynaklarına erişimi olan ve sistemini yetkileri dahilinde yönetenlere
 
 # `sudo` Komutunu Anlamak
 
-Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Sistemi yönetirken de yetki gerektiren işlemler yapmamız gerebilir. Bu durumda ilgiil görevleri yerine getirmek için root hesabına geçiş yapabiliriz. Ancak root hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Çünkü root hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten root hesabını kullanmak tehlikeli olabileceği için çoğu sistemde root hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece root hesabı kullanılamaz. 
+Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Sistemi yönetirken de yetki gerektiren işlemler yapmamız gerebilir. Bu durumda ilgili görevleri yerine getirmek için root hesabına geçiş yapabiliriz. Ancak root hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Çünkü root hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten root hesabını kullanmak tehlikeli olabileceği için çoğu sistemde root hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece root hesabı kullanılamaz. 
 
 Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için geçici olarak root  yetkileri ile hareket edebilmemizi sağlayan `sudo` komutunu kullanabiliyoruz. `sudo` sayesinde root hesabı aktif değilken veya root aktifse bile root hesabının şifresini bilmeden yönetici ayrıcalıkları ile işlerimizi yürütmemiz mümkün oluyor. Elbette hangi kullanıcıların hangi ayrıcalıklara erişebileceğini belirlemek için yapmamız gereken konfigürasyonlar bulunuyor. Fakat daha net anlaşılabilmesi için henüz bölümün başındayken bu detaylardan bahsetmeyeceğiz. 
 
@@ -249,7 +249,7 @@ Bu dosya kullanıcıların hesap detaylarını barındırdığı için dosya iç
 
 ![change-shell.webp]({{ site.url }}/egitim/temel-linux/kullanici/change-shell.webp){:class="responsive img-zoomable"}
 
-Dosyamı kaydettiğimde **ali** kullanıcısının kabuğu da bash olarak değişmiş olacak. Hatırlarsanız eğitimin başında varsayılan kabuğunu bash olarak değiştirmek için de bu dosyada değişiklik yapmıştık. İşte Linux sisteminde her şey dosya yapısı üzerinden ele alındığı için sistem yönetimi ve düzenlemesi de dosyalar üzerinden kolayca yapılabiliyor. Pek çok araç yani pek çok komutta aslında bu ve bunun gibi dosyalarda kısayoldan değişiklik yapmamızı sağlıyor. Biz hangi dosyanın hangi işlevde olduğunu biliyorsak, istersek manuel olarak elle dosyayı düzenleriz istersek de aynı işi yapan bir aracı yani komutu kullanırız. Bu dosya üzerinden açıkladığımız gibi sistemdeki dosyaların işlevlerini bildiğimiz zaman denetim ve yönetim noktasında pek çok avantaja sahip oluyoruz. Ben <kbd>ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydetmek üzere kapatıp kaydetme işlemini de onaylıyorum. Neticede **ali** kullanıcı hesabı için varsayılan kabuğu, kullanıcı hesapları hakkında bilgileri barındıran bu dosyada düzenlemek yaparak değiştirmiş oldum.
+Dosyamı kaydettiğimde **ali** kullanıcısının kabuğu da bash olarak değişmiş olacak. Hatırlarsanız eğitimin başında varsayılan kabuğunu bash olarak değiştirmek için de bu dosyada değişiklik yapmıştık. İşte Linux sisteminde her şey dosya yapısı üzerinden ele alındığı için sistem yönetimi ve düzenlemesi de dosyalar üzerinden kolayca yapılabiliyor. Pek çok araç yani pek çok komutta aslında bu ve bunun gibi dosyalarda kısayoldan değişiklik yapmamızı sağlıyor. Biz hangi dosyanın hangi işlevde olduğunu biliyorsak, istersek manuel olarak elle dosyayı düzenleriz istersek de aynı işi yapan bir aracı yani komutu kullanırız. Bu dosya üzerinden açıkladığımız gibi sistemdeki dosyaların işlevlerini bildiğimiz zaman denetim ve yönetim noktasında pek çok avantaja sahip oluyoruz. Ben <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydetmek üzere kapatıp kaydetme işlemini de onaylıyorum. Neticede **ali** kullanıcı hesabı için varsayılan kabuğu, kullanıcı hesapları hakkında bilgileri barındıran bu dosyada düzenlemek yaparak değiştirmiş oldum.
 
 Tıpkı bu kabuk düzenleme işlemi gibi aslında istersek `adduser` veya `useradd` gibi araçları kullanmadan kendimiz bu ***passwd*** dosyasına yeni kullanıcı hesabı tanımlayıp yeni kullanıcı da oluşturabiliriz. 
 
@@ -1713,7 +1713,7 @@ Bakın dosyanın sahibi olarak **nil** kullanıcısı gözüküyor. Yani artık 
 
 ## Grubunu Değiştirmek
 
-Yalnızca grubu değiştirmek için `:grup` paramteresini kullanabiliyoruz. Ben önrek olarak taylan kullanıcısı üzerinden `sudo chown :ali testfile.sh` şeklinde giriyorum.
+Yalnızca grubu değiştirmek için `:grup` parametresini kullanabiliyoruz. Ben örnek olarak taylan kullanıcısı üzerinden `sudo chown :ali testfile.sh` şeklinde giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2000,7 +2000,7 @@ Gruplar dışında bakın burada **@includedir** tanımının ardından bir dizi
 @includedir /etc/sudoers.d
 ```
 
-Bu tanımlama sayesinde yalnızca mevcut ***sudoers*** dosyası değil, bu dizin altında yer alan diğer konfigürasyon dosyaları da okunup geçerli oluyor. Bu yaklaşım sayesinde ***/etc*** dizini altındaki ana ***sudoers*** dosyasında yani şu an görüntülediğimiz dosyada değişiklik yapmadan bu dizindeki dosyalarda güvenli şekilde tanımlamalar yapabiliyoruz. Şu an incelediğimiz bu ***sudoers*** dosyası ana konfigürasyon dosyası olduğu için genellikle en temel tanımlamalar burda oluyor ve özellikle çok fazla tanımlama yapılacaksa burada belirtilen dizindeki konfigürasyon dosyalarında yapmak sistemi düzenli kullanmak adına çok daha doğru bir yaklaşım. Zaten pek çok aracın konfigürasyon dosyasında da aslında bu yaklaşım kullanılıyor. Ana konfigürasyon dosyasını sade tutmak ve mevcut yapısını bozmamak için konfigürasyon dosyasının isminin sonuna ***.d*** eklenmiş bir dizinde harici konfigürasyonlar tanımlanıp kullanılabiliyor. Buradaki ***.d*** ifadesi “**d**irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Özetle şimdiden haberiniz olsun, tıpkı burada ***sudoers*** dosyasında olduğu gibi sistem üzerindeki diğer çeşitli konfigürasyonlarda da bu şekilde harici konfigürasyonların alt dizinde tutulduğuna şahit olacaksınız.
+Bu tanımlama sayesinde yalnızca mevcut ***sudoers*** dosyası değil, bu dizin altında yer alan diğer konfigürasyon dosyaları da okunup geçerli oluyor. Bu yaklaşım sayesinde ***/etc*** dizini altındaki ana ***sudoers*** dosyasında yani şu an görüntülediğimiz dosyada değişiklik yapmadan bu dizindeki dosyalarda güvenli şekilde tanımlamalar yapabiliyoruz. Şu an incelediğimiz bu ***sudoers*** dosyası ana konfigürasyon dosyası olduğu için genellikle en temel tanımlamalar burada oluyor ve özellikle çok fazla tanımlama yapılacaksa burada belirtilen dizindeki konfigürasyon dosyalarında yapmak sistemi düzenli kullanmak adına çok daha doğru bir yaklaşım. Zaten pek çok aracın konfigürasyon dosyasında da aslında bu yaklaşım kullanılıyor. Ana konfigürasyon dosyasını sade tutmak ve mevcut yapısını bozmamak için konfigürasyon dosyasının isminin sonuna ***.d*** eklenmiş bir dizinde harici konfigürasyonlar tanımlanıp kullanılabiliyor. Buradaki ***.d*** ifadesi “**d**irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Özetle şimdiden haberiniz olsun, tıpkı burada ***sudoers*** dosyasında olduğu gibi sistem üzerindeki diğer çeşitli konfigürasyonlarda da bu şekilde harici konfigürasyonların alt dizinde tutulduğuna şahit olacaksınız.
 
 Şimdi tekrar ***sudoers*** dosyasına dönecek olursak, buraya dahil edilen dizin içeriğine bakmak için öncelikle mevcut konfigürasyon dosyamızı kapatalım. Şimdi ls ***/etc/sudoers.d/*** komutuyla dizin içeriğini listeleyebiliriz. 
 
@@ -2016,7 +2016,7 @@ kali-grant-root  README
 sudo visudo /etc/sudoers.d/kali-grant-root
 ```
 
-Bakın burda **kali-tursted** isimli bir grup tanımlanmış ve bu guruba tüm komutları parola olmadan çalıştırabilme yetkisi tanımlanmış. 
+Bakın burada **kali-tursted** isimli bir grup tanımlanmış ve bu guruba tüm komutları parola olmadan çalıştırabilme yetkisi tanımlanmış. 
 
 ```bash
 # Allow members of group kali-trusted to execute any command without a
@@ -2036,7 +2036,7 @@ Yeni bir konsol üzerinden bu gruptaki kullanıcıları listelemek için `grep �
 kali-trusted:x:123:
 ```
 
-Bakın bu grup hakkında bilgi sunan satır filtrelendi ama buradaki tanımlamanın sorunda yani gruba dahil olan kullanıcıların bulunması gereken sütunda herhangi bir kullanıcının ekli olmadığını görebiliyoruz. Eğer testi yine de gerçekleştirmek istersek bu gruba kullanıcı ekleyip deneyebiliriz. Ben **ni**l isimli kullanıcı hesabını bu gruba dahil etmek üzere `sudo gpasswd -a nil kali-trusted` komutunu giyiroum.
+Bakın bu grup hakkında bilgi sunan satır filtrelendi ama buradaki tanımlamanın sorunda yani gruba dahil olan kullanıcıların bulunması gereken sütunda herhangi bir kullanıcının ekli olmadığını görebiliyoruz. Eğer testi yine de gerçekleştirmek istersek bu gruba kullanıcı ekleyip deneyebiliriz. Ben **ni**l isimli kullanıcı hesabını bu gruba dahil etmek üzere `sudo gpasswd -a nil kali-trusted` komutunu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]

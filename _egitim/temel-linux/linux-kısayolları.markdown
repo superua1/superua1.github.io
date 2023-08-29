@@ -200,7 +200,7 @@ Kabuğa girmiş olduğumuz komutlar daha sonra tekrar ulaşabilmemiz için "hist
 
 Bakın geçmişte girmiş olduğum komutlar sıra numaralarıyla birlikte konsola bastırıldı. Bu liste biz bu komutları tekrar kullanmak istediğimizde kolayca ulaşabilmemiz için tutuluyor. 
 
-Eğer listenin tamamını değil de sondan belirli bir satırını görmek istersek `history` komutundan sonra sondan kaç satır görmek istediğimizi beliretebiliriz. Örneğin en son girilmiş olan 5 komutu görmek için `history 5` komutunu girebiliriz. 
+Eğer listenin tamamını değil de sondan belirli bir satırını görmek istersek `history` komutundan sonra sondan kaç satır görmek istediğimizi belirtebiliriz. Örneğin en son girilmiş olan 5 komutu görmek için `history 5` komutunu girebiliriz. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]

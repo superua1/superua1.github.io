@@ -59,12 +59,14 @@ if (!cookieExists) {
     setCookie("cookieAccepted", true, 1); // Set cookie to last for 1 day
     $('#cookieModal').modal('hide');
   });
+
   // When the modal is hidden without the accept button clicked, set the cookie
   $('#cookieModal').on('hidden.bs.modal', function(e) {
     if (!getCookie("cookieAccepted")) {
       setCookie("cookieAccepted", false, 365); // Set cookie to last for 1 year
     }
   });
+
 } else {
   // If cookie exists, hide the modal
   $('#cookieModal').modal('hide');
@@ -74,5 +76,6 @@ if (!cookieExists) {
 $('#showCookieModal').click(function() {
   $('#cookieModal').modal('show');
 });
+
 
 </script>

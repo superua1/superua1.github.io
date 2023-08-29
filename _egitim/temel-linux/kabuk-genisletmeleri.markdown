@@ -829,7 +829,7 @@ Bu betik mevcut bulunduğunuz dizine 75 rastgele dosya oluşturacaktır. Bu saye
 
 6. Başlangıcında 1'den 13'e kadar sayılardan biri olan ve devamında tam olarak herhangi 7 karakteri barındıranları nasıl filtrelersiniz ?
 
-7. İsminin başında "**1**", "**4**", veya "**5**" rakmlarından bırını barındıran ama sonunda "**a**", "**b**", "**t**" veya "**g**" karakterlerini barındırmayan dosya ismi genişletmesini nasıl tanımlarsınız?
+7. İsminin başında "**1**", "**4**", veya "**5**" rakamlarından birini barındıran ama sonunda "**a**", "**b**", "**t**" veya "**g**" karakterlerini barındırmayan dosya ismi genişletmesini nasıl tanımlarsınız?
 
 8. İlk karakteri "**x**", "**y**" veya "**t**" olan ancak son karakteri "**x**", "**y**" veya "**t**" olmayan dosya ismi genişletmelerini nasıl tanımlarsınız?
 

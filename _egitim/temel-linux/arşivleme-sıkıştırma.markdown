@@ -1355,7 +1355,7 @@ Processing triggers for kali-menu (2021.4.2) ...
 Processing triggers for man-db (2.9.4-4) ...
 ```
 
-Yardım bilgisini görüntülemek için yalnızca `rar` yazıp komutumuzu onaylaylım.
+Yardım bilgisini görüntülemek için yalnızca `rar` yazıp komutumuzu onaylayalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]

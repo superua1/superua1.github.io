@@ -95,7 +95,7 @@ Sistemdeki araçların ortak olarak kullandığı kütüphane dosyaları buradak
 
 ***/usr*** dizini aslında neredeyse tüm komut dosyalarının, kütüphane dosyalarının ve çeşitli dokümantasyonlarla birlikte sistemin normal işleyişi için gerekli olan dosyaların bulunduğu dizindir. 
 
-İlk zamanlar ***lib bin sbin*** dizinleri ayrı ayrı tutuluyorken, hepsine tek bir noktadan ulaşma fikri dolayısıyla tüm dizinler aslında ***usr*** altında taşınmıştır. Bizim ana dizin altında ***lib bin sbin*** olarak gördüğünüz dizinler de aslında geriye dönük uyumluluk için ana dizinde gözüken ama ***usr*** klasörüne sembolik olarak bağlı olan dizinlerdir. Yani bu dizinlerin asılları da *********usr********* dizini altında.
+İlk zamanlar ***lib bin sbin*** dizinleri ayrı ayrı tutuluyorken, hepsine tek bir noktadan ulaşma fikri dolayısıyla tüm dizinler aslında ***usr*** altında taşınmıştır. Bizim ana dizin altında ***lib bin sbin*** olarak gördüğünüz dizinler de aslında geriye dönük uyumluluk için ana dizinde gözüken ama ***usr*** klasörüne sembolik olarak bağlı olan dizinlerdir. Yani bu dizinlerin asılları da ***usr*** dizini altında.
 
 ## <span class="text-danger">/</span><span class="text-primary">opt</span>
 
@@ -157,7 +157,7 @@ Bakın aldığımız bu çıktı bizim şu an komut satırında çalışmakta ol
 
 Zaten bakın, dosya yöneticim de varsayılan olarak benim kendi ev dizinimde açılıyor. Burada benim Desktop(Masaüstü), Documents(Dokümanlar) ya da Downloads(İndirilen) gibi kişisel amaçlarım için kullanabileceğim klasörler var. İşte burası şu anda kullandığım taylan kullanıcısına ait olan ev dizinidir.
 
-Bu dizinin benim ev dizinim olduğunu ve aldığımız çıktının anlamını iyi kavrayabilmemiz için ben öncelikle hemen dosya sistemi hiyeraşisinin en tepe noktasına geçiş yapıp oradan tekrar bu dizine kadar gelerek size bizzat göstermek istiyorum. 
+Bu dizinin benim ev dizinim olduğunu ve aldığımız çıktının anlamını iyi kavrayabilmemiz için ben öncelikle hemen dosya sistemi hiyerarşisinin en tepe noktasına geçiş yapıp oradan tekrar bu dizine kadar gelerek size bizzat göstermek istiyorum. 
 
 Bunun için buradan dosya sistemi kısmına tıklayalım.
 
@@ -217,7 +217,7 @@ Dizinlerde gezinmek için İngilizce "**c**hange **d**irectory" yani "dizini de�
 /home/taylan
 ```
 
-Ben şu an kendi ev dizinim olan *********************************/home/taylan********************************* dizininde bulunuyorum. Şimdi bir de bu dizinde hangi dosya ve klasörler var diye `ls` komutu ile kontrol edelim. 
+Ben şu an kendi ev dizinim olan ***/home/taylan*** dizininde bulunuyorum. Şimdi bir de bu dizinde hangi dosya ve klasörler var diye `ls` komutu ile kontrol edelim. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -238,7 +238,7 @@ Bakın burada `ls` komutu sayesinde elde ettiğim çıktı, benim mevcut bulundu
 /home/taylan/Desktop
 ```
 
-`pwd` komutunu kullanarak veya doğrudan promt üzerindeki bilgi ile de teyit edebildiğimiz üzere bakın şu an ***Desktop*** dizinine geçiş yapmış bulunuyorum. Örnek üzerinden gördüğünüz gibi, mevcut bulunduğumuz dizin içerisindeki bir klasörlere geçiş yapmak için yalnızca ilgili klasörün ismini yazmamız yeterli oldu. Yani ben ev dizinimdeydim, ev dizini içerisinde ***Desktop*** klasörü bulunuyordu. Bu sebeple yalnızca `cd Desktop` komutu ile ***Desktop*** klasörüne kolayca geçiş yapabildim. Yani **yalnızca klasörün ismini yazarak geçiş yapmak için zaten halihazırda o klasörün bulunduğu dizinde olmamız gerekiyor**. İşte bu kullanıma “relative path” yani “göreli yol” deniyor. Buradaki “göreli yol” ifadesi, yalnızca bulunduğunuz dizinden itibaren geçerli olan yolu tasvir ediyor.
+`pwd` komutunu kullanarak veya doğrudan prompt üzerindeki bilgi ile de teyit edebildiğimiz üzere bakın şu an ***Desktop*** dizinine geçiş yapmış bulunuyorum. Örnek üzerinden gördüğünüz gibi, mevcut bulunduğumuz dizin içerisindeki bir klasörlere geçiş yapmak için yalnızca ilgili klasörün ismini yazmamız yeterli oldu. Yani ben ev dizinimdeydim, ev dizini içerisinde ***Desktop*** klasörü bulunuyordu. Bu sebeple yalnızca `cd Desktop` komutu ile ***Desktop*** klasörüne kolayca geçiş yapabildim. Yani **yalnızca klasörün ismini yazarak geçiş yapmak için zaten halihazırda o klasörün bulunduğu dizinde olmamız gerekiyor**. İşte bu kullanıma “relative path” yani “göreli yol” deniyor. Buradaki “göreli yol” ifadesi, yalnızca bulunduğunuz dizinden itibaren geçerli olan yolu tasvir ediyor.
 
 Geçiş yapmak istediğim klasör mevcut çalışmakta olduğum dizin içinde bulunmuyorsa, bu klasörün dosya sistemi hiyerarşisindeki tam dizin adresini belirtmek zorundayım. Örneğin ben ana(***/***) dizindeki ***etc*** dizini altında yer alan ***apt*** klasörüne gitmek istiyorsam `cd` komutunun ardından ***/etc/apt*** dizin adresini tam olarak girmem gerekiyor. Burada ilk girdiğim slash “***/***” kök dizinini yani ana dizini temsil ederken, ***etc*** ile ***apt*** arasında yer alan ikinci slash “***/***” işareti ise ***etc*** dizini altındaki ***apt*** klasörüne geçiş yapılması gerektiğini belirtiyor. İlk slash işaretinden sonraki slash işaretleri, dizin isimlerini birbirinden ayırmak için kullandığımız bir sembol. 
 
@@ -256,7 +256,7 @@ Hemen geçiş yapmak için komutumuzu girelim.
 /etc/apt
 ```
 
-Promta bakarak ve pwd komutu ile dizini değiştirdiğimizi de teyit etmiş olduk. Yani ben şu anda ***etc*** dizini altındaki ***apt*** klasöründe bulunuyorum. Peki bu dizine bir anda nasıl atlayabildik ? Tabii ki ilgili dizinin tam adresini belirterek. 
+Prompta bakarak ve pwd komutu ile dizini değiştirdiğimizi de teyit etmiş olduk. Yani ben şu anda ***etc*** dizini altındaki ***apt*** klasöründe bulunuyorum. Peki bu dizine bir anda nasıl atlayabildik ? Tabii ki ilgili dizinin tam adresini belirterek. 
 
 İlgili dizinin tam adresini verdiğim için kabuk tek seferde sorunsuzca ilgili dizini bulup geçiş yapabildi. Buradaki tam adresten kastım, sistem üzerindeki tüm dizinler **kök(”*/”*) dizininden başladığı** için kök dizini de dahil ederek ilgili dizine giden yolun tüm bilgisini adım adım sunmak. Bu şekilde belirtilen dizin adreslerine de “absolute path” yani “kesin yol” deniyor. 
 
@@ -752,7 +752,7 @@ Bakın burada da otomatik olarak boşluk karakterlerinden önce ters slash karak
 /home/taylan/bu bir deneme metnidir
 ```
 
-Neticede örnekler üzerinden de gördüğünüz gibi ters slash kullanışlı olsa de genelde pek okunaklı bir komut görünümü sunmadığı için genelde tırnak içine alma daha sık tercih ediliyor. Yine de artık her iki kullanım yönteminden de haberiniz var. Örneğin ters slash karakterini kullanmayı tercih etmeseniz bile isminde boşluk geçen bir klasöre geçiş yaparken<kbd>tab</kbd>önerisinde sunulan isimdeki ters slash işaretlerinin ne anlama geldiğini artık biliyorsunuz.
+Neticede örnekler üzerinden de gördüğünüz gibi ters slash kullanışlı olsa de genelde pek okunaklı bir komut görünümü sunmadığı için genelde tırnak içine alma daha sık tercih ediliyor. Yine de artık her iki kullanım yönteminden de haberiniz var. Örneğin ters slash karakterini kullanmayı tercih etmeseniz bile isminde boşluk geçen bir klasöre geçiş yaparken <kbd>tab</kbd> önerisinde sunulan isimdeki ters slash işaretlerinin ne anlama geldiğini artık biliyorsunuz.
 
 ### Küçük Büyük Harf Duyarlılığı
 
@@ -770,7 +770,7 @@ Aynı işlemi windows sisteminde de deneyebiliriz.
 
 Bakın ismini onayladığımızda aynı isimde başka bir klasör olduğu konusunda uyarılıyoruz. Çünkü Windows üzerinde küçük büyük harf duyarlılığı bulunmuyor. Windows sistemine göre hepsi aynı.
 
-İşte bakın Windows üzerinden ele aldığımız bu örnek, Linux sisteminin sahip olduğu küçük büyük harf duyarlılığını kanıtlıyor. Çünkü biraz önce Linux'ta küçük büyük harflerı farklı olan aynı isimli birden fazla klasörü sorunsuzca oluşturabildik. Linux için klasör isimleri içerdikleri küçük büyük harf farkları dolayısıyla benzersiz birer klasördür. İşte harf duyarlılığı olduğu için oluşturma aşamasında olduğu gibi klasöre geçiş aşamasında da elbette klasörün küçük büyük harfli karakterlerine dikkat ederek doğru adını girmemiz gerekiyor. 
+İşte bakın Windows üzerinden ele aldığımız bu örnek, Linux sisteminin sahip olduğu küçük büyük harf duyarlılığını kanıtlıyor. Çünkü biraz önce Linux'ta küçük büyük harfleri farklı olan aynı isimli birden fazla klasörü sorunsuzca oluşturabildik. Linux için klasör isimleri içerdikleri küçük büyük harf farkları dolayısıyla benzersiz birer klasördür. İşte harf duyarlılığı olduğu için oluşturma aşamasında olduğu gibi klasöre geçiş aşamasında da elbette klasörün küçük büyük harfli karakterlerine dikkat ederek doğru adını girmemiz gerekiyor. 
 
 Örneğin ben tamamı büyük harflerle yazılmış olan ***DOSYA_ADI*** klasörüne gitmek istersem `cd ~/DOSYA_ADI` yazmam gerekiyor. 
 
@@ -1409,7 +1409,7 @@ Her bir klasörün oluşturulmasına dair adım adım bilgi edinmiş olduk. `mkd
 
 Şimdiye kadar hep derinliği olmayan yani alt klasörleri bulunmayan tekil klasörler oluşturduk. Normalde bildiğiniz gibi klasörlerin içinde ve üstünde dizinler yer alabiliyor. Yani iç içe bir yapı söz konusu. İşte kimi zaman tekil bir klasör oluşturmamız gerekiyorken kimi zaman da tek seferde iç içe birden fazla klasör oluşturmamız da gerekebiliyor.
 
-Eğer tek seferde iç içe birden fazla klasörü oluşturmak istersek `mkdir` komutunun `p` seçeneğini kullanabiliyoruz. Buradaki `p` seçeneği İngilizcedeki "**p**arrent" yani "ebeveyn" ifadesinin kısalmasından geliyor. Aslında bu ifade üst dizin alt dizin kavramıyla ilişkili. Örneğin ben bir klasörün içine yeni bir klasör oluşturursam, bir üst klasör alttaki klasörün **parrent** ı yani **ebeveyni** olarak kabul ediliyor. Bu seçenek de buradan aklınızda kalabilir. 
+Eğer tek seferde iç içe birden fazla klasörü oluşturmak istersek `mkdir` komutunun `p` seçeneğini kullanabiliyoruz. Buradaki `p` seçeneği İngilizcedeki "**p**arrent" yani "ebeveyn" ifadesinin kısalmasından geliyor. Aslında bu ifade üst dizin alt dizin kavramıyla ilişkili. Örneğin ben bir klasörün içine yeni bir klasör oluşturursam, bir üst klasör alttaki klasörün **parrent**'ı yani **ebeveyni** olarak kabul ediliyor. Bu seçenek de buradan aklınızda kalabilir. 
 
 Hemen uygulamalı olarak -p seçeneğinin etkisini gözlemleyelim. Ben `mkdir -p buyukanne/anne/cocuk` şeklinde komutumu girmek istiyorum.  
 

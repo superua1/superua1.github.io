@@ -704,7 +704,7 @@ Eğer klasörler ile birlikte dosyaların da bastırılmasını istersek `a` se�
 
 Çıtılar uzun olduğu için ben kısaltarak buraya ekledim fakat gördüğünüz gibi `a` seçeneği sayesinde klasörün içindeki tüm dosya ve dizinlerin disk üzerinde kapladıkları alanın bilgisini kolayca bu çıktıdan öğrenebiliyoruz.
 
-İlgili dizindeki tüm içeriği bastırmak dışında ayrıca dilersek yalnızca belirttiğimiz klasörün boyutunu öğrenmek için “**s**ummarize” yani “özetlemek” ifadesinin kısalmasından gelen `s` seçeneğini de kullanabiliriz. Ben yine “***linux-derlseri***” klasörü üzerinde denemek istiyorum. Bakın yalnızca bu klasörün toplam boyutunu bastırdım.
+İlgili dizindeki tüm içeriği bastırmak dışında ayrıca dilersek yalnızca belirttiğimiz klasörün boyutunu öğrenmek için “**s**ummarize” yani “özetlemek” ifadesinin kısalmasından gelen `s` seçeneğini de kullanabiliriz. Ben yine “***linux-dersleri***” klasörü üzerinde denemek istiyorum. Bakın yalnızca bu klasörün toplam boyutunu bastırdım.
 
 ```bash
 └─$ du -hs ~/Downloads/linux-dersleri                           

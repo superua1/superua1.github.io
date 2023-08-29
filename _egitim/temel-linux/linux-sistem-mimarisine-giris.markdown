@@ -112,13 +112,13 @@ Benim daha önce atıfta bulunduğum “komut satırı arayüzü” ise grafikse
 
 Bu ortamın nasıl olduğunu daha iyi anlamak için bizzat komut satırı arayüzüne geçiş yapalım.
 
-Grafiksel arayüze sahip olan dağıtımlarda, komut satırı arayüzüne geçiş yapmak için `Ctrl + Alt + F1` `Ctrl + Alt + F2` veya duruma göre diğer `Ctrl + Alt + F3, F4, F5, F6, F7` tuşlarından herhangi birisini kullanarak geçiş yapabilirsiniz. Geçiş için hangi kısayolun çalıştığını görmek için tek tek denemeniz gerekiyor. Birden fazla kısayolu denemenizi söylüyorum çünkü geçiş için kullanılması gereken kısayol, kullanmakta olduğunuz dağıtıma ve dağıtım sürümüne göre değişiklik gösterebiliyor. Bu sebeple sırasıyla kısayol tuşlarını deneyebilirsiniz. 
+Grafiksel arayüze sahip olan dağıtımlarda, komut satırı arayüzüne geçiş yapmak için <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F1</kbd> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F2</kbd> veya duruma göre diğer <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F3</kbd>, <kbd>F4</kbd>, <kbd>F5</kbd>, <kbd>F6</kbd>, <kbd>F7</kbd> tuşlarından herhangi birisini kullanarak geçiş yapabilirsiniz. Geçiş için hangi kısayolun çalıştığını görmek için tek tek denemeniz gerekiyor. Birden fazla kısayolu denemenizi söylüyorum çünkü geçiş için kullanılması gereken kısayol, kullanmakta olduğunuz dağıtıma ve dağıtım sürümüne göre değişiklik gösterebiliyor. Bu sebeple sırasıyla kısayol tuşlarını deneyebilirsiniz. 
 
-Örneğin ben `Ctrl + Alt + F3` tuşlaması ile 3. tty konsoluna geçiş yaptım. 
+Örneğin ben <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F3</kbd> tuşlaması ile 3. tty konsoluna geçiş yaptım. 
 
 ![5.webp]({{ site.url }}/egitim/temel-linux/sistem/5.webp){:class="responsive img-zoomable"}
 
-Kaçıncı tty konsolunda olduğunuzu “tty” ardındaki numaraya bakarak öğrenebilirsiniz.. Ben ctrl alt f3 tuşlaması yaptığım için 3. tty konsola geçmiş oldum. Bu konsol üzerinden komut girebilmek tabii ki öncelikle konsolda oturum açmamız gerekiyor. Sırasıyla kullanıcı adınızı ve parolanızı yazıp oturum açabilirsiniz. Bu durumu grafiksel arayüzdeki oturum açma ekranı gibi düşünebilirsiniz. Tıpkı grafiksel arayüzde olduğu gibi eğer oturum açmaya yetkimiz yoksa komut satırına da erişemiyoruz. Önce oturum açmamız gerekiyor. 
+Kaçıncı tty konsolunda olduğunuzu “tty” ardındaki numaraya bakarak öğrenebilirsiniz.. Ben <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F3</kbd> tuşlaması yaptığım için 3. tty konsola geçmiş oldum. Bu konsol üzerinden komut girebilmek tabii ki öncelikle konsolda oturum açmamız gerekiyor. Sırasıyla kullanıcı adınızı ve parolanızı yazıp oturum açabilirsiniz. Bu durumu grafiksel arayüzdeki oturum açma ekranı gibi düşünebilirsiniz. Tıpkı grafiksel arayüzde olduğu gibi eğer oturum açmaya yetkimiz yoksa komut satırına da erişemiyoruz. Önce oturum açmamız gerekiyor. 
 
 ![6.webp]({{ site.url }}/egitim/temel-linux/sistem/6.webp){:class="responsive img-zoomable"}
 
@@ -126,9 +126,9 @@ Ben kendi hesabımda oturumumu açtım yani artık kendi hesabımın yetkileri d
 
 Komut girilebildiğini teyit etmek isterseniz `echo "Merhabalar"` şeklinde komut girmeyi deneyebilirsiniz. Sonuçta tıpkı grafiksel arayüzdeki konsolda olduğu gibi bu konsolda da size “Merhaba” çıktısını sonuç olarak döndürecektir.
 
-Ben şimdi yalnızca 3. tty konsoluna geçiş yaptım ancak normalde kısayollar ile 7 tty konsolu üzerinde gezinebilme imkanımız var. Örneğin `Ctrl + Alt + F5` ile 5. tty konsoluna kolayca geçiş yapabiliyoruz. Ancak genellikle grafiksel arayüze sahip bir dağıtım kullanıyorsanız, bu tty konsollarından bir veya ikisi mutlaka grafiksel arayüz için ayrılmıştır. Yani örneğin sizin kullandığınız dağıtımda 1. tty konsolu grafiksel arayüz için ayrıldıysa `Ctrl + Alt + F1` komutu ile tekrar grafiksel arayüze dönebilirsiniz.
+Ben şimdi yalnızca 3. tty konsoluna geçiş yaptım ancak normalde kısayollar ile 7 tty konsolu üzerinde gezinebilme imkanımız var. Örneğin <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F5</kbd> ile 5. tty konsoluna kolayca geçiş yapabiliyoruz. Ancak genellikle grafiksel arayüze sahip bir dağıtım kullanıyorsanız, bu tty konsollarından bir veya ikisi mutlaka grafiksel arayüz için ayrılmıştır. Yani örneğin sizin kullandığınız dağıtımda 1. tty konsolu grafiksel arayüz için ayrıldıysa <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F1</kbd> komutu ile tekrar grafiksel arayüze dönebilirsiniz.
 
-Neticede bu şekilde `Ctrl + Alt` ve `F1-7`  kısayolları ile hem birden fazla komut satırı arayüzüne yani tty konsoluna hem de mevcutsa grafiksel arayüze geçiş yapabilirsiniz. Neticede komut satırı arayüzü dediğimiz kullanıcı bölümü burası yani komut satırı arayüzü böyle gözüküyor. 
+Neticede bu şekilde <kbd>Ctrl</kbd> + <kbd>Alt</kbd> ve <kbd>F1</kbd> - <kbd>F7</kbd>  kısayolları ile hem birden fazla komut satırı arayüzüne yani tty konsoluna hem de mevcutsa grafiksel arayüze geçiş yapabilirsiniz. Neticede komut satırı arayüzü dediğimiz kullanıcı bölümü burası yani komut satırı arayüzü böyle gözüküyor. 
 
 ## Komut Satırı Arayüzünde Çalışmak
 
@@ -154,7 +154,7 @@ Testi devam ettirmek için yalnızca komut satırında çalışan **nano** isiml
 
 Bakın grafiksel arayüzdeki konsol aracına `nano` komutunu girdiğimde **nano** aracı konsolda açılmış oldu. Artık bu konsol üzerinden nano aracını kullanıp, metin belgisi oluşturabilir ya da var olanları düzenleyebilirim. Yani konsol yardımıyla grafiksel arayüzde çalışıyor olmama rağmen komut satırı üzerinden çalışabilen nano uygulamasını da kullanabiliyorum gördüğünüz gibi.
 
-Şimdi buradaki örneklerin aynılarını bu kez komut satırı arayüzüne geçiş yapıp tekrar deneyebiliriz. Ben `Ctrl + Alt + F5` ile 5. tty konsoluna geçiş yapıyorum. Siz istediğiniz bir tty konsoluna geçiş yapabilirsiniz. 
+Şimdi buradaki örneklerin aynılarını bu kez komut satırı arayüzüne geçiş yapıp tekrar deneyebiliriz. Ben <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F5</kbd> ile 5. tty konsoluna geçiş yapıyorum. Siz istediğiniz bir tty konsoluna geçiş yapabilirsiniz. 
 
 İlk olarak grafiksel arayüze sahip olan firefox aracını çalıştırmak için `firefox` komutunu girmeyi deneyebiliriz. 
 
@@ -170,7 +170,7 @@ Bakın nano aracı komut satırı arayüzünde çalışan bir araç olduğu içi
 
 Grafiksel arayüzlü araçları yalnızca grafiksel arayüz ortamında kullanabiliyorken, komut satırı arayüzünde çalışan araçları, grafiksel arayüzde çalışan konsol araçları yardımıyla hem grafiksel arayüzden hem de komut satırı arayüzündeki tty konsolları üzerinden kullanabiliyoruz.
 
-Bu arada eğer nano aracını kapatmak istiyorsanız ctrl x tuşlaması ile kapatıp, tekrar komut satırına dönebilirsiniz.
+Bu arada eğer nano aracını kapatmak istiyorsanız <kbd>Ctrl</kbd> + <kbd>x</kbd> tuşlaması ile kapatıp, tekrar komut satırına dönebilirsiniz.
 
 Neticede uyguladığımız örneklerle birlikte hem grafiksel arayüzde hem de komut satırı arayüzünde, terminal araçları sayesinde sisteme yazılı emirler verebileceğimizi bizzat deneyimlemiş olduk. 
 
@@ -192,7 +192,7 @@ Verimlilik konusuna henüz bana katılmıyor olabilirsiniz ancak merak etmeyin �
 
 Öte yandan aynı işi komut satırından 5 saniyede gerçekleştirebilirsiniz. Hadi hemen deneyelim. 
 
-Komutun sonucunu rahat gözlemeyebilmek için dosya yöneticisini ve terminali yan yana alalım ve konsola `mkdir {1..100}` komutunu girelim.  
+Komutun sonucunu rahat gözlemleyebilmek için dosya yöneticisini ve terminali yan yana alalım ve konsola `mkdir {1..100}` komutunu girelim.  
 
 ![13.gif]({{ site.url }}/egitim/temel-linux/sistem/13.gif){:class="responsive img-zoomable"}
 
@@ -257,7 +257,7 @@ Ben bash kabuğunu varsayılan kabuğum yapmak için daha önce `which bash` kom
 
 ![15.webp]({{ site.url }}/egitim/temel-linux/sistem/15.webp){:class="responsive img-zoomable"}
 
-Dosyadaki değişikliği kaydedip nano aracından çıkmak için `Ctrl` + `X` kısayolunu kullanıp “*değişiklik kaydedilsin mi*” sorusuna da “*yes*” ile onay vermemiz gerek. 
+Dosyadaki değişikliği kaydedip nano aracından çıkmak için <kbd>Ctrl</kbd> + <kbd>X</kbd> kısayolunu kullanıp “*değişiklik kaydedilsin mi*” sorusuna da “*yes*” ile onay vermemiz gerek. 
 
 Böylelikle kendi kullanıcı hesabımız için varsayılan kabuğu bash olarak değiştirmiş oluyoruz. Ancak bu değişiklik biz tekrar oturum açtığımızda geçerli olacak. Çünkü bu dosya, biz oturum açarken okunuyor. Örneğin ben “taylan” kullanıcısı olarak giriş yaptığımda, bu dosyadaki “taylan” satırını bulunup varsayılan kabuğun hangi olduğu öğreniliyor. Şimdi yapmış olduğunuz değişikliğin geçerli olabilmesi için oturumumuzu kapatıp tekrar açmanız yeterli. Oturumu nasıl kapatacağınızı bilmiyorsanız, genellikle grafiksel arayüzde sağ üst köşede oturum kapatma seçeneği olur biraz kurcalarsanız bulabilirsiniz. Tekrar oturum açtıktan sonra değişikliğin geçerliliği teyit etmek için tek yapmanız gereken tekrar `echo $SHELL` komutunu girmek. 
 

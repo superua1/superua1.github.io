@@ -5,6 +5,15 @@ excerpt: "Linux üzerinde sık kullanılan komutların listesi ve açıklama say
 search_omit: true
 ---
 
+
+<style>
+  #myUL li {
+    border-bottom: 1px solid #ccc; /* Add a bottom border to the list items */
+    padding-bottom: 10px; /* Add some spacing between items */
+    margin-bottom: 10px; /* Add space below each item */
+  }
+</style>
+
 <html lang="tr" >
 
 	<div align="center" class="container"> 
@@ -27,7 +36,6 @@ search_omit: true
       {{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}
     </a>
   </li>
-  <hr>
 {% endfor %}
 
 </ul>

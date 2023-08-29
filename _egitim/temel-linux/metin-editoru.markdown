@@ -68,7 +68,7 @@ Metin editöründen çıkıp komut satırına dönmek istersek burada da belirti
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-close.gif){:class="responsive img-zoomable"}
 
-Normalde dosya içerisine yeni veri eklendiğinde çıkmadan önce kaydetmek istiyor muyuz diye soruyor. Denemek için yine aynı dosyamızı açıp içerisine yeni veriler ekleyelim ve <kbd>Ctrl</kbd> + <kbd>X</kbd> kısayolu ile çıkış yapalım. Çıkarken bize değişiklikler kaydedilsin mi diye soracak “y” ile onay verip enter ile işlemi bitirelim.
+Normalde dosya içerisine yeni veri eklendiğinde çıkmadan önce kaydetmek istiyor muyuz diye soruyor. Denemek için yine aynı dosyamızı açıp içerisine yeni veriler ekleyelim ve <kbd>Ctrl</kbd> + <kbd>X</kbd> kısayolu ile çıkış yapalım. Çıkarken bize "değişiklikler kaydedilsin mi?" diye soracak “**y**” ile onay verip <kbd>enter</kbd> ile işlemi bitirelim.
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save.gif){:class="responsive img-zoomable"}
 
@@ -84,7 +84,7 @@ Kaydetme kısayolunu kullandıktan sonra bu verilerin mevcut dosya üzerine mi y
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-save2.webp){:class="responsive img-zoomable"}
 
-Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiştirip <kbd>enter</kbd> ile onaylayabilirsiniz. Eğer değiştirmeyecekseniz de dosya ismini aynen bırakıp <kbd>enter</kbd> ile üzerine yazmayı onaylayabilirsiniz. Ben değiştirmeden <kbd>enter</kbd>ile onaylıyorum.
+Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiştirip <kbd>enter</kbd> ile onaylayabilirsiniz. Eğer değiştirmeyecekseniz de dosya ismini aynen bırakıp <kbd>enter</kbd> ile üzerine yazmayı onaylayabilirsiniz. Ben değiştirmeden <kbd>enter</kbd> ile onaylıyorum.
 
 ### Farklı Dosya Olarak Kaydetmek
 
@@ -92,7 +92,7 @@ Farklı bir dosya olarak kaydetmeye örnek vermek için öncelikle dosyama “bu
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different.webp){:class="responsive img-zoomable"}
 
-Farklı kaydetme işlemini de “y” ile onaylaylım.
+Farklı kaydetme işlemini de “y” ile onaylayalım.
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/save-different2.webp){:class="responsive img-zoomable"}
 
@@ -205,7 +205,7 @@ Hangi satırda olduğumuzu teyit etmek istersek <kbd>Alt</kbd> + <kbd>N</kbd> k�
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-navigate.gif){:class="responsive img-zoomable"}
 
-Aslında yön tuşları yerine bu işlemler için 10 parmak klavyede daha ulaşılabilir kısayollar da bulunuyor. Örneğin bir üst satıra dönmek için “**p**revious” kısayolundan gelen <kbd>Ctrl</kbd> + <kbd>P</kbd> bir sonraki satıra geçmek için de “**n**ext” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>N</kbd> kısayolunu kullanabiliyoruz. Bunlar dışında bir kelime "ileri gitmek için “**f**orward” ilfadesinden gelen <kbd>Ctrl</kbd> + <kbd>F</kbd> veya bir karakter geri gitmek için de “**b**ackward” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>B</kbd> kısayolunu kullanabiliyoruz.
+Aslında yön tuşları yerine bu işlemler için 10 parmak klavyede daha ulaşılabilir kısayollar da bulunuyor. Örneğin bir üst satıra dönmek için “**p**revious” kısayolundan gelen <kbd>Ctrl</kbd> + <kbd>P</kbd> bir sonraki satıra geçmek için de “**n**ext” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>N</kbd> kısayolunu kullanabiliyoruz. Bunlar dışında bir kelime "ileri gitmek için “**f**orward” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>F</kbd> veya bir karakter geri gitmek için de “**b**ackward” ifadesinden gelen <kbd>Ctrl</kbd> + <kbd>B</kbd> kısayolunu kullanabiliyoruz.
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-navigate2.gif){:class="responsive img-zoomable"}
 
@@ -243,7 +243,7 @@ Hemen örnek üzerinden görmek için daha önce oluşturduğumuz bir metin dosy
 
 ![vi]({{ site.url }}/egitim/temel-linux/metin-editoru/vi.webp){:class="responsive img-zoomable"}
 
-Bakın dosya içeriği karşımıza geldi. Komut modundayken dosya içeriğinde gezinmek için kullanabileceğimiz bazı kısayallara sahibiz. Temel gezinti için imleci hareket ettirmek üzere aşağıdaki tuşlamaları bilmeniz yeterli.
+Bakın dosya içeriği karşımıza geldi. Komut modundayken dosya içeriğinde gezinmek için kullanabileceğimiz bazı kısayollara sahibiz. Temel gezinti için imleci hareket ettirmek üzere aşağıdaki tuşlamaları bilmeniz yeterli.
 
 <kbd>h</kbd> sola
 
@@ -346,7 +346,7 @@ Ben kopyalama veya kesme işleminde tek satır üzerinden gösterdim ancak isted
 Dosya içeriğinde araştırma yapmak için komut modundayken <kbd>/aranacak-veri</kbd> yazıp <kbd>enter</kbd> ile araştırma yapabiliyoruz. Bulunan eşleşmelerde ileri geri geçiş yapmak için de <kbd>n</kbd> ve <kbd>shift</kbd> + <kbd>N</kbd> tuşlarını kullanıyoruz. 
 ![vi-search]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-search.gif){:class="responsive img-zoomable"}
 
-Örnekleri inanılmaz esneklikte çoğaltmamız mümkün ama bence gerek yok. Çünkü temel kısayolları bildiğinizde geriye yalnızca pratik yapmak kalıyor. Size bahsettiğim manipülasyon kısayolları ile metin editöründe 10 parmak klavye kullanımı ile hızlıca tüm işlerinizi yerine getirebilirsiniz. Burada önemli olan bu kısayollara alışmak. Alışmak için de bir süre kullanmanız gerekiyor. Mesela 2 hafta boyunca her gün düzenli olarak kendi kendinize kısa kısa çalışırsanız ne kadar hızlandığınızı siz de fark edeceksiniz. Tabii ki ben tüm kısayollardan da bahsetmedim ancak zaten temel metin görüntüleme ve düzenleme işlemleriniz için öğrendiklerimiz fazlasıyla yeterli. Daha fazlası için çok kısa bir araştırma yapabilirsiniz. İnternette “[Vim Cheat Sheet](https://vim.rtorr.com/)” şeklinde araştırdığınızda neredeyse tüm kısayollar hakkında pratik bilgiler sunan yereli yabancı pek çok rehberi kolayca bulabilirsiniz.
+Örnekleri inanılmaz esneklikte çoğaltmamız mümkün ama bence gerek yok. Çünkü temel kısayolları bildiğinizde geriye yalnızca pratik yapmak kalıyor. Size bahsettiğim manipülasyon kısayolları ile metin editöründe 10 parmak klavye kullanımı ile hızlıca tüm işlerinizi yerine getirebilirsiniz. Burada önemli olan bu kısayollara alışmak. Alışmak için de bir süre kullanmanız gerekiyor. Mesela 2 hafta boyunca her gün düzenli olarak kendi kendinize kısa kısa çalışırsanız ne kadar hızlandığınızı siz de fark edeceksiniz. Tabii ki ben tüm kısayollardan da bahsetmedim ancak zaten temel metin görüntüleme ve düzenleme işlemleriniz için öğrendiklerimiz fazlasıyla yeterli. Daha fazlası için çok kısa bir araştırma yapabilirsiniz. İnternette “[Vim Cheat Sheet](https://vim.rtorr.com/)” şeklinde araştırdığınızda neredeyse tüm kısayollar hakkında pratik bilgiler sunan yerli ve yabancı pek çok rehberi kolayca bulabilirsiniz.
 
 ## Kaydetme ve Çıkış
 

@@ -21,11 +21,11 @@ Olası soru işaretlerini baştan giderebilmek adına birkaç alt başlıkla tem
 
 ### Hedefimiz
 
-Bu eğitim Linux sistemini temel düzeyde anlayıp yönetebilmek için giriş seviyesi bilgi sunmayı amaçlıyor. Kişisel veya profesyonel(devops, siber güvenlik, veri bilimi, yazılım geliştirme, vb..) amaçlarlarla giriş düzeyinde temel Linux öğrenmek isteyen herkese uygundur.
+Bu eğitim Linux sistemini temel düzeyde anlayıp yönetebilmek için giriş seviyesi bilgi sunmayı amaçlıyor. Kişisel veya profesyonel(devops, siber güvenlik, veri bilimi, yazılım geliştirme, vb..) amaçlarla giriş düzeyinde temel Linux öğrenmek isteyen herkese uygundur.
 
 ### Neden Linux Öğrenmeliyiz ?
 
-İronik olarak, Linux'un önemini Linux'u bizzat deneyimeyip öğrendikten sonra kavramanız çok daha olası. Yine de çok kısaca özetlemek gerekirse; açık kaynak ve özgür yazılım ekosisteminin getirdiği yüksek verimli, esnek ve özgür çalışma ortamı dolayısıyla Linux sistemi hem kişisel hem de profesyonel amaçlarla tercih edilen bir işletim sistemi. Dolayısıyla Linux öğrenmek kendinize yapabileceğiniz çok mantıklı bir yatırım.
+İronik olarak, Linux'un önemini Linux'u bizzat deneyimleyip öğrendikten sonra kavramanız çok daha olası. Yine de çok kısaca özetlemek gerekirse; açık kaynak ve özgür yazılım ekosisteminin getirdiği yüksek verimli, esnek ve özgür çalışma ortamı dolayısıyla Linux sistemi hem kişisel hem de profesyonel amaçlarla tercih edilen bir işletim sistemi. Dolayısıyla Linux öğrenmek kendinize yapabileceğiniz çok mantıklı bir yatırım.
 
 ### Anlatım Biçimi
 
@@ -33,7 +33,7 @@ Eğitim serisi boyunca yazılı ve yer yer resimler ile desteklenen sıralı bir
 
 ### Öğreneceklerimiz
 
-Eğitim içerisinde pek çok farklı konu başlığı ve bölümlendirme bulunsada aslında pek çok konu birbiri ile yakından ilişkili. Bu sebeple eğitimin bazı bölümlerinde geçmişte bahsedilen kavramlara atıfta bulunuyor ya da aynı konuyu, yeni konuyla birlikte tekrar ele alıyor olacağız. Bu gibi durumlara eğitimin düştüğü tekrarlardan ziyade, öğrenilen bilgilerin sentezlenmesi olarak bakmak çok daha doğru bir yaklaşım olacaktır. Bu eğitimdeki amacımız GNU/Linux sisteminin sahip olduğu temel özellikleri kavrayıp, sistemi komut satırı üzerinden yönetebilecek becerileri kazanabilmektir. Zaten temeli doğru biçimde kavradıktan sonra sistemi çok daha etkili kullanma ve gerektiğinde hakkında çok daha fazla bilgiyi edinebilme kabiliyetimizin önü açılacaktır. Bizler de bu eğitimde Linux üzerinde kendimizi geliştirebilecek kadar temel bilgi düzeyine erişmeyi hedefliyoruz. Eğer bir sertifika sınavına hazırlanıyorsanız tek yapmanız gereken sertifika müfredatındaki bilmediğiniz konuları araştırıp öğrenmek. Bizim ele alacağımız konuları görmek iserseniz [buradan]({{ site.url }}/temel-linux){:target="_blank"} tüm genel başlıklara göz atabilirsiniz.
+Eğitim içerisinde pek çok farklı konu başlığı ve bölümlendirme bulunuyor olsada aslında pek çok konu birbiri ile yakından ilişkili. Bu sebeple eğitimin bazı bölümlerinde geçmişte bahsedilen kavramlara atıfta bulunuyor ya da aynı konuyu, yeni konuyla birlikte tekrar ele alıyor olacağız. Bu gibi durumlara eğitimin düştüğü tekrarlardan ziyade, öğrenilen bilgilerin sentezlenmesi olarak bakmak çok daha doğru bir yaklaşım olacaktır. Bu eğitimdeki amacımız GNU/Linux sisteminin sahip olduğu temel özellikleri kavrayıp, sistemi komut satırı üzerinden yönetebilecek becerileri kazanabilmektir. Zaten temeli doğru biçimde kavradıktan sonra sistemi çok daha etkili kullanma ve gerektiğinde hakkında çok daha fazla bilgiyi edinebilme kabiliyetimizin önü açılacaktır. Bizler de bu eğitimde Linux üzerinde kendimizi geliştirebilecek kadar temel bilgi düzeyine erişmeyi hedefliyoruz. Eğer bir sertifika sınavına hazırlanıyorsanız tek yapmanız gereken sertifika müfredatındaki bilmediğiniz konuları araştırıp öğrenmek. Bizim ele alacağımız konuları görmek isterseniz [buradan]({{ site.url }}/temel-linux){:target="_blank"} tüm genel başlıklara göz atabilirsiniz.
 
 Ayrıca henüz eğitimin başındayken belirteyim, biz bu eğitimde **grafiksel arayüze odaklanmayacağız**, öncelikli hedefimiz komut satırı üzerinde sistemi rahatlıkla yönetebilme becerisi kazanmak. Ancak merak etmeyin komut satırı üzerinden sistemi tanımaya başladığınızda zaten grafiksel arayüz üzerinde de son derece rahat şekilde hareket edebiliyor olacaksınız.
 
@@ -43,7 +43,7 @@ Sizlerden tek ricam tüm eğitimi sabırla ve uygulama yaparak sıralı şekilde
 
 Bu eğitim serisini takip etmek için kararlılık, merak ve mümkünse internet erişimine sahip bir bilgisayara sahip olmanız yeterli. Eğitime başlamak için daha önceden GNU/Linux sistemlerini kullanmış olmanız şart değil, çünkü sıfırdan başlayacağız.
 
-<p class="mavi"><strong>ℹ️ Not:</strong> Eğer sürekli internet erişiminiz yoksa, ilgili sayfa içeriklerini tarayıcınız üzerinden pdf olarak kaydedip çevrimdişi şekilde takip edebilirsiniz.</p>
+<p class="mavi"><strong>ℹ️ Not:</strong> Eğer sürekli internet erişiminiz yoksa, ilgili sayfa içeriklerini tarayıcınız üzerinden pdf olarak kaydedip çevrimdışı şekilde takip edebilirsiniz.</p>
 
 
 Girizgah olarak söylemek istediklerim bunlar. Böylelikle, eğitimin amacından ve genel ilerleyiş biçiminden kısaca bahsetmiş olduk.

@@ -163,7 +163,7 @@ Dağıtım kavramı da, ihtiyaçlar doğrultusunda sistemdeki araçların özell
 
 Bu kadar çok dağıtım olmasının nedeni de zaten özgür yazılımın sağladığı bu özgürlük işte. Bir işi yapacak yazılım mı arıyorsunuz, muhtemelen daha önce birileri geliştirip özgür yazılım lisansı ile paylaşmıştır. Alıp sisteme dahil edip özgürce kullanabilirsiniz. 
 
-Ne kadar çok dağıtım olduğunu görmek için popüleritesine göre sıralanmış olan dağıtımları [distrowatch.com](https://distrowatch.com/dwres.php?resource=popularity) üzerinden kontrol edebilirsiniz. Popüler dağıtımlara Debian, Mint, Ubuntu, Fedora ve benzer pek çok dağıtımı saymamız mümkündür. Ancak bu çokluk sizin gözünüzü korkutmasın. Bu kadar çok dağıtım olmasına karşın bizim bu eğitim serisi içerisinde ele alacağımız dağıtım türü, ortak olarak herkese hitap edebilecek "Debian tabanlı" olan dağıtımlardır. Peki ama “Debian tabanlı dağıtım” da ne demek ?
+Ne kadar çok dağıtım olduğunu görmek için popülaritesine göre sıralanmış olan dağıtımları [distrowatch.com](https://distrowatch.com/dwres.php?resource=popularity) üzerinden kontrol edebilirsiniz. Popüler dağıtımlara Debian, Mint, Ubuntu, Fedora ve benzer pek çok dağıtımı saymamız mümkündür. Ancak bu çokluk sizin gözünüzü korkutmasın. Bu kadar çok dağıtım olmasına karşın bizim bu eğitim serisi içerisinde ele alacağımız dağıtım türü, ortak olarak herkese hitap edebilecek "Debian tabanlı" olan dağıtımlardır. Peki ama “Debian tabanlı dağıtım” da ne demek ?
 
 ## Debian Tabanlı Dağıtımlar Hakkında
 

@@ -26,7 +26,7 @@ Burada bahsi geçen pipe mekanizmasını dik çizgi `|` operatörü sayesinde ku
 
 Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor. Daha iyi anlamak adına çalışma yapısına daha yakından bakalım.
 
-Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile /etc dizinini altında sonu “***.sh***” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
+Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile ***/etc*** dizinini altında sonu “***.sh***” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
 
 Öncelikle sonu “***.sh***” uzantısı ile biten dosyaların bulunabilmesi için `find /etc -name *.sh -type f` komutunu giriyorum. 
 
@@ -529,7 +529,7 @@ yeni satır
 
 Bakın dosyanın en sonuna “**####**” ifadesi eklenmiş. 
 
-!!Dikkat: Düzenleme yaptığımız dosya önemli bir konfigürsyon dosyası olduğu için dosya yapısını bozmamak adına yalnızca  “**####**” ifadesini ekledim. Eğer siz farkı bir veri eklerseniz sistemi güncelleme ve paket yükleme noktasında sorunlar yaşayabilirsiniz. Bu sebeple “**#**” hariç bir karakter eklemeyin veya eklediyseniz de `sudo nano /etc/apt/sources.list` komutu ile dosyayı açıp ilgili satırı silin ve <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydedip kapatın. 
+!!Dikkat: Düzenleme yaptığımız dosya önemli bir konfigürasyon dosyası olduğu için dosya yapısını bozmamak adına yalnızca  “**####**” ifadesini ekledim. Eğer siz farkı bir veri eklerseniz sistemi güncelleme ve paket yükleme noktasında sorunlar yaşayabilirsiniz. Bu sebeple “**#**” hariç bir karakter eklemeyin veya eklediyseniz de `sudo nano /etc/apt/sources.list` komutu ile dosyayı açıp ilgili satırı silin ve <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydedip kapatın. 
 
 Böylelikle yönlendirme operatörlerinin `sudo` ile yetki kazanamadığından ve alternatif olarak `tee` komutu sayesinde yetkili şekilde dosya içeriğine veri yönlendirebileceğimizden de haberdar olduk. Ele aldığımız örnekleri de dikkate aldığımızda `tee` aracını tıpkı `T` boru gibi düşünmek bence oldukça mantıklı. Konsol üzerinde hem standart çıktıya hem de bir dosyaya yönlendirme yapmak istediğinizde veya bir yönlendirme işlemini yetkili şekilde yapmak istediğinizde `tee` aracını kullanabiliyoruz. Mesela ben en son girmiş olduğum komutta konsola çıktı bastırılmadan yalnızca dosyaya veri yönlendirmek isteseydim standart çıktıları ***/dev/null*** dizinine de yönlendirebilirdim. Ben denemek için en son komutumu çağırıp bu kez sonuna `> /dev/null` şeklinde yazıyorum ve komutumu bu şekilde onaylıyorum.
 
@@ -679,7 +679,7 @@ Bakın ***/etc/*** adresinin bir dizin olduğu, yani dosya olmadığı için “
 
 ## Yalnızca Dizin İsimlerini Bastırmak
 
-Eğer aradığımız ifadeyle eşleşen verilerin tam olarak hangi satırada olduğunu görmek yerine yalnızca dosya isimlerinin bastırılmasını istersek `l` seçeneğini de kullanabiliriz. Ben denemek için girmiş olduğum komuta `l` seçeneğini ekleyeceğim.
+Eğer aradığımız ifadeyle eşleşen verilerin tam olarak hangi satırda olduğunu görmek yerine yalnızca dosya isimlerinin bastırılmasını istersek `l` seçeneğini de kullanabiliriz. Ben denemek için girmiş olduğum komuta `l` seçeneğini ekleyeceğim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1758,7 +1758,7 @@ Bakın genişletilmiş regex kuralları için `—regex` kullanırken, **basit r
 └─$
 ```
 
-Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için locate aracını bu karakteri tanımadı. Dolayıısyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor. 
+Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için locate aracını bu karakteri tanımadı. Dolayısıyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor. 
 
 Tamamdır en nihayetinde benim `locate` aracı hakkında bahsetmek istediklerim bunlar. Son olarak `locate` ile `find` arasındaki farkı vurgulamak istiyorum.
 
@@ -2133,7 +2133,7 @@ Bakın yazdığım tüm karakterler ayrı ayrı ele alındı ve eşleşen karakt
 
 Eğer bitişik yapıdaki birden fazla karakteri kapsayacak değişiklikler istiyorsanız ileride ele alacağımız `sed` veya `awk` gibi araçlardan yararlanabilirsiniz. `tr` aracı yalnızca bir karakter ile başka bir tanesini değiştirme silme veya tekrar edenleri sadeleştirmek gibi işler için kullanılıyor.
 
-Ayrıca son olarak, örneklerimiz sırasında verileri hep pipe üzerinden `tr` aracına yönlendirdik. İstersek yönlendirme operatörü ile de `tr` aracının standart girdisine veri aktarmamzı da mümkün. Ben denemek için echo “www.deneme…com” >> site komutuyla dosyanın içerisine buradaki ifadeyi ekliyorum. Tamamdır. Şimdi tr aracına bu dosyayı girdi olarak yönlendirelim.
+Ayrıca son olarak, örneklerimiz sırasında verileri hep pipe üzerinden `tr` aracına yönlendirdik. İstersek yönlendirme operatörü ile de `tr` aracının standart girdisine veri aktarmamız da mümkün. Ben denemek için echo “www.deneme…com” >> site komutuyla dosyanın içerisine buradaki ifadeyi ekliyorum. Tamamdır. Şimdi tr aracına bu dosyayı girdi olarak yönlendirelim.
 
 Ben peş peşe tekrar eden karakterlerin `tr` komutu ile teke düşürülmesi için yönlendirme operatörü ile dosyayı `tr` komutuna aktaracağım.
 

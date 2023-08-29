@@ -17,7 +17,7 @@ Linux üzerinde araçların kurulumu, güncellenmesi ve silinmesi gibi tüm işl
 
 Paket yönetimi yaklaşımı geliştirilmeden önce yazılımların yüklenebilmesi için kaynak koddan derlenerek kurulmaları gerekiyordu. Peki kaynak koddan kurulum ne denemek ? 
 
-Geliştiriciler yazmış oldukları yazılımların kaynak kodlarını ve elbette bu kaynak kodlarının sisteme kurulmasını sağlayacak olan bazı konfigürasyon betiklerini, kurulum dokümanlarını kullanıcılar ile paylaşıyorlar. Sistemine bu yazılımı kurmak isteyen kişiler de kurulum dokümanlarının da yardımıyla ilgili yazılımın nasıl kurulacağı ve bu yazılımın kurulması için gerekli olan başka yazılımlar olup olmadığını öğreniyorlar. Kurulum işlemi genellikle kaynak kodlarının çalıştırılabilir ikili dosyalara dönüştürülmesi için geliştiricinin sunduğu konfigürasyon betiğinin çalıştırılması ve daha sonra bu dosyaların sistemin uygun konumlarına konumlandırılması işlemidir. Bir yazılımın kaynak koddan ikili dosyalara dönüştürülme ve daha sonra doğru şekilde çalışabilmesi için farklı yazılımlara da ihtiyacı olabilir. Bu durumda ilgili yazılımların da yanı şekilde kaynak koddan derlenerek kurulmaları gerekiyor. Elbette bu yazılımların da bağımlılıkları olabileceği için onların da kurulması gerekiyor. Biraz komplesk bir aracı bu şekilde kurmayı denediğinizi düşünsenize. Eğer çok fazla bağımlılığı yani çalışması için gereken ek yazılım varsa bunları teker teker kaynak koddan kurmak kesinlikle bir kabus olacaktır. 
+Geliştiriciler yazmış oldukları yazılımların kaynak kodlarını ve elbette bu kaynak kodlarının sisteme kurulmasını sağlayacak olan bazı konfigürasyon betiklerini, kurulum dokümanlarını kullanıcılar ile paylaşıyorlar. Sistemine bu yazılımı kurmak isteyen kişiler de kurulum dokümanlarının da yardımıyla ilgili yazılımın nasıl kurulacağı ve bu yazılımın kurulması için gerekli olan başka yazılımlar olup olmadığını öğreniyorlar. Kurulum işlemi genellikle kaynak kodlarının çalıştırılabilir ikili dosyalara dönüştürülmesi için geliştiricinin sunduğu konfigürasyon betiğinin çalıştırılması ve daha sonra bu dosyaların sistemin uygun konumlarına konumlandırılması işlemidir. Bir yazılımın kaynak koddan ikili dosyalara dönüştürülme ve daha sonra doğru şekilde çalışabilmesi için farklı yazılımlara da ihtiyacı olabilir. Bu durumda ilgili yazılımların da yanı şekilde kaynak koddan derlenerek kurulmaları gerekiyor. Elbette bu yazılımların da bağımlılıkları olabileceği için onların da kurulması gerekiyor. Biraz kompleks bir aracı bu şekilde kurmayı denediğinizi düşünsenize. Eğer çok fazla bağımlılığı yani çalışması için gereken ek yazılım varsa bunları teker teker kaynak koddan kurmak kesinlikle bir kabus olacaktır. 
 
 Eğer daha önce kaynak koddan kurulum yapmadıysanız yeni başlayan kullanıcılar için pek de kullanışlı olmadığını ileride kaynak koddan kurulumu ele alırken sizler de bizzat görmüş olacaksınız. 
 
@@ -679,7 +679,7 @@ Processing triggers for man-db (2.9.4-4) ...
 Processing triggers for kali-menu (2021.4.2) ...
 ```
 
-Bakın burada yalnızca **vim-runtime** pkaetinin silinmesi sağlandı. Tamamdır artık bir bağımlılık sorunumuz var. Ben gözlemlemek için konsola `vim` komutunu giriyorum. 
+Bakın burada yalnızca **vim-runtime** paketinin silinmesi sağlandı. Tamamdır artık bir bağımlılık sorunumuz var. Ben gözlemlemek için konsola `vim` komutunu giriyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -777,7 +777,7 @@ Bağımlılık sorunlarının çözümünü de ele aldığımıza göre artık s
 
 ## Paketlerin Güncellenmesi
 
-repo index bilgilerinin nasıl güncelleneceğinden ve nasıl araç kurup kaldırabileceğimizden bahsettik. Şimdi de mevcut araçları nasıl güncel sürümlerine yükseltebileceğimizi ele alalım. Elbette mevcut paketlerin sürümlerini yükseltmek için öncelikle repo indexlerinin güncel olması gerekiyor. Yani yükseltme işleminden önce mutlaka, `sudo apt-get update` ya da `sudo apt update` komutuları ile index bilgilerini güncellememiz gerekiyor. Zaten bu repo index bilgisini güncelledikten sonra komut çıktısının sonunda kaç tane aracın yükseltilebilir durumda olduğu da belirtiliyor. 
+repo index bilgilerinin nasıl güncelleneceğinden ve nasıl araç kurup kaldırabileceğimizden bahsettik. Şimdi de mevcut araçları nasıl güncel sürümlerine yükseltebileceğimizi ele alalım. Elbette mevcut paketlerin sürümlerini yükseltmek için öncelikle repo indexlerinin güncel olması gerekiyor. Yani yükseltme işleminden önce mutlaka, `sudo apt-get update` ya da `sudo apt update` komutları ile index bilgilerini güncellememiz gerekiyor. Zaten bu repo index bilgisini güncelledikten sonra komut çıktısının sonunda kaç tane aracın yükseltilebilir durumda olduğu da belirtiliyor. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1103,7 +1103,7 @@ Bakın burada repo bağlantıları bulunuyor. Zaten tıpkı Kali’de olduğu gi
 
 ### Yeni Repo Adresi Eklemek
 
-Tanımlı olan repoları anlamak veya doğru şekilde yeni repo tanımlaması yapabilmek için kullanmakta olduğunuz dağıtımın repolar ile ilgili olan yardım sayfalarına göz atarak daha fazla bilgi alabilirsiniz. Zaten her zaman en güncel ve doğru bilgi için mutlaka kullanmakta olduğunuz dağıtımın yardım sayfalarını takip etmeniz gerekiyor. Özellikle güncel repo bilgilerini almak için öncelikle resmi websitesi üzerindeki kaynaklardan yararlanmalısınız. Çünkü dağıtımların izlediği repo adresleme biçimi ve kategorizasyon türleri değişiklik gösterebilir. Ben burada Kali üzerinden genel işleyişe değiniyorum yalnızca. Örneğin Ubuntu kullanıyorsanız, açın Ubuntu’un websitesini repolar ile ilgili en güncel bilgiyi sorgulayın.
+Tanımlı olan repoları anlamak veya doğru şekilde yeni repo tanımlaması yapabilmek için kullanmakta olduğunuz dağıtımın repolar ile ilgili olan yardım sayfalarına göz atarak daha fazla bilgi alabilirsiniz. Zaten her zaman en güncel ve doğru bilgi için mutlaka kullanmakta olduğunuz dağıtımın yardım sayfalarını takip etmeniz gerekiyor. Özellikle güncel repo bilgilerini almak için öncelikle resmi websitesi üzerindeki kaynaklardan yararlanmalısınız. Çünkü dağıtımların izlediği repo adresleme biçimi ve kategorizasyon türleri değişiklik gösterebilir. Ben burada Kali üzerinden genel işleyişe değiniyorum yalnızca. Örneğin Ubuntu kullanıyorsanız, açın Ubuntu’nun websitesini repolar ile ilgili en güncel bilgiyi sorgulayın.
 
 Ben örnek olarak “**kali linux repositroy**” yazıp araştırıyorum. 
 
@@ -1282,13 +1282,13 @@ Try `wget --help' for more options.
 
 Yükleme işlemi işte bu kadar kolay. 
 
-Ayrıca yükleme işlemi sırasında benden onay alınmasını istedim ancak istemezsem tıpkı daha önce uyguladığım şekilde komutun sonuna `-y` argümanını eklemem yani `dnf install pake-adı -y` şeklinde girmem yeterli.
+Ayrıca yükleme işlemi sırasında benden onay alınmasını istedim ancak istemezsem tıpkı daha önce uyguladığım şekilde komutun sonuna `-y` argümanını eklemem yani `dnf install paket-adı -y` şeklinde girmem yeterli.
 
 Bu sayede gerekli onayı peşinen komutla birlikte vermiş oluyorum. Nasıl paket kurabileceğimizi ele aldık, şimdi de mevcut paketleri nasıl yükseltebileceğimizden bahsedebiliriz. 
 
 ## `dnf` ile Güncelleme
 
-Günelleme yaparken birkaç farklı yaklaşıma sahibiz.
+Güncelleme yaparken birkaç farklı yaklaşıma sahibiz.
 
 ### Güncellemeleri Kontrol Etmek
 
@@ -1311,7 +1311,7 @@ NetworkManager-bluetooth.x86_64                            1:1.42.2-3.el9_2
 .          
 ```
 
-Gördüğünüz gibi güncellenebilir olanlar listelenmiş oldu. Tüm paketleri kontrol etmek yerine dilersek check-upate komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz. 
+Gördüğünüz gibi güncellenebilir olanlar listelenmiş oldu. Tüm paketleri kontrol etmek yerine dilersek check-update komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz. 
 
 ```bash
 [taylan@linuxdersleri Downloads]$ dnf check-update ModemManager
@@ -1724,7 +1724,7 @@ Processing triggers for install-info (6.8-4+b1) ...
 Processing triggers for libc-bin (2.36-9) ...
 ```
 
-Bu şekilde hata kalmayıncaya devam etmem gerek.
+Bu şekilde hata kalmayıncaya kadar devam etmem gerek.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads/wget-1.21.4]
@@ -1811,7 +1811,7 @@ make[4]: Nothing to be done for 'install-data-am'.
 ..
 ```
 
-Böylelikle **INSTALL** dosyasında yazan kurulum adımlarını tamamlamış olduk. Şimdi teyit etmek için konsola wget —version şeklinde komutumuzu girelim.
+Böylelikle **INSTALL** dosyasında yazan kurulum adımlarını tamamlamış olduk. Şimdi teyit etmek için konsola `wget —version` şeklinde komutumuzu girelim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]

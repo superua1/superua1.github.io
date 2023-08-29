@@ -1,4 +1,4 @@
 # pagefind.yml
 source: _site
-bundle_dir: _pagefind
+bundle_dir: ../pagefind
 split_pages_on: "h2"

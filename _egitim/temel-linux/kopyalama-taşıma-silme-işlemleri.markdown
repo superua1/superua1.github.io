@@ -440,7 +440,7 @@ rm: cannot remove '/home/taylan/Documents/metinler': Directory not empty
 
 Gördüğünüz gibi “***metinler***” klasörünün içerisi dolu olduğu için silme işlemi reddedildi. 
 
-İçerisi dolu dizinleri silmek için `-r` seçeneğini kullanmamız gerekiyor. Buradaki `r` seçeneği İngilizce “**r**ecursive” yani “özyinelemeli” ifadesinin kısaltmasından geliyor. Bu seçenek sayesinde klasörün içinde iç içe birden fazla klasör ve dosya olsa da tüm dosyaların ve klasörlerin silinebilmesi mümkün oluyor. Hatırlıyorsanız klasör içeriklerini kopyalarken de bu şekilde “recursive” seçeneğini eklemiştik. En alt dizine kadar bakılıp silmesi de özyineleme özelliğini temsil ediyor yani. Hatta “recurisve” yani “özyineleme” seçeneğini yalnızca klasörler üzerinde kullandığımız için bu seçenek varken aslında `rm` aracına ek olarak `-d` seçeneğini de girmemiz gerekmiyor. Yani `rm -r silinecek-klasör` şeklinde komutumuzu girdiğimizde, belirttiğimiz dizin tüm içeriğiyle birlikte silinecektir. 
+İçerisi dolu dizinleri silmek için `-r` seçeneğini kullanmamız gerekiyor. Buradaki `r` seçeneği İngilizce “**r**ecursive” yani “özyinelemeli” ifadesinin kısaltmasından geliyor. Bu seçenek sayesinde klasörün içinde iç içe birden fazla klasör ve dosya olsa da tüm dosyaların ve klasörlerin silinebilmesi mümkün oluyor. Hatırlıyorsanız klasör içeriklerini kopyalarken de bu şekilde “recursive” seçeneğini eklemiştik. En alt dizine kadar bakılıp silmesi de özyineleme özelliğini temsil ediyor yani. Hatta “recursive” yani “özyineleme” seçeneğini yalnızca klasörler üzerinde kullandığımız için bu seçenek varken aslında `rm` aracına ek olarak `-d` seçeneğini de girmemiz gerekmiyor. Yani `rm -r silinecek-klasör` şeklinde komutumuzu girdiğimizde, belirttiğimiz dizin tüm içeriğiyle birlikte silinecektir. 
 
 ```bash
 └─$ rm -r ~/Documents/metinler/
@@ -887,7 +887,7 @@ Tabii ki katı linkler örneklerimiz üzerinden bizzat teyit ettiğimiz gibi mev
 
 ![backup.webp]({{ site.url }}/egitim/temel-linux/metin/backup.webp){:class="responsive img-zoomable"}
 
-Bakın dosyayı kopyaladığımızda, dosya içindeki veriler disk üzerinde başka bir bloğa yazılıp, bu bloğun adresi de yeni inode numarası üzerinden ulaşılabilir oluyor. Bu sayede orijinal dosyanın üzerine veri yazılsa bile bu bloktaki verilere müdahele edilmemiş oluyor.
+Bakın dosyayı kopyaladığımızda, dosya içindeki veriler disk üzerinde başka bir bloğa yazılıp, bu bloğun adresi de yeni inode numarası üzerinden ulaşılabilir oluyor. Bu sayede orijinal dosyanın üzerine veri yazılsa bile bu bloktaki verilere müdahale  edilmemiş oluyor.
 
 Katı link ile standart kopyalanmış dosyaların farkı işte tam olarak bu.
 

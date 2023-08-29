@@ -541,7 +541,7 @@ After=multi-user.target rescue.service rescue.target display-manager.service
 AllowIsolate=yes
 ```
 
-Şimdi buradaki konfigürayonları açıklayacak olursak:
+Şimdi buradaki konfigürasyonları açıklayacak olursak:
 
 **`Requires=multi-user.target`**: Bu satır, bağımlılığı belirtiyor. Yani, mevcut birim çalıştırılmadan önce multi-user.target birimi de çalıştırılmalıdır. Eğer multi-user.target çalıştırılamazsa, bu birim yani graphical.target birimi de çalıştırılmayacaktır.
 
