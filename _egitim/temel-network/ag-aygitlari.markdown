@@ -71,7 +71,7 @@ Görüldüğü üzere bu biraz karmaşık bir yapı. Ve ağa yeni bir host ekley
 
 ![Hub.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/Hub.webp){:class="responsive img-zoomable"}
 
-Hub cihazdı da kendisine gönderilmiş olan veri paketini, bağlı bulunan tüm hostlara iletiyor. Bu herkese iletilmesi yani aslında “**yayın yapılması**” metoduna da “**broadcasting**” deniyor.
+Hub cihaz da kendisine gönderilmiş olan veri paketini, bağlı bulunan tüm hostlara iletiyor. Bu herkese iletilmesi yani aslında “**yayın yapılması**” metoduna da “**broadcasting**” deniyor.
 
 ![hub-broadcasting.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/hub-broadcasting.webp){:class="responsive img-zoomable"}
 
@@ -109,7 +109,7 @@ Switch cihazına bağlı olan tüm hostlar aynı ağdadır ve hepsinin benzersiz
 
 ![switch-ip-address.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-ip-address.webp){:class="responsive img-zoomable"}
 
-Ben kısaltma şeklinde verdim fakat network adresi **192.168.1.0** şeklinde. Fakat “0” yerine hostların IP adresi gelebileceği için “X” ile ağ adresini belirttim. Ve tüm hostlar aynı ağda olduğu için network adresi olan **192.168.1** adresinin tekrar tekrar yazmak yerine yalnızca benzersiz host numaralarını yazım. Yani örneğin ilk bilgisayar **192.168.1.10** ip adresine sahip fakat kısaca “**.10**” ile temsil ediliyor.
+Ben kısaltma şeklinde verdim fakat network adresi **192.168.1.0** şeklinde. Fakat “0” yerine hostların IP adresi gelebileceği için “X” ile ağ adresini belirttim. Ve tüm hostlar aynı ağda olduğu için network adresi olan **192.168.1** adresinin tekrar tekrar yazmak yerine yalnızca benzersiz host numaralarını yazdım. Yani örneğin ilk bilgisayar **192.168.1.10** ip adresine sahip fakat kısaca “**.10**” ile temsil ediliyor.
 
 Bu örnek diyagram tek bir ağdaki hostların switch ile bağlantısını temsil ediyor. Eğer hostları ayrı ağlara bölmek istersek bunun için birden fazla switch kullanabiliyoruz.
 
@@ -149,7 +149,7 @@ Modem olarak bildiğiniz cihaz da aslında kendi içinde switch ve router barın
 
 ![LAN-to-WAN-with-router.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/LAN-to-WAN-with-router.webp){:class="responsive img-zoomable"}
 
-Gerçek dünya örneği olması açısından modeminiz yani routerınızın ip adresinin bu ağa bağlı olan hostların default getway adresi olduğunu kendi ağınız üzerinden teyit edebilirsiniz. Bunu için daha önce lokal ip adresinizi öğrenmek üzere konsola girmiş olduğunuz `ifconfig` veya `ip addr` komutlarını tekrar girip çıktılara göz atabilirsiniz.
+Gerçek dünya örneği olması açısından modeminiz yani routerınızın ip adresinin bu ağa bağlı olan hostların default getway adresi olduğunu kendi ağınız üzerinden teyit edebilirsiniz. Bunun için daha önce lokal ip adresinizi öğrenmek üzere konsola girmiş olduğunuz `ifconfig` veya `ip addr` komutlarını tekrar girip çıktılara göz atabilirsiniz.
 
 ![ipconfig.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.webp){:class="responsive img-zoomable"}
 

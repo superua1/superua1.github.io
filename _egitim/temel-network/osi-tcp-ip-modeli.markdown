@@ -37,11 +37,11 @@ Hatta Hub olarak geçen cihazlar da aslında fiziksel(layer 1) katmandadır çü
 
 # Layer 2 - Data Link
 
-Data link katmanı, ilk katman olan fiziksel katman ile iletişime geçer. Bu katmanda kablolu bağlantı için kullanılan NIC(network interfaces card) ya da kablosuz bağlantı için kullanılan wi-fi acces card aygıtları bulunuyor. Bu aygıtlar fiziksel katmandan taşınmış olan bitleri alıyorlar ve benzer şekilde bir cihazın ürettiği bitleri de fiziksel katmana iletiyorlar. 
+Data link katmanı, ilk katman olan fiziksel katman ile iletişime geçer. Bu katmanda kablolu bağlantı için kullanılan NIC(network interfaces card) ya da kablosuz bağlantı için kullanılan "wi-fi access card" aygıtları bulunuyor. Bu aygıtlar fiziksel katmandan taşınmış olan bitleri alıyorlar ve benzer şekilde bir cihazın ürettiği bitleri de fiziksel katmana iletiyorlar. 
 
-Bu katmandaki her bir cihazın, benzersiz kimlikleri olan **MAC** adresleri vardır. Mac adresi, “**M**edia **A**ccess **C**ontrol” ifadesinin kısaltmasından geliyor. Bu kimlik sayesinde ağa bağlı olan bir cihazı diğer cihazlardan ayırabiliyoruz. Tıpkı ip adresleri gibi fakat bu MAC adresleri, cihaz üreticileri tarafından aygıtlara tek seferliğine tanımlanan benzersiz bir kimliktir.
+Bu katmandaki her bir cihazın, benzersiz kimlikleri olan **MAC** adresleri vardır. Mac adresi, “**M**edia **A**ccess **C**ontrol” ifadesinin kısaltmasından geliyor. Bu kimlik sayesinde ağa bağlı olan bir cihazı diğer cihazlardan ayırabiliyoruz. Tıpkı IP adresleri gibi fakat bu MAC adresleri, cihaz üreticileri tarafından aygıtlara tek seferliğine tanımlanan benzersiz bir kimliktir.
 
-Örnek adres göstermemiz gerekirse, MAC adresi “00-B0-D0-63-C2-26” şekilde gözüküyor. 
+Örnek adres göstermemiz gerekirse, **MAC** adresi “**00-B0-D0-63-C2-26**” şekilde gözüküyor. 
 
 Fiziksel katmandan gelen verilerin doğru hedeflere iletilebilmesi için de MAC adresi bulunması zorunludur. Çünkü fiziksel katmandaki veriler bu MAC adres bilgisine göre yönlendiriliyor. 
 
@@ -51,7 +51,7 @@ Router ve Switch cihazları da MAC adresi vasıtasıyla yönlendirme yaptığı 
 
 ![router-mac.webp]({{ site.url }}/egitim/temel-network/osi-modeli/router-mac.webp){:class="responsive img-zoomable"}
 
-ℹ️ Not: MAC adresleri sembolik olarak kısaltılmıştır. 
+<p class="mavi"><strong>ℹ️ Not:</strong> Görselleştirmeler sırasında MAC adresleri kısaltılarak, sembolik olarak eklenmiştir. </p>
 
 Basit diyagram üzerinde de gördüğümüz gibi, Router cihazının sahip olduğu port kadar MAC adresi bulunuyor. Çünkü her bir portta fiziksel katmandan gelen veriyi işleyebilecek olan NIC(ağ kartı) aygıtı mevcut. Fiziksel katmandan gelen verilerin ağ kartları tarafından işlendiğinden bahsettik. MAC adresleri sayesinde de hangi verinin hangi cihazdan geldiği ve hangi cihaza gönderildiği bilinebiliyor. 
 
@@ -61,35 +61,35 @@ Eğer açıklamalar şimdilik biraz karmaşık geldiyse hiç merak etmeyin. İle
 
 Ağ katmanının ana işlevi, veri paketlerini kaynak cihazdan hedef cihaza ulaştırmak ve farklı ağlardan geçerken yönlendirme yapmaktır. Hedef belirtme ve yönlendirme işlemleri de, her bir cihazın sahip olduğu IP adresi sayesinde mümkün oluyor.
 
-Daha iyi anlamak için birbirinden farklı iki ağdaki cihazların veri alışverişinde bulunmak istediğini düşünelim. Yönlendirme işinden routerlar sorumlu olduğu için biz hedef ip adresini belirtip, bizim ağımıza bağlı bulunan routera bu paketi iletiyoruz. Router da bağlı olduğu ağlardan uygun olanlara bu paketi iletip ilgili ip adresine bu paketin ulaşmasını sağlıyor. Nasıl olduğunu adım adım ele alalım:
+Daha iyi anlamak için birbirinden farklı iki ağdaki cihazların veri alışverişinde bulunmak istediğini düşünelim. Yönlendirme işinden routerlar sorumlu olduğu için biz hedef IP adresini belirtip, bizim ağımıza bağlı bulunan routera bu paketi iletiyoruz. Router da bağlı olduğu ağlardan uygun olanlara bu paketi iletip ilgili IP adresine bu paketin ulaşmasını sağlıyor. Nasıl olduğunu adım adım ele alalım:
 
 ![r1.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r1.webp){:class="responsive img-zoomable"}
 
-Bakın kaynak ve hedef ip adresi pakete eklendi. Ayrıca bu paketi uygun yere yönlendirebilmesi için router cihazının MAC adresi de hedef adres olarak eklendi. 
+Bakın kaynak ve hedef IP adresi pakete eklendi. Ayrıca bu paketi uygun yere yönlendirebilmesi için router cihazının MAC adresi de hedef adres olarak eklendi. 
 
 ![r2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r2.webp){:class="responsive img-zoomable"}
 
-Bu paket routera geldiğinde router alıp inceliyor ve hedef ip adresinin kendisine bağlı olan bir ağda olup olmadığını kontrol ediyor. 
+Bu paket routera geldiğinde router alıp inceliyor ve hedef IP adresinin kendisine bağlı olan bir ağda olup olmadığını kontrol ediyor. 
 
 ![r3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r3.webp){:class="responsive img-zoomable"}
 
-Kendisine bağlı bir ağda bu IP adresine sahip cihaz olmadığı için bununu bağlı olduğu diğer router cihazına, MAC adresi yardımıyla yönlendiriyor.
+Kendisine bağlı bir ağda bu IP adresine sahip cihaz olmadığı için bunu, bağlı olduğu diğer router cihazına, MAC adresi yardımıyla yönlendiriyor.
 
 ![r4.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r4.webp){:class="responsive img-zoomable"}
 
 ![r5.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r5.webp){:class="responsive img-zoomable"}
 
-Bu paket ikinci router cihazına geldiğinde router hedef ip adresini kontrol ediyor. 
+Bu paket ikinci router cihazına geldiğinde router hedef IP adresini kontrol ediyor. 
 
 ![r6.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r6.webp){:class="responsive img-zoomable"}
 
-Hedef ip adresinin, bağlı olduğu ağdaki bir hosta ait olduğunu öğrendiğinde bu hosta bu paketi iletmek için hedef MAC adresi olarak bu hostun MAC adresini ekleyip gönderiyor.
+Hedef IP adresinin, bağlı olduğu ağdaki bir hosta ait olduğunu öğrendiğinde bu hosta bu paketi iletmek için hedef MAC adresi olarak bu hostun MAC adresini ekleyip gönderiyor.
 
 ![r7.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r7.webp){:class="responsive img-zoomable"}
 
 ![r8.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r8.webp){:class="responsive img-zoomable"}
 
-Bu paketi alan host, paketin göndericisini ve hedefini kontrol ediyor. Bu sayede paketin kendisi için olup olmadığını ve yanıt vermek istediğinde yanıtını hangi ip adresine göndermesi gerektiğini öğrenmiş oluyor. 
+Bu paketi alan host, paketin göndericisini ve hedefini kontrol ediyor. Bu sayede paketin kendisi için olup olmadığını ve yanıt vermek istediğinde yanıtını hangi IP adresine göndermesi gerektiğini öğrenmiş oluyor. 
 
 ![r9.webp]({{ site.url }}/egitim/temel-network/osi-modeli/r9.webp){:class="responsive img-zoomable"}
 
@@ -101,11 +101,11 @@ IP adresi kendisine ait olduğu için bu paketi kabul edip, içeriğini yani DAT
 
 Böylelikle farklı ağlardaki iki hostun iletişim kurması mümkün oluyor.
 
-Adım adım ele aldığımız gibi, lokal ağ içinde ip eşleşmesi olmadığı sürece routerlar MAC adresleri üzerinden paketin uygun ağa yönlendirilmesini sağlıyor. En son router da hedef ip adresindeki hostun kendi ağında olduğunu bildiği için bu hosta MAC adresi sayesinde bu paketi ulaştırıyor.
+Adım adım ele aldığımız gibi, lokal ağ içinde IP eşleşmesi olmadığı sürece routerlar MAC adresleri üzerinden paketin uygun ağa yönlendirilmesini sağlıyor. En son router da hedef IP adresindeki hostun kendi ağında olduğunu bildiği için bu hosta MAC adresi sayesinde bu paketi ulaştırıyor.
 
 MAC adresleri cihazlar arasındaki iletişim ve aktarım için kullanılıyorken, IP adresi ağların ve ağlardaki hostların tanınması için kullanılıyor. 
 
-Burada router cihazlarının IP ile MAC adresini eşleştirebilmesini sağlayan “**ARP**” isimli bir protokol bulunuyor. Bu protokol sayesinde IP ve MAC bilgisi elde edilip, routerların kendi tablosuna bu bilgiler ekleniyor. Bu sayede routerlar, hangi ip adreslerinin hangi MAC ile eşleştiğini bilip buna göre yönlendirme yapabiliyor. Bu konudan da daha sonra ayrıca bahsedeceğiz.
+Burada router cihazlarının IP ile MAC adresini eşleştirebilmesini sağlayan “**ARP**” isimli bir protokol bulunuyor. Bu protokol sayesinde IP ve MAC bilgisi elde edilip, routerların kendi tablosuna bu bilgiler ekleniyor. Bu sayede routerlar, hangi IP adreslerinin hangi MAC ile eşleştiğini bilip buna göre yönlendirme yapabiliyor. Bu konudan da daha sonra ayrıca bahsedeceğiz.
 
 Şimdilik 3. katmandaki IP ile 2. katmandaki MAC adresinin, veri paketlerinin iletilebilmesindeki rollerini bilmemiz yeterli.
 
@@ -119,7 +119,7 @@ Her bir aracın kendisine ait bir port numarası bulunuyor. Bu sayede veriler bu
 
 ![transport-port.webp]({{ site.url }}/egitim/temel-network/osi-modeli/transport-port.webp){:class="responsive img-zoomable"}
 
-Servislerle iletişim kurulurken gönderici rastgele bir port üzerinden veri gönderip yine aynı port üzerinden veri alabilir. Örneğin bir websitesini ziyaret etmek istediğinizde aşağıdaki gibi ip ve port numaraları adresi üzerinden iletişim kurulabiliyor. 
+Servislerle iletişim kurulurken gönderici rastgele bir port üzerinden veri gönderip yine aynı port üzerinden veri alabilir. Örneğin bir websitesini ziyaret etmek istediğinizde aşağıdaki gibi IP ve port numaraları adresi üzerinden iletişim kurulabiliyor. 
 
 ![src-dst-port.webp]({{ site.url }}/egitim/temel-network/osi-modeli/src-dst-port.webp){:class="responsive img-zoomable"}
 
@@ -136,13 +136,13 @@ Rastgele tanımlanan port numaraları haricinde çeşitli servisler için kullan
 - Telnet: 23
 - SMTP (Simple Mail Transfer Protocol): 25
 
-Bunlar sadece birkaç örnek. Birçok farklı servis, protokol ve uygulama kendi standart port numaralarını kullanabiliyor. Bu sayede standart konfigürasyonlar için başvurulacak standart bir adres oluyor. Örneğin web içeriklerini almak istediğimizde http protokolü için ilgili ip adresinin 80 numaralı portuna istekte bulunuyoruz. Eğer web içeriklerinin şifreli şekilde iletilmesini istiyorsak da bu kez https protokolü için 443 portundan ilgili ip adresiyle iletişime geçiyoruz. Özetle port numaraları taşıma katmanında doğru paketin doğru adrese iletilmesi için çok önemlidir.
+Bunlar sadece birkaç örnek. Birçok farklı servis, protokol ve uygulama kendi standart port numaralarını kullanabiliyor. Bu sayede standart konfigürasyonlar için başvurulacak standart bir adres oluyor. Örneğin web içeriklerini almak istediğimizde http protokolü için ilgili IP adresinin 80 numaralı portuna istekte bulunuyoruz. Eğer web içeriklerinin şifreli şekilde iletilmesini istiyorsak da bu kez https protokolü için 443 portundan ilgili IP adresiyle iletişime geçiyoruz. Özetle port numaraları taşıma katmanında doğru paketin doğru adrese iletilmesi için çok önemlidir.
 
 Üstelik transport yani taşıma katmanında yalnızca port numarası değil, verinin ne şekilde taşınacağı da önemli. Veri taşıma için TCP ve UDP olmak üzere iki temel alternatif yöntem bulunuyor.
 
 ## TCP
 
-TCP, “**T**ransmission **C**ontrol **P**rotocol” ifadesinin kısaltmasından geliyor ve isminde de olduğu şekilde veri iletimini kontrollü bir şekilde gerçekleştiriyor. TCP, bağlantı temelli(connection oriented) bir protokoldür. Yani veri paketlerin göndermeden önce, alıcının bu paketleri almaya hazır olduğunu kontrol etmek için öncelikle alıcı ile bağlantı gerçekleştirir. Bu yaklaşım, verilerin iletim sırasında kaybolmamasını, sırasının bozulmamasını ve doğru bir şekilde ulaşmasını sağlar. 
+TCP, “**T**ransmission **C**ontrol **P**rotocol” ifadesinin kısaltmasından geliyor ve isminde de olduğu şekilde veri iletimini kontrollü bir şekilde gerçekleştiriyor. TCP, bağlantı temelli(connection oriented) bir protokoldür. Yani veri paketlerini göndermeden önce, alıcının bu paketleri almaya hazır olduğunu kontrol etmek için öncelikle alıcı ile bağlantı gerçekleştirir. Bu yaklaşım, verilerin iletim sırasında kaybolmamasını, sırasının bozulmamasını ve doğru bir şekilde ulaşmasını sağlar. 
 
 Alıcı ile bağlantı kurulmasına da üçlü el sıkışma(Three-Way Handshake) deniyor. 
 
@@ -198,7 +198,7 @@ Uygulama katmanından gelen veriye öncelikle hangi taşıma yöntemi ile taşı
 
 ![layer4.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer4.webp){:class="responsive img-zoomable"}
 
-Ağ katmanında gönderici ve alıcı ip adresi ekleniyor. Buna da “**packet**” deniyor.
+Ağ katmanında gönderici ve alıcı IP adresi ekleniyor. Buna da “**packet**” deniyor.
 
 ![layer3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/layer3.webp){:class="responsive img-zoomable"}
 
@@ -228,7 +228,7 @@ Buradaki MAC bilgisine bakılarak hangi ağ kartının MAC adresinin hedeflendi�
 
 ![de-layer2.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer2.webp){:class="responsive img-zoomable"}
 
-Daha sonra ip adresine bakılarak bu adresin doğruluğu kontrol ediliyor. IP adresi, verinin nereye yönlendirilmesi gerektiğini gösterir. Eğer IP adresi doğruysa, veri taşıma katmanına iletilir.
+Daha sonra IP adresine bakılarak bu adresin doğruluğu kontrol ediliyor. IP adresi, verinin nereye yönlendirilmesi gerektiğini gösterir. Eğer IP adresi doğruysa, veri taşıma katmanına iletilir.
 
 ![de-layer3.webp]({{ site.url }}/egitim/temel-network/osi-modeli/de-layer3.webp){:class="responsive img-zoomable"}
 

@@ -16,7 +16,7 @@ toc: true
 
 Eğer protokol isimleri sebebiyle doğrudan bu sayfayı okumaya başladıysanız, buradaki açıklamaların ağ temellerini ele alan eğitimin bir parçası olduğunu belirtmek isterim. Eğer ağ temellerini öğrenme gayreti içerisindeyseniz bu eğitim serisine baştan sona göz atabilirsiniz.
 
-Söz konusu, verilerin ağ üzerinden iletilmesi olduğunda çeşitli amaçlara hizmet edebilmesi için geliştirilmiş olan özel protokolleri kullanıyoruz. Protokol adı altında belirlenmiş olan kuralar sayesinde karşılıklı olarak aynı protokolleri kullanan tüm yapıların birbiri ile veri alışverişinde bulunması da mümkün oluyor. Biz bu bölümde teknik detaylara girmeden, eğitim içerisinde de yeri geldikçe atıfta bulunduğumuz bazı sık kullanılan protokollerin en genel işlevlerini çok kısaca ele alacağız. 
+Söz konusu, verilerin ağ üzerinden iletilmesi olduğunda çeşitli amaçlara hizmet edebilmesi için geliştirilmiş olan özel protokolleri kullanıyoruz. Protokol adı altında belirlenmiş olan kurallar sayesinde karşılıklı olarak aynı protokolleri kullanan tüm yapıların birbiri ile veri alışverişinde bulunması da mümkün oluyor. Biz bu bölümde teknik detaylara girmeden, eğitim içerisinde de yeri geldikçe atıfta bulunduğumuz bazı sık kullanılan protokollerin en genel işlevlerini çok kısaca ele alacağız. 
 
 # ARP - Address Resolution Protocol
 
@@ -32,7 +32,7 @@ Kaynak aldığı ARP yanıtına bakarak IP ve MAC adresini kendi ARP tablosuna k
 
 ![ARP-step3.webp]({{ site.url }}/egitim/temel-network/protokoller/ARP-step3.webp){:class="responsive img-zoomable"}
 
-Bu sayede gördüğünüz gibi karşılıklı olarak iletişim için gereken IP-MAC bilgilerin alınmış olur. İşte ARP protokolünün en temel çalışma yapısı bu şekildedir. 
+Bu sayede gördüğünüz gibi karşılıklı olarak iletişim için gereken IP-MAC bilgileri alınmış olur. İşte ARP protokolünün en temel çalışma yapısı bu şekildedir. 
 
 # FTP - File Transfer Protocol
 
@@ -148,7 +148,7 @@ Eğer harici olarak bir konfigürasyon gerçekleştirmediyseniz bu DNS sunucusu 
 
 ![DNS.webp]({{ site.url }}/egitim/temel-network/protokoller/DNS.webp){:class="responsive img-zoomable"}
 
-Yani DNS aslında internet dünyası için son derece önemli bir protokoldür. Örneğin internet servis sağlayıcınız sizin bazı sitelere erişmenize engel olmak isterse, kendi DNS sunucuları üzerinde bu domain adreslerinin karşılığı olan IP adreslerini geçersiz olarak tanımlayabilirler. Genellikle hostun kendi lokal ip adresi olan 127.0.0.1 adresi tanımlanır. Bu sayede gitmek istediğiniz domain’in IP adresi bulunamadığı için ilgili web sunucusu ile iletişim kuramazsınız. 
+Yani DNS aslında internet dünyası için son derece önemli bir protokoldür. Örneğin internet servis sağlayıcınız sizin bazı sitelere erişmenize engel olmak isterse, kendi DNS sunucuları üzerinde bu domain adreslerinin karşılığı olan IP adreslerini geçersiz olarak tanımlayabilirler. Genellikle hostun kendi lokal IP adresi olan 127.0.0.1 adresi tanımlanır. Bu sayede gitmek istediğiniz domain’in IP adresi bulunamadığı için ilgili web sunucusu ile iletişim kuramazsınız. 
 
 ![DNS-block.webp]({{ site.url }}/egitim/temel-network/protokoller/DNS-block.webp){:class="responsive img-zoomable"}
 
@@ -181,13 +181,13 @@ Subnet mask değeri, hostun hangi ağda olduğunu ve ağın büyüklüğünün b
 
 ![Subnet-mask.webp]({{ site.url }}/egitim/temel-network/protokoller/Subnet-mask.webp){:class="responsive img-zoomable"}
 
-Yani IP ve subnet mask değerine sahip olan tüm hostlar lokal ağda iletişim kurabilirler. Fakat bir host harici bir ağdaki hostla iletişim kurmak istiyorsa, verileri harici hosta yönlendirecek router cihazının ip adresini de bilmesi gerekiyor. Örneğin bizim internet ağına bağlanmamızı sağlayan evimizdeki router görevini gören “modem” cihazıdır. Biz modeme bağlanırız bu modem de bizi internete bağlar. Bizi dış ağa bağlayan router cihazı da “ağ geçidi” yani “getway” olarak ifade ediliyor. Zaten yukarıdaki görsele bakacak olursanız router cihazının bizi dış ağa bağlandığını kendiniz de görebilirsiniz. Bu sebeple bir hostun harici ağlar ile iletişim kurmak için, varsayılan ağ geçicinin(default getway) IP adresini de bilinmesi gerekiyor. 
+Yani IP ve subnet mask değerine sahip olan tüm hostlar lokal ağda iletişim kurabilirler. Fakat bir host harici bir ağdaki hostla iletişim kurmak istiyorsa, verileri harici hosta yönlendirecek router cihazının IP adresini de bilmesi gerekiyor. Örneğin bizim internet ağına bağlanmamızı sağlayan evimizdeki router görevini gören “modem” cihazıdır. Biz modeme bağlanırız bu modem de bizi internete bağlar. Bizi dış ağa bağlayan router cihazı da “ağ geçidi” yani “getway” olarak ifade ediliyor. Zaten yukarıdaki görsele bakacak olursanız router cihazının bizi dış ağa bağlandığını kendiniz de görebilirsiniz. Bu sebeple bir hostun harici ağlar ile iletişim kurmak için, varsayılan ağ geçicinin(default getway) IP adresini de bilinmesi gerekiyor. 
 
 ![default-getway.webp]({{ site.url }}/egitim/temel-network/protokoller/default-getway.webp){:class="responsive img-zoomable"}
 
 Bu bilgiler internet ağına bağlanıp IP adresleri üzerinden diğer hostlar ile iletişim kurmamızı sağlar. 
 
-Eğer alan adı yani “domain” ismi üzerinden bir adresi ziyaret etmek istiyorsak bu noktada domain adresini IP adresine dönüştürecek olan DNS sunucusuna da ihtiyacımız var. Dolayısıyla bir hostun domain isimleri üzerinden webte gezinebilmesi için DNS sunucusunun ip adresini bilmesi gerekiyor. 
+Eğer alan adı yani “domain” ismi üzerinden bir adresi ziyaret etmek istiyorsak bu noktada domain adresini IP adresine dönüştürecek olan DNS sunucusuna da ihtiyacımız var. Dolayısıyla bir hostun domain isimleri üzerinden webte gezinebilmesi için DNS sunucusunun IP adresini bilmesi gerekiyor. 
 
 ![DNS-network.webp]({{ site.url }}/egitim/temel-network/protokoller/DNS-network.webp){:class="responsive img-zoomable"}
 

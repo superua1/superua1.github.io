@@ -5,6 +5,7 @@ excerpt: "Tüm içeriklerin kategorize etiket listesi."
 search_omit: true
 ---
 
+<aside data-pagefind-ignore="all">
 <div align="center"><h1>🏷️</h1><h1>Etiket Listesi</h1><p>Etiketlerine göre gruplanmış paylaşımların tümü.</p></div>
 
 {% assign all_posts = site.posts | concat: site.egitim | concat: site.komut %}
@@ -67,7 +68,7 @@ search_omit: true
   </div>
 {% endfor %}
 
-
+</aside>
 
 
   

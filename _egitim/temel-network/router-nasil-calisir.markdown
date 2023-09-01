@@ -31,7 +31,7 @@ Router cihazları, bağlı oldukları her bir ağda benzersiz bir MAC ve IP adre
 
 Yukarıdaki görsele bakacak olursanız, routerın ağlara göre ayrı ayrı IP ve MAC adresine sahip olduğunu görebilirsiniz. Bu sayede ağlar arasında köprü görevi görüp yönlendirme gerçekleştirerek ağlar arası iletişimi mümkün kılabiliyor.
 
-Yönlendirme işlemlerini gerçekleştirmek için de “Routing Table” yani “Yönlendirme Tablosu” ile hangi ip adresinin hangi ağda olduğunun kaydını tutuyor. Örneğin yukarıdaki görseli ele alacak olursak, router 192.168.5.X gibi bir hedef ip adresine sahip paketi, tuttuğu yönlendirme tablosuna bakıp soldaki ağa yönlendiriyor. Benzer şekilde 192.168.2.X gibi bir hedefe sahip paketi de sağ taraftaki ağa yönlendiriyor. 
+Yönlendirme işlemlerini gerçekleştirmek için de “Routing Table” yani “Yönlendirme Tablosu” ile hangi IP adresinin hangi ağda olduğunun kaydını tutuyor. Örneğin yukarıdaki görseli ele alacak olursak, router 192.168.5.X gibi bir hedef IP adresine sahip paketi, tuttuğu yönlendirme tablosuna bakıp soldaki ağa yönlendiriyor. Benzer şekilde 192.168.2.X gibi bir hedefe sahip paketi de sağ taraftaki ağa yönlendiriyor. 
 
 ![routing-table.webp]({{ site.url }}/egitim/temel-network/router/routing-table.webp){:class="responsive img-zoomable"}
 
@@ -67,7 +67,7 @@ Bu yöntemde, ağ yöneticisi manuel olarak birbirine bağlamak istediği ağlar
 
 ![ST-route3.webp]({{ site.url }}/egitim/temel-network/router/ST-route3.webp){:class="responsive img-zoomable"}
 
-Gördüğünüz gibi harici ağlar statik olarak elle belirtildiğinde, paket kaybı yaşanmadan doğru ağa yönlendirilebiliyor. Çünkü fiziksel olarak doğrudan bağlı olunmasa da, bağlı olan routerın ağ adresi bildiği için yönlendirme işi diğer routera devrediliyor. Diğer router da kendi ağ tablosuna bakarak paketi hedef hosta yönlendiriyor. Bu yaklaşım özellikle küçük çaplı ağlar için makul bir tercih. Fakat eğer büyük bir ağ yönetiliyorsa, tüm ip adreslerinin statik olarak elle girilmesi biraz zahmetli bir hal alabilir.
+Gördüğünüz gibi harici ağlar statik olarak elle belirtildiğinde, paket kaybı yaşanmadan doğru ağa yönlendirilebiliyor. Çünkü fiziksel olarak doğrudan bağlı olunmasa da, bağlı olan routerın ağ adresi bildiği için yönlendirme işi diğer routera devrediliyor. Diğer router da kendi ağ tablosuna bakarak paketi hedef hosta yönlendiriyor. Bu yaklaşım özellikle küçük çaplı ağlar için makul bir tercih. Fakat eğer büyük bir ağ yönetiliyorsa, tüm IP adreslerinin statik olarak elle girilmesi biraz zahmetli bir hal alabilir.
 
 Bu duruma çözüm olarak da “Dynamic Routers” yaklaşımı kullanılabiliyor.
 
@@ -85,9 +85,9 @@ Routing table yani yönlendirme tablolarına ek olarak routerların ARP tablolar
 
 ![ARP-table.webp]({{ site.url }}/egitim/temel-network/router/ARP-table.webp){:class="responsive img-zoomable"}
 
-ARP tablosu ilk başta her bir router üzerinde boştur. Gerektikçe ARP portokolü ile IP-MAC eşleştirmesi yapılarak tabloya kaydedilir. Her bir rotuer da ayrı ayrı kendi ARP tablosunu tutar. Zaten IP adresine sahip olan tüm cihazların kendine ait bir ARP tablosu vardır. Daha önce ARP protokolünü açıkladığımız için burada tekrar nasıl çalıştığına değinmemize gerek yok. Eğer ARP protokolünü ele aldığımız kısımları hatırlamıyorsanız veya o bölümü atladıysanız dönüp tekrar kontrol edebilirsiniz. 
+ARP tablosu ilk başta her bir router üzerinde boştur. Gerektikçe ARP protokolü ile IP-MAC eşleştirmesi yapılarak tabloya kaydedilir. Her bir router da ayrı ayrı kendi ARP tablosunu tutar. Zaten IP adresine sahip olan tüm cihazların kendine ait bir ARP tablosu vardır. Daha önce ARP protokolünü açıkladığımız için burada tekrar nasıl çalıştığına değinmemize gerek yok. Eğer ARP protokolünü ele aldığımız kısımları hatırlamıyorsanız veya o bölümü atladıysanız dönüp tekrar kontrol edebilirsiniz. 
 
-Routing table sayesinde routerlar ağların adreslerini biliyorken, ARP tablosu sayesinde IP adreslerine karşılık gelen MAC adreslerini biliyorlar. Bu sayede paket yönlendirmeyi hangi ağa yapacağını “routing table” üzerinden bakarken, paketin tam olarak hangi ip ve MAC adresine yönlendirileceğine de ARP tablosu üzerinden bakıyor. 
+Routing table sayesinde routerlar ağların adreslerini biliyorken, ARP tablosu sayesinde IP adreslerine karşılık gelen MAC adreslerini biliyorlar. Bu sayede paket yönlendirmeyi hangi ağa yapacağını “routing table” üzerinden bakarken, paketin tam olarak hangi IP ve MAC adresine yönlendirileceğine de ARP tablosu üzerinden bakıyor. 
 
 Özetle routerların her birinin kaydını tuttuğu, Routing ve ARP tabloları sayesinde ağlar arasında veri yönlendirilmesi mümkün oluyor. 
 
@@ -97,11 +97,11 @@ En nihayetinde bizim basit örnekler üzerinden ele aldığımız bu yaklaşım�
 
 # Router Hiyeraşisi
 
-Daha önceki anlatımlarımızda routerlerın tek bir hat üzerinde bağlı olduğu örnekleri ele aldık. Fakat aslında routerlar genellikle hiyerarşik biçimde birbirine bağlı oluyorlar. 
+Daha önceki anlatımlarımızda routerların tek bir hat üzerinde bağlı olduğu örnekleri ele aldık. Fakat aslında routerlar genellikle hiyerarşik biçimde birbirine bağlı oluyorlar. 
 
 ![router-hierarchy.webp]({{ site.url }}/egitim/temel-network/router/router-hierarchy.webp){:class="responsive img-zoomable"}
 
-Hiyearşik yapı sayesinde ağların yönetimi yani “**ölçeklenmesi**” çok daha kolaylaşmış oluyor. Ayrıca bağlantıların “**sürekliliği”** de güvence altına alınmış oluyor. Gelin neden böyle olduğunu ele alalım.
+Hiyerarşik yapı sayesinde ağların yönetimi yani “**ölçeklenmesi**” çok daha kolaylaşmış oluyor. Ayrıca bağlantıların “**sürekliliği”** de güvence altına alınmış oluyor. Gelin neden böyle olduğunu ele alalım.
 
 Örneğin mevcut ağa yeni alt ağlar bağlanmak istenildiğinde tek yapılması gereken ana routera alt ağların routerlarını bağlamak.
 
@@ -133,21 +133,21 @@ Sadeleştirme durumunu açıklamak üzere öncelikle buradaki routerları numara
 
 ![routing-table-in-hierarchy.webp]({{ site.url }}/egitim/temel-network/router/routing-table-in-hierarchy.webp){:class="responsive img-zoomable"}
 
-5 numaralı router bu tabloya bakarak, hangi paketin hangi hangi routera yönlendirilmesi gerektiğini biliyor. Örneğin 10.20.30.5 hedef ip adresine sahip bir paket bu routera gelirse, router bu paketin 10.20.X.X ağı içinde olduğunu subnet prefix(24) değerine bakarak anlıyor ve bu paketi R7 routerına yönlendiriyor.
+5 numaralı router bu tabloya bakarak, hangi paketin hangi hangi routera yönlendirilmesi gerektiğini biliyor. Örneğin 10.20.30.5 hedef IP adresine sahip bir paket bu routera gelirse, router bu paketin 10.20.X.X ağı içinde olduğunu subnet prefix(24) değerine bakarak anlıyor ve bu paketi R7 routerına yönlendiriyor.
 
 ![router-redirect1.webp]({{ site.url }}/egitim/temel-network/router/router-redirect1.webp){:class="responsive img-zoomable"}
 
-Bir başka örnek olarak hedefi 10.10.40.15 olan bir paket geldiğini varsayalım. Bu router yönlendirme tablosuna bakarak, bu paketin R4 routarına bağlı ağda olduğunu anlar. Ve paketi bu routera yönlendirir.
+Bir başka örnek olarak hedefi 10.10.40.15 olan bir paket geldiğini varsayalım. Bu router yönlendirme tablosuna bakarak, bu paketin R4 routerına bağlı ağda olduğunu anlar. Ve paketi bu routera yönlendirir.
 
 ![router-redirect2.webp]({{ site.url }}/egitim/temel-network/router/router-redirect2.webp){:class="responsive img-zoomable"}
 
-Bu noktadan sonra paketin doğru hedefe ulaşması için bu R4 routerı sorumludur. O da kendi tablosuna bakarak bu ip adresinin hangi ağda olduğunu bulur ve bunu R1 routerına aktarır. 
+Bu noktadan sonra paketin doğru hedefe ulaşması için bu R4 routerı sorumludur. O da kendi tablosuna bakarak bu IP adresinin hangi ağda olduğunu bulur ve bunu R1 routerına aktarır. 
 
 ![router-redirect3.webp]({{ site.url }}/egitim/temel-network/router/router-redirect3.webp){:class="responsive img-zoomable"}
 
-R1 routerı da bağlı bulunduğu ağda bu ip ile eşleşen bir host varsa kendi ARP tablosunun da yardımıyla paketi ona yönlendirir. Yani paket teslimatı hiyerarşik şekilde yönlendirmeler sayesinde sorunsuzca gerçekleştirilir. 
+R1 routerı da bağlı bulunduğu ağda bu IP ile eşleşen bir host varsa kendi ARP tablosunun da yardımıyla paketi ona yönlendirir. Yani paket teslimatı hiyerarşik şekilde yönlendirmeler sayesinde sorunsuzca gerçekleştirilir. 
 
-Bu harika bir yapı fakat dikkat edecek olursanız yönlendirme tablosunda farklı ip adreslerinin aynı routera işaret ettiğini görüyoruz. Bunun nedeni gerçekten de hiyerarşik olarak tüm bu ağların bu routera bağlı olması. Bu durumda aslında bu tablodaki gösterim biraz daha sadeleştirilebilir.
+Bu harika bir yapı fakat dikkat edecek olursanız yönlendirme tablosunda farklı IP adreslerinin aynı routera işaret ettiğini görüyoruz. Bunun nedeni gerçekten de hiyerarşik olarak tüm bu ağların bu routera bağlı olması. Bu durumda aslında bu tablodaki gösterim biraz daha sadeleştirilebilir.
 
 Örneğin 10.10.20.X 10.10.30.X 10.10.40.X ağlarının hepsi ortak olarak 10.10.0.0 ağı içinde bulunuyor. Dolayısıyla bu ağda bulunan bir paket ile karşılaşıldığında doğrudan R4 routerına yönlendirmesi için routing table üzerinde 10.10.0.0 /16 şeklinde de temsil edebilir. 
 
@@ -161,13 +161,13 @@ Daha iyi anlamak adına bir alt ağdaki routerın yönlendirme tablosuna göz at
 
 ![router-redirect5.webp]({{ site.url }}/egitim/temel-network/router/router-redirect5.webp){:class="responsive img-zoomable"}
 
-Bakın R8 routerı doğrudan(DC) bağlı olduğu 10.20.40.x ağı dışındaki tüm yönlendirme işlemlerini R5 üzerinden gerçekleştirdiği için, R8 için tüm ip bloklarının hedefi R5 cihazı. Dolayısıyla bu uzun gösterim yerine 10 ile başlayan tüm IP adreslerinin R5 routerına yönlendirilmesi için subnet mask değeri olarak 8 prefix değerini belirtebiliriz.
+Bakın R8 routerı doğrudan(DC) bağlı olduğu 10.20.40.x ağı dışındaki tüm yönlendirme işlemlerini R5 üzerinden gerçekleştirdiği için, R8 için tüm IP bloklarının hedefi R5 cihazı. Dolayısıyla bu uzun gösterim yerine 10 ile başlayan tüm IP adreslerinin R5 routerına yönlendirilmesi için subnet mask değeri olarak 8 prefix değerini belirtebiliriz.
 
 ![router-redirect6.webp]({{ site.url }}/egitim/temel-network/router/router-redirect6.webp){:class="responsive img-zoomable"}
 
-Bu yaklaşımda 10 ile başlayan tüm ip adresleri R5 routerına yönlendiriliyor olacak. Yani R8 routerı şirket ağındaki herhangi bir ip adresine yönlendirme yapacağı zaman R5 routerına yönlendirme yapıyor olacak. Dolayısıyla bu sadeleştirilmiş tanımlama sayesinde tüm alt ağların ayrı ayrı tanımlanması gerekmiyor. 
+Bu yaklaşımda 10 ile başlayan tüm IP adresleri R5 routerına yönlendiriliyor olacak. Yani R8 routerı şirket ağındaki herhangi bir IP adresine yönlendirme yapacağı zaman R5 routerına yönlendirme yapıyor olacak. Dolayısıyla bu sadeleştirilmiş tanımlama sayesinde tüm alt ağların ayrı ayrı tanımlanması gerekmiyor. 
 
-Fakat peki ya 10.20.40.X gibi bir hedef ip adresine sahip paketin yönlendirilmesi gerekirse ne olacak ?
+Fakat peki ya 10.20.40.X gibi bir hedef IP adresine sahip paketin yönlendirilmesi gerekirse ne olacak ?
 
 ![router-redirect7.webp]({{ site.url }}/egitim/temel-network/router/router-redirect7.webp){:class="responsive img-zoomable"}
 
@@ -177,18 +177,18 @@ Bu gibi durumlarda paket daha spesifik olarak eşleşeme gösteren yere yönlend
 
 ![router-redirect8.webp]({{ site.url }}/egitim/temel-network/router/router-redirect8.webp){:class="responsive img-zoomable"}
 
-Bu ip adresi 10 ile başlıyor ama devamında R8 in doğrudan bağlı(DC) olduğu 10.20.40. ip adresini barındırdığı için bu çok daha spesifik bir tanımlamadır. Dolayısıyla bu paket doğrudan bağlı olan bu ağa yönlendirilir. 
+Bu IP adresi 10 ile başlıyor ama devamında R8 in doğrudan bağlı(DC) olduğu 10.20.40. IP adresini barındırdığı için bu çok daha spesifik bir tanımlamadır. Dolayısıyla bu paket doğrudan bağlı olan bu ağa yönlendirilir. 
 
 Şimdiye kadar örneklerimizi hep şirket ağı içindeki yönlendirmelerden verdik. Peki ya bir paketin internete yönlendirilmesi gerekiyorsa ne olacak ?
 
-İnternet üzerindeki ip aralığı şirket için tanımladığımız en geniş aralık olan 10.0.0.0/8 den çok daha büyük. Bu duruma çözüm olarak internet ağını kapsamak için 0.0.0.0/0 şeklinde tanımlama yapılabilir. Örneğin R8 routerı üzerinde böyle bir tanımlama yapılacak olursa, yönlendirme tablosu aşağıdaki gibi gözükecektir.
+İnternet üzerindeki IP aralığı şirket için tanımladığımız en geniş aralık olan 10.0.0.0/8 den çok daha büyük. Bu duruma çözüm olarak internet ağını kapsamak için 0.0.0.0/0 şeklinde tanımlama yapılabilir. Örneğin R8 routerı üzerinde böyle bir tanımlama yapılacak olursa, yönlendirme tablosu aşağıdaki gibi gözükecektir.
 
 ![router-redirect9.webp]({{ site.url }}/egitim/temel-network/router/router-redirect9.webp){:class="responsive img-zoomable"}
 
-Bu sayede R8 paketine hangi ip adresine yönlendirilmesi gereken paket gelecek olursa olsun, bu paket R5 routerına yönlendirilecek. Zaten R8 routerı diğer ağlar ile iletişime geçmek için fiziksel olarak R5 routerına bağlı olduğu için bu şekilde tüm ip aralığının kapsanarak R5 cihazına gönderilmesi de makul bir yaklaşım. 
+Bu sayede R8 paketine hangi IP adresine yönlendirilmesi gereken paket gelecek olursa olsun, bu paket R5 routerına yönlendirilecek. Zaten R8 routerı diğer ağlar ile iletişime geçmek için fiziksel olarak R5 routerına bağlı olduğu için bu şekilde tüm IP aralığının kapsanarak R5 cihazına gönderilmesi de makul bir yaklaşım. 
 
 ."0.0.0.0/0" ağ adresi, tüm IPv4 adreslerini temsil ettiği için "varsayılan yönlendirme" veya "default route" olarak ifade ediliyor. 
 
-Bu tanımlama olmazsa, R8 routarına gönderilen internete yönlendirilmesi gereken bir paket olduğunda bu paketin hangi adrese yönlendirilmesi gerektiği belirlenemez. Örneğin bu tanımlama olmadan hedefi, internet üzerindeki 172.155.44.23 gibi bir ip olan paketin nereye yönlendirilmesi gerektiği belirlenemez. Çünkü yönlendirme tablosunda bu ip için bir tanımlama bulunmuyordur.   
+Bu tanımlama olmazsa, R8 routerına gönderilen internete yönlendirilmesi gereken bir paket olduğunda bu paketin hangi adrese yönlendirilmesi gerektiği belirlenemez. Örneğin bu tanımlama olmadan hedefi, internet üzerindeki 172.155.44.23 gibi bir IP olan paketin nereye yönlendirilmesi gerektiği belirlenemez. Çünkü yönlendirme tablosunda bu IP için bir tanımlama bulunmuyordur.   
 
 Böylelikle ağların neden routerlar vasıtasıyla hiyerarşik düzende tasarlandığını ve bu hiyerarşinin nasıl sadeleştirilerek ifade edildiğini görmüş olduk.

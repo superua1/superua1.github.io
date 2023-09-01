@@ -22,7 +22,7 @@ title: "Linux Eğitimi"
 email: info@linuxdersleri.net
 description: "GNU/Linux için Türkçe içerik sağlamak üzere kurulmuş bir platformdur."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://superua1.github.io"
+url: "https://www.linuxdersleri.net"
 github_username:  linux-dersleri
 
 # Build settings
@@ -102,26 +102,19 @@ defaults:
   values:
     permalink: "/komut/:title/"
     layout: title
-    twitter:
-         
-# pagefind.yml
+    twitter:       
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Turkish Month
+month_names:
+  Jan: Oca
+  Feb: Şub
+  Mar: Mar
+  Apr: Nis
+  May: May
+  Jun: Haz
+  Jul: Tem
+  Aug: Ağu
+  Sep: Eyl
+  Oct: Eki
+  Nov: Kas
+  Dec: Ara

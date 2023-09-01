@@ -9,6 +9,8 @@ search_omit: true
   <hr>
   <div id="info-text">
     <p class="mavi">Bu test, Linux temellerine ne kadar hakim olduğunuz konusunda fikir verebilir. Ancak unutmayın, burada asıl mesele sorulara ezberden cevap vermekten ziyade, ilgili soruna nasıl çözüm bulabileceğinizi kendi başınıza keşfedebilmenizdir. Yani soruların yanıtları anında aklınıza gelmiyor olabilir. Bu sebeple soruları cevaplarken man sayfaları gibi offline yardım kaynaklarını ve elbette komut satırını serbestçe kullanabilirsiniz.</p>
+    <p class="mavi"><strong>ℹ️ Not:</strong> Açıkçası çoktan seçmeli testlerin bilgi veya yetenek ölçmede pek doğru bir yaklaşım olduğunu düşünmüyorum. Yine de sizi araştırmaya veya pratik yapmaya itebileceğini düşündüğüm için eklemek istedim.</p>
+
     <button class="mavi btn btn-outline-primary btn-lg" onclick="startQuiz()">Teste Başla</button>
   </div>
   <div id="quiz" style="display: none;">

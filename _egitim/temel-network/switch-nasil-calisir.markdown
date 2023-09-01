@@ -24,7 +24,7 @@ Switch aygıtlarının aynı ağdaki cihazların haberleşmesi için kullanıld�
 
 ![ARP.webp]({{ site.url }}/egitim/temel-network/switch/ARP.webp){:class="responsive img-zoomable"}
 ![ARP-Broadcast.webp]({{ site.url }}/egitim/temel-network/switch/ARP-Broadcast.webp){:class="responsive img-zoomable"}
-Bu soruya yalnızca ip adresinin sahibi olan C hostu yanıt verir. Aynı zamanda göndericinin ip ve MAC adresini de kendi ARP tablosuna ekler. 
+Bu soruya yalnızca IP adresinin sahibi olan C hostu yanıt verir. Aynı zamanda göndericinin IP ve MAC adresini de kendi ARP tablosuna ekler. 
 
 ![ARP-response.webp]({{ site.url }}/egitim/temel-network/switch/ARP-response.webp){:class="responsive img-zoomable"}
 Yanıtı da bu ARP sorgusunu gönderen kaynağa unicast yani doğrudan iletir. Kaynak da aldığı ARP yanıtındaki bilgileri alıp kendi ARP tablosuna ekler. Bu sayede artık kaynak ve hedef arasındaki iletişim mümkündür.
@@ -32,9 +32,9 @@ Yanıtı da bu ARP sorgusunu gönderen kaynağa unicast yani doğrudan iletir. K
 ![ARP-response2.webp]({{ site.url }}/egitim/temel-network/switch/ARP-response2.webp){:class="responsive img-zoomable"}
 Bu yapıdan zaten daha önce de bahsettik. Şimdi burada asıl odaklanmak istediğim switch aygıtının bu paketleri nasıl doğru hedefe yönlendirdiği. 
 
-Switch aygıtları ip adresleri ile ilgilemez. Hangi MAC adresinin hangi porta bağlı olduğunun tablosunu tutar. 
+Switch aygıtları IP adresleri ile ilgilemez. Hangi MAC adresinin hangi porta bağlı olduğunun tablosunu tutar. 
 
-<p class="mavi"><strong>ℹ️ Not:</strong> Buradaki port’dan kasıt, fiziksel bağlantı noktasıdır. Yani ip adreslerinde bahsettiğimiz uygulamalara özel yönlendirme sağlayan sanal “port” değil, fiziksel bağlantı noktasını kast ediyorum.</p>
+<p class="mavi"><strong>ℹ️ Not:</strong> Buradaki port’dan kasıt, fiziksel bağlantı noktasıdır. Yani IP adreslerinde bahsettiğimiz uygulamalara özel yönlendirme sağlayan sanal “port” değil, fiziksel bağlantı noktasını kast ediyorum.</p>
 
 ![switch-mac-table.webp]({{ site.url }}/egitim/temel-network/switch/switch-mac-table.webp){:class="responsive img-zoomable"}
 Tabii switch bağlanır bağlanmaz bu bilgiler alınmıyor. Hostlar arasında iletişim gerçekleştikçe switch bu kaydı doldurmaya başlıyor.
@@ -64,7 +64,7 @@ Bu yaklaşım sayesinde zaman içinde hangi portta hangi MAC adresinin bağlı o
 ![switch-to-network.webp]({{ site.url }}/egitim/temel-network/switch/switch-to-network.webp){:class="responsive img-zoomable"}
 Dikkat etmeniz gereken detay, switchlerin IP katmanıyla ilgilenmediği. Switch yalnızca portlarına bağlı olan MAC adres bilgilerini kontrol ediyor.
 
-Yine de konfigürasyon değişikliği gibi switch cihazına özel bir veri iletilecekse yani hedef doğrudan switch cihazının kendisiyse bu kez switch ile tıpkı ağdaki diğer host cihazları gibi kendi MAC ve ip adresi üzerinden iletişim kurabiliyor. Bu noktada zaten switch cihazı da doğrudan kendisine gönderilen paketleri tıpkı bir host cihazıymış gibi ele alıyor. Bu sayede SSH gibi bağlantı yöntemleri ile switch cihazının kendisini konfigüre edebiliyoruz. 
+Yine de konfigürasyon değişikliği gibi switch cihazına özel bir veri iletilecekse yani hedef doğrudan switch cihazının kendisiyse bu kez switch ile tıpkı ağdaki diğer host cihazları gibi kendi MAC ve IP adresi üzerinden iletişim kurabiliyor. Bu noktada zaten switch cihazı da doğrudan kendisine gönderilen paketleri tıpkı bir host cihazıymış gibi ele alıyor. Bu sayede SSH gibi bağlantı yöntemleri ile switch cihazının kendisini konfigüre edebiliyoruz. 
 
 ![switch-ip-mac.webp]({{ site.url }}/egitim/temel-network/switch/switch-ip-mac.webp){:class="responsive img-zoomable"}
 # VLAN
@@ -115,7 +115,7 @@ Daha sonra elindeki frame iletisine bakıp hedef MAC adresinin “a1a1” olduğ
 Daha sonra bu frame iletisinin ulaştırılması gereken hedefi kontrol ediyor. Bu MAC adresi kendi tuttuğu MAC tablosunda 1 numaralı porta bağlı olduğu için bu frame 1 numaralı porta yönlendiriliyor.
 
 ![send10.webp]({{ site.url }}/egitim/temel-network/switch/send10.webp){:class="responsive img-zoomable"}
-Yani bizzat adım adım ele aldığımız gibi iki farklı switch aygıtı kendi MAC tablolarını kendi portlarına bağlı olan MAC adresleri dahilinde kaydediyor. Aynı hostlar tekrar iletişim kurmak istediğinde daha önce MAC tablosuna kaydedilmiş olan port-MAC adresi eşleşmesi sayesinde çok daha kısa sürede haberleşeme gerçekleştiriliyor. Portlara bağlı olan aygıtlar çıkarılmadığı sürece de, aynı MAC adresi tablosu iletişim için tekrar tekrar kullanılıyor. 
+Yani bizzat adım adım ele aldığımız gibi iki farklı switch aygıtı kendi MAC tablolarını kendi portlarına bağlı olan MAC adresleri dahilinde kaydediyor. Aynı hostlar tekrar iletişim kurmak istediğinde daha önce MAC tablosuna kaydedilmiş olan port-MAC adresi eşleşmesi sayesinde çok daha kısa sürede haberleşme gerçekleştiriliyor. Portlara bağlı olan aygıtlar çıkarılmadığı sürece de, aynı MAC adresi tablosu iletişim için tekrar tekrar kullanılıyor. 
 
 Ayrıca switch cihazlarına birden fazla host bağlanabildiği için aslında aynı port birden fazla MAC adresine işaret ediyor olabilir. Örneğin B hostu da D hostu ile iletişime geçmek istersek switchlerin MAC tabloları aşağıdaki gibi olacaktır.
 
