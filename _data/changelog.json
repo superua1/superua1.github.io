@@ -13,6 +13,18 @@
       "Platform verilerini takip edebilmek için Google Analytics eklendi."
     ]
   },
+{
+    "name": "Android Uygulaması",
+    "version": "1.0.0",
+    "changes": [
+      "Temel Ağ Eğitimi eklendi.",
+      "Temel Linux Eğitimi dokümantasyon içeriği baştan sonra yenilendi.",
+      "Dokümanlar üzerinde arama yapılabilmesi için arama fonksiyonu eklendi.",
+      "Komut listesi bölümü eklendi.",
+      "Test bölümü eklendi.",
+      "Sıkça Sorulan Sorular bölümü eklendi.",
+    ]
+  },
   {
     "name": "Web Platformu",
     "version": "0.7.0",
