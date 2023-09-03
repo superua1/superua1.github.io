@@ -22,6 +22,23 @@
       <div style="font-size: 18px;" class="col-md-9" data-pagefind-filter="Bölüm:Eğitim Serisi:">
         {% include meta-data.html %}
         {{ content }}
+        <!-- If there is related question, show question div -->
+        {% assign filename = page.path | replace_first: '_egitim/temel-linux/', '' | replace: '.markdown', '' %}
+        {% assign page_title = filename %}
+        {% assign json_filename = "/data/questions/" | append: page_title | append: ".json" %}
+{% assign json_file_exists = false %}
+
+{% for file in site.static_files %}
+  {% if file.path == json_filename %}
+    {% assign json_file_exists = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if json_file_exists %}
+  {% include related-questions.html %}
+{% endif %}
+
 <p></p>
           <div id="okundu" align="center" class="custom-control custom-switch">
                 

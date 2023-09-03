@@ -37,12 +37,12 @@
     <ul id="feedback"></ul>
 	<p class="mavi"><strong>Not:</strong> Testin kendisinde hatalar varsa <a href="{{ site.url }}/bildirim.html">geri bildirim</a> sayfasından iletmekten çekinmeyin lütfen.</p>
   </div>
-
+  {% assign filename = page.path | replace_first: '_egitim/temel-linux/', '' | replace: '.markdown', '' %}
 
   <script>
   var questions = []; // Initialize an empty array for questions
 
-fetch("{{ site.url }}/data/questions/{{ page.title }}.json") // Replace "abc.json" with the actual path to your JSON file
+fetch("{{ site.url }}/data/questions/{{ filename }}.json") // Replace "abc.json" with the actual path to your JSON file
   .then(response => response.json()) // Parse the JSON response
   .then(data => {
     // Shuffle the array of questions
