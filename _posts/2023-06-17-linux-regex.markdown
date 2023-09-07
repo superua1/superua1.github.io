@@ -347,4 +347,4 @@ Regex konusu gerçekten çok detaylı bir konu, ben yalnızca Linux özelinde s�
 
 - [regular-expressions.info/gnu.html](https://www.regular-expressions.info/gnu.html){:target="_blank"}
 - [regular-expressions.info/posixbrackets.html](https://www.regular-expressions.info/posixbrackets.html){:target="_blank"}
-- [gnu.org/software/sed/manual/html_node/sed-regular-expressions.html](https://www.gnu.org/software/sed/manual/html_node/sed-regular-expressions.html){:target="_blank"}
+- [gnu.org/software/sed/manual/regular-expressions.html](https://www.gnu.org/software/sed/manual/html_node/sed-regular-expressions.html){:target="_blank"}

@@ -31,7 +31,7 @@ Client talep eden, Server ise yanıtlayan taraftır. Örneğin bir websitesine u
 
 ![client-server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/client-server.webp){:class="responsive img-zoomable"}
 
-Sunucular da aslında içerisinde spesifik yanıtlara karşılık verebilecek yazılımların kurulu olduğu sıradan bilgisayarlardır. Herhangi bir bilgisayara uygun yazılımları kurup bu bilgisayarın sunucu olarak hizmet vermesini sağlayabiliyoruz. Örneğin websitenizi sunmak için gereken yazılımları kurup websitenizi kendi bilgisayarınız üzerinden internete açabilirsiniz. Yani kendi bilgisayarınızı sunucu haline getirebilirsiniz. Sizin websitenize ulaşmak isteyene clientlar da sizin bilgisayarınıza yani sunucuya istekte bulunur, bilgisayarınız da server rolü gereği bu istekleri yanıtlar.
+Sunucular da aslında içerisinde spesifik yanıtlara karşılık verebilecek yazılımların kurulu olduğu sıradan bilgisayarlardır. Herhangi bir bilgisayara uygun yazılımları kurup bu bilgisayarın sunucu olarak hizmet vermesini sağlayabiliyoruz. Örneğin websitenizi sunmak için gereken yazılımları kurup websitenizi kendi bilgisayarınız üzerinden internete açabilirsiniz. Yani kendi bilgisayarınızı sunucu haline getirebilirsiniz. Sizin websitenize ulaşmak isteyen clientlar da sizin bilgisayarınıza yani sunucuya istekte bulunur, bilgisayarınız da server rolü gereği bu istekleri yanıtlar.
 
 ![server.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/server.webp){:class="responsive img-zoomable"}
 

@@ -761,8 +761,12 @@ Alıştırmaları gerçekleştirebilmek için dilerseniz çalışma ortamı olu�
 Öncelikle test ortamı için yeni bir klasör oluşturup bu dizine geçiş yapalım.
 
 ```bash
-mkdir test-ortami
-cd test-oratami
+┌──(taylan@linuxdersleri)-[~]
+└─$ mkdir test-ortami
+┌──(taylan@linuxdersleri)-[~]
+└─$ cd test-ortami
+┌──(taylan@linuxdersleri)-[~/test-ortami]
+└─$
 ```
 
 Bu dizine, aşağıdaki betik dosyasını `cat > betik.sh` komutunun ardından <kbd>Ctrl</kbd> + <kbd>D</kbd> tuşlaması ile kaydedip `chmod +x betik.sh` ile yetki verelim ve `./betik.sh` komutu ile dosyayı çalıştıralım.
@@ -813,7 +817,7 @@ ls # Üretilen mevcut dizindeki dosyaları yazdırmak için
 
 Bu betik mevcut bulunduğunuz dizine 75 rastgele dosya oluşturacaktır. Bu sayede bu dizinde her türlü genişletme alıştırması yapmak için yeterli örneğe sahip olabilirsiniz. Gerekli çalışma ortamını kurduktan sonra aşağıdaki alıştırmaları pratiğe dökmeyi deneyebilirsiniz.
 
-<p class="mavi"><strong>ℹ️ Not:</strong> Buradaki betik dosyası her seferinde rastgele veriler ürettiği için aşağıdaki alıştırmalarada yer alan örüntülere tamamen uyacak dosya isimleri oluşturulmamış olabilir. Bu durumda soruya uygun olan dosya veya klasör isimlerini kendiniz oluşturup genişletme kurallarını test edebilirsiniz.</p> 
+<p class="mavi"><strong>ℹ️ Not:</strong> Buradaki betik dosyası her seferinde rastgele veriler ürettiği için aşağıdaki alıştırmalarda yer alan örüntülere tamamen uyacak dosya isimleri oluşturulmamış olabilir. Bu durumda soruya uygun olan dosya veya klasör isimlerini kendiniz oluşturup genişletme kurallarını test edebilirsiniz.</p> 
 
 ## Sorular
 

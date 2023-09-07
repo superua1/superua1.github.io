@@ -49,15 +49,47 @@ Dosya sistemi hiyerarşisinin en tepe noktasını yani başlangıcını temsil e
 
 ## <span class="text-danger">/</span><span class="text-primary">bin</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">sbin</span>
 
-***/bin*** ve ***/sbin*** dizinlerinin ismi, “**bin**ary” yani “ikili” ifadesinin kısaltmasından geliyor. Bu dizinler içinde sistemin başlatılması, yönetimi ve gerektiğinde onarımı için kullanılan araçların çalıştırılabilir binary dosyalarını barındırılıyor. Daha önceki anlatımlarımıza, konsola girdiğimiz komutların **PATH** yolundaki dizinlerde bu isimle eşleşen bir dosya var mı diye bakılmasını sağladığını öğrenmiştik. İşte bu dizinlere bakılıp girilen komutla eşleşen çalıştırılabilir biçimdeki ikili yani binary dosya bulunduğunda bu dosya çalıştırılıyor. Burada bahsi geçen ***/bin*** ve ***/sbin*** dizinin içindeki binary dosyalar da işte bu dosyalar. 
-
-***/sbin*** (**S**ystem **Bin**aries): Bu dizin, sistem yöneticileri tarafından kullanılan ve sistem yönetimiyle ilgili önemli programları içeriyor.
+***/bin*** ve ***/sbin*** dizinlerinin ismi, “**bin**ary” yani “ikili” ifadesinin kısaltmasından geliyor. Bu dizinlerde; sistemin başlatılması, yönetimi ve gerektiğinde onarımı için kullanılan araçların çalıştırılabilir "**binary**" dosyalarını barındırılıyor. Örneğin konsola girdiğimiz komutların **PATH** yolu üzerinde arandığını biliyoruz. PATH yoluda bu ***/bin*** ve ***/sbin*** dizinleri de bulunuyor. Bu sayede çalıştırılabilir olan ikili dosyalar bulunup çalıştırılabiliyor. 
 
 ***/bin*** (**Bin**aries): Bu dizin, tüm kullanıcıların erişebileceği temel işlevleri gerçekleştirmek için kullanılan programları içeriyor.
 
+***/sbin*** (**S**ystem **Bin**aries): Bu dizin, sistem yöneticileri tarafından kullanılan ve sistem yönetimi ve bakımıyla ilgili önemli programları içeriyor.
+
+Örneğin sistem yöneticisi tarafından kullanılabilen fdisk isimli aracın varlığını her iki dizin içerisinde sorgulayabiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ls /sbin | grep fdisk
+cfdisk
+docfdisk
+fdisk
+sfdisk
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ls /bin | grep fdisk                                                                 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ 
+```
+Buradaki `grep` aracından daha sonra ayrıca bahsediyor olacağız, fakat şimdilik filtreleme yapma işlevinde olduğunu bilmeniz yeterli. Biz öncelikle `ls` komutu ile ilgili dizin içeriğini listeledik, daha sonra `grep` aracı ile bu dizi içeriğinde "***fdisk***" isimli bir dosya var mı diye filtrelemiş olduk. Bu sayede disk yönetimi gibi sistem yöneticisinin yetkileri dahilinde olan `fdisk` aracının yalnızca ***/sbin*** dizini içinde bulunduğunu teyit etmiş olduk.
+
+Benzer şekilde sistemin yeniden başlatılmasını sağlayan `reboot` isimli araç için de aynı durumu teyit edebiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ls /bin | grep reboot
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ls /sbin | grep reboot                                                                 
+grub-reboot
+reboot
+```
+
+Neticede "***bin***" olarak geçen dizinlerin "**binary**" yani çalıştırılabilir ikili dosyaları barındıran dizinler olduğunu, "***sbin***" dizininin ise sistem yöneticilerinin ihtiyaç duyabileceği türden araçları barındırdığını teyit etmiş olduk.
+
 ## <span class="text-danger">/</span><span class="text-primary">boot</span>
 
-Önyükleme yani boot aşaması için gereken dosyaları barındıran dizindir. Ne yaptığınızdan emin olmadığınız sürece bu dizini kurcalamanız gerekmeyecektir. 
+Önyükleme yani "boot" aşaması için gereken dosyaları barındıran dizindir. Ne yaptığınızdan emin olmadığınız sürece bu dizini kurcalamanız gerekmeyecektir. 
 
 ## <span class="text-danger">/</span><span class="text-primary">dev</span>
 
@@ -65,7 +97,7 @@ Dosya sistemi hiyerarşisinin en tepe noktasını yani başlangıcını temsil e
 
 ## <span class="text-danger">/</span><span class="text-primary">etc</span>
 
-***/etc*** dizini, sistem yapılandırma dosyalarını depolamak için kullanılıyor. Genellikle istisnalar hariç Linux sisteminde bir hizmetleri yapılandırmamız veya diğer çeşitli temel ayarları değiştirmemiz gerekiyorsa, bakacağımız ilk yer burasıdır. 
+***/etc*** dizini, sistemdeki konfigürasyon dosyalarının tutulduğu dizindir. Genellikle istisnalar hariç Linux sisteminde bir hizmetleri yapılandırmamız veya diğer çeşitli temel ayarları değiştirmemiz gerekiyorsa, bakacağımız ilk yer burasıdır. 
 
 ## <span class="text-danger">/</span><span class="text-warning">home</span>
 
@@ -79,7 +111,7 @@ Documents  Pictures  Videos
 Downloads  Public    yeni-klasor
 ```
 
-Bakın burada “Desktop” “Documents” “Downloads” “Pictures” ve benzeri dizinlerin yanında benim kendi oluşturduğumu dizinler ve dosyalar da bulunuyor. Eğer hatırlıyorsanız kendi kullanıcı hesabım için kabuğun konfigürasyonlarını kendi ev dizinimdeki ***.bashrc*** dosyasını değiştirerek düzenlemiştim. İşte her bir kullanıcının da kendine ait dosyaları barındırdığı ev dizinleri ***/home*** klasörü altında bulunuyor. 
+Bakın burada “Desktop” “Documents” “Downloads” “Pictures” ve benzeri dizinlerin yanında benim kendi oluşturduğumu dizinler ve dosyalar da bulunuyor. Eğer hatırlıyorsanız kendi kullanıcı hesabım için kabuğun konfigürasyonlarını kendi ev dizinimdeki ***.bashrc*** dosyasını değiştirerek düzenlemiştim. Diğer kullanıcıların da kendi ev dizinlerinde kendilerine ait olan ve o kullanıcı hesabını etkileyen dosyalar vardır. Bu sebeple her bir kullanıcının kendine ait dosyaları barındırabileceği ev dizinleri ***/home*** klasörü a    ltında tutuluyor. 
 
 ## <span class="text-danger">/</span><span class="text-primary">lib</span>
 
@@ -89,7 +121,7 @@ Eğer ana dizinin içeriğini tekrar listeleyecek olursak **lib** ile başlayan 
 
 Buradaki **lib** ifadesi “**lib**rary” yani “kütüphane” ifadesinin kısaltmasından geliyor.
 
-Sistemdeki araçların ortak olarak kullandığı kütüphane dosyaları buradaki uygun dizinlerde tutuluyor. Bu sayede tekrar tekrar aynı kütüphane dosyalarının diskte yer işgal etmesi önleniyor.  İlgili araçlar gerektiğinde ortak olarak bu kütüphane dosyaları okuyabiliyorlar. Kütüphaneler için birden fazla dizin olması da uyumluluk için 32 ve 64 bit kütüphane dosyaların barındırılmasından kaynaklanıyor.
+Sistemdeki araçların ortak olarak kullandığı kütüphane(library) dosyaları buradaki uygun dizinlerde tutuluyor. Bu sayede tekrar tekrar aynı kütüphane dosyalarının diskte yer işgal etmesi önleniyor. İlgili araçlar, gerektiğinde ortak olarak bu kütüphane dosyalarını kullanabiliyorlar. Kütüphaneler için birden fazla dizin olması da uyumluluk için 32 ve 64 bit kütüphane dosyaların barındırılmasından kaynaklanıyor.
 
 ## <span class="text-danger">/</span><span class="text-primary">usr</span>
 
@@ -97,21 +129,29 @@ Sistemdeki araçların ortak olarak kullandığı kütüphane dosyaları buradak
 
 İlk zamanlar ***lib bin sbin*** dizinleri ayrı ayrı tutuluyorken, hepsine tek bir noktadan ulaşma fikri dolayısıyla tüm dizinler aslında ***usr*** altında taşınmıştır. Bizim ana dizin altında ***lib bin sbin*** olarak gördüğünüz dizinler de aslında geriye dönük uyumluluk için ana dizinde gözüken ama ***usr*** klasörüne sembolik olarak bağlı olan dizinlerdir. Yani bu dizinlerin asılları da ***usr*** dizini altında.
 
+Bu durumu gözlemlemek için `ls -ld /*` komutunu girebiliriz.
+
+![usr.webp]({{ site.url }}/egitim/temel-linux/dizin/usr.webp){:class="responsive img-zoomable"}
+Burada benim kırmızı kutucuklar içine alarak özellikle belirttiğim gibi, ***lib bin sbin*** dizinleri aslında ***/usr*** dizini altında bulunuyor. Ana dizin altında hala bu dizinlerin sembolik bağlantılarını görüyor olma nedenimiz geriye dönük uyumluluktur. 
+
+Geçmişte bu dizinler kendi başına ana dizin(***/***) altında bulunduğu için geçmişten beri aynı konfigürasyonlar ile çalışan araç ve yapıların çalışmaya devam edebilmesi için yani geriye dönük uyumluluk için sembolik olarak hala ana dizin altında gözüküyorlar. Örneğin bir araç binary dosyaya erişmek üzere ***/bin*** dizinini kontrol ediyorsa, otomatik olarak ***/usr/bin*** dizinine yönlendirilerek sorunsuzca aracın çalışmaya devam etmesi sağlanmış oluyor.
+
+
 ## <span class="text-danger">/</span><span class="text-primary">opt</span>
 
-***/opt*** klasörü harici olarak kurulan bazı araçların(üçüncü taraf yazılımlar) kendi isimlerindeki klasörlerde tüm gerekli dosyalarının barındırıldığı dizindir. Yani ***usr*** dizininde olduğu gibi çalıştırılabilir dosyası bin dizinine ya da kütüphane dosyaları ***lib*** dizinine eklenmez. İlgili aracın tüm dosyaları ***opt*** dizini altındaki kendi ismiyle oluşturulmuş olan klasör içinde bulunur. 
+***/opt*** klasörü harici olarak kurulan bazı araçların(üçüncü taraf yazılımlar) kendi isimlerindeki klasörlerde tüm gerekli dosyalarının barındırıldığı dizindir. Yani ***usr*** dizininde olduğu gibi çalıştırılabilir dosyası ***bin*** dizinine ya da kütüphane dosyaları ***lib*** dizinine eklenmez. İlgili aracın tüm dosyaları ***opt*** dizini altındaki kendi ismiyle oluşturulmuş olan klasör içinde bulunur. 
 
 ## <span class="text-danger">/</span><span class="text-primary">media</span> <span class="text-secondary">ve</span> <span class="text-danger">/</span><span class="text-primary">mnt</span>
 
-***media*** ve ***mnt*** dizinlerinin her ikisi de medya aygıtlarının bağlanması için kullanılıyor. Aralarındaki fark ***media*** dizini “USB bellek, harici disk, CD/DVD sürücüsü vb.” gibi harici çıkarılabilir medya aygıtlarını bağlamak için kullanılırken, ***mnt*** dizini ise sistem yöneticisi tarafından bir ağ paylaşımını veya geçici bir disk bölümünü bağlamak için kullanılıyor.
+***media*** ve ***mnt*** dizinlerinin her ikisi de medya aygıtlarının bağlanması için kullanılıyor. Aralarındaki fark ***media*** dizini “USB bellek, harici disk, CD/DVD sürücüsü vb.” gibi harici çıkarılabilir medya aygıtlarını bağlamak için kullanılırken, ***mnt*** dizini ise genellikle geçici olarak disk bölümlerini bağlamak için kullanılan bir dizindir. 
 
 ## <span class="text-danger">/</span><span class="text-primary">proc</span>
 
-proc dizini önyükleme sırasında oluşturulduğu ve kapatma sırasında kaldırıldığı için her zaman mevcut gibi görünse de aslında sisteminiz ve o anda çalışan işlemleri hakkında birçok alakalı bilgi içeren sanal bir dosya sistemidir. 
+***proc*** dizini önyükleme sırasında oluşturulduğu ve kapatma sırasında kaldırıldığı için her zaman mevcut gibi görünse de aslında sisteminiz ve o anda çalışan işlemleri hakkında birçok alakalı bilgi içeren sanal bir dosya sistemidir. Örneğin yeni bir işlem başlattığınızda bu dizin altında bu işlemle ilişkili yeni bir sanal dizin oluşturulacaktır. Dizinin "**proc**" ismi de "**process**" yani "**işlem**" ifadesinin kısaltmasından geliyor zaten. 
 
 ## <span class="text-danger">/</span><span class="text-primary">tmp</span>
 
-tmp dizini temporary yani geçici ifadesinden kısaltmasından geliyor. Geçici olarak tutulması gereken dosya ve klasörler için kullanılan bir dizin adresi. Hem kullanıcılar hem de programlar, geçici içerikler için bu dizini kullanabiliyor.
+***tmp*** dizini "**tem**porary" yani "geçici" ifadesinden kısaltmasından geliyor. Geçici olarak tutulması gereken dosya ve klasörler için kullanılan bir dizin adresidir. Hem kullanıcılar hem de programlar, geçici içerikler için bu dizini kullanabiliyor. Bu dosyalar geçici olarak RAM üzerinde tutulduğu için bu dizin altındaki veriler sistem yeniden başlatıldığında silinmiş oluyor. 
 
 ## <span class="text-danger">/</span><span class="text-warning">root</span>
 
@@ -119,7 +159,7 @@ tmp dizini temporary yani geçici ifadesinden kısaltmasından geliyor. Geçici 
 
 ## <span class="text-danger">/</span><span class="text-primary">var</span>
 
-***var*** dizininin ismi “**var**iable” yani “değişken” ifadesinin kısaltmasından geliyor. Bu şekilde isimlendirilmesinin nedeni sürekli yenileri eklenen ve değişen dosyaların burada barındırılıyor olmasıdır. Log dosyaları, çeşitli veritabanı dosyaları, posta kutuları ve benzeri pek çok veri bu dizin altında tutuluyor. 
+***var*** dizininin ismi “**var**iable” yani “değişken” ifadesinin kısaltmasından geliyor. Bu şekilde isimlendirilmesinin nedeni, sürekli yenileri eklenen ve değişen dosyaların burada barındırılıyor olmasıdır. Log dosyaları, çeşitli veritabanı dosyaları ve benzeri pek çok veri bu dizin altında tutuluyor. 
 
 ## <span class="text-danger">/</span><span class="text-primary">sys</span>
 
@@ -127,13 +167,17 @@ tmp dizini temporary yani geçici ifadesinden kısaltmasından geliyor. Geçici 
 
 ## <span class="text-danger">/</span><span class="text-primary">srv</span>
 
-***/srv*** dizini, bir Unix/Linux işletim sistemi hiyerarşisinde bulunan bir sistem dizinidir. Bu dizin, sistemdeki servis veya sunuculara özgü verilerin depolandığı bir yerdir.
+***/srv*** dizini "**s**e**rv**ice" yani "servis" ifadesinin kısaltması olarak isimlendirilmmiş bir dizindir. Sistemin sunduğu hizmetlere ait veri ve yapılandırma dosyalarını barındıran. Örneğin dosya paylaşımı için kullanılan FTP hizmeti dosyaları burada tutulabilir. Ya da örneğin Nginx ile bir websitesi sunuyorsanız, dosyaları /srv/www/ dizini altında tutuluyor olabilir. Özetle sunucunun sunduğu hizmetlerin çeşitli dosyalarını barından bir dizindir.
 
 ## <span class="text-danger">/</span><span class="text-primary">run</span>
 
-Sistem başlangıcından itibaren, sistem kaynaklarının nasıl kullanıldığına dair çeşitli bilgileri tutan bir dizindir. 
+Sistem başlangıcından itibaren, sistem kaynaklarının nasıl kullanıldığına dair çeşitli bilgileri tutan bir dizindir. Bu veriler, sistemin o anda çalışan işlemlerinin ihtiyaçlarını karşılamak için gerekli olan türde geçici verilerdir. Örneğin geçici verileri tutmak veya araçlar arasında veri paylaşımını ve yönetimini mümkün kılmak için kullanılan çeşitli bilgiler bu dizin altında tutulur. İsminde de olduğu gibi "**run**ning" yani "çalışma" halindeki bilgiler bulunduğundan, sistem her yeniden başlatıldığında bu veriler de temizlenir. 
 
-Böylelikle temelde haberdar olmamız gereken tüm dizinlerinden kısaca bahsetmiş olduk. Bu sayede artık ihtiyacınız olan dosyaların ve dizinlerin olası konumları hakkında genel bilgi sahibisiniz. Özetleyecek olursak Linux dosya sisteminde tüm dizinler ana dizine bağlıdır. Bu sayede ağaç gibi tek bir noktadan başlayan ve dallanarak genişleyen bir hiyerarşik yapı sağlanabilir. Artık bu bilgiler ışığında bu dizin hiyerarşisi içerisinde nasıl gezinebileceğimizden bahsederek devam edebiliriz.
+Böylelikle temelde haberdar olmamız gereken dizinlerinden kısaca bahsetmiş olduk. Bu sayede artık ihtiyacınız olan dosyaların ve dizinlerin olası konumları hakkında genel bilgi sahibisiniz. Yine de daha detaylı şekilde bilgi almak isterseniz, dosya sistemi hiyeraşisi standartlarının belirlendiği [buradaki](https://refspecs.linuxfoundation.org/fhs.shtml){:target="_blank"} açıklamalara göz atabilirsiniz. 
+
+Özetleyecek olursak Linux dosya sisteminde tüm dizinler ana dizine(***/***) bağlıdır. Yani tıpkı ağaç gibi tek bir noktadan başlayan ve dallanarak genişleyen bir hiyerarşik yapı kurulmuştur. Benimsenmiş olan bu ortak hiyerarşi yapısı sayesinde Linux ekosisteminin çok daha stabil ve sürdürülebilir olması sağlanmıştır. Standart bir dosya sistemi hiyerarşisi olmasaydı, geliştiriciler ve kullanıcıların farklı dağıtımları destekleyip kullanabilmesi çok çok zorlaşırdı. Dolayısıyla özgür yazılım ekosisteminin sunduğu tüm faydalardan tüm dağıtımların ve tüm kullanıcıların faydalanması da pek kolay olmazdı. Neyse ki burada değindiğimiz dizin hiyerarşisi, istisnalar hariç neredeyse tüm dağıtımlarda standart olduğu için dilediğiniz bir dağıtımdaki dizinlerde sorunsuzca gezinebilirsiniz. 
+
+Artık bu bilgiler ışığında bu dizin hiyerarşisi içerisinde nasıl gezinebileceğimizden bahsederek devam edebiliriz.
 
 # `pwd` Komutu
 
