@@ -37,9 +37,9 @@
       "question": "Yalnızca birer tane konsol(terminal) ve kabuk aracı vardır.",
       "options": [
         "Yanlış",
-        "Doğru"
+        ""
       ],
-      "answer": "Doğru"
+      "answer": ""
     },
     {
       "question": "Kabukta dahili-yerleşik(builtin) olan komutları, aynı kabuğu kullandığımız sürece tüm sistemlerde ortak olarak kullanabiliriz.",

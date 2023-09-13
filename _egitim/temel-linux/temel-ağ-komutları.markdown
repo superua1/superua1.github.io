@@ -1470,6 +1470,8 @@ Gördüğünüz gibi Rocky Linux sisteminden, Kali Linux sisteminde bir kabuğa 
 
 Bu yaklaşım genelde, güvenlik testi sırasında sızılan sisteme dışarıdan erişilebileceğini kanıtlamak üzere kullanılıyor.
 
+Benzer şekilde bağlantı kurulmak istenilen ağ ile aramızdaki sorunun hangi taraftan kaynaklandığını tespit etmek için de kullanabiliyoruz. Bunun için bağlanılmak istenilen adreste `nc -l PORT-NUMARASI` komutu ile belirli bir port üzerinden dinleme moduna geçiyoruz. Daha sonra dinleme modundaki hedefe, yine `nc` ile bağlanmaya çalışıyoruz. Eğer bağlanabiliyorsak hedefteki ağa erişmede sorun yoktur. Ama bağlanamıyorsak aramızdaki bağlantı problemlidir. Bu gibi kontroller için `nc` aracı sıklıkla kullanılıyor.
+
 Ayrıca `nc` aracı ile hedef ip adresindeki portları taramamız ya da dosya gönderme gibi işlemler yapmamız da mümkün. Aracın temelde nasıl çalıştığını öğrendiğinize göre kısa bir araştırma ile bu işlemleri nasıl gerçekleştirebileceğinizi de öğrenebilirsiniz. 
 
 # iptables | firewalld Hakkında

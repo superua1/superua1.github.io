@@ -17,13 +17,13 @@ Linux üzerinde araçların kurulumu, güncellenmesi ve silinmesi gibi tüm işl
 
 Paket yönetimi yaklaşımı geliştirilmeden önce yazılımların yüklenebilmesi için kaynak koddan derlenerek kurulmaları gerekiyordu. Peki kaynak koddan kurulum ne denemek ? 
 
-Geliştiriciler yazmış oldukları yazılımların kaynak kodlarını ve elbette bu kaynak kodlarının sisteme kurulmasını sağlayacak olan bazı konfigürasyon betiklerini, kurulum dokümanlarını kullanıcılar ile paylaşıyorlar. Sistemine bu yazılımı kurmak isteyen kişiler de kurulum dokümanlarının da yardımıyla ilgili yazılımın nasıl kurulacağı ve bu yazılımın kurulması için gerekli olan başka yazılımlar olup olmadığını öğreniyorlar. Kurulum işlemi genellikle kaynak kodlarının çalıştırılabilir ikili dosyalara dönüştürülmesi için geliştiricinin sunduğu konfigürasyon betiğinin çalıştırılması ve daha sonra bu dosyaların sistemin uygun konumlarına konumlandırılması işlemidir. Bir yazılımın kaynak koddan ikili dosyalara dönüştürülme ve daha sonra doğru şekilde çalışabilmesi için farklı yazılımlara da ihtiyacı olabilir. Bu durumda ilgili yazılımların da yanı şekilde kaynak koddan derlenerek kurulmaları gerekiyor. Elbette bu yazılımların da bağımlılıkları olabileceği için onların da kurulması gerekiyor. Biraz kompleks bir aracı bu şekilde kurmayı denediğinizi düşünsenize. Eğer çok fazla bağımlılığı yani çalışması için gereken ek yazılım varsa bunları teker teker kaynak koddan kurmak kesinlikle bir kabus olacaktır. 
+Geliştiriciler yazmış oldukları yazılımların kaynak kodlarını ve elbette bu kaynak kodlarının sisteme kurulmasını sağlayacak olan bazı konfigürasyon betiklerini, kurulum dokümanlarını kullanıcılar ile paylaşıyorlar. Sistemine bu yazılımı kurmak isteyen kişiler de kurulum dokümanlarının da yardımıyla ilgili yazılımın nasıl kurulacağı ve bu yazılımın kurulması için gerekli olan başka yazılımlar olup olmadığını öğreniyorlar. Kurulum işlemi genellikle kaynak kodlarının çalıştırılabilir ikili dosyalara dönüştürülmesi için geliştiricinin sunduğu konfigürasyon betiğinin çalıştırılması ve daha sonra bu dosyaların, sistemin uygun dizinlerine konumlandırılması işlemidir. Bir yazılımın kaynak koddan ikili dosyalara dönüştürülme ve daha sonra doğru şekilde çalışabilmesi için farklı yazılımlara da ihtiyacı olabilir. Bu durumda ilgili yazılımların da aynı şekilde kaynak koddan derlenerek kurulmaları gerekiyor. Elbette bu yazılımların da bağımlılıkları olabileceği için onların da kurulması gerekiyor. Biraz kompleks bir aracı bu şekilde kurmayı denediğinizi düşünsenize? Eğer çok fazla bağımlılığı yani çalışması için gereken ek yazılım varsa bunları teker teker kaynak koddan kurmak kesinlikle bir kabus olacaktır. 
 
 Eğer daha önce kaynak koddan kurulum yapmadıysanız yeni başlayan kullanıcılar için pek de kullanışlı olmadığını ileride kaynak koddan kurulumu ele alırken sizler de bizzat görmüş olacaksınız. 
 
 Elbette bu durum geliştiriciler tarafından fark edilmiş ve kaynak koddan derleme yerine herkes için işleri kolaylaştırmak adına paket yaklaşımı geliştirilmiştir.
 
-Paket dediğimiz yapı, ilgili aracın kurulacağı sisteme tam olarak uyumlu şekilde önceden hazırlanmış dosyalarının paket haline getirilip kullanıcılara sunulmasıdır. Bu paket içinde aracın çalıştırılabilir dosyaları, kütüphane dosyaları veya dokümantasyon dosyaları gibi ilgili aracın tüm dosyaları önceden derlenmiş yani hazırlanmış şekilde geliyor. Dolayısıyla bizlerin kaynak koddan derlemeyle uğraşmamız gerekmiyor. Derlenmiş yani çalıştırılabilir hale getirilmiş dosyalar zaten paketin içinde bulunuyor. Tek yapmamız gereken bu paketi temin edip, paketi kurabilecek aracı kullanmaktır. Paketlerin herkes tarafından güvenli şekilde temin edilebilmesi için de bu paketler sunucular üzerinden herkesin erişimine açık şekilde paylaşılıyor. Geliştiricilerin kendi yazılım paketlerini sunduğu kendilerine ait sunucuları olmakla birlikte bir de dağıtımların çeşitli paketleri bir araya toparlayıp tek bir sunucu üzerinden sunduğu “repository” yani “repo” yaklaşımı da bulunuyor. Zaten buradaki “repository” ifadesi "depo" ya da "ambar" anlamına geliyor ve kısaca “repo” olarak ifade ediliyor. Bir çok farklı paket tek bir sunucuda tutulduğu için bu sunucu depo görevi görüyor buna da İngilizce olarak repo deniyor. Örneğin ben kali dağıtımını kullandığım için kali’nin resmi repo adresi üzerinden kali tarafından denetlenip sunucuya eklenmiş olan stabil yazılım paketlerine kolayca ulaşıp bunları indirebilirim. Zaten bir aracın kurulabilmesi için gereken ek bağımlılıklar dağıtım geliştiricileri tarafından bilindiği için bu bağımlılıkların paketleri de mutlaka repoda bulunuyor. Yani bir yazılımın kurulması için gereken tüm ek bileşenler de repolar üzerinde paketler halinde kullanıcılara sunuluyor. Dağıtımların en önemli sorumluluklarından biri de kullanıcılarına yazılımların tüm bağımlılıklarıyla birlikte güvenilir ve güncel paketlerin bulunduğu bir repo sunmaktır. Bu sayede bizler ekstra çaba sarf etmeden istediğimiz yazılımı mevcut sistemimize güvenli şekilde kurabiliyoruz. 
+Paket dediğimiz yapı, ilgili aracın kurulacağı sisteme tam olarak uyumlu şekilde önceden hazırlanmış dosyalarının paket haline getirilip kullanıcılara sunulmasıdır. Bu paket içinde aracın çalıştırılabilir dosyaları, kütüphane dosyaları veya dokümantasyon dosyaları gibi ilgili aracın tüm dosyaları önceden derlenmiş yani hazırlanmış şekilde geliyor. Dolayısıyla bizlerin kaynak koddan derlemeyle uğraşmamız gerekmiyor. Derlenmiş yani çalıştırılabilir hale getirilmiş dosyalar zaten paketin içinde bulunuyor. Tek yapmamız gereken bu paketi temin edip, paketi kurabilecek aracı kullanmaktır. Paketlerin herkes tarafından güvenli şekilde temin edilebilmesi için de bu paketler sunucular üzerinden herkesin erişimine açık şekilde paylaşılıyor. Geliştiricilerin kendi yazılım paketlerini sunduğu kendilerine ait sunucuları olmakla birlikte bir de dağıtımların çeşitli paketleri bir araya toparlayıp tek bir sunucu üzerinden sunduğu “repository” yani “repo” yaklaşımı da bulunuyor. Zaten buradaki “repository” ifadesi "depo" ya da "ambar" anlamına geliyor ve kısaca “repo” olarak ifade ediliyor. Bir çok farklı paket tek bir sunucuda tutulduğu için bu sunucu depo görevi görüyor buna da İngilizce olarak repo deniyor. Örneğin ben Kali dağıtımını kullandığım için kali’nin resmi repo adresi üzerinden Kali tarafından denetlenip sunucuya eklenmiş olan stabil yazılım paketlerine kolayca ulaşıp bunları indirebilirim. Zaten bir aracın kurulabilmesi için gereken ek bağımlılıklar dağıtım geliştiricileri tarafından bilindiği için bu bağımlılıkların paketleri de mutlaka repoda bulunuyor. Yani bir yazılımın kurulması için gereken tüm ek bileşenler de repolar üzerinde paketler halinde kullanıcılara sunuluyor. Dağıtımların en önemli sorumluluklarından biri de kullanıcılarına yazılımların tüm bağımlılıklarıyla birlikte güvenilir ve güncel paketlerin bulunduğu bir repo sunmaktır. Bu sayede bizler ekstra çaba sarf etmeden istediğimiz yazılımı mevcut sistemimize güvenli şekilde kurabiliyoruz. 
 
 Yani uzun lafın kısası, Linux'a yeni bir program yüklemek ilk günlerine oranla şimdilerde inanılmaz derecede kolay. 
 
@@ -45,19 +45,19 @@ Debian dağıtımları için özel olarak hazırlanmış olan paketlerin “***.
 
 ## `apt`
 
-Bir de `apt` isimli bir araç vardır. `apt` aracının ismi de, “**a**dvanced **p**ackage **t**ool” yani “gelişmiş paket aracı” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor. 
+Bir de `apt` isimli bir araç mevcut. `apt` aracının ismi de, “**a**dvanced **p**ackage **t**ool” yani “gelişmiş paket aracı” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor. 
 
-Normalde `dpkg` aracını kullanarak yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan tek bir paketi kurabiliyoruz. Bu paketin daha doğrusu kurduğumuz aracın çalışması için gereken harici paketler `dpkg` aracı tarafından bulunup indirilmiyor. Bunu yapan `apt` aracıdır. Bizler `dpkg` aracını lokal paket yönetimi işlemleri için kullanıyoruz. Yani bu durumda `dpkg` aracını kullanarak kurulum yapacaksak kurduğumuz paketin ihtiyaç duyduğu ek paketleri de tek tek bulup indirmemiz ve onları da `dpkg` aracını kullanarak kurmamız gerekiyor. Bahsetmiş olduğum bu durumu pratik yaparken yani uygulamalar üzerinden çok daha net görmüş olacağız zaten. Her ne kadar `apt` aracı daha kullanışlı olsa da öncelikle `dpkg` aracından bahsedip bu aracın temel kullanımını da öğrenmemiz gerekiyor. 
+Normalde `dpkg` aracını kullanarak yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan tek bir paketi kurabiliyoruz. Bu paketin, daha doğrusu kurduğumuz aracın çalışması için gereken harici paketler `dpkg` tarafından bulunup indirilmiyor. Bunu yapan `apt` aracıdır. Bizler `dpkg` aracını lokal paket yönetimi için kullanıyoruz. Yani bu durumda `dpkg` aracını kullanarak kurulum yapacaksak kurduğumuz paketin ihtiyaç duyduğu ek paketleri de tek tek bulup indirmemiz ve onları da `dpkg` aracını kullanarak kurmamız gerekiyor. Bahsetmiş olduğum bu durumu pratik yaparken yani uygulamalar üzerinden çok daha net görmüş olacağız zaten. Her ne kadar `apt` aracı daha kullanışlı olsa da öncelikle `dpkg` aracından bahsedip bu aracın temel kullanımını da öğrenmemiz gerekiyor. 
 
 # `dpkg` Kullanımı
 
-`dpkg` aracının kullanımını örneklemek için öncelikle kurmak istediğimiz bir yazılımın Debian için uygun paketini edinmemiz gerekiyor. Eğer kurmak istediğimiz Debian dağıtımlarında kullanıma uygun olarak geliştirildiyse zaten geliştiricisi tarafından mutlaka websitesindeki indirme seçeneklerin ***.deb*** uzantılı paket dosyası sunulmuştur. Ben örnek olarak “zoom” aracını kurmak istiyorum. 
+`dpkg` aracının kullanımını örneklemek için öncelikle kurmak istediğimiz bir yazılımın Debian için uygun paketini edinmemiz gerekiyor. Eğer kurmak istediğimiz araç, Debian dağıtımlarında kullanıma uygun olarak geliştirildiyse zaten geliştiricisi tarafından mutlaka websitesindeki indirme seçeneklerin ***.deb*** uzantılı paket dosyası sunulmuştur. Ben örnek olarak “zoom” aracını kurmak istiyorum. 
 
 Aracın Linux için indirme kaynağını kısa bir internet araştırması ile bulabilirsiniz. 
 
 ![zoom-for-linux.webp]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux.webp){:class="responsive img-zoomable"}
 
-Bakın indirmeden önce hangi Linux dağıtımını kullandığımı seçmem gereken bir listeyle karşılaştım. Özellikle farklı ana dağıtımlar farklı paket yönetim sistemi kullandıkları için buradan kullanmakta olduğunuz dağıtıma uygun olan paketi seçmeniz önemli. Görebildiğiniz gibi buradaki seçeneklerde doğrudan Ubuntu, Mint gibi Debian tabanlı olan dağıtımlar da var ancak kali Debian tabanlı olduğu için doğrudan Debian dağıtımını seçmem daha doğru olacaktır. İndirme butonuna basarak da Debian dağıtımlarına uygun olan ***.deb*** uzantılı paketi indirebiliriz. 
+Bakın indirmeden önce hangi Linux dağıtımını kullandığımı seçmem gereken bir listeyle karşılaştım. Özellikle farklı ana dağıtımlar farklı paket yönetim sistemi kullandıkları için buradan kullanmakta olduğunuz dağıtıma uygun olan paketi seçmeniz önemli. Görebildiğiniz gibi buradaki seçeneklerde doğrudan Ubuntu, Mint gibi Debian tabanlı olan dağıtımlar da var ancak Kali, Debian tabanlı olduğu için doğrudan Debian dağıtımını seçmem daha doğru olacaktır. İndirme butonuna basarak da Debian dağıtımlarına uygun olan ***.deb*** uzantılı paketi indirebiliriz. 
 
 ![zoom-for-linux2.webp]({{ site.url }}/egitim/temel-linux/paket/zoom-for-linux2.webp){:class="responsive img-zoomable"}
 
@@ -182,7 +182,7 @@ Errors were encountered while processing:
  apt
 ```
 
-Bakın bana bu paketin silinemeyeceğini çünkü bu paketi kullanan başka araçlar olduğunu yani bu pakete başka araçların bağımlılığı olduğu çıktılarda belirtiliyor. Bu yaklaşım sayesinde, bir paketi kaldırırken başka araçların bozulması önlenmiş oluyor. Yine de araçların bozulması pahasına paketi kaldırmak istiyorsanız `—force-all` yani zorlama seçeneğini kullanarak ilgili paketi kaldırmaya zorlayabilirsiniz. **Ancak ben ne yaptığınızın farkında değilseniz bu seçeneği kullanmanızı kesinlikle ama kesinlikle önermiyorum.** Çünkü araçların bağımlılıklarını bozup çalışmalarına ve dolaylı olarak da sistemin işleyişine engel olabilirsiniz. 
+Bakın bana bu paketin silinemeyeceğini çünkü bu paketi kullanan başka araçlar olduğunu yani bu pakete başka araçların bağımlılığı olduğu çıktılarda belirtiliyor. Bu yaklaşım sayesinde, bir paketi kaldırırken başka araçların bozulması önlenmiş oluyor. Yine de araçların bozulması pahasına paketi kaldırmak istiyorsanız `—force-all` yani zorlama seçeneğini kullanarak ilgili paketi kaldırmaya zorlayabilirsiniz. **Ancak ne yaptığınızın farkında değilseniz bu seçeneği kullanmanızı kesinlikle ama kesinlikle önermiyorum.** Çünkü araçların bağımlılıklarını bozup çalışmalarına ve dolaylı olarak da sistemin işleyişine engel olabilirsiniz. 
 
 ## Kalıntıların Kaldırılması
 
@@ -366,7 +366,7 @@ Eğer yaptığınız değişikliği geri almak isterseniz de yine `dpkg-reconfig
 
 Yani bizzat bu örneğimiz üzerinden teyit ettiğimiz gibi, `dpkg-reconfigure` sayesinde bize sorulan konfigürasyon ayarlarını kolayca tamamlayabiliyoruz. 
 
-Bu noktada dikkatinizi çekmek istediğim asıl nokta tüm konfigürasyonların benim verdiğim örnekteki gibi bir arayüz üzerinden gerçekleşmeyebileceğiz. Yani yalnızca komut satırından yazılı şekilde soru cevap biçiminde de konfigürasyonlara onay vermeniz gerekebilir. Bu konfigürasyon tanımlamaların nasıl düzenleneceği ilgili aracın yapısına bağlıdır. 
+Bu noktada dikkatinizi çekmek istediğim asıl nokta tüm konfigürasyonların benim verdiğim örnekteki gibi bir arayüz üzerinden gerçekleşmeyebileceği. Yani yalnızca komut satırından yazılı şekilde soru cevap biçiminde de konfigürasyonlara onay vermeniz gerekebilir. Bu konfigürasyon tanımlamaların nasıl düzenleneceği ilgili aracın yapısına bağlıdır. 
 
 Yeniden konfigüre etme işlemine pek ihtiyaç duymasak da ihtiyacımız olduğunda böyle bir seçeneğin varlığından haberdar olmamız bizim yararımıza. 
 
@@ -376,7 +376,7 @@ Evet bence temel düzeyde `dpkg` aracı için bu kadarlık bilgi yeterli. Zaten 
 
 `apt` aracı repolarda paket arama ve otomatik bağımlılık çözümleme gibi özellikleri ile paket yönetimini bizler için oldukça kolay hale getiren gelişmiş paket yönetim aracıdır. Zaten `apt` ile `dpkg` arasındaki farkı anlatımın başında kısaca ele almıştık. 
 
-`apt` aracı, mevcut sisteme kurulabilecek araçları tanımlanmış olan repolar üzerinden çekip alır ve yükler. Yani bizlerin gerekli olan tüm paketleri tek tek arayıp indirmemiz gerekmez. Dağıtıma uygun olan tüm paketler ve bağımlılıkları **repo** olarak isimlendirilen paket depolarında tutulur. Bu sayede paketlerin aranıp bulunması ve yüklenmesi hem güvenli hem de tutarlı hale gelir. Repo dediğimiz paket deposunu yalnızca uzak sunucuda bulunan internete açık olan depo olarak da düşünmeyin. Bu depolar internete açık uzak sunucularda barındırılabileceği gibi lokal depolar oluşturmak da mümkündür. Yani örneğin internete bağlı olmayan lokal ağda bir diski “repo” olarak tanımlayıp içine istediğimiz paketleri yerleştirebiliriz. Bu sayede lokal ağdaki tüm cihazların bu diskte bulunan paketleri `apt` aracı üzerinden yüklemesini mümkün olur.
+Mevcut sisteme kurulabilecek araçları `apt`, tanımlanmış olan repolar üzerinden çekip alır ve yükler. Yani bizlerin gerekli olan tüm paketleri tek tek arayıp indirmemiz gerekmez. Dağıtıma uygun olan tüm paketler ve bağımlılıkları **repo** olarak isimlendirilen paket depolarında tutulur. Bu sayede paketlerin aranıp bulunması ve yüklenmesi hem güvenli hem de tutarlı hale gelir. Repo dediğimiz paket deposunu yalnızca uzak sunucuda bulunan internete açık olan depo olarak da düşünmeyin. Bu depolar internete açık uzak sunucularda barındırılabileceği gibi lokal depolar oluşturmak da mümkündür. Yani örneğin internete bağlı olmayan lokal ağda bir diski “repo” olarak tanımlayıp içine istediğimiz paketleri yerleştirebiliriz. Bu sayede lokal ağdaki tüm cihazların bu diskte bulunan paketleri `apt` aracı üzerinden yüklemesi mümkün olur.
 
 Sizlerin de tahmin edebileceği gibi özellikle paketlerin bağımlılıkları da hesaba katıldığında repoların oluşturulması yani sürekli güncel ve güvenilir paketlerin kullanıcılar için barındırılması kesinlikle çok önemli ve meşakkatli bir iştir. Bizler de bu sebeple genellikle kullandığımız dağıtımın resmi repolarını kullanarak güvenli ve güncel paketlere ulaşabiliyoruz. Elbette bazı durumlarda internete açık olmayan ağlarda lokal repolarımızı oluşturmamız veya resmi repolarda bulunmayan paketleri indirmek için alternatif repoları kullanmamız da gerekebiliyor. Neticede `apt` aracını kullanacaksak repolar bizler için olmazsa olmazdır. Repo ifadesi de Türkçe olarak daha önce de söylediğimiz gibi “depo ambar” gibi anlamlara gelen “repository” kelimesinden geliyor.
 
@@ -396,9 +396,9 @@ Tamamdır **apt** ile ilgili bilmemiz gereken temel kavramlardan bahsettiğimize
 
 ## Paket Listesinin Güncellenmesi
 
-apt'nin repolar üzerinden paketleri çekip yüklediğinden bahsettik. `apt` aracının doğru şekilde çalışabilmesi için de kullanılan repoların en güncel durumundan `apt` aracının haberi olması gerekiyor. Zaten mantıken düşündüğünüzde hangi paketlerin en son hangi sürümleri repolara eklendiği ve bu paketlere tam olarak hangi dizinden ulaşabileceğini `apt` aracı bilmezse ilgili paketleri bulup kuramaz. 
+apt'nin repolar üzerinden paketleri çekip yüklediğinden bahsettik. `apt` aracının doğru şekilde çalışabilmesi için de kullanılan repoların en güncel durumundan `apt` aracının haberi olması gerekiyor. Zira hangi paketlerin en son hangi sürümlerinin repolara eklendiği ve bu paketlere tam olarak hangi dizinden ulaşabileceğini `apt` aracı bilmezse ilgili paketleri bulup kuramaz. 
 
-Yani repolar sürekli güncellendiği için paketler kurulmadan evvel paketlerin isimleri ve dizinleri hakkında en güncel repo bilgisinin alınması gerekiyor. Bu işleme de “index güncelleneme” deniyor. Yani ben güncelleme yapıyorum dediğimizde aslında repolardaki en son durum hakkında en yeni bilginin `apt` aracı tarafından öğrenilmesini sağlıyorum. Bir nevi paket listesinin en güncel halini alıyoruz. 
+Yani repolar sürekli güncellendiği için paketler kurulmadan evvel paketlerin isimleri ve dizinleri hakkında en güncel repo bilgisinin alınması gerekiyor. Bu işleme de “index güncelleneme” deniyor. Yani güncelleme yapıyorum dediğimde aslında repolardaki en son durum hakkında en yeni bilginin `apt` aracı tarafından öğrenilmesini sağlıyorum. Bir nevi paket listesinin en güncel halini alıyoruz. 
 
 `apt` aracıyla repolardaki paketlerin en güncel index bilgisini almak için de `sudo apt-get update` komutunu kullanıyoruz. Zaten girdiğimiz komut son derece açık. İşlemi `sudo` komutu ile yetkili şekilde yapıyoruz ve `apt-get` aracının `update` yani “güncelleme” yapması gerektiğini belirtiyoruz aslında. 
 
@@ -413,7 +413,7 @@ Fetched 64.7 MB in 33s (1,973 kB/s)
 Reading package lists... Done
 ```
 
-Bakın burada mevcut dağıtımda varsayılan olarak kullanılan repo adresleri üzerinden güncel index bilgilerinin alındığını görebiliyoruz. Burada belirtilen adresler benim kullanmakta olduğum sistemde tanımlı olan repo adresleridir. Sizlerinki kullandığınız dağıtıma ve sürüme göre değişiklik gösterebilir. 
+Bakın burada mevcut dağıtımda varsayılan olarak kullanılan repo adresleri üzerinden güncel index bilgilerinin alındığını görebiliyoruz. Burada belirtilen adresler benim kullanmakta olduğum sistemde tanımlı olan repo adresleridir. Sizde bulunan repo adrsleri, kullandığınız dağıtıma ve sürüme göre değişiklik gösterebilir. 
 
 Paket listesi güncellendikten sonra, artık repolar üzerinden yeni paketleri alıp sorunsuzca kurulmalarını sağlayabileceğiz. Ben burada `sudo apt-get update` komutunu kullandım ancak bunun yerine yalnızca `sudo apt update` komutunu da kullanabilirdim. 
 
@@ -427,11 +427,11 @@ Reading state information... Done
 1844 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 
-Bakın aynı şekilde güncel repo indexleri `apt` komutu ile de alınmış oldu. Yani `apt update` komutu ile de aynı şekilde güncelleme yapabiliyoruz. Eğer iki komutun çıktılarının farklı olmasına takıldıysanız `apt update` komutundan önce `apt-get update` komutu ile güncelleme yaptığımız için tekrar güncel index bilgisi alınmadı. Kontrol edildi ama daha yeni güncellendiği için alınacak bir index listesi bulunamadı. Yani aslında her iki komutta aynı işi yapıyor. Tamam, her iki komutun da aynı olduğunu kabul ettik. Şimdi bunu bir kenara bırakıp aldığımız çıktılara göz atacak olursak;
+Bakın aynı şekilde güncel repo indexleri `apt` komutu ile de alınmış oldu. Yani `apt update` komutu ile de aynı şekilde güncelleme yapabiliyoruz. Eğer iki komutun çıktılarının farklı olmasına takıldıysanız `apt update` komutundan önce `apt-get update` komutu ile güncelleme yaptığımız için tekrar güncel index bilgisi alınmadı. Kontrol edildi ama daha yeni güncellendiği için alınacak yeni bir index listesi bulunamadı. Yani aslında her iki komutta aynı işi yapıyor. Tamam, her iki komutun da aynı olduğunu kabul ettik. Şimdi bunu bir kenara bırakıp aldığımız çıktılara göz atacak olursak;
 
-Bakın `apt update` komutunun çıktılarında,  güncel index bilgisine dayanarak sistemde yüklü bulunan bazı paketlerin yükseltilebileceği hakkında not da bulunuyor. Sistemimizdeki sürümleri ile repolardaki sürümler uyuşmadığında yani sistemimizdeki sürümler repolardakilerden eski olduğunda bu şekilde yükseltme yapabileceğimize dair çıktılar alıyoruz. Yani bir tek güncelleme yapılmıyor olası yükseltmeler için de bilgilendiriliyoruz. Yükseltme işlemine daha sonra değineceğiz.
+Bakın `apt update` komutunun çıktılarında,  güncel index bilgisine dayanarak sistemde yüklü bulunan bazı paketlerin yükseltilebileceği hakkında not da bulunuyor. Sistemimizdeki sürümleri ile repolardaki sürümler uyuşmadığında yani sistemimizdeki sürümler repolardakilerden eski olduğunda bu şekilde yükseltme yapabileceğimize dair çıktılar alıyoruz. Yani yanlızca güncelleme yapılmıyor, aynı zamanda olası yükseltmeler için de bilgilendiriliyoruz. Yükseltme işlemine daha sonra değineceğiz.
 
-Şimdi öncelikle aradığımız paketleri nasıl bulabileceğimizden bahsedelim. Yalnız unutmayın, araştırmaya geçmeden önce mutlaka repolardaki güncel paket bilgilerinin alınabilmesi için `apt update` ya da `apt-get update` komutu ile repolarınızı güncelleyin. Aksi halde aradığınız pek çok araç repolarda bulunamaz. Yani güncel olmayan bir listede araştırma yapmış olursunuz.
+Şimdi, aradığımız paketleri nasıl bulabileceğimizden bahsedelim. Yalnız unutmayın, araştırmaya geçmeden önce mutlaka repolardaki güncel paket bilgilerinin alınabilmesi için `apt update` ya da `apt-get update` komutu ile repolarınızı güncelleyin. Aksi halde aradığınız pek çok araç repolarda bulunamaz. Yani güncel olmayan bir listede araştırma yapmış olursunuz.
 
 ## Paketlerin Araştırılması | `apt search` | `apt-cache search`
 
@@ -510,15 +510,15 @@ Processing triggers for man-db (2.9.4-4) ...
 Processing triggers for mailcap (3.70+nmu1) ...
 ```
 
-Bakın girmiş olduğumuz komut neticesinde gerekli olan kurulum gerçekleştir. Bu arada eğer istersek `apt install` komutu yerine `apt-get install` komutunu da girebilirdik. Benim tercihim kısa olandan yana.
+Bakın girmiş olduğumuz komut neticesinde gerekli olan kurulum gerçekleşti. Bu arada eğer istersek `apt install` komutu yerine `apt-get install` komutunu da girebilirdik. Benim tercihim kısa olandan yana.
 
 Eğer siz bu kurulum komutundan önce `apt-get update` ya da `apt update` komutu ile repo indexlerini güncellemediyseniz, muhtemelen **leafpad** aracının bulunamadığına dair bir hata almışsınızdır. İşte ben de özellikle bu sebeple sizlere kurulumdan önce mutlaka güncelleme yapmanız gerektiğini belirtmiştim. 
 
-Şimdi `leafpad` komutunu girip kurduğumuzu aracın çalışma durumunu kontrol edelim.
+Şimdi `leafpad` komutunu girip kurduğumuz aracın çalışma durumunu kontrol edelim.
 
 ![leafpad.webp]({{ site.url }}/egitim/temel-linux/paket/leafpad.webp){:class="responsive img-zoomable"}
 
-İşte `apt` aracı ile paketlerin kurulumu bu kadar kolay. 
+Araç sorunsuzca açıldı. İşte `apt` ile, paketlerin kurulumu bu kadar kolay. 
 
 ## Paketlerin Kaldırılması
 
@@ -608,7 +608,7 @@ Package 'leafpad' is not installed, so not removed
 0 upgraded, 0 newly installed, 0 to remove and 1844 not upgraded.
 ```
 
-Bu komutumuzun ardından konfigürasyonların temizlendiğiniz teyit etmek için tekrar `leafpad` komutunu girebiliriz. 
+Bu komutumuzun ardından konfigürasyonların temizlendiğini teyit etmek için tekrar `leafpad` komutunu girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -630,9 +630,11 @@ Kaldırma işlemini de netleştirdiğimize göre şimdi bir diğer önemli konu 
 
 ## Bozuk Bağımlılıkların Düzeltilmesi
 
-Bağımlılık kavramını defalarca dile getirdik. Bir aracın çalışması için çoğunlukla birden fazla ek pakete ihtiyacı vardır. Yani araçların bağımlılıkları vardır. Ve bu bağımlılıklar hatalı işlemler sonucu bozulabilir. Örneğin benim sistemimde vim aracı kurulu. Ve bu aracın çalışabilmesi için de vim-runtime isimli bir pakete ihtiyacı var, yani vim aracının bağımlılığı. 
+Bağımlılık kavramını defalarca dile getirdik. Bir aracın çalışması için çoğunlukla birden fazla ek pakete ihtiyacı vardır. Yani araçların bağımlılıkları vardır. Ve bu bağımlılıklar hatalı işlemler sonucu bozulabilir. 
 
-Dolayısıyla ben `vim` aracıyla birlikte yüklenmiş olan `vim-runtime` paketini yani `vim` aracının bağımlılığı olan bir paketi silersem `vim` aracı düzgün çalışmayabilir. Hatalı işlemeler sonucu sistem üzerindeki araçların bağımlılıklarının olduğu paketleri sildiysek veya zarar verdiysek bu bağımlılık sorunlarını çözülmesi gerekiyor. `apt` aracı da bu durum için bizlere “**f**ix” yani “düzeltme” ifadesinin kısalmasından gelen `f` seçeneğini sunuyor. 
+Hatalı işlemeler sonucu sistem üzerindeki araçların bağımlılıklarının olduğu paketleri sildiysek veya zarar verdiysek bu bağımlılık sorunlarını çözülmesi gerekiyor. `apt` aracı da bu durum için bizlere “**f**ix” yani “düzeltme” ifadesinin kısalmasından gelen `f` seçeneğini sunuyor. 
+
+Örneğin benim sistemimde vim aracı kurulu. Ve bu aracın çalışabilmesi için de vim-runtime isimli bir pakete ihtiyacı var, yani vim aracının bağımlılığı. Dolayısıyla ben `vim` aracıyla birlikte yüklenmiş olan `vim-runtime` paketini yani `vim` aracının bağımlılığı olan bir paketi silersem `vim` aracı düzgün çalışmayabilir. 
 
 Ben örnek olması için `vim` aracının bağımlılığı olan `vim-runtime` paketini silmek istiyorum. Normalde bu paketi silmek için `apt` aracın kullanırsak otomatik olarak `vim` aracının kendisi de silinmek istenecektir. 
 
@@ -649,7 +651,7 @@ After this operation, 41.1 MB disk space will be freed.
 Do you want to continue? [Y/n]
 ```
 
-Bakın “**REMOVED**” yani “**silinecek**” başlığı altında vim aracı da silinecek şekilde işaretlenmiş. Ama ben yalnızca “**vim-runtime**” paketini silmek istiyorum. Eğer `dpkg` aracını kullanırsam bakın bu kez de bu paket başka bir paketin bağımlılığı olduğu için silinmesinin sorun oluşturacağı belirtilerek `dpkg` aracı bu paketi silmeyi reddediyor. 
+Bakın “**will be REMOVED**” yani “**silinecek**” başlığı altında vim aracı da silinecek şekilde işaretlenmiş. Ama ben yalnızca “**vim-runtime**” paketini silmek istiyorum. Eğer `dpkg` aracını kullanırsam bakın bu kez de bu paket başka bir paketin bağımlılığı olduğu için silinmesinin sorun oluşturacağı belirtilerek `dpkg` aracı bu paketi silmeyi reddediyor. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -688,19 +690,23 @@ E1187: Failed to source defaults.vim
 Press ENTER or type command to continue
 ```
 
-Bakın `vim` aracı hata verdi. Bu eğer <kbd>enter</kbd>’a tıklarsam aracım açılacak ancak hangi işlevlerin kaybolduğunu bilemiyorum. 
+Bakın `vim` aracı hata verdi. Yine de çıktıda belirtildiği üzere, eğer <kbd>enter</kbd>’a tıklarsam aracım açılacak ancak hangi işlevlerin kaybolduğunu bilemiyorum. 
 
 ![vim.webp]({{ site.url }}/egitim/temel-linux/paket/vim.webp){:class="responsive img-zoomable"}
 
-**vim-runtime** paketi olmadığı için `vim` aracım eskisi gibi stabil çalışmayacak. <kbd>esc</kbd> tuşuna basıp `:q` komutu ile araçtan çıkıp konsola dönüyorum. Ben bağımlılık sorununu biliyorum. Ancak normalde bizim farkında olmadan bozduğumuz ya da sildiğimiz paketler olabileceği için en ideal yol `apt` aracının **fix** seçeneğini kullanmak. Bunun için aşağıdaki her iki komuttan birini girebiliriz.
+**vim-runtime** paketi olmadığı için `vim` aracım eskisi gibi stabil çalışmayacak. <kbd>esc</kbd> tuşuna basıp `:q` komutu ile araçtan çıkıp konsola dönüyorum. Ben kendim oluşturduğum için tam olarak bağımlılık sorununu biliyorum. Ancak normalde bizim farkında olmadan bozduğumuz ya da sildiğimiz paketler olabileceği için en ideal yol `apt` aracının **fix** seçeneğini kullanmak. Bunun için aşağıdaki her iki komuttan birini girebiliriz.
 
-`sudo apt —fix-broken install`
+```bash
+sudo apt —fix-broken install
+```
 
 ya da
 
-`sudo apt-get install -f` 
+```bash
+sudo apt-get install -f
+```
 
-Her iki komutta, sistemdeki yüklü bulunan paketlerin bağımlılıklarını kontrol edip eksik olanların yüklenmesini sağlayacaktır.
+Her iki komutta, sistemde yüklü bulunan paketlerin bağımlılıklarını kontrol edip eksik olanların yüklenmesini sağlayacaktır.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -749,7 +755,7 @@ Processing triggers for man-db (2.9.4-4) ...
 Processing triggers for kali-menu (2021.4.2) ...
 ```
 
-Evet gerekli paket de kuruldu. Artık bağımlılık sorunun kalmadığınız teyit etmek için tekrar aynı komutu da girebiliriz. 
+Evet gerekli paket de kuruldu. Artık bağımlılık sorunun kalmadığını teyit etmek için tekrar aynı komutu da girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -773,11 +779,11 @@ Bakın herhangi bir bağımlılık sorunu bulunamadı. Ayrıca `vim` komutunu da
 
 Gördüğünüz gibi `vim` aracı herhangi bir hata vermeden anında açıldı. Netice `apt` aracının düzeltme seçeneği sayesinde bağımlılık sorunlarını çözebileceğimizi de öğrenmiş olduk. Eğer bazı araçları kullanırken hata alıyorsanız veya araçlar açılmıyorsa öncelikle burada ele aldığımız şekilde bağımlılık sorunlarının kontrol edilip çözülmesini deneyebilirsiniz. Ayrıca bağımlılık sorunlarını kontrol etmeden evvel tabii ki repodaki güncel paket bilgilerini almak için `sudo apt update` komutunu da girin mutlaka. Özellikle uzun süredir paket kurma veya güncelleme gibi faaliyetler yapmadıysanız repo listeniz eskide kalmış olabilir. Bu da bağımlılık sorunlarının bulunamamasına neden olabilir. 
 
-Bağımlılık sorunlarının çözümünü de ele aldığımıza göre artık sistemimizde yüklü bulunan paketleri nasıl yeni sürümlerine yükseltebileceğimi ele alalım.
+Bağımlılık sorunlarının çözümünü de ele aldığımıza göre artık sistemimizde yüklü bulunan paketleri nasıl yeni sürümlerine yükseltebileceğimizi ele alalım.
 
 ## Paketlerin Güncellenmesi
 
-repo index bilgilerinin nasıl güncelleneceğinden ve nasıl araç kurup kaldırabileceğimizden bahsettik. Şimdi de mevcut araçları nasıl güncel sürümlerine yükseltebileceğimizi ele alalım. Elbette mevcut paketlerin sürümlerini yükseltmek için öncelikle repo indexlerinin güncel olması gerekiyor. Yani yükseltme işleminden önce mutlaka, `sudo apt-get update` ya da `sudo apt update` komutları ile index bilgilerini güncellememiz gerekiyor. Zaten bu repo index bilgisini güncelledikten sonra komut çıktısının sonunda kaç tane aracın yükseltilebilir durumda olduğu da belirtiliyor. 
+Repo index bilgilerinin nasıl güncelleneceğinden ve nasıl araç kurup kaldırabileceğimizden bahsettik. Şimdi de mevcut araçları nasıl güncel sürümlerine yükseltebileceğimizi ele alalım. Elbette mevcut paketlerin sürümlerini yükseltmek için öncelikle repo indexlerinin güncel olması gerekiyor. Yani yükseltme işleminden önce mutlaka, `sudo apt-get update` ya da `sudo apt update` komutları ile index bilgilerini güncellememiz gerekiyor. Zaten bu repo index bilgisini güncelledikten sonra komut çıktısının sonunda kaç tane aracın yükseltilebilir durumda olduğu da belirtiliyor. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -794,7 +800,7 @@ Reading state information... Done
 1844 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ```
 
-Eğer tüm yükseltilebilir olan paketleri güncel sürümlerine yükseltmek istiyorsanız `sudo apt-get upgrade` ya da `sudo apt upgrade` komutlarından birini girmeniz yeterli. Bu sayede sistem üzerindeki yüklü bulunan tüm paketler repolarda bulunan en güncel sürümüne yükseltilir. 
+Eğer tüm yükseltilebilir olan paketleri güncel sürümlerine yükseltmek istiyorsanız `sudo apt-get upgrade` ya da `sudo apt upgrade` komutlarından birini girmeniz yeterli. Bu sayede sistem üzerinde yüklü bulunan tüm paketler repolarda bulunan en güncel sürümüne yükseltilir. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -901,17 +907,17 @@ Unpacking python3-git (3.1.30-1) over (3.1.24-1) ...
 Setting up python3-git (3.1.30-1) ...
 ```
 
-Bakın mevcut sistemde **python3-git** paketi olduğu için yalnızca güncelleme olduğu belirtildi ve bu güncel paket kuruldu. Bu sayede spesifik bir paketi apt install komutu ile güncelleyebileceğimizi görmüş olduk.
+Bakın mevcut sistemde **python3-git** paketi olduğu için yalnızca güncelleme olduğu belirtildi ve bu güncel paket kuruldu. Bu sayede spesifik bir paketi `apt install` komutu ile güncelleyebileceğimizi görmüş olduk.
 
 Burada dikkat etmeniz gereken detay; **`apt`** aracı, mevcut paketin güncel bir sürümünü indirip kurarak güncelleme yapar. Bu, paketin yapılandırma dosyalarına dokunmaz veya önceki yapılandırmaları etkilemez. Bu nedenle, paketin yapılandırması hakkında herhangi bir değişiklik yapmadan sadece güncel bir sürümünü yüklersiniz.
 
-Bununla birlikte, bazı durumlarda güncellenen bir paketin yeni bir sürümü, yapılandırma dosyalarını etkileyebilir. Bu durumda, **`apt`** aracı güncelleme işlemi sırasında size yapılandırma dosyaları hakkında seçenekler sunabilir. Örneğin, mevcut yapılandırmayı korumak veya güncellenmiş yapılandırmayı kullanmak gibi seçenekler sunulabilir. 
+Bununla birlikte, bazı durumlarda güncellenen bir paketin yeni bir sürümü, yapılandırma dosyalarını etkileyebilir. Bu durumda, **`apt`** aracı güncelleme işlemi sırasında size yapılandırma dosyaları hakkında seçenekler sunabilir. Örneğin, mevcut yapılandırmayı korumak veya güncellenmiş yapılandırmayı kullanmak gibi seçenekler sunulabilir. Bu sebeple kurulum işlemi sırasında ve sonrasında size sorulan soruları doğru şekilde okuyup anladığınızdan ve doğru onayı verdiğinizden emin olun mutlaka. 
 
 ### Kapsamlı Güncelleme
 
 Normalde biz `sudo apt upgrade` komutunu kullandığımızda yalnızca sistemde yüklü bulunan paketler repodaki güncel sürümlerine yükseltiliyor. Ancak sistemde yüklü bulunan bir paketin bağımlılıkları arttıysa veya azaldıysa tek başına `upgrade` komutu ile herhangi bir kurma veya kaldırma işlemi yapılmıyor. `dist-upgrade` seçeneği ile güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor. Bu sebeple genellikle bütüncül bir güncelleme için `sudo apt-get update` komutunun ardından `sudo apt-get dist-upgrade` komutu da kullanılır. 
 
-Ayrıca yalnızca `apt` komutunu kullanırken `dist-upgrade` değil `apt full-upgrade` komutunu girmemiz gerekiyor. `dist-upgrade` ve `full-upgrade` sayesinde güncelleme esnasında bağımlılık sorunlarının da ilgili paket için otomatik olarak çözülmesi sağlanıyor. Paketleri güncelleme ile ilgili bilmemiz gerekenler bunlar.
+Ayrıca yalnızca `apt` komutunu kullanırken, `dist-upgrade` değil `apt full-upgrade` komutunu girmemiz gerekiyor. `dist-upgrade` ve `full-upgrade` sayesinde güncelleme esnasında bağımlılık sorunlarının da ilgili paket için otomatik olarak çözülmesi sağlanıyor. Paketleri güncelleme ile ilgili bilmemiz gerekenler bunlar.
 
 
 ```bash
@@ -1018,11 +1024,13 @@ After this operation, 5,034 MB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
 
-Bu çıktılar ile daha önce girmiş olduğumuz `apt upgrade` veya `apt-get upgrade` komutlarının çıktılarını kıyaslayacak olursanız, `dist-upgrade` veya `full-upgrade` komutlarının daha fazla güncelleme istediğini kendiniz de görebilirsiniz.
+Bu çıktılar ile daha önce girmiş olduğumuz `apt upgrade` veya `apt-get upgrade` komutlarının çıktılarını kıyaslayacak olursanız, `dist-upgrade` veya `full-upgrade` komutlarının daha fazla güncelleme istediğini kendiniz de görebilirsiniz. 
+
+<p class="mavi"><strong>ℹ️ Not:</strong> Dağıtım geliştiricileri aksini belirten bir konfigürasyon eklemediği sürece, işletim sisteminin bir üst sürüme yükseltilmesi de  <code class="language-plaintext highlighter-rouge">dist-upgrade</code> veya <code class="language-plaintext highlighter-rouge">full-upgrade</code> komutları sayesinde gerçekleştiriliyor. Yine de tabii ki sürüm yükseltme için öncelikli olarak ilgili dağıtımın size sunduğu yükseltme rehberini kullanmanız en doğrusu. Çünkü gerçekleştirilmesi gereken ek konfigürasyonlar ve atılması gereken farklı adımlar olabilir. </p>
 
 ## Gereksiz Paketlerin Silinmesi
 
-Neticede sorunsuzca istediğimiz paketleri yüklemeyi, yükseltmeyi ve silmeyi öğrendik. Bu harika ancak unutmamız gereken detay, indirilen paketlerin daha sonra tekrar kullanılma ihtimaline karşı diskte depolanıyor olmasıdır. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler “***/var/cache/apt/archives***” dizini altında tutuluyor. `ls` komutu ile listeleyerek kayıtlı tüm paket dosyalarını görebiliyoruz. 
+Neticede sorunsuzca istediğimiz paketleri yüklemeyi, yükseltmeyi ve silmeyi öğrendik. Bu harika ancak, indirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler “***/var/cache/apt/archives***” dizini altında tutuluyor. `ls` komutu ile listeleyerek kayıtlı tüm paket dosyalarını görebiliyoruz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1030,7 +1038,7 @@ Neticede sorunsuzca istediğimiz paketleri yüklemeyi, yükseltmeyi ve silmeyi �
 leafpad_0.8.18.1-5_amd64.deb  lock  partial
 ```
 
-Ben yakın zamanda yalnızca **leafpad** aracını kurduğum için bu aracın paketi var. Ancak daha fazla kurma yapılan bir sistemde bu paket sayısı çok daha fazla olabiliyor. Eğer bu klasördeki paketleri silmezsek zaman için yeni araçların kurulumu ve güncellenmesi ile bu klasörün içeriği diskte gereksiz alan işgaline neden olacaktır. Eğer internetten izole bir ortamda çalışmanız gerekmeyecekse bu paketleri lokal olarak bulundurmanız pek mantıklı değil. Bunları silmek için de yine `apt` aracını kullanabiliriz. Eğer `apt-get clean` ya da `apt clean` komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak. Ben diskte kayıtlı paket dosyalarını silmek üzere komutumu giriyorum. 
+Ben yakın zamanda yalnızca **leafpad** aracını kurduğum için bu aracın paketi var. Ancak daha fazla kurulum gerçekleştirilen bir sistemde bu paket sayısı çok daha fazla olabiliyor. Bu klasördeki paketleri silmezsek zaman için yeni araçların kurulumu ve güncellenmesi ile bu klasörün içeriği diskte gereksiz alan işgaline neden olacaktır. Eğer internetten izole bir ortamda çalışmanız gerekmeyecekse bu paketleri lokal olarak bulundurmanız pek mantıklı değil. Bunları silmek için de yine `apt` aracını kullanabiliriz. Eğer `apt-get clean` ya da `apt clean` komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak. Ben diskte kayıtlı paket dosyalarını silmek üzere komutumu giriyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1041,7 +1049,7 @@ Ben yakın zamanda yalnızca **leafpad** aracını kurduğum için bu aracın pa
 lock  partial
 ```
 
-Bakın artık dizin gereksiz paketlerden temizlenmiş oldu. Sizler de eğer sisteminizi internetten izole olarak kullanmayacaksanız ve bu paketlere lokal olarak tekrar erişmeyi gerektirecek özel bir durumla karşılaşmadıysanız ara sıra bu paketleri temizlemeniz iyi olur.
+Bakın artık dizin gereksiz paketlerden temizlenmiş oldu. Eğer sisteminizi internetten izole olarak kullanmayacaksanız ve bu paketlere lokal olarak tekrar erişmeyi gerektirecek özel bir durumla karşılaşmıyorsanız ara sıra bu paketleri temizlemeniz iyi olur.
 
 ## ***.deb*** Uzantılı Paketleri `apt` ile Kurmak
 
@@ -1103,9 +1111,9 @@ Bakın burada repo bağlantıları bulunuyor. Zaten tıpkı Kali’de olduğu gi
 
 ### Yeni Repo Adresi Eklemek
 
-Tanımlı olan repoları anlamak veya doğru şekilde yeni repo tanımlaması yapabilmek için kullanmakta olduğunuz dağıtımın repolar ile ilgili olan yardım sayfalarına göz atarak daha fazla bilgi alabilirsiniz. Zaten her zaman en güncel ve doğru bilgi için mutlaka kullanmakta olduğunuz dağıtımın yardım sayfalarını takip etmeniz gerekiyor. Özellikle güncel repo bilgilerini almak için öncelikle resmi websitesi üzerindeki kaynaklardan yararlanmalısınız. Çünkü dağıtımların izlediği repo adresleme biçimi ve kategorizasyon türleri değişiklik gösterebilir. Ben burada Kali üzerinden genel işleyişe değiniyorum yalnızca. Örneğin Ubuntu kullanıyorsanız, açın Ubuntu’nun websitesini repolar ile ilgili en güncel bilgiyi sorgulayın.
+Tanımlı olan repoları anlamak veya doğru şekilde yeni repo tanımlaması yapabilmek için kullanmakta olduğunuz dağıtımın repolar ile ilgili olan yardım sayfalarına göz atarak daha fazla bilgi alabilirsiniz. Zaten her zaman en güncel ve doğru bilgi için mutlaka kullanmakta olduğunuz dağıtımın yardım sayfalarını takip etmeniz gerekiyor. Özellikle güncel repo bilgilerini almak için öncelikle resmi websitesi üzerindeki kaynaklardan yararlanmalısınız. Çünkü dağıtımların izlediği repo adresleme biçimi ve kategorizasyon türleri değişiklik gösterebilir. Ben burada Kali üzerinden genel işleyişe değiniyorum yalnızca. Örneğin Ubuntu kullanıyorsanız, Ubuntu’nun repolar ile ilgili resmi sayfalarını okuyarak en güncel bilgiyi ulaşabilirsiniz. Benzer yaklaşımı kulandığınız herhangi bir dağıtım için de aynen takip edebilirsiniz.
 
-Ben örnek olarak “**kali linux repositroy**” yazıp araştırıyorum. 
+Ben örnek olarak “**kali linux repositroy**” yazıp araştırdığımda, aşağıdaki gibi resmi yardım sayfasına ulaşabildim.
 
 ![kali-repo.webp]({{ site.url }}/egitim/temel-linux/paket/kali-repo.webp){:class="responsive img-zoomable"}
 
@@ -1119,23 +1127,23 @@ echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free non-f
 
 Bu rehberi takip edip gerekli repo adresini ***sources.list*** dosyasına ekleyip dosyayı kaydetmeniz yeterli. Daha sonra bu repo adresinin kullanılabilmesi için `sudo apt update` komutu ile paket listesinin güncellenmesini sağlamanız gerek. Repo adresi güncellendikten sonra ilgili adresteki paketlere ulaşabiliyor olacaksınız.
 
-Ayrıca örneğin kullandığınız dağıtımın resmi repolarında sizin kurmak istediğiniz araç bulunmuyorsa, bu aracın sunulduğu repo adresini de benzer şekilde ilgili aracın dokümanı yardımıyla ***source.list*** dosyasına ekleyip kolayca bu repoyu da kullanabilirsiniz.
+Ayrıca örneğin kullandığınız dağıtımın resmi repolarında sizin kurmak istediğiniz araç bulunmuyorsa, bu aracın sunulduğu repo adresini de benzer şekilde ilgili aracın dokümanı yardımıyla ***source.list*** dosyasına ekleyip kolayca bu repoyu da kullanabilirsiniz. Tabii ki güvenliğinden emin olmadığınız herhangi bir repoyu da kesinlikle eklememelisiniz.  
 
 # Grafiksel Arayüzde Paket Yönetimi
 
 Ben komut satırı üzerinden kullandığımız `dpkg` ve `apt` araçlarına odaklandım ancak elbette paket yüklemek için bunlar ile sınırlı değiliz. Kullandığınız dağıtımda mutlaka grafiksel arayüzle paket yönetim imkanı tanıyan araç vardır. Bu konuda birden fazla araç olduğu ve grafiksel arayüzlü oldukları için özellikle değinmemizi gerektirecek bir yanları olduğunu düşünmüyorum. Kullanmakta olduğunuz dağıtımı kurcalayıp market uygulamasını bulabilirsiniz. Ayrıca kısa bir internet araştırması ile de rahatlıkla grafiksel arayüzlü paket yönetim araçları hakkında bilgi edinebilirsiniz.
 
-Biliyorum doğrudan anlatmayıp keşfetme işini sizlere bırakmış olmam pek çok kişinin hoşuna gitmedi ancak grafiksel arayüzleri keşfedemeyeceğiniz zorlukta değil ve ayrıca her zaman size rehberlik edecek birileri olmayacak. Kendi kendinize keşfedip öğrenme yaklaşımına alışmanız çok önemli. Hem kendini kendinize öğrendiğiniz bilgiler çok daha kalıcı olacak. Bu sebeple bahsetmiş olduğum paket yönetimi araçlarını keşfetmeyi merakınızın rehberliğinde sizlere bırakıyorum.
+Biliyorum doğrudan anlatmayıp keşfetme işini sizlere bırakmış olmam pek çok kişinin hoşuna gitmedi ancak grafiksel arayüzler keşfedemeyeceğiniz zorlukta değil ve ayrıca her zaman size rehberlik edecek birileri olmayacak. Kendi kendinize keşfedip öğrenme yaklaşımına alışmanız çok önemli. Hem kendini kendinize öğrendiğiniz bilgiler çok daha kalıcı olacak. Bu sebeple bahsetmiş olduğum paket yönetimi araçlarını keşfetmeyi, merakınızın rehberliğinde sizlere bırakıyorum.
 
 Debian tabanlı dağıtımların paket yönetimini temel olarak ele aldığımıza göre anlatımlara Red Hat tabanlı dağıtımların paket yönetiminden bahsederek devam edebiliriz. 
 
 # Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
 
-Debian tabanlı dağıtımlarda kullandığımız `dpkg` ve `apt` araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla `rpm` ve `yum` araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler ***.deb*** uzantılı iken Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler ***.rpm*** uzantılıdır. ***.rpm*** uzantılı paketleri yönetmek için de `rpm` aracını kullanıyoruz. `rpm` aracı tıpkı `dpkg` aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor. `yum` aracı ise tıpkı `apt` aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor. `yum` aracı da aslında arkaplanda `rpm` aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır. Zaten Debian üzerinden paket yönetimini ele aldığımız için temel kavramları biliyorsunuz. Tek fark burada benzer paket yönetimi işlemleri için farklı komutlar giriyor olmanızdır. Neticede farklı araçları kullanacağımız için gireceğimiz komutlar da doğal olarak farklı olacak.
+Debian tabanlı dağıtımlarda kullandığımız `dpkg` ve `apt` araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla `rpm` ve `yum` araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler ***.deb*** uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler ***.rpm*** uzantılıdır. ***.rpm*** uzantılı paketleri yönetmek için de `rpm` aracını kullanıyoruz. `rpm` aracı tıpkı `dpkg` aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor. `yum` aracı ise tıpkı `apt` aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor. `yum` aracı da aslında arkaplanda `rpm` aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır. Zaten Debian üzerinden paket yönetimini ele aldığımız için temel kavramları biliyorsunuz. Tek fark burada benzer paket yönetimi işlemleri için farklı komutlar giriyor olmanızdır. Neticede farklı araçları kullanacağımız için gireceğimiz komutlar da doğal olarak farklı olacak.
 
 Elbette bu araçları kullanabilmek için öncelikle Red Hat tabanlı bir dağıtıma sahip olmanız gerekiyor. Red Hat tabanlı olduğu sürece dilediğiniz bir dağıtımı kullanabilirsiniz. Ben Rocky Linux dağıtımını kullanıyor olacağım ancak sizler isterseniz Fedora, Alma Linux, CentOS ya da doğrudan Red Hat Linux da kullanabilirsiniz. 
 
-Ben Red Hat tabanlı bir dağıtım üzerinden bu dersleri takip ettiğinizi varsayarak anlatıma devam ediyor olacağım. Anlatımlara **RPM** aracından bahsederek devam edebiliriz.
+Ben Red Hat tabanlı bir dağıtım üzerinden bu dersleri takip ettiğinizi varsayarak anlatıma devam ediyor olacağım.
 
 # RPM
 
@@ -1222,11 +1230,11 @@ wget.x86_64 : A utility for retrieving files using the HTTP or FTP protocols
 perl-HTTP-Tinyish-Wget.noarch : HTTP::Tinyish wget backend
 ```
 
-Bakın repolarda araştırma işleminden önce repo bilgileri güncelleniyor. Bu sayede en güncel paket bilgileri repolardan alınabiliyor. Bu repo bilgilerinin güncellenmesi işlemi belirli aralıklarla biz paket yönetim aracını kullandıkça otomatik olarak gerçekleştiriliyor olacak. Bu sayede hep en güncel repo index bilgisine sahip olabiliyoruz. Repo indexleri güncellendikten sonra gördüğünüz gibi `wget` isminin geçtiği bir paket bulunmuş ve paketin işlevi de kısaca burada yazıyor. Eğer yüklemek istersem bu paketin ismini girmem yeterli. `wget` örneğinde paketin ismi kolay tahmin edilebilirdir ancak her paket için aynı durum geçerli değil. Tüm paketlerin isimleri benzersiz olmak zorunda olduğu için paketlerin repolardaki isimleri farklı biçimlerde olabiliyor. Bu sebeple eğer indirmek istediğiniz paketin tam isminden emin değilseniz `search` seçeneğini kullanarak repolarda araştırma yapmaktan çekinmeyin lütfen. Paket ismini nasıl öğrenebileceğimizden de bahsettiğimize göre paketleri nasıl kurabileceğimizi ele alarak devam edelim.
+Bakın repolarda araştırma işleminden önce repo bilgileri güncelleniyor. Bu sayede en güncel paket bilgileri repolardan alınabiliyor. Bu repo bilgilerinin güncellenmesi işlemi belirli aralıklarla biz paket yönetim aracını kullandıkça otomatik olarak gerçekleştiriliyor olacak. Bu sayede hep en güncel repo index bilgisine sahip olabiliyoruz. Yani `apt` aracında olduğu gibi bizim özellikle index bilgilerini güncellemek için harici bir komut girmemiz gerekmiyor. Repo indexleri güncellendikten sonra gördüğünüz gibi `wget` isminin geçtiği bir paket bulunmuş ve paketin işlevi de kısaca burada yazıyor. Eğer yüklemek istersem bu paketin ismini girmem yeterli. `wget` örneğinde paketin ismi kolay tahmin edilebilirdir ancak her paket için aynı durum geçerli değil. Tüm paketlerin isimleri benzersiz olmak zorunda olduğu için paketlerin repolardaki isimleri farklı biçimlerde olabiliyor. Bu sebeple eğer indirmek istediğiniz paketin tam isminden emin değilseniz `search` seçeneğini kullanarak repolarda araştırma yapmaktan çekinmeyin lütfen. Paket ismini nasıl öğrenebileceğimizden de bahsettiğimize göre paketleri nasıl kurabileceğimizi ele alarak devam edelim.
 
 ## `dnf` ile Paket Kurulumu
 
-Paket kurmak için `dnf install paket-adı` şeklinde komut girebiliyoruz. Ben denemek için wget aracını kurmak üzere `dnf install wget` komutunu giriyorum.
+Paket kurmak için `dnf install paket-adı` şeklinde komut girebiliyoruz. Ben denemek için **wget** aracını kurmak üzere `dnf install wget` komutunu giriyorum.
 
 ```bash
 [taylan@linuxdersleri Downloads]$ sudo dnf install wget
@@ -1247,7 +1255,7 @@ Installed size: 3.1 M
 Is this ok [y/N]: y
 ```
 
-Bakın kurulacak paketin ismi, paket boyutu ve kurulu boyutu gibi çeşitli özellikleri burada belirtiliyor. Eğer kurmak istediğimiz paket buysa “**y**” ile onaylayabiliriz. 
+Bakın kurulacak paketin ismi, paket boyutu ve kurulduğunda kaplayacağı boyut gibi çeşitli özellikleri burada belirtiliyor. Eğer kurmak istediğimiz paket buysa “**y**” ile onaylayabiliriz. 
 
 ```bash
 Downloading Packages:
@@ -1270,7 +1278,7 @@ Installed:
 Complete!
 ```
 
-Bakın `wget` aracı çok küçük olduğu hemen kuruluyor. Kurulum işleminin ardından `wget` komutunu girerek de yüklendiğini teyit edebiliriz. 
+ `wget` aracı çok küçük olduğu için hemen kuruluyor. Kurulum işleminin ardından `wget` komutunu girerek de yüklendiğini teyit edebiliriz. 
 
 ```bash
 [taylan@linuxdersleri Downloads]$ wget
@@ -1282,9 +1290,9 @@ Try `wget --help' for more options.
 
 Yükleme işlemi işte bu kadar kolay. 
 
-Ayrıca yükleme işlemi sırasında benden onay alınmasını istedim ancak istemezsem tıpkı daha önce uyguladığım şekilde komutun sonuna `-y` argümanını eklemem yani `dnf install paket-adı -y` şeklinde girmem yeterli.
+Ayrıca yükleme işlemi sırasında benden onay alınmasını istedim ancak istemezsem tıpkı daha önce uyguladığım şekilde komutun sonuna `-y` argümanını eklemem yani `dnf install paket-adı -y` şeklinde girmem yeterli. Bu sayede gerekli onayı peşinen komutla birlikte vermiş oluyorum. 
 
-Bu sayede gerekli onayı peşinen komutla birlikte vermiş oluyorum. Nasıl paket kurabileceğimizi ele aldık, şimdi de mevcut paketleri nasıl yükseltebileceğimizden bahsedebiliriz. 
+Nasıl paket kurabileceğimizi ele aldık, şimdi de mevcut paketleri nasıl yükseltebileceğimizden bahsedebiliriz. 
 
 ## `dnf` ile Güncelleme
 
@@ -1292,7 +1300,7 @@ Güncelleme yaparken birkaç farklı yaklaşıma sahibiz.
 
 ### Güncellemeleri Kontrol Etmek
 
-Sistemde kurulu paketlerin güncellemelerini kontrol etmek için dnf check-update komutunu girebiliyoruz. 
+Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutunu girebiliyoruz. 
 
 ```bash
 taylan@linuxdersleri Downloads]$ sudo dnf check-update
@@ -1311,7 +1319,7 @@ NetworkManager-bluetooth.x86_64                            1:1.42.2-3.el9_2
 .          
 ```
 
-Gördüğünüz gibi güncellenebilir olanlar listelenmiş oldu. Tüm paketleri kontrol etmek yerine dilersek check-update komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz. 
+Gördüğünüz gibi güncellenebilir olanlar listelenmiş oldu. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz. 
 
 ```bash
 [taylan@linuxdersleri Downloads]$ dnf check-update ModemManager
@@ -1322,7 +1330,7 @@ ModemManager.x86_64                                     1.20.2-1.el9            
 
 ### Güncellemeleri Yüklemek
 
-Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak dnf update komutunu kullanabiliyoruz. 
+Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz. 
 
 ```bash
 [taylan@linuxdersleri Downloads]$ sudo dnf update
@@ -1422,7 +1430,7 @@ Complete!
 bash: wget: command not found...
 ```
 
-Gördüğünüz gibi wget aracı silinmiş oldu. Tekrar yüklemek isterseniz nasıl yapacağınızı biliyorsunuz. 
+Gördüğünüz gibi **wget** aracı silinmiş oldu. Tekrar yüklemek isterseniz nasıl yapacağınızı biliyorsunuz. 
 
 ### Gereksiz Paketlerin Silinmesi
 
@@ -1434,7 +1442,7 @@ Kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi i�
 [taylan@linuxdersleri Downloads]$
 ```
 
-Burada açıkladıklarım temel yaklaşımlar. Bunlar dışında `dnf` aracının ihtiyaç duydukça kısa bir araştırma ile öğrenebileceğiniz pek çok ek seçeneği bulunuyor. Bunları özellikle ele almıyorum çünkü sık kullanılmadıkları için unutulacaklardır. Gerektiğinde manual sayfaları ya da internet araştırması ile kısa sürede kendi kendinize keşfedebilirsiniz. Ben son olarak `dnf` ile `yum` aracı arasındaki fark kısaca değinmek istiyorum.
+Burada açıkladıklarım temel yaklaşımlar. Bunlar dışında `dnf` aracının ihtiyaç duydukça kısa bir araştırma ile öğrenebileceğiniz pek çok ek seçeneği bulunuyor. Bunları özellikle ele almıyorum çünkü sık kullanılmadıkları için unutulacaklardır. Gerektiğinde manual sayfaları ya da internet araştırması ile kısa sürede kendi kendinize keşfedebilirsiniz. Ben son olarak `dnf` ile `yum` aracı arasındaki farka kısaca değinmek istiyorum.
 
 ## `dnf` ile `yum` Arasındaki Fark
 
@@ -1442,7 +1450,7 @@ Burada açıkladıklarım temel yaklaşımlar. Bunlar dışında `dnf` aracını
 
 # Kaynak Koddan Derleyerek Kurulum
 
-Linux sistemlerinde çeşitli araçları yönetme konusunda bizlere kolaylık sunan yeni nesil paket kavramından ve paket yönetiminin temellerinden bahsettik. Paketler, bir aracın ilgili dağıtıma göre önceden derlenip hazırlanması ve paketlenerek kullanıcılara sunulmasıdır. Bu sayede kullanıcılar tekrar kaynak koddan derlemeyle uğraşmadan mevcut sistemlerine uyumlu paketleri indirip kolayca kurabiliyor. Ancak her zaman mevcut sistem için hazırlanmış olan paket dosyası bulunmayabiliyor. Bu durumda bizlerinde ilgili aracın kaynak kodlarını kullanarak aracı mevcut sistemde çalışabilir şekilde derlememiz gerekiyor. Yani kaynak koddan derlemeye çok sık ihtiyaç duymuyoruz ancak ihtiyaç duyduğumuzda ne yapmamız gerektiğini bilmemiz önemli. Zaten kaynak koddan derlenerek kurulan araçlarda, geliştiriciler dokümanlar ve araçlar ile birlikte gelen metin belgelerinde kurulumun nasıl yapılması gerektiğini adım adım açıklıyorlar. Çünkü araçların birbirinden farklı ihtiyaçları ve dolayısıyla uygulanması gereken konfigürasyonları olabilir. Yani benim burada ele alacağım kaynak koddan kurulum ayrıntıları genel anlatımdır. Yine en doğru kurulum adımı için kurulmak istenen aracın yardım sayfalarına ve kurulum açıklamalarına göz atmanız gerekiyor. Hadi şimdi uygulamalı olarak bu durumu gözlemleyelim.
+Şimdiye kadarki anlatımlarımızla, yeni nesil paket kavramından ve paket yönetiminin temellerinden bahsettik. Paketler, bir aracın ilgili dağıtıma göre önceden derlenip hazırlanması ve paketlenerek kullanıcılara sunulmasıdır. Bu sayede kullanıcılar tekrar kaynak koddan derlemeyle uğraşmadan mevcut sistemlerine uyumlu paketleri indirip kolayca kurabiliyor. Ancak her zaman mevcut sistem için hazırlanmış olan paket dosyası bulunmayabiliyor. Bu durumda bizlerin, ilgili aracın kaynak kodlarını kullanarak aracı mevcut sistemde çalışabilir şekilde derlememiz gerekiyor. Yani kaynak koddan derlemeye çok sık ihtiyaç duymuyoruz ancak ihtiyaç duyduğumuzda ne yapmamız gerektiğini bilmemiz önemli. Zaten kaynak koddan derlenerek kurulan araçlarda, geliştiriciler dokümanlar ve araçlar ile birlikte gelen metin belgelerinde kurulumun nasıl yapılması gerektiğini adım adım açıklıyorlar. Çünkü araçların birbirinden farklı ihtiyaçları dolayısıyla, uygulanması gereken çeşitli konfigürasyonları olabilir. Yani benim burada ele alacağım kaynak koddan kurulum ayrıntıları genel anlatımdır. Yine en doğru kurulum adımı için kurulmak istenen aracın yardım sayfalarına ve kurulum açıklamalarına göz atmanız gerekiyor. Hadi şimdi uygulamalı olarak bu durumu gözlemleyelim.
 
 Ben örnek olarak `wget` aracının en güncel sürümünü derleyerek kurmak istiyorum. Aslında `wget` aracı mevcut sistemimde yüklü ancak ben henüz paket depolarında bulunmayan sürümünü kaynak koddan derleyerek yüklemek istiyorum. Öncelikle mevcut `wget` aracının sürümünü kontrol etmek için `wget —version` komutunu kullanabilirim. 
 
@@ -1484,9 +1492,11 @@ Bakın mevcut dağıtım için depolarda daha güncel bir sürüm sunulmamış. 
 
 Ancak kaynak kodları bulma konusunda çok dikkatli olmanız gerekiyor. Benim örneğimde GNU güvenilir kaynak olduğu için sorun yok. Ancak sizin kurmak istediğiniz aracın kaynak kodu geliştiricinin websitesinde ya da Github gibi açık kaynaklı projelerin paylaşıldığı platformlarda olabilir. Eğer kaynak kodu websitesi üzerinden indiriyorsanız bu sitenin geliştiriciye ait olduğuna ya da güvenilir bir kaynak olduğuna emin olmadığınız sürece sakın bu aracı kurmayın. Websitesini doğrulamak için internet üzerinde ek araştırma yapabilir ya da çeşitli forumlar ve yardım sayfalarında bu sitenin ve aracın güvenilir olup olmadığına ve ilgili aracın kaynak kodlarına ulaşmak için hangi adresi kullanmanız gerektiğini sorgulayabilirsiniz.
 
-Yani aslında Github gibi platformlarda açık kaynaklı ve resmi repolarda bulunmayan inanılmaz çeşitlilikte aracın kaynak kodlarına kolayca erişebilirsiniz. Ancak bunların hepsinin iyi niyetli olduğunu sanma hatasına sakın düşmeyin. Açık kaynaklı olmasına rağmen pek çok zararlı yazılım da yer alıyor. Kısacası kaynak koddan kurulum sunduğu esneklik dolayısıyla iyidir hoştur ama riskleri de beraberinde getirir. Emin değilseniz kişisel veya profesyonel amaçla kullandığınız makinenize sakın bu araçları kurmayın. Evet neticede kaynak koda erişim noktasında dikkat etmeniz gerektiğine de vurgu yaptığımıza göre aracın kaynak kodunu indirelim.
+Yani aslında Github gibi platformlarda açık kaynaklı ve resmi repolarda bulunmayan inanılmaz çeşitlilikte aracın kaynak kodlarına kolayca erişebilirsiniz. **Ancak bunların hepsinin iyi niyetli olduğunu yanılgısına sakın düşmeyin.** Açık kaynaklı olmasına rağmen pek çok zararlı yazılım da yer alıyor. Kısacası kaynak koddan kurulum, sunduğu esneklik dolayısıyla iyidir hoştur ama riskleri de beraberinde getirir. Emin değilseniz kişisel veya profesyonel amaçla kullandığınız makinenize sakın bu araçları kurmayın. 
 
-Doğrudan `wget` aracının kaynak kodlarının sürümlere göre ftp sunucusundaki listesin GNU sitesi üzerinden ulaştım. 
+Evet neticede kaynak koda erişim noktasında nerelere dikkat etmeniz gerektiğine de kısaca vurgu yaptığımıza göre aracın kaynak kodunu indirelim.
+
+ `wget` aracının kaynak kodlarının sürümlere göre listelendiği bu FTP sunucusuna, resmi GNU sitesi üzerinden ulaştım. 
 
 ![wget-download.webp]({{ site.url }}/egitim/temel-linux/paket/wget-download.webp){:class="responsive img-zoomable"}
 
@@ -1504,7 +1514,7 @@ wget-1.21.4.tar.gz  zoom_amd64.deb
 └─$ tar -xf wget-1.21.4.tar.gz 
 ```
 
-Şimdi kurulum yapmak için dizine geçiş yapalım. Bir de dosyaları listeleyelim. 
+Şimdi kurulum yapmak için dizine geçiş yapıp, dosyaları listeleyelim. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]
@@ -1518,7 +1528,7 @@ AUTHORS     configure.ac  gnulib_po    m4            Makefile.in  README  util
 build-aux   COPYING       GNUmakefile  MAILING-LIST  msdos        src
 ```
 
-Bakın burada “**README**” ve “**INSTALL**” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Ben genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu doküman ve “***install***” veya “***readme***” gibi dosyalardan öğrenebilirsiniz. Ben kurulum yapacağım için **INSTALL** isimli dosya içeriğini `cat` komutu ile konsola bastırmak istiyorum. 
+Burada “**README**” ve “**INSTALL**” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Ben genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu doküman ve “***install***” veya “***readme***” gibi dosyalardan öğrenebilirsiniz. Ben kurulum yapacağım için **INSTALL** isimli dosya içeriğini `cat` komutu ile konsola bastırmak istiyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads/wget-1.21.4]
@@ -1590,7 +1600,11 @@ The simplest way to compile this package is:
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Çıktılar çok uzun olduğu için buraya kısaltarak ekledim.</p>
 
-Bakın burada araç hakkında çeşitli bilgilerin yanında kaynak dosyalarının nasıl derleneceği de adım adım açıklanmış. Örneğin benim kuracağım araç için kullanmam gereken komutlar bakın burada belirtilmiş. Ben zaten arşiv dosyası olarak indirmiştim ve arşiv dosyasından da çıkarmıştım. Yani şimdi aracı kurmak için buradaki komutları sırasıyla kullanmam yeterli olacak. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan ***configure*** dosyası ve kurulum işlemini kolaylaştıran genellikle install.sh isminde kurulum betiği ile karşılaşırsınız. Örneğin bu araç için ***install.sh*** gibi bir betik yok ama konfigürasyonlar için ***configure*** dosyası var. Ayrıca buradaki ***makefile*** dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanıyor. Şimdi adım adım ilerleyelim. Ancak tekrar belirtiyorum bu adımlar pek çok araç için aşağı yukarı benzer olsa da her zaman birebir aynı olmayacaktır. Çünkü pek çok farklı yazılımın pek çok farklı bağımlılıkları ve yapılandırma ayarları vardır. Ben **wget** aracının kaynak kodlarında belirtilen kurulum adımları üzerinden genel işleyişe değiniyorum sadece. Yani kurulum yaparken sizler mutlaka geliştiricinin sunduğu rehberi takip edin. Nitekim ben de şu an öyle yapıyorum.
+Bakın burada araç hakkında çeşitli bilgilerin yanında kaynak dosyalarının nasıl derleneceği de adım adım açıklanmış. Örneğin benim kuracağım araç için kullanmam gereken komutlar bakın burada belirtilmiş. Ben zaten arşiv dosyası olarak indirmiştim ve arşiv dosyasından da çıkarmıştım. Yani şimdi aracı kurmak için buradaki komutları sırasıyla kullanmam yeterli olacak. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan ***configure*** dosyası ve kurulum işlemini kolaylaştıran genellikle ***install.sh*** isminde kurulum betiği ile karşılaşırsınız. Örneğin bu araç için ***install.sh*** gibi bir betik yok ama konfigürasyonlar için ***configure*** dosyası var. Ayrıca buradaki ***makefile*** dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanıyor. Şimdi adım adım ilerleyelim. 
+
+**Ancak tekrar belirtiyorum bu adımlar pek çok araç için aşağı yukarı benzer olsa da her zaman birebir aynı olmayacaktır. Çünkü pek çok farklı yazılımın pek çok farklı bağımlılıkları ve yapılandırma ayarları vardır.**
+
+Ben **wget** aracının kaynak kodlarında belirtilen kurulum adımları üzerinden genel işleyişe değiniyorum sadece. Yani kurulum yaparken sizler mutlaka geliştiricinin sunduğu rehberi takip edin. Nitekim ben de şu an öyle yapıyorum.
 
 Hatırlamayı da yaptığımıza göre kurulum rehberinde de belirtildiği şekilde `./configure` komutu ile  ***configure*** dosyasının çalıştırılmasını sağlayabiliriz. 
 
@@ -1676,6 +1690,9 @@ Processing triggers for kali-menu (2021.4.2) ...
 Ben hatadaki eksikliği giderdikten sonra `./configure` komutu ile konfigürasyonu tekrar çalıştırıyorum.
 
 Bu kez de “***Package 'gnutls', required by 'virtual:world', not found***” hatasını aldım. Eksikliği gidermek için gerekli paketi de kuruyorum.
+
+<p class="mavi"><strong>ℹ️ Not:</strong> Hataları gidermek için kurmanız gereken paketleri repolarda araştırabilir veya internet üzerinde bu hata ile araştırma yapıp eksiklik hakkında bilgi alabilirsiniz. Sizden önce mutlaka birileri bu konu hakkında soru sorup yanıt almıştır. Tek yapmanız gereken aldığınız hataları biraz araştırmak. Yeterince araştırmış olmanıza rağmen yanıt bulamadığınız durumda, forumlar aracılığı ile soru sorup yardım alabilirsiniz.</p>
+
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads/wget-1.21.4]
@@ -1770,7 +1787,7 @@ configure: Summary of build options:
   Fuzzing build:     no,
 ```
 
-Nihayet konfigürasyon aşaması tamamlandı. Şimdi sıradaki adım olan `make` komutu ile derleme yapmamız gerek.
+Nihayet konfigürasyon aşaması tamamlandı. Şimdi sıradaki adım olan, `make` komutu ile derleme işlemini gerçekleştireceğiz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads/wget-1.21.4]
@@ -1851,10 +1868,10 @@ Buna ek olarak tabii ki indirmiş olduğunuz bu dosyayı da artık silebilirsini
 GNU Wget 1.21.4 built on linux-gnu.
 ```
 
-En nihayetinde derleme işlemini tamamladık. 
+En nihayetinde derleme işlemini tamamlamış olduk. 
 
-Elbette ben bağımlılık sorunları ile boğuşmak istemediğim için çok fazla ek bağımlılığı olmayan `wget` aracının kurulumunu ele aldım. Ancak sizler geliştiricilerin sunduğu kurulum rehberlerinin ışığında bağımlılık sorunlarını da daha önce öğrendiğiniz paket yükleme araçlarının yardımıyla ve internetin yardımıyla çözerek istediğiniz aracı kaynak koddan derleyerek kurabilirsiniz. Önemli olan geliştiricilerin sunduğu adımları dikkatlice takip etmenizdir.
+Elbette ben bağımlılık sorunları ile boğuşmak istemediğim için çok fazla ek bağımlılığı olmayan `wget` aracının kurulumunu ele aldım. Sizler de geliştiricilerin sunduğu kurulum rehberlerinin ya da daha önce öğrendiğiniz paket yükleme araçlarının ve internetin yardımıyla bağımlılık sorunlarını çözerek istediğiniz aracı kaynak koddan derleyerek kurabilirsiniz. Önemli olan geliştiricilerin sunduğu adımları dikkatlice takip etmenizdir.
 
-Zaten depolarda bulunmayan özel sürümler veya bağımsız harici araçlara ihtiyaç duymadığınız sürece, kaynak koddan derlemeye neredeyse hiç ihtiyaç duymayacaksınız. Kaynak koddan derleme işlemini genellikle wifi kartları gibi harici sürücülerin kurulumu noktasında kullanıyoruz. 
+Zaten depolarda bulunmayan özel sürümler veya bağımsız harici araçlara ihtiyaç duymadığınız sürece, kaynak koddan derlemeye neredeyse hiç ihtiyaç duymayacaksınız. Kaynak koddan derleme işlemini genellikle Wi-Fi kartları gibi harici sürücülerin kurulumu noktasında kullanıyoruz. 
 
 Genel olarak kaynak koddan derleme işlemini de öğrendiğimize göre bu bölümü de sonlandırabiliriz. 

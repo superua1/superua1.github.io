@@ -15,7 +15,7 @@
       "answer": "Çalıştırılabilir ikili (binary) dosyaları barındırmak."
     },
     {
-      "question": "Aşağıdakilerden hangisi /sbin ve /bin dizinleri hakkında doğru bir tanımlama sayılabilir?",
+      "question": "Aşağıdakilerden hangisi /sbin ve /bin dizinleri hakkında  bir tanımlama sayılabilir?",
       "options": [
         "Her ikisi de yöneticilere özel olan ikili dosyaları barındırır.",
         "/bin dizini, sistem yöneticileri tarafından kullanılan ve sistem yönetimi ve bakımıyla ilgili önemli programları barındırır.",
@@ -114,12 +114,12 @@
       "answer": "Hayır cd ve CD komutu aynı işlevde değildir."
     },
     {
-      "question": "Mevcut dizinimizdeki içerikleri eskiden yeniye doğru listelemek için hangi komutu kullanabiliriz?",
+      "question": "Mevcut dizinimizdeki içerikleri eskiden yeniye  listelemek için hangi komutu kullanabiliriz?",
       "options": ["ls", "ls -a", "ls -l", "ls -t"],
       "answer": "ls -t"
     },
     {
-      "question": "ls komutunun çıktılarını büyükten küçüğe doğru daha okunaklı boyut bilgileri ile bastırmak için komutumuzu nasıl girebiliriz?",
+      "question": "ls komutunun çıktılarını büyükten küçüğe  daha okunaklı boyut bilgileri ile bastırmak için komutumuzu nasıl girebiliriz?",
       "options": ["ls -Sl", "ls -sa", "ls -sh", "ls -Sh"],
       "answer": "ls -Sh"
     },

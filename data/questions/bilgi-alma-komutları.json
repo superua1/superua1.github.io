@@ -1,0 +1,77 @@
+[
+    {
+      "question": "Haftanın gün isimleriyle birlikte takvim bilgisi almak için hangi komutu kullanabiliriz?",
+      "options": ["date", "ndate", "cal", "ncal DOĞRU"],
+      "answer": "ncal DOĞRU"
+    },
+    {
+      "question": "Mevcut tarihi ve saati öğrenmek için hangi komutu kullanabiliriz?",
+      "options": ["cal", "ncal", "time", "date DOĞRU"],
+      "answer": "date DOĞRU"
+    },
+    {
+      "question": "which komutunun işlevi nedir?",
+      "options": ["komutun türü hakkında bilgi vermek", "dosya ve klasörlerin özniteliklerini bastırmak", "hangi dizinde olduğumuzu bastırmak", "argüman olarak verilen komutun dosya konumunu bastırmak DOĞRU"],
+      "answer": "argüman olarak verilen komutun dosya konumunu bastırmak DOĞRU"
+    },
+    {
+      "question": "Dosyaların tipi hakkında bilgi almak için hangi komutu kullanabiliriz?",
+      "options": ["type", "what", "which", "file DOĞRU"],
+      "answer": "file DOĞRU"
+    },
+    {
+      "question": "Komutların türleri hakkında bilgi almak için hangi komutu kullanabiliriz?",
+      "options": ["type DOĞRU", "file", "which", "what"],
+      "answer": "type DOĞRU"
+    },
+    {
+      "question": "Dosya ve dizinlerin öznitelikleri(metaverileri) hakkında bilgi almak için hangi komutu kullanabiliriz?",
+      "options": ["free", "what", "stat DOĞRU", "file"],
+      "answer": "stat DOĞRU"
+    },
+    {
+      "question": "Bellek kullanımı hakkında bilgi almak için hangi komutu kullanabiliriz?",
+      "options": ["what", "free DOĞRU", "stat", "file"],
+      "answer": "free DOĞRU"
+    },
+    {
+      "question": "lsb_release -a komutu hangi çıktıyı verir?",
+      "options": ["sistemin çalışma süresini", "sistemin donanım bilgisini", "sistemin sürümü gibi bazı standart bilgileri DOĞRU"],
+      "answer": "sistemin sürümü gibi bazı standart bilgileri DOĞRU"
+    },
+    {
+      "question": "hostname, çekirdek sürümü, donanım mimarisi gibi bilgileri öğrenmek için hangi komutu kullanabiliriz?",
+      "options": ["lsb_release -a", "what -a", "vmstat -a", "uname -a DOĞRU"],
+      "answer": "uname -a DOĞRU"
+    },
+    {
+      "question": "Sistemin ne kadar süredir açık olduğunu öğrenmek için hangi komutu kullanabiliriz?",
+      "options": ["when", "uptime DOĞRU", "while", "time"],
+      "answer": "uptime DOĞRU"
+    },
+    {
+      "question": "Kendi ev dizinimizdeki alt dizinler de dahil tüm dosya ve klasörlerin toplam boyutunu öğrenmek için hangi komutu kullanabiliriz?",
+      "options": ["ls -la ~", "total -a ~", "du ~ DOĞRU", "count ~"],
+      "answer": "du ~ DOĞRU"
+    },
+    {
+      "question": "lsusb komutunun işlevi nedir?",
+      "options": ["sisteme bağlı bulunan tüm aygıtları listelemek", "sisteme bağlı bulunan tüm tanımlanamayan aygıtları listelemek", "sisteme bağlı bulunan usb aygıtlarını listelemek", "sistemdeki tüm bozuk aygıt dosyalarını listelemek"],
+      "answer": "sisteme bağlı bulunan usb aygıtlarını listelemek"
+    },
+    {
+      "question": "du aracıyla büyüklük birimi bakımından daha okunaklı çıktılar almak için hangi seçeneği kullanmamız gerekir?",
+      "options": ["-a", "-s", "-S", "-h DOĞRU"],
+      "answer": "-h DOĞRU"
+    },
+    {
+      "question": "du aracıyla tüm dosya ve dizinlerin isimlerini listelemek için hangi seçeneği kullanabiliriz?",
+      "options": ["-a DOĞRU", "-s", "-S", "-h"],
+      "answer": "-a DOĞRU"
+    },
+    {
+      "question": "Dosya ve dizin isimleri yerine yalnızca toplam boyut miktarını öğrenmek yani özet bilgi almak için du aracının hangi seçeneğini kullanabiliriz?",
+      "options": ["-a", "-s DOĞRU", "-S", "-h"],
+      "answer": "-s DOĞRU"
+    }
+  ]

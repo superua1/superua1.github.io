@@ -28,7 +28,7 @@ Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Sistemi yöne
 
 Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için geçici olarak root  yetkileri ile hareket edebilmemizi sağlayan `sudo` komutunu kullanabiliyoruz. `sudo` sayesinde root hesabı aktif değilken veya root aktifse bile root hesabının şifresini bilmeden yönetici ayrıcalıkları ile işlerimizi yürütmemiz mümkün oluyor. Elbette hangi kullanıcıların hangi ayrıcalıklara erişebileceğini belirlemek için yapmamız gereken konfigürasyonlar bulunuyor. Fakat daha net anlaşılabilmesi için henüz bölümün başındayken bu detaylardan bahsetmeyeceğiz. 
 
-Şimdilik `sudo` komutunun kullanıcıya işlemleri yetkili şekilde gerçekleştirebilme imkanı tanıdığını bilmemiz yeterli. Hatta hemen basit bir örnek olarak **root** kullanıcısının ev dizini görüntülemeyi deneyebiliriz. Ben görüntülemek için `ls /root` komutunu giriyorum. 
+Şimdilik `sudo` komutunun kullanıcıya, işlemleri yetkili şekilde gerçekleştirebilme imkanı tanıdığını bilmemiz yeterli. Hatta hemen basit bir örnek olarak **root** kullanıcısının ev dizini görüntülemeyi deneyebiliriz. Ben görüntülemek için `ls /root` komutunu giriyorum. 
 
 ```bash
 [taylan@linuxdersleri ~]$ ls /root/

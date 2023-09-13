@@ -4,7 +4,7 @@ title:  "Ağ Aygıtları"
 modified: 2023-05-20
 author: Taylan Özgür Bildik
 coursetitle: "Temel Ağ Eğitimi"
-excerpt: "Ağ oluşturma ve yönetme konusunda çözümler sunan bazı temel ağ aygıtlarını  tanıyoruz."
+excerpt: "Ağ oluşturma ve yönetme konusunda çözümler sunan bazı temel ağ aygıtlarını tanıyoruz."
 tags: [hub, bridge, switch, router,]
 categories: [temel-network]
 tutorial: 2
@@ -109,7 +109,7 @@ Switch cihazına bağlı olan tüm hostlar aynı ağdadır ve hepsinin benzersiz
 
 ![switch-ip-address.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/switch-ip-address.webp){:class="responsive img-zoomable"}
 
-Ben kısaltma şeklinde verdim fakat network adresi **192.168.1.0** şeklinde. Fakat “0” yerine hostların IP adresi gelebileceği için “X” ile ağ adresini belirttim. Ve tüm hostlar aynı ağda olduğu için network adresi olan **192.168.1** adresinin tekrar tekrar yazmak yerine yalnızca benzersiz host numaralarını yazdım. Yani örneğin ilk bilgisayar **192.168.1.10** ip adresine sahip fakat kısaca “**.10**” ile temsil ediliyor.
+Ben kısaltma şeklinde verdim fakat network adresi **192.168.1.0** şeklinde. Fakat “0” yerine hostların IP adresi gelebileceği için “X” ile ağ adresini belirttim. Ve tüm hostlar aynı ağda olduğu için network adresi olan **192.168.1** adresinin tekrar tekrar yazmak yerine yalnızca benzersiz host numaralarını yazdım. Yani örneğin ilk bilgisayar **192.168.1.10** IP adresine sahip fakat kısaca “**.10**” ile temsil ediliyor.
 
 Bu örnek diyagram tek bir ağdaki hostların switch ile bağlantısını temsil ediyor. Eğer hostları ayrı ağlara bölmek istersek bunun için birden fazla switch kullanabiliyoruz.
 
@@ -129,9 +129,9 @@ Router bu yönlendirme işini, kendi bünyesinde tuttuğu yönlendirme tablosu(r
 
 ![router-with-switchs-ip.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/router-with-switchs-ip.webp){:class="responsive img-zoomable"}
 
-Yukarıdaki diyagramda **192.168.1.X** ağında bağlı cihazlar routerın ip adresini **192.168.1.1** olarak görüyor. 
+Yukarıdaki diyagramda **192.168.1.X** ağında bağlı cihazlar routerın IP adresini **192.168.1.1** olarak görüyor. 
 
-**192.168.2.X** ağına bağlı cihazlar ise aynı routerın ip adresini **192.168.2.254** olarak görüyor. Yani routerlar bağlı bulundukları ağlara dahil olmak üzere bağımsız ip adresleri alabiliyorlar.
+**192.168.2.X** ağına bağlı cihazlar ise aynı routerın IP adresini **192.168.2.254** olarak görüyor. Yani routerlar bağlı bulundukları ağlara dahil olmak üzere bağımsız IP adresleri alabiliyorlar.
 
 Bu sayede ağlara dahil olup ağlar arasında “**getway**” olarak isimlendirilen “geçit” görevi görebiliyorlar. Örneğin **192.168.1.**0 ağındaki **30** numaralı hostun “default getway” adresi aşağıdaki gibidir. 
 
@@ -149,17 +149,21 @@ Modem olarak bildiğiniz cihaz da aslında kendi içinde switch ve router barın
 
 ![LAN-to-WAN-with-router.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/LAN-to-WAN-with-router.webp){:class="responsive img-zoomable"}
 
-Gerçek dünya örneği olması açısından modeminiz yani routerınızın ip adresinin bu ağa bağlı olan hostların default getway adresi olduğunu kendi ağınız üzerinden teyit edebilirsiniz. Bunun için daha önce lokal ip adresinizi öğrenmek üzere konsola girmiş olduğunuz `ifconfig` veya `ip addr` komutlarını tekrar girip çıktılara göz atabilirsiniz.
+Gerçek dünya örneği olması açısından modeminiz yani routerınızın IP adresinin bu ağa bağlı olan hostların default getway adresi olduğunu kendi ağınız üzerinden teyit edebilirsiniz. Bunun için daha önce lokal IP adresinizi öğrenmek üzere konsola girmiş olduğunuz `ifconfig` veya `ip addr` komutlarını tekrar girip çıktılara göz atabilirsiniz.
 
 ![ipconfig.webp]({{ site.url }}/egitim/temel-network/temel-kavramlar/ipconfig.webp){:class="responsive img-zoomable"}
 
-Bakın burada, benim Windows hostum **Default Getway** adresi olarak **192.168.1.1** değerini almış. Eğer bu ip adresini tarayıcıma yazıp onaylayacak olursam, modemimin konfigürasyon penceresi açılacak.
+Bakın burada, benim Windows hostum **Default Getway** adresi olarak **192.168.1.1** değerini almış. Eğer bu IP adresini tarayıcıma yazıp onaylayacak olursam, modemimin konfigürasyon penceresi açılacak.
 
 ![default-getway-login.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/default-getway-login.webp){:class="responsive img-zoomable"}
 
-Bu pencere açıldı çünkü benim bilgisayarımda default getway olarak bu modem(router) kullanılıyor. Yani ben lokal ağımdan geniş ağ olan internete bu geçit(getway) görevi gören modem(router) üzerinden çıkış yapıyorum. Dolayısıyla bu ip adresini girdiğimde modemimi konfigüre edebileceğim pencere açılıyor.
+Bu pencere açıldı çünkü benim bilgisayarımda default getway olarak bu modem(router) kullanılıyor. Yani ben lokal ağımdan geniş ağ olan internete bu geçit(getway) görevi gören modem(router) üzerinden çıkış yapıyorum. Dolayısıyla bu IP adresini girdiğimde modemimi konfigüre edebileceğim pencere açılıyor.
 
-Burada modem, lokal ip adreslerini internet servis sağlayıcısının bana tahsis etmiş olduğu genel(public) ip ile **NAT** sayesinde dönüştürüp benim internet ağına çıkmamı sağlayan bir geçittir(getway). Daha önce lokal ağımıza özel olan ip adreslerinden bahsederken bu durumu ele almıştık hatırlıyorsanız. Şimdi bizzat bu durumu teyit etmiş olduk.
+Burada modem, lokal IP adreslerini internet servis sağlayıcısının bana tahsis etmiş olduğu genel(public) IP ile **NAT**(**N**etwork **A**ddress **T**ranslation) sayesinde dönüştürüp benim internet ağına çıkmamı sağlayan bir geçittir(getway). 
+
+![NAT.webp]({{ site.url }}/egitim/temel-network/ag-aygitlari/NAT.webp){:class="responsive img-zoomable"}
+
+Daha önce lokal ağımıza özel olan IP adreslerinden bahsederken bu durumu ele almıştık hatırlıyorsanız. Şimdi bizzat bu durumu teyit etmiş olduk.
 
 Router sayesinde ağları hiyerarşik bir biçimde birbirine bağlamamız mümkün oluyor. Daha önce örneğini verdiğimiz “bir şirketin alt ağlara bölünmesi” durumu da routerlar sayesinde mümkün oluyor. 
 

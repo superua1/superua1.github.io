@@ -48,7 +48,6 @@ search_omit: true
 
 <div id="archives">
   {% assign filtered_posts = site.posts | where: 'author', page.name %}
-  
   {% if filtered_posts.size == 0 %}
   <p class="text-muted">Henüz paylaşılmamış.</p>
   {% else %}
@@ -64,7 +63,8 @@ search_omit: true
       <li>
         <div>
           {% capture this_day %}{{ post.date | date: "%d" }}{% endcapture %}
-          {% capture this_month %}{{ post.date | date: "%b" }}{% endcapture %}
+        {% capture this_month_abbr %}{{ post.date | date: "%b" }}{% endcapture %}
+        {% assign this_month = site.month_names[this_month_abbr] %}
           <span class="date day">{{ this_day }}</span>
           <span class="date month small text-muted">{{ this_month }}</span>
           <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>

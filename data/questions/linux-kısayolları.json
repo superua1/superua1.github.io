@@ -105,7 +105,7 @@
       "answer": "Ctrl + r"
     },
     {
-      "question": "Takma isim tanımlamak için aşağıdaki komutlardan hangisi doğrudur?",
+      "question": "Takma isim tanımlamak için aşağıdaki komutlardan hangisi dur?",
       "options": [
         "export takma-isim=”komut”",
         "takma-isim=”komut”",

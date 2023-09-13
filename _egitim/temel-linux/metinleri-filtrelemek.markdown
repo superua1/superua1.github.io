@@ -696,7 +696,7 @@ Eğer aradığımız ifadeyle eşleşen verilerin tam olarak hangi satırda oldu
 
 Bakın bu kez yalnızca içerisinde benim aradığım ifadeyi bulunduran dosyaların isimleri bastırılmış oldu. Çok daha derli toplu bir çıktı elde etmiş olduk.
 
-Şimdi ben `grep` aracının diğer özelliklerinden bahsetmek için uzun bir isim listesi kullanmak istiyorum.  Dilerseniz siz de buradan dosyayı indirip, anlatımları bu dosya üzerinden test edebilirsiniz.
+Şimdi ben `grep` aracının diğer özelliklerinden bahsetmek için uzun bir isim listesi kullanmak istiyorum. Dilerseniz siz de [buradan]({{ site.url }}/egitim/temel-linux/metin/isimler.txt) dosyayı indirip, anlatımları bu dosya üzerinden test edebilirsiniz.
 
 [isimler.txt]({{ site.url }}/egitim/temel-linux/metin/isimler.txt)
 
@@ -842,7 +842,7 @@ Biz öncelikle basit Regex’in temel karakterlerini tanıyarak başlayalım.
 `\\` - Özel karakterlerin (örneğin `.` ) özel anlamlarını iptal eder.
 `|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
 
-Ben örnek olması Regex kullanımını `grep` üzerinden çok kısaca ele alıyor olacağım ancak Linux üzerinde Regex’i destekleyen diğer araçlar üzerinde de aynı şekilde Regex kullanabilirsiniz. Bu konu hakkında daha fazla detay almak için “Linux Üzerinde Regex Kullanımı” blog yazısını okuyabilirsiniz. 
+Ben örnek olması Regex kullanımını `grep` üzerinden çok kısaca ele alıyor olacağım ancak Linux üzerinde Regex’i destekleyen diğer araçlar üzerinde de aynı şekilde Regex kullanabilirsiniz. Bu konu hakkında daha fazla detay almak için “[Linux Üzerinde Regex Kullanımı]({{ site.url }}/linux-regex){:target="_blank"} ” blog yazısını okuyabilirsiniz. 
 
 ### Satır Başı: `^`
 
@@ -919,7 +919,7 @@ Bakın tam olarak “a” karakterinde sonra “k” “l” “r” karakterini
 
 Yani gördüğünüz gibi köşeli parantez sayesinde spesifik olarak tek bir karakterin nasıl olması veya olmaması gerektiğini belirtebiliyoruz. Ve tabii ki peş peşe burada olduğu gibi köşeli parantez kullanarak da hangi karakterin ne şekilde olabileceğini de spesifik olarak sınırlayabiliyoruz.
 
-İşte basit regex genişletmeleri bu şekilde. Ben hepsine tek tek değinmek istemiyorum. Daha fazla bilgi almak için mutlaka buradaki blog yazısını baştan sonra okuyup öyle devam edin. Bu sayede Linux üzerinde Regex’i çok daha etkili şekilde kullanabiliyor olacaksınız. 
+İşte basit regex genişletmeleri bu şekilde. Ben hepsine tek tek değinmek istemiyorum. Daha fazla bilgi almak için mutlaka buradaki [blog]({{ site.url }}/linux-regex){:target="_blank"} yazısını baştan sonra okuyup öyle devam edin. Bu sayede Linux üzerinde Regex’i çok daha etkili şekilde kullanabiliyor olacaksınız. 
 
 ## `grep` Üzerinde Genişletilmiş Regex Kullanımı
 
@@ -1758,13 +1758,13 @@ Bakın genişletilmiş regex kuralları için `—regex` kullanırken, **basit r
 └─$
 ```
 
-Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için locate aracını bu karakteri tanımadı. Dolayısıyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor. 
+Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için `locate` aracını bu karakteri tanımadı. Dolayısıyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor. 
 
 Tamamdır en nihayetinde benim `locate` aracı hakkında bahsetmek istediklerim bunlar. Son olarak `locate` ile `find` arasındaki farkı vurgulamak istiyorum.
 
 ## `locate` ve `find` Arasındaki Fark
 
-`find` komutu ile dosyaları özniteliklerine göre filtreleyebildiğiniz için çok daha fazla seçeneğe sahibiz. Zaten `find` komutunu ele alırken dosyaların çeşitli özelliklerine göre nasıl filtreleme yapabileceğimizi ele aldık. `locate` komutu ise yalnızca kendi veritabanındaki dosya isimleri ile eşleşme var mı diye kontrol ettiği için, `find` komutu ile kullanabileceğiniz dosya özelliklerini filtreleme gibi işlevleri e aracında kullanamazsınız. 
+`find` komutu ile dosyaları özniteliklerine göre filtreleyebildiğiniz için çok daha fazla seçeneğe sahibiz. Zaten `find` komutunu ele alırken dosyaların çeşitli özelliklerine göre nasıl filtreleme yapabileceğimizi ele aldık. `locate` komutu ise yalnızca kendi veritabanındaki dosya isimleri ile eşleşme var mı diye kontrol ettiği için, `find` komutu ile kullanabileceğiniz dosya özelliklerini filtreleme gibi işlevleri `locate` aracında kullanamazsınız. 
 
 Yalnızca dosya isimleri üzerinden hızlıca araştırma yapmak istiyorsanız `locate` aracını kullanabilirsiniz. Tabii ki araştırmadan önce `updatedb` komutuyla veritabanını güncellemeyi de unutmamız gerekiyor.
 
@@ -2163,13 +2163,12 @@ Bakın çıktıların “***kaydet***” isimli dosyaya sorunsuzca yönlendirilm
 
 Benim `tr` aracı hakkında bahsetmek istediklerim bu kadar. 
 
-<p class="mavi"><strong>ℹ️ Not:</strong> Temel eğitim kapsamına uygun dahil edilebilmesi için <code class="language-plaintext highlighter-rouge">sed</code> ve <code class="language-plaintext highlighter-rouge">awk</code> araçlarının açıklamaları nihai forma ulaşmamıştır. Yakın bir tarihte bu açıklamalar tamamlanmak üzere düzenlenecektir. Şimdilik bu araçların açıklamalarını atlayabilirsiniz.</p>
 
 # `sed`
 
-`sed` komutu “**s**tream **ed**itor” ifadesinin kısaltmasından gelen metin manipülasyon aracıdır. Daha önce, “her şey bir dosyadadır, her şey bir bayt akışıdır” demiştik. İşte “stream” ifadesindeki “akış-aktarım” ifadesi de bu bayt akışının manipülasyonu dolayısıyla kullanılmış. 
+`sed` komutu “**s**tream **ed**itor” ifadesinin kısaltmasından gelen metin manipülasyon aracıdır. Daha önce, “her şey bir dosyadadır, her şey bir bayt akışıdır” demiştik. İşte “stream” yani “akış-aktarım” ifadesi de bu bayt akışının manipülasyonu dolayısıyla kullanılmış. 
 
-Basit ve genişletilmiş regex kurallarının da yardımıyla `sed` aracı sayesinde, bulma değiştirme, ekleme, ve silme gibi işlemleri yerine getirebiliyor. 
+Basit ve genişletilmiş regex kurallarının da yardımıyla `sed` aracı sayesinde, bulma değiştirme, ekleme, ve silme gibi işlemleri yerine getirebiliyoruz. 
 
 ## Bulup Değiştirme
 
@@ -2279,7 +2278,7 @@ yeni veri ve son veri
 bu ilk satır bu ikinci satır bu da son satır
 ```
 
-### Eşleşme Sağlanan Satıları Silmek
+### Eşleşme Sağlanan Satırları Silmek
 
 Eğer aradığımız ifade ile eşleşme sağlanan satırları silmek istersek `sed ‘/aranan/d’` şeklinde komutumuzu girebiliriz. Ben denemek için “yeni” ifadesinin geçtiği tüm satırları silmek istiyorum.
 
@@ -2349,49 +2348,47 @@ yeni veri ve son veri
 sonrası
 ```
 
-`sed` komutu kesinlikle burada bahsettiklerimle sınırlı değil fakat ilk aşama için temelde bilmemiz gerekenler bu kadar. Eğer biraz araştırma yapacak olursanız `sed` aracının aslında script olarak yazılıp metinsel verileri ihtiyaca göre manipüle edebileceğini de göreceksiniz. Fakat ben bu eğitimde daha fazla detaydan bahsetmeyi planlamıyorum. 
+`sed` komutu kesinlikle burada bahsettiklerimle sınırlı değil fakat ilk aşama için temelde bilmemiz gerekenler bu kadar. Eğer biraz araştırma yapacak olursanız `sed` aracının aslında script olarak yazılıp metinsel verileri ihtiyaca göre manipüle edebileceğini de göreceksiniz. Fakat ben bu eğitimde daha fazla detaydan bahsetmeyi planlamıyorum. Günlük hayatta da daha fazlasına ihtiyacım olmuyor. Olsa bile internet üzerinden ek olarak ihtiyacıma yönelik araştırma yapıp çözümü uyguluyorum. 
 
 # `awk` | `gawk`
 
-`awk` aracının pek çok farklı sürümü bulunuyor. Biz **GNU** `awk` yani `gawk` aracını ele alacağız. Pek çok Linux dağıtımında `gawk` aracı `awk` komutuna sembolik olarak bağlı. Yani biz `awk` komutunu giriyoruz ama `gawk` aracını kullanıyoruz.
-
 `awk` aracıyla metinsel veriler üzerinde çeşitli manipülasyonlar yapmamız mümkün.
+
+`awk` aracının pek çok farklı sürümü bulunuyor. Biz **GNU** `awk` yani `gawk` aracını ele alacağız. Pek çok Linux dağıtımında `gawk` aracı `awk` komutuna sembolik olarak bağlı. Yani biz `awk` komutunu giriyoruz ama `gawk` aracını kullanıyoruz.
 
 `awk` aracında veriler, kayıtlar(records) ve alanlar(fields) olmak üzere iki parçaya ayrılıyorlar. 
 
 ![awk1.webp]({{ site.url }}/egitim/temel-linux/metin/awk1.webp){:class="responsive img-zoomable"}
 
-`awk`, girişin sonuna ulaşılana kadar her seferinde bir kayıt üzerinde çalışır. Kayıtlar(records), kayıt ayırıcı(record separator) adı verilen bir karakterle ayrılır. `RS` değişkeni kullanılarak yeni bir kayıt ayırıcı ayarlanabilir. Varsayılan kayıt ayırıcı, yeni satır karakteridir; bu, metin verilerindeki her satırın bir kayıt olduğu anlamına gelir. Yani awk aracı her seferinde sırasıyla tek bir satır üzerinde çalışır.
+`awk`, girişin sonuna ulaşılana kadar her seferinde bir kayıt üzerinde çalışır. Kayıtlar(records) da, kayıt ayırıcı(**R**ecord **S**eparator) adı verilen özel bir karakter sayesinde birbirinden ayrılıyor. Kayıtları birbirinden ayırmak için kullanılan varsayılan karakter de yeni satıra geçiş karakteridir. Dolayısıyla aslında varsayılan olarak `awk` aracı her bir satırı bir kayıt olarak ele alıyor. Yani `awk` aracı her seferinde sırasıyla tek bir satır üzerinde çalışıyor. Ben kabaca `awk` aracının, verileri nasıl ele aldığını aşağıda temsil etmeye çalıştım.
 
 ![awk1.gif]({{ site.url }}/egitim/temel-linux/metin/awk1.gif){:class="responsive img-zoomable"}
 
-Alanalar(fields) ise boşluk karakteri ile birbirinden ayrılıp, kayıtları(records) oluşturuyor. Her kayıttaki alanlara dolar işareti (`$`) ve ardından 1 ile başlayan alan numarası verilir. İlk alan `$1` ile, ikincisi `$2` ile vb. temsil edilir. Son alana `$NF` özel değişkeni ile de başvurulabilir. Tüm kayda `$0` ile başvurulabilir.
+Alanalar(fields) ise boşluk karakteri ile birbirinden ayrılıp, kayıtları(records) oluşturuyor. Her kayıttaki alanlara da dolar işareti (`$`) ve ardından 1 den başlayan sıralı alan numarası veriliyor. Yani ilk alan `$1` ile, ikincisi `$2` ile vb. temsil ediliyor. En sondaki alana ise doğrudan `$NF` özel değişkeni ile ulaşılabiliyor. Tüm alanlara yani aslında kaydın(ilgili satırın) tamamına da `$0` değişkeni ile ulaşılabiliyor. 
 
-![awk2.webp]({{ site.url }}/egitim/temel-linux/metin/awk2.webp){:class="responsive img-zoomable"}
+![awk-complete-record.webp]({{ site.url }}/egitim/temel-linux/metin/awk-complete-record.webp){:class="responsive img-zoomable"}
+
+Bu detaylar `awk` kullanımı için bilmemiz gereken birkaç temel bilgi sadece. Birazdan uygulama yaptıkça buradaki açıklamalar sizin için çok daha anlamlı hale gelecek.
 
 ## `awk` Programı
 
-awk aslında bir programlama dili gibi işlenecek veriler için çeşitli programlar yazabilmemize olanak tanıyor. Programın yazılabilmesi için de çeşitli komutlar var. 
+`awk` aslında bir programlama dili gibi, işlenecek veriler için çeşitli programlar yazabilmemize olanak tanıyor. Fakat biz çok temel düzeyde birkaç işlevini ele alacağız. Nasıl programlanabileceğini öğrenmek için kısa bir ek araştırma yapmanız yeterli. 
+
+`awk` aracını kullanmak için gireceğimiz komutlar aşağıdaki gibi olacak.
 
 ```bash
 desen {aksiyon}
-desen {aksiyon}
-..
-.
 ```
 
-Eğer “desen” kayıt yani satırla eşleşme sağlarsa “aksiyon” olarak belirtilen görev yerine getiriliyor. Aksiyonlar kıvırcık parantez içinde “ifadeler” ile birlikte belirtiliyor. İfadeler sayesinde aksiyonun ne olması gerektiğini belirtebiliyoruz. Awk üzerinde en yaygın kullanıma sahip olan ifadeler:
+Eğer “desen”, kayıt yani satırla eşleşme sağlarsa “aksiyon” olarak belirtilen görev yerine getirilecek. Aksiyonlar, kıvırcık parantez içinde “özel ifadeler” ile birlikte belirtiliyor. İfadeler sayesinde, aksiyonun ne olması gerektiğini belirtebiliyoruz. Awk üzerinde en yaygın kullanıma sahip olan ifade "***print***" ifadesidir.
 
-`exit`: Tüm programın yürütülmesini durdurur ve çıkar.
+`print`: Kayıtları, alanları, değişkenleri ve özel metni yazdırmamızı sağlar.
 
-`next`: Geçerli kaydın(satırın) işlenmesini durdurur ve giriş verilerinde bir sonraki kayda geçer.
-
-`print`: Kayıtları, alanları, değişkenleri ve özel metni yazdırır.
-
-Ben örnekler için aşağıdaki verilerle çalışıyor olacağım.
+Ben örnekler için aşağıdaki ***veri.txt*** dosyası üzerinde çalışıyor olacağım.
 
 ```bash
-└─$ cat veri
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat > veri.txt
 Ahmet Yaz 33
 hasan mert 19
 aylin uzun 24
@@ -2399,10 +2396,11 @@ aylin uzun 24
 naz 29 sabah
 ```
 
-Ben her bir satırın ilk bölümünü bastırmak istediğim için `awk ‘{ print $1}’ veri` şeklinde komutumu giriyorum.
+Her bir satırın ilk bölümünü bastırmak istediğim için `awk ‘{ print $1}’ veri.txt` şeklinde komutumu giriyorum.
 
 ```bash
-└─$ awk '{print $1}' veri
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $1}' veri.txt
 Ahmet
 hasan
 aylin
@@ -2410,24 +2408,119 @@ aylin
 naz
 ```
 
-Bakın `awk` aracı her bir satırı ayrı ayrı ele aldığı ve `$1` parametresi de ilk alanı temsil ettiği için ilk sütunlardaki tüm verileri `print` ile bastırmış olduk. Burada tek tırnak kullanmamız önemli, çünkü süslü parantezin kabuk tarafından yorumlanmasını istemeyiz. 
+Bakın `awk` aracı her bir satırı ayrı ayrı ele aldığı ve `$1` parametresi de ilk alanı temsil ettiği için ilk sütunlardaki tüm verileri `print` ile bastırmış olduk. Burada tek tırnak kullanmamız önemli, çünkü süslü parantezin kabuk tarafından yorumlanmasını istemiyoruz. 
 
 Örneğin ben son yani 3. sütundakileri filtrelemek istersem `$3` yada sonda olduğu için `$NF` değişkenini kullanabilirim.
 
 ```bash
-└─$ awk '{print $3}' veri                                        
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $3}' veri.txt
 33
 19
 24
 KARA
 sabah
-└─$ awk '{print $NF}' veri                                       
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $NF}' veri.txt
 33
 19
 24
 KARA
 sabah
 ```
+
+## Birden Fazla Sütunu Bastırmak
+
+Dilersek birden fazla sütun üzerinde de çalışabiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $1 $3}' veri.txt
+Ahmet33
+hasan19
+aylin24
+32KARA
+nazsabah
+```
+
+Fakat bu şekilde gördüğünüz gibi sütunlar arasında boşluk bulunmuyor. Eğer boşluk olmasını istiyorsak tırnak içinde bunu özellikle belirtebiliriz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $1 " " $3}' veri                                 
+Ahmet 33
+hasan 19
+aylin 24
+32 KARA
+naz sabah
+```
+
+## Satır(record) Numarası Belirtmek
+
+Eğer spesifik bir satırda işlem yapılmasını istiyorsak bunu "NR"(number record) değişkeni ile özellikle belirtebiliyoruz.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]                                                                                                                              
+└─$ awk 'NR==2 {print $1 " "  $3}' veri.txt                                                                                                                 
+hasan 19
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk 'NR==4 {print $1 " "  $3}' veri.txt                                                                                                                 
+32 KARA
+
+```
+Ayrıca `substr` tanımı ardından hangi karakterden sonrasının alınacağını belirtebiliriz. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print $1 }' veri.txt                                                                                                                
+Ahmet
+hasan
+aylin
+32
+naz
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print substr($1,1) }' veri.txt                                                                                                                    
+Ahmet
+hasan
+aylin
+32
+naz
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print substr($1,2) }' veri.txt                                                                                                                    
+hmet
+asan
+ylin
+2
+az
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '{print substr($1,1,3) }' veri.txt                                                                                                                  
+Ahm
+has
+ayl
+32
+naz
+
+```
+
+
+Ayrıca varsayılan ayırıcı karakteri olan boşluk yerine `-F'ayıcı-karakter'` tanımlaması sayesinde istediğimiz bir karakteri, ayırıcı olarak belirtebiliyoruz. Örneğin ben denemek için iki nokta üst üste karakterini ayırıcı olarak belirtmek üzere `-F':'` tanımlamasını kullanabilirim. Denemek için PATH değişkeninde tanımlı olan 1. ve ikinci dizinleri alt alta yazdırmak istiyorum.
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ echo $PATH 
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/taylan/Desktop/yeni-dizin
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ echo $PATH | awk -F':' '{print $1 "\n" $2}'                                                                                                            
+/usr/local/sbin
+/usr/local/bin
+
+```
+`awk` aracının en temel kullanımı burada ele aldığımız şekilde. Ayrıca daha geniş eşleşmeler için Regex kullanabiliyoruz.
 
 ## Regex Kullanımı
 
@@ -2436,13 +2529,33 @@ awk üzerinde regex kullanmak için regex tanımlarını slash karakterleri aras
 Örneğin ben satır sonunda sayı bulunanları filtreleyip, bu son sütunları bastırmak istiyorum.
 
 ```bash
-└─$ awk '/[0-9]$/{print $NF}' veri                               
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ cat veri.txt 
+Ahmet Yaz 33
+hasan mert 19
+aylin uzun 24
+32 mehmet KARA
+naz 29 sabah
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '/[0-9]$/{print $NF}' veri.txt 
 33
 19
 24
+
 ```
 
-Gördüğünüz gibi `[0-9]$` regex tanımı sonunda sayısal veri bulunan satırlar ile eşleşme sağladı, `{print $NF}` ise bu satırların yalnızca son sütunlarının bastırılmasını sağladı. 
+Gördüğünüz gibi `[0-9]$` regex tanımı sonunda sayısal veri bulunan satırlar ile eşleşme sağladı, `{print $NF}` ise bu satırların yalnızca son sütunlarının bastırılmasını sağladı. Benzer şekilde sonunda sayı bulunan satırların hepsini bastırmak için `$NF` yerine `$0` değişkenini kullanabilirdik. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '/[0-9]$/{print $0}' veri.txt 
+Ahmet Yaz 33
+hasan mert 19
+aylin uzun 24
+
+```
+
 
 ## Regex için Spesifik Bölüm Belirtmek
 
@@ -2467,44 +2580,22 @@ naz 29 sabah
 Eğer spesifik olarak dahil edilmesini istemediğimiz alan varsa bunu tilde işaretinden önce ünlem işareti ekleyerek `!~` belirtebiliriz. Örneğin ben bir önceki örnekte olan 2. alandakilerin regex dahilinde aranmasını, 2. alandakilerin hariç tutularak aranması olarak değiştirmek istiyorum.
 
 ```bash
-└─$ awk '$2 !~ /[0-9]/{print $1}' veri                           
-Ahmet
-hasan
-aylin
-32
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '$2 ~ /[0-9]$/{print $0}' veri.txt 
+naz 29 sabah
 
-└─$ awk '$2 !~ /[0-9]/{print $0}' veri                           
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk '$2 !~ /[0-9]$/{print $0}' veri.txt 
 Ahmet Yaz 33
 hasan mert 19
 aylin uzun 24
 32 mehmet KARA
+
 ```
 
 Gördüğünüz gibi 2. sütununda sayısal veri bulunduran hariç tüm sütunlar regex genişletmesine dahil edilmiş oldu. Yani hariç tutmak istediğimiz alanları tilde işaretinden önce ünlem işareti `!~` ile özellikle belirtebiliyoruz.
 
-## Birden Fazla Sütunu Bastırmak
-
-Dilersek birden fazla sütun üzerinde de çalışabiliriz. 
-
-```bash
-└─$ awk '{print $1 $3}' veri                                  
-Ahmet33
-hasan19
-aylin24
-32KARA
-nazsabah
-```
-
-Fakat bu şekilde gördüğünüz gibi sütunlar arasında boşluk bulunmuyor. Eğer boşluk olmasını istiyorsak tırnak içinde bunu özellikle belirtebiliriz.
-
-```bash
-└─$ awk '{print $1 " " $3}' veri                                 
-Ahmet 33
-hasan 19
-aylin 24
-32 KARA
-naz sabah
-```
+`awk` aracı inanılmaz derecede esnek özellikle sahip olan süper yetenekli bir araç. Fakat şahsen ben ihtiyacım olduğu kadarını hatırlayıp, gerektiğinde ek detaylar için interneti kullandığım için burada temel seviye için daha fazla özellikten bahsetmeyi makul bulmuyorum. Daha fazlası için kısa bir araştırma yapmanız yeterli.
 
 # Konsolda Okunaklı Çıktılar Almak
 
@@ -2776,7 +2867,7 @@ Bakın bu sayede gördüğünüz gibi ***/etc*** dizin içeriğinin sondan 10 sa
 
 ### Verilerin Anlık Takibi `-f`
 
-Bu basit kullanımlar dışında, `tail` aracının `-f` seçeneği sayesinde sürekli güncellenen verilerin takip etmemiz de mümkün oluyor. Bu `-f` seçeneği, özellikle log dosyalarındaki en son değişikliklerin takibi için sıklıkla kullanıyor. 
+Bu basit kullanımlar dışında, `tail` aracının `-f` seçeneği sayesinde sürekli güncellenen verilerin takip etmemiz de mümkün oluyor. Bu `-f` seçeneği, özellikle log dosyalarındaki en son değişikliklerin takibi için sıklıkla kullanıyor. Seçeneğin kısaltması da "**f**ollow" yani "takip etme" ifadesinin kısaltmasından geldiği için işlevinin hatırlanması son derece kolay.
 
 Ben test etmek için iki konsol üzerinden çalışacağım. İlk konsola `cat > yeni.txt` komutu ile yeni bir dosya açıp veri girişi yapmak üzere giriş yapıyorum. İkinci konsola da ***yeni.txt*** dosyasındaki değişikliklerin anlık olarak takip edilmesi için `tail -f yeni.txt` komutunu giriyorum. Bu sayede ben ***yeni.txt*** dosyasına veri ekledikçe bunları `tail -f` komutu sayesinde anlık olarak takip edebiliyor olacağız.
 

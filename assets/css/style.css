@@ -212,11 +212,16 @@ body{
 	background-color:var(--background);	
 }
 .card{
-	border: 1px solid var(--borderground);
+	border: 1px solid var(--borderground)!important;
 	background-color:var(--background);
 	color:var(--font-color);	
 }
-
+.border{
+	border: 1px solid var(--borderground)!important;
+}
+.border-bottom {
+    border-bottom: 1px solid var(--borderground)!important;
+}
 .list-group-item{
 	background-color:var(--foreground);
 	color:var(--font-color);

@@ -60,12 +60,12 @@
       "question": "/etc/bash.bashrc dosyası ~/.bashrc dosyasından daha önce okunur.",
       "options": [
         "Yanlış",
-        "Doğru"
+        ""
       ],
-      "answer": "Doğru"
+      "answer": ""
     },
     {
-      "question": "Tüm alt kabuklara miras bırakılacak yani global olacak yeni bir değişken tanımlamak için aşağıdaki komutlardan hangisi doğru komuttur?",
+      "question": "Tüm alt kabuklara miras bırakılacak yani global olacak yeni bir değişken tanımlamak için aşağıdaki komutlardan hangisi  komuttur?",
       "options": [
         "degisken=degeri",
         "degisken=”değeri”",
@@ -106,9 +106,9 @@
     {
       "question": "Linux üzerinde isminin başında - (kısa çizgi) işareti bulunan dosya ve klasörler gizli statüsünde sayılır.",
       "options": [
-        "Doğru",
+        "",
         "Yanlış"
       ],
-      "answer": "Doğru"
+      "answer": ""
     }
 ]
