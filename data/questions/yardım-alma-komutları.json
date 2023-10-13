@@ -16,8 +16,8 @@
     },
     {
       "question": "Sistem üzerindeki tüm araçların manual sayfaları vardır.",
-      "options": ["", "Yanlış"],
-      "answer": ""
+      "options": ["Doğru", "Yanlış"],
+      "answer": "Yanlış"
     },
     {
       "question": "apropos ve man -k komutlarının işlevleri nedir?",
