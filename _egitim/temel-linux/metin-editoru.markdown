@@ -17,7 +17,7 @@ Konsol üzerinden dosya içeriklerini görüntüleyebileceğimiz ve farklı biç
 
 Grafiksel arayüzde çalışırken kullanabileceğimiz bir çok metin editörü bulunuyor. Zaten hepsinin kullanımı da hemen hemen benzer. Neticede bunlar grafiksel arayüzlü araçlar, yani üzerine ekstra konuşmamızı gerektirecek bir durum yok. Kullanmakta olduğunuz sistemde hangisi varsa, ya da siz özellikle hangisini tercih ediyorsanız onu kullanabilirsiniz.
 
-Bizim asıl ihtiyacımız olan grafiksel arayüzün bulunmadığı komut satırı arayüzündeyken de metinlerimizi görüntüleyip gerektiğinde düzenleyebileceğimiz bir araç. Aslında komut satırı arayüzü için de pek çok alternatif araç bulunuyor ama bizler en yaygın kullanıma sahip iki araçtan bahsedeceğiz. Bu sayede farklı sistemlerde de bu metin editörleri kuvvetle muhtemel yüklü olacağı için işlerinizi aksamadan yerine getirme yetkinliğine sahip olacaksınız. Bu durumu, tıpkı pek çok kabuk içinden bash kabuğunu tercih etmemiz gibi düşünebilirsiniz. Yaygın kullanıma sahip olması ilgili aracı öğrenmek için geçerli bir sebep.
+Bizim asıl ihtiyacımız olan, grafiksel arayüzün bulunmadığı komut satırı arayüzündeyken de metinlerimizi görüntüleyip gerektiğinde düzenleyebileceğimiz bir araç. Aslında komut satırı arayüzü için de pek çok alternatif araç bulunuyor ama bizler en yaygın kullanıma sahip iki araçtan bahsedeceğiz. Bu sayede farklı sistemlerde de bu metin editörleri kuvvetle muhtemel yüklü olacağı için işlerinizi aksamadan yerine getirme yetkinliğine sahip olacaksınız. Bu durumu, tıpkı pek çok kabuk içinden bash kabuğunu tercih etmemiz gibi düşünebilirsiniz. Yaygın kullanıma sahip olması ilgili aracı öğrenmek için geçerli bir sebep.
 
 Anlatımın devamında sırasıyla `nano` ve `vi`-`vim` araçlarının kullanımlarına kısaca değineceğiz. Ama fark ettiyseniz kısaca diyorum, çünkü özellikle `vim` aracının tüm özelliklerinden bahsetmek için ayrıca bir eğitim hazırlamamız gerekir. Ki ben de yalnızca temel düzeyde biliyorum. Yani anlatımlar sırasında çok kısaca temel kullanımlarından ve bilmemiz gerekenlerden bahsedeceğiz.
 
@@ -54,13 +54,13 @@ Bakın bu isimde bir dosya olmadığı için anında yeni bir sayfa `nano` metin
 
 ![nano-shortcuts]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts.webp){:class="responsive img-zoomable"}
 
-Pencere boyutuna göre ekran sığacak kadar olan kısayollar burada gözüküyor olacak. Yani aslında nano aracının tüm kısayolları bunlardan ibaret değil ancak pencere boyutuna göre hatırlama amaçlı bunlar gösteriliyor. Örneğin ben pencereyi biraz daha genişletip tekrar alt çubuğa bakıyorum.
+Pencere boyutuna göre ekran sığacak kadar olan kısayollar burada gözüküyor olacak. Yani aslında nano aracının tüm kısayolları bunlardan ibaret değil ancak pencere boyutuna göre hatırlatma amaçlı bunlar gösteriliyor. Örneğin ben pencereyi biraz daha genişletip tekrar alt çubuğa bakıyorum.
 
 ![ ]({{ site.url }}/egitim/temel-linux/metin-editoru/nano-shortcuts2.webp){:class="responsive img-zoomable"}
 
 Buradaki kısayol açıklamalarına bakarak yani bu alt çubuğa bakarak `nano` metin editöründe yapabileceklerimizi kolayca takip ediyor olacağız.
 
-Hepsini olmasa da en temel kısayollarından bahsederek devam edecek olursak. Buralarda bulunan şapka **^** sembolleri <kbd>Ctrl</kbd> tuşunu temsil ediyor. Kısayolların kullanımı da son derece kolay. Tek yapmanız gereken alt çubuğu okuyup yönergeler göre hareket etmek. Zaten size sorular sorup yapmak istediğiniz işlemler için onay alınacaktır.
+Hepsini olmasa da en temel kısayollarından bahsederek devam edecek olursak. Buralarda bulunan şapka **^** sembolleri <kbd>Ctrl</kbd> tuşunu temsil ediyor. Kısayolların kullanımı da son derece kolay. Tek yapmanız gereken alt çubuğu okuyup yönergeler göre hareket etmek. Zaten size sorular sorulup, yapmak istediğiniz işlemler için onay alınacaktır.
 
 ## Nano Aracını Kapatmak
 
@@ -316,7 +316,7 @@ Silme, kopyalama, kesme ve yapıştırma gibi işlemleri komu modundayken gerçe
 
 Ayrıca silinme sınırını belirtmemiz de mümkün. Örneğin imleçten sonraki 3 satırın silinmesi için <kbd>3dd</kbd> 
 
-İmleçten itibaren 5 kelimenin silinmesi için <kbd>5x</kbd>
+İmleçten itibaren 5 karakterin silinmesi için <kbd>5x</kbd>
 ![vi-5x]({{ site.url }}/egitim/temel-linux/metin-editoru/vi-5x.gif){:class="responsive img-zoomable"}
 
 İmleçten sonraki 2 kelimenin silinmesi için <kbd>2dw</kbd> şeklinde yazabiliriz. 

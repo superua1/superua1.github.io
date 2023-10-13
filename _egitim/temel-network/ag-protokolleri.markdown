@@ -50,7 +50,7 @@ SMTP, e-posta iletiminde kullanılan bir transfer protokolüdür. Kullanım alan
 
 ![SMTP-to-gmail.webp]({{ site.url }}/egitim/temel-network/protokoller/SMTP-to-gmail.webp){:class="responsive img-zoomable"}
 
-Gmail SMTP sunucusu da, iletiyi alıcının e-posta sunucusuna SMTP üzerinden iletilir. 
+Gmail SMTP sunucusu da, iletiyi alıcının e-posta sunucusuna SMTP üzerinden iletir. 
 
 ![gmail-to-outlook.webp]({{ site.url }}/egitim/temel-network/protokoller/gmail-to-outlook.webp){:class="responsive img-zoomable"}
 
@@ -100,7 +100,7 @@ Yalnızca uygun anahtarı bulunan alıcı bu mesajı okuyabilir.
 
 ![HTTPS-read.webp]({{ site.url }}/egitim/temel-network/protokoller/HTTPS-read.webp){:class="responsive img-zoomable"}
 
-Benzer şekilde sunucu da yanıtını yine HTTPS üzerinden şifreli şekilde iletilir. 
+Benzer şekilde sunucu da yanıtını yine HTTPS üzerinden şifreli şekilde iletir. 
 
 ![HTTPS-response.webp]({{ site.url }}/egitim/temel-network/protokoller/HTTPS-response.webp){:class="responsive img-zoomable"}
 

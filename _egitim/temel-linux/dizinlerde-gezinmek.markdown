@@ -173,7 +173,7 @@ Geçmişte bu dizinler kendi başına ana dizin(***/***) altında bulunduğu iç
 
 Sistem başlangıcından itibaren, sistem kaynaklarının nasıl kullanıldığına dair çeşitli bilgileri tutan bir dizindir. Bu veriler, sistemin o anda çalışan işlemlerinin ihtiyaçlarını karşılamak için gerekli olan türde geçici verilerdir. Örneğin geçici verileri tutmak veya araçlar arasında veri paylaşımını ve yönetimini mümkün kılmak için kullanılan çeşitli bilgiler bu dizin altında tutulur. İsminde de olduğu gibi "**run**ning" yani "çalışma" halindeki bilgiler bulunduğundan, sistem her yeniden başlatıldığında bu veriler de temizlenir. 
 
-Böylelikle temelde haberdar olmamız gereken dizinlerinden kısaca bahsetmiş olduk. Bu sayede artık ihtiyacınız olan dosyaların ve dizinlerin olası konumları hakkında genel bilgi sahibisiniz. Yine de daha detaylı şekilde bilgi almak isterseniz, dosya sistemi hiyeraşisi standartlarının belirlendiği [buradaki](https://refspecs.linuxfoundation.org/fhs.shtml){:target="_blank"} açıklamalara göz atabilirsiniz. 
+Böylelikle temelde haberdar olmamız gereken dizinlerinden kısaca bahsetmiş olduk. Bu sayede artık ihtiyacınız olan dosyaların ve dizinlerin olası konumları hakkında genel bilgi sahibisiniz. Yine de daha detaylı şekilde bilgi almak isterseniz, dosya sistemi hiyerarşi standartlarının belirlendiği [buradaki](https://refspecs.linuxfoundation.org/fhs.shtml){:target="_blank"} açıklamalara göz atabilirsiniz. 
 
 Özetleyecek olursak Linux dosya sisteminde tüm dizinler ana dizine(***/***) bağlıdır. Yani tıpkı ağaç gibi tek bir noktadan başlayan ve dallanarak genişleyen bir hiyerarşik yapı kurulmuştur. Benimsenmiş olan bu ortak hiyerarşi yapısı sayesinde Linux ekosisteminin çok daha stabil ve sürdürülebilir olması sağlanmıştır. Standart bir dosya sistemi hiyerarşisi olmasaydı, geliştiriciler ve kullanıcıların farklı dağıtımları destekleyip kullanabilmesi çok çok zorlaşırdı. Dolayısıyla özgür yazılım ekosisteminin sunduğu tüm faydalardan tüm dağıtımların ve tüm kullanıcıların faydalanması da pek kolay olmazdı. Neyse ki burada değindiğimiz dizin hiyerarşisi, istisnalar hariç neredeyse tüm dağıtımlarda standart olduğu için dilediğiniz bir dağıtımdaki dizinlerde sorunsuzca gezinebilirsiniz. 
 
@@ -517,7 +517,7 @@ Gitmek istediğim dizinin birazını yazıp örneğin **De** yazıp tekrar <kbd>
 
 ![14.gif]({{ site.url }}/egitim/temel-linux/dizin/14.gif){:class="responsive img-zoomable"}
 
-Benzer şekilde örneğin `cd /` yazıp iki kez <kbd>tab</kbd> tuşuna basrsak ana dizin altında bulunan gidilebilecek olası tüm dizinler yani klasörler listelenecektir. 
+Benzer şekilde örneğin `cd /` yazıp iki kez <kbd>tab</kbd> tuşuna basarsak ana dizin altında bulunan gidilebilecek olası tüm dizinler yani klasörler listelenecektir. 
 
 ![15.gif]({{ site.url }}/egitim/temel-linux/dizin/15.gif){:class="responsive img-zoomable"}
 
@@ -606,7 +606,7 @@ Anlatımın başında ele aldığımız hiyerarşik dosya sistemine tekrar bakac
 
 ![17.webp]({{ site.url }}/egitim/temel-linux/dizin/17.webp){:class="responsive img-zoomable"}
 
-Yani örneğin ***home*** dizini içindeyken bir üst dizine dönmek için `cd ..` şeklinde komutumuzu kullandığımızda kök dizine dönmüş oluyoruz. Bunun dışında ***home*** dizini içinde bulunan herhangi bir klasöre yani alt klasöre geçiş için de ilgili klasörün ismini girmemiz yeterli oluyor. Örneğin `cd ali` ******komutu ile alttaki ***ali*** klasörüne kolayca geçiş yapabiliyoruz. İşte buradaki durum göreli yola örnek. Home dizininde yer alan birine göre ***ali*** klasörü bir alttaki dizindir dolayısıyla yalnızca `cd ali` komutu ile bu dizine geçiş yapılabilir. Ya da benzeri şekilde ***ali*** dizini içinde olan birisi için `cd ..` komutu bir üst dizini yani ***home*** dizinini temsil ediyorken, ***home*** dizinindeki birisi `cd ..` komutunu girdiğimde bir üstündeki kök dizini temsil etmiş oluyor. 
+Yani örneğin ***home*** dizini içindeyken bir üst dizine dönmek için `cd ..` şeklinde komutumuzu kullandığımızda kök dizine dönmüş oluyoruz. Bunun dışında ***home*** dizini içinde bulunan herhangi bir klasöre yani alt klasöre geçiş için de ilgili klasörün ismini girmemiz yeterli oluyor. Örneğin `cd ali` komutu ile alttaki ***ali*** klasörüne kolayca geçiş yapabiliyoruz. İşte buradaki durum göreli yola örnek. Home dizininde yer alan birine göre ***ali*** klasörü bir alttaki dizindir dolayısıyla yalnızca `cd ali` komutu ile bu dizine geçiş yapılabilir. Ya da benzeri şekilde ***ali*** dizini içinde olan birisi için `cd ..` komutu bir üst dizini yani ***home*** dizinini temsil ediyorken, ***home*** dizinindeki birisi `cd ..` komutunu girdiğimde bir üstündeki kök dizini temsil etmiş oluyor. 
 
 ![18.webp]({{ site.url }}/egitim/temel-linux/dizin/18.webp){:class="responsive img-zoomable"}
 
@@ -742,7 +742,7 @@ Ancak gördüğünüz gibi çift tırnak işe yaramadı. Çünkü kabuk, çift t
 
 Bakın klasöre sorunsuzca geçiş yapabildik. Çünkü tek tırnak işareti sayesinde kabuk, dolar işaretinin özel anlamını görmezden gelerek dolar işaretini yalnızca klasörün isminde geçen standart bir karakter olarak gördü. Dolayısıyla kabuk buradaki argümana herhangi bir müdahalede bulunmadan olduğu gibi `cd` komutuna aktardı. `cd` aracı da aldığı argüman doğrultusunda bu dizine geçiş yapabilmemizi sağladı.
 
-Bizzat birkaç kez teyit ettiğimiz gibi tek tırnak işareti bizim sorumuzu gayet iyi çözüyor ancak belki tek tırnak kullanımı size o kadar da konforlu gelmemiş olabilir. Bu durumda tüm ifadeyi tırnak içinde yazmak yerine kabuk için özel olan herhangi bir karakterin kabuk tarafından görmezden gelinmesi için ilgili özel karakterden hemen önce ters slash ***\*** işaretini de kullanabiliriz. Ters slash işareti, bash için **kaçış karakteri** anlamına geliyor ve dolayısıyla bash kabuğu bu karakteri gördüğünde bu karakterden sonraki karakterin özel anlamını görmezden geliyor. Yani örneğin ben `cd ~/yeni\ klasor` şeklinde komutumu girersem, kabuk ters slash işaretinden sonraki boşluk karakterini görmezden geliyor. 
+Bizzat birkaç kez teyit ettiğimiz gibi tek tırnak işareti bizim sorumuzu gayet iyi çözüyor ancak belki tek tırnak kullanımı size o kadar da konforlu gelmemiş olabilir. Bu durumda tüm ifadeyi tırnak içinde yazmak yerine kabuk için özel olan herhangi bir karakterin kabuk tarafından görmezden gelinmesi için ilgili özel karakterden hemen önce ters slash `\` işaretini de kullanabiliriz. Ters slash işareti, bash için **kaçış karakteri** anlamına geliyor ve dolayısıyla bash kabuğu bu karakteri gördüğünde bu karakterden sonraki karakterin özel anlamını görmezden geliyor. Yani örneğin ben `cd ~/yeni\ klasor` şeklinde komutumu girersem, kabuk ters slash işaretinden sonraki boşluk karakterini görmezden geliyor. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/yeni klasor/ben$klasor]
@@ -808,7 +808,7 @@ Hazır kabuk üzerindeki karakterlerden bahsetmişken dikkat etmemiz gereken bir
 
 Bakın küçük büyük harfleri farklı ama birebir aynı isimli birden fazla klasörü oluşturabildik. Çünkü Linux için küçük büyük harfleri dolayısıyla her biri ayrı bir klasör.  
 
-Aynı işlemi windows sisteminde de deneyebiliriz. 
+Aynı işlemi Windows sisteminde de deneyebiliriz. 
 
 ![21.gif]({{ site.url }}/egitim/temel-linux/dizin/21.gif){:class="responsive img-zoomable"}
 
@@ -1040,7 +1040,7 @@ Görebildiğiniz gibi gizli dosya ve klasörlerin yer aldığı ayrıntılı lis
 
 Aldığımız çıktılardaki büyüklük birimlerini daha okunaklı şekilde elde etmek için “**h**uman readable" yani "insan tarafından okunabilir" ifadesinin kısaltmasından gelen `h` seçeneğini kullanabiliyoruz.
 
-Bunun için öncelikle normalde aldığımız büyüklük cinsini görmek için ls -l şeklinde komutumuzu girelim. 
+Bunun için öncelikle normalde aldığımız büyüklük cinsini görmek için `ls -l` şeklinde komutumuzu girelim. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1096,7 +1096,7 @@ Aldığımız çıktılara bakacak olursak, daha doğrusu çıktıları kıyasla
 
 Eğer çıktıları büyükten küçüğe olacak şekilde boyutlarına göre sıralamak istersek, büyük `S` seçeneğini kullanabiliyoruz. Bu “S” seçeneği muhtemelen tahmin ettiğiniz gibi İngilizce "**S**ize" yani "boyut" ifadesinin kısaltmasından geliyor. Büyük `S` kullanıldığında tıpkı karakterindeki büyüklük gibi **büyükten küçüğe** doğru olacak şekilde listenin sıralanmasını sağlamış oluyoruz. 
 
-Daha net görülebilmesi için /boot dizini üzerinde çalışabiliriz. Buradaki dosyaları ls -l ile listeleyelim. 
+Daha net görülebilmesi için ***/boot*** dizini üzerinde çalışabiliriz. Buradaki dosyaları `ls -l` ile listeleyelim. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]

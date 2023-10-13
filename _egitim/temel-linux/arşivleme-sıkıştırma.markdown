@@ -12,11 +12,11 @@ toc: true
 ---
 
 
-Bu bölümde dosya arşivleme, sıkıştırma ve sıkıştırılmış olan dosya arşivlerini açma gibi işlemleri ele alacağız. Zaten bu kavramlar sizlere yabancı gelmemeli zira daha önce hangi işletim sistemini kullanmış olursanız olun öyle ya da böyle mutlaka arşiv dosyaları karşınıza çıkmıştır. Genellikle yüksek boyutlu dosyaların sıkıştırılmasında veya veri kaybı olmadan güvenli transfer yapabilmek için ve bunlar gibi pek çok avantaj dolayasıyla arşiv dosyaları ile sıklıkla karşılaşıyoruz, karşılaşmaya da devam edeceğiz. Bu sebeple biz de bu bölüm içerisinde öncelikle dosyaları nasıl arşivleyebileceğimizden daha sonra ise sıkıştırma işlemlerinin nasıl yapıldığından bahsedeceğiz. 
+Bu bölümde dosya arşivleme, sıkıştırma ve sıkıştırılmış olan dosya arşivlerini açma gibi işlemleri ele alacağız. Zaten bu kavramlar sizlere yabancı gelmemeli zira daha önce hangi işletim sistemini kullanmış olursanız olun öyle ya da böyle mutlaka arşiv dosyaları karşınıza çıkmıştır. Genellikle yüksek boyutlu dosyaların sıkıştırılmasında veya veri kaybı olmadan güvenli transfer yapabilmek için ve bunlar gibi pek çok avantaj dolayasıyla arşiv dosyaları ile sıklıkla karşılaşıyoruz, karşılaşmaya da devam edeceğiz. Bu sebeple biz de bu bölüm içerisinde öncelikle dosyaları nasıl arşivleyebileceğimizden daha sonra ise sıkıştırma işlemlerinin nasıl gerçekleştirildiğinden bahsedeceğiz. 
 
 # Arşivlemek
 
-Bir grup dosya veya klasörü tek bir arşiv dosyası içerisinde toparlamaya arşivleme diyoruz. Dosya transferlerinde veri kayıplarını önlemek yani veri bütünlüğünü sağlamak ve dosyaları daha düzenli depolamak için arşivlere sıklıkla ihtiyacımız oluyor. Linux üzerinde arşiv işlemleri için grafiksel arayüze sahip araçlar olmasına karşın, biz daha verimli olacağı için arşivlemeyi de komut satırı üzerinden gerçekleştireceğiz. Grafiksel arayüzlü arşiv araçlarının hangileri olduğu ve nasıl kullanılabileceğini kendiniz kolayca keşfedebilirsiniz. Biz komut satırından arşivleme işlemi için `tar` aracını kullanıyor olacağız. 
+Bir grup dosya veya klasörü tek bir arşiv dosyası içerisinde toparlamaya "arşivleme" diyoruz. Dosya transferlerinde veri kayıplarını önlemek yani veri bütünlüğünü sağlamak ve dosyaları daha düzenli depolamak için arşivlere sıklıkla ihtiyacımız oluyor. Linux üzerinde arşiv işlemleri için grafiksel arayüze sahip araçlar olmasına karşın, biz daha verimli olacağı için arşivlemeyi de komut satırı üzerinden gerçekleştireceğiz. Grafiksel arayüzlü arşiv araçlarının hangileri olduğu ve nasıl kullanılabileceğini kendiniz de kolayca keşfedebilirsiniz. Biz komut satırından arşivleme işlemi için `tar` aracını kullanıyor olacağız. 
 
 # `tar` Komutu
 
@@ -27,7 +27,7 @@ Komut satırı üzerinden arşivler üzerinde çalışmak için kullandığımı
 
 Zaten aracımızın ismi de buradan geliyor. Akılda kalıcı olması için isminden bahsetmek istedim ancak isminin nerden geldiği çok da önemli değil. Neticede `tar` aracını kullanarak arşivler oluşturabiliyoruz.
 
-`tar` komutunu kullanarak arşiv oluşturmak için aracın `c` ve `f` seçeneklerini birlikte kullanmamız gerekiyor. `c` seçeneği “**c**reate” yani “oluşturmak” ifadesinin kısaltmasıyken, `f` seçeneği ise “**f**ile” ifadesinin kısalmasından geliyor. `c` seçeneği sayesinde arşiv dosyası oluşturmak istediğimizi belirtiyorken, `f` seçeneği sayesinde de oluşturulacak arşiv dosyasının ismini belirleyebiliyoruz.
+`tar` komutunu kullanarak arşiv oluşturmak için aracın `c` ve `f` seçeneklerini birlikte kullanmamız gerekiyor. `c` seçeneği “**c**reate” yani “oluşturmak” ifadesinin kısaltmasıyken, `f` seçeneği ise “**f**ile” ifadesinin kısaltmasından geliyor. `c` seçeneği sayesinde arşiv dosyası oluşturmak istediğimizi belirtiyorken, `f` seçeneği sayesinde de oluşturulacak arşiv dosyasının ismini belirleyebiliyoruz.
 
 Ben basit örnek olması için çeşitli metin dosyalarını ve resimleri arşive almak istiyorum. Örnek için boş dosyaları da kullanabiliriz, fakat ileride sıkıştırma işlemi de uygulayacağımız için kullanacağımız dosyaların içi dolu olursa sıkıştırma işleminden sonraki boyut farkını gözlemeyebiliriz. 
 
@@ -65,13 +65,13 @@ Söylediğim bu durumu teyit etmek için arşivleme işleminden önce klasörün
 
 Bakın çıktının sonunda toplam boyut belirtiliyor. Dizin içeriğinin orijinal boyutunu öğrendiğimize göre artık arşivleme işleminden sonra arşiv dosyasının boyutu ile orijinal klasörün boyutunu kıyaslayabiliriz. Şu an yalnızca arşivleme işlemi yapacağımız için zaten herhangi bir sıkıştırma işlemi uygulanmayacak ve arşiv dosyasının boyutu mevcut klasör ile aynı olacak. Hemen arşivleyip bizzat görelim.
 
-Arşivlemek için `tar -cf` komutundan sonra oluşturulacak arşiv dosyasının ismini ve hedef dosyaları yazmamız gerekiyor. 
+Arşivlemek için `tar -cf` komutundan sonra, oluşturulacak arşiv dosyasının ismini ve hedef dosyaları yazmamız gerekiyor. 
 
 ```bash
 tar -cf linux-dersleri.tar linux-dersleri/
 ```
 
-Ekranda herhangi bir çıktı belirmese de bu dizindeki tüm dosyalar arkaplanda arşivlendi. Oluşturulacak arşiv dosyasını ismini önce giriyoruz, çünkü arşiv dosyasına birden fazla dosyayı belirtebileceğimiz için `tar` aracı hangi dosyanın arşive eklenip hangisinin arşiv dosyası ismi olarak kullanılacağı konusunda emin olmak istiyor. Bu sebeple her zaman dosya ismi belirtmemizi sağlayan `f` seçeneğinin hemen ardından arşiv dosyasının ismini girmemiz gerekiyor. Yani komutumuzu `tar -c linux-dersleri/ -f linux-dersleri.tar` şeklinde de girebilirdik. Burada önemli olan `f` seçeneğinin hemen ardından oluşturulacak olan arşiv dosyasının ismini belirtmek. Buradaki `c` seçeneği de zaten yeni arşiv oluşturacağımızı belirten bir seçenek. Yeni arşiv dosyası oluşturduğumuz için bu seçeneğin de bulunması gerekiyor. Neticede bu komut sayesinde belirtmiş olduğumuz bu klasörün içindeki tüm dosya ve klasörler mevcut dizinde linux-dersleri.tar isimli bir arşiv dosyasına alınmış oldu. 
+Ekranda herhangi bir çıktı belirmese de bu dizindeki tüm dosyalar arkaplanda arşivlendi. Komut girerken, oluşturulacak arşiv dosyasını ismini önce giriyoruz çünkü arşiv dosyasına birden fazla dosyayı dahil edebileceğimiz için `tar` aracı hangi dosyanın arşive eklenip hangisinin arşiv dosyası ismi olarak kullanılacağı konusunda emin olmak istiyor. Bu sebeple her zaman dosya ismi belirtmemizi sağlayan `f` seçeneğinin hemen ardından arşiv dosyasının ismini girmemiz gerekiyor. Yani komutumuzu `tar -c linux-dersleri/ -f linux-dersleri.tar` şeklinde de girebilirdik. Burada önemli olan `f` seçeneğinin hemen ardından oluşturulacak olan arşiv dosyasının ismini belirtmek. Buradaki `c` seçeneği de zaten yeni arşiv oluşturacağımızı belirten bir seçenek. Yeni arşiv dosyası oluşturduğumuz için bu seçeneğin de bulunması gerekiyor. Neticede bu komut sayesinde belirtmiş olduğumuz bu klasörün içindeki tüm dosya ve klasörler mevcut dizinde "***linux-dersleri.tar***" isimli bir arşiv dosyasına alınmış oldu. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]
@@ -79,7 +79,7 @@ Ekranda herhangi bir çıktı belirmese de bu dizindeki tüm dosyalar arkaplanda
 linux-dersleri  linux-dersleri.tar
 ```
 
-Belki burada arşiv dosyasının isminin sonuna eklediğim “**.tar**” uzantısının şart olup olmadığı kafanıza takılmıştır. Dosya isminin sonuna eklemiş olduğum “**.tar**” uzantısı, `tar` aracının standart arşiv uzantısı. Bu uzantıyı kullanmak zorunda değilsiniz ancak sistem üzerinde arşiv dosyalarınızı ayırt edici kılmak için mutlaka bu dosya uzantısını da ismine eklemenizi tavsiye ederim. Dosya uzantısını eklemesiniz de arşiv dosyası olarak kullanabilirsiniz ancak daha sonra dosyaları listelediğinizde “**.tar**” uzantısı sayesinde arşiv dosyasını ayırt etmeniz daha kolay olur. Zaten benzeri durumdan kabuk genişletmeleri bölümünde bahsetmiştik. Düzenli sistem yönetimi için bu tip detaylar önemli. Örneğin sonu “**.tar**” ile biten dosyaları listele diyerek, tüm `tar` arşivlerini bir çırpıda listeleyebileceğinizi düşünün. Tamamdır bence girdiğimiz komutu yeterince açıkladık. 
+Belki burada arşiv dosyasının isminin sonuna eklediğim “**.tar**” uzantısının şart olup olmadığı kafanıza takılmıştır. Dosya isminin sonuna eklemiş olduğum “**.tar**” uzantısı, `tar` aracının standart arşiv uzantısı. Bu uzantıyı kullanmak zorunda değilsiniz ancak sistem üzerinde arşiv dosyalarınızı ayırt edici kılmak için mutlaka bu dosya uzantısını da ismine eklemenizi tavsiye ederim. Dosya uzantısını eklemesiniz de arşiv dosyası olarak kullanabilirsiniz ancak daha sonra dosyaları listelediğinizde “**.tar**” uzantısı sayesinde arşiv dosyasını ayırt etmeniz daha kolay olur. Zaten benzeri durumdan, kabuk genişletmeleri bölümünde bahsetmiştik. Düzenli sistem yönetimi için bu tip detaylar önemli. Örneğin sonu “**.tar**” ile biten dosyaları listele diyerek, tüm `tar` arşivlerini bir çırpıda listeleyebileceğinizi düşünün. Tamamdır bence girdiğimiz komutu yeterince açıkladık. 
 
 Şimdi orijinal klasör ile bu arşivin boyutunu kıyaslayabilmek adına `du -hs linux-dersler*` şeklinde komutumuzu girelim. 
 
@@ -92,17 +92,17 @@ Belki burada arşiv dosyasının isminin sonuna eklediğim “**.tar**” uzant�
 
 Bakın dosya ismi genişletmesi sayesinde bu dizinin ve arşiv dosyasının boyutlarını `du` aracı yardımıyla öğrendik. Buradaki çıktıda arşiv dosyası ile orijinal klasörün boyutlarının **neredeyse aynı** olduğuna dikkatinizi çekmek istiyorum. 
 
-Eğer sizin oluşturduğunuz arşiv dosyası tıpkı bende olduğu gibi orijinal dizin veya dosyalardan biraz daha küçükse, bu durumun nedeni arşivleme yapılırken verilerin standart dosya sisteminde olduğu gibi bloklar halinde değil bir arada saklanıyor olmasındır. Örneğin mevcut dosya sisteminde verileri saklamak için kullanılan bloklar 4 kb’lık bloklarsa, biz 1 kb’lık bir dosya oluşturduğumuzda bu dosyayı temsil eden verilere bir bloğa kaydoluyor ve 3 kb’ın boşta durmasına sebep oluyor. 
+Eğer sizin oluşturduğunuz arşiv dosyası tıpkı bende olduğu gibi orijinal dizin veya dosyalardan biraz daha küçükse, bu durumun nedeni arşivleme yapılırken verilerin standart dosya sisteminde olduğu gibi bloklar halinde değil bir arada saklanıyor olmasındır. Örneğin mevcut dosya sisteminde verileri saklamak için kullanılan bloklar 4 kb’lık bloklarsa, biz 1 kb’lık bir dosya oluşturduğumuzda bu dosyayı temsil eden veriler bir bloğa kaydoluyor ve 3 kb’ın boşta durmasına sebep oluyor. 
 
 ![disk-block.webp]({{ site.url }}/egitim/temel-linux/arsiv/disk-block.webp){:class="responsive img-zoomable"}
 
-Özellikle çok fazla bu gibi dosya olduğunda da bloklarda boşta kalan alan miktarı artabiliyor. İşte `tar` aracı bu blok yaklaşımı yerine tüm verileri peşi sıra birleştirdiği için arşiv dosyası orijinalinden biraz daha küçük olabiliyor.
+Özellikle çok fazla bu gibi dosya olduğunda da bloklarda boşta kalan alan miktarı artabiliyor. İşte `tar` aracı, bu blok yaklaşımı yerine tüm verileri peşi sıra birleştirdiği için arşiv dosyası orijinalinden biraz daha küçük olabiliyor.
 
 ![disk-archived-block.webp]({{ site.url }}/egitim/temel-linux/arsiv/disk-archived-block.webp){:class="responsive img-zoomable"}
 
-Mevcut konu bağlamından uzaklaşacağımız için ben şimdi bu konunun ayrıntısına girmek istemiyorum, ancak çok kısa bir araştırma ile bu konu hakkında yeterli bilgiye ulaşabilirsiniz.
+Mevcut konu bağlamından uzaklaşacağımız için ben şimdi bu konunun ayrıntısına girmek istemiyorum, ancak çok kısa bir araştırma ile bu konu hakkında yeterli bilgiye ulaşabilirsiniz. Ayrıca eğitimin devamında, "Disk Yönetimi" başlığı altında da bu konuya tekrar değineceğiz.
 
-Yani burada dikkat etmeniz gereken detay arşivleme yapılırken aslında sıkıştırma yapılmadığı. Arşivleme işleminde mevcut veriler yalnızca bir araya getirilip saklanıyor. Bu sebeple disk blokları üzerinde küçük tasarruf sağlanmış oluyor.
+Özetleyecek olursak; burada dikkat etmeniz gereken detay, arşivleme yapılırken aslında sıkıştırma yapılmadığı. Arşivleme işleminde mevcut veriler yalnızca bir araya getirilip saklanıyor. Bu sebeple disk blokları üzerinde küçük tasarruf sağlanmış oluyor.
 
 Biz özellikle belirtmediğimiz sürece arşiv dosyalarında sıkıştırma yapılmıyor.
 
@@ -110,7 +110,7 @@ Neticede gördüğünüz gibi arşivleme işlemi yani komut satırı üzerinden 
 
 ## Ayrıntılı Çıktı Almak
 
-Arşiv oluştururken arşivleme işlemini konsol üzerinden takip etmek istemediğim için “**v**erbose” seçeneğini komutumla birlikte belirtmemiştim. Eğer tüm arşivleme işlemini konsol üzerinden adım adım takip etmek istiyorsak pek çok komutta olduğu gibi “verbose” özelliği ile detaylı şekilde çıktı almak istediğimizi belirtebiliriz. Ayrıca ben bir önceki örnekte tek bir klasörü arşiv içine ekledim fakat dilerseniz istediğiniz kadar dosyayı arşive alabilirsiniz. Örnek olması için öncelikle touch {a..z} komutu ile a dan z ye kadar isimlendirilmiş dosyalar oluşturalım.
+Arşiv oluştururken arşivleme işlemini konsol üzerinden takip etmek istemediğim için “**v**erbose” seçeneğini komutumla birlikte belirtmemiştim. Eğer tüm arşivleme işlemini konsol üzerinden adım adım takip etmek istiyorsak pek çok komutta olduğu gibi “verbose” özelliği ile detaylı şekilde çıktı almak istediğimizi belirtebiliriz. Ayrıca ben bir önceki örnekte tek bir klasörü arşiv içine ekledim fakat dilerseniz istediğiniz kadar dosyayı arşive alabilirsiniz. Örnek olması için öncelikle `touch {a..z}` komutu ile **a** dan **z** ye kadar isimlendirilmiş dosyalar oluşturalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]
@@ -209,9 +209,9 @@ linux-dersleri/index.markdown
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Çıktılar kısaltılmıştır.</p>
 
-Bakın bu kez sorunsuzca arşiv dosyasının tüm içeriği sırasıyla hiyerarşik düzende konsola bastırıldı.
+Bu kez sorunsuzca arşiv dosyasının tüm içeriği sırasıyla hiyerarşik düzende konsola bastırıldı.
 
-Yani bizzat teyit ettiğimiz gibi, `tar` aracının `t` seçeneği sayesinde arşiv dosyasının içeriğini arşiv dosyasını dışarı çıkarmadan da rahatlıkla listeleyebiliyoruz. Eğer listeleme işlevi için `t` seçeneği benim aklımda kalmaz diyorsanız `t` yerine uzun şekilde `—list` seçeneğini de kullanabilirsiniz. Denemek için `tar —list -f linux-dersleri.tar` şeklinde komutumuzu girebiliriz. 
+Yani bizzat teyit ettiğimiz gibi, `tar` aracının `t` seçeneği sayesinde arşiv dosyasının içeriğini, arşiv dosyasını dışarı çıkarmadan da rahatlıkla listeleyebiliyoruz. Eğer listeleme işlevi için `t` seçeneği benim aklımda kalmaz diyorsanız `t` yerine uzun şekilde `—list` seçeneğini de kullanabilirsiniz. Denemek için `tar —list -f linux-dersleri.tar` şeklinde komutumuzu girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]
@@ -611,7 +611,7 @@ total 281M
 141M arsiv2.tar     0 d     0 g     0 j  4.0K linux     0 m                      0 o             0 r     0 u     0 x
 ```
 
-Şimdi bu dosyaların hepsini arşivlemek üzere gzip {a..z} şeklinde komut girebiliriz. 
+Şimdi bu dosyaların hepsini arşivlemek üzere `gzip {a..z}` şeklinde komut girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~/Downloads]

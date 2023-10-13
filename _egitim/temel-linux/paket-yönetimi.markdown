@@ -329,7 +329,7 @@ Bir paketi yeniden konfigüre etmek için `dpkg-reconfigure paketin-adı` şekli
 └─$ sudo dpkg-reconfigure firefox-esr
 ```
 
-Bakın konfigürasyona dair bir çıktı almadım. Tıpkı daha önce söylediğim gibi pek çok araçta konfigürasyonlar sessizce gerçekleşiyor. Yine de bizden konfigürasyon için seçip yapmamızın istendiği araçlar da var. Bu duruma basit bir örnek olarak sistemdeki yerelleştirmeden sorumlu `locales` aracını ele alabiliriz. Ben `locales` aracını tekrar konfigüre etmek için `sudo dpkg-reconfigure locales` şeklinde komutumu giriyorum. 
+Bakın konfigürasyona dair bir çıktı almadım. Tıpkı daha önce söylediğim gibi pek çok araçta konfigürasyonlar sessizce gerçekleşiyor. Yine de bizden konfigürasyon için seçim yapmamızın istendiği araçlar da var. Bu duruma basit bir örnek olarak sistemdeki yerelleştirmeden sorumlu `locales` aracını ele alabiliriz. Ben `locales` aracını tekrar konfigüre etmek için `sudo dpkg-reconfigure locales` şeklinde komutumu giriyorum. 
 
 ![dpkg-reconfigure-locales.webp]({{ site.url }}/egitim/temel-linux/paket/dpkg-reconfigure-locales.webp){:class="responsive img-zoomable"}
 
@@ -413,7 +413,7 @@ Fetched 64.7 MB in 33s (1,973 kB/s)
 Reading package lists... Done
 ```
 
-Bakın burada mevcut dağıtımda varsayılan olarak kullanılan repo adresleri üzerinden güncel index bilgilerinin alındığını görebiliyoruz. Burada belirtilen adresler benim kullanmakta olduğum sistemde tanımlı olan repo adresleridir. Sizde bulunan repo adrsleri, kullandığınız dağıtıma ve sürüme göre değişiklik gösterebilir. 
+Bakın burada mevcut dağıtımda varsayılan olarak kullanılan repo adresleri üzerinden güncel index bilgilerinin alındığını görebiliyoruz. Burada belirtilen adresler benim kullanmakta olduğum sistemde tanımlı olan repo adresleridir. Sizde bulunan repo adresleri, kullandığınız dağıtıma ve sürüme göre değişiklik gösterebilir. 
 
 Paket listesi güncellendikten sonra, artık repolar üzerinden yeni paketleri alıp sorunsuzca kurulmalarını sağlayabileceğiz. Ben burada `sudo apt-get update` komutunu kullandım ancak bunun yerine yalnızca `sudo apt update` komutunu da kullanabilirdim. 
 
@@ -429,7 +429,7 @@ Reading state information... Done
 
 Bakın aynı şekilde güncel repo indexleri `apt` komutu ile de alınmış oldu. Yani `apt update` komutu ile de aynı şekilde güncelleme yapabiliyoruz. Eğer iki komutun çıktılarının farklı olmasına takıldıysanız `apt update` komutundan önce `apt-get update` komutu ile güncelleme yaptığımız için tekrar güncel index bilgisi alınmadı. Kontrol edildi ama daha yeni güncellendiği için alınacak yeni bir index listesi bulunamadı. Yani aslında her iki komutta aynı işi yapıyor. Tamam, her iki komutun da aynı olduğunu kabul ettik. Şimdi bunu bir kenara bırakıp aldığımız çıktılara göz atacak olursak;
 
-Bakın `apt update` komutunun çıktılarında,  güncel index bilgisine dayanarak sistemde yüklü bulunan bazı paketlerin yükseltilebileceği hakkında not da bulunuyor. Sistemimizdeki sürümleri ile repolardaki sürümler uyuşmadığında yani sistemimizdeki sürümler repolardakilerden eski olduğunda bu şekilde yükseltme yapabileceğimize dair çıktılar alıyoruz. Yani yanlızca güncelleme yapılmıyor, aynı zamanda olası yükseltmeler için de bilgilendiriliyoruz. Yükseltme işlemine daha sonra değineceğiz.
+Bakın `apt update` komutunun çıktılarında,  güncel index bilgisine dayanarak sistemde yüklü bulunan bazı paketlerin yükseltilebileceği hakkında not da bulunuyor. Sistemimizdeki sürümleri ile repolardaki sürümler uyuşmadığında yani sistemimizdeki sürümler repolardakilerden eski olduğunda bu şekilde yükseltme yapabileceğimize dair çıktılar alıyoruz. Yani yalnızca güncelleme yapılmıyor, aynı zamanda olası yükseltmeler için de bilgilendiriliyoruz. Yükseltme işlemine daha sonra değineceğiz.
 
 Şimdi, aradığımız paketleri nasıl bulabileceğimizden bahsedelim. Yalnız unutmayın, araştırmaya geçmeden önce mutlaka repolardaki güncel paket bilgilerinin alınabilmesi için `apt update` ya da `apt-get update` komutu ile repolarınızı güncelleyin. Aksi halde aradığınız pek çok araç repolarda bulunamaz. Yani güncel olmayan bir listede araştırma yapmış olursunuz.
 

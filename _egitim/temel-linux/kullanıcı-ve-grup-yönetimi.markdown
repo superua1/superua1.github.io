@@ -16,17 +16,17 @@ Bu bölüm içerisinde Linux sistemindeki kullanıcı ve grup yönetimi gibi kav
 
 Sistem kaynaklarına erişimi olan ve sistemini yetkileri dahilinde yönetenlere genel olarak kullanıcı diyoruz. Linux'ta "<strong class="text-danger">süper(Super User)</strong>", "<strong class="text-primary">sistem(System User)</strong>" ve "<strong class="text-success">normal(Normal User)</strong>" olmak üzere üç tür kullanıcı bulunuyor. Şimdi sırasıyla bu kullanıcıları açıklayacak olursak;
 
-<strong class="text-danger">Süper Kullanıcı:</strong> Aslında daha çok “<strong class="text-danger">root</strong>” yani “<strong class="text-danger">Kök Kullanıcı</strong>” olarak bilinen, sistem üzerindeki tüm haklara sahip olan en yetkili kullanıcı hesabına verilen bir isim. Yani biz root hesabını kullanıyorken, sistemdeki en yetkili olan süper kullanıcı hesabını yönetiyor olacağız. 
+<strong class="text-danger">Süper Kullanıcı:</strong> Aslında daha çok “<strong class="text-danger">root</strong>” yani “<strong class="text-danger">Kök Kullanıcı</strong>” olarak bilinen, sistem üzerindeki tüm haklara sahip olan en yetkili kullanıcı hesabına verilen bir isim. Yani biz root hesabını kullanıyorken, sistemdeki en yetkili olan "süper kullanıcı" hesabını yönetiyor olacağız. 
 
-<strong class="text-primary">Sistem Kullanıcısı:</strong> Yazılım veya uygulamalar tarafından oluşturulan ve yönetilen kullanıcılara da “sistem kullanıcısı” deniyor. Örneğin sistemimizde saatin senkronize edilmesini sağlayan “**ntp**” isimli bir araç yüklüyse bu aracın görevini yerine getirmek için kendisine ait bir sistem kullanıcı hesabı bulunuyordur. Bu sayede gerektiğinde bu kullanıcı hesabı üzerinden görevlerini yerine getirebilir. Tabii ki tüm araçların kendilerine ait kullanıcı hesapları olmasa da işte tıpkı “**ntp**” aracında olduğu gibi sistemdeki çeşitli yazılımların, işlerini görmek için kendi kullanıcı hesapları olması gerekebiliyor. Bu hesaplar insanların değil yazılımların sistemdeki çeşitli görevleri yerine getirebilmek için kullandığı türden hesaplardır. Bu sebeple bu tür hesaplara “sistem kullanıcı” hesabı deniyor. Bu kullanıcıların yetkileri yalnızca görevlerini yerine getirebilecekleri düzeyde olduğu için yetkileri olmayan işler yapamazlar.
+<strong class="text-primary">Sistem Kullanıcısı:</strong> Yazılım veya uygulamalar tarafından oluşturulan ve yönetilen kullanıcılara da “sistem kullanıcısı” deniyor. Örneğin sistemimizde saatin senkronize edilmesini sağlayan “**ntp**” isimli bir araç yüklüyse bu aracın görevini yerine getirmek için kendisine ait bir sistem kullanıcı hesabı bulunuyordur. Bu sayede gerektiğinde bu kullanıcı hesabı üzerinden görevlerini yerine getirebilir. Tabii ki tüm araçların kendilerine ait kullanıcı hesapları olmasa da işte tıpkı “**ntp**” aracında olduğu gibi sistemdeki çeşitli yazılımların, işlerini görmek için kendi kullanıcı hesapları olması gerekebiliyor. Bu hesaplar insanların değil yazılımların, sistemdeki çeşitli görevleri yerine getirebilmek için kullandığı türden hesaplardır. Bu sebeple bu tür hesaplara “sistem kullanıcı” hesabı deniyor. Bu kullanıcıların yetkileri, yalnızca görevlerini yerine getirebilecekleri düzeyde olduğu için yetkileri olmayan işler yapamazlar.
 
-<strong class="text-success">Normal Kullanıcı:</strong> Normal olarak geçen kullanıcı hesapları kök kullanıcısının oluşturduğu standart kullanıcı hesaplarıdır. İnsanların sistemi kullanması ve yönetmesi için oluşturulan hesaplardır. Bu tür hesapları insanlar kullanacağı için normal kullanıcılar kendi ev dizinlere sahiptir. Yani genellikle ***/home*** dizini altında kullanıcı isimleriyle oluşturulmuş olan bir klasörde kişisel dosyalarını barındırmaları için bir ev dizinleri vardır. Ev dizini insanların kişisel dosyalarını düzenli şekilde tutabilmeleri ve kendi kullanıcı hesaplarına yönelik kişiselleştirilmiş çalışma ortamına sahip olabilmeleri için önemli bir yaklaşım. Ev dizinin ne olduğunu biliyorsunuz zaten. Ev dizinleri dışında tabii ki normal kullanıcılara da sahip oldukları yetkiler dahilinde sistemdeki araçları kullanabilirler. Yetkileri düşük veya yüksek olmasına göre sistem üzerinde yetkileri dahlinde hareket edebilirler. 
+<strong class="text-success">Normal Kullanıcı:</strong> Normal olarak geçen kullanıcı hesapları, kök kullanıcısının oluşturduğu standart kullanıcı hesaplarıdır. Standart kullanıcıların temel görevleri yerine getirebilmeleri için oluşturulan hesaplardır. Bu tür hesapları standart insanlar kullanacağı için normal kullanıcılar kendi ev dizinlere sahiptir. Yani genellikle ***/home*** dizini altında kullanıcı isimleriyle oluşturulmuş olan bir klasörde, kişisel dosyalarını barındırmaları için bir ev dizinleri vardır. Ev dizini, insanların kişisel dosyalarını düzenli şekilde tutabilmeleri ve kendi kullanıcı hesaplarına yönelik kişiselleştirilmiş çalışma ortamına sahip olabilmeleri için önemli bir yaklaşım. Ev dizini kavramının ne olduğunu biliyorsunuz zaten. Ev dizinleri dışında tabii ki normal kullanıcılar da sahip oldukları yetkiler dahilinde sistemdeki araçları kullanabilirler. Yetkilerinin düşük veya yüksek olmasına göre sistem üzerinde yetkileri dahilinde hareket edebilirler. 
 
 # `sudo` Komutunu Anlamak
 
-Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Sistemi yönetirken de yetki gerektiren işlemler yapmamız gerebilir. Bu durumda ilgili görevleri yerine getirmek için root hesabına geçiş yapabiliriz. Ancak root hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Çünkü root hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten root hesabını kullanmak tehlikeli olabileceği için çoğu sistemde root hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece root hesabı kullanılamaz. 
+Sistemi yönetirken, yetki gerektiren işlemler yapmamız gerebilir. Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Bu durumda ilgili görevleri yerine getirmek için root hesabına geçiş yapabiliriz. Ancak root hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Çünkü root hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten root hesabını kullanmak tehlikeli olabileceği için çoğu sistemde root hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece root hesabı kullanılamaz. 
 
-Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için geçici olarak root  yetkileri ile hareket edebilmemizi sağlayan `sudo` komutunu kullanabiliyoruz. `sudo` sayesinde root hesabı aktif değilken veya root aktifse bile root hesabının şifresini bilmeden yönetici ayrıcalıkları ile işlerimizi yürütmemiz mümkün oluyor. Elbette hangi kullanıcıların hangi ayrıcalıklara erişebileceğini belirlemek için yapmamız gereken konfigürasyonlar bulunuyor. Fakat daha net anlaşılabilmesi için henüz bölümün başındayken bu detaylardan bahsetmeyeceğiz. 
+Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için geçici olarak root  yetkileri ile hareket edebilmemizi sağlayan `sudo` komutunu kullanabiliyoruz. `sudo` sayesinde root hesabı aktif değilken veya root aktifse bile root hesabının şifresini bilmeden yönetici ayrıcalıkları ile işlerimizi yürütmemiz mümkün oluyor. Elbette hangi kullanıcıların hangi ayrıcalıklara erişebileceğini belirlemek için düzenlememiz gereken konfigürasyonlar bulunuyor. Fakat henüz bölümün başındayken bu detaylardan bahsetmeyeceğiz. İleride bu detaylar çok daha anlaşılır olacaktır.
 
 Şimdilik `sudo` komutunun kullanıcıya, işlemleri yetkili şekilde gerçekleştirebilme imkanı tanıdığını bilmemiz yeterli. Hatta hemen basit bir örnek olarak **root** kullanıcısının ev dizini görüntülemeyi deneyebiliriz. Ben görüntülemek için `ls /root` komutunu giriyorum. 
 
@@ -35,7 +35,7 @@ Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için g
 ls: cannot open directory '/root/': Permission denied
 ```
 
-Bakın erişim hatası aldık. Şimdi aynı komutu `sudo` komutu başta olacak şekilde tekrar girelim. 
+Gördüğünüz gibi erişim hatası aldık. Şimdi aynı komutu `sudo` komutu başta olacak şekilde tekrar girelim. 
 
 ```bash
 [taylan@linuxdersleri ~]$ sudo ls /root
@@ -51,13 +51,13 @@ anaconda-ks.cfg  Desktop  Documents  Downloads	Music  Pictures  Public  Template
 [taylan@linuxdersleri ~]$
 ```
 
-Parolamı doğru yazdığım için bakın yetkili şekilde ***/root*** dizinin içeriğini görüntüleyebildim. İşte `sudo` komutunun en temel kullanımı bu şekilde. Bu bölüme gelinceye kadar yetki gerektiren işlemiz için defalarca `sudo` komutunu kullandığımız için zaten bu duruma aşina olduğunuzu düşünüyorum. Şimdilik bu kadarlık bilgi de yeterli. Temel kavramları netleştirme başlamak için öncelikle nasıl yeni bir kullanıcı hesabı oluşturabileceğimizden bahsederek başlayalım.
+Parolamı doğru yazdığım için yetkili şekilde ***/root*** dizinin içeriğini görüntüleyebildim. İşte `sudo` komutunun en temel kullanımı bu şekilde. Bu bölüme gelinceye kadar, yetki gerektiren işlemiz için defalarca `sudo` komutunu kullandığımız için zaten bu duruma aşina olduğunuzu düşünüyorum. Şimdilik bu kadarlık bilgi de yeterli. Temel kavramları netleştirmek için öncelikle nasıl yeni bir kullanıcı hesabı oluşturabileceğimizden bahsederek başlayalım.
 
 # Kullanıcı Hesabı Oluşturmak
 
-Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluşturabilecek yetkimizin olması gerekiyor. Dolayısıyla bu işlem için en yetkili kullanıcı olan root kullanıcı hesabına ihtiyacımız var. Fakat bu durumun bir istisnası bulunuyor. Eğer normal bir kullanıcı root hesabının bulunduğu yetki grubuna dahil edildiyse bu kullanıcı root gibi davranarak yetki gerektiren işlemleri yapabilir. Biz yetkili gruba dahil olduğumuzu kanıtlamak için `sudo` komutunu kullanıyoruz. Zaten `sudo` komutuna da kısaca değindik. 
+Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluşturabilecek yetkimizin olması gerekiyor. Dolayısıyla bu işlem için en yetkili kullanıcı olan root kullanıcı hesabına ihtiyacımız var. Fakat bu durumun bir istisnası bulunuyor. Eğer normal bir kullanıcı root hesabının bulunduğu yetki grubuna dahil edildiyse bu kullanıcı, root gibi davranarak yetki gerektiren işlemleri yapabilir. Biz yetkili gruba dahil olduğumuzu kanıtlamak için `sudo` komutunu kullanıyoruz. Zaten `sudo` komutuna da kısaca değindik. 
 
-Yeni bir hesap oluşturmak için ,"`adduser`" ya da "`useradd`" komutlarından herhangi birini kullanabiliyoruz. `adduser` daha kullanışlı olduğu için benim öncelikli tercihim Yine de ikisi ben ikisini de kısaca ele alacağım.
+Yeni bir hesap oluşturmak için, "`adduser`" ya da "`useradd`" komutlarından herhangi birini kullanabiliyoruz. `adduser` daha kullanışlı olduğu için benim öncelikli tercihim. Yine de biz her ikisini de kısaca ele alacağız.
 
 ## `adduser`
 
@@ -69,8 +69,7 @@ Ben “**nil**” isminde yeni bir kullanıcı oluşturmak istiyorum. Bunun içi
 [sudo] password for taylan:
 ```
 
-Eğer `sudo` komutunu kullanmazsak, yetkimiz olmadığı için işlem başarısız olur. Ben mevcut kullanıcı hesabımın parolasını giriyorum.
-
+Eğer `sudo` komutunu kullanmazsak, yetkimiz olmadığı için işlem başarısız olur. Bu işlemi gerçekleştirme yetkimiz olduğunu kanıtlamak için mevcut kullanıcı hesabımızın parolasını girip işlemi onaylamamız gerekiyor. 
 ```bash
 [sudo] password for taylan: 
 Adding user `nil' ...
@@ -80,18 +79,21 @@ Creating home directory `/home/nil' ...
 Copying files from `/etc/skel' ...
 New password:
 ```
+Çıktıları inceleyecek olursak:
 
-Bakın belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendiği
+- Belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendiği,
 
-“**nil**” isimli yeni bir grup oluşturulduğu
+- “**nil**” isimli yeni bir grup oluşturulduğu,
 
-“**nil**” kullanıcısının bu gruba eklendiği
+- “**nil**” kullanıcısının bu gruba eklendiği,
 
-**nil**’in ev dizinin ***/home/nil*** dizininde oluşturulduğu 
+- **nil**’in ev dizinin ***/home/nil*** dizininde oluşturulduğu, 
 
-ev dizinine ***/etc/skel*** dizinindeki dosyaların kopyalandığı belirtilmiş. Bu ***/etc/skel*** klasörü standart kullanıcılar için gerekli olan temel dosyaları barındıran bir klasör. Zaten ev dizinin temel iskeletini oluşturmaya atıfta bulunmak için klasörü ismi de İngilizce “iskelet” ifadesinden geliyor. 
+- ev dizinine ***/etc/skel*** dizinindeki dosyaların kopyalandığı belirtilmiş. 
 
-Her neyse, şimdi bizden bu kullanıcının parolasını tanımlamamız bekleniyor. 
+Bu ***/etc/skel*** klasörü standart kullanıcılar için gerekli olan temel dosyaları barındıran bir klasör. Zaten ev dizinin temel iskeletini oluşturmaya atıfta bulunmak için "**skel**" klasör ismi de İngilizce “**iskelet**” ifadesinden geliyor. 
+
+Kullanıcı hesabına ait temel işlemler gerçekleştirildikten sonra, bizden bu kullanıcının parolasını tanımlamamız bekleniyor. 
 
 ```bash
 New password: 
@@ -102,7 +104,7 @@ Enter the new value, or press ENTER for the default
         Full Name []:
 ```
 
-Şimdi eğer istersem kullanıcıyla ilgili burada bana sorulacak olan ek kişisel bilgileri doldurabilirim. Şuan için pek gerekli değil o yüzden <kbd>Enter</kbd> ile tüm soruları geçiyorum. 
+Parola tanımlama işleminden sonra, eğer istersem kullanıcıyla ilgili burada bana sorulacak olan ek kişisel bilgileri doldurabilirim. Şu an için pek gerekli değil o yüzden <kbd>Enter</kbd> ile tüm soruları geçiyorum. Tabii ki siz dilerseniz doldurabilirsiniz. 
 
 ```bash
 Enter the new value, or press ENTER for the default
@@ -114,7 +116,7 @@ Enter the new value, or press ENTER for the default
 Is the information correct? [Y/n]
 ```
 
-Tabii ki siz dilerseniz doldurabilirsiniz. Son olarak bilgileri de onaylayıp işlemi tamamlıyorum. Böylelikle “**nil**” kullanıcı hesabı oluşturulmuş oldu. Teyit etmek için `ls /home/` komutuyla ev dizinin içeriğini sorgulayalım. 
+Son olarak bilgileri de "**y**" ile onaylayıp işlemi tamamlıyorum. Böylelikle “**nil**” kullanıcı hesabı oluşturulmuş oldu. Teyit etmek için `ls /home/` komutuyla ev dizinin içeriğini sorgulayalım. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -122,7 +124,7 @@ Tabii ki siz dilerseniz doldurabilirsiniz. Son olarak bilgileri de onaylayıp i�
 kali  nil  taylan
 ```
 
-Bakın ***/home*** dizini altında **nil** isimli kullanıcının ev dizini oluşturulmuş. İşte `adduser` komutu ile kullanıcı oluşturma işlemi bu şekilde. 
+***/home*** dizini altında **nil** isimli kullanıcının ev dizini oluşturulmuş. İşte `adduser` komutu ile kullanıcı oluşturma işlemi bu kadar kolay. 
 
 ## `useradd`
 
@@ -138,7 +140,7 @@ Kullanıcının ev dizinin de oluşturulması için özellikle komutumuzu `usera
 └─$
 ```
 
-Bakın hiç bir çıktı almadık, bize ne şifre sordu ne de başka bir bilgi yalnızca kullanıcı sisteme eklendi. Eklendiğini de ***/home*** dizinini listeleyerek teyit edebiliriz. 
+Hiç bir çıktı almadık, bize ne şifre sordu ne de başka bir bilgi yalnızca kullanıcı sisteme eklendi. Eklendiğini de ***/home*** dizinini listeleyerek teyit edebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -156,7 +158,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 
-Böylelikle **ali** kullanıcısı için de bir parola tanımlamış olduk. Sizlerin de fark etmiş olduğu gibi ele aldığımız önceki araç yani `adduser` komutu çok daha kullanıcı dostu bir kullanım imkanı sağlıyor. Çünkü ev dizinini otomatik oluşturup parola oluşturmamız için bizden talepte bulunuyor ve kullanıcıyla ilgili diğer çeşitli bilgileri de sorup doldurmamızı sağlıyor. Bu sebeple zaten yeni kullanıcı oluşturmak için genellikle `adduser` aracı tercih ediliyor.
+Böylelikle **ali** kullanıcısı için de bir parola tanımlamış olduk. Sizlerin de fark etmiş olduğu gibi, ele aldığımız önceki araç yani `adduser` komutu çok daha kullanıcı dostu bir araç. Çünkü ev dizinini otomatik oluşturup parola oluşturmamız için bizden talepte bulunuyor ve kullanıcıyla ilgili diğer çeşitli bilgileri de sorup doldurmamızı sağlıyor. Bu sebeple zaten yeni kullanıcı oluşturmak için genellikle `adduser` aracı tercih ediliyor.
 
 Neticede kullanıcı oluşturmanın en temel iki yolundan bahsetmiş olduk. Şimdi hazır kullanıcı oluşturmaktan bahsetmişken, kullanıcı hesaplarıyla ilişkili olan birkaç dosyadan da bahsetmek istiyorum. 
 
@@ -224,20 +226,20 @@ nil:x:1001:1002:,,,:/home/nil:/bin/bash
 ali:x:1002:1004::/home/ali:/bin/sh
 ```
 
-Bakın dosyanın sonuna, yeni eklemiş olduğum iki kullanıcı hesabı için iki satır daha eklenmiş. Bu dosyada, sistemdeki her bir kullanıcı hesabının soldan sağa sırasıyla; ismi, parolası, kullanıcı numarası, grup numarası, hesap bilgileri(hesap bilgilerinden kasıt, `adduser` komutuyla bize sorulan tam isim, telefon numarası, oda numarası gibi bilgiler), ev dizini ve varsayılan kabuk programını bilgisini satırlar halinde tutuluyor. 
+Dosyanın sonuna, yeni eklemiş olduğum iki kullanıcı hesabı için iki satır daha eklenmiş. Bu dosyada, sistemdeki her bir kullanıcı hesabının soldan sağa sırasıyla; ismi, parolası, kullanıcı numarası, grup numarası, hesap bilgileri(hesap bilgilerinden kasıt; `adduser` komutuyla bize sorulan tam isim, telefon numarası, oda numarası gibi bilgiler), ev dizini ve varsayılan kabuk programı bilgisi satırlar halinde tutuluyor. 
 
 ![passwd.webp]({{ site.url }}/egitim/temel-linux/kullanici/passwd.webp){:class="responsive img-zoomable"}
 
-Biz `adduser` ya da `useradd` gibi araçları kullanarak kullanıcı oluşturduğumuzda aslında araçların yaptığı işlerden biri de bu dosyaya ilgili kullanıcı hesabının detaylarını eklemek oluyor.
+Biz `adduser` ya da `useradd` gibi araçları kullanarak kullanıcı oluşturduğumuzda aslında araçların yaptığı işlerden biri de bu dosyaya, ilgili kullanıcı hesabının detaylarını eklemek oluyor.
 
 ```bash
 nil:x:1001:1002:,,,:/home/nil:/bin/bash
 ali:x:1002:1004::/home/ali:/bin/sh
 ```
 
-Örneğin bakın `adduser` komutu ile oluşturduğumuz “**nil**” kullanıcısının kabuğu varsayılan olarak **bash** kabuğu olarak ayarlanmışken, `useradd` komutu “**ali**” kullanıcısının varsayılan kabuğunun **sh** olarak tanımlamış. Farklı kabukları tanımlamış olsalar da neticede her iki araç da kullanıcı bilgilerini bu dosyaya eklemiş. Listenin geri kalanına baktığımızda mevcut kullanıcı hesabımıza ek olarak, farklı araç ve yazılımların sistem kullanıcı hesaplarının da aynı şekilde bu listede olduğunu görebiliyoruz. Yani bu dosya mevcut sistemdeki tüm kullanıcı hesaplarının temel bilgilerini barındıran dosyamız. 
+Örneğin `adduser` komutu ile oluşturduğumuz “**nil**” kullanıcısının kabuğu **bash** olarak ayarlanmışken, `useradd` komutu “**ali**” kullanıcısının varsayılan kabuğunu **sh** olarak tanımlamış. Farklı kabukları tanımlamış olsalar da neticede her iki araç da kullanıcı bilgilerini bu dosyaya eklemiş. Listenin geri kalanına baktığımızda mevcut kullanıcı hesabımıza ek olarak, farklı araç ve yazılımların sistem kullanıcı hesaplarının da aynı şekilde bu listede olduğunu görebiliyoruz. Yani bu dosya mevcut sistemdeki tüm kullanıcı hesaplarının temel bilgilerini barındıran dosyamız. 
 
-Bu dosya kullanıcıların hesap detaylarını barındırdığı için dosya içerisinde yaptığımız değişiklikle elbette ilgili hesapları de etkiliyor. Örneğin ben dilersem buradan **ali** kullanıcısının kabuğunu, **bash** kabuğunun tam dosya adresini belirterek **bash** olarak değiştirilebilirim. Bunun için `sudo nano /etc/passwd` komutu ile yetkili şekilde ***passwd*** dosyasını açalım. 
+Bu dosya, kullanıcıların hesap detaylarını barındırdığı için dosya içerisinde gerçekleştireceğimiz değişklikler de ilgili hesapları doğrudan etkiliyor. Örneğin ben dilersem buradan **ali** kullanıcısının kabuğunu, **bash** kabuğunun tam dosya adresini belirterek **bash** olarak değiştirebilirim. Bunun için `sudo nano /etc/passwd` komutu ile yetkili şekilde ***passwd*** dosyasını açalım. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -249,11 +251,11 @@ Bu dosya kullanıcıların hesap detaylarını barındırdığı için dosya iç
 
 ![change-shell.webp]({{ site.url }}/egitim/temel-linux/kullanici/change-shell.webp){:class="responsive img-zoomable"}
 
-Dosyamı kaydettiğimde **ali** kullanıcısının kabuğu da bash olarak değişmiş olacak. Hatırlarsanız eğitimin başında varsayılan kabuğunu bash olarak değiştirmek için de bu dosyada değişiklik yapmıştık. İşte Linux sisteminde her şey dosya yapısı üzerinden ele alındığı için sistem yönetimi ve düzenlemesi de dosyalar üzerinden kolayca yapılabiliyor. Pek çok araç yani pek çok komutta aslında bu ve bunun gibi dosyalarda kısayoldan değişiklik yapmamızı sağlıyor. Biz hangi dosyanın hangi işlevde olduğunu biliyorsak, istersek manuel olarak elle dosyayı düzenleriz istersek de aynı işi yapan bir aracı yani komutu kullanırız. Bu dosya üzerinden açıkladığımız gibi sistemdeki dosyaların işlevlerini bildiğimiz zaman denetim ve yönetim noktasında pek çok avantaja sahip oluyoruz. Ben <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydetmek üzere kapatıp kaydetme işlemini de onaylıyorum. Neticede **ali** kullanıcı hesabı için varsayılan kabuğu, kullanıcı hesapları hakkında bilgileri barındıran bu dosyada düzenlemek yaparak değiştirmiş oldum.
+Dosyamı kaydettiğimde, **ali** kullanıcısının kabuğu da "bash" olarak değişmiş olacak. Zaten eğer hatırlıyorsanız, eğitimin başında varsayılan kabuğunu bash olarak değiştirmek için de bu dosyada değişiklik yapmıştık. İşte Linux sisteminde her şey dosya yapısı üzerinden ele alındığı için sistem yönetimi ve düzenlemesi de dosyalar üzerinden kolayca gerçekleştirilebiliyor. Pek çok araç yani pek çok komutta aslında bu ve bunun gibi dosyalar üzerinde, kısayoldan düzenleme yapmamıza olanak sağlıyor. Biz hangi dosyanın hangi işlevde olduğunu biliyorsak, istersek manuel olarak elle dosyayı düzenleriz istersek de aynı işi yapan bir aracı yani komutu kullanırız. Bu dosya üzerinden açıkladığımız gibi sistemdeki dosyaların işlevlerini bildiğimiz zaman denetim ve yönetim noktasında pek çok avantaja sahip oluyoruz. Ben <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydetmek üzere kapatıp kaydetme işlemini de onaylıyorum. Neticede **ali** kullanıcı hesabı için varsayılan kabuğu, kullanıcı hesapları hakkında bilgileri barındıran bu ***/etc/passwd*** dosyasında elle düzenleme yaparak değiştirmiş oldum.
 
 Tıpkı bu kabuk düzenleme işlemi gibi aslında istersek `adduser` veya `useradd` gibi araçları kullanmadan kendimiz bu ***passwd*** dosyasına yeni kullanıcı hesabı tanımlayıp yeni kullanıcı da oluşturabiliriz. 
 
-Manuel şekilde kullanıcı oluşturabiliyor olsak da, yine de **en kolay ve mantıklı yöntem** `adduser` komutunu kullanıp `adduser` komutunun yeni kullanıcı için gereken tüm ayarlamaları yapmasını sağlamaktır. Dosya içeriğinde oynama yapıp kullanıcı hesabıyla ilgili bilgileri kolayca değiştirebiliyor olmamız güzel bir esneklik evet. Ancak tek tek pek çok ayarlama yapmamız gerektiği için sıfırdan kullanıcı oluştururken önerdiğim veya kullandığım bir yöntem değil. Oluşturması da silmesi de daha sonra zahmetli olabiliyor. Zaten dilerseniz henüz kullanıcı hesabını oluşturma aşamasında `adduser` komutunun seçeneklerini kullanarak da kullanıcı hesapları ile ilgili detayları ***/etc/passwd*** dosyasını elle düzenlemeden belirtebilirsiniz. Hangi seçenekler olduğunu görmek için `adduser —help` komutu ile çıktıları inceleyebilirsiniz. 
+Manuel şekilde kullanıcı oluşturabiliyor olsak da, yine de **en kolay ve mantıklı yöntem** `adduser` komutunu kullanıp `adduser` komutunun yeni kullanıcı için gereken tüm ayarlamaları yapmasını sağlamaktır. Dosya içeriğinde oynama yapıp kullanıcı hesabıyla ilgili bilgileri kolayca değiştirebiliyor olmamız güzel bir esneklik evet. Ancak tek tek pek çok ayarlama yapmamız gerektiği için sıfırdan kullanıcı oluştururken önerdiğim veya kullandığım bir yöntem değil. Oluşturması da silmesi de daha sonra zahmetli olabiliyor. Zaten dilerseniz henüz kullanıcı hesabını oluşturma aşamasında `adduser` komutunun seçeneklerini kullanarak da kullanıcı hesapları ile ilgili detayları ***/etc/passwd*** dosyasını elle düzenlemeye gerek kalmadan belirtebilirsiniz. Hangi seçenekler olduğunu görmek için `adduser --help` komutu ile çıktıları inceleyebilirsiniz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]                                                                                                                              
@@ -287,13 +289,13 @@ general options:
   --conf | -c FILE  use FILE as configuration file
 ```
 
-Bakın yeni kullanıcı oluşturma aşamasında spesifik ev dizinini veya farklı bir kabuğu belirtebiliriz dilersek ev dizini olmamasını sağlayabiliriz kullanıcı numarasını belirtebiliriz ve benzeri tüm ayarlamaları buradaki seçenekleri kullanarak yapabiliriz. Tek yapmanız gereken `adduser` komutuna buradaki seçenekleri doğru şekilde girmektir. 
+Yeni kullanıcı oluşturma aşamasında; spesifik ev dizinini veya farklı bir kabuğu belirtebiliriz, dilersek ev dizini olmamasını sağlayabiliriz, kullanıcı numarasını belirtebiliriz ve benzeri tüm ayarlamaları buradaki seçenekleri kullanarak gerçekleştirebiliriz. Tek yapmanız gereken `adduser` komutunun doğru seçeneklerini kullanmaktır. 
 
-***/etc/passwd*** dosyasına hakkında son birkaç detaydan daha bahsedip parolaların tutulduğu dosyayı açıklamak istiyorum. Tekrar `sudo nano /etc/passwd` komutuyla dosyamızı açıp üzerinden konuşmaya devam edelim. 
+***/etc/passwd*** dosyası hakkında son birkaç detaydan daha bahsedip parolaların tutulduğu dosyayı açıklamak istiyorum. Tekrar `sudo nano /etc/passwd` komutuyla dosyamızı açıp üzerinden konuşmaya devam edelim. 
 
 ### Hesabı Deaktif Hale Getirmek
 
-Eğer bir kullanıcı hesabının bilgilerini silmeden o kullanıcı hesabını deaktif halde getirmek istersek ilgili kullanıcının varsayılan kabuk programı yerine kullanıcının oturum açmasını reddeden ***/usr/sbin/nologin*** dosyasını yazabiliriz. 
+Eğer bir kullanıcı hesabının bilgilerini silmeden o kullanıcı hesabını deaktif halde getirmek istersek; ilgili kullanıcının varsayılan kabuk programı yerine, kullanıcının oturum açmasını reddeden ***/usr/sbin/nologin*** dosyasını yazabiliriz. 
 
 ```bash
 inetsim:x:129:137::/var/lib/inetsim:/usr/sbin/nologin
@@ -306,7 +308,7 @@ nil:x:1001:1002:,,,:/home/nil:/bin/bash
 ali:x:1002:1004::/home/ali:/bin/bash
 ```
 
-Bakın burada çeşitli araçlara ait olan sistem kullanıcıların neredeyse hepsi bu şekilde ayarlı. Araçlara ait kullanıcılar olduğu için zaten bu kullanıcıların oturum açıp kabuk kullanması gerekmediği için bu şekilde belirtilmişler. İşte bizler de herhangi bir kullanıcının oturum açmasını kibarca reddetmek için buraya kabuk yerine bu dosyayı ekleyebiliriz. 
+Burada çeşitli araçlara ait olan sistem kullanıcıların neredeyse hepsi bu şekilde ayarlı. Araçlara ait kullanıcılar olduğu için zaten bu kullanıcıların oturum açıp kabuk kullanması gerekmediği için bu şekilde belirtilmişler. İşte bizler de herhangi bir kullanıcının oturum açmasını kibarca reddetmek için buraya kabuk yerine bu dosyayı ekleyebiliriz. 
 
 Ben **ali** kullanıcısının oturum açmasını engellemek için buradaki kabuğu ***/usr/sbin/nologin*** şeklinde giriyorum. 
 
@@ -325,7 +327,7 @@ Password:
 This account is currently not available.
 ```
 
-Bakın “***bu hesap şu anda müsait değil***” şeklinde hata aldık. Normalde eğer bir kabuk programı tanımlı olsaydı direk o kabuk başlatılacaktı fakat biz ***nologin*** dosyasını varsayılan olarak ayarladığımız için bu şekilde hesabı pasif hale getirmiş olduk.
+“***bu hesap şu anda müsait değil***” şeklinde hata aldık. Normalde eğer bir kabuk programı tanımlı olsaydı direk o kabuk başlatılacaktı fakat biz ***nologin*** dosyasını varsayılan olarak ayarladığımız için bu şekilde hesabı pasif hale getirmiş olduk.
 
 Tekrar ***passwd*** dosyasına bakacak olursak ***nologin*** seçeneği dışında, listede ***/bin/false*** şeklinde olan kullanıcı hesapları olduğunu da görebiliriz. 
 
@@ -335,13 +337,13 @@ lightdm:x:130:138:Light Display Manager:/var/lib/lightdm:/bin/false
 colord:x:131:139:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
 ```
 
-***nologin*** dosyasına benzer şekilde ***false*** dosyası da kullanıcının oturum açmasına engel olmak için kullanılan dosya. Fakat ***nologin*** dosyasından farklı olarak kullanıcıya bu durumda bir uyarı verilmeden kullanıcı doğrudan reddediliyor. Bu bilgiler ışında gerektiğinde siz de bu şekilde kullanıcı bilgisini dosyadan silmeden kullanıcı hesabını kolayca pasifleştirebilirsiniz. Daha sonra dilediğiniz zaman da tekrar bu dosyayı düzenleyip kullanıcıya kabuk tanımlayarak aktifleştirebilirsiniz.
+***nologin*** dosyasına benzer şekilde ***false*** dosyası da kullanıcının oturum açmasına engel olmak için kullanılan dosya. Fakat ***nologin*** dosyasından farklı olarak kullanıcıya bu durumda bir uyarı verilmeden kullanıcı doğrudan reddediliyor. Bu bilgiler ışığında, gerektiğinde siz de bu şekilde kullanıcı bilgisini dosyadan silmeden kullanıcı hesabını kolayca pasifleştirebilirsiniz. Daha sonra dilediğiniz zaman da tekrar bu dosyayı düzenleyip kullanıcıya kabuk tanımlayarak aktifleştirebilirsiniz.
 
 Ayrıca hiç değinmedik ama mutlaka parola bölümündeki “**x**”’ler dikkatinizi çekmiştir. Buradaki “**x**” karakterleri, kullanıcı hesabının parolasının ***/etc/shadow*** dosyasında şifrelenmiş şekilde tutulduğuna işaret ediyor. Zaten kullanıcı hesaplarına ait parolalar şifresiz şekilde yani okunabilir biçimde bu listede bulunsaydı hesapların güvenliğini riske girerdi. Bunun yerine tüm kullanıcıların parola bilgileri ***/etc/shadow*** dosyasında şifrelenmiş şekilde tutuluyor. Daha iyi anlamak için şimdi ***/etc/shadow*** dosyasından bahsederek devam edelim.
 
 ## ***/etc/shadow*** Dosyası
 
-Dosya hakkında konuşmak için önce dosyamızı açalım. Ben açmak için `sudo nano /etc/shadow` şeklinde komutumu giriyorum. Eğer `sudo` komutuyla bu dosyayı yetkili şekilde açmazsanız dosya içeriğini görüntüleyemezsiniz çünkü bu dosyada kullanıcı hesaplarının parola bilgileri bulunuyor.
+Dosya hakkında konuşmak için önce dosyamızı açalım. Ben açmak için `sudo nano /etc/shadow` komutunu giriyorum. Eğer `sudo` komutuyla bu dosyayı yetkili şekilde açmazsanız dosya içeriğini görüntüleyemezsiniz çünkü bu dosyada kullanıcı hesaplarının parola bilgileri bulunuyor.
 
  
 
@@ -352,9 +354,9 @@ Dosya hakkında konuşmak için önce dosyamızı açalım. Ben açmak için `su
 
 ![shadow.webp]({{ site.url }}/egitim/temel-linux/kullanici/shadow.webp){:class="responsive img-zoomable"}
 
-Bakın tıpkı ***passwd*** dosyasına benziyor fakat ***shadow*** dosyasında kullanıcıların parolalarıyla ilgili çeşitli bilgiler tutuluyor. 
+Tıpkı ***passwd*** dosyasına benziyor fakat ***shadow*** dosyasında, kullanıcıların parolalarıyla ilgili çeşitli bilgiler tutuluyor. 
 
-Örneğin en son oluşturduğumuz kullanıcılar hakkında bilgi almak için satırın en sonuna inecek olursak. 
+Örneğin en son oluşturduğumuz kullanıcılar hakkında bilgi almak için satırın en sonuna inelim. 
 
 ```bash
 ...
@@ -367,23 +369,23 @@ nil:$y$j9T$/s/63wuMbCMeshxKZipnC1$YHg/TzBK83mhgdG2O9hpSaQ0Ovvcbw6UHG1ZyRnJT5A:19
 ali:$y$j9T$yMJlpgDGakI6Z9SUpCY9D.$FPXXtQsbFzwN6WkcgryAU3.OS5gYJRfvgRX8vFIt4h/:19545:0:99>
 ```
 
-Bakın mevcut kullanıcı hesabım da dahil yeni oluşturduğum kullanıcıların isimleri ve yanlarında da parola bilgileri bulunuyor. 
+Mevcut kullanıcı hesabım da dahil yeni oluşturduğum kullanıcıların isimleri ve yanlarında da parola bilgileri bulunuyor. 
 
-Burada iki nokta üst üste işaretiyle birbirinden ayrılmış bölümleri tek tek ele almak istemiyorum çünkü ele alsam bile muhtemelen aklımızda kalmayacak. Eğer buradaki detayları merak ediyorsanız kısa bir araştırma ile bu sütunların neyi ifade ettiğini öğrenebilirsiniz. Ben özellikle bahsetmiyorum çünkü aslında buradaki seçenekleri çok daha kolay okuyup değiştirmemiz için kullanabileceğimiz bir araç var. Anlatımın devamında o araçtan bahsedeceğim için buradaki unutulacak detaylarla vakit kaybetmemize gerek yok. Yine de ilk iki sütunu açıklayacak olursak.
+Burada iki nokta üst üste işaretiyle birbirinden ayrılmış bölümleri tek tek ele almak istemiyorum çünkü ele alsam bile muhtemelen aklımızda kalmayacak. Eğer buradaki detayları merak ediyorsanız kısa bir araştırma ile bu sütunların ne ifade ettiğini öğrenebilirsiniz. Ben özellikle bahsetmiyorum çünkü aslında buradaki seçenekleri çok daha kolay okuyup değiştirmemiz için kullanabileceğimiz bir araç var. Anlatımın devamında o araçtan bahsedeceğim için buradaki unutulacak detaylarla vakit kaybetmemize gerek yok. Yine de ilk iki sütunu açıklayacak olursak.
 
-Bakın ilk sütunda kullanıcı hesabının ismi bulunuyor. İkinci sütunda ise şifrelenmiş şekilde o kullanıcının parola bilgi bulunuyor. Biz hesabımızda oturum açmaya çalıştığımızda eğer doğru parolayı girersek, girdiğimiz parola tekrar buradaki yöntemle şifreleniyor ve bu dosyadaki değer ile eşleşiyorsa bu kullanıcı hesabında oturum açabiliyoruz.
+İlk sütunda kullanıcı hesabının ismi bulunuyor. İkinci sütunda ise şifrelenmiş şekilde o kullanıcının parola bilgisi bulunuyor. Biz hesabımızda oturum açmaya çalıştığımızda eğer doğru parolayı girersek, girdiğimiz parola tekrar buradaki yöntemle şifreleniyor ve bu dosyadaki değer ile eşleşiyorsa bu kullanıcı hesabında oturum açabiliyoruz.
 
 Şimdilik ***/etc*** dizini altındaki ***shadow*** dosyasının kullanıcılara ait parola bilgilerini tuttuğunu bilmeniz yeterli.
 
-Kullanıcı hesapları hakkında anlatımlarımıza devam edeceğiz. Fakat daha fazla devam etmeden önce grup kavramından da bahsetmek istiyorum. 
+Kullanıcı hesapları hakkında anlatımlarımıza devam edeceğiz. Fakat daha fazla devam etmeden önce "grup" kavramından da bahsetmek istiyorum. 
 
 # Linux Üzerinde Gruplar
 
-Grup yapısı sayesinde ortak izinlere sahip olmasını istediğimiz kullanıcıları aynı grupta toplayıp bireysel kullanıcı yetkileri dışında toplu şekilde erişim yetkileri ayarlayabiliyoruz.
+Grup yapısı sayesinde, ortak izinlere sahip olmasını istediğimiz kullanıcıları aynı grupta toplayıp bireysel kullanıcı yetkileri dışında toplu şekilde erişim yetkileri tanımlayabiliyoruz.
 
-Öncelikle grup yönetiminden bahsedelim, daha sonra zaten grupların neden bu kadar önemli olduğunu yetkilendirme bölümünde daha iyi anlayacaksınız.
+Öncelikle grup yönetiminden bahsedelim, daha sonra zaten grupların neden bu kadar önemli olduğunu yetkilendirme bölümünde daha iyi anlamış olacağız.
 
-Normalde yeni bir kullanıcı oluştururken bizzat deneyimlediğimiz gibi her kullanıcıya ait kullanıcı hesabıyla aynı isimde bir grup oluşturuluyor. İşte bu grup o kullanıcının birincil grubu olacak geçiyor. Sistem üzerindeki tüm kullanıcıların birincil grubu bulunuyor. Örneğin ben **ali** isimli kullanıcı oluşturduğum için **ali** kullanıcısının birincil grubu **ali** isimli grup oluyor.
+Normalde yeni bir kullanıcı oluştururken bizzat deneyimlediğimiz gibi; oluşturulan kullanıcının kendisine ait, kullanıcı hesabıyla aynı isimde bir grup oluşturuluyor. İşte bu grup o kullanıcının "birincil grubu" olarak geçiyor. Sistem üzerindeki tüm kullanıcıların birincil grubu bulunuyor. Örneğin ben **ali** isimli kullanıcı oluşturduğum için **ali** kullanıcısının birincil grubu **ali** isimli grup oluyor.
 
 Öncelikle bu durumu teyit etmek için mesela **ali** kullanıcısının grubunu sorgulamak üzere `groups ali` şeklinde komutumuzu girebiliriz. 
 
@@ -395,7 +397,7 @@ ali : ali
 
 Buradaki `groups` komutundan sonra argüman olarak girdiğimiz kullanıcı isimlerinin dahil olduğu gruplar bu araç sayesinde bastırılıyor. Bakın **ali** kullanıcısı **ali** isimli gruba dahilmiş.
 
-Bunun dışında mesela kendi kullanıcı hesabımızı da sorgulayabiliriz. Ben şu an **taylan** kullanıcı hesabını yönettiğim için `groups taylan` şeklinde komutumuz giriyorum. 
+Bunun dışında mesela kendi kullanıcı hesabımızı da sorgulayabiliriz. Ben şu an **taylan** kullanıcı hesabını yönettiğim için `groups taylan` şeklinde komutumu giriyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -403,13 +405,13 @@ Bunun dışında mesela kendi kullanıcı hesabımızı da sorgulayabiliriz. Ben
 taylan : taylan adm dialout cdrom floppy sudo audio dip video plugdev netdev wireshark bluetooth scanner kaboxer
 ```
 
-Bakın bu sefer birden fazla grup listelendi. **taylan** kullanıcısı birincil olarak **taylan** grubu dahil olmak üzere ikincil şekilde pek çok harici gruba da dahilmiş. 
+Bu sefer birden fazla grup listelendi. **taylan** kullanıcısı, birincil olarak **taylan** grubu dahil olmak üzere ikincil şekilde pek çok harici gruba da dahilmiş. 
 
-Örneğin **taylan** kullanıcısı buradaki **sudo** grubuna dahil olduğu için `sudo` aracıyla gerektiğinde **sudo** yetkileriyle komutlarını çalıştırabiliyor. Ama **ali** kullanıcısı **sudo** grubunda olmadığı için `sudo` aracını kullanıp yetkili şekilde işlem yapmaya kalkarsa erişim yetkisi hatası alır. İşte gruplar zaten bu şekilde birden fazla kullanıcıya ortak şekilde bazı yetkileri vermek için kullanılıyor.
+Örneğin **taylan** kullanıcısı buradaki **sudo** grubuna dahil olduğu için `sudo` aracıyla gerektiğinde **root** yetkileriyle komutlarını çalıştırabiliyor. Ama **ali** kullanıcısı **sudo** grubunda olmadığı için `sudo` aracını kullanıp yetkili şekilde işlem yapmaya kalkarsa erişim yetkisi hatası alır. İşte gruplar zaten bu şekilde birden fazla kullanıcıya ortak şekilde bazı yetkileri vermek için kullanılıyor.
 
 ## ***/etc/group*** Dosyası Hakkında
 
-`groups` komutuyla aldığımız çıktıların dışında kullanıcıların hangi gruplara dahil olduğunun bilgisini öğrenmek için ***/etc/group*** dosyasını da kontrol edebiliriz. Ben göz atmak için `cat` ile dosyayı okumak istiyorum. 
+`groups` komutuyla aldığımız çıktıların dışında, kullanıcıların hangi gruplara dahil olduğunun bilgisini öğrenmek için ***/etc/group*** dosyasını da kontrol edebiliriz. Ben göz atmak için `cat` ile dosyayı okumak istiyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -502,7 +504,7 @@ nil:x:1002:
 ali:x:1004:
 ```
 
-Burada yer alan ilk sütunların hepsi grupların isimleridir. Örneğin en alt satıra inecek olursak, **nil** ve **ali** kullanıcılarının da kendi isimlerinde grupları oluşturulduğu için onların grupları da burada gözüküyor. İlk sütun grup isimleri dedik. İkinci sütun, varsa grubun şifresini temsil ediyor. Ancak çoğunlukla grup şifresi kullanılmadığı için bu konuyu es geçebiliriz. Sondaki sayı ise, bu gurubu temsil eden benzersiz grup numarası. Hatırlıyorsanız kullanıcıları temsil eden “**user id**” yani “kullanıcı numaraları” da ***/etc/passwd*** dosyasında her kullanıcının kendi satırında yazıyordu. Buradaki sayı da bu gurubun grup numarası işte. Ayrıca en sondaki iki nokta üst üste işaretinden sonra bakın bazı grupların boş sütunlar varken bazılarında kullanıcı isimleri var. 
+Burada yer alan ilk sütunların hepsi grupların isimleridir. Örneğin en alt satıra inecek olursak, **nil** ve **ali** kullanıcılarının da kendi isimlerinde grupları oluşturulduğu için onların grupları da burada gözüküyor. İlk sütun grup isimleri dedik. İkinci sütun, varsa grubun şifresini temsil ediyor. Ancak çoğunlukla grup şifresi kullanılmadığı için bu konuyu es geçebiliriz. Sondaki sayı ise, bu grubu temsil eden benzersiz "grup numarası". Hatırlıyorsanız kullanıcıları temsil eden “**user id**” yani “kullanıcı numaraları” da ***/etc/passwd*** dosyasında her kullanıcının kendi satırında yazıyordu. Buradaki sayı da bu grubun "grup numarası" işte. Ayrıca en sondaki iki nokta üst üste işaretinden sonra bazı gruplarda boş sütunlar varken bazılarında kullanıcı isimleri var. 
 
 ```bash
 kaboxer:x:143:root,taylan
@@ -512,7 +514,7 @@ nil:x:1002:
 ali:x:1004:
 ```
 
-Bu sondaki sütun, bu guruba dahil olan ikincil kullanıcıları temsil ediyor. Yani örneğin bakın **nil** guruba **nil** kullanıcısı dışında hiç kimse dahil olmadığı için buradaki sütun boş. Ama burada **kaboxer** olarak geçen gruba **root** ve **taylan** kullanıcıları dahil olduğu için o kullanıcıların isimleri burada yazıyor. Hatta aldığım çıktıya dönüp dikkatlice bakacak olursanız pek çok grubun sonunda mevcut kullanıcı hesabımın yani **taylan** kullanıcısının bu gruplara ekli olduğunu görebilirsiniz. Zaten **taylan** kullanıcısının dahil olduğu grupları listelediğimizde bu grupların isimlerini görmüştük. İşte bakın bir kez daha teyit etmiş olduk. Neticede bizzat gördüğümüz gibi gruplarla ilgili bilgiler bu dosyada tutuluyor. Yani istersek bu dosyada değişiklik yaparak gruplarla ilgili tanımlamaları değiştirebiliriz. Fakat tabii ki daha önce de olduğu gibi bu işi elle yapmak yerine bu iş için uygun olan aracı kullanarak çok daha sağlıklı şekilde grup oluşturma, gruba yeni kullanıcı ekleme ve çıkarma gibi işlemleri yapabiliriz. Yani ne yaptığınızın gerçekten farkında olmadığınız sürece manuel şekilde müdahale etmenizi önermem. 
+Bu sondaki sütun, bu gruba dahil olan ikincil kullanıcıları temsil ediyor. Yani örneğin **nil** gruba **nil** kullanıcısı dışında hiç kimse dahil olmadığı için buradaki sütun boş. Ama burada **kaboxer** olarak geçen gruba **root** ve **taylan** kullanıcıları dahil olduğu için o kullanıcıların isimleri burada yazıyor. Hatta aldığım çıktıya dönüp dikkatlice bakacak olursanız pek çok grubun sonunda mevcut kullanıcı hesabımın yani **taylan** kullanıcısının bu gruplara ekli olduğunu görebilirsiniz. Zaten **taylan** kullanıcısının dahil olduğu grupları listelediğimizde bu grupların isimlerini görmüştük. İşte bir kez daha teyit etmiş olduk. Neticede bizzat gördüğümüz gibi gruplarla ilgili bilgiler bu dosyada tutuluyor. Yani istersek bu dosyada değişiklik yaparak gruplarla ilgili tanımlamaları değiştirebiliriz. Fakat tabii ki daha önce de olduğu gibi bu işi elle yapmak yerine bu iş için uygun olan aracı kullanarak çok daha sağlıklı şekilde grup oluşturma, gruba yeni kullanıcı ekleme ve çıkarma gibi işlemleri yapabiliriz. Yani ne yaptığınızın gerçekten farkında olmadığınız sürece manuel şekilde müdahale etmenizi önermem. 
 
 ## Yeni Grup Oluşturmak
 
@@ -523,7 +525,7 @@ Yeni bir grup oluşturmak için `groupadd` aracını kullanabiliriz. Ben **yeni-
 └─$ sudo groupadd yeni-grup
 ```
 
-Tamamdır gurubumun sorunsuzca oluşturulmuş olması gerek. Teyit etmek için `tail -1 /etc/group` komutunu girebiliriz. 
+Tamamdır grubumun sorunsuzca oluşturulmuş olması gerek. Teyit etmek için `tail -1 /etc/group` komutunu girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -531,11 +533,11 @@ Tamamdır gurubumun sorunsuzca oluşturulmuş olması gerek. Teyit etmek için `
 yeni-grup:x:1005:
 ```
 
-Bakın **yeni-grup** isimli grup oluşturulmuş ve grup numarası olarak da boşta bu sayı bulunduğu için bu sayı tanımlanmış. Şimdi oluşturduğumuz bu guruba yeni bir kullanıcı eklemeyi deneyebiliriz. 
+**yeni-grup** isimli grup oluşturulmuş ve grup numarası olarak da boşta bu sayı bulunduğu için bu sayı tanımlanmış. Şimdi oluşturduğumuz bu gruba yeni bir kullanıcı eklemeyi deneyebiliriz. 
 
 ## Gruba Kullanıcı Eklemek
 
-Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. Ben **ali** isimli kullanıcıyı yeni-grup grubuna eklemek istediğim için `gpasswd -a ali yeni-grup` şeklinde komutumu yazıyorum. `gpasswd` aracına vermiş olduğum `-a` seçeneği benim “add” yani “ekleme” yapmak istediğimi belirten bir seçenek. Ekleme seçeneğinin ardından hangi kullanıcının hangi gruba ekleneceğini de argümanlar olarak yazıyorum. Tamamdır şimdi komutumuz girip etkisine bakalım.
+Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. Ben **ali** isimli kullanıcıyı "yeni-grup" grubuna eklemek istediğim için `gpasswd -a ali yeni-grup` şeklinde komutumu yazıyorum. `gpasswd` aracına vermiş olduğum `-a` seçeneği benim “add” yani “ekleme” yapmak istediğimi belirten bir seçenek. Ekleme seçeneğinin ardından hangi kullanıcının hangi gruba ekleneceğini de argümanlar olarak yazıyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -543,7 +545,7 @@ Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. Ben *
 gpasswd: Permission denied.
 ```
 
-Bakın ben başta `sudo` komutu olmadan girdiğim için yetki hatası aldım. `sudo !!` komutuyla en sonra girdiğimiz komutu yetkili şekilde tekrar çalıştırmayı deneyelim. Bildiğiniz gibi buradaki çift ünlem işareti en sonra çalıştırılan komutu geçmişten çağırıyor. Ben de `sudo` komutunda sonra en son çalıştırılan bu komutu çağırıp yetkili şekilde çalıştırılmasını sağlıyorum. Zaten genelde yetki gerektiren işlerde sudo komutunu girmeyi unuttuğumuzda bu şekilde `sudo !!` komutuyla en son girdiğimiz komutu sıklıkla çağırıyoruz, büyük kolaylık gerçekten. 
+Ben başta `sudo` komutu olmadan girdiğim için yetki hatası aldım. `sudo !!` komutuyla en sonra girdiğimiz komutu yetkili şekilde tekrar çalıştırmayı deneyelim. Bildiğiniz gibi buradaki çift ünlem işareti, en son çalıştırılan komutu geçmişten çağırıyor. Ben de `sudo` komutundan sonra en son çalıştırılan bu komutu çağırıp yetkili şekilde tekrar çalıştırılmasını sağlıyorum. Zaten genelde yetki gerektiren işlerde `sudo` komutunu girmeyi unuttuğumuzda bu şekilde `sudo !!` komutuyla en son girdiğimiz komutu sıklıkla çağırıyoruz, büyük kolaylık gerçekten. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -552,9 +554,9 @@ sudo gpasswd -a ali yeni-grup
 Adding user ali to group yeni-grup
 ```
 
-Bakın bu kez herhangi bir yetki hatası almadık.
+Bu kez herhangi bir yetki hatası almadık.
 
-Şimdi tekrar konumuza dönecek olursak bakın girdiğimiz komut neticesinde **ali** kullanıcısının **yeni-grup** isimli gruba eklenmiş olması gerekiyor. Bunu teyit etmek için yine `tail -1 /etc/group` ya da `groups ali` şekline komutumuzu girebiliriz. 
+Şimdi tekrar konumuza dönecek olursak, girdiğimiz komut neticesinde **ali** kullanıcısının **yeni-grup** isimli gruba eklenmiş olması gerekiyor. Bunu teyit etmek için yine `tail -1 /etc/group` ya da `groups ali` şekline komutumuzu girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -566,7 +568,7 @@ yeni-grup:x:1005:ali
 ali : ali yeni-grup
 ```
 
-Bakın **yeni-grub**’un sonuna **ali** kullanıcısı da eklenmiş.
+Çıktılardan teyit edebildiğimiz üzere, **yeni-grub**’un sonuna **ali** kullanıcısı da eklenmiş. Yani gruba ekleme işlemi başarılı.
 
 ## Gruptan Kullanıcı Silmek
 
@@ -586,7 +588,7 @@ Removing user ali from group yeni-grup
 ali : ali
 ```
 
-Bakın artık **yeni-grup** çıktılarda gözükmüyor. Yani **ali** kullanıcısını bu gruptan sildiğimizi teyit edebiliyoruz.
+Artık **yeni-grup** çıktılarda gözükmüyor. Yani **ali** kullanıcısını bu gruptan sildiğimizi teyit edebiliyoruz.
 
 ## Grubu Silmek
 
@@ -610,13 +612,13 @@ Tamamdır grubumun silinmiş olması lazım. Teyit etmek için `grep “yeni-gru
 └─$
 ```
 
-Bakın herhangi bir çıktı almadık çünkü bu grubu biraz önce silmiştik. Yani silme işlemini de böylelikle teyit etmiş olduk.
+Herhangi bir çıktı almadık çünkü bu grubu biraz önce silmiştik. Yani silme işlemini de böylelikle teyit etmiş olduk.
 
 Kullanıcı hesapları ve gruplar hakkında temelde bilmemiz gerekenlerden bahsettiğimize göre anlatımlarımıza erişim yetkileri ile devam edebiliriz.
 
 # Erişim Yetkileri
 
-Erişim yetkilerinden bahsedebilmek için öncelikle bu yetkilerin nasıl gözüktüğünü bilmemiz gerekiyor. Ben bunun için ev dizinindeyken `ls -l` komutuyla detaylı şekilde mevcut dizinimi listeliyorum. 
+Erişim yetkilerinden bahsedebilmek için öncelikle bu yetkilerin nasıl gözüktüğünü bilmemiz gerekiyor. Ben bunun için ev dizinindeyken, `ls -l` komutuyla detaylı şekilde mevcut dizinimi listeliyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -636,11 +638,11 @@ drwxr-xr-x 2 taylan taylan 4096 Jun 28 12:30  test
 drwxr-xr-x 2 taylan taylan 4096 Jun 28 01:35  Videos
 ```
 
-Aldığımız çıktılarda yer alan ilk sütun dosya ve dizinlerin yetkilerini diğer bir deyişle modlarını temsil eden bölüm. Buradaki “**mod**” ifadesi önemli çünkü ileride bu yetkileri değiştirirken aslında “**mod**” değiştirme aracını kullanıyor olacağız. Devamında yer alan buradaki sütunlar da ilgili dosya ve dizinin hangi kullanıcı ve hangi gruba ait olduğunu belirtiyor.
+Aldığımız çıktılarda yer alan ilk sütun dosya ve dizinlerin yetkilerini diğer bir deyişle modlarını temsil eden bölüm. Buradaki “**mod**” ifadesi önemli çünkü ileride bu yetkileri değiştirirken aslında “**mod**” değiştirme(`chmod`) aracını kullanıyor olacağız. Yetkilerin devamında yer alan sütunlar da ilgili dosya ve dizinin "hangi kullanıcı" ve "hangi gruba" ait olduğunu yani "**sahiplik**" bilgisini belirtiyor.
 
 ![ls -l.webp]({{ site.url }}/egitim/temel-linux/kullanici/ls-l.webp){:class="responsive img-zoomable"}
 
-Ben kendi ev dizinimi listelediğim için tüm dosya ve dizinleri sahibi ve grubu hep **taylan** kullanıcısı olacak gözüküyor. Bu konuya ayrıca değineceğiz. Şimdi tekrar buradaki yetki yani mod tanımlamalarına dönecek olursak, en genel açıklama aşağıdaki görselde olduğu şekilde.
+Ben kendi ev dizinimi listelediğim için tüm dosya ve dizinleri sahibi ve grubu hep **taylan** kullanıcısı olarak gözüküyor. Bu konuya daha sonra ayrıca değineceğiz. Şimdi tekrar buradaki "yetki" yani "mod" tanımlamalarına dönecek olursak, en genel açıklama aşağıdaki görselde olduğu şekilde:
 
 ![permission.webp]({{ site.url }}/egitim/temel-linux/kullanici/permission.webp){:class="responsive img-zoomable"}
 
@@ -648,25 +650,25 @@ Elbette kavramların netleşebilmesi için tek tek buradaki karakterlerin ne anl
 
 ## Dosya Türü
 
-İlk karakter her zaman dosya veya dizinin türü hakkında bilgi sunan karakter oluyor. Örneğin bakın dizinler “**d**irectory” ifadesinin kısaltmasından gelen “**d**” karakteri ile temsil ediliyorken, standart dosyalar kısa çizgi “**-**” ile belirtiliyor. Ayrıca sembolik linkler de “**l**” karakteri ile temsil ediliyor. Tabii ki buradaki çıktılar yalnızca örnek yani sistemdeki tüm dosya türleri burada yer almıyor. Aldığınız çıktıdaki karakterin ne anlama geldiğini bilmediğinizde kısa bir internet araştırmasıyla bu karakter temsili hakkında kolayca pek çok bilgi edinebilirsiniz. Şimdilik yalnızca bu ilk karakter alanın mevcut dosya veya klasörün türünü temsil ettiğini bilmemiz yeterli.
+İlk karakter her zaman dosya veya dizinin "türü" hakkında bilgi sunan karakter oluyor. Örneğin dizinler “**d**irectory” ifadesinin kısaltmasından gelen “**d**” karakteri ile temsil ediliyorken, standart dosyalar kısa çizgi “**-**” ile belirtiliyor. Ayrıca sembolik linkler de “**l**” karakteri ile temsil ediliyor. Tabii ki buradaki çıktılar yalnızca örnek yani sistemdeki tüm dosya türleri burada yer almıyor. Aldığınız çıktıdaki karakterin ne anlama geldiğini bilmediğinizde kısa bir internet araştırmasıyla bu karakter temsili hakkında kolayca pek çok bilgi edinebilirsiniz. Şimdilik yalnızca bu ilk karakter alanın, mevcut dosya veya klasörün türünü temsil ettiğini bilmemiz yeterli.
 
 ![permission-first-column.webp]({{ site.url }}/egitim/temel-linux/kullanici/permission-first-column.webp){:class="responsive img-zoomable"}
 
 ## Erişim Yetkileri
 
-Dosya türünün arından gelen 9 basamaklı karakterlere geçecek olursak. Bu karakterleri 3 er basamaklı 3 gruba ayırmamız gerekiyor. Çünkü buradaki ilk üç karakter bu dosyanın sahibinin izinlerini temsil ediyorken, ikinci üç karakter de bu dosyanın grubunun sahip olduğu yetkileri temsil ediyor. Son üç karakter ise ilk iki grup haricindekileri yani hem bu dosyanın sahibi olmayan hem de bu dosyanın grubuyla aynı grupta bulunmayan diğer kullanıcılar için yetkileri temsil ediyor.
+Dosya türünün ardından gelen 9 basamaklı karakterlere geçecek olursak. Bu karakterleri 3'er basamaklı 3 gruba ayırmamız gerekiyor. Çünkü buradaki ilk üç karakter bu dosyanın sahibinin izinlerini temsil ediyorken, ikinci üç karakter de bu dosyanın grubunun sahip olduğu yetkileri temsil ediyor. Son üç karakter ise sahibi ve grubu haricindekileri yani hem bu dosyanın sahibi olmayan hem de bu dosyanın grubuyla aynı grupta bulunmayan diğer kullanıcılar için yetkileri temsil ediyor.
 
 ![ownership.webp]({{ site.url }}/egitim/temel-linux/kullanici/ownership.webp){:class="responsive img-zoomable"}
 
 Bu üç ayrı yetki grubu sayesinde her bir dosya ve klasörü yalnızca istediğimiz kullanıcıların erişebileceği şekilde yetkilendirebiliyoruz. 
 
-Bu yetki karakterinde kullanılan **r** karakteri “**r**ead” yani “okuma” yetkisini temsil eden karakter. Eğer bu karakteri görüyorsanız o dosya veya klasörün içeriğini görüntüleyebilirsiniz. 
+<p class="yesil">Bu yetki karakterinde kullanılan "<strong>r</strong>", karakteri “<strong>r</strong>ead” yani “okuma” yetkisini temsil eden karakter. Eğer bu karakteri görüyorsanız o dosya veya klasörün içeriğini görüntüleyebilirsiniz. </p>
 
-**w** ifadesi “**w**rite” yani “yazma” yetkisini temsil eden karakter. Bu karakter varsa dosya içeriğini düzenleyip, klasörlerde de dosya ekleme ve silme gibi işlemleri yapabileceğimiz anlamına geliyor. 
+<p class="mor">"<strong>w</strong>" karakteri, “<strong>w</strong>rite” yani “yazma” yetkisini temsil eden karakter. Bu karakter varsa dosya içeriğini düzenleyip, klasörlerde de dosya ekleme ve silme gibi işlemleri gerçekleştirebilirsiniz. </p>
 
-**x** karakteri ise “e**x**ecute” yani “çalıştırma” yetkisini temsil ediyor. Bu yetki varsa dosyaları çalıştırabilir ya da klasör içeriklerini yazma yetkisi de varsa düzenleyebilirsiniz. Klasör içeriklerini düzenlemek için yazma ve çalıştırma yetkisinin her ikisinin de bulunması şart, aksi halde düzenleme yapılamıyor. Ama mesela okuma yetkisi olmadan da düzenleme yapılabilir. 
+<p class="turuncu">"<strong>x</strong>" karakteri ise “e<strong>x</strong>ecute” yani “çalıştırma” yetkisini temsil ediyor. Bu yetki varsa dosyaları çalıştırabilir ya da klasör içeriklerini yazma yetkisi de varsa düzenleyebilirsiniz. Klasör içeriklerini düzenlemek için yazma ve çalıştırma yetkisinin her ikisinin de bulunması şart, aksi halde düzenleme yapılamıyor. Ama okuma yetkisi olmadan da düzenleme yapılabilir. </p>
 
-Söylediklerim şu an için pek anlaşılır gelmemiş olabilir ancak merak etmeyin örnekler üzerinden ne ifade ettiklerini çok daha iyi anlamış olacaksınız.
+Söylediklerim şu an için pek anlaşılır gelmemiş olabilir. Örnekler üzerinden ele alırsak netleşmiş olacak.
 
 Ben testler sırasında kullanabilmek için basit bir betik dosyası oluşturmak istiyorum. Bunun için `echo "echo ben betik dosyasıyım" > testfile.sh` şeklinde komutumu giriyorum. 
 
@@ -683,7 +685,15 @@ Ben testler sırasında kullanabilmek için basit bir betik dosyası oluşturmak
 -rw-r--r-- 1 taylan taylan 23 Jul  7 06:01 testfile.sh
 ```
 
-Öncelikle dosyanın yetkilerine göz atacak olursak; bu dosyanın sahibi hem okuma hem yazma yetkisine sahipken, dosyanın grubundaki kullanıcılar ve diğer kullanıcılar bu dosyayı yalnızca okuyabiliyormuş. Bu dosyanın sahibi taylan kullanıcısı olduğu için taylan kullanıcısı **rw-** yani **okuma ve yazma** yetkilerine sahip. Dosya taylan grubuna dahil olduğu için taylan grubundaki tüm kullanıcılar da bu dosya üzerinde **r—** yani yalnızca **okuma** yetkisine sahip. Dosyanın sahibi olmayan veya bu grupta bulunmayan diğer tüm kullanıcılara da dosya üzerinde **r—** yani yine yalnızca **okuma** yetkisine sahip. Buradaki çıktıdan bizzat teyit ettiğimiz gibi ilgili yetki mevcutsa harf karşılığı gösteriliyorken, yetki yoksa kısa çizgi ile bu yetkinin olmadığı belirtiliyor. Zaten yetki tanımlamasının sıralaması hep **okuma yazma çalıştırma** yani **rwx** şeklinde gittiği için hangi yetkinin olup olmadığını kolayca anlayabiliyoruz. 
+Öncelikle dosyanın yetkilerine göz atacak olursak; bu dosyanın sahibi hem okuma hem yazma yetkisine sahipken, dosyanın grubundaki kullanıcılar ve diğer kullanıcılar bu dosyayı yalnızca okuyabiliyormuş. 
+
+Bu dosyanın sahibi "taylan" kullanıcısı olduğu için taylan kullanıcısı **rw-** yani **okuma ve yazma** yetkilerine sahip. 
+
+Dosya "taylan" grubuna dahil olduğu için taylan grubundaki tüm kullanıcılar da bu dosya üzerinde **r—** yani yalnızca **okuma** yetkisine sahip. 
+
+Dosyanın sahibi olmayan veya bu grupta bulunmayan diğer tüm kullanıcılar da dosya üzerinde **r—** yani yine yalnızca **okuma** yetkisine sahip. 
+
+Buradaki çıktıdan bizzat teyit ettiğimiz gibi ilgili yetki mevcutsa harf karşılığı gösteriliyorken, yetki yoksa kısa çizgi ile bu yetkinin olmadığı belirtiliyor. Zaten yetki tanımlamasının sıralaması hep **okuma yazma çalıştırma** yani **rwx** şeklinde gittiği için hangi yetkinin olup olmadığını kolayca anlayabiliyoruz. 
 
 ### Erişim Yetkilerinin Etkileri
 
@@ -695,7 +705,7 @@ Ben testler sırasında kullanabilmek için basit bir betik dosyası oluşturmak
 ben betik dosyasıyım
 ```
 
-Bakın ben dosyanın sahibi olan kali kullanıcısı olduğum için buradaki okuma yetkim sayesinde bu dosyanın içeriğini okuyabiliyorum. Şimdi yazma yetkisini test etmek için `echo “test” >> testfile.sh` komutu ile yeni veri girişinde bulunalım.
+Ben dosyanın sahibi olan taylan kullanıcısı olduğum için buradaki okuma yetkim sayesinde bu dosyanın içeriğini okuyabiliyorum. Şimdi yazma yetkisini test etmek için `echo “test” >> testfile.sh` komutu ile yeni veri girişinde bulunalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -707,7 +717,7 @@ ben betik dosyasıyım
 test
 ```
 
-Bakın yazma yetkim sayesinde dosyaya test ifadesini eklemeyi başardım. Şimdi son olarak bu dosyamızı çalıştırmayı denemek için tıpkı daha önce de yaptığımız gibi `./testfile.sh` şeklinde komutumuzu girelim. 
+Yazma yetkim sayesinde dosyaya "test" ifadesini eklemeyi başardım. Şimdi son olarak bu dosyamızı çalıştırmayı denemek için tıpkı daha önce de yaptığımız gibi `./testfile.sh` şeklinde komutumuzu girelim. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -715,16 +725,16 @@ Bakın yazma yetkim sayesinde dosyaya test ifadesini eklemeyi başardım. Şimdi
 bash: ./testfile.sh: Permission denied
 ```
 
-Bakın bu kez yetki hatası aldık. Dosyanın yetkilerini tekrar hatırlayacak olursak, dosya sahibinin yani benim bu dosyayı çalıştırma “x” yetkim olmadığını görebiliyoruz.
+Bu kez yetki hatası aldık. Dosyanın yetkilerini tekrar hatırlayacak olursak, dosya sahibinin yani benim bu dosyayı çalıştırma “x” yetkim olmadığını görebiliyoruz.
 
 ```bash
 └─$ ls -l testfile.sh 
 -rw-r--r-- 1 taylan taylan 23 Jul  7 06:01 testfile.sh
 ```
 
-Dolayısıyla bu dosyayı bir betik dosyası yani bir program gibi çalıştırmam mümkün değil. Çalıştırabilmek için daha önce de yaptığımız gibi `chmod` aracı yardımıyla bu dosyaya çalıştırma yetkisi vermem gerekiyor. Bu yetkilere “**mod**” denildiğini özellikle söylemiştim. İşte bu yetkileri değiştirmek için kullandığımız araç da “**ch**ange **mod**e” ifadesinin kısaltması olarak `chmod` şeklinde isimlendirilmiş.
+Dolayısıyla bu dosyayı bir betik dosyası yani bir program gibi çalıştırmam mümkün değil. Çalıştırabilmek için daha önce de yaptığımız gibi `chmod` aracı yardımıyla bu dosyaya çalıştırma yetkisi vermemiz gerek. Bu yetkilere “**mod**” denildiğini özellikle söylemiştim. İşte bu yetkileri değiştirmek için kullandığımız araç da “**ch**ange **mod**e” ifadesinin kısaltması olarak `chmod` şeklinde isimlendirilmiş.
 
-Ben hemen bu betik dosyama çalıştırma yetkisi vermek için daha önce de birkaç kez yaptığımız gibi `chmod +x testfile.sh` komutunu giriyorum. 
+Betik dosyama çalıştırma yetkisi vermek için daha önce de birkaç kez yaptığımız gibi `chmod +x testfile.sh` komutunu giriyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -739,7 +749,7 @@ Ben hemen bu betik dosyama çalıştırma yetkisi vermek için daha önce de bir
 -rwxr-xr-x 1 taylan taylan 28 Jul  7 06:08 testfile.sh
 ```
 
-Bakın tüm yetki grupları için çalıştırılma yetkisi verilmiş. Yani artık bu dosyayı herkes çalıştırabilir. Ben denemek için tekrar `./testfile.sh` şeklinde komutumu giriyorum.
+Tüm yetki grupları için çalıştırılma yetkisi verilmiş. Yani artık bu dosyayı herkes çalıştırabilir. Ben denemek için tekrar `./testfile.sh` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -747,7 +757,7 @@ Bakın tüm yetki grupları için çalıştırılma yetkisi verilmiş. Yani art�
 ben betik dosyasıyım
 ```
 
-Bakın bu kez betik dosyam sorunsuzca çalıştı. Yani çalıştırma yetkisi vermeyi başardık. Fakat bu örneğimizde herkese çalıştırma yetkisi vermiş olduk. Bu yaklaşım pek güvenli ve her zaman isteyeceğimiz bir yaklaşım değil. Şimdi yetki verme işlemini nasıl daha spesifik olarak tanımlayabileceğimizden bahsederek devam etmek istiyorum.
+Bu kez betik dosyam sorunsuzca çalıştı. Yani çalıştırma yetkisi vermeyi başardık. Fakat bu örneğimizde herkese çalıştırma yetkisi vermiş olduk. Bu yaklaşım pek güvenli ve her zaman isteyeceğimiz bir yaklaşım değil. Şimdi yetki verme işlemini nasıl daha spesifik olarak tanımlayabileceğimizden bahsederek devam edelim.
 
 ### Erişim Yetkilerini Tanımlamak
 
@@ -762,7 +772,7 @@ Tüm izinleri daha rahat gösterebilmek için öncelikle dosyamdaki tüm yetkile
 ---------- 1 taylan taylan 33 Jul  7 06:15 testfile.sh
 ```
 
-Bakın dosyamın tüm yetkileri kaldırılmış. Ben yalnızca dosyanın sahibine çalıştırma yetkisi vermek için `chmod u+x testfile.sh` komutunu giriyorum.
+Dosyamın tüm yetkileri kaldırılmış. Ben yalnızca dosyanın sahibine çalıştırma yetkisi vermek için `chmod u+x testfile.sh` komutunu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -786,9 +796,9 @@ Yetkiyi silmek istersek de artı yerine eksi işaretini kullanabiliriz. Ben yine
 ---------- 1 taylan taylan 33 Jul  7 06:15 testfile.sh
 ```
 
-Bakın eksi işareti sayesinde yetki kaldırma işlemini de sorunsuzca gerçekleştirdik.
+Eksi işareti sayesinde yetki kaldırma işlemini de sorunsuzca gerçekleştirdik.
 
-Eğer dosya sahibinin yetkilerini değil de dosya gurubunun yetkilerini değiştirmek istersek `u` yerine `g` karakterini kullanabiliriz. Ben denemek için gruptaki kullanıcılara **okuma ve yazma** yetkisi vermek için `chmod g+rw testfile.sh` şeklinde komutumu giriyorum.
+Eğer dosya sahibinin yetkilerini değil de dosya grubunun yetkilerini değiştirmek istersek `u` yerine `g` karakterini kullanabiliriz. Ben denemek için gruptaki kullanıcılara **okuma ve yazma** yetkisi vermek için `chmod g+rw testfile.sh` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -799,9 +809,9 @@ Eğer dosya sahibinin yetkilerini değil de dosya gurubunun yetkilerini değişt
 ----rw---- 1 taylan taylan 33 Jul  7 06:15 testfile.sh
 ```
 
-Bakın dosyanın grubu için okuma ve çalıştırma yetkileri verilmiş.
+Dosyanın grubu için okuma ve çalıştırma yetkileri verilmiş.
 
-Diğer kullanıcılar için yetki tanımlaması yaparken de “**o**thers” yani “diğerleri” ifadesinin kısalmasından gelen `o` karakterini kullanabiliyoruz. Ben diğer kullanıcılara yalnızca okuma yetkisi vermek istediğim için `chmod o+r testfile.sh` şeklinde komutumu giriyorum.
+Diğer kullanıcılar için yetki tanımlaması yaparken de “**o**thers” yani “diğerleri” ifadesinin kısaltmasından gelen `o` karakterini kullanabiliyoruz. Ben diğer kullanıcılara yalnızca okuma yetkisi vermek istediğim için `chmod o+r testfile.sh` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -825,9 +835,9 @@ Diğer kullanıcılar için yalnızca okuma yetkisi tanımlanmış.
 -----w---- 1 taylan taylan 33 Jul  7 06:15 testfile.sh
 ```
 
-Bakın okuma yetkisi olanların yalnızca okuma yetkileri kaldırılmış oldu. Neticede burada öğrendiğiniz ekleme ve çıkarma yaklaşımı sayesinde hem spesifik kullanıcı grubuna hem de toplu şekilde tüm kullanıcı yetkilerine ekleme ve çıkarma yapabilirsiniz. Bu arada fark ettiyseniz biz şimdiye kadar hep ekleme ve çıkarma yaptık. Eğer artı ve eksi işaretleriyle ekleme veya çıkarma yapmak yerine doğrudan tanımlamak istediğimiz yetkiler varsa eşittir işaretini kullanabiliyoruz.
+Okuma yetkisi olanların yalnızca okuma yetkileri kaldırılmış oldu. Neticede burada öğrendiğiniz ekleme ve çıkarma yaklaşımı sayesinde hem spesifik kullanıcı grubuna hem de toplu şekilde tüm kullanıcı yetkilerine ekleme ve çıkarma yapabilirsiniz. Bu arada fark ettiyseniz biz şimdiye kadar hep ekleme ve çıkarma yaptık. Eğer artı ve eksi işaretleriyle ekleme veya çıkarma yapmak yerine doğrudan tanımlamak istediğimiz yetkiler varsa eşittir işaretini kullanabiliyoruz.
 
-Örneğin ***testfile.sh*** dosyasının şu anda yalnızca grubu için yazma yetkisi bulunuyor. Ben gurubuna doğrudan yalnızca okuma ve çalıştırma yetkisi vermek için `chmod g=rx testfile.sh` şeklinde komutumu girebilirim.
+Örneğin ***testfile.sh*** dosyasının şu anda yalnızca grubu için yazma yetkisi bulunuyor. Ben grubuna doğrudan okuma ve çalıştırma yetkisi tanımlamak için `chmod g=rx testfile.sh` şeklinde komutumu girebilirim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -840,23 +850,23 @@ Bakın okuma yetkisi olanların yalnızca okuma yetkileri kaldırılmış oldu. 
 
 Gördüğünüz gibi yazma yetkisi kaldırılıp yalnızca okuma ve çalıştırma yetkisi verilmiş oldu.
 
-Yani gördüğünüz gibi yetki ekleme işlemi için artı, çıkarma işlemi için eksi ve doğrudan yetkiyi tanımlamak için de eşittir işaretini kullanabiliyoruz.
+Yani özetleyecek olursak; yetki ekleme işlemi için artı, çıkarma işlemi için eksi ve doğrudan yetkiyi tanımlamak için de eşittir işaretini kullanabiliyoruz.
 
 ### Rakamlar ile Yetki Tanımlaması
 
-Ayrıca bizim burada kullandığımız yetkileri temsil eden harfler yerine aslında yetki tanımlamak için bu yetkilerin rakam karşılıklarını kullanma imkanımız da var. Üstelik rakamları kullanarak birden fazla yetki guruba tek sefer yetki tanımlamak çok daha kolay. Neden daha kolay olduğunu anlayabilmemiz için öncelikle rakamla nasıl yetki tanımlayabileceğimizden bahsetmemiz lazım.
+Ayrıca bizim burada kullandığımız yetkileri temsil eden harfler yerine aslında yetki tanımlamak için bu yetkilerin rakam karşılıklarını kullanma imkanımız da var. Üstelik rakamları kullanarak birden fazla yetki gruba tek sefer yetki tanımlamak çok daha kolay. Neden daha kolay olduğunu anlayabilmemiz için öncelikle rakamla nasıl yetki tanımlayabileceğimizden bahsetmemiz lazım.
 
 <span class="yesil">**r** karakteri ile temsil edilen **okuma** yetkisinin sayısal karşılığı **4** rakamıdır.</span>
 
-<span class="mavi">**w** karakteri ile temsil edilen **yazma** yetkisinin sayısal karşılığı **2** rakamıdır.</span>
+<span class="mor">**w** karakteri ile temsil edilen **yazma** yetkisinin sayısal karşılığı **2** rakamıdır.</span>
 
-<span class="kirmizi">**x** karakteri ile temsil edilen **çalıştırma** yetkisinin sayısal karşılığı **1** rakamıdır.</span>
+<span class="turuncu">**x** karakteri ile temsil edilen **çalıştırma** yetkisinin sayısal karşılığı **1** rakamıdır.</span>
 
 Biz üç yetki grubuna(sahibi-grubu-diğerleri) yetki tanımlaması yapmak için üç basamaklı şekilde bu rakamların toplamlarını girebiliyoruz.
 
-Önceki örneklerimizi hep dosyalar üzerinde uyguladık fakat yetkiler klasörler için de aynen geçerli. Ben bu durumu kanıtlamak için örneklerimde kullanmak üzere yeni bir klasör oluşturmak istiyorum.
+Önceki örneklerimizi hep dosyalar üzerinde uyguladık fakat yetkiler, klasörler için de aynen geçerli. Ben bu durumu kanıtlamak için örneklerimde kullanmak üzere yeni bir klasör oluşturmak istiyorum.
 
-`mkdir testfolder` komutuyla hemen oluşturalım. Hatta tam bir klasör olması için `touch testfolder/dosya{1..4}` komutuyla birden fazla dosyamızı da ekleyelim.
+`mkdir testfolder` komutuyla hemen oluşturalım. Hatta tam bir klasör olması için `touch testfolder/dosya{1..4}` komutuyla birden fazla dosyayı da içerisine ekleyelim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -870,7 +880,7 @@ Biz üç yetki grubuna(sahibi-grubu-diğerleri) yetki tanımlaması yapmak için
 drwxr-xr-x 2 taylan taylan 4096 Jul  7 07:39 testfolder
 ```
 
-Bakın şu anda klasörümün yetkileri bu şekilde. Eğer ben klasör grubundaki kullanıcılara yazma yetkisi vermek istersem **yazma(w)** yetkisini temsil eden **2** rakamını kullanabilirim.
+Şu anda klasörümün yetkileri bu şekilde. Eğer ben klasör grubundaki kullanıcılara yazma yetkisi vermek istersem **yazma(w)** yetkisini temsil eden **2** rakamını kullanabilirim.
 
 **Ekleme** yapacağım için yine `chmod` komutundan sonra `+` işaretini kullanmam gerekiyor. Şimdi ben yalnızca klasör grubundaki kullanıcılara yazma yetkisi eklemek istediğim için `chmod +020 testfolder` şeklinde komutumu yazıyorum. Burada üç basamaklı sayı yazmamız gerekiyor çünkü ilk sayı her zaman kullanıcıya, ikinci sayı gruba, üçüncü sayı da diğer kullanıcılara ait olan yetkileri temsil ediyor. Ben yalnızca gruba yazma yetkisi eklemek istediğim için diğer yetkilere ekleme yapılmaması için **0** şeklinde yazdım ve grubu temsil eden ortadaki sayıya yazma yetkisini temsil eden **2** rakamını girdim. 
 
@@ -883,7 +893,7 @@ Bakın şu anda klasörümün yetkileri bu şekilde. Eğer ben klasör grubundak
 drwxrwxr-x 2 taylan taylan 4096 Jul  7 07:39 testfolder/
 ```
 
-Bakın klasör grubundakilere yazma yetkisi de eklenmiş.
+Klasör grubundakilere yazma yetkisi de eklenmiş.
 
 Kullanımı daha iyi anlamak için mesela yalnızca klasör sahibine okuma izni verip geri kalan tüm yetkileri silmeyi deneyebiliriz. Yetki kaldırma işlemi yapacağımız için eksi işaretini kullanacağız. 
 
@@ -910,7 +920,7 @@ Yetki eklemesi yapacağım için `chmod +` şeklinde yazıyorum. İlk sayımızd
 
 Grubu için okuma ve yazma yetkisi yani 4 ve 2 rakamlarının toplamını 6 rakamıyla girebiliriz. 
 
-Son olarak diğer kullanıcılara yalnızca kuma yetkisi eklemek için de 4 rakamını yazabiliriz.
+Son olarak diğer kullanıcılara yalnızca okuma yetkisi eklemek için de 4 rakamını yazabiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -921,7 +931,7 @@ Son olarak diğer kullanıcılara yalnızca kuma yetkisi eklemek için de 4 raka
 drwxrw-r-- 2 taylan taylan 4096 Jul  7 07:39 testfolder/
 ```
 
-Bakın tam olarak istediğimiz yetkileri eklemeyi başarmışız. 
+Tam olarak istediğimiz yetkileri eklemeyi başardık. 
 
 Yetkileri temsil eden rakamları kullanarak yetki ekleme ve çıkarma işlemi bu şekilde. Ayrıca ekleme ve çıkarma işlemi dışında dilerseniz daha önce de yaptığımız gibi doğrudan yetki tanımlaması da yapabilirsiniz. 
 
@@ -940,7 +950,7 @@ Belki bu sayıların kullanımı başta biraz kafa karıştırıcı gelmiş olab
 
 ### Yetki Tanımlarının Alt Dizinlere İşlenmesi
 
-Kimi zaman klasörler üzerinde çalışıyorken, klasör içerisindeki dosya ve dizinlerde de ortak yetki tanımlaması yapmak isteyebiliyoruz. Bu noktada “özyineleme” yani “**r**ecursive” ifadesinin kısalmasından gelen `R` seçeneğini kullanabiliyoruz.
+Kimi zaman klasörler üzerinde çalışıyorken, klasör içerisindeki dosya ve dizinlerde de ortak yetki tanımlaması yapmak isteyebiliyoruz. Bu noktada “özyineleme” yani “**r**ecursive” ifadesinin kısaltmasından gelen `R` seçeneğini kullanabiliyoruz.
 
 Öncelikle klasörler üzerindeki standart yetki tanımlamalarının alt dizinlerde geçerli olmadığını teyit edelim.
 
@@ -979,7 +989,7 @@ total 0
 -rwxr-xr-x 1 taylan taylan 0 Jul  7 07:39 dosya4
 ```
 
-Bakın alt dizindekiler de dahil tüm dosyalarda tüm kullanıcılar için çalıştırma yetkisi eklenmiş.  
+Alt dizindekiler de dahil tüm dosyalarda tüm kullanıcılar için çalıştırma yetkisi eklenmiş.  
 
 Ben yetkilendirme tanımlaması için sayıları kullandım ama harfler ile de aynı şekilde `R` seçeneği sayesinde tüm alt dizinlerdeki içeriklerde aynı izin tanımlamalarının geçerli olmasını sağlayabiliriz. 
 
@@ -989,7 +999,7 @@ Dizinlerdeki yetki tanımlamalarıyla ilgili bahsetmek istediklerim bu kadar. Ar
 
 Şimdiye kadar kullanıcılardan, gruplardan ve erişim izinlerinden bahsettik ancak doğrudan erişim yetkilerinin dosya ve dizinler üzerindeki etkilerini gözlemlemedik.
 
-Buradaki yetki modlarından bahsederken, dosya veya dizinin sahibi, grubundaki kullanıcılar ve diğerleri şeklinde yetki tanımlamalı olduğunu ele aldık.
+Dosya veya dizinlerin; "sahibi", "grubundaki kullanıcılar" ve "diğerleri" şeklinde yetki tanımlamaları olduğunu öğrendik.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -999,7 +1009,7 @@ Buradaki yetki modlarından bahsederken, dosya veya dizinin sahibi, grubundaki k
 
 Örneğin ***testfile.sh*** dosyasını **taylan** kullanıcısı oluşturduğu için dosyanın sahibi ve grubu **taylan** olarak geçiyor.
 
-Burada bahsi gelen **taylan** grubu **taylan** kullanıcısının birincil grubu olduğu için tabii ki biz özellikle başka bir kullanıcıyı ekleyene kadar bu grupta başka bir kullanıcı bulunmuyor. Ben grup yetkilerini test edebilmek için **ali** isimli kullanıcı hesabını bu **taylan** grubuna eklemek istiyorum. Bunun için `sudo gpasswd -a ali taylan` şeklinde komutumuzu girebiliriz. 
+Burada bahsi geçen **taylan** grubu **taylan** kullanıcısının birincil grubu olduğu için tabii ki biz özellikle başka bir kullanıcıyı ekleyene kadar bu grupta başka bir kullanıcı bulunmuyor. Ben grup yetkilerini test edebilmek için **ali** isimli kullanıcı hesabını bu **taylan** grubuna eklemek istiyorum. Bunun için `sudo gpasswd -a ali taylan` şeklinde komutumuzu girebiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]                         
@@ -1016,9 +1026,9 @@ Adding user ali to group taylan
 ali : ali taylan
 ```
 
-Bakın **ali**, **taylan** grubuna dahil olmuş.
+**ali**, **taylan** grubuna dahil olmuş.
 
-Neticede şu anda sistemimde bu dosyanın sahibi olan taylan kullanıcısı, bu dosya için tanımlı olan taylan grubundaki ali kullanıcısı ve bunların hiç birine dahil olmayan **nil** isimli bir kullanıcı hesabım bulunuyor. Ben şimdi sırasıyla bu kullanıcı hesapları üzerinden dosya üzerindeki yetkileri test etmek istiyorum. Bunun için iki yeni konsol daha açalım. 
+Neticede şu anda sistemimde bu dosyanın sahibi olan "taylan" kullanıcısı, bu dosya için tanımlı olan taylan grubundaki "ali" kullanıcısı ve bunların hiç birine dahil olmayan "nil" isimli bir kullanıcı hesabım bulunuyor. Ben şimdi sırasıyla bu kullanıcı hesapları üzerinden dosya üzerindeki yetkileri test etmek istiyorum. Bunun için iki yeni konsol daha açalım. 
 
 Öncelikle `su ali` komutuyla ali kullanıcı hesabında oturum açıyorum. 
 
@@ -1041,7 +1051,7 @@ Password:
 └─$
 ```
 
-Bakın bu kez sorunsuzca ali kullanıcı hesabında oturum açmış olduk.
+Bu kez sorunsuzca ali kullanıcı hesabında oturum açmış olduk.
 
 Şimdi diğer konsolumuzda da **nil** kullanıcı hesabında oturum açmak üzere `su nil` şeklinde komutumuzu girelim. 
 
@@ -1055,11 +1065,11 @@ Password:
 
 Tamamdır, bu konsol üzerinde de nil kullanıcı hesabında oturum açmış oldum. 
 
-Ben sırasıyla dosya ve klasörlerin hangi yetkilere hangi şekilde tepki verdiğini ele alabilmek için olası yetki türlerini “ali” kullanıcısı üzerinden test etmek istiyorum. ali kullanıcısını taylan guruba eklediğim için “***testfile.sh***” ve “***testfolder***” üzerinde çalışırken, gruplar için geçerli olan yetkileri değiştirmem yeterli olacak. İleride dosyanın sahibi, grubu ve diğer kullanıcılar için yetki sınırını da örnekleyeceğiz ancak şimdilik erişim yetkilerinin sonuçlarını test edelim.
+Ben sırasıyla dosya ve klasörlerin hangi yetkilere hangi şekilde tepki verdiğini ele alabilmek için olası yetki türlerini “ali” kullanıcısı üzerinden test etmek istiyorum. ali kullanıcısını taylan gruba eklediğim için “***testfile.sh***” ve “***testfolder***” üzerinde çalışırken, gruplar için geçerli olan yetkileri değiştirmem yeterli olacak. İleride dosyanın sahibi, grubu ve diğer kullanıcılar için yetki sınırını da örnekleyeceğiz ancak şimdilik erişim yetkilerinin sonuçlarını test edelim.
 
 ## Dosyalar Üzerindeki Etkisi
 
-Test etmek üzere kullanacağım dosyam “testfile.sh” dosyası.
+Test etmek üzere kullanacağım dosyam “***testfile.sh***” dosyası.
 
 ### `r—` | Yalnızca Okuma
 
@@ -1158,7 +1168,7 @@ ben betik dosyasıyım
 ./testfile.sh: line 4: ekle2: command not found
 ```
 
-Yazma okuma ve çalıştırmayı başardık.
+Yazma, okuma ve çalıştırmayı başardık.
 
 ### `r-x` | Okuma Çalıştırma
 
@@ -1184,7 +1194,7 @@ ekle
 ekle2
 
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
-└─$ echo "ekle2" >> testfile.sh  
+└─$ echo "ekle3" >> testfile.sh  
 bash: testfile.sh: Permission denied
 
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
@@ -1252,7 +1262,7 @@ Gördüğünüz gibi okuma ve çalıştırma bir arada olduğunda dosyanın çal
 
 Yetkilerin klasörler üzerindeki etkilerini gözlemlemeden önce kısaca sıralayacak olursak:
 
-**Okuma**(`r`): dizindeki dosyaları listelemesine izin verir.
+**Okuma**(`r`): dizin içeriğini listelemesine izin verir.
 
 **Yazma**(`w`): dizin içindeki dosyaları oluşturmasına, yeniden adlandırmasına veya silmesine ve dizinin özniteliklerini değiştirmesine izin verir.
 
@@ -1339,7 +1349,7 @@ Yalnızca okuma yetkimiz varken, dizin içeriğindeki dosyaları, listeleme, ta�
 alias ls='ls --color=auto'
 ```
 
-Gördüğünüz gibi biz `ls` komutunu kullandığımızda çıktıları renklendirmek üzere `ls —clour=auto` komutu çalıştırılıyor. `ls` komutunun harici bir parametresinin çalışabilmesi için de o dizinde çalıştırma(x) yetkisine ihtiyacı var. Dolayısıyla biz bu takma isimli komutu girdiğimizde dizin içeriğini listeleyemiyoruz. Bunun yerine `command ls` komutu ile `ls` aracının yalın haliyle çalışmasını sağlayabiliriz. `command` komutu takma isimlerin görmezden gelinmesini sağladığı için yalnızca `ls` komutunun çalışmasını sağlıyor.
+Gördüğünüz gibi biz `ls` komutunu kullandığımızda çıktıları renklendirmek üzere `ls --color=auto` komutu çalıştırılıyor. `ls` komutunun harici bir parametresinin çalışabilmesi için de o dizinde çalıştırma(x) yetkisine ihtiyacı var. Dolayısıyla biz bu takma isimli komutu girdiğimizde dizin içeriğini listeleyemiyoruz. Bunun yerine `command ls` komutu ile `ls` aracının yalın haliyle çalışmasını sağlayabiliriz. `command` komutu takma isimlerin görmezden gelinmesini sağladığı için yalnızca `ls` komutunun çalışmasını sağlıyor.
 
 ```bash
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
@@ -1347,7 +1357,7 @@ Gördüğünüz gibi biz `ls` komutunu kullandığımızda çıktıları renklen
 dosya1  dosya2  dosya3  dosya4
 ```
 
-Bakın gördüğünüz gibi bu kez dizin içeriğini listeleyebildik. Okuma yetkisi yalnızca klasör içindeki dosya ve dizinlerin isimlerini okuma yetkisi veriyor. Örneğin detaylı çıktı almak üzere `command ls -l` komutunu girersek yine hata alacağız çünkü detaylı bilgi almaya yetkimiz bulunmuyor. 
+Bu kez dizin içeriğini listeleyebildik. Okuma yetkisi yalnızca klasör içindeki dosya ve dizinlerin isimlerini okuma yetkisi veriyor. Örneğin detaylı çıktı almak üzere `command ls -l` komutunu girersek yine hata alacağız çünkü detaylı bilgi almaya yetkimiz bulunmuyor. 
 
 ```bash
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
@@ -1608,7 +1618,7 @@ Yalnızca çalıştırma yetkisi varken, dizine geçiş ve dosya içeriğinde d�
 
 Tabii ki şimdiye kadar ele aldığımız tüm örneklerde, klasör içindeki dosyanın tüm yetkileri vardı. Bu sayede dosya üzerinde tüm işlemleri yapabilme özgürlüğüne sahiptik. Eğer dosyanın erişim yetkileri kısıtlanmışsa klasörün yetkileri önemini yitiriyor. 
 
-Yani esasen klasörün yetkileri; klasöre geçiş, klasör içeriğini listeleme ve düzenleme kapsamında.
+Yani esasen klasörün yetkileri; klasöre geçiş, klasör içeriğini listeleme ve klasör içeriğini düzenleme kapsamında.
 
 Dosyaların yetkileri ise; dosyaları çalıştırma veya içeriklerinde düzenleme yapma kapsamında. 
 
@@ -1652,7 +1662,7 @@ Gördüğünüz gibi klasörün tüm yetkileri olmasına rağmen, dosyanın yazm
 
 Ayrıca tüm bunların dışına eğer anlatım sırasında fark ettiyseniz, dosya ve klasörlerin yetkilerini yalnızca o dosya veya klasörün sahibi değiştirebiliyor. Örneğin gruptaki kullanıcılara tüm izinler verilmiş olsa bile, gruptaki kullanıcılar ilgili dosya veya dizinin yetkilerini değiştiremez.
 
-Ben bu durumu da teyit etmek için öncelikle taylan kullanıcı hesabı üzerinden `chmod g+rwx testfile.sh` komutuyla bu dosyanın guruba tüm yetkileri veriyorum. 
+Ben bu durumu da teyit etmek için öncelikle taylan kullanıcı hesabı üzerinden `chmod g+rwx testfile.sh` komutuyla bu dosyanın gruba tüm yetkileri veriyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1663,15 +1673,15 @@ Ben bu durumu da teyit etmek için öncelikle taylan kullanıcı hesabı üzerin
 -rwxrwxr-x 1 taylan taylan 44 Jul  8 01:40 testfile.sh
 ```
 
-Bakın tüm yetkileri verdim. Şimdi bu gruba dahil olan ali kullanıcı hesabı üzerinden mesela tüm kullanıcılara tüm yetkileri vermek üzere `chmod +rwx testfile.sh` şeklinde komutumuzu girmeyi deneyebiliriz. 
+Tüm yetkileri verdim. Şimdi bu gruba dahil olan ali kullanıcı hesabı üzerinden mesela tüm kullanıcılara tüm yetkileri vermek üzere `chmod a+rwx testfile.sh` şeklinde komutumuzu girmeyi deneyebiliriz. 
 
 ```bash
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
-└─$ chmod +rwx testfile.sh                                       
+└─$ chmod a+rwx testfile.sh                                       
 chmod: changing permissions of 'testfile.sh': Operation not permitted
 ```
 
-Bakın yetki hatası aldık çünkü ali kullanıcısının okuma yazma ve çalıştırma yetkisi olsa da bu dosyanın izinlerini değiştirme yetkisi yok. Dosya ve dizinlerin yetkilerini yalnızca sahipler değiştirebiliyor. Zaten böyle olmasaydı erişim yetkilerinin hiç bir anlamı kalmazdı. Çünkü örneğin dosyanın sahibi dışındaki herhangi bir kullanıcıya dosyayı okuması çalıştırması ve yeni veriler yazması için yetki verdiğimizde bu kullanıcı diğer herkesin yetkilerini düşürüp dosyanın tüm yetkilerini devralabilirdi. 
+Yetki hatası aldık çünkü ali kullanıcısının okuma yazma ve çalıştırma yetkisi olsa da bu dosyanın izinlerini değiştirme yetkisi yok. Dosya ve dizinlerin yetkilerini yalnızca sahipler değiştirebiliyor. Zaten böyle olmasaydı erişim yetkilerinin hiç bir anlamı kalmazdı. Çünkü örneğin dosyanın sahibi dışındaki herhangi bir kullanıcıya dosyayı okuması çalıştırması ve yeni veriler yazması için yetki verdiğimizde bu kullanıcı diğer herkesin yetkilerini düşürüp dosyanın tüm yetkilerini devralabilirdi. 
 
 Bu sebeple dosya ve dizinlerin yetkilerini yalnızca sahiplerinin değiştirebileceğini unutmayın. Tabii ki sistem üzerindeki en yetkili olan root kullanıcısı da değiştirebilir fakat bu bir istisna ve root kullanıcısı zaten süper yetkilere sahip.
 
@@ -1679,7 +1689,7 @@ Biz şimdi dosya ve dizinlerin sahibini ve grubunu değiştirmekten bahsedelim.
 
 # Dosya ve Dizinlerin Sahiplerini ve Gruplarını Değiştirmek
 
-Burada değiştirmek istediğimiz şey dosya ve dizinlerin sahipliği olduğu için “owner” yani “sahip” ifadesinin kısaltmasından gelen `chown` aracından faydalanabiliyoruz. İsmi işlevini temsil ettiği için zaten ihtiyacımız olduğunda aracın ismini hatırlamamız da çok kolay oluyor. Ayrıca kullanımı da çok kolay zaten.
+Burada değiştirmek istediğimiz, dosya ve dizinlerin sahipliği olduğu için “**own**er” yani “sahip” ifadesinin kısaltmasından gelen `chown` aracından faydalanabiliyoruz. İsmi işlevini temsil ettiği için zaten ihtiyacımız olduğunda aracın ismini hatırlamamız da çok kolay oluyor. Ayrıca kullanımı da çok kolay zaten.
 
 ## Sahibini Değiştirmek
 
@@ -1693,15 +1703,25 @@ Ben öncelikle yalnızca bu dosya sahibini **nil** olarak değiştirmek için `c
 chown: changing ownership of 'testfile.sh': Operation not permitted
 ```
 
-Bakın ben bu dosyanın sahibi de olsam bu işlemi yapmak için yetkim yok. Bu işlemi yapmak için yönetici ayrıcalıklarına sahip olmamız gerekiyor. Ben komutunun başında `sudo` yazıp tekrar giriyorum. Buradaki `sudo` komutu sayesinde bu işlemi root yetkileriyle yerine getirebiliyor olacağım. taylan kullanıcısı **sudo** grubuna dahil olduğu için `sudo` aracını kullanarak geçici olarak yetkilerini yükseltebiliyor. İleride bu konudan da ayrıca bahsediyor olacağız. 
+Ben bu dosyanın sahibi de olsam bu işlemi yapmak için yetkim yok. Bu işlemi yapmak için yönetici ayrıcalıklarına sahip olmamız gerekiyor. Ben komutun başında `sudo` yazıp tekrar giriyorum. Buradaki `sudo` komutu sayesinde bu işlemi root yetkileriyle yerine getirebiliyor olacağım. taylan kullanıcısı **sudo** grubuna dahil olduğu için `sudo` aracını kullanarak geçici olarak yetkilerini yükseltebiliyor. İleride bu konudan da ayrıca bahsediyor olacağız. 
 
 ```bash
-──(taylan㉿linuxdersleri)-[~]
+┌──(taylan㉿linuxdersleri)-[~]
 └─$ sudo chown nil testfile.sh 
 [sudo] password for taylan:
 ```
 
-Şimdi mevcut kullanıcı hesabımın yani taylan kullanıcısının  parolasını girip onaylıyorum. Bakın bu kez herhangi bir hata almadık. Şimdi `ls -l` ile listeleyip dosyanın izinlerine bakalım. 
+Şimdi mevcut kullanıcı hesabımın yani taylan kullanıcısının parolasını girip onaylıyorum. 
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo chown nil testfile.sh 
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$
+```
+
+Bu kez herhangi bir hata almadık. Şimdi `ls -l` ile listeleyip dosyanın izinlerine bakalım. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1709,7 +1729,7 @@ Bakın ben bu dosyanın sahibi de olsam bu işlemi yapmak için yetkim yok. Bu i
 -rwxrwxr-x 1 nil taylan 44 Jul  8 01:40 testfile.sh
 ```
 
-Bakın dosyanın sahibi olarak **nil** kullanıcısı gözüküyor. Yani artık buradaki izinler **nil** kullanıcısında geçerli ve nil kullanıcısı bu dosyanın izinleri değiştirebilir çünkü nil artık dosyanın sahibi.
+Dosyanın sahibi olarak **nil** kullanıcısı gözüküyor. Yani artık buradaki izinler **nil** kullanıcısında geçerli ve nil kullanıcısı bu dosyanın izinleri değiştirebilir çünkü nil artık dosyanın sahibi.
 
 ## Grubunu Değiştirmek
 
@@ -1725,11 +1745,11 @@ Yalnızca grubu değiştirmek için `:grup` parametresini kullanabiliyoruz. Ben 
 -rwxrwxr-x 1 nil ali 44 Jul  8 01:40 testfile.sh
 ```
 
-Bakın dosyanın grubunu artık ali olarak geçiyor. Yani ali grubundakiler buradaki yetkiler dahilinde bu dosya üzerinde işlemler yapabiliyor olacak.
+Dosyanın grubunu artık "ali" olarak geçiyor. Yani ali grubundakiler buradaki yetkiler dahilinde bu dosya üzerinde işlemler yapabiliyor olacak.
 
 ## Sahibi ve Grubu Değiştirmek
 
-Tek seferde hem sahibini hem de grubunu değiştirmek istersek `chown sahibi:grubu dosya-dizin-adı` şeklinde girebiliriz. Ben testfile.sh dosyasının sahibini ve grubunu ali olarak değiştirmek için taylan hesabı üzerinden `sudo chown ali:ali testfile.sh` komutunu giriyorum.
+Tek seferde hem sahibini hem de grubunu değiştirmek istersek `chown sahibi:grubu dosya-dizin-adı` şeklinde girebiliriz. Ben ***testfile.sh*** dosyasının sahibini ve grubunu "ali" olarak değiştirmek için taylan hesabı üzerinden `sudo chown ali:ali testfile.sh` komutunu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1740,13 +1760,13 @@ Tek seferde hem sahibini hem de grubunu değiştirmek istersek `chown sahibi:gru
 -rwxrwxr-x 1 ali ali 44 Jul  8 01:40 testfile.sh
 ```
 
-<p class="mavi"><strong>ℹ️ Not:</strong> <code class="language-plaintext highlighter-rouge">sudo</code> yetkilerine sahip olduğu için tüm işlemleri taylan kullanıcı hesabı üzerinden gerçekleştiriyoruz.</p> 
+<p class="mavi"><strong>ℹ️ Not:</strong> <code class="language-plaintext highlighter-rouge">sudo</code> grubuna dahil olduğu için tüm işlemleri taylan kullanıcı hesabı üzerinden root yetkileri ile gerçekleştiriyoruz.</p> 
 
-Bakın dosyanın sahibi ve grubunu tek seferde yine kali olarak ayarlamış oldum.
+Dosyanın sahibi ve grubunu tek seferde yine "ali" olarak ayarlamış oldum.
 
 İşte neticede sahiplik ve grup değiştirme işlemi bu şekilde. Örneğin ben yalnızca tek bir dosya üzerinde ele aldım ancak isterseniz birden fazla dosya veya klasör üzerinde de aynen kullanabilirsiniz. Hatta daha önce yetki işlemlerinde ele aldığımız gibi klasörün altındaki içeriklerde geçerli olacak sahiplik ve grup değişimi için büyük `R` karakteri ile “recursive” yani “özyinelemeli” şekilde değişiklik de yapabiliriz. 
 
-Ben denemek için “***testfolder***” klasörümün altındaki tüm içeriğin gurubunu **nil** gurubu ile değiştirmek için `sudo chown -R  :nil testfolder/` şeklinde komutumu yazıyorum. 
+Ben denemek için “***testfolder***” klasörümün altındaki tüm içeriğin grubunu **nil** grubu ile değiştirmek için `sudo chown -R  :nil testfolder/` şeklinde komutumu yazıyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1763,9 +1783,9 @@ total 12
 -rwxrwxr-x 1 taylan nil 11 Jul  8 05:42 yeni-dosya
 ```
 
-Bakın, bu dizin içindeki tüm dosya ve klasörlerin grubu nil olarak değişmiş. Yani artık tüm bu içeriklerin grup bölümündeki yetkileri nil isimli grubundaki kullanıcılar için geçerli olacak.
+Bu dizin içindeki tüm dosya ve klasörlerin grubu nil olarak değişmiş. Yani artık tüm bu içeriklerin grup bölümündeki yetkileri nil isimli grubdaki kullanıcılar için geçerli olacak.
 
-Ayrıca tabii ki bir tek alt dizinlerdeki gruplar değil bizzat testfolder dizininin grubu da değişti. Teyit etmek için `ls -ld` komutunu kullanabiliriz. 
+Ayrıca tabii ki bir tek alt dizinlerdeki gruplar değil, bizzat ***testfolder*** dizininin grubu da değişti. Teyit etmek için `ls -ld` komutunu kullanabiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1773,9 +1793,9 @@ Ayrıca tabii ki bir tek alt dizinlerdeki gruplar değil bizzat testfolder dizin
 drwxrwxr-x 2 taylan nil 4096 Jul  8 05:50 testfolder/
 ```
 
-Bakın bu klasörün grubu da nil olarak değişmiş.
+Bu klasörün grubu da nil olarak değişmiş.
 
-Örneğin bu dosyaların gurubu nil olarak değiştiği için ali kullanıcısı artık bu gruba dahil değil. Dolayısıyla bu dizin içindeki dosyalara veri eklemesi de mümkün değil. Hemen deneyelim.
+Örneğin bu dosyaların grubu nil olarak değiştiği için ali kullanıcısı artık bu gruba dahil değil. Dolayısıyla bu dizin içindeki dosyalara veri eklemesi de mümkün değil. Hemen deneyelim.
 
 ```bash
 ┌──(ali㉿linuxdersleri)-[/home/taylan]
@@ -1793,9 +1813,9 @@ Password:
 veri ekleme
 ```
 
-Gördüğünüz gibi ali kullanıcısı “diğerleri” guruba dahil olduğu için yazma yetkisi bulunmuyor, dolayısıyla veri de ekleyemiyor. Fakat nil kullanıcısı nil grubunda olduğu için dosya üzerinde yazma yetkisi bulunuyor. Yani dosya içeriğini istediği gibi düzenleyebiliyor. 
+Gördüğünüz gibi ali kullanıcısı “diğerleri” gruba dahil olduğu için yazma yetkisi bulunmuyor, dolayısıyla veri de ekleyemiyor. Fakat nil kullanıcısı nil grubunda olduğu için dosya üzerinde yazma yetkisi bulunuyor. Yani dosya içeriğini istediği gibi düzenleyebiliyor. 
 
-Bu yaklaşım sayesinde ilgili dosya ve klasörlere erişmesini istediğiniz kullanıcılar için bir grup oluşturup o grubu bu dosya veya klasörün grubu olarak ayarlayabilirsiniz. Dosya veya klasörün grup yetkilerini düzenleyerek de aynı anda bu gruptaki tüm kullanıcılara için ortak olarak yetki tanımlaması da yapmış olursunuz. 
+Bu yaklaşım sayesinde ilgili dosya ve klasörlere erişmesini istediğiniz kullanıcılar için bir grup oluşturup o grubu bu dosya veya klasörün grubu olarak ayarlayabilirsiniz. Dosya veya klasörün grup yetkilerini düzenleyerek de aynı anda bu gruptaki tüm kullanıcılar için ortak olarak yetki tanımlaması da yapmış olursunuz. 
 
 En nihayetinde böylelikle yetkiler hakkında temel işleyişten bahsetmiş olduk. Yine de henüz yetkilendirmenin önemli bir yapısı olan `sudo`'dan bahsetmedik. Gelin anlatımlarımıza `sudo` yapısından bahsederek devam edelim.
 
@@ -1815,7 +1835,7 @@ Bu yöntemler dışında üçüncü alternatifimiz ise komutlarımızı çalış
 
 Başkası gibi komut çalıştırabilme yaklaşımı sayesinde, konfigürasyon dosyasında bu kullanıcılar gibi komutları çalıştırmak için kendimize yetki verdiysek, bu kullanıcıların şifresini bilmeden yani bu kullanıcı hesaplarında oturum açmamıza gerek kalmadan komutlarımızı tıpkı bu kullanıcılarmış gibi çalıştırabiliyoruz. 
 
-Bu sayede biz başka bir kullanıcı gibi komut çalıştırdığımızda, aslında kendi hesabımızı kullanarak bu işlemi yaptığımız için bu işlemin kim tarafından yapıldığı da loglara kaydediliyor. Yani bu yaklaşım sayesinde yetkimiz olsa bile bu yetkileri hangi amaçla kullandığımız kayıt altında oluyor. Ayrıca tüm kullanıcılar kendi hesabını kullandığı için kullanıcı özelinde izin ve kısıtlama da tanımlayabiliyoruz. Yani başkası gibi davranma yetkilerini sınırlamamız da mümkün oluyor. 
+Bu sayede biz başka bir kullanıcı gibi komut çalıştırdığımızda, aslında kendi hesabımızı kullanarak bu işlemi yaptığımız için bu işlemin kim tarafından yapıldığı da loglara kaydediliyor. Yani bu yaklaşım sayesinde yetkimiz olsa bile bu yetkileri hangi amaçla kullandığımız kayıt altında oluyor. Ayrıca tüm kullanıcılar kendi hesabını kullandığı için kullanıcı özelinde izin ve kısıtlama da tanımlayabiliyoruz. Yani "başkası gibi davranma" yetkilerini sınırlamamız da mümkün oluyor. 
 
 İşte `sudo` aracının en temel çalışma yapısı aslında bu şekilde. Eğer söylediklerim sizin için henüz anlamlı gelmiyorsa merak etmeyin bölüm sonunda tüm anlatımlar netleşmiş olacak.
 
@@ -1845,7 +1865,7 @@ taylan
 [sudo] password for taylan:
 ```
 
-Bakın bizden kendi kullanıcı hesabımızın parolasını girmemizi istiyor. Girelim. 
+Kendi kullanıcı hesabımızın parolasını girmemiz isteniyor. Girelim. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1868,11 +1888,11 @@ Konfigürasyon dosyasını açmak için `sudo visudo` komutuyla dosyamızı yetk
 
 ![visudo.webp]({{ site.url }}/egitim/temel-linux/kullanici/visudo.webp){:class="responsive img-zoomable"}
 
-Bakın dosyam şu anda template(***sudoers.tmp***) şablon halinde olduğu için burada ***.tmp*** uzantısı var. Eğer değişiklik yapıp kaydedecek olursak asıl dosya olan ***/etc*** dizini atlındaki ***sudoers*** dosyasına kaydolmuş olacak. 
+Dosyam şu anda template(***sudoers.tmp***) şablon halinde olduğu için burada ***.tmp*** uzantısı var. Eğer değişiklik yapıp kaydedecek olursak asıl dosya olan ***/etc*** dizini atlındaki ***sudoers*** dosyasına kaydolmuş olacak. 
 
-Şimdi dosya içeriğine bakacak olursak. Dosyanın en başında bulunan bu tanımlar güvenlik amaçlı. Ayrıntılar için ***suoders*** dosyasının manual sayfalarına bakabilirsiniz. Ben detaylar üzerinde durmayacağım ama örneğin bakın ilk satır tanımlanmış olabilecek zararlı değişkenleri sıfırlıyor. Üçüncü satır ise zararlı dosyaları içerebilecek ek PATH yollarının tanımlanmış olma ihtimaline karşı standart olan PATH yolunu tekrar tanımlıyor. Dediğim gibi bunlar güvenlik önlemi bunlara müdahale etmeden devam edeceğiz. Daha fazla bilgi almak için manual sayfasına göz atabilirsiniz.
+Şimdi dosya içeriğine bakacak olursak. Dosyanın en başında bulunan bu tanımlar güvenlik amaçlı. Ayrıntılar için ***suoders*** dosyasının manual sayfalarına bakabilirsiniz. Ben detaylar üzerinde durmayacağım ama örneğin ilk satır tanımlanmış olabilecek zararlı değişkenleri sıfırlıyor. Üçüncü satır ise zararlı dosyaları içerebilecek ek PATH yollarının tanımlanmış olma ihtimaline karşı standart olan PATH yolunu tekrar tanımlıyor. Dediğim gibi bunlar güvenlik önlemi bunlara müdahale etmeden devam edeceğiz. Daha fazla bilgi almak için manual sayfasına göz atabilirsiniz.
 
-Diyez `#` sembolü olan satırlar da zaten yorum satırları. Bunlar işleme alınmıyor. Gördüğünüz gibi tanımlı seçenekler hakkında kısa açıklamalar yazmak için kullanılıyor. Ayrıca sayfayı inceleyecek olursanız bazı tanımlamaların başında diyez işareti olduğu için pasif durumda olduklarını görebilirsiniz. Ben şimdi en temel işlem olan yetki tanımlamalarından bahsetmek için dosyanın altına geliyorum.
+Diyez `#` sembolü olan satırlar da zaten yorum satırları. Bunlar işleme alınmıyor. Gördüğünüz gibi tanımlı seçenekler hakkında kısa açıklamalar yazmak için kullanılıyor. Ayrıca sayfayı inceleyecek olursanız bazı tanımlamaların başında diyez işareti olduğu için pasif durumda olduklarını görebilirsiniz. Ben şimdi en temel işlem olan yetki tanımlamalarından bahsetmek için dosyanın alt satırlarına geliyorum.
 
 ```bash
 # User privilege specification
@@ -1886,20 +1906,27 @@ Diyez `#` sembolü olan satırlar da zaten yorum satırları. Bunlar işleme al�
 @includedir /etc/sudoers.d
 ```
 
-Buradaki ilk tanımlama ile başlayacak olursak, bu satır root kullanıcının sudo ayrıcalıklarını belirtiyor. 
+Buradaki ilk tanımlama ile başlayacak olursak, bu satır root kullanıcısının **sudo** ayrıcalıklarını belirtiyor. 
 
 ```bash
 # User privilege specification
 #root   ALL=(ALL:ALL) ALL
 ```
+Daha net anlaşılabilmesi için renklendirelim.
 
-Bu tanımlamadaki ilk kısım bu kuralın geçerli olacağı kullanıcın ismini belirtiyor. Yani bakın bu kural **root** kullanıcısı için tanımlanmış. İkinci kısımdaki **ALL** ifadesi bu kuralın tüm hostlarda yani ağ üzerindeki tüm ana makinelerde geçerli olmasını sağlıyor. Eşittir işaretinden sonra parantez içinde yazılan ilk **ALL**, **root** kullanıcısının komutları tüm kullanıcılar gibi çalıştırabileceğini gösteriyor. İkinci **ALL** ise root kullanıcısının komutları tüm gruplar gibi çalıştırabileceğini belirtiyor.
+<div class="highlight"><pre class="highlight"><code>
+<span class="mavi">root</span>   <span class="yesil">ALL</span>=(<span class="mor">ALL</span>:<span class="turuncu">ALL</span>) <span class="kirmizi">ALL</span>
+</code></pre></div>
 
-Dosya ve dizinlerin sahibini ve grubunu değiştirirken **sahibi:grubu** şeklinde tanımlama yapmıştık. İşte buradaki tanımlama da aynı aslında. Burada **ALL:ALL** şeklinde yazdığı için root kullanıcısı bir komutu çalıştırırken tüm kullanıcılar ve tüm gruplardakiler gibi ayrıcalıklara sahip oluyor. En sondaki **ALL** ise bu kuralların tüm komutlar üzerinde geçerli olmasını sağlıyor. 
+<p class="mavi">Bu tanımlamadaki ilk kısım bu kuralın geçerli olacağı kullanıcının ismini belirtiyor. Yani bu kural <strong>root</strong> kullanıcısı için tanımlanmış.</p>
+<p class="yesil">İkinci kısımdaki <strong>ALL</strong> ifadesi bu kuralın <strong>tüm hostlarda</strong> yani ağ üzerindeki tüm ana makinelerde geçerli olmasını sağlıyor. İleride ağ bölümünde “host” kavramına değindiğimizde buradaki tüm hostlardan kastımızın ne olduğunu net biçimde anlamış olacaksınız.</p>
+<p class="mor">Eşittir işaretinden sonra parantez içinde yazılan ilk <strong>ALL</strong>, komutları tüm kullanıcılar gibi çalıştırabileceğini gösteriyor.</p>
+<p class="turuncu"> İkinci <strong>ALL</strong> ise root kullanıcısının komutları tüm gruplar gibi çalıştırabileceğini belirtiyor.<br>Dosya ve dizinlerin sahibini ve grubunu değiştirirken <strong>sahibi:grubu</strong> şeklinde tanımlama yapmıştık. İşte buradaki tanımlama da aynı aslında. Burada <strong>ALL:ALL</strong> şeklinde yazdığı için komutlarını istediği bir kullanıcı veya grup ayrıcalıkları ile çalıştırabiliyor. Tüm kullanıcıları kapsayan bu <strong>ALL</strong> seçeneği, biz aksini belirtmediğimiz sürece en yetkili olan "root" kullanıcı yetkileri ile çalıştırılmasını sağlıyor. Fakat istersek, dilediğimiz bir kullanıcı veya grup yetkileri ile çalıştırmamız da mümkün.</p>
+<p class="kirmizi">En sondaki <strong>ALL</strong> ise bu kuralların tüm komutlar üzerinde geçerli olmasını sağlıyor.</p>
 
-Şimdi muhtemelen, root kullanıcısı zaten sistemde en yetkili kullanıcı o zaman niye burada root kullanıcısı için bir daha yetki tanımlaması yapılıyor diye düşünmüş olabilirsiniz.
+Şimdi muhtemelen, "*root kullanıcısı zaten sistemde en yetkili kullanıcı o zaman niye burada root kullanıcısı için bir daha yetki tanımlaması yapılıyor?*" diye düşünmüş olabilirsiniz.
 
-Normalde biz root hesabını kullanıyorken girdiğimiz tüm komutlarımızı en yetkili şekilde çalıştırabiliyoruz. Fakat biz root hesabındayken alışkanlık gereği yine sudo komutunu kullanırsak, `sudo` aracı konfigürasyon dosyasında root kullanıcısı için yetki tanımlaması olmadığı için en yetkili kullanıcı da olsa hata verir. Ne denemek istediğimiz daha net anlamak için hemen yeni bir konsol başlatalım. 
+Normalde biz root hesabını kullanıyorken girdiğimiz tüm komutlarımızı en yetkili şekilde çalıştırabiliyoruz. Fakat biz root hesabındayken alışkanlık gereği yine `sudo` komutunu kullanırsak, `sudo` aracı konfigürasyon dosyasında root kullanıcısı için yetki tanımlaması olmadığı için en yetkili kullanıcı da olsa hata verir. Ne demek istediğimi daha net anlamak için hemen yeni bir konsol başlatalım. 
 
 Ben bu konsol üzerinden root hesabına geçiş yapmak istiyorum fakat benim sistemimde root hesabı şu anda pasif durumda. Aktifleştirmek için root hesabına bir parola belirlemem gerekiyor. Bunun için de `sudo passwd root` şeklinde komutumu girebilirim. 
 
@@ -1929,7 +1956,7 @@ Password:
 root
 ```
 
-Bakın root çıktısını aldık. Şimdi bir de `sudo whoami` şeklinde girelim. 
+root çıktısını aldık. Şimdi bir de `sudo whoami` şeklinde girelim. 
 
 ```bash
 ┌──(root㉿linuxdersleri)-[/home/taylan]
@@ -1937,7 +1964,7 @@ Bakın root çıktısını aldık. Şimdi bir de `sudo whoami` şeklinde girelim
 root is not in the sudoers file.  This incident will be reported.
 ```
 
-Bakın bu kez root hesabının sudoers dosyasında olmadığı belirtilerek çalıştırma işlemi reddedildi. Yani bizzat gördüğümüz gibi root kullanıcısı da olsa, `sudo` aracını kullanabilmesi için ***sudoers*** konfigürasyon dosyasında tanımlanmış olması gerekiyor.
+Bu kez root hesabının sudoers dosyasında olmadığı belirtilerek çalıştırma işlemi reddedildi. Yani bizzat gördüğümüz gibi root kullanıcısı da olsa, `sudo` aracını kullanabilmesi için ***sudoers*** konfigürasyon dosyasında tanımlanmış olması gerekiyor.
 
 Şimdi konfigürasyonu yaptığımız pencereye geri dönüp root hesabı için tanımlı olan satırın başındaki diyez işaretini kaydırıp dosyamızı kaydedelim.  Kaydetme işlemi, klasik `nano` aracında olduğu gibi <kbd>Ctrl</kbd> + <kbd>o</kbd> ile yapılabilir.
 
@@ -1954,15 +1981,15 @@ Kayıt işleminden sonra tekrar root hesabının oturum açtığı konsola dön�
 root
 ```
 
-Bakın bu kez “root” yanıtını aldık çünkü root hesabını ***sudoers*** dosyasında aktifleştirmiştik. 
+root hesabı için geçerli olan tanımlamayı ***sudoers*** dosyasında aktifleştirmiş olduğumuz için bu kez "root" çıktısını almış olduk. 
 
 Eğer yetki gerektiren işler için `sudo` aracını kullanmaya alıştıysanız root hesabına geçiş yapıp root olarak çalışıyor olsanız da alışkanlık gereği `sudo` komutunu kullanmaya devam edebilirsiniz. Bu durumda `sudo` dosyasında root hesabı için tanımlama yoksa hata almanız da kaçınılmaz.
 
-Ayrıca etkileşimli şekilde root hesabını kullanmak dışında örneğin sistemin işleyişi için kullanılan bir betik dosyası içerisinde `sudo` komutu bulunuyor olabilir. Ve bu betik dosyasını root hesabı üzerinden çalıştıracak olursak , tıpkı buradaki gibi ***sudoers*** dosyasında root için tanımlama olmadığından dolayı en yetkili kullanıcı da olsa hata alırız. Yani içerisinde `sudo` komutu bulunan betik dosyamız doğru şekilde çalışmaz. 
+Ayrıca etkileşimli şekilde root hesabını kullanmak dışında örneğin sistemin işleyişi için kullanılan bir betik dosyası içerisinde `sudo` komutu bulunuyor olabilir. Ve bu betik dosyasını root hesabı üzerinden çalıştıracak olursak, tıpkı buradaki gibi ***sudoers*** dosyasında root için tanımlama olmadığından dolayı en yetkili kullanıcı da olsa hata alırız. Yani içerisinde `sudo` komutu bulunan betik dosyamız doğru şekilde çalışmaz. 
 
 Özetle bizzat teyit ettiğimiz gibi, root kullanıcısı en yetkili kullanıcı da olsa `sudo` komutunun işleyişi dolayısıyla stabil bir sistem yönetimi için ***sudoers*** dosyası içinde bulunması gerekiyor.
 
-Şimdi ben konfigürasyon dosyasından biraz daha bahsetmek üzere dosyanın açık olduğunu konsola dönüyorum. Açıklamalara devam etmek için tekrar alt satırlara gelelim.
+Şimdi ben konfigürasyon dosyasından biraz daha bahsetmek üzere dosyanın açık olduğu konsola dönüyorum. Açıklamalara devam etmek için tekrar alt satırlara gelelim.
 
 ```bash
 # User privilege specification
@@ -1976,7 +2003,7 @@ root    ALL=(ALL:ALL) ALL
 @includedir /etc/sudoers.d
 ```
 
-Başında yüzde işareti olanlar yetki gruplarını temsil ediyor. Örneğin sudo gurubu için burada tüm yetkiler tanımlanmış, dolayısıyla bu gruba dahil olan tüm kullanıcılar bu yetkiler dahilinde hareket edebiliyor.  
+Başında yüzde işareti olanlar **yetki gruplarını** temsil ediyor. Örneğin **sudo** grubu için burada tüm yetkiler tanımlanmış, dolayısıyla bu gruba dahil olan tüm kullanıcılar bu yetkiler dahilinde hareket edebiliyor.  
 
 Hatırlıyorsanız gruplardan bahsederken taylan kullanıcısının **sudo** grubuna dahil olduğunu da görmüştük. Hatta tekrar teyit etmek istersek, yeni bir konsol açıp `groups taylan` şeklinde komutumuzu girebiliriz. 
 
@@ -1986,13 +2013,13 @@ Hatırlıyorsanız gruplardan bahsederken taylan kullanıcısının **sudo** gru
 taylan : taylan adm dialout cdrom floppy sudo audio dip video plugdev netdev wireshark bluetooth scanner kaboxer
 ```
 
-Bakın **taylan** kullanıcısı **sudo** grubuna da dahil. Bu sayede biz taylan kullanıcısını yönetiyorken, `sudo` aracını kullandığımızda buradaki **sudo** grubu için tanımlı olan bu yetkiler dahilinde işlerimizi yürütebiliyoruz. 
+**taylan** kullanıcısı **sudo** grubuna da dahil. Bu sayede biz taylan kullanıcısını yönetiyorken, `sudo` aracını kullandığımızda buradaki **sudo** grubu için tanımlı olan bu yetkiler dahilinde işlerimizi yürütebiliyoruz. 
 
 Dolayısıyla örneğin tıpkı taylan kullanıcısında olduğu gibi aynı yetkilere sahip olmasını istediğimiz kullanıcılar olursa onları da **sudo** grubuna ekleyip bu yetkiler dahilinde hareket etmelerini sağlayabiliriz. Ya da yeni bir grup oluşturup, burada bu gruba özel olarak izin tanımlaması da yapabiliriz. 
 
-Ayrıca bu noktada dikkatinizi çekmek istediğim bir husus var. Sizin kullandığınız dağıtımdaki ***sudoers*** dosyasında buradaki gibi **sudo** isimli bir grup varsayılan olarak tanımlı olmayabilir. Farklı isimde örneğin “**admin**” veya “**wheel**” isimlerinde gruplar da tanımlı olabilir. Hatta hiç bir grup tanımlanmamış da olabilir. Burada asıl mesele istersek tek bir kullanıcı için veya daha fazla kişiyi etkilemesi için bir gruba özel yetki tanımlaması yapabiliyor olmamız. Bu tanımlamalar varsayılan olarak bu dosyada bulunmasa bile biz ihtiyaçlarımıza göre kendimiz ekleyebiliriz. 
+Ayrıca bu noktada dikkatinizi çekmek istediğim bir husus var. Sizin kullandığınız dağıtımdaki ***sudoers*** dosyasında buradaki gibi **sudo** isimli bir grup varsayılan olarak tanımlı olmayabilir. Farklı isimde örneğin “**admin**” veya “**wheel**” isimlerinde gruplar da tanımlı olabilir. Hatta hiç bir grup tanımlanmamış da olabilir. Burada asıl mesele, istersek tek bir kullanıcı için veya daha fazla kişiyi etkilemesi için bir gruba özel yetki tanımlaması yapabiliyor olmamız. Bu tanımlamalar varsayılan olarak bu dosyada bulunmasa bile biz ihtiyaçlarımıza göre kendimiz ekleyebiliriz. 
 
-Gruplar dışında bakın burada **@includedir** tanımının ardından bir dizin adresi belirtilmiş. 
+Gruplar dışında burada **@includedir** tanımının ardından bir dizin adresi belirtilmiş. 
 
 ```bash
 # See sudoers(5) for more information on "@include" directives:
@@ -2000,7 +2027,7 @@ Gruplar dışında bakın burada **@includedir** tanımının ardından bir dizi
 @includedir /etc/sudoers.d
 ```
 
-Bu tanımlama sayesinde yalnızca mevcut ***sudoers*** dosyası değil, bu dizin altında yer alan diğer konfigürasyon dosyaları da okunup geçerli oluyor. Bu yaklaşım sayesinde ***/etc*** dizini altındaki ana ***sudoers*** dosyasında yani şu an görüntülediğimiz dosyada değişiklik yapmadan bu dizindeki dosyalarda güvenli şekilde tanımlamalar yapabiliyoruz. Şu an incelediğimiz bu ***sudoers*** dosyası ana konfigürasyon dosyası olduğu için genellikle en temel tanımlamalar burada oluyor ve özellikle çok fazla tanımlama yapılacaksa burada belirtilen dizindeki konfigürasyon dosyalarında yapmak sistemi düzenli kullanmak adına çok daha doğru bir yaklaşım. Zaten pek çok aracın konfigürasyon dosyasında da aslında bu yaklaşım kullanılıyor. Ana konfigürasyon dosyasını sade tutmak ve mevcut yapısını bozmamak için konfigürasyon dosyasının isminin sonuna ***.d*** eklenmiş bir dizinde harici konfigürasyonlar tanımlanıp kullanılabiliyor. Buradaki ***.d*** ifadesi “**d**irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Özetle şimdiden haberiniz olsun, tıpkı burada ***sudoers*** dosyasında olduğu gibi sistem üzerindeki diğer çeşitli konfigürasyonlarda da bu şekilde harici konfigürasyonların alt dizinde tutulduğuna şahit olacaksınız.
+Bu tanımlama sayesinde yalnızca mevcut ***sudoers*** dosyası değil, bu dizin altında yer alan diğer konfigürasyon dosyaları da okunup geçerli oluyor. Bu yaklaşım sayesinde ***/etc*** dizini altındaki ana ***sudoers*** dosyasında yani şu an görüntülediğimiz dosyada değişiklik yapmadan bu dizindeki dosyalarda güvenli şekilde tanımlamalar yapabiliyoruz. Şu an incelediğimiz bu ***sudoers*** dosyası ana konfigürasyon dosyası olduğu için genellikle en temel tanımlamalar burada oluyor. Özellikle çok fazla tanımlama yapılacaksa bu tanımlamaları burada belirtilen dizin altındaki konfigürasyon dosyalarında yapmak, sistemi düzenli kullanmak adına çok daha doğru bir yaklaşım. Zaten pek çok aracın konfigürasyon dosyasında da aslında bu yaklaşım kullanılıyor. Ana konfigürasyon dosyasını sade tutmak ve mevcut yapısını bozmamak için konfigürasyon dosyasının isminin sonuna ***.d*** eklenmiş bir dizinde harici konfigürasyonlar tanımlanıp kullanılabiliyor. Buradaki ***.d*** ifadesi “**d**irectory” yani “dizin” ifadesinin kısaltmasından geliyor. Özetle şimdiden haberiniz olsun, tıpkı burada ***sudoers*** dosyasında olduğu gibi sistem üzerindeki diğer çeşitli konfigürasyonlarda da bu şekilde harici konfigürasyonların alt dizinde tutulduğuna şahit olacaksınız.
 
 Şimdi tekrar ***sudoers*** dosyasına dönecek olursak, buraya dahil edilen dizin içeriğine bakmak için öncelikle mevcut konfigürasyon dosyamızı kapatalım. Şimdi ls ***/etc/sudoers.d/*** komutuyla dizin içeriğini listeleyebiliriz. 
 
@@ -2010,13 +2037,13 @@ Bu tanımlama sayesinde yalnızca mevcut ***sudoers*** dosyası değil, bu dizin
 kali-grant-root  README
 ```
 
-Örneğin bakın benim sistemimde “kali-grant-root” isimli bir konfigürasyon dosyası var. Okumak için `visudo` komutunun ardından bu dosyanın tam konumu yazabiliriz. 
+Örneğin benim sistemimde “kali-grant-root” isimli bir konfigürasyon dosyası var. Okumak için `visudo` komutunun ardından bu dosyanın tam konumu yazabiliriz. 
 
 ```bash
 sudo visudo /etc/sudoers.d/kali-grant-root
 ```
 
-Bakın burada **kali-tursted** isimli bir grup tanımlanmış ve bu guruba tüm komutları parola olmadan çalıştırabilme yetkisi tanımlanmış. 
+Burada **kali-tursted** isimli bir grup tanımlanmış ve bu gruba tüm komutları parola olmadan çalıştırabilme yetkisi tanımlanmış. 
 
 ```bash
 # Allow members of group kali-trusted to execute any command without a
@@ -2036,7 +2063,7 @@ Yeni bir konsol üzerinden bu gruptaki kullanıcıları listelemek için `grep �
 kali-trusted:x:123:
 ```
 
-Bakın bu grup hakkında bilgi sunan satır filtrelendi ama buradaki tanımlamanın sorunda yani gruba dahil olan kullanıcıların bulunması gereken sütunda herhangi bir kullanıcının ekli olmadığını görebiliyoruz. Eğer testi yine de gerçekleştirmek istersek bu gruba kullanıcı ekleyip deneyebiliriz. Ben **ni**l isimli kullanıcı hesabını bu gruba dahil etmek üzere `sudo gpasswd -a nil kali-trusted` komutunu giriyorum.
+Bu grup hakkında bilgi sunan satır filtrelendi ama buradaki tanımlamanın sonunda, yani gruba dahil olan kullanıcıların bulunması gereken sütunda herhangi bir kullanıcının ekli olmadığını görebiliyoruz. Eğer testi yine de gerçekleştirmek istersek bu gruba kullanıcı ekleyip deneyebiliriz. Ben **nil** isimli kullanıcı hesabını bu gruba dahil etmek üzere `sudo gpasswd -a nil kali-trusted` komutunu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2045,7 +2072,7 @@ Bakın bu grup hakkında bilgi sunan satır filtrelendi ama buradaki tanımlaman
 Adding user nil to group kali-trusted
 ```
 
-Bakın **taylan** kullanıcısı **sudo** grubunda olduğu için ve sudo grubundakilere parola sorulmaması gibi özel bir tanımlama olmadığı için taylan kullanıcısı yetkili şekilde bir işlem yapmadan önce buraya parolasını girmesi gerekti. Neticede nil kullanıcısını “kali-trusted” grubuna eklemiş olduk. Kontrol etmek için yine `grep “kali-trusted” /etc/group` komutunu geçmişten çağırıp kullanabiliriz. 
+**taylan** kullanıcısı **sudo** grubunda olduğu için ve sudo grubundakilere parola sorulmaması gibi özel bir tanımlama olmadığı için taylan kullanıcısı yetkili şekilde bir işlem yapmadan önce buraya parolasını girmesi gerekti. Neticede nil kullanıcısını “kali-trusted” grubuna eklemiş olduk. Kontrol etmek için yine `grep “kali-trusted” /etc/group` komutunu geçmişten çağırıp kullanabiliriz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2053,7 +2080,7 @@ Bakın **taylan** kullanıcısı **sudo** grubunda olduğu için ve sudo grubund
 kali-trusted:x:123:nil
 ```
 
-Bakın bu kez son sütunda nil kullanıcısının ismi gözüküyor. Yani gruba ekleme işlemi başarılı. Şimdi yetki işlemini teyit etmek için hemen `su nil` komutuyla nil kullanıcı hesabına geçiş yapalım.
+Bu kez son sütunda nil kullanıcısının ismi gözüküyor. Yani gruba ekleme işlemi başarılı. Şimdi yetki işlemini teyit etmek için hemen `su nil` komutuyla nil kullanıcı hesabına geçiş yapalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2063,7 +2090,7 @@ Password:
 └─$
 ```
 
-Tamamdır. Şimdi tekrar ***sudoers.d*** dizini altındaki konfigürasyon dosyasına dönecek olursak, bakın burada bu gruba dahil olan tüm kullanıcıların tüm komutları parola olmadan çalıştırabileceği belirtiliyor. 
+Tamamdır. Şimdi tekrar ***sudoers.d*** dizini altındaki konfigürasyon dosyasına dönecek olursak, burada bu gruba dahil olan tüm kullanıcıların tüm komutları parola olmadan çalıştırabileceği belirtiliyor. 
 
 ```bash
 # Allow members of group kali-trusted to execute any command without a
@@ -2079,7 +2106,7 @@ Tamamdır. Şimdi tekrar ***sudoers.d*** dizini altındaki konfigürasyon dosyas
 root
 ```
 
-Bakın bana parola sorulmadan anında `whoami` komutunu en yetkili kullanıcı olan root kullanıcısının yetkileriyle çalıştırmış oldum. İşte bu basit örnek, konfigürasyon dosyasındaki parola sorulmadan tüm yetkileri veren tanımlamanın geçerli olduğunun kanıtı.
+Bana yani "nil" kullanıcısına, parola sorulmadan anında `whoami` komutu en yetkili kullanıcı olan root kullanıcısının yetkileriyle çalıştırdı. İşte bu basit örnek, konfigürasyon dosyasındaki parola sorulmadan tüm yetkileri veren "**NOPASSWD**" tanımlamasının geçerli olduğunun kanıtı.
 
 Eğer süper kullanıcı yetkilerine kendi hesabının şifresini bile girmeden erişmesini istediğimiz kullanıcılar varsa bu gruba ekleyebiliriz. Ya da örneğin sizde böyle bir grup tanımlaması yoksa, buradaki tanımlamanın aynısını yazarak aynı konfigürasyonların geçerli olmasını da sağlayabilirsiniz. Fakat tabii ki buradaki gibi sınırsız yetkiyi kime vermek istediğinize de iyi karar vermeniz gerekiyor çünkü bu durum sistem güvenliği için tehlikeli olabilir. Bu mevcut tanımlamalarla tüm yetkileri vermek yerine eğer istersek ihtiyaçlarımıza göre farklı kısıtlamalar içeren bir grup da ya da kullanıcı özelinde tanımlamalar da oluşturabiliriz. 
 
@@ -2087,19 +2114,64 @@ Eğer süper kullanıcı yetkilerine kendi hesabının şifresini bile girmeden 
 
 ## Özel Kural Tanımlama
 
-Spesifik olarak bir kullanıcı gibi komut yürütmek için `sudo -u kullanıcı-adı` komut şeklinde komut girmemiz gerekiyor. Benzer şekilde spesifik bir grup için de `sudo -g grup` komut şeklinde girmemiz gerekiyor. Biz ALL ile tüm kullanıcı ve grupları temsil ettiğimiz için hangi kullanıcı olarak davranmamız gerektiği sorulmadan tüm kullanıcılar gibi davranabilmemiz sağlanıyor.
+`sudo` aracılığı ile spesifik bir kullanıcı gibi komut yürütmek istersek `sudo -u kullanıcı-adı komut` şeklinde komutumuzu girebiliyoruz. Benzer şekilde spesifik bir grubun yetkileri dahilinde bir komutu çalıştırmak istediğimizde de `sudo -g grup-adı komut` şeklinde `sudo` aracını kullanabiliyoruz. 
+
+Daha önce ***sudoers*** konfigürasyonlarında bizzat gördüğümüz gibi <strong><span class="mavi">sudo</span></strong> grubundaki kullanıcılara "<strong><span class="kirmizi">ALL:ALL</span></strong>" yani <strong><span class="kirmizi">tüm kullanıcı ve grupların yetkileri ile hareket etme</span></strong> imkanı tanındığını biliyoruz. Tekrar hatırlayalım:
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># User privilege specification</span>
+root    <span class="nv">ALL</span><span class="o">=(</span>ALL:ALL<span class="o">)</span> ALL
+
+<span class="c"># Allow members of group sudo to execute any command</span>
+<span class="mavi">%sudo   <span class="nv">ALL</span><span class="o">=(</span><span class="kirmizi">ALL:ALL</span><span class="o">)</span> ALL</span> 
+
+<span class="c"># See sudoers(5) for more information on "@include" directives:</span>
+
+@includedir /etc/sudoers.d
+</code></pre></div></div>
+
+**taylan** kullanıcısı da **sudo** grubunda olduğu için ben taylan kullanıcı hesabı üzerinden istediğim kullanıcı veya grubun yetkileri ile komutlar çalıştırabilirim.
 
 ```bash
-┌──(ali㉿kali)-[/home/kali]
-└─$ sudo whoami                                                      
-[sudo] password for ali: 
-Sorry, user ali is not allowed to execute '/usr/bin/whoami' as root on kali.
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo whoami
+[sudo] password for taylan: 
+root
 
-┌──(ali㉿kali)-[/home/kali]
-└─$ sudo -u kali whoami
-[sudo] password for ali: 
-kali
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo -u nil whoami
+nil
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ sudo -u ali whoami
+ali
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ whoami
+taylan
+
 ```
+Gördüğünüz gibi tüm kullanıcı ve grup yetkileri ile çalıştırma hakkımız olduğunda; biz **özellikle belirtmediğimiz zaman** `sudo` aracını kullandığımızda, komutlarımız **varsayılan olarak "root" yetkileri** ile çalıştırılıyor. Fakat `sudo` aracının `-u` veya `-g` seçenekleri ile kullanıcı veya istediğimiz grup yetkileri de komutlarımızı çalıştırmamız mümkün oluyor.
+
+Örneğin ali kullanıcısı sudo grubununda olmadığı için bu işlemleri gerçekleştiremez.
+
+```bash
+┌──(ali㉿linuxdersleri)-[~]
+└─$ whoami
+ali
+
+┌──(ali㉿linuxdersleri)-[~]
+└─$ sudo whoami
+[sudo] password for ali: 
+ali is not in the sudoers file.  This incident will be reported.
+
+┌──(ali㉿linuxdersleri)-[~]
+└─$ sudo -u nil whoami
+[sudo] password for ali: 
+ali is not in the sudoers file.  This incident will be reported.
+
+```
+
+Yani tekrar özetleyecek olursak "**ALL=(ALL:ALL) ALL**" tanımlaması aslında tüm hostlardaki tüm kullanıcı ve grupların yetkileri ile tüm komutların çalıştırılabileceğini belirten en geniş yetki tanımlamasıdır.
 
 Artık ***sudoers*** dosyasının genel sözdizimine aşina olduğumuza göre, ihtiyaçlarımıza göre bazı yeni kurallar tanımlayabiliriz. Tanımlama yaparken ***/etc/sudoers*** dosyası içinde veya ***/etc/sudoers.d*** dizini altındaki dosyalarda tanımlama yapmamız mümkün. Ben bu dizin altında yeni konfigürasyon dosyası oluşturmak için `sudo visudo /etc/sudoers.d/yeni-tanim` şeklinde komutumu giriyorum.
 
@@ -2112,25 +2184,25 @@ Ben öncelikle tek bir kullanıcı için özel tanımla yapmak istiyorum. İlk o
 ali ALL= /usr/bin/ls, /usr/bin/whoami
 ```
 
-İlk olarak dosyaya sonradan baktığımızda bu tanımlamayı neden yaptığımızı daha net anlayabilmek için diyez işaretinden sonra kısaca açıklama ekledik. Örneğin ben ali kullanıcısı için tanımlama yapmak istediğim için buraya “ali kullanıcısı için yetki tanımlaması” şeklinde yazdım. 
+Dosyaya sonradan baktığımızda bu tanımlamayı neden yaptığımızı daha net anlayabilmek için ilk olarak diyez **#** işaretinden sonra kısaca açıklama ekledik. Örneğin ben ali kullanıcısı için tanımlama yapmak istediğim için buraya “ali kullanıcısı için yetki tanımlaması” şeklinde yazdım. 
 
-Tanımlama tek bir kullanıcıyı etkileyecekse, doğrudan kullanıcının ismini yazmamız gerekiyor. Ben de ali şeklinde yazdım. 
+Tanımlama tek bir kullanıcıyı etkileyecekse, doğrudan kullanıcının ismini yazmamız gerekiyor. Ben de **ali** şeklinde yazdım. 
 
 Tanımladığım bu yetkinin tüm hostlarda geçerli olmasını istediğim için kullanıcı ismini yazdıktan sonra boşluk bırakıp **ALL** yazıp eşittir işaretini koydum. Yetki tanımlamasını bu eşittir işaretinden sonra yazabiliyoruz. 
 
-Ben ali kullanıcısının herhangi bir kullanıcı veya grup olarak komut çalıştırmasını istemediğim için parantez açıp, içine hangi kullanıcılar veya gruplar olarak komut çalıştırabileceğini belirtmedim. Biz özellikle kullanıcı adı veya grup belirtmediğimizde komutlar **root** yetkileriyle çalıştırılıyor olacak. Eğer siz **tüm kullanıcı hesapları ve grupları gibi** komut yürütebilmesini isterseniz (**ALL:ALL)** şeklinde belirtebilirsiniz. 
+Ben ali kullanıcısının herhangi bir kullanıcı veya grup olarak komut çalıştırmasını **istemediğim için** parantez açıp, içine hangi kullanıcılar veya gruplar olarak komut çalıştırabileceğini **belirtmedim**. Biz özellikle kullanıcı adı veya grup belirtmediğimizde komutlar **root** yetkileriyle çalıştırılıyor olacak. Eğer siz **tüm kullanıcı hesapları ve grupları gibi** komut yürütebilmesini isterseniz (**ALL:ALL)** şeklinde belirtebilirsiniz. 
 
 ```bash
 ali ALL=(ALL:ALL) /usr/bin/ls, /usr/bin/whoami
 ```
 
-İleride komutlarımızı nasıl farklı kullanıcılar veya gruplar gibi çalıştırabileceğimizden bahsettiğimizde buradaki tanımlama sizin için çok daha anlaşılır olacak. Ayrıca isterseniz tüm kullanıcılar gibi çalıştırma yetkisi yerine spesifik olarak istediğiniz kişi veya grupları da aralarına virgüller belirtebilirsiniz. 
+İleride komutlarımızı nasıl farklı kullanıcılar veya gruplar gibi çalıştırabileceğimizden bahsettiğimizde buradaki tanımlama sizin için çok daha anlaşılır olacak. Ayrıca isterseniz tüm kullanıcılar gibi çalıştırma yetkisi yerine spesifik olarak istediğiniz kişi veya grupları da, aralarına virgüller ile ayırarak belirtebilirsiniz. 
 
 ```bash
 ali ALL=(akullanıcı, bkullanıcı, ckullanıcı:agrubu, bgrubu) /usr/bin/ls, /usr/bin/whoami
 ```
 
-Ben hiç birini istemediğim parantez açmadım. Parantez açmadığım için ali kullanıcısı komutlarını yalnızca **root** olarak çalıştırabiliyor olacak.
+Ben hiç birini istemediğim için parantez açmadım. Parantez açmadığım için ali kullanıcısı komutlarını yalnızca **root** olarak çalıştırabiliyor olacak.
 
 Son olarak eğer ali kullanıcısının **tüm komutları** root yetkileriyle çalıştırabilmesini istersem sonda **ALL** şeklinde yazabilirdim. 
 
@@ -2138,7 +2210,7 @@ Son olarak eğer ali kullanıcısının **tüm komutları** root yetkileriyle ç
 ali ALL= ALL
 ```
 
-Ancak ben size kısıtlı yetkiyi göstermek için ali kullanıcısının yalnızca `ls` ve `whoami` araçlarını kullanmasına izin vermek istiyorum. Bunun için de `ls` ve `whoami` araçlarının aracının tam dosya konumlarını buraya yazdım.
+Ancak ben size kısıtlı yetkiyi göstermek için ali kullanıcısının yalnızca `ls` ve `whoami` araçlarını kullanmasına izin vermek istiyorum. Bunun için de `ls` ve `whoami` araçlarının tam dosya konumlarını buraya yazdım.
 
 ```bash
 ali ALL= /usr/bin/ls /usr/bin/whoami
@@ -2158,7 +2230,7 @@ Araçların konumlarını `which` komutu ile öğrenebilirsiniz.
 
 İşte bu şekilde istediğimiz kullanıcı hesabına istediğimiz araçları root olarak çalıştırabilme yetkisi verebiliyoruz. Kuralı kendi ihtiyacınıza göre istediğiniz şekilde özelleştirebilirsiniz. Kuralı denemek için öncelikle konfigürasyon dosyamızı kaydedip kapatalım.
 
-Tamamdır. Şimdi ben tanımlamayı ali kullanıcısı için tanımladım için `su ali` komutu ile bu kullanıcı hesabına geçiş yapıyorum. 
+Ben ali kullanıcısı için tanımladığım için `su ali` komutu ile bu kullanıcı hesabına geçiş yapıyorum. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2193,7 +2265,16 @@ root
 Sorry, user ali is not allowed to execute '/usr/bin/echo deneme' as root on linuxdersleri.net.
 ```
 
-Gördüğünüz gibi ali kullanıcısı tam olarak benim izin verdiğim şekilde yalnızca `ls` ve `whoami` komutlarını `sudo` sayesinde root yetkileriyle çalıştırabiliyor. Örneğin `echo` aracı için **sudo** kuralı belirtmediğim için bu aracı `sudo` komutu ile root yetkileriyle çalıştıramadım. Yani ali kullanıcısı için tanımladığımız konfigürasyonun geçerli olduğunu bizzat teyit etmiş olduk.
+Gördüğünüz gibi ali kullanıcısı tam olarak benim izin verdiğim şekilde yalnızca `ls` ve `whoami` komutlarını `sudo` sayesinde root yetkileriyle çalıştırabiliyor. Örneğin `echo` aracı için **sudo** kuralı belirtmediğim için bu aracı `sudo` komutu ile root yetkileriyle çalıştıramadım. 
+
+Ayrıca root dışında, diğer kullanıcı hesapları üzerinden çalıştırmayı da deneyebiliriz. 
+
+```bash
+┌──(ali㉿linuxdersleri)-[/]
+└─$ sudo -u nil whoami
+Sorry, user ali is not allowed to execute '/usr/bin/whoami' as nil on linuxdersleri.net.
+```
+Bakın ben "nil" kullanıcı yetkileri ile çalıştırmayı denedim ama konfigürasyonlarda bunu belirtmediğim için çalıştıramadım. Ben konfigürasyonlarda hiç bir kullanıcı veya grubu belirtmediğim için yalnızca "root" yetkileri ile çalıştırmam mümkün oldu. O da yalnızca izin verdiğim araçları çalıştırabildim. Yani ali kullanıcısı için tanımladığımız konfigürasyonun geçerli olduğunu bizzat teyit etmiş olduk.
 
 Esasen benzer şekilde spesifik olarak izin verip, kısıtlayabileceğimiz ve başka parametreler ile kapsamını değiştirebileceğimiz pek çok tanımlama mevcut. Fakat temel işleyişten haberiniz olduğu için manual sayfaları üzerinden bu tanımlara bakmanız çok daha etkili olacaktır. Zira aksi takdirde manual sayfalarının tekrarı gibi biraz uzun ve kendini tekrar eden tanımlama açıklamaları yapmam kaçınılmaz olacak. Ben de ihtiyaç duyduğumda manual sayfalarına bakıp tanımlama kurallarını hatırlıyorum.
 
@@ -2205,9 +2286,9 @@ Neyse bence artık `sudo` aracı hakkında gerekli olan temel bilgilerden bahset
 
 Şimdiye kadar özellikle ele almamış olsak da aslında kullanıcı hesapları arasında geçiş yapmak için `su` komutunu defalarca kez kullandık. `su` komutunun ismi de “**s**witch **u**ser” yani “kullanıcı değiştir” ifadesinin kısaltmasından geliyor.
 
-Bildiğiniz gibi `su` komutu kendisinden sonra belirtilmiş olan kullanıcı hesabında mevcut konsol üzerinden oturum açmayı sağlıyor. Fakat bu komutu kullanırken aslında temelde iki alternatif kullanım yönetimine sahibiz. Eğer `su` komutundan sonra yalnızca geçiş yapılması gereken kullanıcı ismini girersek, bu kullanıcı hesabı mevcut bulunduğumuz kabuğun altında yeni başlatılan kabukta bizim bu komutu girdiğimiz konumdan çalışmaya başlayacak. Mevcut kabuğun altında yeni bir kabuk başlatıldığı için de mevcut kabuk üzerinde geçerli olan global ortam değişkenleri gibi çeşitli bilgiler de bu yeni başlatılan kabuğa aktarılıyor olacak. Ne demek istediğimi en iyi örnek üzerinden açıklayabilirim. 
+Bildiğiniz gibi `su` komutu kendisinden sonra belirtilmiş olan kullanıcı hesabında, mevcut konsol üzerinden oturum açmayı sağlıyor. Fakat bu komutu kullanırken aslında temelde iki alternatif kullanım yönetimine sahibiz. Eğer `su` komutundan sonra yalnızca geçiş yapılması gereken kullanıcı ismini girersek, bu kullanıcı hesabı mevcut bulunduğumuz kabuğun altında yeni başlatılan kabukta bizim bu komutu girdiğimiz konumdan çalışmaya başlayacak. Mevcut kabuğun altında yeni bir kabuk başlatıldığı için de mevcut kabuk üzerinde geçerli olan global ortam değişkenleri gibi çeşitli bilgiler de bu yeni başlatılan kabuğa aktarılıyor olacak. Ne demek istediğimi en iyi örnek üzerinden açıklayabilirim. 
 
-Şimdi ben farklı bir kullanıcı hesabına geçiş yapmadan önce `export test=”bu bir testtir”` komutuyla, **test** isimli yeni bir global değişken tanımlamak istiyorum. Bu sayede bu değişken mevcut kabuk altında başlatılan tüm alt kabuklarda da aynen geçerli olacak. 
+Şimdi ben farklı bir kullanıcı hesabına geçiş yapmadan önce `export test=”bu bir testtir”` komutuyla, mevcut kabuk ortamımda **test** isimli yeni bir global değişken tanımlamak istiyorum. Bu sayede bu değişken mevcut kabuk altında başlatılan tüm alt kabuklarda da aynen geçerli olacak. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2224,7 +2305,7 @@ bu bir testtir
 bu bir testtir
 ```
 
-Bakın tanımadığım değere şu an ulaşabiliyorum. Son olarak bir de mevcut bulunduğumuz dizini `pwd` komutu ile öğrenelim. 
+Tanımadığım değere şu an ulaşabiliyorum. Son olarak bir de mevcut bulunduğumuz dizini `pwd` komutu ile öğrenelim. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2232,7 +2313,7 @@ Bakın tanımadığım değere şu an ulaşabiliyorum. Son olarak bir de mevcut 
 /home/taylan
 ```
 
-Bakın ben şu anda bu kabukta taylan kullanıcısının ev dizininde yani /home/taylan dizininde çalışıyorum. 
+Gördüğünüz gibi ben şu anda bu kabukta taylan kullanıcısının ev dizininde yani ***/home/taylan*** dizininde çalışıyorum. 
 
 Şimdi `su root` komutu ile **root** kullanıcısına geçiş yapmayı deneyebiliriz. 
 
@@ -2260,7 +2341,7 @@ Tamamdır root hesabı için tanımlı olan varsayılan kabuğa geçişimi yapm�
 /usr/bin/zsh
 ```
 
-Bakın benim kullandığım sistemde root hesabının varsayılan kabuğu `zsh` kabuğu olduğu için bu şekilde çıktı aldım.
+Benim kullandığım sistemde root hesabının varsayılan kabuğu `zsh` kabuğu olduğu için bu şekilde çıktı aldım.
 
 Şimdi esas konumuza dönecek olursak ben taylan kullanıcısının kabuğu üzerinde tanımlamış olduğum değişkene bu kabuk üzerinden ulaşıp ulaşamayacağımı merak ediyorum. Öğrenmek için `echo $test` şeklinde komutumuzu girelim. 
 
@@ -2270,7 +2351,7 @@ Bakın benim kullandığım sistemde root hesabının varsayılan kabuğu `zsh` 
 bu bir testtir
 ```
 
-Bakın taylan kullanıcısının kabuğunda tanımlı olan değişken burada da geçerli. Üstelik farklı kabuk olsalar bile değişken değeri aktarılmış. Bir de mevcut bulunduğumuz dizini de `pwd` komutuyla bastıralım. 
+taylan kullanıcısının kabuğunda tanımlı olan değişken burada da geçerli. Üstelik farklı kabuk olsalar bile değişken değeri aktarılmış. Bir de mevcut bulunduğumuz dizini de `pwd` komutuyla bastıralım. 
 
 ```bash
 ┌──(root㉿linuxdersleri)-[/home/taylan]
@@ -2278,7 +2359,7 @@ Bakın taylan kullanıcısının kabuğunda tanımlı olan değişken burada da 
 /home/taylan
 ```
 
-Bakın hala taylan kullanıcısının ev dizinde(***/home/taylan***) çalışıyorum.
+Bakın, hala taylan kullanıcısının ev dizinde(***/home/taylan***) çalışıyorum.
 
 ## `su` ile `su -` Arasındaki Fark
 
@@ -2294,7 +2375,7 @@ Eğer biz mevcut kabuktan etkilenmeyecek temiz bir kabuk başlatılsın istersek
 └─$
 ```
 
-Tamamdır. Şimdi temiz oturum açtığımız kullanıcın temiz bir kabuğunu başlatmak için `su - root` şeklinde komutumuzu girelim.
+Tamamdır. Şimdi oturum açtığımız kullanıcın, temiz bir kabuğunu başlatmak için `su - root` şeklinde komutumuzu girelim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2312,7 +2393,7 @@ Tamamdır. Hemen bulunduğumuz dizini bastıralım.
 /root
 ```
 
-Bakın bu kez root kullanıcısının ev dizininde yani ***/root*** dizininde çalışmaya başladım. Bir de taylan kullanıcısının kabuğunda tanımlı **test** isimli global değişkeni sorgulamak için `echo $test` şeklinde komutumuzu girelim. 
+Bu kez root kullanıcısının ev dizininde yani ***/root*** dizininde çalışmaya başladım. Bir de taylan kullanıcısının kabuğunda tanımlı **test** isimli global değişkeni sorgulamak için `echo $test` şeklinde komutumuzu girelim. 
 
 ```bash
 ┌──(root㉿linuxdersleri)-[~]
@@ -2323,9 +2404,9 @@ Bakın bu kez root kullanıcısının ev dizininde yani ***/root*** dizininde ç
 └─#
 ```
 
-Bakın herhangi bir çıktı almadık çünkü bu değişken, başlatılan yeni kabuğa aktarılmadı. Biz `su` komutunda sonra tire `-` işaretini girdiğimiz için, geçiş yaptığımız kullanıcın varsayılan kabuğu standart ortam özellikleriyle birlikte tahsis edilmiş oldu.
+Herhangi bir çıktı almadık çünkü bu değişken, başlatılan yeni kabuğa aktarılmadı. Biz `su` komutunda sonra tire `-` işaretini girdiğimiz için geçiş yaptığımız kullanıcının varsayılan kabuğu, standart ortam özellikleriyle birlikte tahsis edilmiş oldu.
 
-Bu kullanım yani `su - kullanıcı-adı` kullanımı özellikle güvenlik gerekçesiyle sistem yöneticileri tarafından sıklıkla tercih ediliyor. Çünkü farklı bir kullanıcı hesabına geçiş yapılmadan önce çalışılan mevcut kabuk üzerinde istenmeyen ortam değişkenleri tanımlanmış olabilir. Bu gibi güvenlik riski oluşturabilecek durumlardan kaçınmak için temiz bir kabuk başlatan `su - kullanıcı-adı` şeklinde komut girmek çok daha makul bir yaklaşım.
+Bu kullanım yani `su - kullanıcı-adı` kullanımı özellikle güvenlik gerekçesiyle sistem yöneticileri tarafından sıklıkla tercih ediliyor. Çünkü farklı bir kullanıcı hesabına geçiş yapılmadan önce, o anda üzerinde çalışılmakta olan mevcut kabuk üzerinde istenmeyen ortam değişkenleri tanımlanmış olabilir. Bu gibi güvenlik riski oluşturabilecek durumlardan kaçınmak için temiz bir kabuk başlatan `su - kullanıcı-adı` şeklinde komut girmek çok daha makul bir yaklaşım.
 
 # Mevcut Kullanıcı Hesabını Silmek
 
@@ -2333,7 +2414,7 @@ Oluşturduğumuz yeni kullanıcı hesaplarını anlatımlar sırasında kulland�
 
 ## `userdel` Komutu
 
-Mevcut bir kullanıcıyı silmek için `userdel` komutuna silinmesini istediğimiz kullanıcı hesabının ismini girmemiz yeterli oluyor. Fakat bu şekilde kullandığımızda kullanıcı hesabının ev dizini silinmediği için ek olarak `-r` seçeneğini de eklemiz gerekiyor.
+Mevcut bir kullanıcıyı silmek için `userdel` komutuna silinmesini istediğimiz kullanıcı hesabının ismini girmemiz yeterli oluyor. Fakat bu şekilde kullandığımızda kullanıcı hesabının ev dizini silinmediği için ek olarak `-r` seçeneğini de eklememiz gerekiyor.
 
 Örneğin **ali** isimli kullanıcı hesabını silmek istersem `sudo userdel -r ali` şeklinde komutumu girebilirim. 
 
@@ -2352,7 +2433,7 @@ Parolamızı girip onaylayalım.
 userdel: user ali is currently used by process 13099
 ```
 
-Bakın bende olduğu şekilde eğer sizin de silmek istediğiniz kullanıcının oturumu hala aktifse ve çalışmakta olan işlemler dolayısıyla silme işlemi başarısız olur. Bu durumda bu işlemleri sonlandırıp silme işlemini tekrar deneyebiliriz. İleride işlemleri nasıl sonlandırabileceğimizden bahsedeceğimiz için şimdi bunun yerine ben bu silme işlemini zorlayarak yapmak istiyorum. Bunun için `force` yani zorlama seçeneğini kullanabiliriz. Bu seçenek sayesinde, silmek istediğimiz kullanıcıya ait aktif işlemler olsa bile silme işlemi gerçekleştiriliyor. 
+Bende olduğu şekilde eğer sizin de silmek istediğiniz kullanıcının oturumu hala aktifse ve çalışmakta olan işlemler dolayısıyla silme işlemi başarısız olur. Bu durumda bu işlemleri sonlandırıp silme işlemini tekrar deneyebiliriz. İleride işlemleri nasıl sonlandırabileceğimizden bahsedeceğimiz için şimdi bunun yerine ben bu silme işlemini zorlayarak yapmak istiyorum. Bunun için `force` yani zorlama seçeneğini kullanabiliriz. Bu seçenek sayesinde, silmek istediğimiz kullanıcıya ait aktif işlemler olsa bile silme işlemi gerçekleştiriliyor. 
 
 Ben komutumu bu kez `sudo userdel -rf ali` şeklinde giriyorum. 
 
@@ -2371,7 +2452,7 @@ Kullanıcının silindiğini teyit etmek için `su ali` komutu ile geçiş yapma
 su: user ali does not exist or the user entry does not contain all the required fields
 ```
 
-Bakın böyle bir kullanıcının var olmadığına dair uyarı aldık. Bunun dışında dilerseniz `ls /home` komutuyla ev dizinin silindiğini de teyit edebilirsiniz. 
+Böyle bir kullanıcının var olmadığına dair uyarı aldık. Bunun dışında dilerseniz `ls /home` komutuyla ev dizinin silindiğini de teyit edebilirsiniz. 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2381,6 +2462,6 @@ kali  nil  taylan
 
 Gördüğünüz gibi **ali** için bir ev dizini artık mevcut değil.
 
-Tabii ki biz buradaki işlemle kullanıcının ev dizinini ve kullanıcı kaydını sildik. Eğer sistemin farklı konumlarında bu kullanıcıya ait bu kullanıcın oluşturduğu dosya ve dizinler varsa onlar silinmedi. Eğer ne yaptığınızdan eminseniz ve gerçekten bu kullanıcının oluşturduğu dosyaları silmek istiyorsanız `find` aracından yararlanabilirsiniz. Geçmişte `find` **pipe** ve `xargs` araçlarından bahsettiğimiz için nasıl yapabileceğinizi kısa bir araştırma ile keşfedebileceğinizi düşünüyorum. Yine de kullanıcıların oluşturdukları dosyaları kontrolsüzce silmek sistemin işleyişine beklenmedik şekilde zarar verebilir. Bu sebeple uygulamaya geçmeden önce ne yaptığınızın farkında olun lütfen.
+Tabii ki biz buradaki işlemle kullanıcının ev dizinini ve kullanıcı kaydını sildik. Eğer sistemin farklı konumlarında bu kullanıcıya ait bu kullanıcın oluşturduğu dosya ve dizinler varsa onlar silinmedi. Eğer ne yaptığınızdan eminseniz ve gerçekten bu kullanıcının oluşturduğu dosyaları silmek istiyorsanız `find` aracından yararlanabilirsiniz. Geçmişte `find` **pipe** ve `xargs` araçlarından bahsettiğimiz için nasıl yapabileceğinizi kısa bir araştırma ile keşfedebileceğinizi düşünüyorum. **Yine de kullanıcıların oluşturdukları dosyaları kontrolsüzce silmek, sistemin işleyişine beklenmedik şekilde zarar verebilir.** Bu sebeple uygulamaya geçmeden önce ne yaptığınızın farkında olun lütfen.
 
 Benim temel seviye kullanıcı ve grup yönetimi için söylemek istediklerim bu kadardı. Bir sonraki bölümde disk yönetiminden bahsederek devam edeceğiz.

@@ -26,7 +26,7 @@ Bu 0 ve 1 sinyalleri de bilgisayarlar üzerindeki en küçük veri birimi olan *
 
 ![aschii.webp]({{ site.url }}/egitim/temel-linux/disk/aschii.webp){:class="responsive img-zoomable"}
 
-Neticede burada esas vurgulamak istediğim, biz tek bir karakteri kullandığımızda örneğin klavyemizden “a” tuşuna bastığımızda bu karakter toplam 8 bitten 1 bayta karşılık geliyor ve bilgisayar bu “a” karakterini ikili kod olarak ele alıp işliyor. Elbette sizlerin de bildiği gibi büyüklük birimleri bitlerden ve baytlardan ibaret değil. Buradaki tabloya bakarak diğer büyüklük birimlerini de görebiliriz. Normalde bizler hep ondalık sayı sistemine göre karşılıklarını telaffuz ediyoruz ancak bazı komut çıktılarında da karşılaşabileceğimiz gibi büyüklük birimlerinin ikili gösterimi de bulunuyor. 
+Neticede burada esas vurgulamak istediğim, biz tek bir karakteri kullandığımızda örneğin klavyemizden “a” tuşuna bastığımızda bu karakter toplam 8 bitten 1 bayta karşılık geliyor ve bilgisayar bu “a” karakterini ikili kod olarak ele alıp işliyor. Elbette sizlerin de bildiği gibi büyüklük birimleri bitlerden ve baytlardan ibaret değil. Aşağıdaki tabloya bakarak diğer büyüklük birimlerini de görebiliriz. Normalde bizler hep ondalık sayı sistemine göre karşılıklarını telaffuz ediyoruz ancak bazı komut çıktılarında da karşılaşabileceğimiz gibi büyüklük birimlerinin ikili gösterimi de bulunuyor. 
 
 ![decimal-binary-table]({{ site.url }}/egitim/temel-linux/disk/decimal-binary.webp){:class="responsive img-zoomable"}
 [Tablo Kaynağı](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units){:target="_blank"}
@@ -47,7 +47,7 @@ Neticede burada esas vurgulamak istediğim, biz tek bir karakteri kullandığım
 
 1024 mebibyte = 1 gibibyte ediyor. 
 
-Bu sebeple özellikle disk yönetimiyle ilgili kullandığımız komutların sonucunda, ikili gösterimin kısaltması olan **KiB MiB GiB** gibi kısaltmalarla karşılaşıyor olacağız. Disklerle ilgili uygulamalar yaparken zaten bu gösterimlerle karşılaşacağımız için şimdiden açıklamak istedim. Bizler yaygın olarak ondalık gösterimi kullanıyor olsak da aslında bilgisayarların ikili sayı sisteminden anladığından bahsetmiştik. Yani aslında bilgisayarlar için ikili sayı sistemini temsil eden büyüklük değerleri(Kib, MiB, GiB) geçerlidir. 
+Bu sebeple özellikle disk yönetimiyle ilgili kullandığımız komutların sonucunda, ikili gösterimin kısaltması olan **KiB MiB GiB** gibi kısaltmalarla karşılaşıyor olacağız. Disklerle ilgili uygulamalar yaparken zaten bu gösterimlerle karşılaşacağımız için şimdiden açıklamak istedim. Bizler yaygın olarak ondalık gösterimi kullanıyor olsak da aslında bilgisayarların ikili sayı sisteminden anladığını biraz önce belirttik. Yani aslında bilgisayarlar için ikili sayı sistemini temsil eden büyüklük değerleri(Kib, MiB, GiB) geçerlidir. 
 
 Yine de ikili sayı sistemine oranla ticari olarak, ondalık gösterim daha büyük alan vaat ediyor gibi göründüğü için depolama birimlerinin büyüklüklerini tanımlamada çok daha yaygın kullanılıyor. Zaten bu sebeple bizler de yaygın olarak ondalık(MB, KB, GB) gösterimin büyüklük karşılığına aşina oluyoruz.
 
@@ -55,13 +55,13 @@ Normalde karıştırılanın aksine örneğin 1 gigabayt 1024 megabayt değildir
 
 ![gb-to-mb.webp]({{ site.url }}/egitim/temel-linux/disk/gb-to-mb.webp){:class="responsive img-zoomable"}
 
-Bakın sonuçta aldığımız çıktıda da **1 gigabyte**’ın **1000 megabyte** olduğu belirtiliyor. Zaten bu sebeple satın aldığımız diskler sisteme bağladığımızda bizim beklediğimizden daha az depolama alanına sahip gözüküyor. 
+Bakın **1 gigabyte**’ın **1000 megabyte** olduğu belirtiliyor. Zaten bu sebeple satın aldığımız diskler sisteme bağladığımızda bizim beklediğimizden daha az depolama alanına sahip gözüküyor. 
 
 Örneğin **1 terabayt**lık disk, sistem üzerinde yaklaşık **931 gibibyte** olarak gözüküyor. Çünkü depolama alanının büyüklük birimi **terabayttan gibibyte** dönüştürülüyor. Yine Google üzerinden de bu durumu teyit edebiliriz. 
 
 ![tb-to-gib.webp]({{ site.url }}/egitim/temel-linux/disk/tb-to-gib.webp){:class="responsive img-zoomable"}
 
-Bakın **1 terabayt** aslında yaklaşık olarak **931 gibibayt**. Bilgisayar ikili sayı sistemi üzerinden hesaplama yaptığı için onluktan ikili düzene geçişte bu farklar ortaya çıkıyor. Bizler de işletim sistemleri üzerinden bu büyüklük farklarını görebiliyoruz.
+Bakın **1 terabayt** aslında yaklaşık olarak **931 gibibayt**. Bilgisayar, ikili sayı sistemi üzerinden hesaplama yaptığı için onluktan ikili düzene geçişte bu farklar ortaya çıkıyor. Bizler de işletim sistemleri üzerinde bu büyüklük farklarını görebiliyoruz.
 
 En genel haliyle büyüklük birimleri hakkında bilmemiz gerekenler bunlar. 
 
@@ -77,19 +77,19 @@ Büyüklük birimlerinden bahsettiğimize göre verilerin diskte nasıl depoland
 
 ## Blok
 
-Sektör birimi dışında bir de blok olarak isimlendirilen işletim sistemleri için gruplanmış birimler vardır. Bloklar, en genel tanımıyla işletim sisteminin adresleyebileceği yani işaret edebileceği bir sektör grubudur. Bir blok yalnızca tek bir sektörden ibaret olabilir, ya da 2li 4lü 8li 16lı gibi birden çok sektörün bir araya gelmesiyle de oluşturulabilir.
+Sektör birimi dışında bir de blok olarak isimlendirilen işletim sistemleri için gruplanmış birimler vardır. Bloklar, en genel tanımıyla işletim sisteminin adresleyebileceği yani işaret edebileceği bir sektör grubudur. Bir blok yalnızca tek bir sektörden ibaret olabilir, ya da 2'li 4'lü 8'li 16'lı gibi birden çok sektörün bir araya gelmesiyle de oluşturulabilir.
 
 ![block.webp]({{ site.url }}/egitim/temel-linux/disk/block.webp){:class="responsive img-zoomable"}
 
-Blok olarak ifade ettiğimiz birim, aslında dosya sisteminin adresleyebileceği en küçük depolama birimini temsil eden bir soyutlamadır. Hatırlıyorsanız inode kavramından bahsederken, inode’un aslında disk üzerindeki verilerin hangi bloklarda olduğunu söyleyen yapı olduğunu öğrenmiştik. Yani aslında verilerin disk üzerinde bloklar halinde tutulduğunu daha önce de üstü kapalı şekilde öğrendik. Verilerin disk üzerinde bloklar halinde tutulmasının nedeni diskin en verimli şekilde işletim sistemi tarafından yönetilebilmesini sağlamaktır. Ama şu an bu konunun detaylarına girmek istemiyorum. Anlatımın devamında neden blok yaklaşımın kullanıldığından zaten bahsedeceğiz. Şimdi blok kavramının tam olarak neyi ifade ettiği üzerinde biraz daha duralım istiyorum. 
+Blok olarak ifade ettiğimiz birim, aslında dosya sisteminin adresleyebileceği en küçük depolama birimini temsil eden bir soyutlamadır. Hatırlıyorsanız inode kavramından bahsederken, inode’un aslında disk üzerindeki verilerin hangi bloklarda olduğunu söyleyen yapı olduğunu öğrenmiştik. Yani aslında verilerin disk üzerinde bloklar halinde tutulduğunu daha önce de üstü kapalı şekilde görmüştük. Verilerin disk üzerinde bloklar halinde tutulmasının nedeni, diskin en verimli şekilde işletim sistemi tarafından yönetilebilmesini sağlamaktır. Ama şu an bu konunun detaylarına girmek istemiyorum. Anlatımın devamında neden blok yaklaşımın kullanıldığından zaten bahsedeceğiz. Şimdi blok kavramının tam olarak neyi ifade ettiği üzerinde biraz daha duralım. 
 
-İşletim sisteminin ana yapısı olan çekirdek, tüm dosya sistemi işlemlerini blok birimleri üzerinden ele alınır. Burada depolama bağlamında kullandığımız blok ifadesi, disk donanımı ile sistemin kaynaklarını yönetmekten sorumlu olan çekirdek arasında arabirim oluşturabilen en küçük boyuttur. Yani fiziksel olarak böyle bir gruplama söz konusu değil. Yalnızca soyut olarak sektörlerin gruplanmış haline blok diyoruz. Dolayısıyla işletim sisteminin emirleri doğrultusunda bir diskten veri okunurken veya bir diske veri yazılırken, veriler bloklar halinde okunur veya yazılır. Örneğin Linux sisteminin varsayılan dosya sistemi formatı olan **ext4**’ün, standart blok boyutu **4096 byte**dir. Disk üzerindeki en küçük birim olan tek bir sektör **512 byte** veri tutabildiği için bize soyutlama katmanı sunan ext4’ün varsayılan olarak ele aldığı en küçük disk birimi **8 sektörden meydana gelmiş tek bir bloktur**. Yani **ext4** dosya sistemine sahip disk bölümlerine veriler yazılırken veya okunurken disk üzerinde **4096 byte** karşılık gelen 8’er sektörlük birimler kullanılır. Bu da her veri kümesi için 4096 baytlık veri bloklarının kullanılacağı anlamına geliyor. 
+İşletim sisteminin ana yapısı olan çekirdek, tüm dosya sistemi işlemlerini blok birimleri üzerinden ele alınır. Burada depolama bağlamında kullandığımız "blok" ifadesi, disk donanımı ile sistemin kaynaklarını yönetmekten sorumlu olan çekirdek arasında arabirim oluşturabilen en küçük boyuttur. Yani fiziksel olarak böyle bir gruplama söz konusu değil. Yalnızca soyut olarak sektörlerin gruplanmış haline blok diyoruz. Dolayısıyla işletim sisteminin emirleri doğrultusunda bir diskten veri okunurken veya bir diske veri yazılırken, veriler bloklar halinde okunur veya yazılır. Örneğin Linux sisteminin varsayılan dosya sistemi formatı olan **ext4**’ün, standart blok boyutu **4096 byte**dir. Disk üzerindeki en küçük birim olan tek bir sektör **512 byte** veri tutabildiği için bize soyutlama katmanı sunan ext4’ün varsayılan olarak ele aldığı en küçük disk birimi **8 sektörden meydana gelmiş tek bir bloktur**. Yani **ext4** dosya sistemine sahip disk bölümlerine veriler yazılırken veya okunurken disk üzerinde **4096 byte** karşılık gelen 8’er sektörlük birimler kullanılır. Bu da her veri kümesi için 4096 baytlık veri bloklarının kullanılacağı anlamına geliyor. 
 
 ![ext4-sector.webp]({{ site.url }}/egitim/temel-linux/disk/ext4-sector.webp){:class="responsive img-zoomable"}
 
 Belki buradaki açıklamalarım yeterince anlaşılır gelmemiş olabilir. Hemen somut bir örnek üzerinden açıklamalarımızı pekiştirelim.
 
-Örneğin bir metin belgesi oluşturup içerisine tek bir karakter girersek, bu karakter 1 byte veriye karşılık gelecektir. Zaten tek bir karakterin 1 byte karşılık geldiğinden anlatımın başında bahsetmiştik. Bu karakter 1 byte karşılık geliyor ancak, bizim kullandığımız dosya sisteminin en küçük birimi olan blok boyutu 4096 byte olduğu için dosya içerisine yazdığımız 1 baytlık veri de olsa, disk üzerinde bu veri 4096 baytlık disk bölümü işgal edecek. Çünkü mevcut dosya sisteminin ele alabileceği yani kontrol edebileceği en küçük birim bu 4096 baytlık bloktur. Hemen uygulamalı şekilde bu durumu gözlemleyelim. 
+Örneğin bir metin belgesi oluşturup içerisine tek bir karakter girersek, bu karakter 1 byte veriye karşılık gelecektir. Zaten tek bir karakterin 1 byte karşılık(~çoğunlukla) geldiğinden anlatımın başında bahsetmiştik. Bu karakter 1 byte karşılık geliyor ancak, bizim kullandığımız dosya sisteminin en küçük birimi olan blok boyutu 4096 byte olduğu için dosya içerisine yazdığımız 1 baytlık veri de olsa, disk üzerinde bu veri 4096 baytlık disk bölümü işgal edecek. Çünkü mevcut dosya sisteminin ele alabileceği yani kontrol edebileceği en küçük birim bu 4096 baytlık bloktur. Hemen uygulamalı şekilde bu durumu gözlemleyelim. 
 
 Ben `cat > test` komutunu girip “**1**” yazıyorum ve alt satıra geçmeden <kbd>Ctrl</kbd> + <kbd>d</kbd> ile veri girişini sonlandırıyorum. 
 
@@ -153,11 +153,11 @@ Bakın dosyanın boyutu 4096 baytı sadece biraz geçmiş olmasına rağmen 16 s
 
 ![4118byte.webp]({{ site.url }}/egitim/temel-linux/disk/4118byte.webp){:class="responsive img-zoomable"}
 
-İşte bizzat teyit edebildiğimiz gibi dosya sisteminin sahip olduğu blok boyutuna göre veriler, bloklar halinde diskte depolanıyor ve tekrar bu bloklar üzerinden okunuyor. Tam da bu noktada, bu yaklaşımla depolama biriminin tam olarak verimli kullanılamadığını yani bloklardaki boş disk alanlarının kullanılması gerektiğini düşünüyorsunuz. Ancak bu tam olarak doğru bir yaklaşım olmaz.
+İşte bizzat teyit edebildiğimiz gibi dosya sisteminin sahip olduğu blok boyutuna göre veriler, bloklar halinde diskte depolanıyor ve tekrar bu bloklar üzerinden okunuyor. Tam da bu noktada muhtemelen, bu yaklaşımla depolama biriminin tam olarak verimli kullanılamadığını yani bloklardaki boş disk alanlarının kullanılması gerektiğini düşünmüş olabilirsiniz. Ancak bu tam olarak doğru bir yaklaşım sayılmaz.
 
-Dosya sistemine göre en küçük birim blok olduğu için bir bloğun kısmi bir bölümünü kullanamayız. Çünkü dosya sistemi bloktan daha küçük bir alana adresleme yapamaz. Yani ilk örneğimizde olduğu gibi 1 baytlık dosya için 4096 baytlık blok kullanılmak zorunda. Eğer bu dosyaya yeni veri eklenmezse başka bir dosyayla ilişkili olan herhangi bir veri bu bloğa yazılamaz. Çünkü dosya sistemi bloğun bir kısmına adresleme yapamaz. Yalnızca bloğun bütününe adresleme yapabilir. Zaten inode kavramını ele alırken bu durumdan da bahsetmiş olduk. Yani örneğin bir bloğun bir kısmında x dosyasının verileri bir kısmında da y dosyasının verileri barındırılamaz. Çünkü barındırılsa bile dosya sistemi bloktan daha küçük birimleri kontrol edemediği için yalnızca tüm bloğu işaret edebilir. Zaten hatırlarsanız inode değeri de dosyanın içindeki verilerin hangi bloklarda olduğunu söylüyordu. İlgili verilerin bloğun tam olarak neresinde olduğuna bakılmıyor, komple bloğun kendisi ele alınıyor. Yani özetle veriler dosya sistemi tarafından blok blok ele alınıyor. Bu nedenle bir dosya aslında tüm bloğu tüketmese bile yani tüm bloğu doldurmasa bile, disk üzerindeki bloğa ayrılmış olan sektörlerin bir kısmı boş kalabilir. Dolayısıyla sistemde barındırılacak dosyaların genel boyutlarına göre blok boyutlarının belirlenmesi önemlidir. Eğer büyük boyutlu dosyalar barındırılacaksa blok boyutları büyük olabilir. Ya da küçük boyutlu dosyalar bulunacaksa blok boyutları küçük olabilir.
+İşletim sistemi çekirdeğinin kontrolündeki dosya sistemine göre en küçük birim blok olduğu için bir bloğun kısmi bir bölümünü kullanamayız. Çünkü dosya sistemi bloktan daha küçük bir alana adresleme yapamaz. Yani ilk örneğimizde olduğu gibi 1 baytlık dosya için 4096 baytlık blok kullanılmak zorunda. Eğer bu dosyaya yeni veri eklenmezse başka bir dosyayla ilişkili olan herhangi bir veri bu bloğa yazılamaz. Çünkü dosya sistemi bloğun bir kısmına adresleme yapamaz. Yalnızca bloğun bütününe adresleme yapabilir. Zaten inode kavramını ele alırken bu durumdan da bahsetmiştik hatırlarsanız. Yani örneğin bir bloğun bir kısmında X dosyasının verileri bir kısmında da Y dosyasının verileri barındırılamaz. Çünkü barındırılsa bile dosya sistemi, bloktan daha küçük birimleri kontrol edemediği için X ve Y dosyası gibi bir ayrım gözetmeden yalnızca tüm bloğu işaret edebilir. Zaten hatırlarsanız inode değeri de dosyanın içindeki verilerin hangi bloklarda olduğunu söylüyordu. İlgili verilerin, bloğun tam olarak neresinde olduğuna bakılmıyor, komple bloğun kendisi ele alınıyor. Yani özetle veriler dosya sistemi tarafından blok blok ele alınıyor. Bu nedenle bir dosya aslında tüm bloğu tüketmese bile yani tüm bloğu doldurmasa bile, disk üzerindeki bloğa ayrılmış olan sektörlerin bir kısmı boş kalabilir. Dolayısıyla sistemde barındırılacak dosyaların genel boyutlarına göre blok boyutlarının belirlenmesi önemlidir. Eğer çoğunlukla büyük boyutlu dosyalar barındırılacaksa blok boyutları büyük olabilir. Ya da küçük boyutlu dosyalar bulunacaksa da blok boyutları küçük şekilde konfigüre edilebilir.
 
-Ne kadar çok blok olursa, ilgili verilere ulaşması o kadar zaman alırken, disk alanı daha tasarruflu kullanılmış olur. Tersi şekilde blok sayısı az olduğunda verileri ulaşım hızlıyken, alan tasarrufu mümkün olmayabilir. Bu sebeple aksini gerektiren özel bir durum olmadığı sürece kullanılan dosya sisteminin varsayılan blok boyutu tercih edilmedir. 
+Ne kadar çok blok olursa, ilgili verilere ulaşması o kadar zaman alırken, disk alanı daha tasarruflu kullanılmış olur. Tersi şekilde blok sayısı az olduğunda da verileri ulaşım hızlıyken, alan tasarrufu mümkün olmayabilir. Bu sebeple aksini gerektiren özel bir durum olmadığı sürece kullanılan dosya sisteminin varsayılan blok boyutu tercih edilmedir. Bu varsayılan değer, ilgili dosya sistemi üzerindeki optimum değer olduğu için çoğunlukla en doğru tercihtir. 
 
 Şimdilik daha fazla detaya gerek yok. Temel büyüklük ve blok gibi kavramları ele aldığımıza göre artık disk bölümleri hakkında da konuşabiliriz.
 
@@ -167,7 +167,7 @@ Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar iç
 
 ## MBR
 
-MBR artık eskimiş olan ancak hala çok sık karşılaştığımız ve karşılaşmaya devam edeceğimiz disk bölümleme tablosudur. MBR disk bölümleme tablosu maksimum 2 TB'a kadar olsak disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil bölüme ayrılabiliyor. Yine de birincil bölüm sınırlamasını aşmak için, birincil bölümlerden birini mantıksal bölümlere ayrılan genişletilmiş bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz. 
+MBR, artık eskimiş olan ancak hala çok sık karşılaştığımız ve karşılaşmaya devam edeceğimiz disk bölümleme tablosudur. MBR disk bölümleme tablosu maksimum 2 TB'a kadar olan disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil bölüme ayrılabiliyor. Yine de birincil bölüm sınırlamasını aşmak için, birincil bölümlerden birini mantıksal bölümlere ayrılan genişletilmiş bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz. 
 
 ![mbr-max.webp]({{ site.url }}/egitim/temel-linux/disk/mbr-max.webp){:class="responsive img-zoomable"}
 
@@ -183,7 +183,7 @@ Aslında MBR ve GPT hakkında bahsedilebilecek pek çok ek detay daha bulunuyor 
 
 Daha önce herhangi bir işletim sisteminin kurulumunu gerçekleştirdiyseniz, mutlaka BIOS ve UEFI kavramları ile karşılaşmışsınızdır. En genel haliyle bu kavramlar, bilgisayarın başlangıç aşamasından sorumlu olan yapıları ifade ediyor. BIOS daha eski bir yaklaşımken, UEFI yeni dönemin ihtiyaçlarına yanıt vermek üzere geliştirilmiş yeni bir çözümdür. 
 
-En temel sorumlulukları bilgisayar açılırken donanımların kontrolü gerçekleştirip, uygun olan diski başlatmaktır. Bu sayede disk içerisindeki işletim sistemi başlatılmış oluyor.
+En temel sorumlulukları, bilgisayar açılırken donanımların kontrolü gerçekleştirip, uygun olan diski başlatmaktır. Bu sayede disk içerisindeki işletim sistemi başlatılmış oluyor.
 
 Eğer sizin cihazınızda BIOS kullanılıyorsa MBR disk bölümleme tablosunu kullanabiliyorsunuz. UEFI varsa, GPT bölümleme tablosunu kullanmanız mümkün oluyor.
 
@@ -201,11 +201,19 @@ Esasen bu konu pek çok detayı barındırıyor, fakat temel seviye için bu ba�
 
 Dosya sistemi en genel haliyle disk bölümündeki verilerin nasıl ele alınacağını belirleyen yapıdır. Dosya sistemi ifadesi, isminde de yer aldığı şekilde dosyaların diskteki veri karşılıklarının nasıl depolanıp ne şekilde ele alınacağını belirleyen sistematik bir metodolojiyi temsil eder. Dosya sistemi olmadan diskteki veriler yalnızca yığınlardan ibarettir. Dosya sistemi olmadan diskteki verilere erişip onları yönetemeyiz. 
 
-Tek bir diski birden fazla bölüme ayırabildiğimiz için de esasen aynı fiziksel diskteki farklı bölümlerde birbirinden farklı dosya sistemlerini kullanmamız da mümkündür. Bu sayede aynı disk aygıtı üzerinden ihtiyaca yönelik farklı dosya sistemleri kullanılabilir. Yani diski bölümledikten sonra işiniz bitmiyor aslında. Bu disk bölümü için bir de dosya sistemi tanımlaması yapmanız gerekiyor. Aksi halde işletim sistemi üzerinden disk bölümündeki verilere ulaşılması mümkün olmuyor.
+![file-systemd-vs.webp]({{ site.url }}/egitim/temel-linux/disk/file-systemd-vs.webp){:class="responsive img-zoomable"}
 
-Dizinlerde gezintiyi ele aldığımız bölümde Linux sisteminin dosya sistemi hiyerarşisini de kısaca açıklamıştık. Linux sisteminde tüm dosyalar “**kök dizin**” olarak ifade edilen “**/**“ dizininden başlayıp alt klasörlerde hiyerarşik düzende tutuluyor. Linux, farklı dizinlere farklı disk bölümlerini bağlamayı mümkün kıldığı için kök dizin atlında gözüken ancak birbirinden farklı disk bölümlerinde birbirinden farklı dosya sistemlerine sahip klasörler tek bir dizin hiyerarşisi içerisinde gözükebiliyor.
+Tek bir diski birden fazla bölüme ayırabildiğimiz için de esasen aynı fiziksel diskteki farklı bölümlerde birbirinden farklı dosya sistemlerini kullanmamız da mümkündür. 
 
-Normalde Windows sisteminden bildiğimiz üzere işletim sisteminin kurulu olduğu disk “**C:**” olarak isimlendirilir ve ek disk aygıtları da **D:** **E:** **F:** gibi isimler ile ayrı olarak bağlanıp kullanılır. Linux'ta ise tüm disk aygıtları kök dizin altındaki uygun klasöre bağlanarak kullanılıyor. Yani ayrı olarak ele alınmıyor, tekil hiyerarşi olduğu için bu hiyerarşiye dahil ediliyor. 
+![multi-filesystem]({{ site.url }}/egitim/temel-linux/disk/multi-filesystem.webp){:class="responsive img-zoomable"}
+
+Bu sayede aynı disk aygıtı üzerinden ihtiyaca yönelik farklı dosya sistemleri kullanılabilir. Yani diski bölümledikten sonra işiniz bitmiyor aslında. Bu disk bölümü için bir de dosya sistemi tanımlaması yapmanız gerekiyor. Aksi halde işletim sistemi üzerinden disk bölümündeki verilere ulaşılması mümkün olmuyor.
+
+Dizinlerde gezintiyi ele aldığımız bölümde Linux sisteminin dosya sistemi hiyerarşisini de kısaca açıklamıştık. Linux sisteminde tüm dosyalar “**kök dizin**” olarak ifade edilen “**/**“ dizininden başlayıp alt klasörlerde hiyerarşik düzende tutuluyor. Linux, farklı dizinlere farklı disk bölümlerini bağlamayı mümkün kıldığı için kök dizin altında gözüken ancak birbirinden farklı disk bölümlerinde birbirinden farklı dosya sistemlerine sahip klasörler tek bir dizin hiyerarşisi içerisinde gözükebiliyor.
+
+![file-systemd-hierarchy]({{ site.url }}/egitim/temel-linux/disk/file-systemd-hierarchy.webp){:class="responsive img-zoomable"}
+
+Normalde Windows sisteminden bildiğimiz üzere işletim sisteminin kurulu olduğu disk “**C:**” olarak isimlendirilir ve ek disk aygıtları ya da bölümleri de **D:** **E:** **F:** gibi isimler ile ayrı olarak bağlanıp kullanılır. Linux'ta ise tüm disk aygıtları kök dizin altındaki uygun klasöre bağlanarak kullanılıyor. Yani ayrı olarak ele alınmıyor, tekil hiyerarşi olduğu için bu hiyerarşiye dahil ediliyor. 
 
 Linux sistemi pek çok farklı dosya sistemini destekliyor. Bunları görmek için `cat /proc/filesystem` komutunu girebiliriz.
 
@@ -243,7 +251,7 @@ nodev   rpc_pipefs
 nodev   vboxsf
 ```
 
-Bakın Linux çekirdeğin desteklediği dosya sistemleri konsola bastırıldı. Aslında hepsi burada yazmıyor fakat bu noktada tüm detaylara hakim olmamız şart değil. Birden fazla dosya sistemi olduğunu bilmemiz yeterli. Elbette her bir dosya sisteminin avantajları ve dezavantajları birbirinden farklı. Dolayısıyla farklı amaçlar için farklı dosya sistemleri kullanılabiliyor. Bunların detayları için ekstra araştırma yapabilirsiniz. Ben anlatımlar sırasında Linux üzerinde yaygın kullanıma sahip olan **ext4** dosya sistemini kullanıyor olacağım. 
+Linux çekirdeğin desteklediği dosya sistemleri konsola bastırıldı. Aslında hepsi burada yazmıyor fakat bu noktada tüm detaylara hakim olmamız şart değil. Birden fazla dosya sistemi olduğunu bilmemiz yeterli. Elbette her bir dosya sisteminin avantajları ve dezavantajları birbirinden farklı. Dolayısıyla farklı amaçlar için farklı dosya sistemleri kullanılabiliyor. Bunların detayları için ekstra araştırma yapabilirsiniz. Ben anlatımlar sırasında Linux üzerinde yaygın kullanıma sahip olan **ext4** dosya sistemini kullanıyor olacağım. 
 
 # Hazırlık
 
@@ -303,7 +311,7 @@ Bu şekilde sanal makinenize sanal diskler ekleyebilirsiniz. Ben tıpkı burada 
 
 Ben sanal sata disklerini oluşturdum.
 
-Örnek için yalnızca SATA denetleyicisi üzerinden disk oluşturdum ama farklı disk biçimlerini de kullanabiliriz. Pratikler sırasında farklı disk biçimlerini de görebilmek adına oluşturduğumuz sanal disklere ek olarak bir de sanal `NVM**e**` disk de eklesek iyi olabilir. Bunun için öncelikle uygun denetleyiciyi eklememiz gerekiyor.
+Örnek için yalnızca SATA denetleyicisi üzerinden disk oluşturdum ama farklı disk biçimlerini de kullanabiliriz. Pratikler sırasında farklı disk biçimlerini de görebilmek adına oluşturduğumuz sanal disklere ek olarak bir de sanal `NVMe` disk de eklesek iyi olabilir. Bunun için öncelikle uygun denetleyiciyi eklememiz gerekiyor.
 
 ![virtualbox-add-controller.webp]({{ site.url }}/egitim/temel-linux/disk/virtualbox-add-controller.webp){:class="responsive img-zoomable"}
 
@@ -1661,7 +1669,7 @@ Gördüğünüz gibi 3G olan logical volume, 5G’ye genişletilmiş oldu.
 
 ## Logical Volume Alanını Küçültmek | `lvreduce`
 
-**Azaltma işleminde mevcut disk üzerinde veri kayıpları yaşanabileceği için elzem olmayan durumlar haricinde kullanmanızı önermiyorum.** 
+**Azaltma işleminde mevcut disk üzerinde veri kayıpları yaşanabileceği için, elzem olmayan durumlar haricinde kullanmanızı önermiyorum.** 
 
 Küçültmek için `lvreduce` komutunu kullanabiliyoruz. Ben 1G kadar küçültmek için komutumu giriyorum.
 

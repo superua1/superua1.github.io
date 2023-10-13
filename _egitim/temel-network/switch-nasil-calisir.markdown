@@ -20,7 +20,7 @@ Switch aygıtlarının aynı ağdaki cihazların haberleşmesi için kullanıld�
 Örneğin aşağıdaki ağda, A hostu’nun C hostu ile iletişime geçmek istediğiniz varsayalım.
 
 ![network.webp]({{ site.url }}/egitim/temel-network/switch/network.webp){:class="responsive img-zoomable"}
-İletişim için hem IP hem de MAC adresinin gerektiğini biliyoruz. Eğer MAC adresi bilinmiyorsa ARP ile öğrenilebilir. A hostu öğrenmek üzere kendi IP ve MAC bilgisini de ekleyip switch vasıtası ile tüm bağlı hostlara ARP sorgusu gönderir.
+İletişim için hem IP hem de MAC adresinin gerektiğini biliyoruz. Eğer MAC adresi bilinmiyorsa ARP ile öğrenilebilir. A hostu, öğrenmek üzere kendi IP ve MAC bilgisini de ekleyip switch vasıtası ile tüm bağlı hostlara ARP sorgusu gönderir.
 
 ![ARP.webp]({{ site.url }}/egitim/temel-network/switch/ARP.webp){:class="responsive img-zoomable"}
 ![ARP-Broadcast.webp]({{ site.url }}/egitim/temel-network/switch/ARP-Broadcast.webp){:class="responsive img-zoomable"}

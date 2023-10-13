@@ -40,7 +40,7 @@ Bakın `date` komutu tek başına kullanıldığında gördüğünüz gibi sıra
 
 Bakın yalnızca saat bastırıldı. Benzer şekilde diğer parametreleri kullanarak `date` aracından dilediğiniz formda çıktı alabilirsiniz. Bu özelliğe genellikle kabuk programlamada ihtiyaç duyuyor olsak da artık bildiğinize göre ihtiyaç duyduğunuzda yardım sayfasını açıp tekrar hatırlayıp rahatlıkla kullanabilirsiniz..  
 
-Ayrıca `date` aracı ile tarihi değiştirmemiz de mümkün fakat tarihi değiştirmek için sistem servislerini kullanmak çok daha sağlıklı bir yaklaşım. Lütfen şimdilik buradaki servis kavramına çok takılmayın. İleride servisleri ayrıca ele alacağız. O zaman servisten kastımın ne olduğunu net biçimde anlamış olacaksınız. Şimdilik `date` komutunun bize mevcut tarih bilgisini sunduğunu bilmemiz yeterli.
+Ayrıca `date` aracı ile tarihi değiştirmemiz de mümkün fakat tarihi değiştirmek için sistem servislerini kullanmak çok daha sağlıklı bir yaklaşım. Lütfen şimdilik buradaki "servis" kavramına çok takılmayın. İleride servisleri ayrıca ele alacağız. O zaman servisten kastımın ne olduğunu net biçimde anlamış olacaksınız. Şimdilik `date` komutunun bize mevcut tarih bilgisini sunduğunu bilmemiz yeterli.
 
 ## `cal` Komutu
 
@@ -396,7 +396,7 @@ Ayrıca bakın burada dosyanın en son “erişim”, “düzenleme” ve “de�
 
 **Değişim tarihi;** dosyanın meta verilerinin en son ne zaman değiştirildiğini belirtiyor. Örneğin dosyanın ismi değiştirildiyse bu tarih de değişecektir. 
 
-Ayrıca bakın “birth” yani dosyanın ilk oluşturulduğu ile ilgili bir satır daha bulunuyor. 
+Ayrıca “birth” yani dosyanın ilk oluşturulduğu tarihle ilgili bir satır daha bulunuyor. 
 
 Neticede gördüğünüz gibi `stat` komutu sayesinde dosyaların meta verilerini detaylı şekilde görüntüleyebiliyoruz. 
 
@@ -577,7 +577,7 @@ Swap:         998396           0      998396
 
 Bu seçenekler dışında `free` komutunun yardım sayfasında yer alan seçenekler de zaten standart kullanımdaki çıktıları sınırlamak veya genişletmek için kullanılan ek özelliklerdir. Dilerseniz buradaki seçenekler ile çıktıları istediğiniz formda bastırabilirsiniz.
 
-Ayrıca aldığımıza çıktılarda yer alan “shared” sütunu eskiye dönük uyumluluk için mevcut olan ve günümüzde geçerli kullanımı olmayan bir sütun. Buffer ve cache kavramlarının ne ifade ettiğini bilmiyorsanız ayrıca araştırıp öğrenebilirsiniz. Tam anlaşılmaları bu bölümde tam olarak açıklanamayacak kadar uzun sürebileceği için bu araştırma işini size bırakıyorum. Eğer profesyonel anlamda sistem yönetimiyle ilgili değilseniz bu detay sizin için zaten önemli değil. Diğer sütunlardaki veriler de oldukça açık şekilde “toplam”, “kullanılan” ve “boştaki” bellek miktarları hakkında bilgi sunuyor.
+Ayrıca aldığımıza çıktılarda yer alan “shared” sütunu eskiye dönük uyumluluk için mevcut olan ve günümüzde geçerli kullanımı olmayan bir sütun. Buffer ve cache kavramlarının ne ifade ettiğini bilmiyorsanız ayrıca araştırıp öğrenebilirsiniz. En özet haliyle, tekrar kullanılacak verilerin bellekte tutularak hızlı erişimi mümkün kılan bir mekanizma. Buradaki buff/cache bilgisi de bu amaçla bellekte tutulan veri miktarını belirtiyor. Daha fazla detayı öğrenmek isterseniz ek araştırma yapabilirsiniz zira, tam anlaşılmaları bu bölümde açıklanamayacak kadar uzun sürebilir. Eğer profesyonel anlamda sistem yönetimiyle ilgili değilseniz bu detay sizin için zaten önemli değil. Diğer sütunlardaki veriler de oldukça açık şekilde “toplam”, “kullanılan” ve “boştaki” bellek miktarları hakkında bilgi sunuyor.
 
 ## `du` Komutu
 

@@ -14,7 +14,7 @@ toc: true
 
 # pipe Hakkında
 
-Şimdiye kadar sistem üzerindeki yapıların dosya olarak ele alındığından ve dolayısıyla dosya içeriklerini yani baytları istediğimiz gibi manipüle edilip yönlendirebilmenin neden çok önemli olduğundan pek çok kez söz ettik. Yani her şeyin aslında bir bayt akışı olduğunu vurguladık hep. Vurgulamaya da devam edeceğiz. Özetle sistemi komut satırı üzerinden yöneten kişi olarak bizim işimiz gücümüz hep bayt akışlarını kontrol etmek.
+Şimdiye kadar sistem üzerindeki yapıların dosya olarak ele alındığından ve dolayısıyla dosya içeriklerini yani baytları istediğimiz gibi manipüle edilip yönlendirebilmenin neden çok önemli olduğundan pek çok kez söz ettik. Her şeyin aslında bir bayt akışı olduğunu vurguladık hep. Vurgulamaya da devam edeceğiz. Özetle sistemi komut satırı üzerinden yöneten kişi olarak bizim işimiz gücümüz hep bayt akışlarını kontrol etmek.
 
 Şimdiye kadarki anlatımlarımızda dosya içeriklerinde birtakım değişiklikler yapabileceğimiz bazı araçları tanıdık. Başka araçlardan da bahsedeceğiz ancak devam etmeden önce birden fazla aracı birbirine bağlayarak çalıştırmamıza yardımcı olan “**pipe**” yani “boru” mekanizmasından bahsetmem gerekiyor.
 
@@ -26,7 +26,7 @@ Burada bahsi geçen pipe mekanizmasını dik çizgi `|` operatörü sayesinde ku
 
 Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor. Daha iyi anlamak adına çalışma yapısına daha yakından bakalım.
 
-Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile ***/etc*** dizinini altında sonu “***.sh***” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
+Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile ***/etc*** dizini altında sonu “***.sh***” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
 
 Öncelikle sonu “***.sh***” uzantısı ile biten dosyaların bulunabilmesi için `find /etc -name *.sh -type f` komutunu giriyorum. 
 
@@ -157,7 +157,7 @@ Aynı işlemi bu kez dosyalara yönlendirme ile deneyelim. Öncelikle komutu yaz
     16  /etc/xdg/plasma-workspace/env/taylan-themes.sh
 ```
 
-Bu girdiğimiz komutta önce `find` komutu çalıştırılacak ve işini tamamladığında çıktılarını “***bul***” isimli dosyaya aktaracak. Daha sonra `sort` komutu “***bul***” isimli dosyayı okuyacak ve içeriğindeki verileri sıraladıktan sonra “***sırala***” isimli dosyaya aktaracak. En son `nl` komutu “***sırala***” isimli dosyadaki içeriği okuyup numaralandıracak ve çıktısını konsolumuza basacak. İşte girdiğimiz komutun çalışma yapısı tam olarak bu. Komutların arasında girmiş olduğumuz noktalı virgül karakterleri tek satırda belirtmiş olduğumuz bu komutların sırasıyla çalıştırılmasını sağlıyor. İleride bu konudan da ayrıca bahsedeceğiz.
+Bu girdiğimiz komutta önce `find` komutu çalıştırılacak ve işini tamamladığında, çıktılarını “***bul***” isimli dosyaya aktaracak. Daha sonra `sort` komutu, “***bul***” isimli dosyayı okuyacak ve içeriğindeki verileri sıraladıktan sonra “***sırala***” isimli dosyaya aktaracak. En son `nl` komutu “***sırala***” isimli dosyadaki içeriği okuyup numaralandıracak ve çıktısını konsolumuza basacak. İşte girdiğimiz komutun çalışma yapısı tam olarak bu. Komutların arasında girmiş olduğumuz noktalı virgül karakterleri tek satırda belirtmiş olduğumuz bu komutların sırasıyla çalıştırılmasını sağlıyor. İleride bu konudan da ayrıca bahsedeceğiz.
 
 ![10.webp]({{ site.url }}/egitim/temel-linux/metin/10.webp){:class="responsive img-zoomable"}
 
@@ -165,7 +165,7 @@ Bakın pipe yerine kullandığımız bu yönlendirme alternatifini yazması ve a
 
 Çalışma hızı ise pipe’a oranla daha yavaş olacak çünkü bu kullanımda komutlar sırasıyla tek tek ve disk üzerindeki dosyalara veri yazıp okuyarak çalıştırılıyor. Dolayısıyla soldan sağa doğru bir komut çalışmasını tamamlamadan, bir sonraki komut çalıştırılmıyor. Ve disk üzerinde okuma yazma yapıldığı için disk hızına bağlı bir çalışma hızı söz konusu. 
 
-Pipe kullanımında ise tüm komutlar ayrı işlem olarak aynı anda paralel şekilde çalıştırılıyor. Her bir aracın ürettiği çıktı da üretilir üretilmez boru hattındaki diğer işlemlere disk üzerine veri yazılıp okunmasına gerek kalmadan sanal dosya sistemi(bellek üzerinden) aktarıldığı için veriler çok daha hızlı işlenmiş oluyor. Bir komut çıktı üretir üretmez, çıktının üretilme sıralaması korunarak bir sonraki işlem aktarıyor, bu sayede tüm veriler sırasıyla işlenmiş oluyor. Tabii ki bizim örneğimizde ilk aracın ürettiği çıktıların hepsinin alındıktan sonra sıralaması gerektiği için `sort` aracı `find` aracının çıktılarını bitirmesini bekledi aslında. Yani araçlar paralel çalışıyor olsalar da çıktıların gönderilme ve okunma durumlarına bağlı olarak birbirlerini de bekleyebiliyorlar. Yine de pipe mekanizması disk üzerindeki dosyalara okuma yazma yapmadığı ve araçları paralel olarak aynı anda çalıştırabildiği için çok daha verimli bir yaklaşım. Üstelik basit örnek üzerinden de görebildiğiniz gibi birden fazla aracı birbirine bağlayacak çalıştırmak istediğimizde pipe ile komut girmek çok da daha kolay ve kısa.
+Pipe kullanımında ise tüm komutlar ayrı işlem olarak aynı anda paralel şekilde çalıştırılıyor. Her bir aracın ürettiği çıktı da üretilir üretilmez boru hattındaki diğer işlemlere disk üzerine veri yazılıp okunmasına gerek kalmadan sanal dosya sistemi(bellek üzerinden) aktarıldığı için veriler çok daha hızlı işlenmiş oluyor. Bir komut çıktı üretir üretmez, çıktının üretilme sıralaması korunarak bir sonraki işlem aktarıyor, bu sayede tüm veriler sırasıyla işlenmiş oluyor. Tabii ki bizim örneğimizde ilk aracın ürettiği çıktıların hepsinin alındıktan sonra sıralaması gerektiği için `sort` aracı `find` aracının çıktılarını bitirmesini bekledi aslında. Yani araçlar paralel çalışıyor olsalar da çıktıların gönderilme ve okunma durumlarına bağlı olarak birbirlerini de bekleyebiliyorlar. Yine de pipe mekanizması disk üzerindeki dosyalara okuma yazma yapmadığı ve araçları paralel olarak aynı anda çalıştırabildiği için çok daha verimli bir yaklaşım. Üstelik basit örnek üzerinden de görebildiğiniz gibi birden fazla aracı birbirine bağlayarak çalıştırmak istediğimizde pipe ile komut girmek çok da daha kolay ve kısa.
 
 Ayrıca örnek üzerinde peşi sıra pipe kullandığımız bu komutun bütününe de “**pipeline**” yani “boru hattı” deniyor. Neticede birden fazla pipe yani boru kullanarak ikiden fazla aracı birbirine bağladığımız için boru hattı oluşturmuş oluyoruz.
 
@@ -529,7 +529,7 @@ yeni satır
 
 Bakın dosyanın en sonuna “**####**” ifadesi eklenmiş. 
 
-!!Dikkat: Düzenleme yaptığımız dosya önemli bir konfigürasyon dosyası olduğu için dosya yapısını bozmamak adına yalnızca  “**####**” ifadesini ekledim. Eğer siz farkı bir veri eklerseniz sistemi güncelleme ve paket yükleme noktasında sorunlar yaşayabilirsiniz. Bu sebeple “**#**” hariç bir karakter eklemeyin veya eklediyseniz de `sudo nano /etc/apt/sources.list` komutu ile dosyayı açıp ilgili satırı silin ve <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydedip kapatın. 
+<p class="kirmizi"><strong>❗Dikkat:</strong> Düzenleme yaptığımız dosya önemli bir konfigürasyon dosyası olduğu için dosya yapısını bozmamak adına yalnızca  “<strong>####</strong>” ifadesini ekledim. Eğer siz farkı bir veri eklerseniz sistemi güncelleme ve paket yükleme noktasında sorunlar yaşayabilirsiniz. Bu sebeple “<strong>#</strong>” hariç bir karakter eklemeyin veya eklediyseniz de <code class="language-plaintext highlighter-rouge">sudo nano /etc/apt/sources.list</code> komutu ile dosyayı açıp ilgili satırı silin ve <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydedip kapatın. </p>
 
 Böylelikle yönlendirme operatörlerinin `sudo` ile yetki kazanamadığından ve alternatif olarak `tee` komutu sayesinde yetkili şekilde dosya içeriğine veri yönlendirebileceğimizden de haberdar olduk. Ele aldığımız örnekleri de dikkate aldığımızda `tee` aracını tıpkı `T` boru gibi düşünmek bence oldukça mantıklı. Konsol üzerinde hem standart çıktıya hem de bir dosyaya yönlendirme yapmak istediğinizde veya bir yönlendirme işlemini yetkili şekilde yapmak istediğinizde `tee` aracını kullanabiliyoruz. Mesela ben en son girmiş olduğum komutta konsola çıktı bastırılmadan yalnızca dosyaya veri yönlendirmek isteseydim standart çıktıları ***/dev/null*** dizinine de yönlendirebilirdim. Ben denemek için en son komutumu çağırıp bu kez sonuna `> /dev/null` şeklinde yazıyorum ve komutumu bu şekilde onaylıyorum.
 
@@ -551,7 +551,7 @@ deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
 
 Bakın konsola herhangi bir çıktı bastırılmadı çünkü standart çıktıyı ***/dev/null*** dosyasına yönlendirerek yok etmiş oldum. Siz de bu şekilde pipe üzerinden gelen verileri bir dosyaya yazmak istediğinizde bu yaklaşımı kullanabilirsiniz.
 
-!!Dikkat: Örneklerimiz sırasında kullandığımız bu ***/etc/apt/sources.list*** dosyası, sistemin paket yönetimi için önemli bir dosya. O sebeple `sudo nano /etc/apt/sources.list` ile bu dosyayı tekrar açıp, eklediğiniz gereksiz verileri silmenizi öneriyorum. Aksi halde paket yönetimi konusunda sorun yaşayabilirsiniz.
+<p class="kirmizi"><strong>❗Dikkat:</strong> Örneklerimiz sırasında kullandığımız bu <strong><i>/etc/apt/sources.list</i></strong> dosyası, sistemin paket yönetimi için önemli bir dosya. O sebeple <code class="language-plaintext highlighter-rouge">sudo nano /etc/apt/sources.list</code> ile bu dosyayı tekrar açıp, eklediğiniz gereksiz verileri silmenizi öneriyorum. Aksi halde paket yönetimi konusunda sorun yaşayabilirsiniz.</p>
 
 # `grep` Komutu
 
@@ -717,7 +717,7 @@ isimler.txt:ahmet can durmus
 isimler.txt:can ahmet furkan
 ```
 
-Bakın yalnızca başında “**ahmet**” olan satırlar getirildi ve “can” isimli dosya veya dizin bulunamadı şeklinde hata verildi. Çünkü grep aracı, araştırmak istediğimiz ifadeyi parantez içinde girmediğimiz zaman ilk argümanın aranacak ifade olduğunu, diğer argümanların ise araştırmanın yapılacağı dosya veya dizinler olduğunu düşünüyor. Komutumuzu bu kez tırnak içinde tekrar girelim.
+Bakın yalnızca başında “**ahmet**” olan satırlar getirildi ve “can” isimli dosya veya dizin bulunamadı şeklinde hata verildi. Çünkü `grep` aracı, araştırmak istediğimiz ifadeyi parantez içinde girmediğimiz zaman ilk argümanın aranacak ifade olduğunu, diğer argümanların ise araştırmanın yapılacağı dosya veya dizinler olduğunu düşünüyor. Komutumuzu bu kez tırnak içinde tekrar girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -830,16 +830,27 @@ Ben son olarak `grep` ile temel düzeyde **regex** kullanımından da bahsedip a
 Biz öncelikle basit Regex’in temel karakterlerini tanıyarak başlayalım.
 
 `.` - Herhangi bir tek karakteri temsil eder (satır sonu karakteri hariç).
+
 `*` - Bir önceki karakterin sıfır veya daha fazla tekrarını temsil eder.
+
 `+` - Bir önceki karakterin bir veya daha fazla tekrarını temsil eder.
+
 `?` - Bir önceki karakterin sıfır veya bir kez tekrarını temsil eder.
+
 `^` - Dizinin başlangıcını temsil eder.
+
 `$` - Dizinin sonunu temsil eder.
+
 `[]` - Bir karakter kümesini belirtir. Bu kümedeki herhangi bir karakterle eşleşir.
+
 `[a-z]` - Küçük harflerin olduğu bir karakter aralığını belirtir.
+
 `[A-Z]` - Büyük harflerin olduğu bir karakter aralığını belirtir.
+
 `[0-9]` - Rakamların olduğu bir karakter aralığını belirtir.
-`\\` - Özel karakterlerin (örneğin `.` ) özel anlamlarını iptal eder.
+
+`\` - Özel karakterlerin (örneğin `.` ) özel anlamlarını iptal eder.
+
 `|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
 
 Ben örnek olması Regex kullanımını `grep` üzerinden çok kısaca ele alıyor olacağım ancak Linux üzerinde Regex’i destekleyen diğer araçlar üzerinde de aynı şekilde Regex kullanabilirsiniz. Bu konu hakkında daha fazla detay almak için “[Linux Üzerinde Regex Kullanımı]({{ site.url }}/linux-regex){:target="_blank"} ” blog yazısını okuyabilirsiniz. 
@@ -1521,13 +1532,13 @@ Bakın tam da beklediğimiz gibi koşul çalıştı ve “**.txt**” ile **veya
 ./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz -and seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.webp” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk. 
+Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz `-and` seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.webp” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk. 
 
 İşte siz de bu şekilde spesifik olarak aradığınız özelliklere uyan filtremeler yapmak için bu koşul seçeneklerini kullanabilirsiniz.
 
 ## `find` Üzerinde Regex Kullanımı
 
-Normalde firnd komutu biz aksini `-regex` seçeneği ile belirtmediğimiz sürece daha önce kabuk genişletmeleri bölümünde ele aldığımız “wildcards” yaklaşımını kullanıyor. Yani biz -name seçeneğini kullandığımızda isimler aslında “wildcards” kuralları dahilinde değerlendiriliyor.
+Normalde `find` komutu biz aksini `-regex` seçeneği ile belirtmediğimiz sürece daha önce kabuk genişletmeleri bölümünde ele aldığımız “wildcards” yaklaşımını kullanıyor. Yani biz `-name` seçeneğini kullandığımızda isimler aslında “wildcards” kuralları dahilinde değerlendiriliyor.
 
 Örneğin `find -name "*.webp"`  komutunu kullandığımda, mevcut bulunduğum dizin altında başında herhangi bir karakter olan devamındaki “.webp” ifadesi yer alan tüm dosya ve klasörler getiriliyor. Dosya ismi genişletmesinden bahsederken benzer örnekler yapmıştık hatırlarsanız.
 
@@ -1951,7 +1962,7 @@ satir8sutun2;satir8sutun3;satir8sutun5
 
 Bakın ilk komutta tam olarak belirttiğimiz bölümler bastırılırken, “`—complement`” seçeneğini kullandığımızda belirttiğimiz bölümlerin haricindekiler bastırıldı.
 
-İşte bu şekilde sütunları filtrelemek istediğimizde yani istediğimiz sütunları kesmek istediğimizde `cut` aracını kullanabiliyoruz. Diğer özellikleri için aynen burda olduğu gibi yardım sayfasına ya da internet üzerindeki harici kaynaklara bakabilirsiniz. Fakat temelde sütunları kesmek için bizim bahsetmiş olduklarımız yeterli.
+İşte bu şekilde sütunları filtrelemek istediğimizde yani istediğimiz sütunları kesmek istediğimizde `cut` aracını kullanabiliyoruz. Diğer özellikleri için aynen burada olduğu gibi yardım sayfasına ya da internet üzerindeki harici kaynaklara bakabilirsiniz. Fakat temelde sütunları kesmek için bizim bahsetmiş olduklarımız yeterli.
 
 # `tr` Komutu
 
@@ -2053,7 +2064,7 @@ taylan@virtualbox:~/arsiv$ echo $PATH
 
 ```
 
-Bakın PATH yoluna ekli olan her bir dizin birbirinden iki nokta üst üste karakteri ayrılmış. Şimdi bu çıktı bana biraz karışık geldiği için her bir path dizinini yeni bir satırda görmek istiyorum. Bunu yapmak için iki nokta üst üste karakterini yeni satır karakteri ile yani yardım listesinde de görülen `\n` karakteri ile değiştirebiliriz. Hemen deneyelim. Ben komutumu `echo $PATH | tr “:” “\n”` şeklinde giriyorum.
+Bakın PATH yoluna ekli olan her bir dizin birbirinden iki nokta üst üste karakteri ayrılmış. Şimdi bu çıktı bana biraz karışık geldiği için her bir PATH dizinini yeni bir satırda görmek istiyorum. Bunu yapmak için iki nokta üst üste karakterini yeni satır karakteri ile yani yardım listesinde de görülen `\n` karakteri ile değiştirebiliriz. Hemen deneyelim. Ben komutumu `echo $PATH | tr “:” “\n”` şeklinde giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -2069,7 +2080,7 @@ Bakın PATH yoluna ekli olan her bir dizin birbirinden iki nokta üst üste kara
 /home/taylan/Desktop/yeni-dizin
 ```
 
-Bakın, her bir path dizinini ayrı ayrı satırlarda bastırmayı başardık. Bu şekilde tam istediğim gibi daha okunaklı bir çıktı elde etmiş oldum. Bence bu yaptığımız örnek, `tr` aracının kullanımına ve ayrıca yeni satıra geçilmesini sağlayan `\n` gibi kalıplara da iyi bir örnek oldu.
+Bakın, her bir PATH dizinini ayrı ayrı satırlarda bastırmayı başardık. Bu şekilde tam istediğim gibi daha okunaklı bir çıktı elde etmiş oldum. Bence bu yaptığımız örnek, `tr` aracının kullanımına ve ayrıca yeni satıra geçilmesini sağlayan `\n` gibi kalıplara da iyi bir örnek oldu.
 
 Yardım çıktısında yer alan buradaki kalıplar üzerinde pratik yaptığınız zaman zaten kolay hatırlanır isimleri dolayısıyla kolayca anımsayıp bu kalıplardan faydalanabilirsiniz. Ayrıca hatırlamadığınız durumda tabii ki yardım sayfası üzerinden de tekrar öğrenebilirsiniz. Zaten pek çok araç zaten benzer standardı izlediği için zaman içinde bu tür kalıplar aklınızda yer edecektir.
 
@@ -2133,9 +2144,7 @@ Bakın yazdığım tüm karakterler ayrı ayrı ele alındı ve eşleşen karakt
 
 Eğer bitişik yapıdaki birden fazla karakteri kapsayacak değişiklikler istiyorsanız ileride ele alacağımız `sed` veya `awk` gibi araçlardan yararlanabilirsiniz. `tr` aracı yalnızca bir karakter ile başka bir tanesini değiştirme silme veya tekrar edenleri sadeleştirmek gibi işler için kullanılıyor.
 
-Ayrıca son olarak, örneklerimiz sırasında verileri hep pipe üzerinden `tr` aracına yönlendirdik. İstersek yönlendirme operatörü ile de `tr` aracının standart girdisine veri aktarmamız da mümkün. Ben denemek için echo “www.deneme…com” >> site komutuyla dosyanın içerisine buradaki ifadeyi ekliyorum. Tamamdır. Şimdi tr aracına bu dosyayı girdi olarak yönlendirelim.
-
-Ben peş peşe tekrar eden karakterlerin `tr` komutu ile teke düşürülmesi için yönlendirme operatörü ile dosyayı `tr` komutuna aktaracağım.
+Ayrıca son olarak, örneklerimiz sırasında verileri hep pipe üzerinden `tr` aracına yönlendirdik. İstersek yönlendirme operatörü ile de `tr` aracının standart girdisine veri aktarmamız da mümkün. Ben peş peşe tekrar eden karakterlerin `tr` komutu ile teke düşürülmesi için yönlendirme operatörü ile dosyayı `tr` komutuna aktaracağım.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -2524,7 +2533,7 @@ Ayrıca varsayılan ayırıcı karakteri olan boşluk yerine `-F'ayıcı-karakte
 
 ## Regex Kullanımı
 
-awk üzerinde regex kullanmak için regex tanımlarını slash karakterleri arasında /regex/ şeklinde yazmamız gerek.
+`awk` üzerinde regex kullanmak için regex tanımlarını slash karakterleri arasında `/regex/` şeklinde yazmamız gerek.
 
 Örneğin ben satır sonunda sayı bulunanları filtreleyip, bu son sütunları bastırmak istiyorum.
 
@@ -2568,7 +2577,7 @@ Eğer regex kalıbının tüm kayıt üzerinde değil de yalnızca belirli alanl
 naz
 ```
 
-Buradaki `$2 ~` tanımı `[0-9]` regex kalıbının yalnızca 2. alanda yani ikinci sütunda eşleşme aramasını sağladı. `{print $1}` ise sağlanmış olan bu eşleşmelerin 1. sütunlarını konsola bastırmış oldu. Yalnızca ilk sütunu değil de türm kaydı bastırırsak, zaten bu satırın 2. sütununda rakam geçtiğini kendimiz de görebiliriz.
+Buradaki `$2 ~` tanımı `[0-9]` regex kalıbının yalnızca 2. alanda yani ikinci sütunda eşleşme aramasını sağladı. `{print $1}` ise sağlanmış olan bu eşleşmelerin 1. sütunlarını konsola bastırmış oldu. Yalnızca ilk sütunu değil de tüm kaydı bastırırsak, zaten bu satırın 2. sütununda rakam geçtiğini kendimiz de görebiliriz.
 
 ```bash
 └─$ awk '$2 ~ /[0-9]/{print $0}' veri                            
@@ -2637,11 +2646,11 @@ Eğer yalnızca ileriye doğru okuma yapacaksanız dosyalar veya pipe üzerinden
 
 ![more-with-file.gif]({{ site.url }}/egitim/temel-linux/metin/more-with-file.gif){:class="responsive img-zoomable"}
 
-Yani bizzat test ettiğimiz gibi more aracı standart girdiden veri almasına ek olarak, kendisine argüman olarak verilmiş olan dosya içeriğini de parça parça konsol üzerinden görüntüleyebilmemize olanak tanıyor.
+Yani bizzat test ettiğimiz gibi `more` aracı standart girdiden veri almasına ek olarak, kendisine argüman olarak verilmiş olan dosya içeriğini de parça parça konsol üzerinden görüntüleyebilmemize olanak tanıyor.
 
 Hatta dilerseniz `more` aracına aynı anda birden fazla dosya ismini verip, birden fazla verinin de sırasıyla `more` aracı üzerinden okunmasını sağlayabilirsiniz. 
 
-Tüm bunlar dışında eğer `more` aracını kullanırken içeriğin sonuna gelmeyi beklemeden aracı sonlandırmak isterseniz <kbd>q</kbd> tuşuna basmanız yeterli. Ben denemek için birden fazla dosyayı more ile açıp, dosyaların sonuna gelmeden <kbd>q</kbd> tuşuna basıp `more` aracını kapatıyorum.
+Tüm bunlar dışında eğer `more` aracını kullanırken içeriğin sonuna gelmeyi beklemeden aracı sonlandırmak isterseniz <kbd>q</kbd> tuşuna basmanız yeterli. Ben denemek için birden fazla dosyayı `more` ile açıp, dosyaların sonuna gelmeden <kbd>q</kbd> tuşuna basıp `more` aracını kapatıyorum.
 
 ![quit-more.gif]({{ site.url }}/egitim/temel-linux/metin/quit-more.gif){:class="responsive img-zoomable"}
 

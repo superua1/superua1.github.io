@@ -230,7 +230,7 @@ Daha önce süslü parantez genişletmesinde olduğu gibi bu genişletmelerin so
 
 Eğer `echo` komutumun ardından **yıldız joker karakterini** eklersem, bu var olan tüm dosya ve klasörlerin bastırılması demek oluyor. 
 
-Hemen denemek için echo * komutunu girelim. 
+Hemen denemek için `echo *` komutunu girelim. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[/etc]
@@ -483,7 +483,7 @@ ls: cannot access '*.txt': No such file or directory
 
 Bakın sonu “**.txt**” ile biten tüm dosyalar buradaki dosya ismi genişletmesi sayesinde `rm` komutuna argüman olarak aktarıldı, dolayısıyla `rm` aracı da bu dosyaların hepsini sildi. Bu sebeple `ls *.txt` komutunun neticesinde herhangi bir çıktı da alamadık çünkü hepsi silinmişti. 
 
-Tüm bu yaklaşımları ele aldıktan sonra, anlatımın başında değinmiş olduğum “dosya ismi genişletmeleri yalnızca mevcut dosya ve dizin isimlerine genişleyebilir” açıklaması üzerinde özellikle durmak istiyorum. Bu açıklama “dosya ismi genişletmesi” kullanarak önceden var olamayan metinsel bir veri üretemeyeceğimiz anlamına geliyor. Yani örneğin ben 1’den 5’e kadar isimlendirilmiş yeni klasörler oluşturmak için mkdir [1-5] şeklinde komut giremem.
+Tüm bu yaklaşımları ele aldıktan sonra, anlatımın başında değinmiş olduğum “dosya ismi genişletmeleri yalnızca mevcut dosya ve dizin isimlerine genişleyebilir” açıklaması üzerinde özellikle durmak istiyorum. Bu açıklama “dosya ismi genişletmesi” kullanarak önceden var olamayan metinsel bir veri üretemeyeceğimiz anlamına geliyor. Yani örneğin ben 1’den 5’e kadar isimlendirilmiş yeni klasörler oluşturmak için `mkdir [1-5]` şeklinde komut giremem.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[/etc]
@@ -654,7 +654,7 @@ Bakın bu kez yalnızca “ada” ifadesini içeren satırın filtrelendiğini v
 
 Burada tırnak işareti kullanarak girdiğimiz komuttaki bu asterix yani yıldız karakteri tırnak içinde olduğu için kabuk tarafından genişletilmedi. Yani görmezden gelindi fakat sondaki `metin*` argümanı tırnak içinde olmadığı için dosya ismi genişletmesi dolayısıyla “***metin1.txt***” ve “***metin2.txt***” argümanlarına dönüştürülmüş oldu. Ve en nihayetinde genişletmeler uygulandıktan sonra en son halini alan bu argümanlar `grep` aracına iletildi. `grep` aracı da regex’i desteklediği için bu kalıbı regex kalıbı olarak dikkate alıp ***metin1.txt*** ve ***metin2.txt*** dosyaları içinden bu kalıpla eşleşenleri bize çıktı olarak sunmuş oldu. 
 
-Tırnak işareti kullanmadığımız komuttaysa, kabuğumuz tırnak içinde olmadığı için bu kalıbı dosya ismi genişletmesi olarak görüp, `grep` aracını çalıştırmadan önce bu genişletmeyi uyguladı. Benim bulunduğum dizinde “***ada***” isimli bir klasör olduğu için buradaki “`a*a`” ifadesi de kabuk tarafından dosya ismi genişletmesi dolayısıyla `ada` argümanına dönüştürüldü. Ayrıca sondaki “`metin*`” ifadesi de dosya genişletmesi ile metin ifadesiyle başlayan “***metin1.txt***” ve “***metin2.txt***” dosyalarına genişletildiği için komutumuz `grep ada metin1.txt metin2.txt` halini almış oluyor. `grep` aracına da bu argümanlar iletildi. Dolayısıyla `grep` aracı bu dosyalar içinde “**ada**” ifadesini arayıp filtrelmiş oldu.
+Tırnak işareti kullanmadığımız komuttaysa, kabuğumuz tırnak içinde olmadığı için bu kalıbı dosya ismi genişletmesi olarak görüp, `grep` aracını çalıştırmadan önce bu genişletmeyi uyguladı. Benim bulunduğum dizinde “***ada***” isimli bir klasör olduğu için buradaki “`a*a`” ifadesi de kabuk tarafından dosya ismi genişletmesi dolayısıyla `ada` argümanına dönüştürüldü. Ayrıca sondaki “`metin*`” ifadesi de dosya genişletmesi ile metin ifadesiyle başlayan “***metin1.txt***” ve “***metin2.txt***” dosyalarına genişletildiği için komutumuz `grep ada metin1.txt metin2.txt` halini almış oluyor. `grep` aracına da bu argümanlar iletildi. Dolayısıyla `grep` aracı bu dosyalar içinde “**ada**” ifadesini arayıp filtrelemiş oldu.
 
 İşte bakın bizzat örnekler üzerinden de teyit ettiğimiz gibi regex karakterlerini çift tırnak içinde yazmadığımızda kabuk bu karakteri görmezden gelmediği için kabuğun kendine ait olan genişletme karakterleri olduğunu düşünüp genişletmeyi uyguluyor. 
 
@@ -688,7 +688,7 @@ mevcut dizin /home/taylan
 
 Bakın mevcut dizin ifadesinden sonra `pwd` komutunun çıktısı argüman olarak genişletildiği için buradaki çıktıya bastırılmış oldu. Buradaki dolar işaretinden sonra parantez içinde yazmış olduğum tanımlama aslında **komut ikamesi genişletmesi** olarak geçiyor. Ben parantez içinde `pwd` komutunu girdiğim için bu `pwd` komutu alt kabukta çalıştırıp bu komutun sonucu bu tanımlamanın yerine argüman olarak genişletilmiş oldu.
 
-Ek bir örnek olarak bir dosya içindeki ifadeleri, yeni oluşturulacak klasör isimleri üzerinde kullanabiliriz. Öncelikle echo “birinci ikinci ucuncu” > dosya.txt komutu ile içerisinde “birinci ikinci ucuncu” ifadeleri bulunan dosyamızı oluşturalım.
+Ek bir örnek olarak bir dosya içindeki ifadeleri, yeni oluşturulacak klasör isimleri üzerinde kullanabiliriz. Öncelikle `echo “birinci ikinci ucuncu” > dosya.txt` komutu ile içerisinde “birinci ikinci ucuncu” ifadeleri bulunan dosyamızı oluşturalım.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]

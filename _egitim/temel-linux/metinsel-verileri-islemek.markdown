@@ -31,7 +31,7 @@ Söz konusu dosya içeriklerini yönetmek olduğunda da her şey en temelde bayt
 
 Linux üzerinde baytları bir kaynaktan diğerine iletmek için yönlendirme mekanizmasından faydalanabiliyoruz. 
 
-Yönlendirme işlemi için Linux üzerinde standart şekilde her bir dosyanın, girdileri okuduğu ve çıktılarını ürettiği uç noktaları mevcuttur. Bu uç noktalara da “dosya tanımlayıcıları” deniyor. Ve temelde 3 tür dosya tanımlayıcı bulunuyor. Normalde biz aksini belirtmediğimiz sürece bu uçlar konsol aracına bağlı oluyor. Bu sebeple veri girişini konsoldan yapıp, hatalı ve hatasız olan çıktıları yine konsol üzerinde görüyoruz. Söylediklerim hala size anlamlı gelmiyorsa lütfen biraz daha sabırlı olun çünkü aslında son derece basit bir yapı.
+Yönlendirme işlemi için Linux üzerinde standart şekilde her bir dosyanın, girdileri okuduğu ve çıktılarını ilettiği uç noktaları mevcuttur. Bu uç noktalara da “dosya tanımlayıcıları” deniyor. Ve temelde 3 tür dosya tanımlayıcı bulunuyor. Normalde biz aksini belirtmediğimiz sürece bu uçlar konsol aracına bağlı oluyor. Bu sebeple veri girişini konsoldan yapıp, hatalı ve hatasız olan çıktıları yine konsol üzerinde görüyoruz. Söylediklerim hala size anlamlı gelmiyorsa lütfen biraz daha sabırlı olun çünkü aslında son derece basit bir yapı.
 
 Bir dosyaya **veri girişi** yapmak istiyorsak o dosyanın standart girdisi olarak temsil edilen **0** numaralı dosya tanımlayıcısına verileri yönlendirmemiz gerekiyor.
 
@@ -75,7 +75,7 @@ Bakın hem hatasız hem de hatalı çıktılar almış olduk. Betik dosyasındak
 
 ## Hatasız Çıktıları Yönlendirmek | Standart Output
 
-Hatasız çıktılar “**standart çıktı**” olarak ifade ediliyor ve **1** numaralı dosya tanımlayıcısı ile temsil ediliyor. Ben denemek için `./test.sh 1> hatasız.txt` komutu ile hatasız çıktıları “***hatasız.txt***” dosyaya yönlendiriyorum.  
+Hatasız çıktılar “**standart çıktı**” olarak ifade ediliyor ve **1** numaralı dosya tanımlayıcısı ile temsil ediliyor. Ben denemek için `./test.sh 1> hatasız.txt` komutu ile hatasız çıktıları “***hatasız.txt***” dosyasına yönlendiriyorum.  
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -474,7 +474,7 @@ Bakın iki dosyanın içeriği, tam olarak komutta belirttiğim sıralama ile ya
 
 Bu bölüme gelene kadar gerçekleştirdiğimiz anlatımlar sırasında kullanma sıklığımızdan da tahmin edebileceğiniz gibi `cat` komutu en sık kullanacağımız komutların başında geliyor. `cat` aracı hatırlanması ve kullanımı basit ancak metinsel verileri okuma birleştirme ve yenilerini oluşturma gibi en temel konularda etkili bir araç. `cat` komutunu kullanarak ihtiyaçlarınıza uygun çözümler üretmek tamamen sizin yönlendirmeleri ve `cat` komutunun çalışma yapısını ne kadar iyi anladığınıza bağlı. Daha iyi anlamak adına birkaç örnek yapabiliriz. 
 
-Örneğin `cat` aracını bir dosyanın içeriğini kopyalamak için kullanabiliriz mesela. Bunun için `cat kopyalanacak_dosya > dosyanın_kopyası` şeklinde komut girmemiz yeterli oluyor. Mesela ben “***liste***” dosyasını kopyalamak istersem `cat liste > liste3` komutuyla bu dosya içeriğinin “***liste3***” isimli dosyaya kopyalanmasını sağlayabiliyoruz. 
+Örneğin `cat` aracını bir dosyanın içeriğini kopyalamak için kullanabiliriz mesela. Bunun için `cat kopyalanacak_dosya > dosyanın_kopyası` şeklinde komut girmemiz yeterli oluyor. “***liste***” dosyasını kopyalamak istersem `cat liste > liste3` komutuyla bu dosya içeriğinin “***liste3***” isimli dosyaya kopyalanmasını sağlayabilirim. 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -507,11 +507,13 @@ yeni klasor
 yepyenidosya
 ```
 
-Bakın “***liste***” dosyasının içeriği kopyalanarak “***liste3***” isimli dosya oluşturup bu dosyaya aktarılmış.
+Bakın “***liste***” dosyasının içeriği kopyalanarak “***liste3***” isimli dosya oluşturulup bu dosyaya aktarılmış.
 
 Burada gerçekleşen işlemi temel olarak açıklamamız gerekirse; Girmiş olduğumuz komut sayesinde `cat` aracı kopyalanacak dosyanın içeriğini okuyor ve buradaki büyüktür `>` işareti sayesinde bu içeriği standart çıktıya yönlendiriyor. Normalde biz özellikle belirtmediğimiz sürece standart çıktı bizim konsolumuza bağlı olduğu için biz `cat` aracının çıktılarını konsolda görüyoruz. Ama ben burada standart çıktıyı büyüktür operatörü ile “***liste3***” isimli dosyaya yönlendirdiğim için çıktılar bu dosyaya aktarılıyor. Bu sayede “***liste***” dosyasının içeriğiyle aynı içeriğe sahip “***liste3***” isimli dosya oluşturuluyor. Yani bir nevi “***liste***” dosyasını kopyalamış oluyoruz.
 
-Elbette benim ele aldığım temel kullanımı dışında `cat` komutunun daha birçok seçeneği mevcut. Bu seçeneklere göz atmak için `cat —help` komutunu kullanabilirsiniz. Buradaki `help` çıktısındaki açıklamalar yeterince açık gelmezse, internet üzerindeki rehber anlatımlara da kolaylıkla ulaşabilirsiniz. Zaten tüm eğitim boyunca tekrar ettiğim ve edeceğim gibi, bu eğitimdeki amacım temel kavramlardan bahsedip daha fazlasını nasıl öğrenebileceğimiz üzerinde durmak. Dolayısıyla tüm konulardan, tüm araçlardan veya araçların tüm seçeneklerinden bahsetmemi bekliyorsanız, üzgünüm bu gerçekleşmeyecek. Nitekim anlatıcı tarafında olmama karşın benim de henüz bilmediğim, hiç kullanmadığım için unuttuğum veya hiç karşılaşmadığım pek çok konu, kavram, araç ve seçenek bulunuyor. Ancak temel kavramların farkında olduğumuzda ve yeni bilgileri nasıl araştırıp bulabileceğimizi bildikten sonra zaten zaman içinde bilmemiz gereken tüm bilgi birikimini adım adım inşa edebiliyoruz. Yani özetle önemli olan iyi bir temel ve bu temele dayandırılan araştırma yetkinliği kazanabilmek. Anlatımlarımıza gelin `cat` komutunu tersi şekilde çıktılar sunabilen `tac` aracından bahsederek devam edelim.
+Elbette benim ele aldığım temel kullanımı dışında `cat` komutunun daha birçok seçeneği mevcut. Bu seçeneklere göz atmak için `cat —help` komutunu kullanabilirsiniz. Buradaki `help` çıktısındaki açıklamalar yeterince açık gelmezse, internet üzerindeki rehber anlatımlara da kolaylıkla ulaşabilirsiniz. Zaten tüm eğitim boyunca tekrar ettiğim ve edeceğim gibi, bu eğitimdeki amacım temel kavramlardan bahsedip daha fazlasını nasıl öğrenebileceğimiz üzerinde durmak. Dolayısıyla tüm konulardan, tüm araçlardan veya araçların tüm seçeneklerinden bahsetmemi bekliyorsanız, üzgünüm bu gerçekleşmeyecek. Nitekim anlatıcı tarafında olmama karşın benim de henüz bilmediğim, hiç kullanmadığım için unuttuğum veya hiç karşılaşmadığım pek çok konu, kavram, araç ve seçenek bulunuyor. Bildiğimi sandıklarım, bilmediklerimin yanında bir hiç sayılır. Ancak temel kavramların farkında olduğumuzda ve yeni bilgileri nasıl araştırıp bulabileceğimizi bildikten sonra zaten zaman içinde bilmemiz gereken kadarlık bilgi birikimini adım adım inşa edebiliyoruz. Yani özetle önemli olan iyi bir temel ve bu temele dayandırılan araştırma yetkinliği kazanabilmek. Zira öğrenmek sürecimiz hiç bir zaman bitmeyecek. 
+
+Anlatımlarımıza gelin `cat` komutunu tersi şekilde çıktılar sunabilen `tac` aracından bahsederek devam edelim.
 
 # `tac` Komutu
 
@@ -1109,7 +1111,7 @@ echo: echo [-neE] [arg ...]
 
 Bakın burada pek çok özel karakter bulunuyor. Hepsine tek tek değinmemize gerek yok. Ama kısaca bir göz atalım.
 
-Normalde echo komutunun ardından yazdığımız ifade konsola doğrudan bastırılıyor.
+Normalde `echo` komutunun ardından yazdığımız ifade konsola doğrudan bastırılıyor.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]

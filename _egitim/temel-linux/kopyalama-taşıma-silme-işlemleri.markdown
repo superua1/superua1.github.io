@@ -13,7 +13,7 @@ toc: true
 ---
 
 
-Şimdiye kadar dosya oluşturma ve düzenlemeye dair pek çok araçtan söz etmiş olduk. Anlatımın devamında dosyalarla ilgili birkaç ayrıntıdan daha bahsediyor olacağız. Fakat diğer ayrıntılardan bahsetmeden önce belki de en temel işlevler olan kopyalama taşıma ve silme işlevlerini yerine getirebileceğimiz araçlarından bahsetmeden istiyorum.
+Şimdiye kadar dosya oluşturma ve düzenlemeye dair pek çok araçtan söz etmiş olduk. Anlatımın devamında dosyalarla ilgili birkaç ayrıntıdan daha bahsediyor olacağız. Fakat diğer ayrıntılardan bahsetmeden önce belki de en temel işlevler olan kopyalama taşıma ve silme işlevlerini yerine getirebileceğimiz araçlarından bahsetmek istiyorum.
 
 # `cp` Komutu
 
@@ -151,7 +151,7 @@ Ben yalnızca en sık kullanacağımız yöntemleri ele aldım ancak `cp —help
 
 Dosya veya dizinleri kopyalamak yerine taşımak yani yerini değiştirmek istediğimizde İngilizce “**m**o**v**e” yani “taşıma” ifadesinin kısaltmasından gelen `mv` aracını kullanabiliyoruz. `mv` aracının kullanımı da tıpkı `cp` aracı gibi oldukça kolay. Zaten her iki aracın da hemen hemen pek çok seçeneği ortak kısaltmalar ile tanımlandığı için rahatlıkla kullanabiliyoruz. Gelin örnekler üzerinden temel kullanımını ele alalım.
 
-Taşımak istediğimiz dosyayı `mv dosya_adı tanışanacağı_yeni_konum` şeklinde belirtmemiz yeterli oluyor. Ben örnek olarak mevcut bulunduğum dizindeki “dosya” isimli dosyayı Documents dizini altında taşımak üzere mv dosya Documents şeklinde komutumu giriyorum.
+Taşımak istediğimiz dosyayı `mv dosya_adı tanışanacağı_yeni_konum` şeklinde belirtmemiz yeterli oluyor. Ben örnek olarak mevcut bulunduğum dizindeki “***dosya***” isimli dosyayı Documents dizini altında taşımak üzere `mv dosya Documents` şeklinde komutumu giriyorum.
 
 ```bash
 └─$ mv dosya Documents/
@@ -287,7 +287,7 @@ a  b  belgeler  c  d  metinler  metin.txt  orijinal
 a  b  bulbeni  c  d  dosya  dosya1  dosya2  kopya  orijinal
 ```
 
-Gördüğünüz gibi “***a” “b” “c” “d”*** dosyaları ile aynı isimli dosyalar “***yeni/”*** klasöründe bulunduğu için bunlar taşınmazken, “***bulbeni***” isimli dosya taşınmış olduk. Örnek üzerinden bizzat teyit ettiğimiz gibi siz de üzerine yazmaya karşı otomatik olarak korumak isterseniz `-n` seçeneğini kullanabilirsiniz. 
+Gördüğünüz gibi “***a” “b” “c” “d”*** dosyaları ile aynı isimli dosyalar “***yeni/”*** klasöründe bulunduğu için bunlar taşınmazken, “***bulbeni***” isimli dosya taşınmış oldu. Örnek üzerinden bizzat teyit ettiğimiz gibi siz de üzerine yazmaya karşı otomatik olarak korumak isterseniz `-n` seçeneğini kullanabilirsiniz. 
 
 `mv` komutu hakkında temelde bilmemiz gerekenler bunlar. Kendi kendinize biraz daha kurcalarsanız ne kadar kolay kullanılabilir olduğunu bizzat deneyimleyebilirsiniz. Ben kendimi tekrar etmek istemediğim için çok fazla örnek vermedim ama siz kendi kendinize hem dosya hem de dizinleri taşıyarak alıştırmalar yapıp `mv` aracının kullanımını iyi biçimde kavrayın. Ayrıca her zaman olduğu gibi elbette daha fazlası için `mv —help` komutu ile diğer seçenekleri ve özellikleri görüntüleyebilirsiniz.
 
@@ -595,11 +595,11 @@ Tabii ki <kbd>Shift</kbd> + <kbd>Delete</kbd> tuşlaması bizim `shred` komutu i
 
 Komut satırından veya <kbd>Shift</kbd> + <kbd>Delete</kbd> ile grafiksel arayüzden sildiğiniz dosyaları geri getirmek isterseniz de `testdisk` gibi harici veri kurtarma yazılımları ile ilgili dosyalarınızı kurtarabilirsiniz. Tabii ki daha önce de belirttiğim şekilde eğer `shred` aracı ile dosya içeriklerini tahrip ettiyseniz yani kalıcı olarak sildiyseniz kurtarma yazılımları ile, ilgili dosyaları kurtarmanız pek olası değil.
 
-Artık böylelikle silme ve kurtarma planlarınızı, şimdiye kadar bahsettiğimiz bilgiler aşığında gerçekleştirebilirsiniz.
+Artık böylelikle silme ve kurtarma planlarınızı, şimdiye kadar bahsettiğimiz bilgiler ışığında gerçekleştirebilirsiniz.
 
 # Sembolik ve Katı Link | Soft Link & Hard Link
 
-Bu derste çok kısaca sembolik ve katı linklerden de bahsetmek istiyorum.
+Anlatımın devamında çok kısaca sembolik ve katı linklerden de bahsetmek istiyorum.
 
 Fakat sembolik ve katı linklerden bahsetmeden önce, link yapısını yani aslında buradaki link ifadesinden kastımızı anlamak için öncelikle "inode" kavramı üzerinde durmamız gerekiyor. Merak etmeyin çok ayrıntıya girmeyeceğiz.
 
@@ -615,13 +615,13 @@ Yani aslında buradaki ***metin.txt*** dosyası yalnızca benzersiz bir **inode*
 
 İşte tıpkı bu örneğimizde olduğu gibi dosya sistemindeki benzersiz olan her bir dosya ve klasörün de benzersiz bir inode değeri bulunuyor. Bizim gördüğümüz dosya ve klasör isimleri de yalnızca bu inode değerlerine yönlendirme yapan linkler aslında. Dosya veya klasör isminden inode değerine, inode değerleri üzerinden de disk üzerinde depolanmış olan verilere kolayca erişebiliyoruz. Buradaki linkler yalnızca biz insanların disk üzerindeki verilere kolay erişebilmesi için okunaklı isimlerden oluşan bağlantı noktaları aslında. Yani diskteki “xx yy zz” bloklarındaki verileri okumak istiyorum demek yerine, “metin.txt” dosyasını okumak istiyorum demek bizim için çok daha kolay olduğu için dosya ve klasör isimleri yalnızca birer linktir. 
 
-Tamam temel seviye için inode ve link kavramı hakkında bu kadarlık bilgi yeterli.
+Tamam temel seviye için "inode" ve "link" kavramı hakkında bu kadarlık bilgi yeterli.
 
 Şimdi esas konumuz olan link kavramına odaklanacak olursak, Linux üzerinde **sembolik** ve **katı** olmak üzere iki link çeşidi bulunuyor. Gelin öncelikle sembolik linkten bahsederek başlayalım.
 
 ## Sembolik Link | Soft Link
 
-Ben sembolik link diyor olacağım ancak farklı kaynaklarda “**soft link**” olarak ifade edildiğini de görebilirsiniz. Sembolik linkleri Windows sisteminden de alışık olduğumuz sıradan kısayollara benzetebiliriz. Sembolik linklerin görevleri yalnızca orijinal dosya içeriğine yönlendirme yapmaktır.
+Ben "**sembolik link**" diyor olacağım ancak farklı kaynaklarda “**soft link**” olarak ifade edildiğini de görebilirsiniz. Sembolik linkleri, Windows sisteminden de alışık olduğumuz sıradan kısayollara benzetebiliriz. Sembolik linklerin görevleri yalnızca orijinal içeriğe yönlendirme yapmaktır.
 
 Daha anlaşılır olması için gerçek bir örnek üzerinden devam edebilmek adına öncelikle nasıl sembolik link oluşturabileceğimizi öğrenelim.
 
@@ -709,7 +709,7 @@ Biz burada bu dosyaya veri eklemek üzere komutumuzu girdiğimizde, bu sembolik 
 
 ![soft-link.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link.webp){:class="responsive img-zoomable"}
 
-Yani bizzat teyit ettiğimiz gibi sembolik bağlantılar aslında orijinal dosyaya yönlendirme yapan kısayol dosyaları. Bu sebeple örneğin orijinal dosya silinirse, sembolik linkler üzerinden diskteki verilere ulaşmamız mümkün olmuyor. Çünkü dediğimiz gibi sembolik linkler yalnızca orijinal dosyaya yönlendirme yapıyor, bu orijinal dosya da zaten disk üzerindeki verilere ulaşmamızı sağlayan bir bağlantı. Eğer bu bağlantı kesilirse, diskteki veriler silinmemiş bile olsa o verilere ulaşmamız mümkün olmuyor. 
+Yani bizzat teyit ettiğimiz gibi sembolik bağlantılar aslında orijinal dosyaya yönlendirme yapan kısayol dosyaları. Bu sebeple örneğin orijinal dosya silinirse, sembolik linkler üzerinden diskteki verilere ulaşmamız mümkün olmuyor. Çünkü dediğimiz gibi sembolik linkler yalnızca orijinal dosyaya yönlendirme yapıyor, bu orijinal dosya da zaten disk üzerindeki verilere ulaşmamızı sağlayan bir bağlantı. Eğer bu bağlantı kesilirse, diskteki veriler silinmemiş olsa bile o verilere ulaşmamız mümkün olmuyor. 
 
 ![soft-link-hard-link-deleted.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link-hard-link-deleted.webp){:class="responsive img-zoomable"}
 
@@ -820,13 +820,13 @@ Ben burada “***kati-metin***” isimli yeni bir katı link oluşturduğumda, t
 
 ![hard-link2.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link2.webp){:class="responsive img-zoomable"}
 
-Sembolik linkte nasıl oluyordu. Sembolik linkler, orijinal linklere yani aslında katı linkli dosyalara yönlendirme yapıyordu, oradan da disk üzerindeki verilere ulaşabiliyorduk.,
+Sembolik linkte nasıl oluyordu. Sembolik linkler, orijinal linklere yani aslında katı linkli dosyalara yönlendirme yapıyordu, oradan da disk üzerindeki verilere ulaşabiliyorduk.
 
 ![soft-link2.webp]({{ site.url }}/egitim/temel-linux/metin/soft-link2.webp){:class="responsive img-zoomable"}
 
 Katı linkte ise hem orijinal dosya hem de yeni oluşturduğumuz katı link dosyası inode değerine bağlı olduğu için aynı disk verisinin yerini biliyor ve bizi oraya yönlendirebiliyor.
 
-Dolayısıyla ben orijinal veya bu yeni oluşturduğum katı link dosyasında değişiklik yaptığımda diskteki bu veri değiştiği için bu değişikliğe her iki dosya üzerinden de ulaşabiliyorum. Hatta orijinal dosya silinse bile yeni oluşturduğum katı link dosyası inode sayesinde verilerin disk üzerinde tam olarak hangi bloklarda olduğunu bildiği için benim o verilere ulaşmam mümkün oluyor.
+Dolayısıyla ben orijinal veya bu yeni oluşturduğum katı link dosyasında değişiklik yaptığımda diskteki bu veri değiştiği için bu değişikliğe her iki dosya üzerinden de ulaşabiliyorum. Hatta orijinal dosya silinse bile yeni oluşturduğum katı link dosyası, inode sayesinde verilerin disk üzerinde tam olarak hangi bloklarda olduğunu bildiği için benim o verilere ulaşmam mümkün oluyor.
 
 ![hard-link3.webp]({{ site.url }}/egitim/temel-linux/metin/hard-link3.webp){:class="responsive img-zoomable"}
 
@@ -881,7 +881,7 @@ Gördüğünüz gibi orijinal dosya silinmiş olmasına rağmen hala disk üzeri
 
 En nihayetinde gördüğünüz gibi aslında sistemiz üzerindeki standart dosya ve klasörler disk üzerindeki veri bloklarına inode üzerinden yönlendirme yapan bağlantı adresleri. Biz bu bağlantı adresleri yani linkler sayesinde kolay okunabilir isimlerle diskteki verilerimizi düzenle tutup tekrar tekrar erişebiliyoruz.
 
-Yeni katı link oluşturma yaklaşımı sayesinde disk üzerinde tekrar aynı veriler için fazladan depolama alanı harcanmasına gerek kalmadan, dosyaların yedeklerinin alınması mümkün oluyor. Daha önce de silme işleminin aslında verilere ulaşmamızı sağlayan bağlantıların silinmesinden ibaret olduğunu söylemiştik. Eğer verilere ulaşmamızı sağlayan birden fazla katı link olursa, bir katı link silinse bile diskimiz üzerindeki verilere ulaşmaya devam edebiliyoruz. Katı link yaklaşımı tam olarak bu amaçla kullanılıyor. Ve disk üzerinde fazladan depolama alını işgal etmeden yedeklemek için harika bir çözüm.
+Yani katı link oluşturma yaklaşımı sayesinde disk üzerinde tekrar aynı veriler için fazladan depolama alanı harcanmasına gerek kalmadan, dosyaların yedeklerinin alınması mümkün oluyor. Daha önce de silme işleminin aslında verilere ulaşmamızı sağlayan bağlantıların silinmesinden ibaret olduğunu söylemiştik. Eğer verilere ulaşmamızı sağlayan birden fazla katı link olursa, bir katı link silinse bile diskimiz üzerindeki verilere ulaşmaya devam edebiliyoruz. Katı link yaklaşımı tam olarak bu amaçla kullanılıyor. Ve disk üzerinde fazladan depolama alını işgal etmeden yedeklemek için harika bir çözüm.
 
 Tabii ki katı linkler örneklerimiz üzerinden bizzat teyit ettiğimiz gibi mevcut verilerin üzerine yazılmasına engel olmuyor. Yalnızca ilişkili verilere giden yolun silinmesi ihtimali için yedekleme imkanı tanıyor. Yani eğer üzerine veri yazılması konusunda endişe duyduğunuz verileriniz varsa tabii ki bunları başka bir dizine kopyalayıp tekrar aynı verilerin diskte farklı bloklarda yedeklenmesini sağlamanız gerekiyor.
 
